@@ -1,0 +1,56 @@
+% ================================ %
+% SOURCE CODE HIGHLIGHTING OPTIONS
+% ================================ %
+
+% plain C code - without colors
+\lstdefinestyle{PlainStyle}{
+    basicstyle=\small\ttfamily,
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    showspaces=false,
+    escapechar=!,
+    escapeinside={(*}{*)},
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=2,
+    language=C
+}
+
+% C code highlight
+\lstdefinestyle{CStyle}{
+    basicstyle=\small\ttfamily,
+    commentstyle=\color{mGreen},
+    keywordstyle=\color{mPurple}\bfseries,
+    stringstyle=\color{magenta},
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    escapechar=!,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=2,
+    language=C
+}
+
+% Coq code highlight
+\input{latex/coqlang}
+\lstdefinestyle{CoqStyle}{
+    basicstyle=\small\ttfamily,
+    commentstyle=\color{mGreen},
+    keywordstyle=\color{mPurple}\bfseries,
+    stringstyle=\color{magenta},
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    escapeinside={(*}{*)},
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=2,
+    language=Coq
+}

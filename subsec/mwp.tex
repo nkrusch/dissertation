@@ -1,10 +1,14 @@
 \subsection{\mwp-Bounds Analysis}\label{subsec:mwp}
 
-The \mwp-flow analysis~\cite{jones2009} is one example of an ICC-based system.
-It is a sound computational method that certifies polynomial bounds on the size of the values manipulated by an imperative program.
-It provides a certificate guaranteeing that the program uses throughout its execution at most a polynomial amount of space and, if a program terminates, it will do so in polynomial time in the size of its inputs.
-The analysis computes, for each program variable, a vector tracking how it depends on other variables.
-The vector values are determined by applying the nondeterministic rules of the \mwp-calculus to the commands of the program.
-Those vectors are collected in a matrix.
-A program is assigned a matrix only if all the values in it are bounded by a polynomial in the input sizes.
-This technique is compositional and operates on a simple, imperative language.
+Blah~\cite{jones2009}
+
+%The \mwp-flow analysis~\cite{jones2009} is one example of an ICC-based system.
+%It is a sound computational method that certifies polynomial bounds on the size of the values manipulated by an imperative program.
+%It provides a certificate guaranteeing that the program uses throughout its execution at most a polynomial amount of space and, if a program terminates, it will do so in polynomial time in the size of its inputs.
+%The analysis computes, for each program variable, a vector tracking how it depends on other variables.
+%The vector values are determined by applying the nondeterministic rules of the \mwp-calculus to the commands of the program.
+%Those vectors are collected in a matrix.
+%A program is assigned a matrix only if all the values in it are bounded by a polynomial in the input sizes.
+%This technique is compositional and operates on a simple, imperative language.
+
+\input{figures/mwp_rules}

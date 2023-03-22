@@ -1,1 +1,32 @@
+% All sections begin on a new page
+\AddToHook{cmd/section/before}{\clearpage}
+% Roman numbers for section headers
+\renewcommand\thesection{\Roman{section}}
+
+% MATH ETC
 \newcommand\mwp{\emph{mwp}}
+\newcommand{\vdashJK}{%\vdash_{\textnormal{\textsc{jk}}}
+}
+\newcommand{\comm}[1]{\mathtt{#1}}
+\newcommand\hypo{\Hypo}
+\newcommand\infer{\Infer}
+\DeclarePairedDelimiter{\sem}{\llbracket}{\rrbracket} % Semantics of program.
+\newcommand{\BNF}{\enspace \ensuremath{\Vert} \enspace} % BNF separator
+\DeclareMathOperator{\In}{In}
+\DeclareMathOperator{\Out}{Out}
+\DeclareMathOperator{\PrD}{PrD}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\var}{var}
+\DeclareMathOperator{\Card}{Card}
+\newcommand{\mat}[1]{\left(\begin{smallmatrix}#1\end{smallmatrix}\right)} % Shorthand for matrices
+\newcommand{\zmat}{\mathbf{0}} % O-element for matrices
+\newcommand{\umat}{\mathbf{1}} % 1-element for matrices
+\ebproofnewstyle{small}{separation = 1em, rule margin = .5ex,}
+
+% languages
+\newcommand{\pr}{\lstinline[mathescape,language=imp,basicstyle=\ttfamily]}
+\newcommand{\prc}{\lstinline[language=C,basicstyle=\ttfamily\bfseries]}
+\lstdefinelanguage{imp}{morekeywords={if,then,else,while,do,loop}}
+
+% tabularx: Y means centered wide column
+\newcolumntype{Y}{>{\centering\arraybackslash}X}
