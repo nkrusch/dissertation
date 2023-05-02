@@ -5,7 +5,7 @@ The ones I know of:
 | Name    | Details                       | The Best URL                                                |
 |:--------|-------------------------------|-------------------------------------------------------------|
 | Campy   | Java bytecode -- inaccessible | https://faculty.cc.gatech.edu/~wharris/campy.html#artifacts |
-| KoAT    | Integer programs              |                                                             |
+| KoAT    | Integer programs              | https://aprove-developers.github.io/ComplexityMprfCfr/      |
 | PUBS    | Cost Equation System          | https://costa.fdi.ucm.es/~costa/pubs/pubs.php               | 
 | Rank    |                               |                                                             |
 | CoFloCo |                               | https://github.com/aeflores/CoFloCo                         |
@@ -21,12 +21,14 @@ The ones I know of:
 * Loopus
   * paper: https://arxiv.org/abs/1508.04958
   * Sinn et al. 2014 "Difference Constraints: An adequate Abstraction for Complexity Analysis of Imperative Programs"
+  * https://doi.org/10.29007/3xxr "Loopus - A Tool for Computing Loop Bounds for C Programs"
 
 * COSTA
     - paper: "Non-cumulative Resource Analysis" (TACAS'15)
 
 * PUBS 
   - Albert et al. 2012a
+  - The research group COSTA: https://costa.fdi.ucm.es/web/
 
 * Rank 
   - Alias et al. 2010
@@ -40,4 +42,4 @@ The ones I know of:
 
 * CoFloCo
   - various experiments: http://aeflores.github.io/CoFloCo/experimentsPhD/
-  - 
+  
