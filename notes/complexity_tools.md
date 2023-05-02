@@ -6,13 +6,13 @@ The ones I know of:
 |:--------|-------------------------------|-------------------------------------------------------------|
 | Campy   | Java bytecode -- inaccessible | https://faculty.cc.gatech.edu/~wharris/campy.html#artifacts |
 | KoAT    | Integer programs              |                                                             |
-| PUBS    |                               |                                                             | 
+| PUBS    | Cost Equation System          | https://costa.fdi.ucm.es/~costa/pubs/pubs.php               | 
 | Rank    |                               |                                                             |
 | CoFloCo |                               | https://github.com/aeflores/CoFloCo                         |
 | COSTA   |                               |                                                             |
 | Loopus  |                               |                                                             |
-| C4B     | Dead web demo                 |                                                             |
-| TcT     |                               |                                                             | 
+| C4B     | Dead web demo                 | https://www.cs.yale.edu/homes/qcar/aaa/                     |
+| TcT     |                               | http://cl-informatik.uibk.ac.at/software/tct/               | 
 
 * Campy
   - paper: "Complexity Verification using Guided Theorem Enumeration" (POPL"17)
@@ -37,3 +37,7 @@ The ones I know of:
 
 * TCT
   - url: http://cl-informatik.uibk.ac.at/software/tct/
+
+* CoFloCo
+  - various experiments: http://aeflores.github.io/CoFloCo/experimentsPhD/
+  - 
