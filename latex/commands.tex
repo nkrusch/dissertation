@@ -4,7 +4,7 @@
 \renewcommand\thesection{\Roman{section}}
 
 % MATH ETC
-\newcommand\mwp{\emph{mwp}}
+\newcommand\mwp{{mwp}}
 \newcommand{\vdashJK}{%\vdash_{\textnormal{\textsc{jk}}}
 }
 \newcommand{\comm}[1]{\mathtt{#1}}
@@ -23,8 +23,30 @@
 \newcommand{\umat}{\mathbf{1}} % 1-element for matrices
 \ebproofnewstyle{small}{separation = 1em, rule margin = .5ex,}
 
-% languages
-\newcommand{\pr}{\lstinline[mathescape,language=imp,basicstyle=\ttfamily]}
+% Comma after eg and ie
+% https://english.stackexchange.com/a/16215
+\newcommand*{\eg}{e.g.\@,\xspace}
+\newcommand*{\Eg}{E.g.\@,\xspace}
+\newcommand*{\cf}{cf.\@\xspace}
+\newcommand*{\ie}{i.e.\@,\xspace}
+\newcommand*{\aka}{a.k.a.\@\xspace}
+\newcommand*{\Ie}{I.e.,\@\xspace}
+% \newcommand{\st}{s.t.\@\xspace}
+\newcommand*{\resp}{resp.\@\xspace}
+\newcommand*{\wrt}{w.r.t.\@\xspace}
+\newcommand*{\wlg}{w.l.o.g.\@\xspace}
+\renewcommand{\aka}{a.k.a.\@\xspace}
+
+\makeatletter
+\newcommand*{\etc}{%
+	\@ifnextchar{.}%
+	{etc}%
+	{etc.\@\xspace}%
+}
+\makeatother
+
+% programming languages
+\newcommand{\pr}{\lstinline[mathescape,language=imp,basicstyle=\ttfamily,escapeinside={(*}{*)}]}
 \newcommand{\prc}{\lstinline[language=C,basicstyle=\ttfamily\bfseries]}
 \lstdefinelanguage{imp}{morekeywords={if,then,else,while,do,loop}}
 

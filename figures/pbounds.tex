@@ -1,0 +1,20 @@
+%! suppress = EscapeUnderscore
+%! Author = neearusch
+%! Date = 6/30/23
+
+\begin{figure*}[!h]
+
+To develop intuition of what \mwp-flow analysis computes, consider the following example.
+Let \pr{$\texttt{C}^{\prime} \equiv$ X1:=X2+X3; X1:=X1+X1} and
+\pr{$\texttt{C}^{\prime\prime} \equiv$ X1:=1; loop X2 {X1:=X1+X1$\texttt{\}}$} be imperative programs with standard operational semantics.
+For each variable \pr{X}$_i$, let $x_i$ denote its initial value and $x_i^\prime$ its final value.
+
+\begin{itemize}    
+\item Program \prc{C}$^\prime$. Observe by inspection that variable \pr{X1}'s final value is $x_1' \leq 2x_2 + 2x_3$. Variables \pr{X2} and \pr{X3} do not change and therefore are bounded by their initial values $x_2' \leq x_2$ and $x_3' \leq x_3$. We conclude all variables have a polynomial growth bound, and the program has the property of interest.
+\item Program \prc{C}$^{\prime\prime}$. Since variable \pr{X2} does not change, its growth bound is $x_2' \leq x_2$. However, \pr{X1} grows exponentially with bound $x_1' \leq 2^{x_2}$. We conclude program does not have a polynomial growth bound.
+\end{itemize}
+
+    % \caption{}
+    \label{fig:pbounds}
+\end{figure*}
+
