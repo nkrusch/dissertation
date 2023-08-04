@@ -1,0 +1,677 @@
+% LLNCS macro package for Springer Computer Science proceedings;
+% Version 2.21 of 2022/01/12
+\documentclass[runningheads]{llncs}
+%
+% Call: https://atva-conference.org/2023/
+%
+% Calendar:
+% Abstract submission deadline: May 11, 2023 (AoE)
+% Paper submission deadline:    May 11, 2023 (AoE)
+% Paper notification:           June 30, 2023 (AoE)
+% Camera-ready deadline:        July 25, 2023 (AoE)
+% Conference:                   October 24 – October 27, 2023
+%
+% Tool papers (10 pages, excluding references)
+%
+% Note that the page limit has been increased due to multiple requests. 
+% Submissions must be in Springer’s LNCS format. Additional material may be 
+% placed in an appendix, to be read at the discretion of the reviewers and 
+% to be omitted in the final version. Formatting style files and further 
+% guidelines for formatting can be found at the Springer website. Adding line
+% numbers (LaTeX package lineno) is highly recommended. For (regular and 
+% tool) papers reporting experiments, uploading an artifact on a long-term 
+% available platform is recommended (though not compulsory).
+%
+% Tool papers must include information about a URL from where the tool can 
+% be downloaded or accessed on-line for evaluation. The URL must also contain
+% a set of examples, and a user manual that describes usage of the tool 
+% through examples. In case the tool needs to be downloaded and installed, 
+% the URL must contain instructions for installation of the tool on 
+% Linux/Windows/MacOS.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% DISCUSSION PAD
+% https://pad.lqdn.fr/p/atva2023
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% TOOL URL
+\newcommand{\toolURL}{https://statycc.github.io/.github/pymwp/}{}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+\usepackage[T1]{fontenc}
+% T1 fonts will be used to generate the final print and online PDFs,
+% so please use T1 fonts in your manuscript whenever possible.
+% Other font encondings may result in incorrect characters.
+%
+%\usepackage{graphicx}
+% Used for displaying a sample figure. If possible, figure files should
+% be included in EPS format.
+%
+% Adding line numbers (LaTeX package lineno) is highly recommended.
+% \usepackage%[pagewise]
+% 	{lineno}
+% \renewcommand{\linenumberfont}{\normalfont\scriptsize\color{red}}
+% \linenumbers
+
+\usepackage{latex/packages}
+\input{latex/newcommands}
+
+% If you use the hyperref package, please uncomment the following two lines
+% to display URLs in blue roman font according to Springer's eBook style:
+%\usepackage{color}
+%\renewcommand\UrlFont{\color{blue}\rmfamily}
+
+\begin{document}
+\title{\pymwp: A Static Analyzer Determining Polynomial Growth Bounds% \pymwp: A Static Analyzer To Control Value Growths
+    \texorpdfstring{%
+        \thanks{
+            \href{https://spots.augusta.edu/caubert/research/statycc/}{This research} is supported by the \href{https://face-foundation.org/transatlantic-study-research/transatlantic-research-partnership/}{Transatlantic Research Partnership} of the Embassy of France in the United States and the \href{https://face-foundation.org/}{FACE Foundation}, and has benefited from the research meeting \href{https://www.dagstuhl.de/de/programm/kalender/evhp/?semnr=21453}{21453 \enquote{Static Analyses of Program Flows: Types and Certificate for Complexity}} in Schloss Dagstuhl. Th.\ Rubiano and Th.\ Seiller are supported by the Île-de-France region through the DIM RFSI project \enquote{CoHOp}. 
+        }}%
+    {}
+}
+\titlerunning{A Static Analyzer Determining Polynomial Growth Bounds}
+% If the paper title is too long for the running head, you can set
+% an abbreviated paper title here
+%
+\author{
+        Clément Aubert\texorpdfstring{\inst{1}\orcidID{0000-0001-6346-3043}}{} \and
+        Thomas Rubiano\texorpdfstring{\inst{2}}{} \and
+        Neea Rusch\texorpdfstring{\inst{1}\orcidID{0000-0002-7354-5330}}{} \and
+        Thomas Seiller\texorpdfstring{\inst{2,3}\orcidID{0000-0001-6313-0898}}{}
+}
+
+\authorrunning{
+    C. Aubert et al.
+}
+% First names are abbreviated in the running head.
+% If there are more than two authors, 'et al.' is used.
+
+\institute{%
+    School of Computer and Cyber Sciences, Augusta University \and
+    LIPN -- UMR 7030 Université Sorbonne Paris Nord \and
+    CNRS%
+}
+
+\maketitle
+
+\begin{abstract}
+We present \pymwp, a static analyzer that automatically computes, if they exist, polynomial bounds relating input and output sizes. In case of exponential growth, our tool detects precisely which dependencies between variables induced it. Based on the sound \mwp-flow calculus, the analysis captures bounds on large classes of programs by being non-deterministic and not requiring termination. For this reason, implementing this calculus required solving several non-trivial implementation problems, to handle its complexity and non-determinism, but also to provide meaningful feedback to the programmer. The duality of the analysis result and compositionality of the calculus make our approach original in the landscape of complexity analyzers. We conclude by demonstrating experimentally how \pymwp is a practical and performant static analyzer to automatically evaluate variable growth bounds of \texttt{C} programs.
+
+\keywords{%
+    Static Program Analysis
+    \and Automatic Complexity Analysis
+    \and Program Verification
+    \and Bound Inference
+    \and Flow Analysis.
+}
+\end{abstract}
+
+\section{Introduction -- Making Use of Implicit Complexity}
+\label{sec:intro}
+
+Certification of any program is incomplete if it ignores resource considerations, as runtime failure will occur if usage exceeds available capacity.
+To address this deficiency, automatic complexity analysis produced many different implementations~\cite{Carbonneaux2015,giesl2017,hainry2021,Hoffmann2012c} with varying features.
+This paper presents the development and specificities of our automatic static complexity analyzer, \pymwp.
+
+The first original dimension of our tool is its inspiration, coming from Implicit Computational Complexity (ICC)~\cite{DalLago2012a}.
+This field designs systems guaranteeing program's runtime resource usage that tend to possess practically useful properties.
+For this reason,
+it is conjectured that ICC systems could be used to achieve realistic complexity analysis~\cite[p.~16]{Moyen2017c}.
+Our series of work~\cite{Aubert2022b,Aubert2022g} is testing this hypothesis, and resulted in the tool we present in this paper: 
+ \pymwp is one of the first ICC-inspired applications, and the first mechanization of the specific technique it implements. % ~\cite{Jones2009}, as recently refined~\cite{Aubert2022b}.
+Let us first exemplify what \pymwp calculates.
+
+\begin{example}\label{ex:increasing}
+Consider \href{https://github.com/statycc/pymwp/blob/22f2ee159d86e83c3ee46ec62ecbc2b0a89d2d28/c_files/tool_paper/tool_ex_1.c}{an imperative program} with a fixed number of parameters: %, that manipulates integers:
+\begin{lstlisting}[language=C]
+void increasing(int X1, int X2, int X3) {
+   while (X2 < X1) { X2 = X1 + X1; }
+   while (X3 < X2) { X3 = X2 + X2; }
+}
+\end{lstlisting}
+Independently of the arguments passed (henceforth called initial values), once computation concludes, \texttt{X1} will hold the same value, but the values held by \texttt{X2} and \texttt{X3} may have changed.
+By manual analysis, we can deduce that the variable values \enquote{growth bound} between the 
+\emph{initial values} \prc|X1|, \prc|X2| and \prc|X3| (overloading initial values and parameter names) and their 
+\emph{final values} (denoted  \prc|X1|', \prc|X2|' and \prc|X3|'), omitting constants, is
+$\text{\prc|X1|'} = \text{\prc|X1|}$, 
+$\text{\prc|X2|'} \leq \max(\text{\prc|X1|}, \text{\prc|X2|})$ and
+$\text{\prc|X3|'} \leq \max(\text{\prc|X3|}, \text{\prc|X2|}+\text{\prc|X1|})$\footnote{%
+	Observe that the bound for \prc|X3|' involves \prc|X1| \emph{and} \prc|X2|: the presence of \prc|X1| in the bound of \prc|X2|' transitively impacts the bound for \prc|X3|', because the analysis is compositional.}.
+Therefore, for all initial values, the value growth of the variable's value is bounded by a polynomial \wrt its initial values.
+Our analysis is designed to either produce such bounds, or to pinpoint variables that grow exponentially. % if the program does not satisfy this property.
+%give hints as to 
+%why some program do not satisfy %it do.%reject programs that .
+\end{example}
+% Re-use this explanation?
+%
+%**Example.** Using the mwp-bound expression, the analysis can produce various results.
+%This example gives intuition of how to interpret some possible results.
+%
+%Obtained bound: $\texttt{X}' \leq \texttt{X}$   
+%
+%- Assume program has one input variable named $\texttt{X}$.
+%- The bound expression means the final value $\texttt{X}'$ depends only on its own input $\texttt{X}$.
+%
+%Obtained bound: $\texttt{X}' \leq \texttt{X} \land \texttt{Y}' \leq \max(\texttt{X}, 0) + \texttt{Y}$   
+%
+%- Assume program has two inputs, $\texttt{X}$ and $\texttt{Y}$.
+%- Final value $\texttt{X}'$ depends on its own input $\texttt{X}$.
+%- Final value $\texttt{Y}'$ depends on inputs $\texttt{X}$ and $\texttt{Y}$.
+%- The expression can be simplified to: $\texttt{X}' \leq \texttt{X} \land \texttt{Y}' \leq \texttt{X} + \texttt{Y}$.
+% here is our idea for a solution:
+
+Introducing more variables, or potentially non-terminating iteration, or complicating the logic would make manual analysis difficult.
+However, our static analyzer handles all those cases automatically.
+It determines if a program accepts at least one polynomial bounding the final value of its variables in terms of their initial values---what we call its \emph{growth bound}.
+If a bound cannot be established, it provides feedback on sources of failure, identifying variable pairs that have \enquote{too strong} dependencies.
+The technique is sound~\cite[p.~11]{Jones2009}, meaning a positive result guarantees program has satisfactory value growth behavior at runtime.
+
+The \mwp-flow analysis~\cite{Jones2009}, that powers this tool, is of interest for its flexibility, originality, and uncommon features~\cite{Carbonneaux2015} such as being compositional and not requiring termination.
+However, using it to implement an automatic analyzer required 
+% \begin{enumerate*}
+% \item 
+important theoretical adjustments, and 
+% \item 
+to sidestep or solve computationally expensive steps in the derivation of the bounds.
+% \end{enumerate*}
+%Having an automatic analyzer is convenient, but we encountered and solved several challenges during its development.
+%Inspired by the non-deterministic \mwp-flow analysis~\cite{Jones2009}, several theoretical adjustments were needed to make the technique usable for practical program analysis.
+%Concurrent tool development %was an integral part of this process, and
+% Developing the tool concurrently drove theoretical advancements and revealed various pressure points.
+%facilitated identifying areas that needed further refinement.
+For example, approaches to determine bounds were motivated by the need to compute them rapidly and present them in a concise human-interpretable manner, which is problematic for potentially exponential number of outputs.
+The theoretical improvements were presented previously~\cite{Aubert2022b} and serve as basis for \pymwp.
+In this paper, we focus on the tool and its recent advancements, %
+%We present our %the following 
+with following contributions.
+%
+% CONTRIBUTIONS
+%This paper makes the following contributions.
+% Each point should make as strong a claim as possible (but no stronger), and be falsifiable
+%
+\begin{enumerate}
+\item % Make the strongest possible refutable claim about pymwp and its features
+% We present, illustrate and compare the calculus implemented by \pymwp (\autoref{sec:idea})
+% to compute 
+%the static analyzer pymwp.
+%It computes a 
+%polynomials bounding the values computed by \texttt{C} programs \wrt its inputs, if it exists.
+% Our implementation further identifies the sources of exponential growth otherwise.
+%We
+We present the static analyzer \pymwp{ }in \autoref{sec:tool}. 
+It evaluates automatically if an input program has a polynomial growth bound and provides actionable feedback on failure. 
+Our tool is easy to use and install; open-source, well-documented, and persistently available for future reuse.
+
+%and explain how to install and (re)use our %well-documented
+% tool (\autoref{sec:tool}).
+%The tool is easy to install and use, well-documented, supports different use cases, and readily available for reuse.
+%We discuss these aspects in Sect.~\ref{sec:idea} and \ref{sec:tool}.
+%
+\item % We have solved a non-trivial implementation problem
+Implementing the theoretical mwp-calculus required to solve several non-trivial implementation problems.
+Specifically, how to obtain fast and concise results was solved by recent tool developments, and discussed in \autoref{sec:solutions}.
+
+%
+\item % A performance + correctness claim that we show experimentally
+\autoref{sec:eval} demonstrates that \pymwp is a practical and performant static analyzer by experimentally analyzing a set of canonical \texttt{C} programs.
+The evaluation also includes every example presented in this paper.
+\end{enumerate}
+
+\section{Calculating Bounds with \mwp-Analysis} % Present the Main idea
+\label{sec:idea}
+
+Given a deterministic imperative program over integers constructed using \prc|while|, \prc|if| and assignments, the \mwp-analysis aims at discovering the polynomials bounding the variables final values \prc|X1|', \ldots, \prc|Xn|' in terms of their initial values \prc|X1|, \ldots, \prc|Xn|~\cite[p.~5]{Jones2009}.
+This section gives insight on how to interpret the results of \pymwp, exemplifies those bounds in more detail, 
+and identifies its distinctive features in the landscape of automatic complexity analysis.
+
+
+\subsection{Interpreting Analysis Results: \mwp-Bounds and $\infty$} % Explain here details of what the analysis computes and how to understand the result
+\label{subsec:bound}
+
+% Include in this section: analysis yields multiple bounds + impossibility result, i.e., no bound exists we get $\infty$ flow.}
+
+The \mwp-flow analysis internally captures dependencies between program's variables to 
+% It allows to
+determine existence of growth bounds and locates problematic data flow relations.
+A flow can be 0, meaning no dependency%\footnote{
+%If a value has no dependency at all--this occurs if the variable is set to a constant value--then all of its flow are $0$ and its bound will be $0$, since we omit %constant factors.
+%}
+; \emph{m}aximal of linear, \emph{w}eak polynomial, \emph{p}olynomial or $\infty$, in increasing order of dependency.
+When the value of \emph{every variable} in a program is bounded by at most a polynomial in initial values, the flow calculus assigns each variable an \emph{\mwp-bound}.
+It is a number-theoretic expression of form $\max(\vec x, \poly_1(\vec y)) + \poly_2(\vec z)$,
+where variables characterized by $m$-flow are listed in $\vec x$; $w$-flows in $\vec y$, and $p$-flows in $\vec z$.
+Honest polynomials $\poly_1$ and $\poly_2$ are build up from constants and variables by applying $+$ and $\times$.
+Any of the three variable lists might be empty and $\poly_1$ and $\poly_2$ may not be present.
+A bound of a program is conjunction ($\wedge$) of mwp-bounds.
+Variables that depend \enquote{too strongly} are assigned $\infty$-flow, to indicate exponential growth.
+
+\noindent
+\begin{tabularx}{\textwidth-.1in}{c c@{\hskip 0.1in} X}
+	\toprule
+	Expression & reads as & \enquote{The growth of \prc|X|' is bounded by \dots}\\
+	\midrule
+	$\text{\prc|X|'} \leq 0$ &  & \enquote{\dots a constant.} \\
+	$\text{\prc|X|'} \leq \text{\prc|X|}$ &  & \enquote{\dots a polynomial in \prc|X|.} (its initial value)
+	\\
+	$\texttt{X}' \leq \text{max}(\texttt{X},\texttt{X1})+\texttt{X2}\times\texttt{X3}$
+	& & \enquote{\dots a polynomial in \prc|X| or \prc|X1|,  \prc|X2| and  \prc|X3|.}\\
+	\bottomrule 
+\end{tabularx} 
+
+%This same mechanism is implemented in pymwp to perform analysis and display results.
+
+Determining program bounds is complicated because the flow calculus is non-deterministic.
+This enables to analyze a larger class of programs, but also means that one program may be assigned multiple bounds.
+If a program is assigned a bound, it is derivable in the calculus.
+An impossibility result occurs when all derivation \enquote{paths} yields an $\infty$-result.% in all cases.
+
+% This abstraction of precise information, and ability to compose results,
+% are integral characteristics that make the analysis applicable to non-terminating programs.
+%: remark in particular that the body of the loop could have no impact on this condition. 
+%It is impossible to determine statically the number of loop iterations; assume it runs indefinitely.
+%2. Meaning of 0.
+
+
+\subsection{Additional Foundational Examples} % demonstrate behavior in different cases
+\label{subsec:examples}
+
+One important and original aspect is that the \mwp-flow analysis ignores Boolean conditions, assuming that both \prc|if|-branches evaluate, and that loops executes an arbitrary number of cycles.
+This lets \pymwp analyze non-terminating programs without complications, and justifies why all conditions will be abstracted as \prc|b|.
+
+Letting $\text{\prc|C1|}\equiv \text{\prc|X2 = X1 + X1|}$ and $\text{\prc|C2|} \equiv \text{\prc|X3 = X2 + X2|}$, \autoref{ex:increasing} established that the iterative composition \prc|while b C1; while b C2| has a polynomial growth bound, \ie the property of interest%
+\footnote{\pymwp actually outputs $\text{\prc|X1|'} \leq \text{\prc|X1|} \wedge \text{\prc|X2|'} \leq \max(\text{\prc|X2|}, \text{\prc|X1|}) \wedge  \text{\prc|X3|'} \leq \max(\text{\prc|X3|},\text{\prc|X1|}+\text{\prc|X2|})$.}.
+We now elaborate on \mwp-flow analysis behavior by inspecting two more expository programs, letting $\text{\prc|C3|} \equiv \text{\prc|X3 = X3 * X3|}$.
+
+\begin{example}\label{ex:infinite}
+	Consider program \prc|while b C3|.
+	Even if \prc|C3| in itself admits the bound $\text{\prc|X3|'} \leq \text{\prc|X3|}$, the value stored in variable \prc|X3| will grow exponentially on each iteration.
+	Therefore, the program cannot get a growth bound, due to the $\infty$ flow between \prc|X3| and itself introduced by the \prc|while| statement.
+\end{example}
+
+% improve this 
+\begin{example}\label{ex:composition}%  Let \prc|C3| $\equiv$ \prc|X3=X3*X3|.
+	Combining elements from the previous two examples, we construct \prc|while b C1; while b C2; C3|.
+	Variables \prc|X1| and \prc|X2| are unaffected by \prc|C3|, but \prc|X3| changes.
+	We over-approximate the final value of \prc|X3| to obtain the program's growth bound
+	$\text{\prc|X1|'} \leq \text{\prc|X1|} \wedge \text{\prc|X2|'}\leq \max(\text{\prc|X2|}, \text{\prc|X1|}) \wedge \text{\prc|X3|'} \leq \text{\prc|X1|}+\text{\prc|X2|}+\text{\prc|X3|}$. This example shows how partial results ($\text{\prc|X3|'} \leq \max(\text{\prc|X3|},\text{\prc|X1|}+\text{\prc|X2|})$ and $\text{\prc|X3|'} \leq \text{\prc|X3|}$) can be combined to obtain new bounds ($\text{\prc|X3|'} \leq \text{\prc|X1|}+\text{\prc|X2|}+\text{\prc|X3|}$) by compositionality.
+\end{example}
+
+
+In the \href{\toolURL}{tool user guide}, we present even more examples with in-depth discussion, to elaborate on the behavior and results of \mwp-analysis.
+
+
+\subsection{Originalities of \mwp-flow Analysis} %
+\label{subsec:relevance}
+
+% establish clearly that this technique has merit and justify its relevance and that comparing to other tools is not doable/relevant
+% Discuss here nice properties of the analysis. We can discuss potential future avenues in the conclusion.
+% Counter all potential comparison arguments!
+
+The \mwp technique offers many properties that make it unique and practically useful.
+It is a syntactic analysis, not based on general purpose reasoners \eg abstract interpreters or model checkers. 
+It requires little structure, and no manual annotation from the analyzed program.
+This enables its implementation on any imperative programming language, and potentially at different stages of compilation.
+Compositionality is another significant feature.
+Non-compositional techniques require inlining programs and are common among automated complexity analyses~\cite{Carbonneaux2015}.
+With compositionality, analysis can be performed on parts of whole-programs, and after refactoring, repeated only on those parts that changed.
+
+% AProVE,  CoFloCo, ComplexityParser, RaML, TCT, KoAt, Rank, PUBS
+Several tools that evaluate resource bounds already exist~\cite{albert2012,alias2010,brockschmidt2016,flores2014,giesl2017,hainry2021,Hoffmann2012c,moser2018}; including LOOPUS~\cite{sinn2017} and C4B~\cite{Carbonneaux2015}, that specialize in \texttt{C} language inputs.
+Comprehensive evaluations of these tools have also been performed recently~\cite{Carbonneaux2015,flores2017,sinn2017}.
+The main distinguishing factor between these tools and \pymwp is the program's complexity property of interest: \pymwp evaluates the existence of polynomial growth bounds \wrt initial values.
+We illustrate the difference in obtained bounds in \autoref{tab:compare}.
+It is not an extensive comparison but suffices to show that \pymwp differs in its aims from the other related techniques.
+
+\input{tables/compare}
+
+\section{Technical Overview of \pymwp} % The technical details
+\label{sec:tool}
+
+% High level description of the tool.
+In this section we present the main contribution of the paper: the \pymwp static analyzer.
+It is a command-line tool that analyzes programs written in subset of \texttt{C} programming language presented in \autoref{subsec:limitations}.
+The name alludes to its implementation language, Python, which we selected for its flexibility and use in previous related works~\cite{lqicm,Moyen2017,Moyen2017b}.
+Our tool takes as input a path to a \texttt{C} program, and returns for each function it contains a growth bound---if at least one can be established---or a list of variable dependencies that may cause the exponential growth % bound and result in an $\infty$-result denoting failure
+% we explain this later and in the user guide; that is enough imo
+\footnote{Obtaining this feedback requires to specify the \prc|--fin| argument.}.
+% In case of failure, user can obtain feedback on sources of failure.
+The \pymwp development is open source~\cite{pymwp_source} with releases published at Python Package Index (PyPI)~\cite{pymwp_pypi}, GitHub~\cite{pymwp_source} and Zenodo~\cite{pymwp}.
+A tool user guide is available at \url{\toolURL}.
+
+
+\subsection{Program Analysis in Action}  
+\label{subsec:action}
+
+%We describe next t
+The default procedure for performing \mwp-analysis is as follows: 
+%The input file may contain several functions.
+%Each function in the input file is treated as a program under analysis, therefore we refer to \enquote{program} in this description.
+
+% forward-ref sect 4, and keep this high level
+
+\begin{enumerate}
+\item Parse input file to obtain an abstract syntax tree (AST). % \textcolor{gray}{\emph{// This is dealt with by our only dependency, pycparser.}}
+\item Initialize a \pr|Result| object $T$.
+\item For each function (or \enquote{program}, interchangeably) in the AST: %\neea{does function=program make sense?} % \textcolor{gray}{\emph{// That is, for each function in the input file.}}
+\begin{enumerate}
+\item Create an initial \pr|Relation| $R$---briefly, this complex structure represents variables and their dependencies, at a program point (\autoref{subsec:refinement}). %\textcolor{gray}{\emph{
+
+%// TODO If relation is a class, as Result is, then we should change the font and maybe explain.
+% }}
+\item Sequentially for each statement in function body:
+\begin{enumerate}
+\item Recursively apply inference rules to obtain $R_i$. 
+%\textcolor{gray}{\emph{// TODO REPHRASE This step, if implemented naively, is extremely costly, as the inference rules are non-deterministic. We come back to this in Section 4.X?}}
+% we make the comment about costly at least a few times---page 2, sec 2.1 paragraph 2.
+\item Compose $R_i$ with previous relation: $R = R \circ R_i$.
+\item If no bound exists%\footnote{%
+%We omit the details here; see~\cite[Section 4.4]{Aubert2022b} on how this
+%determination is made.}
+, terminate analysis of function body. 
+% this next discussion is too much detail
+%\textcolor{gray}{\emph{// How this determination is made is one of our previous contribution~\cite[Section 4.4]{Aubert2022b}. The analysis can be forced to complete using the \prc|--fin| flag. }}
+\end{enumerate}
+\item If bounds exist, evaluate $R$ to determine the bounds %compute one of them. 
+% Precisely we evaluate the relation -> find all choices -> choose one bound to display. Not same as compute one bound.
+%\textcolor{gray}{\emph{
+(\autoref{subsec:eval})
+%// TODO EXPLAIN why only one, or the difficulty to compute representatives?
+%}}
+\item Append function analysis result to $T$.
+\end{enumerate}
+\item Return $T$.
+\end{enumerate}
+
+\subsection{Usage} % basic how-to-use
+\label{subsec:usage}
+
+There are multiple ways to use \pymwp.
+It has a text-based application interface, and can be run from terminal, or it can be imported as a Python module into larger software engineering developments.
+The analysis is automatic and read-only, therefore it is possible to pair \pymwp with other tools and integrate it into compilation or verification toolchains.
+The \href{https://statycc.github.io/pymwp/demo/}{online demo} provides one example use case.
+It is a web server application with \pymwp as a package dependency.
+Other derived uses can be developed similarly.
+The easiest way to install \pymwp is from PyPI, using command \texttt{pip install pymwp}.
+The default interaction command is
+
+\begin{console}
+ pymwp path/to/file.c [args]
+\end{console}
+
+\noindent where the first positional argument is required.
+By default, \pymwp displays the analysis result with logging information, and writes the result to a file.
+This behavior is customizable by specifying arguments.
+For a list of currently supported arguments run \texttt{pymwp ---help}.
+
+\subsection{Scope of Analyzable Programs} % Be clear and complete about these limitations.
+\label{subsec:limitations}
+
+The programs analyzable with \pymwp are determined by its supported syntax.
+\pymwp delegates the task of parsing \texttt{C} files to its dependency, pycparser~\cite{pycparser}, which aims to support the full \texttt{C99} specification.
+Programs that cannot be parsed will expectedly throw an error.
+Otherwise, analysis proceeds on the generated AST, and \pymwp handles nodes that are syntactically supported by its calculus\footnote{List of supported features: \url{https://statycc.github.io/pymwp/features}.}.
+It skips unsupported nodes with a warning.
+We decided on this permissive approach, because it allows to obtain partial results and manually inspect unsupported operations.
+However, to establish a guaranteed bound, the input program must fully conform to the supported syntax of the calculus.
+Currently the syntax has limitations, \eg arrays and pointer operations are unsupported.
+Extending the analysis to richer syntax is a direction for future work.
+
+
+\section{Implementation Advancements}
+\label{sec:solutions}
+% Give one or more examples of Non-Trivial challenges and solutions
+% (Without much theoretical background) termination, non-determinism -> state explosion problem; evaluation problem. 
+
+Notable technical progress has occurred since the initial mention of \pymwp in the literature~\cite{Aubert2022b}\footnote{%
+%For a complete presentation of the $\pm 6 / 9.3$kLOC edited, refer to 
+Full comparison: \url{https://github.com/statycc/pymwp/compare/FSCD22...0.4.2}.}. % to make it fit one-line
+We will discuss those solutions in this section.
+
+\subsection{Motivations for Refining Analysis Results}
+\label{subsec:refinement}
+% rework this title; it means "beyond delta graphs"
+
+Understanding \pymwp's advances requires to briefly reflect on its past.
+The \mwp-flow, as originally designed~\cite{Jones2009}, is an inference system that has an unbearable computational cost, as it manipulates non-deterministically an exponential number of sizable matrices~\cite[Sect.~2.3]{Aubert2022b} to try to establish a bound.
+% That description left open details, \eg how to efficiently apply its non-deterministic calculus and handle derivation failure.
+Our enhanced \mwp-technique~\cite{Aubert2022b} resolved this challenge %, thus enabling implementation, 
+by internalizing the non-determinism in a single matrix, containing coefficients and functions from choices into coefficients.
+ % \neea{"not properly explained. I would appreciate a bit more detail of this particular solution."}
+This way, all derivations---including the ones that will fail---are constructed at the same time, moving the problem from \enquote{Is there a derivation?} to \enquote{Among all the derivations you constructed, is there one without \(\infty\) coefficient?}---an equivalent question that however complicates the production of the actual bound.
+
+
+
+%, and introducing an $\infty$-coefficient to represent failure locally.
+%The mathematical adjustments enabled practical tool development and form the foundation of \pymwp, which was developed concurrently with the enhanced technique.
+%The significance of \pymwp is that it makes the analysis concretely runnable, repeatable, and measurable; and expands number of applications based on implicit computational complexity.
+
+While answering the first question is too computationally expensive, \pymwp's \href{https://github.com/statycc/pymwp/releases/tag/FSCD22}{\vtag  FSCD 2022} version can answer the second, and it can further, if all derivations contain \(\infty\) coefficients, terminate early for faster result~\cite[Sect.~4.4]{Aubert2022b}.
+This was achieved thanks to a complex \pr|Relation| data structure\footnote{
+A complex data structure sounds daunting, but it is in fact one of the highlights of the system, and enables to solve a difficult derivation problem efficiently. For details, see the documentation at \url{https://statycc.github.io/pymwp/relation}.}, but extracting finer information from that data structure remained an outstanding problem.
+%Those mathematical adjustments enabled \pymwp to progress to a point where it was possible to answer this existential question about input programs.% (\eg \enquote{Is there a bound?}).
+%
+% and form the foundation of \pymwp, which was developed concurrently with the enhanced technique.
+%
+%At the time of the publication of the enhanced technique, \pymwp development had progressed to a point where it was possible to ask existential questions about input programs (\eg \enquote{Is there a bound?}).
+%Specifically, it was possible to determine if a program had a polynomial growth bound, and if the answer was negative, terminate early for a fast result.
+%It also enabled to compute a derivation result for all paths, captured internally in a complex data structure named \pr|Relation|\footnote{
+%A complex data structure sounds daunting, but it is in fact one of the highlights of the system, and enables to solve a difficult derivation problem efficiently. For details, see the documentation at \url{https://statycc.github.io/pymwp/relation}.}.
+%Deriving easily interpretable information from that data structure remained an outstanding problem.
+In particular, we wanted to provide the following feedback to the programmer:
+\begin{enumerate*}[label=(\roman*)]
+\item If no bound exists, the location of the exponential growth.
+\item If bounds exist, the value of at least one of them.
+\end{enumerate*}
+The current version of \pymwp can now provide this feedback, thanks to a long maturation that we now detail.
+%Recent enhancements to the tool have provided solutions to these open questions.
+
+\subsection{Exposing Sources of Failure}
+\label{subsec:fail}
+
+Since \pymwp identifies polynomial bounds, it reports failure on programs containing at least one variable whose value grows exponentially \wrt at least one of its initial value.
+Earlier tool versions would indicate that failure was detected without reporting the involved variables.
+Determining this information is complicated because of our treatment of non-determinism, but it is valuable, as addressing one of those points of failure would suffice to obtain a polynomial growth bound.
+Even if the program cannot be refactored satisfactorily, then analyzing the exponential growth allows to assess potential impact on the parent software application.
+% because of non-determinism.
+%A derivation may fail internally along some derivation paths, and succeed along others.
+
+Our solution is to record additional information about $\infty$-coefficient in the \pr|Relation| data structure, and to list all variable pairs on which failure may occur.
+Since detailed failure information may not be relevant in some use-cases, and is costly to compute, it was added as an optional \texttt{--fin} argument.
+
+\begin{example}
+From \href{https://statycc.github.io/.github/pymwp/\#inf-prog}{our tool user guide} (output abridged for clarity): 
+
+\noindent
+\begin{minipage}[b][][b]{0.65\textwidth}
+\begin{lstlisting}[language=C]
+int foo(int X1, int X2, int X3){
+  if (X1 == 1){
+    X1 = X2+X1;
+    X2 = X3+X2;
+  }
+  while(X1 < 10){
+    X1 = X2+X1;
+  }
+}
+\end{lstlisting}
+\end{minipage}
+\hspace{-11em}
+\begin{minipage}[b][][t]{0.65\textwidth}
+\begin{console}
+$ pymwp infinite/infinite_3.c --fin
+foo is infinite
+Possibly problematic flows:
+X1 (*$\to$*) X1 (*$\Vert$*) X2 (*$\to$*) X1 (*$\Vert$*) X3 (*$\to$*) X1
+\end{console}
+Reads as \enquote{\prc|X1| depends too strongly on all variables.}
+\end{minipage}
+\end{example}
+
+%\begin{example}
+%	From \href{https://statycc.github.io/.github/pymwp/\#inf-prog}{our tool user guide} (abridged for clarity): 
+%	
+%\begin{minipage}{0.5\textwidth}
+%\begin{lstlisting}{c}
+%int foo(int X1, int X2, 
+%int X3){
+%	if (X1 == 1){X1 = X2+X1;
+%		X2 = X3+X2;}
+%	while(X1<10){X1=X2+X1;}
+%}
+%\end{lstlisting}%
+%\end{minipage}
+%\begin{minipage}{0.4\textwidth}
+%\begin{console} % just --fin is sufficient for simplicity + don't wrap in the middle
+%$ pymwp infinite/infinite_3.c    --fin
+%(*\emph{Output (abridged):}*)
+%foo is infinite
+%Possibly problematic flows:
+%X1 (*$\to$*) X1 (*$\Vert$*) X2 (*$\to$*) X1 (*$\Vert$*) X3 (*$\to$*) X1
+%\end{console}
+%		\end{minipage}
+%\end{example}
+
+
+
+%The critical foundations of communicating actionable feedback about failure was solved by addition of $\infty$-coefficient,
+%and capturing its occurrence in the \pr|Relation| data structure in \pymwp.
+%Because the analysis is designed to terminate early on failure, but detailed failure information requires exploring all derivation paths, option to run the analysis to completion was also recently added as an optional argument.
+%The final step was to display this information to programmer in compact and interpretable way.
+%The current approach lists all variable pairs on which failure may occur.
+%\neea{Detailed explained examples of failure presented in \url{\toolURL}.}
+%A possible enhancement would be to add quantifying information to this list, to indicate how often failure occurs for each variable pair.
+%This would allow to identify the most frequent problematic interactions.
+
+
+\subsection{Efficiently Determining Bounds} % is it possible to discuss evaluation, else conceptually?
+\label{subsec:eval}
+
+In the alternative case, where bounds are determined to exist, the next step is to evaluate the bounds---step 3(c) in the \pymwp workflow (\autoref{subsec:action}). 
+This is problematic because the calculus can yield an exponential number of bounds \wrt the program size, as illustrated in \autoref{tab:bounds} with \eg benchmark 32.\ long.
+As a result, the evaluation phase---\eg extracting the bounds from this conglomerate of derivations---is increasingly costly.
+%
+%The exponent's factor grows with program size, making the evaluation phase 
+Handling this task efficiently required us to discover a computational solution, and finding a compact format to represent the results in  interpretable and memory-efficient manner. For simplicity we describe this process only at high-level, but refer to the implementation for complete details.%, when applicable.
+
+Determining \mwp-bounds requires two separate steps, starting with the \href{https://statycc.github.io/pymwp/relation}{\pr|Relation|} data structure generated during analysis phase.
+The first challenge is to determine which paths in our conglomerate of derivations produce bounds (\ie does not contain \(\infty\)).
+A naïve brute force solution would iterate over all paths, but this is too slow for practical use.
+Instead, we developed a set-theoretic approach, that determines first all derivation paths that lead to $\infty$ and then negates those paths.
+We capture this process in a structure called \href{https://statycc.github.io/pymwp/choice/}{\pr|Choice|}, and the result of this computation is called a choice vector.
+A choice vector contains all derivation paths yielding a bound in a compact, regular expression-like representation.
+Once those paths are known, it is possible to extract from a \pr|Relation| an \mwp-bound (represented as a \href{https://statycc.github.io/pymwp/bound/}{\pr|Bound|} object), by applying a selected path.
+Currently, we take the first choice from the choice vector, and display it as a result.
+Leveraging this set of bounds and its utilities is discussed in conclusion and left for future work.
+% The first choice may not be optimal.
+%A possible future enhancement would be to investigate how to explore the set of bounds to find (by some selected metric) most optimal cases;
+%particularly when the number of discovered bounds is a large exponential (as illustrated by example long in \autoref{tab:eval}).
+%\textcolor{red}{bounds may not be unique.}
+
+
+\section{Experimental Evaluation}
+\label{sec:eval} % Present the most convincing arguments to show the tool works
+
+% Explain what is being evaluated and the motivation for choosing that experiment approach.
+To establish that \pymwp is a practical and performant static analyzer, we evaluated it on a benchmark suite of canonical \texttt{C} programs.
+We ran the analyzer on the benchmarks and measured the results, thus conducting an evaluation of performance and behavioral correctness.
+We did not perform tool comparison or use a standard suite for two reasons:
+absence of a representative comparison target (cf. \autoref{subsec:relevance})
+and syntactic restrictions that limit the scope of analyzable programs (cf. \autoref{subsec:limitations}).
+However, the choice methodology judiciously evaluates \pymwp, and facilitates transparency and reproduction of experiments.
+We actively put heavy emphasis to ensure---with software engineering best practices \eg tests, documentation~\cite{pymwp_doc}, and long-term archival deposits~\cite{pymwp}---that \pymwp, and the evaluation presented here, are available and reusable for future comparisons.
+
+\subsection{Methodology}
+\label{subsec:methods}  % To the level of detail where setup can be understood and reproduced.
+
+\subsubsection{Benchmarks Description}
+
+The suite contains 50 \texttt{C} programs, written in the subset of \texttt{C99} syntax supported by \pymwp.
+The benchmarks are designed purposely to exercise various data flows that pose challenges to the analyzer,
+\eg increasing parameters, binary operations, loops and decisions, and various combinations of those operations.
+The benchmarks are organized into seven categories based on their expected result ($\infty$ vs. non-$\infty$);
+origin in related publications~\cite{Aubert2022b,Jones2009}, and in this tool paper;
+and interest (basic examples, others).
+We omit these categories here, but they are apparent in the benchmarks distribution.
+The suite is available from \href{https://github.com/statycc/pymwp/tree/c6887d8e8a2c2b0e2a6b7ad960851ec693c603d3/c_files}{\pymwp repository}~\cite{pymwp_source}, 
+and as a \href{https://github.com/statycc/pymwp/releases/download/0.4.2/examples.zip}{release asset} on GitHub, and Zenodo~\cite{pymwp}.
+
+\subsubsection{Metrics}
+
+For each benchmark, we record
+\begin{enumerate*}
+\item benchmark name, corresponding to \texttt{C} file name, followed by \enquote{\emph{: program name}} if a file contains multiple programs.
+\item The lines of code (loc) in the benchmark.
+Observe this number ranges between 4 and 45: this is reasonable and representative, because the analysis is compositional.
+Analysis of even a large \texttt{C} file reduces to analysis of its functions, that would be expectedly similar in size to these benchmarks.
+\item The time (ms) required to complete program analysis.
+We use milliseconds for precision since all analyses conclude within seconds.
+For $\infty$-programs, the time is for performing full evaluation with feedback, although a result of existential failure could be obtained faster.
+\item Number of program initial values (vars), which internally impacts complexity of the analysis.
+\item Number of polynomial bounds discovered by the analyzer.
+The number of bounds is 0 if the result is $\infty$.
+\item If a program is derivable, we capture one of its bounds.
+\end{enumerate*}
+
+\subsubsection{Experimental Setup}
+
+The measurements were performed on a Linux x86\_64, kernel v.5.4.0-1096-gcp, Ubuntu 18.04, with 8 cores and 32 GB virtual memory.
+The machine impacts only observed execution time; other metrics are deterministic.
+The software environment was Python runtime 3.8.0, gcc 7.5.0, GNU Make 4.1, and the dev dependencies of \pymwp.
+Because the measurement utilities of \pymwp{ }are not distributed with its release, the experiments must be run from source.
+We used source code version \href{https://github.com/statycc/pymwp/releases/tag/0.4.2}{\vtag 0.4.2}.
+The command to repeat experiments is \texttt{make bench}.
+It runs analysis on benchmarks and generates two tables of results.
+
+
+\subsection{Results}\label{subsec:results}
+
+\input{tables/benchmarks}
+
+The evaluation results are presented in \autoref{tab:eval}.
+We emphasize in these results the obtained bounds and their correctness, while the obtained execution times provide referential information of performance.
+The analyzer correctly finds a polynomial bound for {noninfinite} benchmarks, and rejects {exponential} and {infinite} benchmarks.
+The analyzer is also able to derive bounds for potentially non-terminating \pr|while| benchmarks.
+Observe that the analysis concludes rapidly even for a long example with 45 loc, and for explosion, that has initial values count 18.
+The number of bounds for long is high, because it is a complicated derivation with high degree of internalized non-determinism.
+
+For programs that have polynomial growth bounds, we give a simplified example bound in \autoref{tab:bounds}.
+We omit in this representation variables whose only dependency is on self, \eg $\text{\prc|X|'} \leq \text{\prc|X|}$\footnote{
+Bound of example5\_1 does not appear in \autoref{tab:bounds} because of this simplification.}.
+The table serves to demonstrate that \pymwp can derive complex multivariate bounds automatically,
+and to present the result of a non-deterministic computation in a digestible form.
+It also clarifies what the analyzer computes and that those results are original in form.
+
+
+\section{Conclusion}
+\label{sec:conc}
+
+This paper presented \pymwp, its recent technical advancements, and evaluated its performance.
+Our tool reasons efficiently about existence of the variables' growth bounds \wrt its initial value, and can be paired with other tools for extended verification and compound analyses.
+Possible enhancements of the tool involve extending it to support richer syntax, and exploring the space of discovered bounds.
+For example, we could investigate whether constraints such as \enquote{Is there a bound where this particular variable growth linearly?} can be satisfied. 
+%it would be interesting to investigate, if linear growth is desired for some argument while not constraining others, and whether such constraint can be satisfied. 
+Another open question is to identify \emph{distinct} bounds.
+
+Beyond enhancements of \pymwp, several future directions and extended applications can follow.
+Perhaps the most interesting of those is to formally verify the analysis technique, and work is already underway in that direction~\cite{aubert_coqpl}.
+Since the analysis does not require much structure from an input program, it could be useful for analyzing intermediate representations during compilation.
+It could also find use cases in restricted domain-specific languages, and resource-restricted hardware, to establish guarantees of their runtime behavior.
+Long term, the fast compositional analysis could also be useful to construct IDE plug-ins to provide low-latency feedback to programmers.
+
+\subsubsection{Acknowledgments} The authors wish to express their gratitude to the reviewers for their thoughtful comments, 
+and to Antonio Flores Montoya, for the preparation and public sharing of his \href{http://aeflores.github.io/CoFloCo/experimentsPhD/}{PhD thesis experimental evaluation resources}~\cite{flores2017}.  
+
+
+% \clearpage
+
+% ---- Bibliography ----
+%
+% BibTeX users should specify bibliography style 'splncs04'.
+% References will then be sorted and formatted in the correct style.
+%
+\bibliographystyle{splncs04}
+\bibliography{bib/bib.bib}
+
+\clearpage
+\appendix
+
+\end{document}
