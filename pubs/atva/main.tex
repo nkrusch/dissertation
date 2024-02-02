@@ -475,7 +475,7 @@ Even if the program cannot be refactored satisfactorily, then analyzing the expo
 %A derivation may fail internally along some derivation paths, and succeed along others.
 
 Our solution is to record additional information about $\infty$-coefficient in the \pr|Relation| data structure, and to list all variable pairs on which failure may occur.
-Since detailed failure information may not be relevant in some use-cases, and is costly to compute, it was added as an optional \texttt{--fin} argument.
+Since detailed failure information may not be relevant in some use-cases, and is costly to compute, it was added as an optional \texttt{---fin} argument.
 
 \begin{example}
 From \href{https://statycc.github.io/.github/pymwp/\#inf-prog}{our tool user guide} (output abridged for clarity): 
