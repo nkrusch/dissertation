@@ -1,6 +1,11 @@
-% ================================ %
-% SOURCE CODE HIGHLIGHTING OPTIONS
-% ================================ %
+% =============================================== %
+% SOURCE CODE FORMATTING AND HIGHLIGHTING OPTIONS
+% =============================================== %
+
+% programming languages
+\newcommand{\pr}{\lstinline[mathescape,language=imp,basicstyle=\ttfamily,escapeinside={(*}{*)}]}
+\newcommand{\prc}{\lstinline[language=C,basicstyle=\ttfamily\bfseries]}
+\lstdefinelanguage{imp}{morekeywords={if,then,else,while,do,loop}}
 
 % plain C code - without colors
 \lstdefinestyle{PlainStyle}{
