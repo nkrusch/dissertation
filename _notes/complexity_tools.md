@@ -13,6 +13,7 @@ The ones I know of:
 | Loopus  |                               |                                                             |
 | C4B     | Dead web demo                 | https://www.cs.yale.edu/homes/qcar/aaa/                     |
 | TcT     |                               | http://cl-informatik.uibk.ac.at/software/tct/               | 
+| SPEED   | C/C++                         | https://tinyurl.com/e6s7j86x                                |
 
 * Campy
   - paper: "Complexity Verification using Guided Theorem Enumeration" (POPL"17)
@@ -25,6 +26,8 @@ The ones I know of:
 
 * COSTA
     - paper: "Non-cumulative Resource Analysis" (TACAS'15)
+    - Cost analysis of Java bytecode. In ESOP (2007)
+    - COSTA: design and implementation of a cost and termination analyzer for Java bytecode. In FMCO, pages 113–132. Springer, 2007.
 
 * PUBS 
   - Albert et al. 2012a
@@ -43,3 +46,7 @@ The ones I know of:
 * CoFloCo
   - various experiments: http://aeflores.github.io/CoFloCo/experimentsPhD/
   
+* SPEED 
+  - https://www.microsoft.com/en-us/research/project/speed-symbolic-timespace-bound-analysis/publications/
+  - https://link.springer.com/content/pdf/10.1007/978-3-642-02658-4_7.pdf
+  - https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/popl09_speed.pdf
