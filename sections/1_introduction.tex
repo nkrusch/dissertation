@@ -1,35 +1,29 @@
 \setcounter{section}{0}
 \section{Introduction}\label{sec:introduction}
 
-As famously stated by Dijkstra: “Program testing can be used to show the presence of bugs, but never to show their absence.”
-% Edsger W. Dijkstra. Notes on structured programming. Technical Report EWD249, Technological University Eindhoven, 1970.
-
-At first, [Rice's theorem] seems like a discouraging result, however, this theoretical result does not prevent approximative answers.
-
-Static program analysis aims to automatically answer questions about the possible behaviors of programs.
-Static analysis concerned with analysis semantic properties (not syntactic, lexical, testing, etc.)
-Analogous to hierarchy of “languages”, static analysis is concerned with what is called context-sensitive languages or context-sensitive grammars, but not bothering to deal with regular languages and context-free languages (those are for lexers and parsers).
-
-Foundational approaches include: basic type analysis, lattice theory, control flow graphs, dataflow analysis, fixed-point algorithms, widening and narrowing, path sensitivity, relational analysis, interprocedural analysis, context sensitivity, control flow analysis, several flavors of pointer analysis, and abstract interpretation.
-
-_notes/approx.png -> is from
-% Course Script "Static analysis and all that" IN5440 / autumn 2020  by Martin Steffen
-% url: https://www.uio.no/studier/emner/matnat/ifi/IN5440/h20/script/intro-script.pdf
-
-It is impossible to construct an ideal program correctness analyzer
-% https://cs.au.dk/~amoeller/spa/spa.pdf p. 15
-
-
 % I. INTRODUCTION
 % o A. Statement of the problem and specific aims of the overall project.
 % o B. Literature review and discussion of the rationale of the project.
 % It is expected that the literature review will be more comprehensive than
 % those presented in the included publications.
 
+\begin{quote}
+Present-day computers are amazing pieces of equipment, but most amazing of all
+are the uncertain grounds on account of which we attach any validity to their
+output.  \hfill  (EW Dijkstra)
+\end{quote}
+
+Explain why we cannot just trust output to be correct.
+Formal methods to the resque.
+
+As famously stated by Dijkstra: ``Program testing can be used to show the presence of bugs, but never to show their absence.''  \cite{dijkstra1970}
+
+\input{subsec/static}
+
+\input{subsec/provers.tex}
+
+\input{subsec/coq}
+
 \input{subsec/icc}
 
 \input{subsec/mwp}
-
-\input{subsec/proofs}
-
-\input{subsec/coq}
