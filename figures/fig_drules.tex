@@ -1,53 +1,67 @@
-\begin{figure}
-\begin{subfigure}{\textwidth}
-    \begin{centering}
-    \begin{prooftree}[small]
-        \infer[left label={\(\star\in\{+, -\}\)}]0[E\(^{\textsc{A}}\)]{\vdash \text{\pr|Xi $\star$ Xj|} : (0 \mapsto \{_{\text{\pr|i|}}^{m}, _{\text{\pr|j|}}^{p}\}) \oplus (1 \mapsto \{_{\text{\pr|i|}}^{p}, _{\text{\pr|j|}}^{m}\}) \oplus (2 \mapsto \{_{\text{\pr|i|}}^{w}, _{\text{\pr|j|}}^{w}\})}
-    \end{prooftree}
+\todo{add some context here, about M, M*}
+
+Below, we let \(V_1\), \(V_2\) be column vectors with values in \mwp, \(\alpha V_1\) be the usual scalar product, and \(V_1 \oplus V_2\) be defined componentwise.
+We write \(\{_{i}^{\alpha}\}\) for the vector with \(0\) everywhere except for \(\alpha\) in its \(i\)th row, and \(\{_{i}^{\alpha} , _{j}^{\beta}\}\) for \(\{_{i}^{\alpha}\} \oplus \{_{j}^{\beta}\}\).
+
+Replacing in a matrix \(M\) the \(j\)th column vector by \(V\) is denoted \(M \xleftarrow{j} V\).
+The matrix \(M\) with \(M_{ij} = \alpha\) and \(0\) everywhere else is written \(\{_{i}^{\alpha} \rightarrow j\}\), and the set of variables in the expression \pr|e| is written \(\var(\text{\pr|e|})\).
+The assumption is made that exactly \(n\) different variables are manipulated throughout the analyzed program, so that \(n\)-vectors are assigned to expressions---in a non-deterministic way, to capture larger classes of programs~\cite[Section 8]{jones2009}---and \(n \times n\) matrices are assigned to commands using the rules presented~\cite[Section 5]{jones2009}.
+
+%Let $n$ denote the number of fixed program variables.
+%A \emph{statement} has the form $\prm{e} : V$, where \pr|e| is an expression and $V$ is an $n\times 1$ column vector;
+%or $\prm{C}:M$, where \pr|C| is a command and $M$ is an $n \times n$ matrix.
+
+
+\begin{figure}[h]
+    \begin{subfigure}{\textwidth}
+        \begin{centering}
+            \begin{prooftree}[small]
+                \infer[left label={\(\star\in\{+, -\}\)}]0[E\(^{\textsc{A}}\)]{\vdash \text{\pr|Xi $\star$ Xj|} : (0 \mapsto \{_{\text{\pr|i|}}^{m}, _{\text{\pr|j|}}^{p}\}) \oplus (1 \mapsto \{_{\text{\pr|i|}}^{p}, _{\text{\pr|j|}}^{m}\}) \oplus (2 \mapsto \{_{\text{\pr|i|}}^{w}, _{\text{\pr|j|}}^{w}\})}
+            \end{prooftree}
+            \\[1.2em]
+            \hfill
+            \begin{prooftree}[small]
+                \infer0[S]{ \text{\pr|skip|} : \umat }
+            \end{prooftree}
+            \hspace{4em}
+            \begin{prooftree}[small]
+                \infer0[E\(^{\textsc{M}}\)]{ \vdash \text{\pr|Xi * Xj|} : \{ _{\text{\pr|i|}}^{w}, _{\text{\pr|j|}}^{w} \}}
+            \end{prooftree}
+            \hspace{4em}
+            \begin{prooftree}[small]
+                \infer0[E\(^{\textsc{S}}\)]{ \vdash \text{\pr|Xi|} : \{ _{\text{\pr|i|}}^{m}\}}
+            \end{prooftree}\hfill
+        \end{centering}
+    \end{subfigure}
     \\[1.2em]
-    \hfill
-    \begin{prooftree}[small]
-        \infer0[S]{ \text{\pr|skip|} : \umat }
-    \end{prooftree}
-    \hspace{4em}
-    \begin{prooftree}[small]
-    \infer0[E\(^{\textsc{M}}\)]{ \vdash \text{\pr|Xi * Xj|} : \{ _{\text{\pr|i|}}^{w}, _{\text{\pr|j|}}^{w} \}}
-    \end{prooftree}
-    \hspace{4em}
-    \begin{prooftree}[small]
-        \infer0[E\(^{\textsc{S}}\)]{ \vdash \text{\pr|Xi|} : \{ _{\text{\pr|i|}}^{m}\}}
-    \end{prooftree}\hfill
-    \end{centering}
-\end{subfigure}
-\\[1.2em]
-\begin{subfigure}{\textwidth}
-\begin{centering}
-    \begin{prooftree}[small]
-        \hypo{ \vdash \text{\pr{e}} : V}
-        \infer1[A]{\vdash \text{\pr|Xj = e|} : \umat \xleftarrow{\text{\pr|j|}} V}
-    \end{prooftree}
-    \hfill
-    \begin{prooftree}[small]
-        \hypo{ \vdash \text{\pr{C1}} : M_1}
-        \hypo{ \vdash \text{\pr{C2}} : M_2}
-        \infer2[C]{\vdash \text{\pr{C1; C2}} : M_1 \otimes M_2}
-    \end{prooftree}
-    \hfill
-    \begin{prooftree}[small]
-        \hypo{ \vdash \text{\pr{C1}} : M_1}
-        \hypo{ \vdash \text{\pr{C2}} : M_2}
-        \infer2[I]{\vdash \text{\pr|if b then C1 $\text{\hspace{.3em}}$  else C2|} : M_1 \oplus M_2}
-    \end{prooftree}
-    \\[1.2em]
-    \begin{prooftree}[small]
-        \hypo{ \vdash \text{\pr|C|}: M }
-        \infer1[L\(^{\infty}\)]{\vdash \text{\pr|loop Xl \{C\}|} : M^* \oplus \{_{j}^{\infty} \rightarrow j \mid M^*_{jj} \neq m\} \oplus \{_{\text{\pr|l|}}^{p}\rightarrow j \mid \exists i, M_{ij}^* = p\} } 			\end{prooftree}
-    \\[1.2em]
-    \begin{prooftree}[small]
-        \hypo{ \vdash \text{\pr|C|}: M }
-        \infer1[W\(^{\infty}\)]{\vdash \text{\pr|while b do \{C\}|} : M^* \oplus \{_{j}^{\infty} \rightarrow j \mid M^*_{jj} \neq m\} \oplus \{_{i}^{\infty}\rightarrow j \mid  M_{ij}^* = p\} } 			\end{prooftree}
-\end{centering}
-\end{subfigure}
-\caption{The improved deterministic flow analysis rules.}
-\label{fig:rules}
+    \begin{subfigure}{\textwidth}
+        \begin{centering}
+            \begin{prooftree}[small]
+                \hypo{ \vdash \text{\pr{e}} : V}
+                \infer1[A]{\vdash \text{\pr|Xj = e|} : \umat \xleftarrow{\text{\pr|j|}} V}
+            \end{prooftree}
+            \hfill
+            \begin{prooftree}[small]
+                \hypo{ \vdash \text{\pr{C1}} : M_1}
+                \hypo{ \vdash \text{\pr{C2}} : M_2}
+                \infer2[C]{\vdash \text{\pr{C1; C2}} : M_1 \otimes M_2}
+            \end{prooftree}
+            \hfill
+            \begin{prooftree}[small]
+                \hypo{ \vdash \text{\pr{C1}} : M_1}
+                \hypo{ \vdash \text{\pr{C2}} : M_2}
+                \infer2[I]{\vdash \text{\pr|if b then C1 $\text{\hspace{.3em}}$  else C2|} : M_1 \oplus M_2}
+            \end{prooftree}
+            \\[1.2em]
+            \begin{prooftree}[small]
+                \hypo{ \vdash \text{\pr|C|}: M }
+                \infer1[L\(^{\infty}\)]{\vdash \text{\pr|loop Xl \{C\}|} : M^* \oplus \{_{j}^{\infty} \rightarrow j \mid M^*_{jj} \neq m\} \oplus \{_{\text{\pr|l|}}^{p}\rightarrow j \mid \exists i, M_{ij}^* = p\} } 			\end{prooftree}
+            \\[1.2em]
+            \begin{prooftree}[small]
+                \hypo{ \vdash \text{\pr|C|}: M }
+                \infer1[W\(^{\infty}\)]{\vdash \text{\pr|while b do \{C\}|} : M^* \oplus \{_{j}^{\infty} \rightarrow j \mid M^*_{jj} \neq m\} \oplus \{_{i}^{\infty}\rightarrow j \mid  M_{ij}^* = p\} } 			\end{prooftree}
+        \end{centering}
+    \end{subfigure}
+    \caption{The inference rules of the flow analysis of \mwp-calculus.}
+    \label{fig:rules}
 \end{figure}
