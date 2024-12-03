@@ -1,6 +1,8 @@
 all:
-	@pdflatex main
-	@bibtex main
+	pdflatex main
+
+compile:
+	pdflatex main && biber main && pdflatex main
 
 watch:
 	ls *.tex *.bib */*.tex */*.sty | entr make
