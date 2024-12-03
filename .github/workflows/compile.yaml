@@ -1,0 +1,14 @@
+name: Compile
+
+on:
+  workflow_dispatch:
+    branches: [ main ]
+
+jobs:
+  container:
+    name: Docker build test
+    runs-on: ubuntu-20.04
+    steps:
+      - name: ✴️️ Checkout repo
+        uses: actions/checkout@v4
+      - run: echo "TODO"
