@@ -1,6 +1,8 @@
 name: Compile
 
 on:
+#  push:
+#    branches: [ main ]
   workflow_dispatch:
     branches: [ main ]
 
