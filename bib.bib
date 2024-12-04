@@ -1,34 +1,97 @@
-@article{moller2023,
-    title        = {Static Program Analysis},
-    author       = {M{\o}ller, Anders and Schwartzbach, Michael I},
-    year         = 2023,
-    month        = {May},
-    journal      = {Department of Computer Science, Aarhus University},
-    url          = {https://cs.au.dk/~amoeller/spa/}
+@article{amccarthy2018,
+    title        = {A Coq library for internal verification of running-times},
+    author       = {Jay A. McCarthy and Burke Fetscher and Max S. New and Daniel Feltey and Robert Bruce Findler},
+    year         = 2018,
+    month        = oct,
+    journal      = {Science of Computer Programming},
+    publisher    = {Elsevier},
+    volume       = 164,
+    pages        = {49--65},
+    doi          = {10.1016/j.scico.2017.05.001}
 }
-@article{rice1953,
-    title        = {Classes of recursively enumerable sets and their decision problems},
-    author       = {Rice, Henry Gordon},
-    year         = 1953,
-    journal      = {Transactions of the American Mathematical society},
-    volume       = 74,
-    number       = 2,
-    pages        = {358--366}
+@misc{aubert20217,
+    title        = {{LQICM On C Toy Parser}},
+    author       = {Aubert, Clément and Rubiano, Thomas and Rusch, Neea and Seiller, Thomas},
+    year         = 2021,
+    month        = 3,
+    url          = {https://github.com/statycc/LQICM_On_C_Toy_Parser},
+    key          = {lqicm}
 }
-@book{nielson2010,
-    title        = {Principles of program analysis},
-    author       = {Nielson, Flemming and Nielson, Hanne R and Hankin, Chris},
-    year         = 2010,
+@unpublished{aubert20216,
+    title        = {Causal Consistent Replication in Reversible Concurrent Calculi},
+    author       = {Aubert, Clément},
+    year         = 2021,
+    month        = oct,
+    url          = {https://hal.archives-ouvertes.fr/hal-03384482},
+    note         = {Under revision}
+}
+@book{chiapala2022,
+    author =        {Chlipala, Adam},
+    publisher =     {The MIT Press},
+    title =         {Formal Reasoning About Programs},
+    year =          {2022},
+    url =           {http://adam.chlipala.net/frap/},
+}
+@unpublished{aubert2022l,
+    author =        {Aubert, Clément and Rubiano, Thomas and Rusch, Neea and
+                   Seiller, Thomas},
+    month =         oct,
+    note =          {In preparation},
+    title =         {pymwp: A Tool for Guaranteeing Complexity Bounds for
+                   C Programs},
+    year =          {2022},
+}
+@unpublished{aubert20213,
+    title        = {An extended and more practical mwp flow analysis},
+    author       = {Aubert, Clément and Rubiano, Thomas and Rusch, Neea and Seiller, Thomas},
+    year         = 2021,
+    month        = jun,
+    url          = {https://hal.archives-ouvertes.fr/hal-03269096},
+    note         = {working paper}
+}
+@unpublished{aubert20214,
+    title        = {An implementation of flow calculus for complexity analysis (tool paper)},
+    author       = {Aubert, Clément and Rubiano, Thomas and Rusch, Neea and Seiller, Thomas},
+    year         = 2021,
+    month        = jun,
+    url          = {https://hal.archives-ouvertes.fr/hal-03269121},
+    note         = {working paper}
+}
+@inproceedings{aubert20215,
+    title        = {Processes, Systems \& Tests: Defining Contextual Equivalences},
+    author       = {Aubert, Clément and Varacca, Daniele},
+    year         = 2021,
+    booktitle    = {Proceedings 14th Interaction and Concurrency Experience, Online, 18th June 2021},
+    publisher    = {Open Publishing Association},
+    series       = {Electronic Proceedings in Theoretical Computer Science},
+    volume       = 347,
+    pages        = {1--21},
+    doi          = {10.4204/EPTCS.347.1},
+    issn         = {2075-2180},
+    editor       = {Lange, Julien and Mavridou, Anastasia and Safina, Larisa and Scalas, Alceste}
+}
+@unpublished{aubert20211,
+    title        = {Enabling Replications and Contexts in Reversible Concurrent Calculus},
+    author       = {Aubert, Clément and Medić, Doriana},
+    year         = 2021,
+    month        = may,
+    url          = {https://hal.archives-ouvertes.fr/hal-03183053},
+    note         = {Research report}
+}
+@inproceedings{aubert20212,
+    title        = {Explicit Identifiers and Contexts in Reversible Concurrent Calculus},
+    author       = {Aubert, Clément and Medić, Doriana},
+    year         = 2021,
+    booktitle    = {Reversible Computation - 13th International Conference, {RC} 2021, Virtual Event, July 7-8, 2021, Proceedings},
     publisher    = {Springer},
-    isbn         = 9783642084744
+    series       = {Lecture Notes in Computer Science},
+    volume       = 12805,
+    pages        = {144--162},
+    doi          = {10.1007/978-3-030-79837-6_9},
+    isbn         = {978-3-030-79836-9},
+    editor       = {Yamashita, Shigeru and Yokoyama, Tetsuo}
 }
-@techreport{dijkstra1970,
-    title        = {Notes on structured programming},
-    author       = {Edsger W. Dijkstra},
-    year         = 1970,
-    institution  = {Department of Mathematics, Technological University Eindhoven, The Netherlands}
-}
-@inproceedings{aubert2022b,
+@inproceedings{aubert20222,
     title        = {mwp-Analysis Improvement and Implementation: Realizing Implicit Computational Complexity},
     author       = {Cl{\'{e}}ment Aubert and Thomas Rubiano and Neea Rusch and Thomas Seiller},
     year         = 2022,
@@ -37,33 +100,66 @@
     series       = {LIPIcs},
     volume       = 228,
     pages        = {26:1--26:23},
-    doi          = {10.4230/LIPIcs.FSCD.2022.26}
+    doi          = {10.4230/LIPIcs.FSCD.2022.26},
+    isbn         = {978-3-95977-233-4},
+    issn         = {1868-8969},
+    editor       = {Felty, Amy P.}
 }
-@inproceedings{splash22,
-    title        = {Formally Verified Resource Bounds Through Implicit Computational Complexity},
-    author       = {Rusch, Neea},
+@inproceedings{aubert20227,
+    title        = {Data Integration for the Study of Outstanding Productivity in Biomedical Research},
+    author       = {Aubert, Clément and Balas, Andrew and Townsend, Tiffany and Sleeper, Noah and Tran, CJ},
     year         = 2022,
-    booktitle    = {Companion Proceedings of the 2022 ACM SIGPLAN International Conference on Systems, Programming, Languages, and Applications: Software for Humanity},
-    publisher    = {Association for Computing Machinery},
-    series       = {SPLASH Companion 2022},
-    volume       = {},
-    pages        = {},
-    doi          = {10.1145/3563768.3565545}
+    month        = may,
+    booktitle    = {Proceedings of the 15th International Conference on Current Research Information Systems (CRIS2022)},
+    url          = {http://hdl.handle.net/11366/1987}
 }
-@unpublished{vmcai23,
-    title        = {Distributing and Parallelizing Non-canonical Loops},
-    author       = {Cl{\'{e}}ment Aubert and Thomas Rubiano and Neea Rusch and Thomas Seiller},
-    year         = 2023,
-    note         = {To appear in Verification, Model Checking, and Abstract Interpretation (VMCAI)}
+@unpublished{aubert20225,
+    title        = {{A Novel Loop Fission Technique Inspired by Implicit Computational Complexity}},
+    author       = {Aubert, Clément and Rubiano, Thomas and Rusch, Neea and Seiller, Thomas},
+    year         = 2022,
+    month        = may,
+    url          = {https://hal.archives-ouvertes.fr/hal-03669387v1},
+    note         = {Draft}
 }
-@unpublished{coqpl23,
-    title        = {Certifying Complexity Analysis},
-    author       = {Cl{\'{e}}ment Aubert and Thomas Rubiano and Neea Rusch and Thomas Seiller},
-    year         = 2023,
-    note         = {At the Ninth International Workshop on Coq for Programming Languages (CoqPL)},
-    keywords     = {np}
+@inproceedings{aubert20223,
+    title        = {{Concurrencies in Reversible Concurrent Calculi}},
+    author       = {Aubert, Clément},
+    year         = 2022,
+    booktitle    = {Reversible Computation - 14th International Conference, {RC} 2022, Urbino, Italy, July 5-6, 2022, Proceedings},
+    publisher    = {Springer},
+    series       = {Lecture Notes in Computer Science},
+    volume       = 13354,
+    pages        = {146--163},
+    doi          = {10.1007/978-3-031-09005-9_10},
+    isbn         = {978-3-031-09004-2},
+    editor       = {Mezzina, Claudio Antares and Podlaski, Krzysztof}
 }
-@unpublished{types22,
+@unpublished{aubert20228,
+    title        = {{Concurrencies in Reversible Concurrent Calculi}},
+    author       = {Aubert, Clément},
+    year         = 2022,
+    month        = mar,
+    url          = {https://hal.archives-ouvertes.fr/hal-03605003},
+    note         = {Technical Report}
+}
+@unpublished{aubert20226,
+    title        = {{Realizing Implicit Computational Complexity}},
+    author       = {Aubert, Clément and Rubiano, Thomas and Rusch, Neea and Seiller, Thomas},
+    year         = 2022,
+    month        = mar,
+    url          = {https://hal.archives-ouvertes.fr/hal-03603510},
+    note         = {presented at the \href{https://types22.inria.fr/}{28th International Conference on Types for Proofs and Programs} (\href{https://youtu.be/L68Gs5ak0z4}{Recording})}
+}
+@article{aubert20221,
+    title        = {Processes Against Tests: On Defining Contextual Equivalences},
+    author       = {Aubert, Clément and Varacca, Daniele},
+    year         = 2022,
+    journal      = {Journal of Logical and Algebraic Methods in Programming},
+    pages        = 100799,
+    doi          = {10.1016/j.jlamp.2022.100799},
+    issn         = {2352-2208}
+}
+@unpublished{aubert202217,
     title        = {Realizing Implicit Computational Complexity},
     author       = {Cl{\'{e}}ment Aubert and Thomas Rubiano and Neea Rusch and Thomas Seiller},
     year         = 2022,
@@ -71,7 +167,7 @@
     note         = {At the 28th International Conference on Types for Proofs and Programs (TYPES)},
     keywords     = {np}
 }
-@software{loopfis_artifact,
+@software{aubert202213,
     title        = {{Distributing and Parallelizing Non-canonical Loops -- Artifact}},
     author       = {Cl{\'{e}}ment Aubert and Thomas Rubiano and Neea Rusch and Thomas Seiller},
     year         = 2022,
@@ -81,7 +177,7 @@
     url          = {https://github.com/statycc/loop-fission},
     version      = {1.0}
 }
-@software{pymwp_artifact,
+@software{aubert202216,
     title        = {pymwp: A Tool for Guaranteeing Complexity Bounds for C Programs},
     author       = {Cl{\'{e}}ment Aubert and Thomas Rubiano and Neea Rusch and Thomas Seiller},
     year         = 2022,
@@ -90,6 +186,83 @@
     doi          = {10.5281/zenodo.7159134},
     url          = {https://github.com/statycc/pymwp},
     version      = {1.0}
+}
+@misc{aubert202215,
+    title        = {{pymwp: MWP analysis in Python}},
+    author       = {Aubert, Clément and Rubiano, Thomas and Rusch, Neea and Seiller, Thomas},
+    year         = 2022,
+    month        = sep,
+    url          = {https://github.com/statycc/pymwp/}
+}
+@inproceedings{aubert2023b,
+    title        = {pymwp: A Static Analyzer Determining Polynomial Growth Bounds},
+    author       = {Aubert, Clément and Rubiano, Thomas and Rusch, Neea and Seiller, Thomas},
+    year         = 2023,
+    booktitle    = {Automated Technology for Verification and Analysis},
+    publisher    = {Springer International Publishing},
+    series       = {},
+    volume       = {},
+    pages        = {263--275},
+    doi          = {10.1007/978-3-031-45332-8_14}
+}
+@misc{aubert202214,
+    title        = {Loop Fission Benchmarks},
+    author       = {Aubert, Clément and Rubiano, Thomas and Rusch, Neea and Seiller, Thomas},
+    year         = 2022,
+    month        = sep,
+    doi          = {10.5281/zenodo.7080145},
+    url          = {https://github.com/statycc/loop-fission}
+}
+@misc{aubert202212,
+    title        = {Internship Proposal -- Implementing Reversible Process Algebras},
+    author       = {Aubert, Clément},
+    year         = 2022,
+    url          = {https://spots.augusta.edu/caubert/research/internships/ internship_proposal_aubert_implementing.pdf}
+}
+@inproceedings{aubert20229,
+    title        = {Bisimulations Respecting Duration and Causality for the Non-interleaving Applied $\pi$-Calculus},
+    author       = {Aubert, Clément and Horne, Ross and Johansen, Christian},
+    year         = 2022,
+    month        = sep,
+    booktitle    = {{\rm Proceedings Combined 29th International Workshop on} Expressiveness in Concurrency {\rm and 19th Workshop on} Structural Operational Semantics , {\rm Warsaw, Poland, 12th September 2022}},
+    publisher    = {Open Publishing Association},
+    series       = {Electronic Proceedings in Theoretical Computer Science},
+    volume       = 368,
+    pages        = {3--22},
+    doi          = {10.4204/EPTCS.368.1},
+    editor       = {Castiglioni, Valentina and Mezzina, Claudio A.}
+}
+@inproceedings{aubert20224,
+    title        = {Diamonds for Security: A Non-Interleaving Operational Semantics for the Applied Pi-Calculus},
+    author       = {Aubert, Clément and Horne, Ross and Johansen, Christian},
+    year         = 2022,
+    booktitle    = {33rd International Conference on Concurrency Theory},
+    publisher    = {Schloss Dagstuhl--Leibniz-Zentrum f{\"u}r Informatik},
+    series       = {Leibniz International Proceedings in Informatics},
+    volume       = 243,
+    pages        = {30:1--30:26},
+    doi          = {10.4230/LIPIcs.CONCUR.2022.30},
+    editor       = {Bartek Klin and Słwomir Lasota and Anca Muscholl}
+}
+@unpublished{aubert202211,
+    title        = {pymwp: A Tool for Guaranteeing Complexity Bounds for C Programs},
+    author       = {Aubert, Clément and Rubiano, Thomas and Rusch, Neea and Seiller, Thomas},
+    year         = 2022,
+    month        = oct,
+    note         = {In preparation}
+}
+@unpublished{aubert20232,
+    title        = {Distributing and Parallelizing Non-canonical Loops},
+    author       = {Cl{\'{e}}ment Aubert and Thomas Rubiano and Neea Rusch and Thomas Seiller},
+    year         = 2023,
+    note         = {To appear in Verification, Model Checking, and Abstract Interpretation (VMCAI)}
+}
+@unpublished{aubert20231,
+    title        = {Certifying Complexity Analysis},
+    author       = {Cl{\'{e}}ment Aubert and Thomas Rubiano and Neea Rusch and Thomas Seiller},
+    year         = 2023,
+    note         = {At the Ninth International Workshop on Coq for Programming Languages (CoqPL)},
+    keywords     = {np}
 }
 @inproceedings{avanzini2008,
     title        = {Automated Implicit Computational Complexity Analysis (System Description)},
@@ -126,12 +299,35 @@
     pages        = {172:1--172:30},
     doi          = {10.1145/3428240}
 }
-@book{bertot2013,
+@book{bertot2004,
     title        = {Interactive theorem proving and program development: Coq’Art: the calculus of inductive constructions},
     author       = {Bertot, Yves and Cast{\'e}ran, Pierre},
     year         = 2004,
     publisher    = {Springer},
     isbn         = 9783540208549
+}
+@misc{bessin2004,
+    title        = {The business value of misc quality},
+    author       = {Bessin, Geoffrey},
+    year         = 2004,
+    month        = jun,
+    url          = {http://www.ibm.com/developerworks/rational/library/ 4995.html},
+    language     = {en}
+}
+@book{blainlevy2004,
+    title        = {Call-By-Push-Value},
+    author       = {Blain Levy, Paul},
+    year         = 2004,
+    publisher    = {Springer},
+    series       = {Semantics Structures in Computation},
+    volume       = 2,
+    isbn         = {1-4020-1730-8}
+}
+@misc{blanchet2021,
+    title        = {ProVerif: Cryptographic protocol verifier in the formal model},
+    author       = {Bruno Blanchet and Vincent Cheval},
+    year         = 2021,
+    url          = {https://bblanche.gitlabpages.inria.fr/proverif/}
 }
 @inproceedings{blazy2013,
     title        = {Formal Verification of Loop Bound Estimation for {WCET} Analysis},
@@ -142,7 +338,46 @@
     series       = {LNCS},
     volume       = 8164,
     pages        = {281--303},
-    doi          = {10.1007/978-3-642-54108-7_15}
+    doi          = {10.1007/978-3-642-54108-7_15},
+    isbn         = {978-3-642-54107-0},
+    editor       = {Ernie Cohen and Andrey Rybalchenko}
+}
+@article{bognar2001,
+    title        = {A Calculus of Lambda Calculus Contexts},
+    author       = {Mirna Bognar and Roel C. de Vrijer},
+    year         = 2001,
+    journal      = {Journal of Automated Reasoning},
+    volume       = 27,
+    number       = 1,
+    pages        = {29--59},
+    doi          = {10.1023/A:1010654904735}
+}
+@phdthesis{bognar2002,
+    title        = {Contexts in Lambda Calculus},
+    author       = {Bognar, Mirna},
+    year         = 2002,
+    url          = {https://www.cs.vu.nl/en/Images/bognar_thesis_tcm210- 92584.pdf},
+    school       = {Vrije Universiteit Amsterdam},
+    language     = {English}
+}
+@misc{browning20222,
+    title        = {{IRDC-CCSK}},
+    author       = {Browning, Peter and Aubert, Clément},
+    year         = 2022,
+    month        = 8,
+    url          = {https://github.com/peterbro1/IRDC-CCSK}
+}
+@unpublished{browning20221,
+    title        = {Reversible Computations: Usages and Benefits},
+    author       = {Browning, Peter and Aubert, Clément},
+    year         = 2022,
+    note         = {In preparation, invited by \href{https://www.augusta.edu/curs/arsenal.php}{the Arsenal} journal}
+}
+@misc{budde2020,
+    title        = {jana},
+    author       = {Budde, Michael and Claus Skou Nielsen},
+    year         = 2020,
+    url          = {https://github.com/mbudde/jana}
 }
 @inproceedings{carbonneaux2014,
     title        = {End-to-End Verification of Stack-Space Bounds for C Programs},
@@ -153,7 +388,9 @@
     series       = {PLDI '14},
     volume       = {},
     pages        = {270--281},
-    doi          = {10.1145/2594291.2594301}
+    doi          = {10.1145/2594291.2594301},
+    isbn         = {978-1-4503-2784-8},
+    editor       = {Michael F. P. O'Boyle and Keshav Pingali}
 }
 @inproceedings{carbonneaux2015,
     title        = {Compositional Certified Resource Bounds},
@@ -164,7 +401,9 @@
     series       = {PLDI '15},
     volume       = {},
     pages        = {467--478},
-    doi          = {10.1145/2737924.2737955}
+    doi          = {10.1145/2737924.2737955},
+    isbn         = {978-1-4503-3468-6},
+    editor       = {David Grove and Stephen M. Blackburn}
 }
 @inproceedings{carbonneaux2017,
     title        = {Automated Resource Analysis with Coq Proof Objects},
@@ -175,7 +414,70 @@
     series       = {},
     volume       = {},
     pages        = {64--85},
-    doi          = {10.1007/978-3-319-63390-9_4}
+    doi          = {10.1007/978-3-319-63390-9_4},
+    isbn         = {978-3-319-63389-3},
+    editor       = {Rupak Majumdar and Viktor Kuncak}
+}
+@techreport{caucal1988,
+    title        = {Récritures suffixes de mots},
+    author       = {Caucal, Didier},
+    year         = 1988,
+    number       = {RR-0871},
+    url          = {https://hal.inria.fr/inria-00075683},
+    institution  = {{INRIA}},
+    type         = {Research report}
+}
+@inproceedings{caucal1990,
+    title        = {On the Regular Structure of Prefix Rewriting},
+    author       = {Caucal, Didier},
+    year         = 1990,
+    booktitle    = {{CAAP}},
+    publisher    = {Springer},
+    series       = {Lecture Notes in Computer Science},
+    volume       = 431,
+    pages        = {87--102},
+    doi          = {10.1007/3-540-52590-4_42},
+    isbn         = {3-540-52590-4},
+    editor       = {Arnold, André}
+}
+@article{caucal1992,
+    title        = {On the Regular Structure of Prefix Rewriting},
+    author       = {Caucal, Didier},
+    year         = 1992,
+    journal      = {Theoretical Computer Science},
+    volume       = 106,
+    number       = 1,
+    pages        = {61--86},
+    doi          = {10.1016/0304-3975(92)90278-N}
+}
+@misc{chen2017,
+    title        = {Pi2},
+    author       = {Chen, Chao-Hong},
+    year         = 2017,
+    url          = {https://github.com/DreamLinuxer/Pi2}
+}
+@misc{cheney2015,
+    title        = {Mechanized formalizations of the pi-calculus (and friends)},
+    author       = {Cheney, James},
+    year         = 2015,
+    url          = {http://why-lambda.blogspot.com/2015/04/mechanized- formalizations-of-pi.html}
+}
+@book{chlipala2022,
+    title        = {Formal Reasoning About Programs},
+    author       = {Chlipala, Adam},
+    year         = 2022,
+    publisher    = {The MIT Press},
+    url          = {http://adam.chlipala.net/frap/}
+}
+@article{chlipala2010,
+    title        = {An Introduction to Programming and Proving with Dependent Types in Coq},
+    author       = {Adam Chlipala},
+    year         = 2010,
+    journal      = {Journal of Formalized Reasoning},
+    volume       = 3,
+    number       = 2,
+    pages        = {1--93},
+    doi          = {10.6092/issn.1972-5787/1978}
 }
 @article{ciaffaglione2016,
     title        = {Towards Turing computability via coinduction},
@@ -188,10 +490,71 @@
     pages        = {31--51},
     doi          = {10.1016/j.scico.2016.02.004}
 }
-@inproceedings{dallago2012,
+@misc{coffeestraw2021,
+    title        = {CCS_Proloq, Interpreter for CCS language (Calculus of Communicating Systems) written in SWI-Prolog},
+    author       = {CoffeeStraw},
+    year         = 2021,
+    url          = {https://github.com/CoffeeStraw/CCS_Prolog}
+}
+@misc{coq,
+    title        = {The Coq Proof Assistant},
+    url          = {https://coq.inria.fr},
+    note         = {Accessed: 2024-02-07}
+}
+@misc{coqclub,
+    title        = {The coq-club mailing list},
+    year         = 2024,
+    url          = {https://sympa.inria.fr/sympa/arc/coq-club/},
+    note         = {Accessed: 2024-02-07}
+}
+@misc{coqdevelopmentteam2017,
+    title        = {The Coq Proof Assistant, version 8.7.0},
+    author       = {{The Coq Development Team}},
+    year         = 2017,
+    month        = oct,
+    doi          = {10.5281/zenodo.1028037}
+}
+@article{coquand1988,
+    title        = {The Calculus of Constructions},
+    author       = {Coquand, Thierry and P. Huet, Gérard},
+    year         = 1988,
+    journal      = {Information and Computation},
+    volume       = 76,
+    number       = {2/3},
+    pages        = {95--120},
+    doi          = {10.1016/0890-5401(88)90005-3}
+}
+@misc{cpp,
+    title        = {Certified Programs and Proofs (CPP) conference},
+    url          = {https://popl24.sigplan.org/home/CPP-2024},
+    note         = {Accessed: 2024-02-07}
+}
+@phdthesis{cristescu2015,
+    title        = {Operational and denotational semantics for the reversible \(\pi\)-calculus},
+    author       = {Cristescu, Ioana},
+    year         = 2015,
+    url          = {http://scholar.harvard.edu/files/cristescu/files/these.pdf},
+    school       = {Université Paris Diderot – Paris 7--Sorbonne Paris Cité}
+}
+@misc{crocker2010,
+    title        = {Dynamic {Memory} {Allocation} in {Critical} {Embedded} {Systems}},
+    author       = {Crocker, David},
+    year         = 2010,
+    month        = jul,
+    url          = {https://critical.eschertech.com/2010/07/30/dynamic-memory- allocation-in-critical-embedded-systems/},
+    language     = {en}
+}
+@misc{cservenka2018,
+    title        = {ROOPLPPC},
+    author       = {Cservenka, Martin Holm},
+    year         = 2018,
+    url          = {https://github.com/cservenka/ROOPLPPC}
+}
+@inproceedings{dallago2011,
     title        = {A Short Introduction to Implicit Computational Complexity},
     author       = {Dal Lago, Ugo},
     year         = 2011,
+    journal      = {ArXiv preprint},
     booktitle    = {ESSLLI},
     publisher    = {Springer},
     series       = {LNCS},
@@ -209,7 +572,44 @@
     pages        = {760-–776},
     doi          = {10.1017/S0960129521000505}
 }
-@inproceedings{feree2018,
+@misc{debergalis2018,
+    title        = {PendVM},
+    author       = {Matt Debergalis and Mike P. Frank and Tue Haulund and Martin Holm Cservenka},
+    year         = 2018,
+    url          = {https://github.com/TueHaulund/PendVM}
+}
+@article{dezani-ciancaglini2001,
+    author       = {Dezani{-}Ciancaglini, Mariangiola and Elio Giovannetti},
+    year         = 2001,
+    journal      = {Electronic Notes in Theoretical Computer Science},
+    volume       = 50,
+    number       = 2,
+    pages        = {83--116},
+    doi          = {10.1016/S1571-0661(04)00167-7},
+    issn         = {1571-0661}
+}
+@misc{eblack2020,
+    title        = {cactus stack},
+    author       = {Paul E. Black},
+    year         = 2020,
+    month        = {December},
+    note         = {Available from: https://www.nist.gov/dads/HTML/cactusstack.html (accessed 16 Feb. 2021)},
+    howpublished = {in \emph{Dictionary of Algorithms and Data Structures} [online], Paul E. Black, ed.}
+}
+@misc{eisentraut2022,
+    title        = {pseuCo.com},
+    author       = {Eisentraut, Christian and Hermanns, Holger},
+    year         = 2022,
+    url          = {https://pseuco.com}
+}
+@misc{enwiki:1080087398,
+    title        = {Loop dependence analysis --- {Wikipedia}{,} The Free Encyclopedia},
+    author       = {{Wikipedia contributors}},
+    year         = 2022,
+    url          = {https://en.wikipedia.org/w/index.php? title=Loop_dependence_analysis&oldid=1080087398},
+    note         = {[Online; accessed 15-May-2022]}
+}
+@inproceedings{férée2018,
     title        = {Formal proof of polynomial-time complexity with quasi-interpretations},
     author       = {Férée, Hugo and Hym, Samuel and Mayero, Micaela and Moyen, Jean{-}Yves and Nowak, David},
     year         = 2018,
@@ -218,18 +618,43 @@
     series       = {CPP 2018},
     volume       = {},
     pages        = {146--157},
-    doi          = {10.1145/3167097}
+    doi          = {10.1145/3167097},
+    isbn         = {978-1-4503-5586-5},
+    url          = {http://dl.acm.org/citation.cfm?id=3176245},
+    editor       = {Andronick, June and Felty, Amy P.}
+}
+@inproceedings{flores-montoya2016,
+    title        = {Upper and Lower Amortized Cost Bounds of Programs Expressed as Cost Relations},
+    author       = {Antonio Flores{-}Montoya},
+    year         = 2016,
+    booktitle    = {{FM} 2016: Formal Methods - 21st International Symposium, Limassol, Cyprus, November 9-11, 2016, Proceedings},
+    series       = {Lecture Notes in Computer Science},
+    volume       = 9995,
+    pages        = {254--273},
+    doi          = {10.1007/978-3-319-48989-6_16},
+    isbn         = {978-3-319-48988-9},
+    editor       = {John S. Fitzgerald and Constance L. Heitmeyer and Stefania Gnesi and Anna Philippou}
 }
 @inproceedings{forster2020,
     title        = {Verified programming of Turing machines in Coq},
     author       = {Yannick Forster and Fabian Kunze and Maximilian Wuttke},
     year         = 2020,
-    booktitle    = {Proceedings of the 9th ACM SIGPLAN International Conference on Certified Programs and Proofs},
-    publisher    = {Association for Computing Machinery},
-    series       = {CPP 2020},
-    volume       = {},
+    booktitle    = {Proceedings of the 9th {ACM} {SIGPLAN} International Conference on Certified Programs and Proofs, {CPP} 2020, New Orleans, LA, USA, January 20-21, 2020},
+    publisher    = {{ACM}},
     pages        = {114--128},
-    doi          = {10.1145/3372885.3373816}
+    doi          = {10.1145/3372885.3373816},
+    isbn         = {978-1-4503-7097-4},
+    editor       = {Jasmin Blanchette and Catalin Hritcu}
+}
+@inproceedings{freyd1990,
+    title        = {Recursive Types Reduced to Inductive Types},
+    author       = {Freyd, Peter J.},
+    year         = 1990,
+    publisher    = {IEEE Computer Society},
+    pages        = {498--507},
+    doi          = {10.1109/LICS.1990.113772},
+    isbn         = {0-8186-2073-0},
+    url          = {http://ieeexplore.ieee.org/xpl/mostRecentIssue.jsp? punumber=305}
 }
 @inproceedings{gaher2021,
     title        = {Mechanising Complexity Theory: The Cook-Levin Theorem in Coq},
@@ -240,7 +665,25 @@
     series       = {LIPIcs},
     volume       = 193,
     pages        = {20:1--20:18},
-    doi          = {10.4230/LIPIcs.ITP.2021.20}
+    doi          = {10.4230/LIPIcs.ITP.2021.20},
+    isbn         = {978-3-95977-188-7},
+    url          = {https://www.dagstuhl.de/dagpub/978-3-95977-188-7},
+    editor       = {Liron Cohen and Cezary Kaliszyk}
+}
+@misc{gccLoop,
+    title        = {gcc.gnu.org Git - gcc.git/blob - gcc/tree-loop-distribution.c},
+    url          = {https://gcc.gnu.org/git/?p=gcc.git;a=blob;f=gcc/tree-loop- distribution.c;h=65aa1df4abae2c6acf40299f710bc62ee6bacc07;hb=HEAD#l39},
+    key          = {gcc}
+}
+@article{giesl2011,
+    title        = {Automated termination proofs for haskell by term rewriting},
+    author       = {Giesl, J{\"{u}}rgen and Raffelsieper, Matthias and Schneider{-}Kamp, Peter and Swiderski, Stephan and Thiemann, René},
+    year         = 2011,
+    journal      = {ACM Transactions on Programming Languages and Systems},
+    volume       = 33,
+    number       = 2,
+    pages        = {7:1--7:39},
+    doi          = {10.1145/1890028.1890030}
 }
 @article{giesl2017,
     title        = {Analyzing program termination and complexity automatically with AProVE},
@@ -263,7 +706,22 @@
     series       = {},
     volume       = {},
     pages        = {156--166},
-    doi          = {10.1007/978-3-030-17502-3_10}
+    doi          = {10.1007/978-3-030-17502-3_10},
+    isbn         = {978-3-030-17501-6},
+    editor       = {Dirk Beyer and Marieke Huisman and Fabrice Kordon and Bernhard Steffen}
+}
+@inproceedings{grellois2015,
+    title        = {Relational Semantics of Linear Logic and Higher-order Model Checking},
+    author       = {Grellois, Charles and Melliès, Paul-André},
+    year         = 2015,
+    booktitle    = {CSL},
+    publisher    = {Schloss Dagstuhl--Leibniz-Zentrum f{\"u}r Informatik},
+    series       = {Leibniz International Proceedings in Informatics},
+    volume       = 41,
+    pages        = {260--276},
+    doi          = {10.4230/LIPIcs.CSL.2015.260},
+    url          = {http://www.dagstuhl.de/dagpub/978-3-939897-90-3},
+    editor       = {Kreutzer, Stephan}
 }
 @inproceedings{gueneau2018,
     title        = {A Fistful of Dollars: Formalizing Asymptotic Complexity Claims via Deductive Program Verification},
@@ -274,7 +732,16 @@
     series       = {LNCS},
     volume       = 10801,
     pages        = {533--560},
-    doi          = {10.1007/978-3-319-89884-1_19}
+    doi          = {10.1007/978-3-319-89884-1_19},
+    isbn         = {978-3-319-89883-4},
+    editor       = {Amal Ahmed}
+}
+@phdthesis{guéneau2019,
+    title        = {Mechanized Verification of the Correctness and Asymptotic Complexity of Programs. (Vérification mécanisée de la correction et complexité asymptotique de programmes)},
+    author       = {Arma{\"{e}}l Guéneau},
+    year         = 2019,
+    url          = {https://tel.archives-ouvertes.fr/tel-02437532},
+    school       = {Inria, Paris, France}
 }
 @inproceedings{hainry2021,
     title        = {Complexityparser: An automatic tool for certifying poly-time complexity of java programs},
@@ -285,18 +752,135 @@
     series       = {LNCS},
     volume       = 12819,
     pages        = {357--365},
-    doi          = {10.1007/978-3-030-85315-0_20}
+    doi          = {10.1007/978-3-030-85315-0_20},
+    isbn         = {978-3-030-85314-3},
+    editor       = {Antonio Cerone and Peter Csaba {\"{O}}lveczky}
+}
+@article{hashimoto2001,
+    title        = {A typed context calculus},
+    author       = {Hashimoto, Masatomo and Ohori, Atsushi},
+    year         = 2001,
+    journal      = {Theoretical Computer Science},
+    volume       = 266,
+    number       = {1-2},
+    pages        = {249--272},
+    doi          = {10.1016/S0304-3975(00)00174-2}
+}
+@phdthesis{herbrand1930,
+    title        = {Recherches sur la théorie de la démonstration},
+    author       = {Herbrand, Jacques},
+    year         = 1930,
+    url          = {https://eudml.org/doc/192791},
+    school       = {Faculté des Sciences de Paris}
+}
+@article{hirschkoff1998,
+    title        = {Automatically Proving Up-to Bisimulation},
+    author       = {Hirschkoff, Daniel},
+    year         = 1998,
+    journal      = {Electronic Notes in Theoretical Computer Science},
+    volume       = 18,
+    pages        = {75--89},
+    doi          = {10.1016/S1571-0661(05)80251-8}
+}
+@article{hirschkoff2008,
+    title        = {A Distribution Law for {CCS} and a New Congruence Result for the p-calculus},
+    author       = {Hirschkoff, Daniel and Damien Pous},
+    year         = 2008,
+    journal      = {Logical Methods in Computer Science},
+    volume       = 4,
+    number       = 2,
+    doi          = {10.2168/LMCS-4(2:4)2008}
+}
+@inproceedings{hirschkoff2020,
+    title        = {{On the Representation of References in the Pi-Calculus}},
+    author       = {Hirschkoff, Daniel and Prebet, Enguerrand and Sangiorgi, Davide},
+    year         = 2020,
+    booktitle    = {31st International Conference on Concurrency Theory, {CONCUR} 2020, September 1--4, 2020, Vienna, Austria},
+    publisher    = {Schloss Dagstuhl--Leibniz-Zentrum f{\"u}r Informatik},
+    series       = {Leibniz International Proceedings in Informatics},
+    volume       = 2017,
+    pages        = {34:1--34:20},
+    doi          = {10.4230/LIPIcs.CONCUR.2020.34},
+    editor       = {Konnov, Igor and Kov\'{a}cs, Laura}
 }
 @inproceedings{hoffmann2012,
     title        = {Resource Aware {ML}},
     author       = {Hoffmann, Jan and Klaus Aehlig and Martin Hofmann},
     year         = 2012,
+    journal      = {ACM Transactions on Programming Languages and Systems},
     booktitle    = {Computer Aided Verification - 24th International Conference, CAV 2012},
     publisher    = {Springer},
     series       = {LNCS},
     volume       = 7358,
+    number       = 3,
     pages        = {781--786},
     doi          = {10.1007/978-3-642-31424-7_64}
+}
+@misc{holcomb2021,
+    title        = {The Implicit Computational Complexity Flavor of Automata},
+    author       = {Holcomb, Mark and Aubert, Clément},
+    year         = 2021,
+    publisher    = {Augusta University Libraries},
+    url          = {http://hdl.handle.net/10675.2/624052}
+}
+@article{hudak1992,
+    title        = {Report on the Programming Language Haskell, {A} Non-strict, Purely Functional Language},
+    author       = {Paul Hudak and Simon L. {Peyton Jones} and Philip Wadler and Brian Boutel and Jon Fairbairn and Joseph H. Fasel and Mar{\'{\i}}a M. Guzm{\'{a}}n and Kevin Hammond and John Hughes and Thomas Johnsson and Richard B. Kieburtz and Rishiyur S. Nikhil and Will Partain and John Peterson},
+    year         = 1992,
+    journal      = {{SIGPLAN} Notices},
+    volume       = 27,
+    number       = 5,
+    pages        = 1,
+    doi          = {10.1145/130697.130699},
+    url          = {http://doi.acm.org/10.1145/130697.130699}
+}
+@techreport{huet1978,
+    title        = {On the uniform halting problem for term rewriting systems},
+    author       = {Huet, Gérard and Lankford, Dallas},
+    year         = 1978,
+    number       = {RR-283},
+    url          = {http://www.ens-lyon.fr/LIP/REWRITING/TERMINATION/ Huet_Lankford.pdf},
+    institution  = {{INRIA}},
+    type         = {Research report}
+}
+@misc{icc_loop_constructs,
+    title        = {Developer guide and reference for users of the Intel® C++ Compiler Classic: Loop Constructs},
+    url          = {https://www.intel.com/content/www/us/en/develop/ documentation/cpp-compiler-developer-guide-and-reference/top/ optimization-and-programming/vectorization/automatic- vectorization/loop-constructs.html},
+    key          = {icc},
+    language     = {en}
+}
+@manual{icc_manual,
+    title        = {Intel C++ Compiler Classic Developer Guide and Reference},
+    author       = {{Intel Corporation}},
+    url          = {https://www.intel.com/content/dam/develop/external/us/en/ documents/cpp_compiler_classic.pdf}
+}
+@proceedings{icgse2010,
+    title        = {5th {IEEE} International Conference on Global Software Engineering, {ICGSE} 2010, Princeton, NJ, USA, 23-26 August, 2010},
+    year         = 2010,
+    booktitle    = {{ICGSE}},
+    publisher    = {IEEE},
+    isbn         = {978-1-4244-7619-0}
+}
+@misc{intel2022,
+    title        = {{oneTBB} documentation},
+    author       = {Intel},
+    year         = 2022,
+    url          = {https://oneapi-src.github.io/oneTBB/}
+}
+@misc{itp,
+    title        = {Interactive Theorem Proving (ITP) conference},
+    url          = {https://itp-conference.github.io},
+    note         = {Accessed: 2024-02-07}
+}
+@misc{Janus-Parser-with-antlr4,
+    title        = {Janus-Parser-with-antlr4},
+    year         = 2021,
+    url          = {https://github.com/andrebfc/Janus-Parser-with-antlr4}
+}
+@misc{JanusPlayground,
+    title        = {Janus Extended Playground},
+    author       = {Claus Skou Nielsen and Michael Budde and Michael Kirkedal Thomsen},
+    url          = {http://topps.diku.dk/pirc/janus-playground/}
 }
 @article{jones2009,
     title        = {A flow calculus of \emph{mwp}-bounds for complexity analysis},
@@ -310,17 +894,79 @@
     pages        = {28:1--28:41},
     doi          = {10.1145/1555746.1555752}
 }
+@misc{Jool,
+    title        = {Reversible Object-Oriented Language: Janus Object-Oriented Language = JOOL = Joule},
+    url          = {https://github.com/joule-lang/joule}
+}
 @article{jourdan2015,
     title        = {A formally-verified C static analyzer},
     author       = {Jourdan, Jacques-Henri and Laporte, Vincent and Blazy, Sandrine and Leroy, Xavier and Pichardie, David},
     year         = 2015,
     month        = jan,
     journal      = {ACM SIGPLAN Notices},
+    booktitle    = {Proceedings of the 42nd Annual {ACM} {SIGPLAN-SIGACT} Symposium onPrinciples of Programming Languages, {POPL} 2015, Mumbai, India, January 15-17, 2015},
     publisher    = {Association for Computing Machinery},
     volume       = 50,
     number       = 1,
     pages        = {247--259},
-    doi          = {10.1145/2775051.2676966}
+    doi          = {10.1145/2775051.2676966},
+    isbn         = {978-1-4503-3300-9},
+    editor       = {Sriram K. Rajamani and David Walker}
+}
+@misc{karstensenwortmann2022,
+    title        = {Concurrency Workbench, Aalborg Edition},
+    author       = {Jacob Karstensen Wortmann and Jesper Riemer Andersen and Mathias Munk Hansen and Nicklas Andersen and Simon Reedtz Olesen and Søren Enevoldsen.},
+    year         = 2022,
+    url          = {https://caal.cs.aau.dk/}
+}
+@phdthesis{ketema2006,
+    title        = {Böhm-Like Trees for Rewriting},
+    author       = {Ketema, Jeroen},
+    year         = 2006,
+    month        = {03},
+    url          = {http://www.ketema.eu/publ/dissertation.pdf},
+    school       = {Vrije Universiteit Amsterdam}
+}
+
+@misc{knight2018,
+    title        = {A Software Engineer in Test Must Have The Heart of a Developer},
+    author       = {Andy Knight},
+    year         = 2018,
+    url          = {https://blog.testproject.io/2018/11/06/the-misc-engineer-in- test/}
+}
+@inproceedings{koutavas2014,
+    title        = {Bisimulations for Communicating Transactions - (Extended Abstract)},
+    author       = {Koutavas, Vasileios and Spaccasassi, Carloand Hennessy, Matthew},
+    year         = 2014,
+    booktitle    = {Foundations of Software Science and Computation Structures - 17th International Conference, {FOSSACS} 2014, Held as Part of the European Joint Conferences on Theory and Practice of Software, {ETAPS} 2014, Grenoble, France, April 5-13, 2014, Proceedings},
+    publisher    = {Springer},
+    series       = {Lecture Notes in Computer Science},
+    volume       = 8412,
+    pages        = {320--334},
+    doi          = {10.1007/978-3-642-54830-7_21},
+    isbn         = {978-3-642-54829-1},
+    editor       = {Muscholl, Anca}
+}
+@misc{lavenhar2005,
+    title        = {Source {Code} {Analysis} {Tools} - {Business} {Case} {\textbar} {US}-{CERT}},
+    author       = {Lavenhar, Steven and Michael, C.C.},
+    year         = 2005,
+    url          = {https://www.us-cert.gov/bsi/articles/tools/source-code- analysis/source-code-analysis-tools---business-case}
+}
+@article{lecharlier1999,
+    title        = {Automated Verification of Prolog Programs},
+    author       = {Baudouin Le Charlier and Christophe Leclère and Sabina Rossi and Agostino Cortesi},
+    year         = 1999,
+    journal      = {J. Log. Program.},
+    volume       = 39,
+    number       = {1-3},
+    pages        = {3--42},
+    doi          = {10.1016/S0743-1066(98)10032-8}
+}
+@misc{leftpad,
+    title        = {Let's Prove Leftpad},
+    year         = 2022,
+    url          = {https://github.com/hwayne/lets-prove-leftpad}
 }
 @article{leroy2009,
     title        = {Formal verification of a realistic compiler},
@@ -334,6 +980,19 @@
     pages        = {107--115},
     doi          = {10.1145/1538788.1538814}
 }
+@misc{llvmLoop,
+    title        = {[LoopFission]: Loop Fission Interference Graph (FIG)},
+    url          = {https://reviews.llvm.org/D73801},
+    key          = {llvm}
+}
+@phdthesis{madiot2015,
+    title        = {Higher-order languages: dualities and bisimulation enhancements},
+    author       = {Madiot, Jean-Marie},
+    year         = 2015,
+    number       = {2015ENSL0988},
+    url          = {https://hal.archives-ouvertes.fr/tel-01141067},
+    school       = {École Normale Supérieure de Lyon, Università di Bologna}
+}
 @book{mahboubi2022,
     title        = {Mathematical Components},
     author       = {Assia Mahboubi and Enrico Tassi},
@@ -341,16 +1000,45 @@
     publisher    = {Zenodo},
     doi          = {10.5281/zenodo.7118596}
 }
-@article{mccarthy2018,
-    title        = {A Coq library for internal verification of running-times},
-    author       = {Jay A. McCarthy and Burke Fetscher and Max S. New and Daniel Feltey and Robert Bruce Findler},
-    year         = 2018,
-    month        = oct,
-    journal      = {Science of Computer Programming},
-    publisher    = {Elsevier},
-    volume       = 164,
-    pages        = {49--65},
-    doi          = {10.1016/j.scico.2017.05.001}
+@misc{mathcomp,
+    title        = {Mathematical Components},
+    author       = {Mathematical Components team},
+    year         = 2022,
+    url          = {https://math-comp.github.io}
+}
+@misc{mazza2015,
+    title        = {Elica project -- {Objectives}},
+    author       = {Mazza, Damiano},
+    year         = 2015,
+    url          = {http://lipn.univ-paris13.fr/~mazza/Elica/?page=obj}
+}
+@inproceedings{mclarke2011,
+    title        = {Model Checking and the State Explosion Problem},
+    author       = {Edmund M. Clarke and William Klieber and Milos Nov{\'{a}}cek and Paolo Zuliani},
+    year         = 2011,
+    booktitle    = {Tools for Practical Software Verification, LASER, International Summer School 2011, Elba Island, Italy, Revised Tutorial Lectures},
+    publisher    = {Springer},
+    series       = {Lecture Notes in Computer Science},
+    volume       = 7682,
+    pages        = {1--30},
+    doi          = {10.1007/978-3-642-35746-6_1},
+    isbn         = {978-3-642-35745-9},
+    editor       = {Bertrand Meyer and Martin Nordio}
+}
+@article{mller2023,
+    title        = {Static Program Analysis},
+    author       = {M{\o}ller, Anders and Schwartzbach, Michael I},
+    year         = 2023,
+    month        = {May},
+    journal      = {Department of Computer Science, Aarhus University},
+    url          = {https://cs.au.dk/~amoeller/spa/}
+}
+@phdthesis{morris1969,
+    title        = {Lambda-calculus models of programming languages},
+    author       = {Morris, Jr, James Hiram},
+    year         = 1969,
+    url          = {https://hdl.handle.net/1721.1/64850},
+    school       = {Massachusetts Institute of Technology}
 }
 @unpublished{moyen2016,
     title        = {Detection of Non-Size Increasing Programs in Compilers},
@@ -359,15 +1047,22 @@
     url          = {https://lipn.univ-paris13.fr/DICE2016/Abstracts/paper_2.pdf},
     note         = {At Developments in Implicit Computational Complexity (DICE 2016)}
 }
-@misc{moyen2017,
+@misc{moyen20171,
     title        = {Implicit Complexity in Theory and Practice},
     author       = {Moyen, Jean-Yves},
     year         = 2017,
+    booktitle    = {Automated Technology for Verification and Analysis - 15th International Symposium, {ATVA} 2017, Pune, India, October 3-6, 2017, Proceedings},
+    publisher    = {Springer},
+    series       = {Lecture Notes in Computer Science},
+    volume       = 10482,
+    doi          = {10.1007/978-3-319-68167-2_7},
+    isbn         = {978-3-319-68166-5},
     url          = {https://lipn.univ-paris13.fr/~moyen/papiers/Habilitation_JY_Moyen.pdf},
     school       = {University of Copenhagen},
-    type         = {Habilitation à Diriger des Recherches (HDR)}
+    type         = {Habilitation à Diriger des Recherches (HDR)},
+    editor       = {D'Souza, Deepak and Kumar, K. Narayan}
 }
-@inproceedings{moyen2017b,
+@inproceedings{moyen20172,
     title        = {Loop Quasi-Invariant Chunk Detection},
     author       = {Moyen, Jean-Yves and Rubiano, Thomas and Seiller, Thomas},
     year         = 2017,
@@ -376,9 +1071,40 @@
     series       = {},
     volume       = {},
     pages        = {91--108},
-    doi          = {10.1007/978-3-319-68167-2_7}
+    doi          = {10.1007/978-3-319-68167-2_7},
+    url          = {http://arxiv.org/abs/1704.05169},
+    editor       = {Guillaume Bonfante and Georg Moser}
 }
-@misc{pechoux2020,
+@misc{mwp-ssa,
+    title        = {{CompcertMWP}},
+    author       = {Aubert, Clément and Rubiano, Thomas and Rusch, Neea and Seiller, Thomas},
+    url          = {https://depot.lipn.univ-paris13.fr/rubiano/compcertmwp}
+}
+@book{nielson2010,
+    title        = {Principles of program analysis},
+    author       = {Nielson, Flemming and Nielson, Hanne R and Hankin, Chris},
+    year         = 2010,
+    publisher    = {Springer},
+    isbn         = 9783642084744
+}
+@misc{nsf_reversibility,
+    title        = {Reversibility: {Future} of {Life} on {Earth} {\textbar} {The} {NSF} 2026 {Idea} {Machine}},
+    year         = 2018,
+    month        = oct,
+    url          = {https://nsf2026imgallery.skild.com/entries/reversibility- future-of-life-on-earth},
+    key          = {nsf},
+    language     = {en}
+}
+@article{okasaki1999,
+    title        = {Red-Black Trees in a Functional Setting},
+    author       = {Okasaki, Chris},
+    year         = 1999,
+    journal      = {Journal of Functional Programming},
+    volume       = 9,
+    number       = 4,
+    pages        = {471--477}
+}
+@misc{pchoux2020,
     title        = {Complexit{\'e} implicite : bilan et perspectives},
     author       = {P{\'e}choux, Romain},
     year         = 2020,
@@ -386,15 +1112,145 @@
     school       = {Universit{\'e} de Lorraine},
     type         = {Habilitation à Diriger des Recherches (HDR)}
 }
+@misc{polybenchc,
+    title        = {{PolyBench/C 4.1}},
+    author       = {Pouchet, Louis-Noel and Yuki, Tomofumi},
+    url          = {https://web.cse.ohio-state.edu/~pouchet.2/software/ polybench/}
+}
+@misc{ppl2021,
+    title        = {Parallel Patterns Library (PPL)},
+    author       = {microsoft},
+    year         = 2021,
+    url          = {https://docs.microsoft.com/en-us/cpp/parallel/concrt/ parallel-patterns-library-ppl?view=msvc-170}
+}
+@inproceedings{prause2010,
+    title        = {Empirical Study of Tool Support in Highly Distributed Research Projects},
+    author       = {Prause, Christian and Reiners, René and Dencheva, Silviya},
+    year         = 2010,
+    booktitle    = {{ICGSE}},
+    publisher    = {IEEE},
+    pages        = {23--32},
+    doi          = {10.1109/ICGSE.2010.13},
+    isbn         = {978-1-4244-7619-0}
+}
+@misc{proofassistants,
+    title        = {Proof Assistants},
+    year         = 2024,
+    url          = {https://en.wikipedia.org/wiki/Proof_assistant}
+}
+@misc{pycparser,
+    title        = {{pycparser - Complete C99 parser in pure Python}},
+    url          = {https://github.com/eliben/pycparser},
+    key          = {pycparser}
+}
+@misc{pymwp_doc,
+    title        = {pymwp's documentation},
+    year         = 2022,
+    url          = {https://statycc.github.io/pymwp/},
+    key          = {pymwp}
+}
+@article{rice1953,
+    title        = {Classes of recursively enumerable sets and their decision problems},
+    author       = {Rice, Henry Gordon},
+    year         = 1953,
+    journal      = {Transactions of the American Mathematical society},
+    volume       = 74,
+    number       = 2,
+    pages        = {358--366}
+}
+@misc{rotibi2008,
+    title        = {The {Business} {Value} of {Software} {Static} {Analysis}},
+    author       = {Rotibi, Bola},
+    year         = 2008,
+    url          = {ftp://ftp.misc.ibm.com/misc/rational/info/do-more/ RAW14036USEN.pdf},
+    editor       = {Macehiter Ward-Dutton Limited}
+}
+@inproceedings{rusch2022,
+    title        = {Formally Verified Resource Bounds Through Implicit Computational Complexity},
+    author       = {Rusch, Neea},
+    year         = 2022,
+    booktitle    = {Companion Proceedings of the 2022 ACM SIGPLAN International Conference on Systems, Programming, Languages, and Applications: Software for Humanity},
+    publisher    = {Association for Computing Machinery},
+    series       = {SPLASH Companion 2022},
+    volume       = {},
+    pages        = {},
+    doi          = {10.1145/3563768.3565545}
+}
+@misc{scandone2019,
+    title        = {Calculus of Communicating Systems},
+    author       = {Alessandro Scandone and Andrea Bacciu and Valerio Neri},
+    year         = 2019,
+    url          = {https://github.com/ComputerScience-Projects/Calculus-of- Communicating-Systems}
+}
+@article{schmidt-schau2010,
+    title        = {On generic context lemmas for higher-order calculi with sharing},
+    author       = {Manfred Schmidt{-}Schau{\ss} and David Sabel},
+    year         = 2010,
+    journal      = {Theoretical Computer Science},
+    volume       = 411,
+    number       = {11-13},
+    pages        = {1521--1541},
+    doi          = {10.1016/j.tcs.2009.12.001}
+}
+@article{mccarthy2018,
+    author =        {Jay A. McCarthy and Burke Fetscher and Max S. New and
+                   Daniel Feltey and Robert Bruce Findler},
+    journal =       {Science of Computer Programming},
+    pages =         {49--65},
+    title =         {A Coq library for internal verification of
+                   running-times},
+    volume =        {164},
+    year =          {2018},
+    doi =           {10.1016/j.scico.2017.05.001},
+}
+@inproceedings{feree2018,
+    author =        {Férée, Hugo and Hym, Samuel and Mayero, Micaela and
+                   Moyen, Jean{-}Yves and Nowak, David},
+    booktitle =     {{SIGPLAN}},
+    editor =        {Andronick, June and Felty, Amy P.},
+    pages =         {146--157},
+    publisher =     {Association for Computing Machinery},
+    title =         {Formal proof of polynomial-time complexity with
+                   quasi-interpretations},
+    year =          {2018},
+    doi =           {10.1145/3167097},
+    isbn =          {978-1-4503-5586-5},
+    url =           {http://dl.acm.org/citation.cfm?id=3176245},
+}
+@misc{schmitt2015,
+    title        = {HOcore in Coq},
+    author       = {Alan Schmitt and Martín Escarrá and Petar Maksimović},
+    year         = 2015,
+    url          = {https://people.rennes.inria.fr/Alan.Schmitt/research/hocore/}
+}
+@article{schneider-kamp2010,
+    title        = {Automated termination analysis for logic programs with cut},
+    author       = {Schneider{-}Kamp, Peter and Giesl, J{\"{u}}rgen and Ströder, Thomas and Serebrenik, Alexander and Thiemann, René},
+    year         = 2010,
+    journal      = {Theory and Practice of Logic Programming},
+    volume       = 10,
+    number       = {4-6},
+    pages        = {365--381},
+    doi          = {10.1017/S1471068410000165}
+}
 @book{sipser2012,
     title        = {Introduction to the Theory of Computation},
     author       = {Sipser, Michael},
     year         = 2012,
     publisher    = {Cengage Learning},
+    pages        = {I-XXII, 1--458},
     isbn         = 9781133187790,
-    lccn         = 2012938665
+    lccn         = 2012938665,
+    edition      = 3
 }
-@incollection{softwarefoundation1,
+@misc{sleeper2022,
+    title        = {{Data Integration for the Study of Outstanding Productivity in Biomedical Research}},
+    author       = {Sleeper, Noah and Aubert, Clément},
+    year         = 2022,
+    month        = 4,
+    url          = {https://github.com/popbr/data-integration}
+}
+@incollection{cpierce20221,
     title        = {Logical Foundations},
     author       = {Benjamin C. Pierce and Arthur Azevedo de Amorim and Chris Casinghino and Marco Gaboardi and Michael Greenberg and Cătălin Hriţcu and Vilhelm Sjöberg and Brent Yorgey},
     year         = 2022,
@@ -404,7 +1260,7 @@
     edition      = {Version 6.2},
     editor       = {Benjamin C. Pierce}
 }
-@incollection{softwarefoundation2,
+@incollection{cpierce20222,
     title        = {Programming Language Foundations},
     author       = {Benjamin C. Pierce and Arthur Azevedo de Amorim and Chris Casinghino and Marco Gaboardi and Michael Greenberg and Cătălin Hriţcu and Vilhelm Sjöberg and Andrew Tolmach and Brent Yorgey},
     year         = 2022,
@@ -414,29 +1270,113 @@
     edition      = {Version 6.2},
     editor       = {Benjamin C. Pierce}
 }
-@misc{proofassistants,
-    title        = {Proof Assistants},
-    year         = 2024,
-    url          = {https://en.wikipedia.org/wiki/Proof_assistant}
+@misc{suomela2022,
+    title        = {Programming Parallel Computers},
+    author       = {Suomela, Jukka},
+    year         = 2022,
+    url          = {https://ppc.cs.aalto.fi/}
 }
-@misc{itp,
-    title        = {Interactive Theorem Proving (ITP) conference},
-    url          = {https://itp-conference.github.io},
-    note         = {Accessed: 2024-02-07}
+@phdthesis{tews2002,
+    title        = {Coalgebraic Methods for Object-Oriented Specification},
+    author       = {Hendrik Tews},
+    year         = 2002,
+    url          = {http://askra.de/PhD/main.pdf},
+    school       = {Technischen Universität Dresden}
 }
-@misc{cpp,
-    title        = {Certified Programs and Proofs (CPP) conference},
-    url          = {https://popl24.sigplan.org/home/CPP-2024},
-    note         = {Accessed: 2024-02-07}
+@inproceedings{thomas2003,
+    title        = {Constructing Infinite Graphs with a Decidable MSO-Theory},
+    author       = {Thomas, Wolfgang},
+    year         = 2003,
+    booktitle    = {MFCS},
+    publisher    = {Springer},
+    series       = {Lecture Notes in Computer Science},
+    volume       = 2747,
+    pages        = {113--124},
+    doi          = {10.1007/978-3-540-45138-9_6},
+    editor       = {Rovan, Branislav and Vojt{\'{a}}s, Peter}
 }
-@misc{coq,
-    title        = {The Coq Proof Assistant},
-    url          = {https://coq.inria.fr},
-    note         = {Accessed: 2024-02-07}
+@misc{tylermsft_parallel_nodate,
+    title        = {Parallel {Patterns} {Library} ({PPL})},
+    author       = {{TylerMSFT}},
+    url          = {https://docs.microsoft.com/en-us/cpp/parallel/concrt/ parallel-patterns-library-ppl},
+    language     = {en-us}
 }
-@misc{coqclub,
-    title        = {The coq-club mailing list},
-    year         = 2024,
-    url          = {https://sympa.inria.fr/sympa/arc/coq-club/},
-    note         = {Accessed: 2024-02-07}
+@article{vhermenegildo2012,
+    title        = {An overview of Ciao and its design philosophy},
+    author       = {Manuel V. Hermenegildo and Francisco Bueno and Manuel Carro and Pedro L{\'{o}}pez{-}Garc{\'{\i}}a and Edison Mera and José F. Morales and Germ{\'{a}}n Puebla},
+    year         = 2012,
+    journal      = {Theory and Practice of Logic Programming},
+    volume       = 12,
+    number       = {1-2},
+    pages        = {219--252},
+    doi          = {10.1017/S1471068411000457}
+}
+@inproceedings{vries20101,
+    title        = {Communicating Transactions - (Extended Abstract)},
+    author       = {de Vries, Edsko and Koutavas, Vasileiosand Hennessy, Matthew},
+    year         = 2010,
+    booktitle    = {CONCUR 2010 - Concurrency Theory, 21th International Conference, CONCUR 2010, Paris, France, August 31-September 3, 2010. Proceedings},
+    publisher    = {Springer},
+    series       = {Lecture Notes in Computer Science},
+    volume       = 6269,
+    pages        = {569--583},
+    doi          = {10.1007/978-3-642-15375-4_39},
+    isbn         = {978-3-642-15374-7},
+    editor       = {Gastin, Paul and Laroussinie, François}
+}
+@inproceedings{vries20102,
+    title        = {Liveness of Communicating Transactions (Extended Abstract)},
+    author       = {de Vries, Edsko and Koutavas, Vasileiosand Hennessy, Matthew},
+    year         = 2010,
+    booktitle    = {APLAS},
+    publisher    = {Springer},
+    series       = {Lecture Notes in Computer Science},
+    volume       = 6461,
+    pages        = {392--407},
+    doi          = {10.1007/978-3-642-17164-2_27},
+    isbn         = {978-3-642-17163-5},
+    editor       = {Ueda, Kazunori}
+}
+@misc{wayne2019,
+    title        = {Why Don't People Use Formal Methods?},
+    author       = {Wayne, Hillel},
+    year         = 2019,
+    month        = {01},
+    url          = {https://www.hillelwayne.com/post/why-dont-people-use-formal-methods/}
+}
+@techreport{wdijkstra1970,
+    title        = {Notes on structured programming},
+    author       = {Edsger W. Dijkstra},
+    year         = 1970,
+    institution  = {Department of Mathematics, Technological University Eindhoven, The Netherlands}
+}
+@article{yardeni1991,
+    title        = {A Type System for Logic Programs},
+    author       = {Eyal Yardeni and Ehud Y. Shapiro},
+    year         = 1991,
+    journal      = {Journal of Logic Programming},
+    volume       = 10,
+    number       = 2,
+    pages        = {125--153},
+    doi          = {10.1016/0743-1066(91)80002-U}
+}
+@misc{yingfei2014,
+    title        = {Chapter 19: Case study: Featherweight java - github pages},
+    author       = {Yingfei, Xiong},
+    year         = 2014,
+    journal      = {A quick tour of OCaml},
+    publisher    = {Peking University},
+    url          = {https://xiongyingfei.github.io/DPPL/2014/zhao_ch19.pdf}
+}
+@misc{yokoyama2016,
+    title        = {rcore-C-ocaml},
+    author       = {Tetsuo Yokoyama},
+    year         = 2016,
+    url          = {https://github.com/tetsuo-jp/rcore-C-ocaml}
+}
+@misc{yokoyama2018,
+    title        = {reversible-algorithms},
+    author       = {Tetsuo Yokoyama},
+    year         = 2018,
+    url          = {https://github.com/tetsuo-jp/reversible-algorithms}
 }

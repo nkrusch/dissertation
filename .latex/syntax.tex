@@ -1,14 +1,13 @@
-% =============================================== %
+% ===============================================
 % SOURCE CODE FORMATTING AND HIGHLIGHTING OPTIONS
-% =============================================== %
+% ===============================================
 
-% programming languages
 \newcommand{\pr}{\lstinline[mathescape,language=imp,basicstyle=\ttfamily,escapeinside={(*}{*)}]}
 \newcommand{\prc}{\lstinline[language=C,basicstyle=\ttfamily\bfseries]}
 \lstdefinelanguage{imp}{morekeywords={if,then,else,while,do,loop}}
 
-% plain C code - without colors
-\lstdefinestyle{PlainStyle}{
+% colorless
+\lstdefinestyle{Plain}{
     basicstyle=\small\ttfamily,
     breakatwhitespace=false,
     breaklines=true,
@@ -22,8 +21,6 @@
     tabsize=2,
     language=C
 }
-
-% C code highlight
 \lstdefinestyle{C}{
     basicstyle=\small\ttfamily,
     commentstyle=\color{mGreen},
@@ -40,7 +37,6 @@
     tabsize=2,
     language=C
 }
-% Coq code highlight
 \lstdefinestyle{Coq}{
     basicstyle=\small\ttfamily,
     commentstyle=\color{mGreen},

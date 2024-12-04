@@ -2,6 +2,10 @@
 \AddToHook{cmd/section/before}{\clearpage}
 % Roman numbers for section headers
 \renewcommand\thesection{\Roman{section}}
+\renewcommand\thesubsection{\Alph{subsection}}
+% FIX: TOC labels too close
+\renewcommand{\cftsecnumwidth}{25pt}
+\setcounter{tocdepth}{1}
 
 % Comma after eg and ie
 % https://english.stackexchange.com/a/16215

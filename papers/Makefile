@@ -13,7 +13,7 @@ $(DIR):
 
 clean:
 	@$(foreach d, . $(DIR), \
-	(cd $(d) &&	rm -rf *.pdf *.aux *.bbl *.bcf *.blg *.out *.fdb_latexmk \
+	(cd $(d) &&	rm -rf *.pdf *.aux *.bbl *.bcf *.blg *.out *.fdb_latexmk *.cut \
      *.fls *.log *.run.xml *.tex.blg *.synctex.gz *.vtc *.lot *.lof *.toc *~ main.pdf) ;)
 
 .PHONY: $(DIR)
