@@ -1,11 +1,16 @@
-\section{Certifying Complexity Analysis}
+\section*{Certifying Complexity Analysis}
 \label{sec:certifying-complexity-analysis}
+\addcontentsline{toc}{section}{Certifying Complexity Analysis}
 
+\ainfo{Cl{\'{e}}ment Aubert, Thomas Rubiano, Neea Rusch, Thomas Seiller}
+{Presented at the Ninth International Workshop on Coq for Programming Languages, 2023}
+
+\begin{abstract}
 This work drafts a strategy that leverages the field of Implicit Computational Complexity to certify resource usage in imperative programs.
 This original approach sidesteps some of the most common--and difficult--obstacles \enquote{traditional} complexity theory face when implemented in Coq.
+\end{abstract}\clearpage
 
 \subsection{Motivation}
-\label{sec:motivation}
 
 The ability to statically infer resource bounds of programs offers numerous benefits, \eg
 to insure safe memory usage.
@@ -20,7 +25,7 @@ In the area of complexity theory, \textcquote[p.~114]{forster2020}{formalisation
 
 For practical complexity analyses, many existing techniques present methodological challenges if they require \eg program termination or inlining functions~\cite{carbonneaux2015}.
 Therefore, a realistic pathway toward formal certification of a program's resource usage is narrow.
-A few encouraging early results exist, and we discuss some of those in \autoref{sec:related}.
+A few encouraging early results exist, and we discuss some of those in \autoref{coqpl-related}.
 In this proposal we will sketch how a different approach, founded on Implicit Computational Complexity,
 could sidestep some of the usual difficulties in implementing and verifying complexity analyses in Coq.
 
@@ -34,14 +39,12 @@ ICC-based systems are often compositional and they offer more natural tools to w
 We speculate these combined properties could make ICC-approaches a conceivable pathway toward certified complexity and sketch a more detailed plan below.
 
 \subsection{Preliminary Action Plan}  % Replace with a better title
-\label{sec:plans}
 
 We plan to formalize in Coq an ICC-based complexity analysis technique, the \emph{mwp-flow analysis}~\cite{jones2009}\footnote{Where mwp stands for \emph{m}aximum, \emph{w}eak polynomial and \emph{p}olynomial, representing increasing growth rates of variables values.}.
-We chose this method because its internal mechanics has been recently studied~\cite{aubert20221}, and by our assessment, it seems suitable for formalization in Coq.
-As for Coq, it seems like the ideal target language because of its existing libraries and preliminary work--some of which are discussed in \autoref{sec:related}--, most notably related to compilers~\cite{leroy2009}.
+We chose this method because its internal mechanics has been recently studied~\cite{aubert20222}, and by our assessment, it seems suitable for formalization in Coq.
+As for Coq, it seems like the ideal target language because of its existing libraries and preliminary work--some of which are discussed in \autoref{coqpl-related}--, most notably related to compilers~\cite{leroy2009}.
 
 \subsubsection{Overview of \emph{mwp}-Flow Analysis}
-\label{subsec:mwp}
 
 % ICC offers a way of doing statyc analysis.
 %This later view on complexity was used to design statyc analyzers of simple imperative programming languages.
@@ -72,11 +75,10 @@ a memory-less imperative language, reminiscent of the \texttt{Imp} language from
 %We believe it is now time to certify this original calculus, whose main result states that a program can be assigned a matrix iff there is an honest polynomial bounding the growth-rate of its variables.
 
 \subsubsection{The Coq Formalization}
-\label{subsec:action-plan}
 
 Our goal is to certify the analysis as presented in the original paper~\cite{jones2009}.
 Note that this does not mean that the bound is certified, but that \emph{the mechanism to compute those bounds} is certified.
-Of course, this implies the correctness of the bounds as a by-product but constitutes a major difference \wrt the results discussed in \autoref{sec:related}.
+Of course, this implies the correctness of the bounds as a by-product but constitutes a major difference \wrt the results discussed in \autoref{coqpl-related}.
 %
 Preliminary explorations have led us to establish the following milestones.
 
@@ -85,7 +87,7 @@ Preliminary explorations have led us to establish the following milestones.
 Our first goal is to define the mathematical structure required to carry out the rest of the construction.
 This requires defining vectors, matrices and their operations, semi-rings, and honest polynomials\footnote{Which are \textcquote[p.~5]{jones2009}{polynomial build up from constants in $\mathbb{N}$ and variables by applying the operations $+$ (addition) and $\times$ (multiplication).}} that are
 needed to represent the \emph{mwp}-bounds.
-The Mathematical Components library~\cite{mathcomp} will lay the foundations for the linear algebra representations,
+The Mathematical Components library~\cite{mahboubi2022} will lay the foundations for the linear algebra representations,
 but likely requires extensions to accommodate our specific analysis.
 
 \item[Implementing the language]
@@ -98,7 +100,7 @@ following the examples from Software Foundations~\cite{cpierce20221,cpierce20222
 \item[Implementing the typing system]
 Even if it can be computationally expensive to run an automatic inference~\cite{aubert2023b}, the typing system \emph{in itself} is relatively simple.
 It contains only 10 rules, essentially one for each type of command, and except for the initial assignment of vectors to variables, is fully deterministic.
-We conjecture that standard methods~\cite{chiapala2022, chlipala2010} to implement simple type systems will be enough, but will require some care to scale to the matrix-as-type paradigm of this analysis.
+We conjecture that standard methods~\cite{chlipala2022, chlipala2010} to implement simple type systems will be enough, but will require some care to scale to the matrix-as-type paradigm of this analysis.
 
 \item[Certifying the analysis]
 This will be the most demanding part of our plan.
@@ -112,10 +114,9 @@ Some of them are quite intricate but with a satisfactory level of detail.
 The cases concerning soundness of loops are the most difficult on paper, but their inductive nature \emph{should} (we hope!) be processed by Coq rather easily.%, in part because they require computing the fixpoint of matrices.
 \end{description}
 
-We leave for future work the possibility of creating a formally verified, automatic static analyzer founded on the proof of correctness of this method: as we discussed in other works~\cite{aubert2023b,aubert20221}, care is required to implement a typing strategy that does not rapidly become intractable.
+We leave for future work the possibility of creating a formally verified, automatic static analyzer founded on the proof of correctness of this method: as we discussed in other works~\cite{aubert2023b,aubert20222}, care is required to implement a typing strategy that does not rapidly become intractable.
 
-\subsection{Related Work}
-\label{sec:related}
+\subsection{Related Work}\label{coqpl-related}
 
 A few prior results exist that combine formalization of complexity and Coq.
 They range from practical analyses to proofs in computational complexity theory.
