@@ -21,11 +21,11 @@
 \usepackage[yyyymmdd,24hr]{datetime}
 \renewcommand{\dateseparator}{-}
 \def\PageTopMargin{1in}
-\def\PageLeftMargin{1in}
+\def\PageLeftMargin{1.3in}
 \newcommand\atxy[3]{%
 \AddEverypageHook{\smash{\hspace*{\dimexpr-\PageLeftMargin-\hoffset+#1\relax}%
 \raisebox{\dimexpr\PageTopMargin+\voffset-#2\relax}{#3}}}}
-\atxy{\dimexpr\paperwidth-1.5in}{0.1in}{\raisebox{-\height}{\small\texttt{v{\yyyymmdddate\today}-\currenttime}}}
+\atxy{\dimexpr\paperwidth-1.5in}{0.1in}{\raisebox{-\height}{\small\texttt{DRAFT v{\yyyymmdddate\today}-\currenttime}}}
 
 \title{\EDSTITLE}
 \author{\EDSAUTHOR}
