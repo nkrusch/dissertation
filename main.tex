@@ -4,27 +4,99 @@
 % https://guides.augusta.edu/graduateschool/etd
 % PREP BOOKET
 % https://www.augusta.edu/gradschool/documents/thesis-dissertation-preparation-booklet.pdf
+
+\newcommand\EDSTITLE{TITLE}
+\newcommand\EDSAUTHOR{Neea Rusch}
+\newcommand\EDSADVISOR{Cl{\'{e}}ment Aubert}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \input{.latex/all}
 \addbibresource{bib.bib}
 
-% meta
-\newcommand\EDSTITLE{{TITLE!}}
-\newcommand\EDSAUTHOR{{Neea Rusch}}
-\newcommand\EDSADVISOR{Cl{\'{e}}ment Aubert}
-\newcommand\EDSADVISORUC{CL{\'{E}}MENT AUBERT}
-
-% document
 \title{\EDSTITLE}
 \author{\EDSAUTHOR}
 \begin{document}
-\input{sections/0_meta}
-\input{sections/1_introduction}
-\input{sections/2_published}
-\input{sections/3_unpublished}
-\input{sections/4_discussion}
-\input{sections/5_summary}
-\input{sections/6_references}
-\input{sections/7_appendix}
+
+(TITLE PAGE)
+
+\newpage(ACKNOWLEDGEMENTS)
+
+\input{text/ack}
+
+\newpage(ABSTRACT)
+
+\input{text/abstract}\newpage
+\tableofcontents\newpage
+\listoftables\newpage
+\listoffigures\newpage
+
+%----------------------------------------------------------------------------------------
+%	1. INTRODUCTION
+%----------------------------------------------------------------------------------------
+\setcounter{section}{0}
+\section{Introduction}\label{sec:introduction}
+
+\input{text/intro}
+%----------------------------------------------------------------------------------------
+%	2. PUBLISHED MANUSCRIPTS
+%----------------------------------------------------------------------------------------
+\section{Published Manuscripts}\label{sec:published-manuscripts}
+% The candidate must be first author on all manuscripts bundled into the dissertation.
+\begin{enumerate}[label=\Alph*]
+\item pymwp: A Static Analyzer Determining Polynomial Growth Bounds
+\end{enumerate}
+
+\includepdf[pages={1-}]{papers/atva/main.pdf}
+%----------------------------------------------------------------------------------------
+%	3. UNPUBLISHED RESEARCH
+%----------------------------------------------------------------------------------------
+\section{Unpublished Research}\label{sec:unpublished-research}
+% This can include manuscripts, in the journal format, that have been submitted for
+% publication that are under review at the time of dissertation submission. Manuscripts
+% that have been rejected or that have not been submitted (in preparation) cannot be
+% included in the journal format (i.e. must conform to the traditional dissertation
+% format). For manuscripts that have been submitted and are under review, the first
+% authorship of the candidate must be maintained when the manuscript is published.
+
+\includepdf[pages={1-}]{papers/plas/main.pdf}
+\includepdf[pages={1-}]{papers/coqpl/main.pdf}
+%----------------------------------------------------------------------------------------
+%	4. DISCUSSION
+%----------------------------------------------------------------------------------------
+\section{Discussion}\label{sec:discussion}
+% A comprehensive discussion that integrates the findings of all research presented
+% in the dissertation and that identifies how the goals or specific aims of the project
+% were attained, and how the research has answered the hypotheses put forth in the
+% dissertation.
+
+%----------------------------------------------------------------------------------------
+%	5. SUMMARY
+%----------------------------------------------------------------------------------------
+\section{Summary}\label{sec:summary}
+% A series of concise remarks summarizing experimental findings and conclusions
+
+%----------------------------------------------------------------------------------------
+%	6. REFERENCES
+%----------------------------------------------------------------------------------------
+\section{References}\label{sec:references}
+% All literature cited in the dissertation will be included here. Style should conform
+% to selected style manual. References included in manuscripts must be renumbered and
+% reformatted (if needed) and included in this section. Literature Cited sections within
+% the manuscripts should be omitted.
+\printbibliography[heading=none,sorting=none]
+
+%----------------------------------------------------------------------------------------
+%	7. APPENDICES
+%----------------------------------------------------------------------------------------
+\section{Appendices}\label{sec:appendices}
+\begin{enumerate}[label=\Alph*.]
+\item mwp-Analysis Improvement and Implementation: Realizing Implicit Computational Complexity
+\item Distributing and Parallelizing Non-canonical Loops
+\item pymwp: A Static Analyzer Determining Polynomial Growth Bounds (tool user guide)
+\end{enumerate}
+\includepdf[pages={1-}]{res/pubs_fscd.2022.pdf}
+\includepdf[pages={1-}]{res/pubs_vmcai.2023.pdf}
+\includepdf[pages={1-}]{res/pubs_pymwp_guide.pdf}
+
 \end{document}
