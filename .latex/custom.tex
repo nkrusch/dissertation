@@ -1,9 +1,7 @@
 % All sections begin on a new page
 \AddToHook{cmd/chapter/before}{\clearpage}
-% Roman numbers for section headers
-%\renewcommand\thesection{\Roman{section}}
-%\renewcommand\thesubsection{\Alph{subsection}}
-% FIX: TOC labels too close
+\renewcommand\thesection{\Alph{section}}
+\renewcommand\thesubsection{\arabic{subsection}}
 \renewcommand{\cftsecnumwidth}{25pt}
 \setcounter{tocdepth}{1}
 
@@ -28,6 +26,19 @@
 	{etc.\@\xspace}%
 }
 \makeatother
+
+% autorefs
+\AtBeginDocument{%
+\renewcommand{\chapterautorefname}{Chap.}
+\renewcommand{\sectionautorefname}{Sect.}
+\renewcommand{\subsectionautorefname}{Sect.}
+\renewcommand{\figureautorefname}{Fig.}
+\newcommand{\definitionautorefname}{Def.}
+}
+\newcommand{\algorithmautorefname}{Algo.}
+\newcommand{\notationautorefname}{Notation}
+
+
 % tabularx: Y means centered wide column
 \newcolumntype{Y}{>{\centering\arraybackslash}X}
 
@@ -51,5 +62,5 @@
 \ebproofnewstyle{small}{separation = 1em, rule margin = .5ex,}
 
 \newcommand\ainfo[2]{\noindent{#1}\newline\noindent\textit{#2}\clearpage}
-\newcommand\ainfoX[3]{\noindent{#1}\newline\noindent\textit{#2}\newline{#3}\clearpage}
-
+\newcommand\ainfoX[3]{\noindent{#1}\newline\noindent\textit{#2}\vspace{1em}\newline{#3}\clearpage}
+\newcommand\abspage[1]{\noindent\textbf{Abstract.} {#1}\clearpage}

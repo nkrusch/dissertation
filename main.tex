@@ -1,33 +1,19 @@
 %! suppress = TooLargeSection
 %! suppress = MissingLabel
-\documentclass[letterpaper,11pt]{report}
+\documentclass[letterpaper,11pt,draft]{report}
+\usepackage{.latex/packages}
+\input{.latex/all}
+\addbibresource{bib.bib}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % GUIDES
 % https://guides.augusta.edu/graduateschool/etd
 % https://www.augusta.edu/gradschool/documents/thesis-dissertation-preparation-booklet.pdf
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% META
 \newcommand\EDSTITLE{Some Title}
 \newcommand\EDSAUTHOR{Neea Rusch}
 \newcommand\EDSADVISOR{Cl{\'{e}}ment Aubert}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\usepackage{.latex/packages}
-\input{.latex/all}
-\addbibresource{bib.bib}
-
-\newcounter{beforeinsert}
-\newcounter{insertpages}
-
-% temporary
-\usepackage{everypage,pdfpages,eso-pic}
-\usepackage[yyyymmdd,24hr]{datetime}
-\renewcommand{\dateseparator}{-}
-\def\PageTopMargin{1in}
-\def\PageLeftMargin{2.2in}
-\newcommand\atxy[3]{%
-\AddEverypageHook{\smash{\hspace*{\dimexpr-\PageLeftMargin-\hoffset+#1\relax}%
-\raisebox{\dimexpr\PageTopMargin+\voffset-#2\relax}{#3}}}}
-\atxy{\dimexpr\paperwidth-1.5in}{0.1in}{\raisebox{-\height}{\small\texttt{\color{red}{DRAFT compiled: {\yyyymmdddate\today} \currenttime}}}}
-
 \title{\EDSTITLE}
 \author{\EDSAUTHOR}
 \date{\today}
@@ -44,6 +30,22 @@ pdftitle={\EDSTITLE},
 pdfauthor={\EDSAUTHOR},
 pdfkeywords={{implicit complexity}, {program analysis}, {software verification}},
 pdfsubject={PhD Dissertation}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% TEMPORARY: if draft
+\usepackage{everypage,pdfpages,eso-pic}
+\usepackage[yyyymmdd,24hr]{datetime}
+\renewcommand{\dateseparator}{-}
+\def\PageTopMargin{1in}
+\def\PageLeftMargin{2.2in}
+\newcommand\atxy[3]{%
+\AddEverypageHook{\smash{\hspace*{\dimexpr-\PageLeftMargin-\hoffset+#1\relax}%
+\raisebox{\dimexpr\PageTopMargin+\voffset-#2\relax}{#3}}}}
+\atxy{\dimexpr\paperwidth-1.5in}{0.1in}{%
+\raisebox{-\height}{\small\texttt{\color{red}{%
+DRAFT compiled: {\yyyymmdddate\today} \currenttime}}}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcounter{insertpages}
 
 \begin{document}
 \maketitle\clearpage
@@ -66,25 +68,24 @@ pdfsubject={PhD Dissertation}}
 \chapter{Published Manuscripts}\label{ch:published-manuscripts}\clearpage
 % The candidate must be first author on all manuscripts bundled into the dissertation.
 
-\section{pymwp: A Static Analyzer Determining Polynomial Growth Bounds}\label{sec:atva}
+\section*{pymwp: A Static Analyzer Determining Polynomial Growth Bounds}
+\addcontentsline{toc}{section}{pymwp: A Static Analyzer Determining Polynomial Growth Bounds}
+\label{sec:atva}
 \ainfoX{Cl{\'{e}}ment Aubert, Thomas Rubiano, Neea Rusch, Thomas Seiller}
 {International Symposium on Automated Technology for Verification and Analysis, 2023}
-{\newline\noindent Software artifact: DOI \href{https://doi.org/10.5281/zenodo.7908484}{10.5281/zenodo.7908484}
+{\noindent Software artifact: \href{https://doi.org/10.5281/zenodo.7908484}{10.5281/zenodo.7908484}
 \newline\noindent Tool user guide in \autoref{sec:tool-guide}}
-\begin{abstract}
-We present pymwp, a static analyzer that automatically computes, if they exist, polynomial bounds relating input and output sizes. In case of exponential growth, our tool detects precisely which dependencies between variables induced it. Based on the sound \mwp-flow calculus, the analysis captures bounds on large classes of programs by being non-deterministic and not requiring termination. For this reason, implementing this calculus required solving several non-trivial implementation problems, to handle its complexity and non-determinism, but also to provide meaningful feedback to the programmer. The duality of the analysis result and compositionality of the calculus make our approach original in the landscape of complexity analyzers. We conclude by demonstrating experimentally how pymwp is a practical and performant static analyzer to automatically evaluate variable growth bounds of \texttt{C} programs.
-\end{abstract}\clearpage
 
 \includepdf[pages=-,pagecommand={\stepcounter{insertpages}},addtolist={
 5,table,Comparison of obtained resource bounds.,tab:compare,
 10,table,Benchmark results.,tab:eval,
-10,table,Examples of obtained bounds.,tab:bounds
-}]{papers/atva/main.pdf}
+10,table,Examples of obtained bounds.,tab:bounds}]{papers/atva/main.pdf}
+\setcounter{insertpages}{0}
 
 %----------------------------------------------------------------------------------------
 %	3. UNPUBLISHED RESEARCH
 %----------------------------------------------------------------------------------------
-\chapter{Unpublished Research}\label{ch:unpublished-research}
+\chapter{Unpublished Research}\label{ch:unpublished-research}\clearpage
 % This can include manuscripts, in the journal format, that have been submitted for
 % publication that are under review at the time of dissertation submission. Manuscripts
 % that have been rejected or that have not been submitted (in preparation) cannot be
@@ -92,11 +93,32 @@ We present pymwp, a static analyzer that automatically computes, if they exist, 
 % format). For manuscripts that have been submitted and are under review, the first
 % authorship of the candidate must be maintained when the manuscript is published.
 
+\section*{An Information Flow Calculus for Non-Interference}
+\addcontentsline{toc}{section}{An Information Flow Calculus for Non-Interference}
+\label{sec:ni-analysis}
+
+\ainfoX{Cl{\'{e}}ment Aubert, Neea Rusch}
+{Presented at the ..., 2024}
+{\abspage{Sensitive data exposure is persistently ranked among the top-ten web application security risks, thus every software developer should actively combat data exposure vulnerabilities.
+Information flow controls offer mechanisms to enforce data confidentiality.
+Unfortunately, strict controls are too restrictive for real applications and innovation is needed to obtain practical solutions.
+We present a brave new idea: an information flow calculus for non-interference.
+Our formulation enforces that command composition does not create nor erase non-interference violations, and the sound calculus pinpoints precisely where violations occur.
+The calculus can be implemented as an automatic, compositional, and annotation-free static security analyzer to obtain confidentiality guarantees in practice.}}
+
 %\includepdf[pages={1-},pagecommand={\thispagestyle{empty}\stepcounter{insertpages}
 %\ifnum\value{insertpages}=1\addcontentsline{toc}{section}{
 %An Information Flow Calculus for Non-Interference}\fi
 %}]{papers/plas/main.pdf}\setcounter{insertpages}{0}
 
+\section*{Certifying Complexity Analysis}
+\addcontentsline{toc}{section}{Certifying Complexity Analysis}
+\label{sec:certifying-complexity-analysis}
+
+\ainfoX{Cl{\'{e}}ment Aubert, Thomas Rubiano, Neea Rusch, Thomas Seiller}
+{Presented at the Ninth International Workshop on Coq for Programming Languages, 2023}
+{\abspage{This work drafts a strategy that leverages the field of Implicit Computational Complexity to certify resource usage in imperative programs.
+This original approach sidesteps some of the most common--and difficult--obstacles \enquote{traditional} complexity theory face when implemented in Coq.}}
 \clearpage\input{complete/coqpl}
 
 %----------------------------------------------------------------------------------------
