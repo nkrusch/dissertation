@@ -3,6 +3,9 @@ name: Compile
 on:
 #  push:
 #    branches: [ main ]
+  schedule:
+    # <min> <hr> <day> <mth> <weekday> => nightly
+    - cron: '0 0 * * *'
   workflow_dispatch:
     branches: [ main ]
 
@@ -17,33 +20,35 @@ jobs:
         uses: xu-cheng/latex-action@v3
         with:
           root_file: main.tex
-      - name: Upload PDF file
+      - name: 📦 Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: dissertation-draft
           path: main.pdf
   deploy:
+    name: Push to website
     runs-on: ubuntu-22.04
     needs: compile
     steps:
-      - uses: actions/checkout@v4
+      - name: ✴️️ Checkout target
+        uses: actions/checkout@v4
         with:
           repository: 'nkrusch/nkrusch.github.io'
           ref: 'main'
           token:  ${{ secrets.TEMPLATE_OUTPUT_REPO_TOKEN }}
 
-      - name: Setup git config
+      - name: 😺 Setup git config
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "<>"
 
-      - name: Download generated template
+      - name: ⬇️ Download generated file
         uses: actions/download-artifact@v4
         with:
-          name: dissertation-draft
-          path: ./public/dissertation-draft
+          name: dissertation-draft/main.pdf
+          path: ./public/dissertation/draft.pdf
 
-      - name: Commit and push generated template
+      - name: 🚀 Commit and push generated template
         run: |
           export COMMIT_MESSAGE="Compiled dissertation from @${{ github.sha }}"
           git add .
