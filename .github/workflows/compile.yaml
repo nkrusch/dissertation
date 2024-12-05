@@ -11,7 +11,7 @@ on:
 
 jobs:
   compile:
-    name: Compile dissertation
+    name: Compile
     runs-on: ubuntu-22.04
     if: ${{ github.event_name != 'push' || vars.BUILD_ALWAYS == 1 }}
     steps:
@@ -32,11 +32,12 @@ jobs:
         uses: marvinpinto/action-automatic-releases@latest
         with:
             repo_token: "${{ secrets.GITHUB_TOKEN }}"
+            automatic_release_tag: "latest"
             draft: true
             files: main.pdf
 
   deploy:
-    name: Share to website
+    name: Share 
     runs-on: ubuntu-22.04
     needs: compile
     steps:
