@@ -4,7 +4,6 @@
 \usepackage{.latex/packages}
 \input{.latex/all}
 \addbibresource{bib.bib}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % GUIDES
 % https://guides.augusta.edu/graduateschool/etd
@@ -14,7 +13,7 @@
 \newcommand\EDSTITLE{Some Title}
 \newcommand\EDSAUTHOR{Neea Rusch}
 \newcommand\EDSADVISOR{Cl{\'{e}}ment Aubert}
-\newcommand\STATYCFOUR{Cl{\'{e}}ment Aubert, Thomas Rubiano, Neea Rusch, Thomas Seiller}
+\newcommand\AWESOMEFOURSOME{\EDSADVISOR, Thomas Rubiano, \EDSAUTHOR, Thomas Seiller}
 
 \title{\EDSTITLE}
 \author{\EDSAUTHOR}
@@ -73,7 +72,7 @@ DRAFT compiled: {\yyyymmdddate\today} \currenttime}}}}
 %\addcontentsline{toc}{section}{pymwp: A Static Analyzer Determining Polynomial Growth Bounds}
 
 \ainfoX{Cl{\'{e}}ment Aubert, Thomas Rubiano, Neea Rusch, Thomas Seiller}
-{International Symposium on Automated Technology for Verification and Analysis, 2023\footnote{\url{https://atva-conference.org/2023}}}
+{\href{https://atva-conference.org/2023}{International Symposium on Automated Technology for Verification and Analysis, 2023}}
 {\noindent Software artifact: \href{https://doi.org/10.5281/zenodo.7908484}{10.5281/zenodo.7908484}
 \newline\noindent Tool user guide in \autoref{sec:tool-guide}}
 
@@ -97,7 +96,7 @@ DRAFT compiled: {\yyyymmdddate\today} \currenttime}}}}
 %\addcontentsline{toc}{section}{An Information Flow Calculus for Non-Interference}
 
 \ainfoX{Cl{\'{e}}ment Aubert, Neea Rusch}
-{The 19th Workshop on Programming Languages and Analysis for Security, 2024\footnote{\url{https://plas24.github.io}}}
+{\href{https://plas24.github.io}{The 19th Workshop on Programming Languages and Analysis for Security, 2024}}
 {\abspage{Sensitive data exposure is persistently ranked among the top-ten web application security risks, thus every software developer should actively combat data exposure vulnerabilities.
 Information flow controls offer mechanisms to enforce data confidentiality.
 Unfortunately, strict controls are too restrictive for real applications and innovation is needed to obtain practical solutions.
@@ -109,8 +108,8 @@ The calculus can be implemented as an automatic, compositional, and annotation-f
 \section{Certifying Complexity Analysis}\label{sec:coqpl}
 %\addcontentsline{toc}{section}{Certifying Complexity Analysis}
 
-\ainfoX{\STATYCFOUR}
-{The Ninth International Workshop on Coq for Programming Languages, 2023\footnote{\url{https://popl23.sigplan.org/home/CoqPL-2023}}}
+\ainfoX{\AWESOMEFOURSOME}
+{\href{https://popl23.sigplan.org/home/CoqPL-2023}{The Ninth International Workshop on Coq for Programming Languages, 2023}}
 {\abspage{This work drafts a strategy that leverages the field of Implicit Computational Complexity to certify resource usage in imperative programs.
 This original approach sidesteps some of the most common--and difficult--obstacles \enquote{traditional} complexity theory face when implemented in Coq.}}
 \clearpage\input{complete/coqpl}
@@ -144,18 +143,15 @@ This original approach sidesteps some of the most common--and difficult--obstacl
 \begin{appendices}
 
 \section{mwp-Analysis Improvement and Implementation: Realizing Implicit Computational Complexity}\label{sec:fscd}
-%\addcontentsline{toc}{section}{mwp-Analysis Improvement and Implementation: Realizing Implicit Computational Complexity}
-\ainfo{\STATYCFOUR}{International Conference on Formal Structures for Computation and Deduction, 2022}
+\ainfo{\AWESOMEFOURSOME}{International Conference on Formal Structures for Computation and Deduction, 2022}
 \includepdf[pages={1-}]{res/pubs_fscd.2022.pdf}
 
 \section{Distributing and Parallelizing Non-canonical Loops}\label{sec:vmcai}
-%\addcontentsline{toc}{section}{Distributing and Parallelizing Non-canonical Loops}
-\ainfo{\STATYCFOUR}{International Conference on Verification, Model Checking, and Abstract Interpretation, 2023}
+\ainfo{\AWESOMEFOURSOME}{International Conference on Verification, Model Checking, and Abstract Interpretation, 2023}
 \includepdf[pages={1-}]{res/pubs_vmcai.2023.pdf}
 
 \section{Tool User Guide for \enquote{pymwp: A Static Analyzer Determining Polynomial Growth Bounds}}\label{sec:tool-guide}
-%\addcontentsline{toc}{section}{Tool User Guide for \enquote{pymwp: A Static Analyzer Determining Polynomial Growth Bounds}}
-\ainfo{\STATYCFOUR}{Publication companion.}
+\ainfo{\AWESOMEFOURSOME}{Publication companion.}
 \includepdf[pages={1-}]{res/pubs_pymwp_guide.pdf}
 \end{appendices}
 

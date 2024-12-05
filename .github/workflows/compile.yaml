@@ -7,17 +7,45 @@ on:
     branches: [ main ]
 
 jobs:
-  container:
-    name: Docker build test
-    runs-on: ubuntu-20.04
+  compile:
+    name: Compile dissertation
+    runs-on: ubuntu-22.04
     steps:
       - name: ✴️️ Checkout repo
         uses: actions/checkout@v4
-      - uses: xu-cheng/latex-action@v3
+      - name: 🏗️ Compile
+        uses: xu-cheng/latex-action@v3
         with:
           root_file: main.tex
       - name: Upload PDF file
         uses: actions/upload-artifact@v4
         with:
-          name: PDF
+          name: dissertation-draft
           path: main.pdf
+  deploy:
+    runs-on: ubuntu-22.04
+    needs: compile
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: 'nkrusch/nkrusch.github.io'
+          ref: 'main'
+          token:  ${{ secrets.TEMPLATE_OUTPUT_REPO_TOKEN }}
+
+      - name: Setup git config
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "<>"
+
+      - name: Download generated template
+        uses: actions/download-artifact@v4
+        with:
+          name: dissertation-draft
+          path: ./public/dissertation-draft
+
+      - name: Commit and push generated template
+        run: |
+          export COMMIT_MESSAGE="Compiled dissertation from @${{ github.sha }}"
+          git add .
+          git commit -m "$COMMIT_MESSAGE"
+          git push
