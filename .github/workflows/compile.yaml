@@ -23,7 +23,7 @@ jobs:
       - name: 📦 Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: dissertation-draft
+          name: dissertation
           path: main.pdf
   deploy:
     name: Push to website
@@ -43,7 +43,7 @@ jobs:
       - name: ⬇️ Download artifact
         uses: actions/download-artifact@v4
         with:
-          name: dissertation-draft
+          name: dissertation
           path: ${{ vars.OUTPUT_PATH }}
       - name: 🙈 Rename output file
         run: mv ${{ vars.OUTPUT_PATH }}/main.pdf ${{ vars.OUTPUT_PATH }}/${{ vars.OUTPUT_FNAME }}
