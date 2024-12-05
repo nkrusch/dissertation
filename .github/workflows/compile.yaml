@@ -33,22 +33,21 @@ jobs:
       - name: ✴️️ Checkout target
         uses: actions/checkout@v4
         with:
-          repository: 'nkrusch/nkrusch.github.io'
-          ref: 'main'
-          token:  ${{ secrets.TEMPLATE_OUTPUT_REPO_TOKEN }}
-
+          token:  ${{ secrets.OUTPUT_REPO_PAT }}
+          repository: ${{ vars.OUTPUT_REPO }}
+          ref: ${{ vars.OUTPUT_BRANCH }}
       - name: 😺 Setup git config
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "<>"
-
-      - name: ⬇️ Download generated file
+      - name: ⬇️ Download artifact
         uses: actions/download-artifact@v4
         with:
-          name: dissertation-draft/main.pdf
-          path: ./public/dissertation/draft.pdf
-
-      - name: 🚀 Commit and push generated template
+          name: dissertation-draft
+          path: ${{ vars.OUTPUT_PATH }}
+      - name: 🙈 Rename output file
+        run: mv ${{ vars.OUTPUT_PATH }}/main.pdf ${{ vars.OUTPUT_PATH }}/${{ vars.OUTPUT_FNAME }}
+      - name: 🚀 Commit and push
         run: |
           export COMMIT_MESSAGE="Compiled dissertation from @${{ github.sha }}"
           git add .
