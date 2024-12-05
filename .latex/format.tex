@@ -1,0 +1,51 @@
+% All sections begin on a new page
+\AddToHook{cmd/chapter/before}{\clearpage}
+\renewcommand\thechapter{\Roman{chapter}}
+\renewcommand\thesection{\Alph{section}}
+\renewcommand{\cftchapnumwidth}{30pt}
+\renewcommand{\cftsecnumwidth}{30pt}
+\setlength{\cftbeforechapskip}{12pt} % Space before chapters
+\setlength{\cftbeforesecskip}{10pt} % Space before sections
+\setlength{\cftbeforesubsecskip}{4pt} % Space before subsections
+\setlength{\cftbeforesubsubsecskip}{2pt} % Space before subsubsections
+\setlength{\cftsecindent}{0pt} % Remove indent for section
+\setlength{\cftsubsecindent}{0pt} % Remove indent for subsection
+\setcounter{tocdepth}{2}
+\addtocontents{toc}{\protect\thispagestyle{empty}}
+\addtokomafont{disposition}{\rmfamily}
+\addtokomafont{section}{\rmfamily}
+\addtokomafont{subsection}{\rmfamily\rule{0pt}{30pt}}
+\addtokomafont{subsubsection}{\rmfamily}
+\renewcaptionname{english}{\contentsname}{Table of Contents}
+
+% autorefs
+\AtBeginDocument{%
+\renewcommand{\chapterautorefname}{Chap.}
+\renewcommand{\sectionautorefname}{Sect.}
+\renewcommand{\subsectionautorefname}{Sect.}
+\renewcommand{\figureautorefname}{Fig.}
+\newcommand{\definitionautorefname}{Def.}}
+\newcommand{\algorithmautorefname}{Algo.}
+\newcommand{\notationautorefname}{Notation}
+
+% Comma after eg and ie
+\newcommand*{\eg}{e.g.\@,\xspace}
+\newcommand*{\Eg}{E.g.\@,\xspace}
+\newcommand*{\cf}{cf.\@\xspace}
+\newcommand*{\ie}{i.e.\@,\xspace}
+\newcommand*{\aka}{a.k.a.\@\xspace}
+\newcommand*{\Ie}{I.e.,\@\xspace}
+% \newcommand{\st}{s.t.\@\xspace}
+\newcommand*{\resp}{resp.\@\xspace}
+\newcommand*{\wrt}{w.r.t.\@\xspace}
+\newcommand*{\wlg}{w.l.o.g.\@\xspace}
+\renewcommand{\aka}{a.k.a.\@\xspace}
+
+\makeatletter
+\newcommand*{\etc}{%
+    \@ifnextchar{.}%
+{etc}%
+{etc.\@\xspace}%
+}
+\makeatother
+

@@ -1,6 +1,6 @@
 %! suppress = TooLargeSection
 %! suppress = MissingLabel
-\documentclass[letterpaper,11pt]{report}
+\documentclass[letterpaper,12pt,bibliography=leveldown]{scrreprt}
 \usepackage{.latex/packages}
 \input{.latex/all}
 \addbibresource{bib.bib}
@@ -9,15 +9,15 @@
 % https://guides.augusta.edu/graduateschool/etd
 % https://www.augusta.edu/gradschool/documents/thesis-dissertation-preparation-booklet.pdf
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% META
-\newcommand\EDSTITLE{Some Title}
-\newcommand\EDSAUTHOR{Neea Rusch}
-\newcommand\EDSADVISOR{Cl{\'{e}}ment Aubert}
-\newcommand\AWESOMEFOURSOME{\EDSADVISOR, Thomas Rubiano, \EDSAUTHOR, Thomas Seiller}
+\newcommand\ETDTITLE{Some Title}
+\newcommand\ETDAUTHOR{Neea Rusch}
+\newcommand\ETDADVISOR{Dr. Cl{\'{e}}ment Aubert}
+\newcommand\AWESOMEFOURSOME{Cl{\'{e}}ment Aubert, Thomas Rubiano, \ETDAUTHOR, Thomas Seiller}
 
-\title{\EDSTITLE}
-\author{\EDSAUTHOR}
+\title{\ETDTITLE}
+\author{\ETDAUTHOR}
 \date{\today}
+
 \hypersetup{
 bookmarks=true,
 unicode=false,
@@ -27,9 +27,9 @@ pdffitwindow=false,
 pdfstartview={FitH},
 pdfnewwindow=true,
 ocgcolorlinks,
-pdftitle={\EDSTITLE},
-pdfauthor={\EDSAUTHOR},
-pdfkeywords={{implicit complexity}, {program analysis}, {software verification}},
+pdftitle={\ETDTITLE},
+pdfauthor={\ETDAUTHOR},
+pdfkeywords={{keyword1}, {keyword2}},
 pdfsubject={PhD Dissertation}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -48,10 +48,13 @@ DRAFT compiled: {\yyyymmdddate\today} \currenttime}}}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{document}
-\maketitle\clearpage
-\input{text/ack}\clearpage
-\input{text/abstract}\clearpage
+% The following pages are not numbered:
+% title page, acknowledgement page, abstract, table of contents.
+\thispagestyle{empty}\maketitle\clearpage
+\thispagestyle{empty}\input{text/_acks}\clearpage
+\thispagestyle{empty}\input{text/_abstract}\clearpage
 \tableofcontents\clearpage
+\pagenumbering{arabic}
 \listoftables\clearpage
 \listoffigures\clearpage
 
@@ -70,16 +73,15 @@ DRAFT compiled: {\yyyymmdddate\today} \currenttime}}}}
 
 \section{pymwp: A Static Analyzer Determining Polynomial Growth Bounds}\label{sec:atva}
 %\addcontentsline{toc}{section}{pymwp: A Static Analyzer Determining Polynomial Growth Bounds}
-
-\ainfoX{Cl{\'{e}}ment Aubert, Thomas Rubiano, Neea Rusch, Thomas Seiller}
-{\href{https://atva-conference.org/2023}{International Symposium on Automated Technology for Verification and Analysis, 2023}}
+\ainfoX{\AWESOMEFOURSOME}{\href{https://atva-conference.org/2023}
+{International Symposium on Automated Technology for Verification and Analysis, 2023}}
 {\noindent Software artifact: \href{https://doi.org/10.5281/zenodo.7908484}{10.5281/zenodo.7908484}
 \newline\noindent Tool user guide in \autoref{sec:tool-guide}}
 
 \includepdf[pages={1-},addtolist={
-5,table,Comparison of obtained resource bounds.,tab:compare,
-10,table,Benchmark results.,tab:eval,
-10,table,Examples of obtained bounds.,tab:bounds}]{papers/atva/main.pdf}
+5,table,Comparison of obtained resource bounds,tab:compare,
+10,table,Benchmark results,tab:eval,
+10,table,Examples of obtained bounds,tab:bounds}]{papers/atva/main.pdf}
 
 %----------------------------------------------------------------------------------------
 %	3. UNPUBLISHED RESEARCH
@@ -93,26 +95,32 @@ DRAFT compiled: {\yyyymmdddate\today} \currenttime}}}}
 % authorship of the candidate must be maintained when the manuscript is published.
 
 \section{An Information Flow Calculus for Non-Interference}\label{sec:ni-analysis}
-%\addcontentsline{toc}{section}{An Information Flow Calculus for Non-Interference}
-
 \ainfoX{Cl{\'{e}}ment Aubert, Neea Rusch}
-{\href{https://plas24.github.io}{The 19th Workshop on Programming Languages and Analysis for Security, 2024}}
+{\href{https://plas24.github.io}
+{The 19th Workshop on Programming Languages and Analysis for Security, 2024}}
 {\abspage{Sensitive data exposure is persistently ranked among the top-ten web application security risks, thus every software developer should actively combat data exposure vulnerabilities.
 Information flow controls offer mechanisms to enforce data confidentiality.
 Unfortunately, strict controls are too restrictive for real applications and innovation is needed to obtain practical solutions.
 We present a brave new idea: an information flow calculus for non-interference.
 Our formulation enforces that command composition does not create nor erase non-interference violations, and the sound calculus pinpoints precisely where violations occur.
 The calculus can be implemented as an automatic, compositional, and annotation-free static security analyzer to obtain confidentiality guarantees in practice.}}
+
+\newpage
+
+\ % The empty page
+
 \newpage
 
 \section{Certifying Complexity Analysis}\label{sec:coqpl}
-%\addcontentsline{toc}{section}{Certifying Complexity Analysis}
-
 \ainfoX{\AWESOMEFOURSOME}
-{\href{https://popl23.sigplan.org/home/CoqPL-2023}{The Ninth International Workshop on Coq for Programming Languages, 2023}}
+{\href{https://popl23.sigplan.org/home/CoqPL-2023}
+{The Ninth International Workshop on Coq for Programming Languages, 2023}}
 {\abspage{This work drafts a strategy that leverages the field of Implicit Computational Complexity to certify resource usage in imperative programs.
 This original approach sidesteps some of the most common--and difficult--obstacles \enquote{traditional} complexity theory face when implemented in Coq.}}
-\clearpage\input{complete/coqpl}
+\setcounter{section}{0}
+\renewcommand\thesection{\arabic{section}}
+\input{complete/coqpl}
+\renewcommand\thesection{\Alph{section}}
 
 %----------------------------------------------------------------------------------------
 %	4. DISCUSSION
@@ -140,7 +148,8 @@ This original approach sidesteps some of the most common--and difficult--obstacl
 %	7. APPENDICES
 %----------------------------------------------------------------------------------------
 \chapter{Appendices}\label{ch:appendices}\clearpage
-\begin{appendices}
+\setcounter{section}{0}
+\renewcommand\thesection{\Alph{section}}
 
 \section{mwp-Analysis Improvement and Implementation: Realizing Implicit Computational Complexity}\label{sec:fscd}
 \ainfo{\AWESOMEFOURSOME}{International Conference on Formal Structures for Computation and Deduction, 2022}
@@ -152,7 +161,6 @@ This original approach sidesteps some of the most common--and difficult--obstacl
 
 \section{Tool User Guide for \enquote{pymwp: A Static Analyzer Determining Polynomial Growth Bounds}}\label{sec:tool-guide}
 \ainfo{\AWESOMEFOURSOME}{Publication companion.}
-\includepdf[pages={1-}]{res/pubs_pymwp_guide.pdf}
-\end{appendices}
+\includepdf[pages={1-},scale=0.9,offset=0 0.25in]{res/pubs_pymwp_guide.pdf}
 
 \end{document}

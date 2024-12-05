@@ -1,46 +1,10 @@
-% All sections begin on a new page
-\AddToHook{cmd/chapter/before}{\clearpage}
-\renewcommand\thesection{\Alph{section}}
-\renewcommand\thesubsection{\arabic{subsection}}
-\renewcommand{\cftsecnumwidth}{25pt}
-\setcounter{tocdepth}{1}
-
-% Comma after eg and ie
-% https://english.stackexchange.com/a/16215
-\newcommand*{\eg}{e.g.\@,\xspace}
-\newcommand*{\Eg}{E.g.\@,\xspace}
-\newcommand*{\cf}{cf.\@\xspace}
-\newcommand*{\ie}{i.e.\@,\xspace}
-\newcommand*{\aka}{a.k.a.\@\xspace}
-\newcommand*{\Ie}{I.e.,\@\xspace}
-% \newcommand{\st}{s.t.\@\xspace}
-\newcommand*{\resp}{resp.\@\xspace}
-\newcommand*{\wrt}{w.r.t.\@\xspace}
-\newcommand*{\wlg}{w.l.o.g.\@\xspace}
-\renewcommand{\aka}{a.k.a.\@\xspace}
-
-\makeatletter
-\newcommand*{\etc}{%
-	\@ifnextchar{.}%
-	{etc}%
-	{etc.\@\xspace}%
-}
-\makeatother
-
-% autorefs
-\AtBeginDocument{%
-\renewcommand{\chapterautorefname}{Chap.}
-\renewcommand{\sectionautorefname}{Sect.}
-\renewcommand{\subsectionautorefname}{Sect.}
-\renewcommand{\figureautorefname}{Fig.}
-\newcommand{\definitionautorefname}{Def.}
-}
-\newcommand{\algorithmautorefname}{Algo.}
-\newcommand{\notationautorefname}{Notation}
 
 
-% tabularx: Y means centered wide column
-\newcolumntype{Y}{>{\centering\arraybackslash}X}
+\newcommand\ainfo[2]{\noindent{#1}\newline\noindent{#2}\newpage}
+\newcommand\ainfoX[3]{\noindent{#1}\newline\noindent{#2}\vspace{1em}\newline{#3}\newpage}
+\newcommand\abspage[1]{\noindent\textbf{Abstract.}{ }{#1}\newpage}
+\newcommand{\nocontentsline}[3]{}
+\newcommand{\tocless}[2]{\bgroup\let\addcontentsline=\nocontentsline#1{#2}\egroup}
 
 % MATH ETC
 \newcommand\mwp{{mwp}}
@@ -61,6 +25,3 @@
 \newcommand{\umat}{\mathbf{1}} % 1-element for matrices
 \ebproofnewstyle{small}{separation = 1em, rule margin = .5ex,}
 
-\newcommand\ainfo[2]{\noindent{#1}\newline\noindent{#2}\clearpage}
-\newcommand\ainfoX[3]{\noindent{#1}\newline\noindent{#2}\vspace{1em}\newline{#3}\clearpage}
-\newcommand\abspage[1]{\noindent\textbf{Abstract.} {#1}\clearpage}
