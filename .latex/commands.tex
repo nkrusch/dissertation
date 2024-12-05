@@ -4,7 +4,8 @@
 \newcommand{\nocontentsline}[3]{}
 \newcommand{\tocless}[2]{\bgroup\let\addcontentsline=\nocontentsline#1{#2}\egroup}
 \newcommand{\aref}[1]{\hyperref[#1]{Appendix~\ref*{#1}}}
-
+\providecommand{\sc}{}
+\renewcommand{\sc}[1]{#1}
 
 % MATH ETC
 \newcommand\mwp{{mwp}}
