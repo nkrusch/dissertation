@@ -1,8 +1,8 @@
 name: Compile
 
 on:
-#  push:
-#    branches: [ main ]
+  push:
+    branches: [ main ]
   schedule:
     # <min> <hr> <day> <mth> <weekday> => nightly
     - cron: '0 0 * * *'
@@ -13,7 +13,10 @@ jobs:
   compile:
     name: Compile dissertation
     runs-on: ubuntu-22.04
+    if: ${{ github.event_name != 'push' || vars.BUILD_ALWAYS == 1 }}
     steps:
+      - name: ⏹️ Cancel previous runs
+        uses: pierreraffa/cancel-previous-runs-action@1.11
       - name: ✴️️ Checkout repo
         uses: actions/checkout@v4
       - name: 🏗️ Compile
@@ -25,8 +28,15 @@ jobs:
         with:
           name: dissertation
           path: main.pdf
+      - name: 🎁 Draft release
+        uses: marvinpinto/action-automatic-releases@latest
+        with:
+            repo_token: "${{ secrets.GITHUB_TOKEN }}"
+            draft: true
+            files: main.pdf
+
   deploy:
-    name: Push to website
+    name: Share to website
     runs-on: ubuntu-22.04
     needs: compile
     steps:
