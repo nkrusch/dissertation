@@ -14,6 +14,8 @@ jobs:
     name: Compile
     runs-on: ubuntu-22.04
     if: ${{ github.event_name != 'push' || vars.BUILD_ALWAYS == 1 }}
+    permissions:
+      contents: write
     steps:
       - name: ⏹️ Cancel previous runs
         uses: pierreraffa/cancel-previous-runs-action@1.11
@@ -29,12 +31,15 @@ jobs:
           name: dissertation
           path: main.pdf
       - name: 🎁 Draft release
-        uses: marvinpinto/action-automatic-releases@latest
+        uses: ncipollo/release-action@v1.14.0
         with:
-            repo_token: "${{ secrets.GITHUB_TOKEN }}"
-            automatic_release_tag: "latest"
-            draft: true
-            files: main.pdf
+          token: ${{ secrets.GITHUB_TOKEN }}
+          artifacts: main.pdf
+          allowUpdates: true
+          artifactContentType: application/pdf
+          replacesArtifacts: true
+          tag: 1.0
+          draft: true
 
   deploy:
     name: Share 
