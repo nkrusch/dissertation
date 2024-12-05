@@ -1,7 +1,6 @@
 DIR:=$(shell find . -type d -maxdepth 1 -mindepth 1)
 
 _plas_  := ../../statyc/papers/published/plas2024/submitted/
-_coqpl_ := ../../statyc/papers/published/coqpl/camera-ready/
 
 all: $(DIR)
 

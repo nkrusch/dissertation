@@ -1,10 +1,6 @@
-% ===============================================
-% SOURCE CODE FORMATTING AND HIGHLIGHTING OPTIONS
-% ===============================================
-
-\newcommand{\pr}{\lstinline[mathescape,language=imp,basicstyle=\ttfamily,escapeinside={(*}{*)}]}
+\newcommand{\pr}{\lstinline[mathescape,language=C,basicstyle=\ttfamily,escapeinside={(*}{*)}]}
 \newcommand{\prc}{\lstinline[language=C,basicstyle=\ttfamily\bfseries]}
-\lstdefinelanguage{imp}{morekeywords={if,then,else,while,do,loop}}
+\newcommand{\comm}[1]{\mathtt{#1}}
 
 % colorless
 \lstdefinestyle{Plain}{

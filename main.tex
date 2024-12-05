@@ -1,9 +1,9 @@
 %! suppress = TooLargeSection
 %! suppress = MissingLabel
 \documentclass[letterpaper,12pt,sfdefaults=false]{scrreprt}
-\usepackage{.latex/packages}
-\input{.latex/all}
-\input{.latex/draft}
+\usepackage{latex/packages}
+\input{latex/all}
+\input{latex/draft}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % GUIDES
 % https://guides.augusta.edu/graduateschool/etd
@@ -37,6 +37,10 @@
 
 \newcommand\CTNT{Cl{\'{e}}ment Aubert, Thomas Rubiano, \@author, Thomas Seiller}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\BeforeTOCHead[toc]{\cleardoublepage\pdfbookmark{\contentsname}{toc}}
+\BeforeTOCHead[lof]{\cleardoublepage\pdfbookmark{\listfigurename}{lof}}
+\BeforeTOCHead[lot]{\cleardoublepage\pdfbookmark{\listtablename}{lot}}
+
 \begin{document}
 % The following pages are not numbered:
 % title page, acknowledgement page, abstract, table of contents.
@@ -74,12 +78,13 @@
 %	3. UNPUBLISHED RESEARCH
 %----------------------------------------------------------------------------------------
 \chapter{Unpublished Research}\label{ch:unpublished-research}\clearpage
-% This can include manuscripts, in the journal format, that have been submitted for
-% publication that are under review at the time of dissertation submission. Manuscripts
-% that have been rejected or that have not been submitted (in preparation) cannot be
-% included in the journal format (i.e. must conform to the traditional dissertation
-% format). For manuscripts that have been submitted and are under review, the first
-% authorship of the candidate must be maintained when the manuscript is published.
+% This can include manuscripts, in the journal format, that have been submitted
+% forpublication that are under review at the time of dissertation submission.
+% Manuscripts that have been rejected or that have not been submitted (in
+% preparation) cannot be included in the journal format (i.e. must conform to
+% the traditional dissertation format). For manuscripts that have been
+% submitted and are under review, the first authorship of the candidate must be
+% maintained when the manuscript is published.
 
 \section{An Information Flow Calculus for Non-Interference}\label{sec:ni-analysis}
 \ainfoX{Cl{\'{e}}ment Aubert, Neea Rusch}
@@ -90,8 +95,8 @@
 \renewcommand\thesection{\arabic{section}}
 \input{text/plas}
 \renewcommand\thesection{\Alph{section}}
-\setcounter{section}{1}
 \clearpage
+\setcounter{section}{1}
 
 \section{Certifying Complexity Analysis}\label{sec:coqpl}
 \ainfoX{\CTNT}
@@ -103,27 +108,27 @@
 \input{complete/coqpl}
 \renewcommand\thesection{\Alph{section}}
 
-%----------------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------
 %	4. DISCUSSION
-%----------------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------
 \chapter{Discussion}\label{ch:discussion}
 \input{text/_discussion}
 
-%----------------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------
 %	5. SUMMARY
-%----------------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------
 \chapter{Summary}\label{ch:summary}
 \input{text/_summary}
 
-%----------------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------
 %	6. REFERENCES
-%----------------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------
 \chapter{References}\label{ch:references}
 \printbibliography[heading=none,sorting=none]
 
-%----------------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------
 %	7. APPENDICES
-%----------------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------
 \chapter{Appendices}\label{ch:appendices}\clearpage
 \setcounter{section}{0}
 \renewcommand\thesection{\Alph{section}}
