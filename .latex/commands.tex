@@ -1,0 +1,84 @@
+\newcommand\ainfo[2]{\noindent{#1}\newline\noindent{#2}\newpage}
+\newcommand\ainfoX[3]{\noindent{#1}\newline\noindent{#2}\vspace{1em}\newline{#3}\newpage}
+\newcommand\abspage[1]{\noindent\textbf{Abstract.}{ }{#1}\newpage}
+\newcommand{\nocontentsline}[3]{}
+\newcommand{\tocless}[2]{\bgroup\let\addcontentsline=\nocontentsline#1{#2}\egroup}
+\newcommand{\aref}[1]{\hyperref[#1]{Appendix~\ref*{#1}}}
+\renewcommand\sc[1]{#1} % undefined old font command small-caps
+
+% MATH ETC
+\newcommand\mwp{{mwp}}
+\newcommand{\vdashJK}{\vdash_{\textnormal{\textsc{jk}}}}
+\newcommand{\comm}[1]{\mathtt{#1}}
+\newcommand\hypo{\Hypo}
+\newcommand\infer{\Infer}
+\DeclarePairedDelimiter{\sem}{\llbracket}{\rrbracket} % Semantics of program.
+\newcommand{\BNF}{\enspace \ensuremath{\Vert} \enspace} % BNF separator
+\DeclareMathOperator{\In}{In}
+\DeclareMathOperator{\Out}{Out}
+\DeclareMathOperator{\PrD}{PrD}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\Id}{Id}
+\DeclareMathOperator{\var}{var}
+\DeclareMathOperator{\Card}{Card}
+\DeclareMathOperator{\Occ}{Occ}
+\newcommand{\mat}[1]{\left(\begin{smallmatrix}#1\end{smallmatrix}\right)} % Shorthand for matrices
+\newcommand{\zmat}{\mathbf{0}} % O-element for matrices
+\newcommand{\umat}{\mathbf{1}} % 1-element for matrices
+\ebproofnewstyle{small}{separation = 1em, rule margin = .5ex}
+
+%%%%%%%%% Styles
+\theoremstyle{remark}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+\newtheorem{definition}{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{claim}{Claim}
+\newtheorem{remark}{Remark}
+\newtheorem{notation}{Notation}
+\newtheorem{example}{Example}
+\newtheorem{examples}{Examples}
+\newtheorem{remarks}{Remarks}
+\newtheorem{facts}{Facts}
+\newtheorem{fact}{Fact}
+
+\makeatletter
+\renewcommand{\boxed}[1]{\text{\fboxsep=.2em\fbox{\m@th$\displaystyle#1$}}}
+\makeatother
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+\node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+\newcommand{\scc}{\textnormal{\scshape scc}\xspace}
+\newcommand{\sccs}{\textnormal{\scshape scc}s\xspace}
+\newcommand{\SFM}{{\sc sfm}\xspace}
+\newcommand{\SFMs}{{\sc sfm}s\xspace}
+\newcommand{\sfm}[1]{\mathbb{M}(\comm{#1})}
+\newcommand{\condcorr}[1]{\mathrm{Corr}^{\mathtt{if}}(#1)}
+\newcommand{\whilecorr}[1]{\mathrm{Corr}^{\mathtt{while}}(#1)}
+\newcommand{\corr}[1]{\mathrm{Cr}(#1)}
+\newcommand{\Var}{\mathrm{Vars}}
+\algtext*{EndWhile}% Remove "end while" text
+\algtext*{EndIf}% Remove "end if" text
+\algloopdefx{Use}[1]{\textbf{use}(#1)} % Adding a Use command
+\renewcommand{\gets}{=}
+\lstset{emph={%
+then, do, parallel, skip, use, reduction, private, nowait, foreach%
+},emphstyle={\color[HTML]{228B22}\bfseries}}
+\newcommand{\replabel}{\label} % will be redefined in restatements
+\NewDocumentCommand{\bywhom}{m}{% the Bourbaki trick
+{\nobreak\hfill\penalty50\hskip1em\null\nobreak
+\hfill\mbox{\normalfont(#1)}%
+\parfillskip=0pt \finalhyphendemerits=0 \par}}
+\NewDocumentEnvironment{pquotation}{m}
+{\begin{quoting}[indentfirst=true,leftmargin=\parindent,rightmargin=\parindent]\itshape}{\bywhom{#1}\end{quoting}}
+\newcommand{\lvl}[1]{\ell(#1)}
+\newcommand{\SC}{\mathrm{SC}}
+\newcommand{\LH}{\mathrm{LH}}
+\newcommand{\HMO}{\mathrm{HMO}}
+\newcommand{\scl}[1]{\ensuremath{\mathit{#1}}}
+\newcommand{\SSG}{\mathrm{SSG}}
+\newcommand{\vi}{\usym{1F322}} % Violation
+\newcommand{\nv}{\cdot} % no violation
+% tabularx centered maximally-wide column
+\newcolumntype{C}{>{\centering\arraybackslash}X}

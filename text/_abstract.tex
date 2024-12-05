@@ -1,16 +1,16 @@
 \section*{\uppercase{Abstract}}
 \label{sec:abstract}
 
-\noindent{\MakeUppercase \ETDAUTHOR}
+\makeatletter
+\noindent{\MakeUppercase {\@author}}
 
-\noindent\ETDTITLE
+\noindent{\@title}
+\makeatother
 
-\noindent(Under the direction of {\MakeUppercase \ETDADVISOR})
+\noindent(Under the direction of Dr. {\MakeUppercase {Cl{\'{e}}ment Aubert}})
 
-% The text of abstract then begins three lines after the title, and is double-spaced.
 \vspace{2em}
 \noindent\input{text/abstract}
 
 \vspace{2em}
-% The words must be listed three lines below the body of the abstract,
-\noindent <insert a list of keywords>
+\noindent Keywords: \mykeywords.

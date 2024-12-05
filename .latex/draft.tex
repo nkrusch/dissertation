@@ -1,0 +1,18 @@
+% TEMPORARY: Draft Options
+\usepackage{everypage,pdfpages,eso-pic,lineno,draftwatermark}
+\usepackage[yyyymmdd,24hr]{datetime}
+\renewcommand{\dateseparator}{-}
+\def\PageTopMargin{1in}
+\def\PageLeftMargin{2.2in}
+\newcommand\atxy[3]{%
+\AddEverypageHook{\smash{\hspace*{\dimexpr-\PageLeftMargin-\hoffset+#1\relax}%
+\raisebox{\dimexpr\PageTopMargin+\voffset-#2\relax}{#3}}}}
+\atxy{\dimexpr1.5in}{0.1in}{%
+\raisebox{-\height}{\small\sffamily{compiled: {\yyyymmdddate\today} \currenttime}}}
+\SetWatermarkText{}
+\AddToShipoutPicture{%
+\AtTextCenter{%
+\makebox[0pt]{%
+\scalebox{17}{%
+\rotatebox[origin=c]{45}{%
+\color[gray]{.93}\normalfont\sffamily draft}}}}}
