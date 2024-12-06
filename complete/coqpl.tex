@@ -15,10 +15,10 @@ For practical complexity analyses, many existing techniques present methodologic
 Therefore, a realistic pathway toward formal certification of a program's resource usage is narrow.
 A few encouraging early results exist, and we discuss some of those in \autoref{coqpl-related}.
 In this proposal we will sketch how a different approach, founded on Implicit Computational Complexity,
-could sidestep some of the usual difficulties in implementing and verifying complexity analyses in Coq.
+could sidestep some of the usual difficulties in implementing and verifying complexity analyses in Coq\index{Coq}.
 
 % ICC offers a way.
-The field of Implicit Computational Complexity (ICC)~\cite{dallago2011} drives better understanding of complexity classes, but it
+The field of Implicit Computational Complexity (ICC)~\cite{dallago2011}\index{ICC} drives better understanding of complexity classes, but it
 also guides the development of resources-aware languages and static source code analyzers.
 The core idea is to bound resources \emph{while the program is being written (or type checked)} instead of measuring its resource usage afterwards on an abstract model of computation.
 This can be done through \eg bounded recursion or using typing mechanisms.
@@ -39,7 +39,7 @@ As for Coq, it seems like the ideal target language because of its existing libr
 %One of them, the \emph{mwp}-analysis~\cite{Jones2009}, uses matrices to record data flows between variables.
 %If a variables depends \enquote{too strongly} on another, it risks to grow exponentially if used carelessly inside a loop, and the analysis detects it and flags it.
 %As a result, a program can get assigned a type---a matrix---only if all the values in it are bounded by a polynomial in the inputs sizes.
-The \emph{mwp}-flow analysis certifies polynomial bounds on the size of the values manipulated by
+The \emph{mwp}-flow analysis\index{mwp-calculus} certifies polynomial bounds on the size of the values manipulated by
 an imperative program.
 While it does not ensure (or require) program termination, it provides a certificate guaranteeing that the program uses throughout its execution at
 most a polynomial amount of space, and as a consequence that if it terminates, it will do so in polynomial time in the size of its inputs.
@@ -75,7 +75,7 @@ Preliminary explorations have led us to establish the following milestones.
 Our first goal is to define the mathematical structure required to carry out the rest of the construction.
 This requires defining vectors, matrices and their operations, semi-rings, and honest polynomials\footnote{Which are \textcquote[p.~5]{jones2009}{polynomial build up from constants in $\mathbb{N}$ and variables by applying the operations $+$ (addition) and $\times$ (multiplication).}} that are
 needed to represent the \emph{mwp}-bounds.
-The Mathematical Components library~\cite{mahboubi2022} will lay the foundations for the linear algebra representations,
+The Mathematical Components library~\cite{mahboubi2022}\index{mathcomp} will lay the foundations for the linear algebra representations,
 but likely requires extensions to accommodate our specific analysis.
 
 \item[Implementing the language]
@@ -83,7 +83,7 @@ The analyzed language is a simple imperative language that manipulates natural n
 held in a fixed number of program variables. Its syntax includes
 variables, expressions (operations $+$ and $\times$), Boolean expressions, and commands (\eg  assignment, loop and decision statements, command sequences, and skip), with their usual semantics.
 We expect implementing it and its small-steps semantics in Coq to be relatively simple,
-following the examples from Software Foundations~\cite{cpierce20221,cpierce20222}.
+following the examples from Software Foundations~\cite{cpierce20221,cpierce20222}\index{Software Foundations}.
 
 \item[Implementing the typing system]
 Even if it can be computationally expensive to run an automatic inference~\cite{aubert2023b}, the typing system \emph{in itself} is relatively simple.

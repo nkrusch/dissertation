@@ -10,11 +10,14 @@ compile:
 watch:
 	ls *.tex *.bib */*.tex */*.sty .latex/* | entr make
 
+gloss:
+	makeglossaries main
+
 pubs:
 	make -C papers
 
 clean:
-	@rm -rf *.pdf *.aux *.bbl *.bcf *.blg *.out *.fdb_latexmk *.fls *.log *.run.xml *.tex.blg *.synctex.gz *.vtc *.lot *.lof *.toc *~ main.pdf
+	@rm -rf *.pdf *.aux *.acr *.bbl *.bcf *.blg *.out *.fdb_latexmk *.fls *.log *.run.xml *.tex.blg *.synctex.gz *.vtc *.lot *.lof *.toc *~ main.pdf
 
 count:
 	@($(foreach file, $(COUNTABLE), \

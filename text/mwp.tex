@@ -1,16 +1,5 @@
-\subsection{\mwp-Bounds Analysis}\label{subsec:mwp}
+\subsection{The Flow Calculus of \mwp-Bounds}
+\label{subsec:mwp}
 
-The \mwp-flow analysis~\cite{jones2009} is a static analysis technique for evaluating resource usage of imperative programs.
-It analyzes input variables' value growth, and aims to discover a polynomially bounded data-flow relation between variables \emph{initial} values and \emph{final} values. 
-When all variables are bounded by polynomials in inputs, the analysis succeeds, \ie a program is derivable in the underlying calculus.
-If one or more variables is not bounded, such bound cannot be established.
-The soundness theorem of the analysis guarantees that if a derivation exists, the program's value growth is polynomially bounded in inputs. Furthermore, as a sound technique, it offers a computational method to certify programs data size growth properties at runtime.
-
-\input{figures/pbounds}
-
-Instead of manual inspection, the \mwp-flow analysis provides an \emph{automatable} technique to distinguish programs that have polynomial growth bounds. 
-Internally is works my applying inference rules to program commands and tracking variable dependencies by coefficients (or \emph{flows}).
-A detailed description of the system is provided in the original work by Jones and Kristiansen~\cite{jones2009} and refined by Aubert et. al~\cite{aubert2022b}. The remainder of this section elaborates on the central notions and terminology to understand the mechanics of the analysis, as it relates to the publications in \autoref{sec:published-manuscripts}.
-
-\input{figures/mwp_rules}
+~\cite{jones2009}
 

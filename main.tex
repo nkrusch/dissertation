@@ -4,14 +4,15 @@
 \usepackage{latex/packages}
 \input{latex/all}
 \input{latex/draft}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % GUIDES
-% https://guides.augusta.edu/graduateschool/etd
-% https://www.augusta.edu/gradschool/documents/thesis-dissertation-preparation-booklet.pdf
+% https://guides.augusta.edu/etd
+% https://augustauniversity.app.box.com/s/vj0ygpy8tvyqmsbae8y0qp9767ta7jb9
 
+\date{\today}
 \title{Some Title}
 \author{Neea Rusch}
-\date{\today}
 \newcommand\mykeywords{%
 {programming languages}, %
 {static program analysis}, %
@@ -37,46 +38,47 @@
 
 \newcommand\CTNT{Cl{\'{e}}ment Aubert, Thomas Rubiano, \@author, Thomas Seiller}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\BeforeTOCHead[toc]{\cleardoublepage\pdfbookmark{\contentsname}{toc}}
-\BeforeTOCHead[lof]{\cleardoublepage\pdfbookmark{\listfigurename}{lof}}
-\BeforeTOCHead[lot]{\cleardoublepage\pdfbookmark{\listtablename}{lot}}
-
 \begin{document}
-% The following pages are not numbered:
-% title page, acknowledgement page, abstract, table of contents.
-\thispagestyle{empty}\maketitle\clearpage
-\thispagestyle{empty}\input{text/_acks}\clearpage
-\thispagestyle{empty}\input{text/_abstract}\clearpage
-\tableofcontents\clearpage
 \pagenumbering{arabic}
-\listoftables\clearpage
-\listoffigures\clearpage
+\thispagestyle{empty}
+\AddToHookNext{shipout/foreground}{\put (0, 0) {\pdfbookmark[0]{Cover page}{sec:cover}}}
+\label{sec:cover}\maketitle\clearpage
+\thispagestyle{empty}
+\AddToHookNext{shipout/foreground}{\put (0, 0) {\pdfbookmark[0]{Acknowledgements}{sec:acks}}}
+\input{text/_acks}\clearpage
+\thispagestyle{empty}
+\AddToHookNext{shipout/foreground}{\put (0, 0) {\pdfbookmark[0]{Abstract}{sec:abstract}}}
+\input{text/_abstract}\clearpage
+\pdfbookmark[0]{\contentsname}{toc}\tableofcontents\clearpage
+\pdfbookmark[0]{\listtablename}{lot}\listoftables\clearpage
+\pdfbookmark[0]{\listfigurename}{lof}\listoffigures\clearpage
 
-%----------------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------
 %	1. INTRODUCTION
-%----------------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------
 \setcounter{chapter}{0}
 \chapter{Introduction}\label{ch:introduction}
 \input{text/_intro}
 
-%----------------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------
 %	2. PUBLISHED MANUSCRIPTS
-%----------------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------
 \chapter{Published Manuscripts}\label{ch:published-manuscripts}\clearpage
 
 \section{pymwp: A Static Analyzer Determining Polynomial Growth Bounds}\label{sec:atva}
 \ainfoX{\CTNT}{\href{https://atva-conference.org/2023}
 {International Symposium on Automated Technology for Verification and Analysis, 2023}}
-{\noindent Software artifact: \href{https://doi.org/10.5281/zenodo.7908484}{10.5281/zenodo.7908484}
+{\noindent Software artifact:
+\href{https://doi.org/10.5281/zenodo.7908484}{10.5281/zenodo.7908484}
 \newline\noindent Tool user guide in \aref{app:sec:tool-guide}}
 \includepdf[pages={1-},addtolist={
 5,table,Comparison of obtained resource bounds,tab:compare,
 10,table,Benchmark results,tab:eval,
 10,table,Examples of obtained bounds,tab:bounds}]{papers/atva/main.pdf}
 
-%----------------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------
 %	3. UNPUBLISHED RESEARCH
-%----------------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------
 \chapter{Unpublished Research}\label{ch:unpublished-research}\clearpage
 % This can include manuscripts, in the journal format, that have been submitted
 % forpublication that are under review at the time of dissertation submission.
@@ -145,6 +147,10 @@
 \section{Tool User Guide for \enquote{pymwp: A Static Analyzer Determining Polynomial Growth Bounds}}\label{app:sec:tool-guide}
 \ainfo{\CTNT}{Publication companion.}
 \includepdf[pages={1-},scale=0.9,offset=0 0.25in]{res/pubs_pymwp_guide.pdf}
-\end{appendices}
+\clearpage
 
+\printnoidxglossary[type=\acronymtype]
+\printindex
+
+\end{appendices}
 \end{document}

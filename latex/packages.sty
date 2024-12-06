@@ -13,10 +13,12 @@
 \RequirePackage{csquotes}
 \RequirePackage{soul}
 \RequirePackage{utfsym} % for \usym{1F322}
+\RequirePackage{inconsolata} % syntax font
+\RequirePackage{fontawesome5} % symbols
 % Document
 \RequirePackage[margin=1in,left=1.5in]{geometry}
 \RequirePackage{titling}
-\RequirePackage{appendix}
+\RequirePackage[titletoc,title]{appendix}
 \RequirePackage{hyperref}
 \RequirePackage{titletoc}
 \RequirePackage{tocloft}
@@ -28,8 +30,10 @@
 \RequirePackage{graphicx}
 \RequirePackage{adjustbox}
 \RequirePackage{enumitem}
-\RequirePackage[natbib=true,style=numeric,maxbibnames=99,defernumbers=true,sorting=none]{biblatex}
 \RequirePackage{fnpct} % Nicer footnotes
+\RequirePackage[natbib=true,style=numeric,maxbibnames=99,defernumbers=true,sorting=none]{biblatex}
+\RequirePackage[acronym,nonumberlist,section=section,numberedsection,nopostdot,nogroupskip,style=index]{glossaries} % acronyms
+\RequirePackage{imakeidx} % terms index
 % Math
 \RequirePackage{amsmath}
 \RequirePackage{mathtools}
@@ -40,18 +44,17 @@
 \RequirePackage{nicematrix}
 \RequirePackage[theorems,breakable,hooks,most]{tcolorbox}
 \RequirePackage{cases}
+\RequirePackage{stmaryrd}
 % Tables
 \RequirePackage{tabularx}
 \RequirePackage{booktabs}
 \RequirePackage{array}
-% Code+algorithms
+% Code + algorithms
 \RequirePackage{algorithm}
 \RequirePackage{algpseudocode}
 \RequirePackage{listings}
-% Tikz
+% Tikz/Drawing
 \RequirePackage{tikz}
 \RequirePackage{tikz-network}
-\usetikzlibrary{arrows,calc}
-\usetikzlibrary{tikzmark}
-\usetikzlibrary{fit,matrix,shapes,arrows,shadows}
+\usetikzlibrary{arrows,calc,tikzmark,fit,matrix,shapes,arrows,shadows}
 

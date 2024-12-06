@@ -1,5 +1,8 @@
 % All sections begin on a new page
 \AddToHook{cmd/chapter/before}{\clearpage}
+\SetMathAlphabet{\mathsfbf}{sans}{\sansmathencoding}{\sfdefault}{bx}{sl}
+
+\setcounter{tocdepth}{2}
 \renewcaptionname{english}{\contentsname}{Table of Contents}
 \renewcommand\thechapter{\Roman{chapter}}
 \renewcommand\thesection{\Alph{section}}
@@ -11,11 +14,7 @@
 \setlength{\cftbeforesubsubsecskip}{2pt} % Space before subsubsections
 \setlength{\cftsecindent}{0pt} % Remove indent for section
 \setlength{\cftsubsecindent}{30pt} % Remove indent for subsection
-\setcounter{tocdepth}{2}
 \addtocontents{toc}{\protect\thispagestyle{empty}}
-\SetMathAlphabet{\mathsfbf}{sans}{\sansmathencoding}{\sfdefault}{bx}{sl}
-
-
 
 % TODO: how to set all at once?
 \addtokomafont{disposition}{\rmfamily}
@@ -24,6 +23,8 @@
 \addtokomafont{subsubsection}{\rmfamily}
 \addtokomafont{chapterentry}{\rmfamily}
 \addtokomafont{descriptionlabel}{\rmfamily}
+
+\setacronymstyle{long-short}
 
 % autorefs
 \AtBeginDocument{%
@@ -57,6 +58,6 @@
 \makeatother
 
 % Algorithms
-\algtext*{EndWhile}% Remove "end while" text
-\algtext*{EndIf}% Remove "end if" text
+\algtext*{EndWhile} % Remove "end while" text
+\algtext*{EndIf} % Remove "end if" text
 

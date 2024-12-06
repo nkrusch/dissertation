@@ -9,6 +9,6 @@ Repository to host, automatically compile, and share my dissertation.
 
 ### References
 
-* [Augusta University ETD Guides](https://guides.augusta.edu/graduateschool/etd)
-* [AU Dissertation Guide Booklet](https://www.augusta.edu/gradschool/documents/thesis-dissertation-preparation-booklet.pdf)
+* [Augusta University ETD Guides](https://guides.augusta.edu/etd)
+* [AU Dissertation Guide Booklet v.2024](https://augustauniversity.app.box.com/s/vj0ygpy8tvyqmsbae8y0qp9767ta7jb9)
 * [LaTeX template link](https://github.com/aubertc/au_ccs_dissertation_template/)

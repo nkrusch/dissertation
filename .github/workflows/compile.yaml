@@ -3,9 +3,6 @@ name: Compile
 on:
   push:
     branches: [ main ]
-  schedule:
-    # <min> <hr> <day> <mth> <weekday> => nightly
-    - cron: '0 0 * * *'
   workflow_dispatch:
     branches: [ main ]
 
