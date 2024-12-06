@@ -11,7 +11,7 @@
 % https://augustauniversity.app.box.com/s/vj0ygpy8tvyqmsbae8y0qp9767ta7jb9
 
 \date{\today}
-\title{Some Title}
+\title{On Practical Realization of Implicit Computational Complexity}
 \author{Neea Rusch}
 \newcommand\mykeywords{%
 {programming languages}, %
@@ -41,13 +41,16 @@
 \begin{document}
 \pagenumbering{arabic}
 \thispagestyle{empty}
-\AddToHookNext{shipout/foreground}{\put (0, 0) {\pdfbookmark[0]{Cover page}{sec:cover}}}
+\AddToHookNext{shipout/foreground}{\put (0, 0)%
+{\pdfbookmark[0]{Cover}{sec:cover}}}
 \label{sec:cover}\maketitle\clearpage
 \thispagestyle{empty}
-\AddToHookNext{shipout/foreground}{\put (0, 0) {\pdfbookmark[0]{Acknowledgements}{sec:acks}}}
+\AddToHookNext{shipout/foreground}{\put (0, 0)%
+{\pdfbookmark[0]{Acknowledgements}{sec:acks}}}
 \input{text/_acks}\clearpage
 \thispagestyle{empty}
-\AddToHookNext{shipout/foreground}{\put (0, 0) {\pdfbookmark[0]{Abstract}{sec:abstract}}}
+\AddToHookNext{shipout/foreground}{\put (0, 0)%
+{\pdfbookmark[0]{Abstract}{sec:abstract}}}
 \input{text/_abstract}\clearpage
 \pdfbookmark[0]{\contentsname}{toc}\tableofcontents\clearpage
 \pdfbookmark[0]{\listtablename}{lot}\listoftables\clearpage
@@ -70,11 +73,28 @@
 {International Symposium on Automated Technology for Verification and Analysis, 2023}}
 {\noindent Software artifact:
 \href{https://doi.org/10.5281/zenodo.7908484}{10.5281/zenodo.7908484}
-\newline\noindent Tool user guide in \aref{app:sec:tool-guide}}
+\newline\noindent Tool user guide: \aref{app:sec:tool-guide}}
 \includepdf[pages={1-},addtolist={
 5,table,Comparison of obtained resource bounds,tab:compare,
 10,table,Benchmark results,tab:eval,
-10,table,Examples of obtained bounds,tab:bounds}]{papers/atva/main.pdf}
+10,table,Examples of obtained bounds,tab:bounds},
+pagecommand={\thispagestyle{empty}%
+\addtoindex{pymwp}{1}
+\addtoindex{pymwp}{2}
+\addtoindex{pymwp}{4}
+\addtoindex{pymwp}{5}
+\addtoindex{pymwp}{6}
+\addtoindex{pymwp}{7}
+\addtoindex{pymwp}{8}
+\addtoindex{pymwp}{9}
+\addtoindex{pymwp}{11}
+\addtoindex{LOOPUS}{4}
+\addtoindex{LOOPUS}{5}
+\addtoindex{C4B}{4}
+\addtoindex{C4B}{5}
+\addtoindex{mwp-bound}{3}
+\addtoindex{mwp-bound}{8}
+}]{papers/atva/main.pdf}
 
 %-------------------------------------------------------------------------------
 %	3. UNPUBLISHED RESEARCH
@@ -142,15 +162,44 @@
 
 \section{Distributing and Parallelizing Non-canonical Loops}\label{app:sec:vmcai}
 \ainfo{\CTNT}{International Conference on Verification, Model Checking, and Abstract Interpretation, 2023}
-\includepdf[pages={1-}]{res/pubs_vmcai.2023.pdf}
+\includepdf[pages={1-},pagecommand={\thispagestyle{empty}%
+\addtoindex{OpenMP}{2}
+\addtoindex{OpenMP}{3}
+\addtoindex{OpenMP}{4}
+\addtoindex{OpenMP}{14}
+\addtoindex{OpenMP}{15}
+\addtoindex{OpenMP}{16}
+\addtoindex{OpenMP}{18}
+\addtoindex{OpenMP}{20}
+\addtoindex{Polybench/C}{16}
+\addtoindex{Polybench/C}{17}
+\addtoindex{ROSE}{14}
+\addtoindex{ROSE}{15}
+\addtoindex{ROSE}{17}
+\addtoindex{ROSE}{18}
+\addtoindex{ROSE}{20}
+}]{res/pubs_vmcai.2023.pdf}
 
 \section{Tool User Guide for \enquote{pymwp: A Static Analyzer Determining Polynomial Growth Bounds}}\label{app:sec:tool-guide}
 \ainfo{\CTNT}{Publication companion.}
-\includepdf[pages={1-},scale=0.9,offset=0 0.25in]{res/pubs_pymwp_guide.pdf}
+\includepdf[pages={1-},scale=0.9,offset=0 0.25in,pagecommand={\thispagestyle{empty}%
+\addtoindex{pymwp}{1}
+\addtoindex{pymwp}{2}
+\addtoindex{pymwp}{4}
+\addtoindex{pymwp}{5}
+\addtoindex{pymwp}{6}
+\addtoindex{pymwp}{7}
+\addtoindex{pymwp}{8}
+\addtoindex{pymwp}{9}
+\addtoindex{pymwp}{10}
+\addtoindex{pymwp}{11}
+}]{res/pubs_pymwp_guide.pdf}
 \clearpage
 
 \printnoidxglossary[type=\acronymtype]
-\printindex
+\clearpage\printindex
+
+\clearpage\section{Co-author Statements}\label{app:sec:coauth}
 
 \end{appendices}
 \end{document}

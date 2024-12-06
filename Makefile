@@ -10,9 +10,6 @@ compile:
 watch:
 	ls *.tex *.bib */*.tex */*.sty .latex/* | entr make
 
-gloss:
-	makeglossaries main
-
 pubs:
 	make -C papers
 

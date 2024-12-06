@@ -5,6 +5,13 @@
 \newcommand{\tocless}[2]{\bgroup\let\addcontentsline=\nocontentsline#1{#2}\egroup}
 \newcommand{\aref}[1]{\hyperref[#1]{Appendix~\ref*{#1}}}
 
+% add index terms to \includepdf
+\makeatletter
+\newcommand\addtoindex[2]{%
+    \ifnum\AM@page=#2\relax\index{#1}\fi
+}
+\makeatother %
+
 % Fix \sc undefined
 \providecommand{\sc}{}
 \renewcommand{\sc}[1]{#1}
