@@ -1,21 +1,27 @@
 % All sections begin on a new page
 \AddToHook{cmd/chapter/before}{\clearpage}
-\SetMathAlphabet{\mathsfbf}{sans}{\sansmathencoding}{\sfdefault}{bx}{sl}
 
+% Content tables
 \setcounter{tocdepth}{2}
+\AtBeginDocument{\addtocontents{toc}{\protect\thispagestyle{empty}}}
 \renewcaptionname{english}{\contentsname}{Table of Contents}
 \renewcommand\thechapter{\Roman{chapter}}
-\renewcommand\thesection{\Alph{section}}
-\renewcommand{\cftchapnumwidth}{30pt}
-\renewcommand{\cftsecnumwidth}{30pt}
+\renewcommand\thesection{\arabic{section}}
+\renewcommand{\cftchapnumwidth}{25pt}
+\renewcommand{\cftsecnumwidth}{25pt}
+\renewcommand{\cftsubsecnumwidth}{25pt}
+\setlength{\cftsecindent}{0pt} % indent for section
+\setlength{\cftsubsecindent}{25pt} % indent for subsection
 \setlength{\cftbeforechapskip}{12pt} % Space before chapters
 \setlength{\cftbeforesecskip}{10pt} % Space before sections
 \setlength{\cftbeforesubsecskip}{4pt} % Space before subsections
-\setlength{\cftbeforesubsubsecskip}{2pt} % Space before subsubsections
-\setlength{\cftsecindent}{0pt} % Remove indent for section
-\setlength{\cftsubsecindent}{30pt} % Remove indent for subsection
-\addtocontents{toc}{\protect\thispagestyle{empty}}
+\makeatletter
+\def\l@figure{\@dottedtocline{1}{0pt}{35pt}} % figures indentation
+\def\l@table{\@dottedtocline{1}{0pt}{35pt}}  % tables indentation
+\makeatother
 
+% Fonts
+\SetMathAlphabet{\mathsfbf}{sans}{\sansmathencoding}{\sfdefault}{bx}{sl}
 % TODO: how to set all at once?
 \addtokomafont{disposition}{\rmfamily}
 \addtokomafont{section}{\rmfamily}

@@ -1,5 +1,5 @@
-\tocless\section{Introduction}
-\label{sec:introduction}
+\subsection{Introduction}
+\label{plas-introduction}
 
 %\neea{Introduce non-interference and why we care about it.}
 Careless exposure of sensitive information is at the core of numerous modern software security vulnerabilities and exploits.
@@ -37,8 +37,8 @@ Thus, our calculus offers %both
 theoretical interest \emph{and} practical potential for automatic %security
 analysis.
 
-\tocless\section{High-Level Overview}
-\label{sec:overview}
+\subsection{High-Level Overview}
+\label{plas-overview}
 
 We manipulate the conventional lattice model for information flow à la Denning~\cite{Denning76}.
 An \emph{information flow policy} is a lattice \((\SC, <)\) where \(\SC\) is a partially \(<\)-ordered finite set of \emph{security classes}%partially ordered by \(<\)
@@ -104,10 +104,10 @@ we present the mathematical foundations and soundness of our information flow ca
 demonstrate the technique in action on illustrative examples,
 and sketch a plan for practical information flow analysis and implementation.
 
-\tocless\section{The Non-interference Calculus}
-\label{sec:calculus}
+\subsection{The Non-interference Calculus}
+\label{plas-calculus}
 
-\tocless\subsection{A Simple While Imperative Language}
+\subsubsection{A Simple While Imperative Language}
 \label{subsec:language}
 
 We use a simple imperative \textnormal{\prc|while|} language, with semantics similar to \texttt{C}.
@@ -199,7 +199,7 @@ For convenience, we define the following sets of variables.
     }
 \end{table*}
 
-\tocless\subsection{Security-Flow Matrices for Non-interference Violation}
+\subsubsection{Security-Flow Matrices for Non-interference Violation}
 \label{subsec:sfg}
 
 Our non-interference calculus relies fundamentally on its ability to analyze data-flow dependencies between variables occurring in commands.
@@ -268,7 +268,7 @@ Visually, this means that the following three matrices are all viewed as the \SF
     \hfill~
 \end{center}
 
-\tocless\subsection{Constructing Security-Flow Matrices}
+\subsubsection{Constructing Security-Flow Matrices}
 \label{subsec:construction}
 
 The security-flow matrix (\SFM) of a command is constructed by induction on the structure of the command, using the security semi-group \(\SSG\).
@@ -754,8 +754,8 @@ On the other hand, \prc|t|, \prc|i| and \prc|j| all three control the values of 
 
 To ease the presentation, we will in \autoref{sec:examples} present those construction equations as inference rules, treating the inductive ones as inference rules with hypothesis, and the base cases (assignment, skip, but also computing the correction) as axioms.
 
-\tocless\section{Soundness}
-\label{sec:soundness}
+\subsection{Soundness}
+\label{plas-soundness}
 Originally, in the seminal work of Volpano et al.~\cite[pg.~173]{VolpanoI1996}, \enquote{\textins{s}oundness \textins{wa}s formulated as a kind of noninterference property. \textins{\dots I}f a variable $v$ has security level $\tau$, then one can change the initial values of any variables whose security levels are not dominated by $\tau$, execute the program, and
 the final value of $v$ will be the same, provided the program terminates successfully.}
 We now give the definitions to formulate soundness in our set-up.
@@ -833,8 +833,8 @@ iff \(\ell\) is non-interfering (\autoref{def:com-ni}).
 
 %We provide some intuitions as to why this correspondence is likely to hold with \autoref{ex:simple-application}.
 
-\tocless\section{Illustrative Derivations}
-\label{sec:examples}
+\subsection{Illustrative Derivations}
+\label{plas-examples}
 
 \begin{example}[Transitive dependence]
 Consider a program of two commands.
@@ -1035,8 +1035,8 @@ For example, if \prc|x1| : organization is assigned in the first loop, it was al
 \end{example}
 
 
-\tocless\section{Implementation Directions and Extensions}
-\label{sec:implementation}
+\subsection{Implementation Directions and Extensions}
+\label{plas-implementation}
 
 %\neea{Discuss how to evaluate matrix to get the static analysis and inference.}
 Obtaining automated security analysis is straightforward, following the lead of similar implementations~\cite{Aubert2022l,Moyen2017}.
@@ -1050,7 +1050,7 @@ Because the calculus requires minimal program structure, and is annotation-free 
 and type system-based static analyses, that expect manual type annotations or type inference.
 
 
-\tocless\subsection{Violation Detection With Taint Analysis}
+\subsubsection{Violation Detection With Taint Analysis}
 
 Taint analysis targets a subset of non-interference by considering two security classes of source (high) and sink (low).
 The goal is to detect true positive information-flow violations between source-and-sink pairs, without missing any violations and while having minimal false-alarm rate~\cite{pauck2018}.
@@ -1066,7 +1066,7 @@ Extended variations of this implementation direction include
 determining if, for some choice of security classes, the program becomes non-interfering;
 and if so, finding the minimal security classes for the program to be non-interfering.
 
-\tocless\subsection{Extending the Language Syntax}
+\subsubsection{Extending the Language Syntax}
 
 Practical information flow analyses are frequently implemented on Java-like languages and bytecodes~\cite{hammer2009,huang2014,arzt2014,pauck2018}.
 While the \autoref{fig:grammar} syntax captures the essence of these languages, extending it to object-oriented programming constructs would be beneficial.
@@ -1081,8 +1081,8 @@ Further practical concerns include handling advanced language-features \eg excep
 %(iv) Automation degree, e.g., identifying "high/low" "src/sink", other annotations, etc.
 %(v) Language-features: handling exceptions, reflection, intents, dynamic code loading, libraries, multi-threading, multiple entry-points, etc.}
 
-\tocless\section{Conclusion and Future Work}
-\label{sec:conclusion}
+\subsection{Conclusion and Future Work}
+\label{plas-conclusion}
 
 We have presented an information flow calculus that tracks soundly the property of non-interference in imperative programs.
 For a program, the calculus produces a security-flow matrix that represents the program's potentially interfering data flows.
