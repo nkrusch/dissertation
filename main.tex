@@ -54,6 +54,7 @@
 \input{text/_abstract}\clearpage
 \pdfbookmark[0]{\contentsname}{toc}
 \pagestyle{empty}\tableofcontents\clearpage
+\pagestyle{plain}
 \pdfbookmark[0]{\listtablename}{lot}\listoftables\clearpage
 \pdfbookmark[0]{\listfigurename}{lof}\listoffigures\clearpage
 
@@ -97,6 +98,7 @@ pagecommand={\thispagestyle{empty}%
 \addtoindex{pymwp}{8}
 \addtoindex{pymwp}{9}
 \addtoindex{pymwp}{11}
+\addtoindex{honest polynomial}{3}
 \addtoindex{LOOPUS}{4}
 \addtoindex{LOOPUS}{5}
 \addtoindex{C4B}{4}
@@ -162,7 +164,8 @@ pagecommand={\thispagestyle{empty}%
 \begin{appendices}
 \section{mwp-Analysis Improvement and Implementation: Realizing Implicit Computational Complexity}\label{app:sec:fscd}
 \ainfo{\CTNT}{International Conference on Formal Structures for Computation and Deduction, 2022}
-\includepdf[pages={1-},pagecommand={\thispagestyle{empty}%
+\includepdf[pages={1-},
+pagecommand={\thispagestyle{empty}%
 \addtoindex{pymwp}{15}
 \addtoindex{pymwp}{17}
 \addtoindex{pymwp}{22}
@@ -172,7 +175,8 @@ pagecommand={\thispagestyle{empty}%
 
 \section{Distributing and Parallelizing Non-canonical Loops}\label{app:sec:vmcai}
 \ainfo{\CTNT}{International Conference on Verification, Model Checking, and Abstract Interpretation, 2023}
-\includepdf[pages={1-},pagecommand={\thispagestyle{empty}%
+\includepdf[pages={1-},
+pagecommand={\thispagestyle{empty}%
 \addtoindex{OpenMP}{2}
 \addtoindex{OpenMP}{3}
 \addtoindex{OpenMP}{4}
@@ -192,7 +196,8 @@ pagecommand={\thispagestyle{empty}%
 
 \section{Tool User Guide for \enquote{pymwp: A Static Analyzer Determining Polynomial Growth Bounds}}\label{app:sec:tool-guide}
 \ainfo{\CTNT}{Publication companion.}
-\includepdf[pages={1-},scale=0.9,offset=0 0.25in,pagecommand={\thispagestyle{empty}%
+\includepdf[pages={1-},scale=0.9,offset=0 0.25in,
+pagecommand={\thispagestyle{empty}%
 \addtoindex{pymwp}{1}
 \addtoindex{pymwp}{2}
 \addtoindex{pymwp}{4}
@@ -210,9 +215,10 @@ pagecommand={\thispagestyle{empty}%
 \section{Co-author Statements}\label{app:sec:coauth}
 \input{text/contrib}
 
-\clearpage\printnoidxglossary[type=\acronymtype]
+\clearpage\pagestyle{plain}
+\printnoidxglossary[type=\acronymtype]
 \clearpage\printindex
 
-
 \end{appendices}
+
 \end{document}

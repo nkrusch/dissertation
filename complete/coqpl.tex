@@ -53,7 +53,7 @@ Preliminary explorations have led us to establish the following milestones.
 \begin{description}
 \item[The mathematical foundations]
 Our first goal is to define the mathematical structure required to carry out the rest of the construction.
-This requires defining vectors, matrices and their operations, semi-rings, and honest polynomials\footnote{%
+This requires defining vectors, matrices and their operations, semi-rings, and honest polynomials\index{honest polynomial}\footnote{%
 Which are \textcquote[p.~5]{jones2009}{polynomial build up from constants in \(\mathbb{N}\) and variables by applying the operations \(+\) (addition) and \(\times\) (multiplication).}} that are needed to represent the \emph{mwp}-bounds\index{mwp-bound}.
 The Mathematical Components library~\cite{mahboubi2022,mathcomp}\index{Mathematical Components} will lay the foundations for the linear algebra representations, but likely requires extensions to accommodate our specific analysis.
 
@@ -73,7 +73,7 @@ This will be the most demanding part of our plan.
 The original paper contains all the required handwritten proofs, but the authors caution that
 \enquote{\textins{t}hese proofs are long, technical and occasionally highly nontrivial}~\cite[p.~2]{jones2009}.
 The main result of the paper is the soundness proof of the analysis~\cite[Theorem 5.3]{jones2009},
-\ie the proof of the existence of a matrix typing the program implies the existence of an honest polynomial bounding the variables' growth rates.
+\ie the proof of the existence of a matrix typing the program implies the existence of an honest polynomial\index{honest polynomial} bounding the variables' growth rates.
 The main result follows from 15 pages of proofs presented in section 7 of the paper.
 This section revolves around proving the soundness properties of the calculus, and we expect the most substantial effort to be spent on formalizing these proofs.
 Some of them are quite intricate but with a satisfactory level of detail.
