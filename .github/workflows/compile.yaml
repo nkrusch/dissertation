@@ -18,6 +18,11 @@ jobs:
         uses: pierreraffa/cancel-previous-runs-action@1.11
       - name: ✴️️ Checkout repo
         uses: actions/checkout@v4
+      - name: Install Symbola
+        run: |
+          cp fonts/symbola.ttf /usr/local/share/fonts/TTF/Symbola.ttf
+          fc-cache -f -v
+          fc-list | grep Symbola
       - name: 🏗️ Compile
         uses: xu-cheng/latex-action@v3
         with:
