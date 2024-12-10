@@ -19,8 +19,8 @@ jobs:
       - name: ✴️️ Checkout repo
         uses: actions/checkout@v4
       - name: Install Symbola
-        run: |
-          cp fonts/symbola.ttf /usr/local/share/fonts/TTF/Symbola.ttf
+        run: |          
+          cp fonts/symbola.ttf /usr/share/fonts/Symbola.ttf
           fc-cache -f -v
           fc-list | grep Symbola
       - name: 🏗️ Compile
