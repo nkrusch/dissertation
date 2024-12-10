@@ -1,0 +1,41 @@
+%! suppress = TooLargeSection
+%! suppress = MissingLabel
+\documentclass[letterpaper,12pt,sfdefaults=false]{scrreprt}
+
+\makeatletter
+\hypersetup{
+  pdftitle={{\@title}},
+  pdfauthor={{\@author}},
+  pdfkeywords={\mykeywords},
+  pdfsubject={PhD Dissertation},
+  bookmarks=true,
+  unicode=false,
+  pdftoolbar=true,
+  pdfmenubar=true,
+  pdffitwindow=false,
+  pdfstartview={FitH},
+  pdfnewwindow=true,
+  ocgcolorlinks}
+\makeatother
+
+\begin{document}
+\pagenumbering{arabic}
+\thispagestyle{empty}
+\AddToHookNext{shipout/foreground}{\put (0, 0)%
+{\pdfbookmark[0]{Cover}{sec:cover}}}
+\label{sec:cover}\maketitle\clearpage
+\thispagestyle{empty}
+\AddToHookNext{shipout/foreground}{\put (0, 0)%
+{\pdfbookmark[0]{Acknowledgements}{sec:acks}}}
+\input{text/_acks}\clearpage
+\thispagestyle{empty}
+\AddToHookNext{shipout/foreground}{\put (0, 0)%
+{\pdfbookmark[0]{Abstract}{sec:abstract}}}
+\input{text/_abstract}\clearpage
+\pdfbookmark[0]{\contentsname}{toc}
+\pagestyle{empty}\tableofcontents\clearpage
+\pagestyle{plain}
+\pdfbookmark[0]{\listtablename}{lot}\listoftables\clearpage
+\pdfbookmark[0]{\listfigurename}{lof}\listoffigures\clearpage
+
+\end{document}

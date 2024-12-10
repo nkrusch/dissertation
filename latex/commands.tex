@@ -1,16 +1,15 @@
+\newcommand\CTNT{Cl{\'{e}}ment Aubert, Thomas Rubiano, Neea Rusch, Thomas Seiller}
 \newcommand\ainfo[2]{\noindent{#1}\newline\noindent{#2}\newpage}
 \newcommand\ainfoX[3]{\noindent{#1}\newline\noindent{#2}\vspace{1em}\newline{#3}\newpage}
 \newcommand\abspage[1]{\noindent\textbf{Abstract.}{ }{#1}\newpage}
 \newcommand{\nocontentsline}[3]{}
 \newcommand{\tocless}[2]{\bgroup\let\addcontentsline=\nocontentsline#1{#2}\egroup}
-
-
 \newcommand{\aref}[1]{\hyperref[#1]{Appendix~\ref*{#1}}}
 
 % add index terms to \includepdf
 \makeatletter
 \newcommand\addtoindex[2]{%
-    \ifnum\AM@page=#2\relax\index{#1}\fi
+\ifnum\AM@page=#2\relax\index{#1}\fi
 }
 \makeatother %
 
@@ -43,11 +42,11 @@
 
 % Styles
 \theoremstyle{remark}
-\newtheorem{theorem}{Theorem}
-\newtheorem{corollary}{Corollary}
-\newtheorem{lemma}{Lemma}
+\newtheorem{thm}{Theorem}
+\newtheorem{corollary}[thm]{Corollary}
+\newtheorem{lemma}[thm]{Lemma}
 \newtheorem{definition}{Definition}
-\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{conjecture}[thm]{Conjecture}
 \newtheorem{proposition}{Proposition}[section]
 \newtheorem{claim}{Claim}
 \newtheorem{remark}{Remark}
@@ -76,6 +75,26 @@
 \newcommand{\HMO}{\mathrm{HMO}}
 \newcommand{\scl}[1]{\ensuremath{\mathit{#1}}}
 \newcommand{\SSG}{\mathrm{SSG}}
-\newcommand{\vi}{\usym{1F322}} % Violation
+\newcommand{\vi}{O} %\usym{1F322}} % Violation
 \newcommand{\nv}{\cdot} % no violation
 
+% Comma after eg and ie
+\newcommand*{\eg}{e.g.\@,\xspace}
+\newcommand*{\Eg}{E.g.\@,\xspace}
+\newcommand*{\cf}{cf.\@\xspace}
+\newcommand*{\ie}{i.e.\@,\xspace}
+\newcommand*{\aka}{a.k.a.\@\xspace}
+\newcommand*{\Ie}{I.e.,\@\xspace}
+\newcommand{\stt}{s.t.\@\xspace}
+\newcommand*{\resp}{resp.\@\xspace}
+\newcommand*{\wrt}{w.r.t.\@\xspace}
+\newcommand*{\wlg}{w.l.o.g.\@\xspace}
+\renewcommand{\aka}{a.k.a.\@\xspace}
+
+\makeatletter
+\newcommand*{\etc}{%
+    \@ifnextchar{.}%
+{etc}%
+{etc.\@\xspace}%
+}
+\makeatother

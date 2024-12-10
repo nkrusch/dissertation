@@ -1,27 +1,161 @@
-\dedication{
-    This part serves two purposes.\\[1em]
-    To write the acknowledgments (as a \enquote{\emph{Thank you note}}).
-    You can look for inspiration if you need some.\\[1em]
-    To include a detailed summary of the work performed by other authors on published or accepted manuscripts used in the thesis / dissertation, if applicable.
-}
+\dedication{\input{text/acks}}
 
 \begin{abstract}
-    The abstract must not exceed 350 words.
-    It must consist of the briefest possible summary of the thesis / dissertation and the conclusions reached.
-    Explanatory matter and opinion must be omitted.
+\input{text/abstract}
 \end{abstract}
 
 \cleardoublepage
 \pagenumbering{arabic}
 
+%-------------------------------------------------------------------------------
+%	1. INTRODUCTION
+%-------------------------------------------------------------------------------
+\chapter{Introduction}\label{introduction}
+\input{text/_intro}
+
+%-------------------------------------------------------------------------------
+%	2. PUBLISHED MANUSCRIPTS
+%-------------------------------------------------------------------------------
+\chapter{Published Manuscripts}\label{published-manuscripts}
 
 \clearpage
+\section{pymwp: A Static Analyzer Determining Polynomial Growth Bounds}\label{sec:atva}
+\ainfoX{\CTNT}{\href{https://atva-conference.org/2023}
+{International Symposium on Automated Technology for Verification and Analysis, 2023}}
+{\noindent Software artifact:
+\href{https://doi.org/10.5281/zenodo.7908484}{10.5281/zenodo.7908484}
+\newline\noindent Tool user guide: \aref{app:sec:tool-guide}}
+\includepdf[pages={1-}, addtotoc={
+1,subsection,2,{Introduction -- Making Use of Implicit Complexity},sec:intro,
+3,subsection,2,{Calculating Bounds with \mwp-Analysis},sec:idea,
+5,subsection,2,{Technical Overview of pymwp},sec:tool,
+6,subsection,2,{Implementation Advancements},sec:solutions,
+8,subsection,2,{Experimental Evaluation},sec:eval,
+11,subsection,2,{Conclusion},sec:conc},
+addtolist={
+5,table,Comparison of obtained resource bounds,tab:compare,
+10,table,Benchmark results,tab:eval,
+10,table,Examples of obtained bounds,tab:bounds},
+pagecommand={\thispagestyle{empty}%
+\addtoindex{pymwp}{1}
+\addtoindex{pymwp}{2}
+\addtoindex{pymwp}{4}
+\addtoindex{pymwp}{5}
+\addtoindex{pymwp}{6}
+\addtoindex{pymwp}{7}
+\addtoindex{pymwp}{8}
+\addtoindex{pymwp}{9}
+\addtoindex{pymwp}{11}
+\addtoindex{honest polynomial}{3}
+\addtoindex{LOOPUS}{4}
+\addtoindex{LOOPUS}{5}
+\addtoindex{C4B}{4}
+\addtoindex{C4B}{5}
+\addtoindex{pycparser}{6}
+\addtoindex{mwp-bound}{3}
+\addtoindex{mwp-bound}{8}
+}]{res/pubs_atva.2023.pdf}
+
+%-------------------------------------------------------------------------------
+%	3. UNPUBLISHED RESEARCH
+%-------------------------------------------------------------------------------
+\chapter{Unpublished Research}\label{ch:unpublished-research}\clearpage
+
+\section{An Information Flow Calculus for Non-Interference}\label{ni-analysis}
+\ainfoX{Cl{\'{e}}ment Aubert, Neea Rusch}
+{\href{https://plas24.github.io}
+{The 19th Workshop on Programming Languages and Analysis for Security, 2024}}
+{\abspage{\input{complete/abs_plas}}}
+\input{text/plas}
+\clearpage
+
+\section{Certifying Complexity Analysis}\label{coqpl}
+\ainfoX{\CTNT}
+{\href{https://popl23.sigplan.org/home/CoqPL-2023}
+{The Ninth International Workshop on Coq for Programming Languages, 2023}}
+{\abspage{\input{complete/abs_coqpl}}}
+\input{complete/coqpl}
+\clearpage
+
+%-------------------------------------------------------------------------------
+%	4. DISCUSSION
+%-------------------------------------------------------------------------------
+\chapter{Discussion}\label{ch:discussion}
+\input{text/_discussion}
+
+%-------------------------------------------------------------------------------
+%	5. SUMMARY
+%-------------------------------------------------------------------------------
+\chapter{Summary}\label{ch:summary}
+\input{text/_summary}
+
+%-------------------------------------------------------------------------------
+%	6. REFERENCES
+%-------------------------------------------------------------------------------
 \printbibliography[label=chap:references, title=References]
 \let\printbibliography\relax
 
+%-------------------------------------------------------------------------------
+%	7. APPENDICES
+%-------------------------------------------------------------------------------
 \appendix
 
-\chapter{Appendix A (Optional)}\label{appendix-a-optional}
+\chapter{mwp-Analysis Improvement and Implementation: Realizing Implicit Computational Complexity}\label{app:sec:fscd}
+\ainfo{\CTNT}{International Conference on Formal Structures for Computation and Deduction, 2022}
+\includepdf[pages={1-},
+pagecommand={\thispagestyle{empty}%
+\addtoindex{pymwp}{15}
+\addtoindex{pymwp}{17}
+\addtoindex{pymwp}{22}
+\addtoindex{pymwp}{23}
+\addtoindex{Coq}{16}
+}]{res/pubs_fscd.2022.pdf}
+
+\chapter{Distributing and Parallelizing Non-canonical Loops}
+\label{app:sec:vmcai}
+\ainfo{\CTNT}{International Conference on Verification, Model Checking, and Abstract Interpretation, 2023}
+\includepdf[pages={1-}, pagecommand={\thispagestyle{empty}%
+\addtoindex{OpenMP}{2}
+\addtoindex{OpenMP}{3}
+\addtoindex{OpenMP}{4}
+\addtoindex{OpenMP}{14}
+\addtoindex{OpenMP}{15}
+\addtoindex{OpenMP}{16}
+\addtoindex{OpenMP}{18}
+\addtoindex{OpenMP}{20}
+\addtoindex{Polybench/C}{16}
+\addtoindex{Polybench/C}{17}
+\addtoindex{ROSE}{14}
+\addtoindex{ROSE}{15}
+\addtoindex{ROSE}{17}
+\addtoindex{ROSE}{18}
+\addtoindex{ROSE}{20}
+}]{res/pubs_vmcai.2023.pdf}
+
+\chapter{Tool User Guide for \enquote{pymwp: A Static Analyzer Determining Polynomial Growth Bounds}}\label{app:sec:tool-guide}
+\ainfo{\CTNT}{Publication companion.}
+\includepdf[pages={1-},scale=0.9,offset=0 0.25in,
+pagecommand={\thispagestyle{empty}%
+\addtoindex{pymwp}{1}
+\addtoindex{pymwp}{2}
+\addtoindex{pymwp}{4}
+\addtoindex{pymwp}{5}
+\addtoindex{pymwp}{6}
+\addtoindex{pymwp}{7}
+\addtoindex{pymwp}{8}
+\addtoindex{pymwp}{9}
+\addtoindex{pymwp}{10}
+\addtoindex{pymwp}{11}
+\addtoindex{mwp-bound}{3}
+\addtoindex{mwp-bound}{8}
+}]{res/pubs_pymwp_guide.pdf}
+
+\chapter{Co-author Statements}\label{app:sec:coauth}
+\input{text/contrib}
+
+\clearpage\pagestyle{plain}
+\printnoidxglossary[type=\acronymtype]
+\clearpage\printindex
 
 \backmatter
 \printbibliography
