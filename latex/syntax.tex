@@ -2,51 +2,53 @@
 \newcommand{\prc}{\lstinline[language=C,basicstyle=\ttfamily,keywordstyle=\mdseries]}
 \newcommand{\comm}[1]{\mathtt{#1}}
 
-% colorless
-\lstdefinestyle{Plain}{
-    basicstyle=\small\ttfamily,
+\lstset{
+    basicstyle=\small\ttfamily\linespread{4},
+    columns=[l]flexible,
+    identifierstyle=\color{codeid},
+    commentstyle=\color{codecomments},
+    keywordstyle=\color{codekeywords}\bfseries,
+    ndkeywordstyle=\color{codekeywords}\bfseries,
+    stringstyle=\color{codestrings}\ttfamily,
+    abovecaptionskip=-30pt,
+    aboveskip=2em,
+    belowskip=2em,
     breakatwhitespace=false,
     breaklines=true,
     captionpos=b,
-    keepspaces=true,
-    showspaces=false,
     escapechar=!,
     escapeinside={(*}{*)},
+    extendedchars=true,
+    float=H,
+    frame=tb,
+    keepspaces=true,
+    mathescape=false,
+    numbers=left,
+    prebreak=\raisebox{0ex}[0ex][0ex]{↲},
+    sensitive=true,
+    showspaces=false,
     showstringspaces=false,
     showtabs=false,
     tabsize=2,
+    upquote=true,
+}
+
+% colorless
+\lstdefinestyle{Plain}{
+    identifierstyle=\color{black},
+    commentstyle=\color{black},
+    keywordstyle=\color{black}\bfseries,
+    ndkeywordstyle=\color{black}\bfseries,
+    stringstyle=\color{black}\ttfamily,
     language=C
 }
 \lstdefinestyle{C}{
-    basicstyle=\small\ttfamily,
-    commentstyle=\color{codecomments},
-    keywordstyle=\color{codekeywords}\bfseries,
-    stringstyle=\color{codestrings},
-    breakatwhitespace=false,
-    breaklines=true,
-    captionpos=b,
-    keepspaces=true,
-    escapechar=!,
-    escapeinside=||,
-    showspaces=false,
-    showstringspaces=false,
-    showtabs=false,
-    tabsize=2,
     language=C
 }
 \lstdefinestyle{Coq}{
-    basicstyle=\small\ttfamily,
-    commentstyle=\color{codecomments},
-    keywordstyle=\color{codekeywords}\bfseries,
-    stringstyle=\color{codestrings},
-    breakatwhitespace=false,
-    breaklines=true,
-    captionpos=b,
-    keepspaces=true,
-    escapeinside={(*}{*)},
-    showspaces=false,
-    showstringspaces=false,
-    showtabs=false,
-    tabsize=2,
     language=Coq
+}
+\lstdefinestyle{Dafny}{
+    keywordstyle={\color{codekeywords}\ttfamily},
+    language=dafny
 }
