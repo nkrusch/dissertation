@@ -2,9 +2,19 @@ Present-day computers are amazing pieces of equipment, but most amazing of all
 are the uncertain grounds on account of which we attach any validity to their output.  
 (EW Dijkstra)
 
-``Program testing can be used to show the presence of bugs, but never to show their absence.''
-\cite{dijkstra1970}
+The Ideal of Verified Software (Hoare)
 
-“famous quote usually attributed to Da Vinci: “Simplicity is the ultimate sophistication.”
-Excerpt From: Randy Olson. “Houston, We Have a Narrative: Why Science Needs Story.” Apple Books. 
-
+In the current state of the art, I regard our challenge as a scientific
+one, like the challenge of the human genome. Engineering challenges are
+also very important, but they differ from scientific challenges in their
+goals, their scope, their timescales and other constraints. A typical
+engineering challenge is Please find the bugs in this particular program
+before its delivery date (say next Tuesday). Scientists often engage
+themselves in such short-term challenges, and find it rewarding to earn
+the gratitude of their clients and customers. But Science itself is
+something different. It is motivated primarily by curiosity: it seeks
+the answers to basic questions, and aims at ideals that no engineer can
+afford to pursue. A typical scientific challenge seeks answers to
+questions How and why does software work. And how can we exploit this
+knowledge to make programs that are correct? And it is this kind of
+challenge that I would like to focus on.
