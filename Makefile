@@ -14,8 +14,10 @@ watch:
 update_template:
 	wget $(TEMPLATE) -O template.zip
 	unzip -o template.zip
-	cp tex_version/main.tex main.tex
 	rm -rf template.zip
+
+update_main:
+	cp tex_version/main.tex main.tex
 
 clean:
 	@rm -rf *.pdf *.aux *.acr *.xdv *.bbl *.bcf *.blg *.out *.fdb_latexmk *.fls *.log *.run.xml *.tex.blg *.synctex.gz *.vtc *.lot *.lof *.toc *~ main.pdf
