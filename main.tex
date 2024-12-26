@@ -1,3 +1,10 @@
+% !TeX program = xelatex
+% !BIB program = biber
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Welcome! Do not anything until "%%% To be filled %" %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 % Options for packages loaded elsewhere
 \PassOptionsToPackage{unicode}{hyperref}
 \PassOptionsToPackage{hyphens}{url}
@@ -6,7 +13,8 @@
   letterpaper,
   oneside,
   BCOR = 0 pt,
-  singlespacing = true]{scrbook}
+  singlespacing = true,
+  numbers = noenddot]{scrbook}
 \usepackage{xcolor}
 \usepackage[top=1in, left=1.5in, right=1in, bottom=1in, truedimen,
 twoside=false, bindingoffset=0pt, nohead]{geometry}
@@ -27,7 +35,6 @@ twoside=false, bindingoffset=0pt, nohead]{geometry}
   % xetex/luatex font selection
     \setmainfont[Path=fonts/,Extension=.otf,UprightFont=*-regular,BoldFont=*-bold,ItalicFont=*-italic,BoldItalicFont=*-BoldItalic]{TeXGyreTermes}
 \fi
-
 % Use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
 \IfFileExists{microtype.sty}{% use microtype if available
@@ -92,7 +99,8 @@ twoside=false, bindingoffset=0pt, nohead]{geometry}
 \setlength{\emergencystretch}{3em} % prevent overfull lines
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
-\usepackage[backend=biber]{biblatex}
+\usepackage[backend=biber,style=apa]{biblatex}
+\addbibresource{./references/references.bib}
 % The following package and toggle
 % are needed to implement the switch
 % between the PhD and MS templates.
@@ -100,7 +108,7 @@ twoside=false, bindingoffset=0pt, nohead]{geometry}
 % page.
 \usepackage{etoolbox}
 \newtoggle{ms}
-
+\toggletrue{ms}
 %%%%%%%%%%%%%%%%%%
 %%% To be filled %
 %%%%%%%%%%%%%%%%%%
@@ -123,19 +131,19 @@ twoside=false, bindingoffset=0pt, nohead]{geometry}
 % https://tex.stackexchange.com/a/297655
 \usepackage[english]{datetime2}                    % To extract the month and year from the date.
 \usepackage{chngcntr}                              % To obtain a "global numbering" of tables and figures.
+\usepackage{xpatch}                                % To patch some commands, for the title page.
 
 %%%%%%%%%%%%%%
 % Cover page %
 %%%%%%%%%%%%%%
 
-
 % We add some space after the subtitle if it
 % is defined, after the title if not.
 \ifdefined\yoursubtitle
     \makeatletter
-        \apptocmd{\@subtitle}{\par}{}{}
+        \xapptocmd{\@subtitle}{\par}{}{}
     \makeatother
-    \else
+\else
     \let\yoursubtitle\par\vspace{1em}
 \fi
 
@@ -143,45 +151,45 @@ twoside=false, bindingoffset=0pt, nohead]{geometry}
 % before your name, and change the font 
 % to 16pts.
 \makeatletter
-    \pretocmd{\@author}{By \\}{}{}
+    \xpatchcmd{\maketitle}{\@author}{By \\ \@author}{}{}
 \makeatother
 
 % The following extract the month and year
 % from the date, and display them in the title.
 \DTMsavedate{mydate}{\yourdate}
 \makeatletter
-    \renewcommand{\yourdate}{%
-        \DTMenglishmonthname{\@dtm@month}\\
-        \@dtm@year
-    }
+\renewcommand{\yourdate}{%
+    \DTMenglishmonthname{\@dtm@month}\\
+    \@dtm@year
+}
 \makeatother
 
 % This add some information between 
 % your name and the date.
 \makeatletter
-    \pretocmd{\yourdate}{%
-        \vspace{1em}
-        Submitted to the Faculty of the Graduate School\\
-        of Augusta University in partial fulfillment\\
-        of the Requirements of the Degree of\\
-        \iftoggle{ms}{Master of Science}{Doctor of Philosophy} % This toggle will display either 
-                                                               % "Master of Science" or "Doctor of Philosophy"
-                                                               % based on the choice made in info.tex.
-        \vspace{1em}\par
-    }{}{}
+\pretocmd{\yourdate}{%
+    \vspace{1em}
+    Submitted to the Faculty of The Graduate School\\
+    of Augusta University in partial fulfillment\\
+    of the Requirements of the Degree of\\
+    \iftoggle{ms}{Master of Science}{Doctor of Philosophy} % This toggle will display either 
+    % "Master of Science" or "Doctor of Philosophy"
+    % based on the choice made in info.tex.
+    \vspace{1em}\par
+}{}{}
 \makeatother
 
 % This add copyright information, 
 % abusing the "publisher" field.
 \makeatletter
-    \publishers{%
-        \textcopyright~\@dtm@year{} \yourname%
-        \ifdefined\yourlicence{\\[.1em] \yourlicence}
-        \else
-        \relax
-        \fi
-        \pagenumbering{gobble} % No page number on next page.
-    }
+\publishers{%
+    \textcopyright~\@dtm@year{} by \yourname%
+    \ifdefined\yourlicence{\\[.1em] \yourlicence}
+    \else
+    \relax
+    \fi
+    \pagenumbering{gobble} % No page number on next page.
+}
 \makeatother
 
 %%%%%%%%%%%
@@ -210,18 +218,8 @@ twoside=false, bindingoffset=0pt, nohead]{geometry}
 % No space above chapters.
 % https://tex.stackexchange.com/a/231940
 \RedeclareSectionCommand[
-  beforeskip=0pt
+    beforeskip=0pt
 ]{chapter}
-
-%%%%%%%%%%%%%%%%%%%%%%%
-% Headers and footers %
-%%%%%%%%%%%%%%%%%%%%%%%
-
-% We only want page numbers, no headers.
-\pagestyle{plain}
-% No page number for the first part of the document.
-\thispagestyle{empty}
-
 
 %%%%%%%%%%
 % Titles %
@@ -240,7 +238,8 @@ twoside=false, bindingoffset=0pt, nohead]{geometry}
         pdfauthor={\yourname},
         pdflang={en},
         pdfkeywords={\yourkeywords},
-        pdfauthor={\yourname}
+        pdfauthor={\yourname},
+        plainpages=false % Not sure this is helpful -- I thought it would help with https://github.com/the-au-forml-lab/au_ccs_dissertation_template/issues/13
     }
 }
 
@@ -267,20 +266,33 @@ twoside=false, bindingoffset=0pt, nohead]{geometry}
 % Spacing %
 %%%%%%%%%%%
 
-
 % Everything must be double spaced
-\linespread{2}
-% *but* the sectioning commands
-% (titles, subtitles, etc.).
+% "Double space" has multiple definitions,
+% we implement two options below, and use the 
+% first by default.
+% Refer to https://tex.stackexchange.com/q/13742
+% for more details.
+
+% Option A:
+\usepackage[nodisplayskipstretch]{setspace}
+\doublespacing
+
+% Option B:
+% Uncomment lines with two % to use.
+% and comment Option A to use.
+%% \linespread{2}
+% But the sectionning commands
+% (titles, subtitles, etc.)
+% should *not* be double-spaced.
 % https://tex.stackexchange.com/a/365269/
-\addtokomafont{disposition}{\linespread{1}}
+%% \addtokomafont{disposition}{\linespread{1}}
 % Since biblatex is loaded quite late in the template 
 % (cf. https://github.com/jgm/pandoc-templates/blob/master/default.latex )
 % we defer this command, that let the line space in the references be only 
 % single-spaced, to the end of the preamble.
-\AtEndPreamble{
-    \AtNextBibliography{\linespread{1}}
-}
+%% \AtEndPreamble{
+%%    \AtNextBibliography{\linespread{1}}
+%% }
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -289,6 +301,7 @@ twoside=false, bindingoffset=0pt, nohead]{geometry}
 
 \pretocmd{\dedication}{%
     \chapter*{Acknowledgements}
+    \pdfbookmark[0]{Acknowledgements}{toc}
     \pagenumbering{gobble}      % No page number
     \par                        % New paragraph
     {
@@ -306,41 +319,49 @@ twoside=false, bindingoffset=0pt, nohead]{geometry}
 % https://tex.stackexchange.com/a/40547
 % https://tex.stackexchange.com/a/68227
 \makeatletter
-    \newenvironment{abstract}{%
-        % At the beginning of the environment:
-        \pagenumbering{gobble} % No page number.
-        \chapter*{Abstract}
-        {                       % This group must be single-spaced.
-            \linespread{1}
-            \textsc{\yourname} \\
-            \@title \\
-            Under the direction of \textsc{\youradvisor}
-        }
-        \\[3em]
-      }%
-     {%
-      %  At the end of the environment:
-      \\[3em] \textsc{Keywords}: \StrSubstitute{\yourkeywords}{,}{\textperiodcentered} % We list the keywords.
-      \clearpage
-      \pagestyle{empty}
-      % The table of content
-      % follows immediately (and automatically)
-      % the abstract.
-      \renewcaptionname{english}%
-        {\contentsname}%
-        {Table of Contents}  % We rename the table of contents.
-      \tableofcontents        % Table of contents.
-      \iftotaltables          % If there are tables in the document…
-        \listoftables         % …write out the List of Tables
-      \fi
-      \iftotalfigures         % If there are figures in the document…
-        \listoffigures        % …write out the List of Figures
-      \fi
-      \iftotallstlistings     % If there are listings in the document…
-        \lstlistoflistings    % …write out the List of Listings.
-      \fi
+\newenvironment{abstract}{%
+    % At the beginning of the environment:
+    \chapter*{Abstract}
+    \pdfbookmark[0]{Abstract}{abs} % We add it to the pdf toc
+    {                       % This group must be single-spaced.
+        \linespread{1}
+        \textsc{\yourname} \\
+        \@title \\
+        (Under the direction of \textsc{\youradvisor})
+    }
+    \\[3em]
+}%
+{%
+    %  At the end of the environment:
+    \\[3em] \textsc{Keywords}: \StrSubstitute{\yourkeywords}{,}{\textperiodcentered} % We list the keywords.
+    \clearpage
+    % The table of content
+    % follows immediately (and automatically)
+    % the abstract.
+    \renewcaptionname{english}%
+    {\contentsname}%
+    {Table of Contents}                    % We rename the table of contents.
+    \hypertarget{tableofcontents}{}\bookmark[level=chapter,dest=tableofcontents]{\contentsname}
+    \tableofcontents                        % Table of contents.
+    \iftotaltables                             % If there are tables in the document…
+        \hypertarget{listoftables}{}\bookmark[level=chapter,dest=listoftables]{\listtablename}   %…we add the List of Tables to the pdf toc.
+        \listoftables                          % …and write it.
+    \fi
+    \iftotalfigures                          % If there are figures in the document…
+        \hypertarget{listoffigures}{}\bookmark[level=chapter,dest=listoffigures]{\listfigurename}   % …and add it to the pdf toc.
+        \listoffigures                         % …write out the List of Figures
+        \fi
+    \iftotallstlistings                      % If there are listings in the document…
+        \renewcommand{\lstlistlistingname}%
+        {List of Listings}                     % …we rename the simple "Listings" to "List of Listings"
+        % https://stackoverflow.com/a/2709986
+        \hypertarget{listoflistings}{}\bookmark[level=chapter,dest=listoflistings]{\lstlistlistingname}   %…we add the List of Tables to the pdf toc.
+        \lstlistoflistings                     % …write out the List of Listings.
+    \fi
 }
 \makeatother
+
+\pagestyle{empty}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Names of tables and captions %
@@ -353,13 +374,11 @@ twoside=false, bindingoffset=0pt, nohead]{geometry}
 \AtEndPreamble{
     \DeclarePrintbibliographyDefaults{heading=bibintoc} % We add the references in the table of contents
     \defbibheading{bibliography}[\bibname]{%
-    \chapter*{#1}%
-    \markboth{#1}{#1}}
+        \chapter*{#1}%
+        \markboth{#1}{#1}}
 }
 % https://tex.stackexchange.com/a/544718
-% We rename the simple "Listings" to "List of Listings"
-\renewcommand{\lstlistlistingname}{List of Listings}
-% https://stackoverflow.com/a/2709986
+
 
 % Counters for figures, tables and listings
 % are global, and not per chapter.
@@ -374,10 +393,12 @@ twoside=false, bindingoffset=0pt, nohead]{geometry}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \ifdefined\yourmention
-\usepackage{draftwatermark}
-\SetWatermarkText{\yourmention}
-\SetWatermarkScale{2.27}
-\SetWatermarkColor{augustagrey!20}
+    \usepackage{accsupp} % We make it impossible to select the mention
+    % cf. https://tex.stackexchange.com/a/309878
+    \usepackage{draftwatermark}
+    \SetWatermarkText{\BeginAccSupp{method=escape,ActualText={}}\yourmention\EndAccSupp{}}
+    \SetWatermarkScale{2}
+    \SetWatermarkColor{augustagrey!20}
 \fi
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Everything below can be freely edited.          % 
@@ -417,15 +438,14 @@ twoside=false, bindingoffset=0pt, nohead]{geometry}
     \normalsize
 }
 
-%%%%%
-% Emoji support for latex
-%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Emoji support for latex %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \usepackage[verbose]{newunicodechar}
 
 % List of symbols supported by Symbola at
 % https://www.fileformat.info/info/unicode/font/symbola/list.htm
-
 \defaultfontfeatures[Symbola]{Path=fonts/, Extension={.ttf}, UprightFont={*}}
 \newfontfamily\sym{Symbola}
 \DeclareTextFontCommand{\symb}{\sym}
@@ -447,7 +467,6 @@ twoside=false, bindingoffset=0pt, nohead]{geometry}
 \newunicodechar{🛡}{\symb 🛡} % U+1F6E1, "SHIELD"
 \newunicodechar{ℝ}{\symb ℝ} % U+211D,  "Double-Struck Capital R"
 \newunicodechar{□}{\symb □} % U+25A1,  "White square"
-\newunicodechar{🌢}{\symb 🌢}
 
 % Note that you can also define unicode characters
 % to be interpreted as latex commands, following
@@ -469,50 +488,19 @@ twoside=false, bindingoffset=0pt, nohead]{geometry}
 % This allow the links to be visually present only if the document is viewed on a screen.
 % Colored distribution inspired by https://tex.stackexchange.com/a/526148
 
-% This is to add color to the footnotes.
-\makeatletter
-\def\@footnotecolor{red}
-\define@key{Hyp}{footnotecolor}{%
- \HyColor@HyperrefColor{#1}\@footnotecolor%
-}
-\patchcmd{\@footnotemark}{\hyper@linkstart{link}}{\hyper@linkstart{footnote}}{}{}
-\makeatother
-
 % Setup new colors
 \AtEndPreamble{
     \hypersetup{
-        linkcolor=augustagrey,
-        citecolor=augustagrey,
-        filecolor=augustablue,
-        urlcolor=augustablue,
-        menucolor=augustagrey,
-        runcolor=augustablue,
+        pdfborder={0 0 1},
+        pdfborderstyle={/S/U/W 1}, % border style will be underline of width 1pt
         linkbordercolor=augustagrey,
         citebordercolor=augustagrey,
         filebordercolor=augustablue,
         urlbordercolor=augustablue,
         menubordercolor=augustagrey,
-        runbordercolor=augustablue,
-        footnotecolor=augustagrey,
+        runbordercolor=augustablue
     }
 }
-
-
-
-% For sideways figures and landscape pages.
-\usepackage{pdflscape}
-
-% For proper quotations.
-\usepackage{csquotes}
-
-% For math. environments
-\usepackage{mathtools}
-\usepackage{amsthm}
-
-% For the BibTex logo, courtesy of https://tex.stackexchange.com/a/198472
-\def\BibTeX{\textrm{B\kern-.05em\textsc{i\kern-.025em b}\kern-.08em T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
-
-\newtheorem{theorem}{Theorem}
 
 %%%%%%%%%%%%%%%%%%%%%
 % Code Presentation %
@@ -680,6 +668,86 @@ twoside=false, bindingoffset=0pt, nohead]{geometry}
 % We recommend using the more modern ebproof over
 % the more "traditional" bussproofs,
 \usepackage{ebproof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Nice frames, for the documents we will be including %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage[breakable]{tcolorbox} % Will be used for frame around included documents.
+% https://tex.stackexchange.com/a/66156
+\DeclareRobustCommand\titleforcurrentframe{temp}  % Title for the current page of the frame.
+% This macro is re-defined in \modifiedincludepdf
+% and \modifiedincludetxt
+\newcommand{\mybox}[1]{%
+    \begin{tcolorbox}[
+        colframe=augustablue,
+        colback=white,
+        width={\dimexpr\textwidth},
+        breakable,
+        adjusted title={\hypersetup{citecolor=white}\titleforcurrentframe}
+    ]
+    #1
+    \end{tcolorbox}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Commands to include pdf %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{pdfpages}
+% https://tex.stackexchange.com/questions/198091/get-number-of-pages-of-external-pdf/198095#198095
+\newcommand*{\numberofpages}[1]{%
+    \the\XeTeXpdfpagecount"#1" %
+}
+
+% Counter to add label to individual pages of the pdf.
+% https://tex.stackexchange.com/a/25113
+\newcounter{currentpagecounter}
+\newcounter{totaldocpages}
+% Command to include pdf document.
+% Usage:
+% \modifiedincludepdf{options for includepdf}{label}{full path to the document}{title of the document}{"level" (e.g., section, subsection, etc.)}
+\newcommand{\modifiedincludepdf}[6]{
+    \let\fbox\mybox % includepsf, with the option "frame", use \fbox
+    % to draw the frame. We change the command, to use
+    % our custom frame, that uses tcolorbox.
+    \setcounter{currentpagecounter}{0}
+    \setcounter{totaldocpages}{\numberofpages{#3}}
+    \renewcommand{\titleforcurrentframe}{#4 (p.\ \thecurrentpagecounter\ / \thetotaldocpages) \hfill #6} % #6 acts as a subtitle
+    \includepdf[#1,%
+    width=\textwidth,%
+    pages=-,%
+    frame,
+    clip,
+    pagecommand={
+        \stepcounter{currentpagecounter} % We increment the counter for the number of pages.
+        \label{#2.\thecurrentpagecounter}% We add a label of the form "label.pagenumber".
+    },
+    link = true,
+    linkname = {#2},
+    addtotoc={1, #5, 1, #4, #2} % We add an entry to the table of content.
+    ]{#3}
+}
+
+%%%%%%%%%
+% Misc. %
+%%%%%%%%%
+
+% To set maximum width and height, courtesy of https://github.com/jgm/pandoc-templates/blob/master/default.latex.orig
+\makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+    \def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+
+\usepackage{pdflscape}  % For sideways figures and landscape pages.
+\usepackage{csquotes}   % For proper quotations.
+\usepackage{mathtools}  % For math. environments
+\usepackage{amsthm}     % For math. environments
+
+% For the BibTex logo, courtesy of https://tex.stackexchange.com/a/198472
+\def\BibTeX{\textrm{B\kern-.05em\textsc{i\kern-.025em b}\kern-.08em T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+\newtheorem{theorem}{Theorem}
 \usepackage{bookmark}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same}
@@ -702,6 +770,9 @@ twoside=false, bindingoffset=0pt, nohead]{geometry}
 \begin{document}
 \frontmatter
 \maketitle
+
 \mainmatter
+\frontmatter
+
 \input{content}
 \end{document}

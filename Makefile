@@ -1,4 +1,6 @@
-TEMPLATE := https://raw.githubusercontent.com/the-au-forml-lab/au_ccs_dissertation_template/refs/heads/master/tex_version/main.tex
+TEMPLATE_VERSION := 0.2.1
+
+TEMPLATE := https://github.com/the-au-forml-lab/au_ccs_dissertation_template/releases/download/$(TEMPLATE_VERSION)/tex_version.zip
 COUNTABLE := text/abstract.tex
 
 all: compile
@@ -10,7 +12,10 @@ watch:
 	ls *.tex *.bib */*.tex */*.sty .latex/* | entr make
 
 update_template:
-	wget $(TEMPLATE) -O main.tex
+	wget $(TEMPLATE) -O template.zip
+	unzip -o template.zip
+	cp tex_version/main.tex main.tex
+	rm -rf template.zip
 
 clean:
 	@rm -rf *.pdf *.aux *.acr *.xdv *.bbl *.bcf *.blg *.out *.fdb_latexmk *.fls *.log *.run.xml *.tex.blg *.synctex.gz *.vtc *.lot *.lof *.toc *~ main.pdf
