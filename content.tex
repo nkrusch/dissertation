@@ -24,6 +24,7 @@
 {\noindent Software artifact:
 \href{https://doi.org/10.5281/zenodo.7908484}{10.5281/zenodo.7908484}
 \newline\noindent Tool user guide: \aref{app:sec:tool-guide}}
+
 \includepdf[pages={1-}, addtotoc={
 1,subsection,2,{Introduction -- Making Use of Implicit Complexity},sec:intro,
 3,subsection,2,{Calculating Bounds with \mwp-Analysis},sec:idea,
@@ -53,6 +54,25 @@ pagecommand={\thispagestyle{empty}%
 \addtoindex{pycparser}{6}
 \addtoindex{mwp-bound}{3}
 \addtoindex{mwp-bound}{8}
+\addtosymbols{Xprime}{10}
+\addtosymbols{Xprime}{2}
+\addtosymbols{Xprime}{3}
+\addtosymbols{Xprime}{4}
+\addtosymbols{Xprime}{5}
+\addtosymbols{Xprime}{9}
+\addtosymbols{hp}{3}
+\addtosymbols{infty}{10}
+\addtosymbols{infty}{3}
+\addtosymbols{infty}{4}
+\addtosymbols{infty}{7}
+\addtosymbols{infty}{8}
+\addtosymbols{infty}{9}
+\addtosymbols{m}{3}
+\addtosymbols{p}{3}
+\addtosymbols{w}{3}
+\addtosymbols{zero}{10}
+\addtosymbols{zero}{3}
+\addtosymbols{zero}{5}
 }]{res/pubs_atva.2023.pdf}
 
 %-------------------------------------------------------------------------------
@@ -109,27 +129,204 @@ pagecommand={\thispagestyle{empty}%
 \addtoindex{pymwp}{22}
 \addtoindex{pymwp}{23}
 \addtoindex{Coq}{16}
+\addtosymbols{alpha}{3}
+\addtosymbols{beta}{3}
+\addtosymbols{closure}{3}
+\addtosymbols{gamma}{3}
+\addtosymbols{infty}{10}
+\addtosymbols{infty}{13}
+\addtosymbols{infty}{14}
+\addtosymbols{infty}{17}
+\addtosymbols{infty}{21}
+\addtosymbols{infty}{22}
+\addtosymbols{infty}{23}
+\addtosymbols{infty}{6}
+\addtosymbols{infty}{7}
+\addtosymbols{infty}{8}
+\addtosymbols{matrix}{3}
+\addtosymbols{mi}{3}
+\addtosymbols{mj}{3}
+\addtosymbols{msring}{3}
+\addtosymbols{mstar}{3}
+\addtosymbols{mwpset}{3}
+\addtosymbols{m}{3}
+\addtosymbols{oplus}{3}
+\addtosymbols{otimes}{3}
+\addtosymbols{p}{3}
+\addtosymbols{w}{3}
 }]{res/pubs_fscd.2022.pdf}
 
 \chapter{Distributing and Parallelizing Non-canonical Loops}
 \label{app:sec:vmcai}
 \ainfo{\CTNT}{International Conference on Verification, Model Checking, and Abstract Interpretation, 2023}
-\includepdf[pages={1-}, pagecommand={\thispagestyle{empty}%
-\addtoindex{OpenMP}{2}
-\addtoindex{OpenMP}{3}
-\addtoindex{OpenMP}{4}
+\includepdf[pages={1-},
+addtolist={
+5,figure,A simple imperative \pr|while| language,fig-grammar,
+6,table,{Definition of $\Out$, $\In$ and $\Occ$ for commands},table:def-out-in-occ,
+8,figure,{Statement examples, sets, and representations of their dependencies},fig:dependences,
+9,figure,Data-Flow Graph of Composition,fig:composition,
+13,figure,Distributing a more complex \pr|while| loop,fig:exampe-complex,
+16,table,Parallelization tools feature support comparison,tab:comparison,
+17,figure,Code transformation example,fig:code-example,
+19,figure,Speedup of selected benchmarks implemented using \pr|while| loops,fig:while,
+20,table,Speedup comparison between parallel benchmarks,tab:speedup,
+20,table,Descriptions of evaluated parallel benchmarks,tab:benchmarks},
+pagecommand={\thispagestyle{empty}%
+\addtoindex{Clava}{15}
+\addtoindex{Clava}{16}
+\addtoindex{Clava}{19}
+\addtoindex{Cetus}{15}
+\addtoindex{Cetus}{16}
+\addtoindex{MiBench}{17}
+\addtoindex{MiBench}{20}
+\addtoindex{NAS Parallel Benchmarks}{17}
+\addtoindex{NAS Parallel Benchmarks}{20}
 \addtoindex{OpenMP}{14}
 \addtoindex{OpenMP}{15}
 \addtoindex{OpenMP}{16}
 \addtoindex{OpenMP}{18}
+\addtoindex{OpenMP}{19}
 \addtoindex{OpenMP}{20}
+\addtoindex{OpenMP}{2}
+\addtoindex{OpenMP}{3}
+\addtoindex{OpenMP}{4}
+\addtoindex{Par4All}{15}
+\addtoindex{Par4All}{16}
+\addtoindex{Pluto}{15}
+\addtoindex{Pluto}{16}
 \addtoindex{Polybench/C}{16}
 \addtoindex{Polybench/C}{17}
+\addtoindex{Polybench/C}{18}
 \addtoindex{ROSE}{14}
 \addtoindex{ROSE}{15}
+\addtoindex{ROSE}{16}
 \addtoindex{ROSE}{17}
 \addtoindex{ROSE}{18}
+\addtoindex{ROSE}{19}
 \addtoindex{ROSE}{20}
+\addtoindex{TRACO}{15}
+\addtoindex{TRACO}{16}
+\addtoindex{compilation!parallelizing}{15}
+\addtoindex{compilation!parallelizing}{16}
+\addtoindex{compilation!parallelizing}{17}
+\addtoindex{compilation!parallelizing}{19}
+\addtoindex{compilation!parallelizing}{3}
+\addtoindex{compilation!source-to-source}{15}
+\addtoindex{compilation!source-to-source}{1}
+\addtoindex{compilation!source-to-source}{3}
+\addtoindex{dependency analysis}{14}
+\addtoindex{dependency analysis}{21}
+\addtoindex{dependency analysis}{2}
+\addtoindex{dependency analysis}{4}
+\addtoindex{dependency analysis}{6}
+\addtoindex{graph!bi-partite}{7}
+\addtoindex{graph!condensation}{11}
+\addtoindex{graph!condensation}{12}
+\addtoindex{graph!condensation}{13}
+\addtoindex{graph!covering}{11}
+\addtoindex{graph!covering}{12}
+\addtoindex{graph!covering}{13}
+\addtoindex{graph!covering}{14}
+\addtoindex{graph!data-flow}{6}
+\addtoindex{graph!data-flow}{7}
+\addtoindex{graph!dependence}{11}
+\addtoindex{graph!dependence}{14}
+\addtoindex{graph!dependence}{15}
+\addtoindex{graph!saturated covering}{12}
+\addtoindex{graph!saturated covering}{13}
+\addtoindex{icc, as Intel's C++ compiler}{15}
+\addtoindex{icc, as Intel's C++ compiler}{16}
+\addtoindex{loop form!canonical}{15}
+\addtoindex{loop form!canonical}{16}
+\addtoindex{loop form!canonical}{17}
+\addtoindex{loop form!canonical}{2}
+\addtoindex{loop form!canonical}{4}
+\addtoindex{loop form!non-canonical}{21}
+\addtoindex{loop form!non-canonical}{2}
+\addtoindex{loop transformation!distribution}{2}
+\addtoindex{loop transformation!fission}{11}
+\addtoindex{loop transformation!fission}{12}
+\addtoindex{loop transformation!fission}{14}
+\addtoindex{loop transformation!fission}{15}
+\addtoindex{loop transformation!fission}{16}
+\addtoindex{loop transformation!fission}{17}
+\addtoindex{loop transformation!fission}{18}
+\addtoindex{loop transformation!fission}{19}
+\addtoindex{loop transformation!fission}{20}
+\addtoindex{loop transformation!fission}{2}
+\addtoindex{loop transformation!fission}{3}
+\addtoindex{loop transformation!fission}{4}
+\addtoindex{loop transformation!fission}{6}
+\addtoindex{loop transformation!tiling}{4}
+\addtoindex{loop transformation!fusion}{21}
+\addtoindex{loop transformation!unrolling}{21}
+\addtoindex{loop transformation!unrolling}{3}
+\addtoindex{loop-carried dependency}{15}
+\addtoindex{loop-level parallelism}{2}
+\addtoindex{parallelization!automatic}{15}
+\addtoindex{parallelization!automatic}{16}
+\addtoindex{parallelization!automatic}{19}
+\addtoindex{parallelization!automatic}{20}
+\addtoindex{parallelization!automatic}{3}
+\addtoindex{parallelization!automatic}{4}
+\addtoindex{parallelization!potential}{3}
+\addtoindex{polyhedral optimization}{4}
+\addtoindex{state explosion problem}{3}
+\addtoindex{strongly connected components}{11}
+\addtosymbols{corro}{9}
+\addtosymbols{corr}{8}
+\addtosymbols{corr}{9}
+\addtosymbols{corr}{10}
+\addtosymbols{dfg}{7}
+\addtosymbols{dfg}{8}
+\addtosymbols{dfg}{10}
+\addtosymbols{dfg}{11}
+\addtosymbols{et}{9}
+\addtosymbols{infty2}{7}
+\addtosymbols{infty2}{8}
+\addtosymbols{infty2}{9}
+\addtosymbols{infty2}{10}
+\addtosymbols{infty2}{11}
+\addtosymbols{mdfg}{7}
+\addtosymbols{mdfg}{8}
+\addtosymbols{mdfg}{9}
+\addtosymbols{mdfg}{10}
+\addtosymbols{mdfg}{11}
+\addtosymbols{mdfg}{13}
+\addtosymbols{occ}{6}
+\addtosymbols{occ}{7}
+\addtosymbols{occ}{9}
+\addtosymbols{occ}{10}
+\addtosymbols{one}{7}
+\addtosymbols{one}{8}
+\addtosymbols{one}{9}
+\addtosymbols{one}{10}
+\addtosymbols{vin}{6}
+\addtosymbols{vin}{7}
+\addtosymbols{vin}{8}
+\addtosymbols{vin}{11}
+\addtosymbols{vout}{6}
+\addtosymbols{vout}{7}
+\addtosymbols{vout}{8}
+\addtosymbols{vout}{9}
+\addtosymbols{vout}{10}
+\addtosymbols{vout}{11}
+\addtosymbols{zero2}{7}
+\addtosymbols{zero2}{8}
+\addtosymbols{zero2}{9}
+\addtosymbols{zero2}{10}
+\addtosymbols{loopw}{10}
+\addtosymbols{loopw}{11}
+\addtosymbols{loopw}{12}
+\addtosymbols{loopw}{13}
+\addtosymbols{loopw}{14}
+\addtosymbols{looppw}{12}
+\addtosymbols{looppw}{13}
+\addtosymbols{looppw}{14}
+\addtosymbols{sccs}{11}
+\addtosymbols{graph}{12}
+\addtosymbols{graphw}{11}
+\addtosymbols{graphw}{12}
 }]{res/pubs_vmcai.2023.pdf}
 
 \chapter{Tool User Guide for \enquote{pymwp: A Static Analyzer Determining Polynomial Growth Bounds}}\label{app:sec:tool-guide}
@@ -148,11 +345,36 @@ pagecommand={\thispagestyle{empty}%
 \addtoindex{pymwp}{11}
 \addtoindex{mwp-bound}{3}
 \addtoindex{mwp-bound}{8}
+\addtosymbols{Xprime}{10}
+\addtosymbols{Xprime}{2}
+\addtosymbols{Xprime}{3}
+\addtosymbols{Xprime}{6}
+\addtosymbols{Xprime}{8}
+\addtosymbols{hp}{3}
+\addtosymbols{infty}{2}
+\addtosymbols{infty}{7}
+\addtosymbols{infty}{8}
+\addtosymbols{m}{2}
+\addtosymbols{m}{3}
+\addtosymbols{p}{2}
+\addtosymbols{p}{3}
+\addtosymbols{vlist}{3}
+\addtosymbols{w}{2}
+\addtosymbols{w}{3}
+\addtosymbols{zero}{2}
 }]{res/pubs_pymwp_guide.pdf}
 
 \chapter{Co-author Statements}\label{app:sec:coauth}
 \input{text/contrib}
 
+% ACRONYMS
 \clearpage\pagestyle{plain}
-\printnoidxglossary[type=\acronymtype]
+\printglossary[type=\acronymtype,nonumberlist,nopostdot,style=index]
+
+% TERMS INDEX
 \clearpage\printindex
+
+% SYMBOLS INDEX
+\clearpage\pagestyle{plain}
+\renewcommand{\glspostdescription}{,}
+\printglossary[type=symbols,style=longragged]

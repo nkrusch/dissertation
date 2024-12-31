@@ -14,7 +14,9 @@
 \RequirePackage{enumitem}
 \RequirePackage{fnpct}
 \RequirePackage{imakeidx}
-\RequirePackage[acronym,nonumberlist,section=chapter,numberedsection,nopostdot,nogroupskip,style=index]{glossaries}
+\RequirePackage{hyperref} % FIX! https://tex.stackexchange.com/a/28800/
+\RequirePackage[acronym,section=chapter,numberedsection,nogroupskip,automake]{glossaries}
+\RequirePackage{glossary-longragged}
 % Math
 \RequirePackage{amsmath}
 \RequirePackage{mathtools}
@@ -38,4 +40,3 @@
 \RequirePackage{tikz}
 \RequirePackage{tikz-network}
 \usetikzlibrary{arrows,calc,tikzmark,fit,matrix,shapes,arrows,shadows}
-

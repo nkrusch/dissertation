@@ -13,6 +13,13 @@
 }
 \makeatother %
 
+% add symbols to \includepdf
+\makeatletter
+\newcommand\addtosymbols[2]{%
+\ifnum\AM@page=#2\relax\gls{symb:#1}\fi
+}
+\makeatother %
+
 % Fix \sc undefined
 \providecommand{\sc}{}
 \renewcommand{\sc}[1]{#1}
@@ -58,16 +65,22 @@
 \newtheorem{fact}{Fact}
 
 % Custom terms
-\newcommand\mwp{{mwp}}
+\newcommand\mwp{{mwp}\xspace}
+\newcommand{\mwpsc}{\textnormal{\textsc{mwp}}\xspace}
+%\newcommand{\mwpi}{\textnormal{\textsc{mwp}$^\infty$}\xspace}
 \newcommand{\vdashJK}{\vdash_{\textnormal{\textsc{jk}}}}
-\newcommand{\scc}{\textnormal{\scshape scc}\xspace}
-\newcommand{\sccs}{\textnormal{\scshape scc}s\xspace}
+\newcommand{\DFG}{\textsc{dfg}\xspace}
+\newcommand{\dfg}[1]{\mathbb{M}(\comm{#1})}
+\newcommand{\dfgtilde}[1]{\mathbb{\tilde{M}}(\comm{#1})}
+\newcommand{\scc}{\textsc{scc}\xspace}
+\newcommand{\sccs}{\textnormal{\textsc{scc}s\xspace}}
 \newcommand{\SFM}{{\sc sfm}\xspace}
 \newcommand{\SFMs}{{\sc sfm}s\xspace}
 \newcommand{\sfm}[1]{\mathbb{M}(\comm{#1})}
 \newcommand{\condcorr}[1]{\mathrm{Corr}^{\mathtt{if}}(#1)}
 \newcommand{\whilecorr}[1]{\mathrm{Corr}^{\mathtt{while}}(#1)}
 \newcommand{\corr}[1]{\mathrm{Cr}(#1)}
+\newcommand{\corrc}[1]{\mathrm{Corr}(#1)}
 \newcommand{\Var}{\mathrm{Vars}}
 \newcommand{\lvl}[1]{\ell(#1)}
 \newcommand{\SC}{\mathrm{SC}}
@@ -75,7 +88,6 @@
 \newcommand{\HMO}{\mathrm{HMO}}
 \newcommand{\scl}[1]{\ensuremath{\mathit{#1}}}
 \newcommand{\SSG}{\mathrm{SSG}}
-
 \newcommand{\nv}{\cdot} % no violation
 \newcommand{\vi}{\textnormal{\scalebox{.65}{\faTint}}} %\usym{1F322}} % Violation
 

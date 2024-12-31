@@ -1,8 +1,7 @@
 %% All sections begin on a new page
-\AddToHook{cmd/chapter/before}{\clearpage}
+%\AddToHook{cmd/chapter/before}{\clearpage}
 
-% Accronyms and index formatting
-\setacronymstyle{long-short}
+% Index formatting
 \makeatletter
 \renewenvironment{theindex}
 {{\chapter{\indexname}\label{sec:app:index}}\par%
@@ -13,6 +12,8 @@
 \begin{multicols}{2}}
 {\end{multicols}}
 \makeatother
+% Glossary formatting
+\renewcommand{\glsdescwidth}{16cm}
 
 % autorefs
 \AtBeginDocument{%
