@@ -100,13 +100,11 @@ twoside=false, bindingoffset=0pt, nohead]{geometry}
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \usepackage[backend=biber,style=apa]{biblatex}
-\addbibresource{./references/references.bib}
 % The following package and toggle
 % are needed to implement the switch
 % between the PhD and MS templates.
 % For now, it is used only on the title
 % page.
-\usepackage{etoolbox}
 \newtoggle{ms}
 \toggletrue{ms}
 %%%%%%%%%%%%%%%%%%
@@ -479,7 +477,6 @@ twoside=false, bindingoffset=0pt, nohead]{geometry}
 % https://brand.augusta.edu/color/ %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\usepackage{xcolor}
 % Those are the "official" AU color, but we are assuming black-and-white printing.
 \definecolor{augustablue}{HTML}{002f55} % Used for "external" links.
 \definecolor{augustagrey}{HTML}{A5ACAF} % Used for "internal" links.
@@ -757,7 +754,6 @@ twoside=false, bindingoffset=0pt, nohead]{geometry}
   pdfcreator={LaTeX via pandoc}}
 
 \title{\yourtitle}
-\usepackage{etoolbox}
 \makeatletter
 \providecommand{\subtitle}[1]{% add subtitle to \maketitle
   \apptocmd{\@title}{\par {\large #1 \par}}{}{}
