@@ -16,7 +16,7 @@ Repository to host, automatically compile, and share my dissertation.
 
 ### Debug Action
 
-````
+```
 docker pull ghcr.io/xu-cheng/texlive-full:20241201  # or "latest"
 # cd dissertation
 docker run -v "$(pwd):/dissertation" -it --rm ghcr.io/xu-cheng/texlive-full
