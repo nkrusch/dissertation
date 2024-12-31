@@ -6,7 +6,10 @@ ABSTRACT := text/abstract.tex
 all: compile
 
 compile:
-	latexmk -pdf -xelatex main
+	latexmk -xelatex main
+
+action_debug:
+	xelatex -no-pdf -file-line-error -halt-on-error -interaction=nonstopmode -recorder  "main.tex"
 
 watch:
 	ls *.tex references/* */*.tex */*.sty .latex/* | entr make
@@ -23,7 +26,7 @@ update_main:
 	cp tex_version/main.tex main.tex
 
 clean:
-	@rm -rf *.pdf *.aux *.acr *.sbl *.idx *.ind *.ilg *.xdv *.bbl *.bcf *.blg *.out *.fdb_latexmk *.fls *.log *.run.xml *.tex.blg *.synctex.gz *.vtc *.lot *.lof *.toc *~ main.pdf
+	@rm -rf *.pdf *.acn *.alg *glg *.glo *.gls *.ist *.slg *.sym *.aux *.acr *.sbl *.idx *.ind *.ilg *.xdv *.bbl *.bcf *.blg *.out *.fdb_latexmk *.fls *.log *.run.xml *.tex.blg *.synctex.gz *.vtc *.lot *.lof *.toc *~ main.pdf
 
 count:
 	@echo $$(wc -w < $(ABSTRACT)) '\t---' $(basename $(ABSTRACT))
