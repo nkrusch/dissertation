@@ -3,7 +3,10 @@ TEMPLATE_VERSION := 0.2.1
 TEMPLATE := https://github.com/the-au-forml-lab/au_ccs_dissertation_template/releases/download/$(TEMPLATE_VERSION)/tex_version.zip
 ABSTRACT := text/abstract.tex
 
-all: compile
+all:
+	@make compile
+	@make terms
+	@make compile
 
 compile:
 	latexmk -xelatex main
@@ -12,7 +15,7 @@ action_debug:
 	xelatex -no-pdf -file-line-error -halt-on-error -interaction=nonstopmode -recorder  "main.tex"
 
 watch:
-	ls *.tex references/* */*.tex */*.sty .latex/* | entr make
+	ls *.tex references/* */*.tex */*.sty .latex/* | entr make compile
 
 terms:
 	makeglossaries main
