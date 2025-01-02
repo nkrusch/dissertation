@@ -20,6 +20,9 @@ watch:
 terms:
 	makeglossaries main
 
+figures:
+	make -C pictures
+
 pull_template:
 	@wget $(TEMPLATE) -O template.zip
 	@unzip -o template.zip

@@ -11,14 +11,15 @@
 \newcommand\addtoindex[2]{%
 \ifnum\AM@page=#2\relax\index{#1}\fi
 }
-\makeatother %
+\makeatother
 
 % add symbols to \includepdf
 \makeatletter
 \newcommand\addtosymbols[2]{%
 \ifnum\AM@page=#2\relax\gls{symb:#1}\fi
 }
-\makeatother %
+\makeatother
+\newcommand\symbo[1]{\gls{symb:#1}}
 
 % Fix \sc undefined
 \providecommand{\sc}{}
@@ -67,15 +68,14 @@
 % Custom terms
 \newcommand\mwp{{mwp}\xspace}
 \newcommand{\mwpsc}{\textnormal{\textsc{mwp}}\xspace}
-%\newcommand{\mwpi}{\textnormal{\textsc{mwp}$^\infty$}\xspace}
 \newcommand{\vdashJK}{\vdash_{\textnormal{\textsc{jk}}}}
 \newcommand{\DFG}{\textsc{dfg}\xspace}
 \newcommand{\dfg}[1]{\mathbb{M}(\comm{#1})}
 \newcommand{\dfgtilde}[1]{\mathbb{\tilde{M}}(\comm{#1})}
 \newcommand{\scc}{\textsc{scc}\xspace}
-\newcommand{\sccs}{\textnormal{\textsc{scc}s\xspace}}
-\newcommand{\SFM}{{\sc sfm}\xspace}
-\newcommand{\SFMs}{{\sc sfm}s\xspace}
+\newcommand{\sccs}{\textnormal{{\scshape SCC}s\xspace}}
+\newcommand{\SFM}{\textsc{sfm}\xspace}
+\newcommand{\SFMs}{\textsc{sfm}s\xspace}
 \newcommand{\sfm}[1]{\mathbb{M}(\comm{#1})}
 \newcommand{\condcorr}[1]{\mathrm{Corr}^{\mathtt{if}}(#1)}
 \newcommand{\whilecorr}[1]{\mathrm{Corr}^{\mathtt{while}}(#1)}
