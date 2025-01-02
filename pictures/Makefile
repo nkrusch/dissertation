@@ -1,7 +1,7 @@
 SRC := $(wildcard *.tex)
 PDF_IMG := ${SRC:%.tex=fig_%.pdf}
 
-all: $(PDF_IMG) mv_pdf_pics
+all: $(PDF_IMG) mv_pdf_pics clean
 
 fig_%.pdf : %.tex
 	@latexmk -pdf -xelatex -jobname=$(subst .pdf,,$@) $<

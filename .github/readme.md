@@ -38,4 +38,5 @@ apk update && apk add [whatever-package]
 ### Troubleshooting/notes
 
 Issues related to `\includepdf`
-* `addtotoc={…}` adding commands in the description string breaks compilation on _some_ machines 
+* `addtotoc={…}` adding commands in the description string breaks compilation on _some_ machines.   
+   Error message: `Improper alphabetic constant` followed by `Incomplete (and hence corrupt) bcf file 'main.bcf'`
