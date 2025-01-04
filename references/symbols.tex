@@ -1,6 +1,6 @@
 \newglossaryentry{symb:PsiProd}{name={$\bar{\Psi}$},description={injection over cartesian product},sort=Psi,text={}}
 \newglossaryentry{symb:Psi}{name={$\Psi$},description={injection},sort=Psi,text={}}
-\newglossaryentry{symb:Xprime}{name={\pr|X'|},description={final value of a variable},sort=x,text={}}
+\newglossaryentry{symb:Xprime}{name={\pr|X'|},description={variable referring to its final value},sort=x,text={}}
 \newglossaryentry{symb:ai}{name={$A_i$},description={set of derivation choices},sort=1,text={}}
 \newglossaryentry{symb:alpha}{name={$\alpha$},description={coefficient in \mwpsc},sort=alpha,text={}}
 \newglossaryentry{symb:assgn}{name={$\vec{a}$},description={derivation assignment},sort={assignment},text={}}
@@ -15,6 +15,7 @@
 \newglossaryentry{symb:cmat}{name={\(\vdash \text{\pr|C|}:M\)},description={assignment of matrix $M$ to command \pr|C|},sort=cmat,text={}}
 \newglossaryentry{symb:corro}{name={$O$},description={row vector for correction},sort=o,text={}}
 \newglossaryentry{symb:corr}{name={$\corrc{\_}$},description={correction of $\_$},sort=correction,text={}}
+\newglossaryentry{symb:cv}{name={$\vec{C}$},description={choice vector},sort=C,text={}}
 \newglossaryentry{symb:delta}{name={$\delta$},description={derivation choice},sort=delta,text={}}
 \newglossaryentry{symb:dfg}{name={\DFG},description={data-flow graph},sort=dfg,text={}}
 \newglossaryentry{symb:et}{name={$E^t$},description={column vector for correction},sort=et,text={}}
@@ -23,11 +24,13 @@
 \newglossaryentry{symb:gamma}{name={$\gamma$},description={coefficient in \mwpsc},sort=gamma,text={}}
 \newglossaryentry{symb:graphw}{name={$\textnormal{G}_{\textnormal{\prc|W|}}$},description={condensation graph},sort={condensation graph},text={}}
 \newglossaryentry{symb:graph}{name={$G$},description={graph},sort=graph,text={}}
+\newglossaryentry{symb:hoare}{name={$\{P\}\mathrel{\_}\{Q\}$},description={Hoare triple},sort={hoare triple},text={}}
 \newglossaryentry{symb:hp}{name={$poly$},description={honest polynomial},sort=poly,text={}}
 \newglossaryentry{symb:infty2}{name={$\infty$},description={dependence},sort=infinity,text={}}
 \newglossaryentry{symb:infty}{name={$\infty$},description={derivation failure},sort=infinity,text={}}
 \newglossaryentry{symb:iso}{name={$\cong$},description={isomorphism},sort=isomorphism,text={}}
 \newglossaryentry{symb:k}{name={$k$},description={number of different derivations of a program},sort=k,text={}}
+\newglossaryentry{symb:lnot}{name={$\lnot$},description={logical not},sort=Q,text={}}
 \newglossaryentry{symb:looppw}{name={$\tilde{\mathtt{W}}$},description={parallel loop},sort=w,text={}}
 \newglossaryentry{symb:loopw}{name={\prc|W|},description={sequential loop},sort=w,text={}}
 \newglossaryentry{symb:map}{name={\(\mapsto\)},description={map of derivation choice to a value},sort=map,text={}}
@@ -47,16 +50,19 @@
 \newglossaryentry{symb:oplus}{name={$\oplus$},description={component-wise addition},sort=plus,text={}}
 \newglossaryentry{symb:otimes}{name={$\otimes$},description={matrix product},sort=times,text={}}
 \newglossaryentry{symb:plusi}{name={$+^{\infty}$},description={addition over \(\mwpsc^\infty\)},sort=plusinfinity,text={}}
+\newglossaryentry{symb:post}{name={$Q$},description={postcondition},sort=Q,text={}}
+\newglossaryentry{symb:pre}{name={$P$},description={precondition},sort=P,text={}}
 \newglossaryentry{symb:p}{name={$p$},description={polynomial flow coefficient},sort=p,text={}}
 \newglossaryentry{symb:sccs}{name={\sccs},description={strongly connected components},sort=scc,text={}}
 \newglossaryentry{symb:slot}{name={\([\cdot]\)},description={program slot},sort=slot,text={}}
 \newglossaryentry{symb:smpi}{name={$\pi$},description={derivation},sort=pi,text={}}
 \newglossaryentry{symb:sring}{name={\(\mathbb{S}\)},description={strong semi-ring},sort=S,text={}}
 \newglossaryentry{symb:timesi}{name={$\times^{\infty}$},description={multiplication over \(\mwpsc^\infty\)},sort=timesinfinity,text={}}
-\newglossaryentry{symb:true}{name={$\top$},description={true},sort=true,text={}}
+\newglossaryentry{symb:ttrue}{name={$\top$},description={true},sort=true,text={}}
 \newglossaryentry{symb:v0a}{name={\(\{_{i}^{\alpha}\}\)},description={vector with \(\alpha\) in its \(i^\text{th}\) row and $0$ everywhere else},sort={vector zero},text={}}
 \newglossaryentry{symb:vadd}{name={\(\{_{i}^{\alpha} , _{j}^{\beta}\}\)},description={component-wise vector addition},sort={vector addition},text={}}
 \newglossaryentry{symb:vare}{name={\(\var(\_)\)},description={variables in $\_$},sort={vare},text={}}
+\newglossaryentry{symb:vdash}{name={$\vdash$},description={proves},sort=turnstile,text={}}
 \newglossaryentry{symb:vec2}{name={\(\mat{\alpha \\ \beta}\)},description={column vector of flow coefficients},sort={vector column},text={}}
 \newglossaryentry{symb:vec}{name={$V$},description={column vector},sort=V,text={}}
 \newglossaryentry{symb:vin}{name={$\In(\_)$},description={variables used by $\_$},sort={in},text={}}
@@ -65,6 +71,6 @@
 \newglossaryentry{symb:vout}{name={$\Out(\_)$},description={variables modified by $\_$},sort={out},text={}}
 \newglossaryentry{symb:vrep}{name={\(M \xleftarrow{j} V\)},description={replace in a matrix $M$ the \(j^\text{th}\) column vector by $V$},sort={matrix replace vector},text={}}
 \newglossaryentry{symb:w}{name={$w$},description={weak polynomial flow coefficient},sort=w,text={}}
-\newglossaryentry{symb:xprime}{name={$x'$},description={variable final value},sort=x,text={}}
+\newglossaryentry{symb:xprime2}{name={$x'$},description={final value},sort=x,text={}}
 \newglossaryentry{symb:zero2}{name={$0$},description={reinitialization},sort=0,text={}}
 \newglossaryentry{symb:zero}{name={$0$},description={flow coefficient for absence of dependency},sort=0,text={}}

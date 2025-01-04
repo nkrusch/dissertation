@@ -3,19 +3,14 @@ TEMPLATE_VERSION := 0.2.1
 TEMPLATE := https://github.com/the-au-forml-lab/au_ccs_dissertation_template/releases/download/$(TEMPLATE_VERSION)/tex_version.zip
 ABSTRACT := text/abstract.tex
 
-all: with_glossaries
-
 compile:
 	latexmk -xelatex main
 
 action:  # action workflow runs this command
 	xelatex -no-pdf -file-line-error -halt-on-error -interaction=nonstopmode -recorder  "main.tex"
 
-with_glossaries:
-	@make compile && make terms && make compile
-
 watch:
-	ls *.tex references/* */*.tex */*.sty .latex/* | entr make compile
+	ls *.tex */*.tex references/* latex/* | entr -n make compile
 
 terms:
 	makeglossaries main

@@ -1,0 +1,160 @@
+\section{Polynomial Postconditions via mwp-Bounds}\label{sec:postcond}
+\ainfoX{Neea Rusch}{}{}
+\includepdf[pages={1-}, addtotoc={
+1,subsection,2,Introduction,pc-intro,
+4,subsection,2,Preliminaries,prelim,
+6,subsection,2,Technical foundations,terms,
+8,subsection,2,Variable-guided matrix exploration,enhancements,
+12,subsection,2,mwp-bounds as postconditions,analysis,
+14,subsection,2,Implementation and evaluation,expr,
+16,subsection,2,Analysis of experiment results,results,
+19,subsection,2,Related works,related-works,
+20,subsection,2,Conclusion and future directions,conclusion},
+addtolist={
+15,table,Benchmarks characteristics summarized,tab:suites,
+17,table,{Analysis results for mwp analyses},tab:linear,
+17,table,Daikon analysis results,tab:daikon,
+19,table,Postcondition comparison on select benchmarks,tab:pc},
+pagecommand={\thispagestyle{empty}%
+\addtoindex{DIG}{20}
+\addtoindex{Dafny}{15}
+\addtoindex{Dafny}{18}
+\addtoindex{Dafny}{4}
+\addtoindex{Daikon}{14}
+\addtoindex{Daikon}{15}
+\addtoindex{Daikon}{16}
+\addtoindex{Daikon}{18}
+\addtoindex{Daikon}{20}
+\addtoindex{EvoSpex}{20}
+\addtoindex{Frama-C}{19}
+\addtoindex{Hoare triple}{4}
+\addtoindex{Turing completeness}{3}
+\addtoindex{Viper}{4}
+\addtoindex{abstract interpretation}{19}
+\addtoindex{assertion inference paradox}{20}
+\addtoindex{choice vector}{10}
+\addtoindex{choice vector}{11}
+\addtoindex{choice vector}{12}
+\addtoindex{choice vector}{9}
+\addtoindex{deductive verification}{4}
+\addtoindex{dynamic program analysis}{15}
+\addtoindex{dynamic program analysis}{16}
+\addtoindex{dynamic program analysis}{20}
+\addtoindex{honest polynomial}{8}
+\addtoindex{imperative programs}{15}
+\addtoindex{imperative programs}{19}
+\addtoindex{imperative programs}{2}
+\addtoindex{imperative programs}{5}
+\addtoindex{imperative programs}{6}
+\addtoindex{invariant}{13}
+\addtoindex{invariant}{14}
+\addtoindex{invariant}{15}
+\addtoindex{invariant}{19}
+\addtoindex{invariant}{1}
+\addtoindex{invariant}{21}
+\addtoindex{invariant}{3}
+\addtoindex{invariant}{4}
+\addtoindex{monomial}{10}
+\addtoindex{monomial}{11}
+\addtoindex{monomial}{12}
+\addtoindex{monomial}{7}
+\addtoindex{mwp-bound}{10}
+\addtoindex{mwp-bound}{11}
+\addtoindex{mwp-bound}{12}
+\addtoindex{mwp-bound}{13}
+\addtoindex{mwp-bound}{14}
+\addtoindex{mwp-bound}{16}
+\addtoindex{mwp-bound}{18}
+\addtoindex{mwp-bound}{20}
+\addtoindex{mwp-bound}{2}
+\addtoindex{mwp-bound}{3}
+\addtoindex{mwp-bound}{5}
+\addtoindex{mwp-bound}{6}
+\addtoindex{mwp-bound}{8}
+\addtoindex{nondeterminism}{15}
+\addtoindex{nondeterminism}{5}
+\addtoindex{nondeterminism}{6}
+\addtoindex{nondeterminism}{8}
+\addtoindex{precondition}{15}
+\addtoindex{precondition}{18}
+\addtoindex{precondition}{19}
+\addtoindex{precondition}{1}
+\addtoindex{precondition}{2}
+\addtoindex{precondition}{4}
+\addtoindex{program trace}{15}
+\addtoindex{program trace}{16}
+\addtoindex{program trace}{17}
+\addtoindex{program trace}{18}
+\addtoindex{pymwp}{10}
+\addtoindex{pymwp}{14}
+\addtoindex{pymwp}{15}
+\addtoindex{pymwp}{3}
+\addtoindex{quasi-invariant}{13}
+\addtoindex{specifications}{14}
+\addtoindex{specifications}{19}
+\addtoindex{specifications}{1}
+\addtoindex{specifications}{20}
+\addtoindex{specifications}{21}
+\addtoindex{specifications}{2}
+\addtoindex{specifications}{3}
+\addtoindex{specifications}{4}
+\addtoindex{state explosion problem}{5}
+\addtosymbols{cv}{10}
+\addtosymbols{cv}{13}
+\addtosymbols{cv}{9}
+\addtosymbols{hoare}{4}
+\addtosymbols{hp}{8}
+\addtosymbols{infty}{10}
+\addtosymbols{infty}{11}
+\addtosymbols{infty}{12}
+\addtosymbols{infty}{13}
+\addtosymbols{infty}{17}
+\addtosymbols{infty}{18}
+\addtosymbols{infty}{5}
+\addtosymbols{infty}{6}
+\addtosymbols{infty}{7}
+\addtosymbols{infty}{8}
+\addtosymbols{infty}{9}
+\addtosymbols{k}{10}
+\addtosymbols{k}{13}
+\addtosymbols{k}{7}
+\addtosymbols{k}{8}
+\addtosymbols{k}{9}
+\addtosymbols{mwpi}{6}
+\addtosymbols{mwpi}{7}
+\addtosymbols{m}{5}
+\addtosymbols{m}{6}
+\addtosymbols{m}{7}
+\addtosymbols{m}{8}
+\addtosymbols{m}{11}
+\addtosymbols{m}{12}
+\addtosymbols{m}{17}
+\addtosymbols{lnot}{4}
+\addtosymbols{post}{4}
+\addtosymbols{pre}{4}
+\addtosymbols{p}{5}
+\addtosymbols{p}{6}
+\addtosymbols{p}{7}
+\addtosymbols{p}{8}
+\addtosymbols{p}{11}
+\addtosymbols{p}{12}
+\addtosymbols{p}{17}
+\addtosymbols{ttrue}{4}
+\addtosymbols{vlist}{8}
+\addtosymbols{w}{5}
+\addtosymbols{w}{6}
+\addtosymbols{w}{7}
+\addtosymbols{w}{8}
+\addtosymbols{w}{11}
+\addtosymbols{w}{12}
+\addtosymbols{w}{17}
+\addtosymbols{vdash}{4}
+\addtosymbols{xprime2}{5}
+\addtosymbols{zero}{5}
+\addtosymbols{zero}{6}
+\addtosymbols{zero}{7}
+\addtosymbols{zero}{8}
+\addtosymbols{zero}{11}
+\addtosymbols{zero}{12}
+}]{pdf/main.pdf}
+\clearpage
