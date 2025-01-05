@@ -3,8 +3,10 @@ TEMPLATE_VERSION := 0.2.1
 TEMPLATE := https://github.com/the-au-forml-lab/au_ccs_dissertation_template/releases/download/$(TEMPLATE_VERSION)/tex_version.zip
 ABSTRACT := text/abstract.tex
 
+all: compile
+
 compile:
-	latexmk -xelatex main
+	latexmk -pdf -xelatex "main.tex"
 
 action:  # action workflow runs this command
 	xelatex -no-pdf -file-line-error -halt-on-error -interaction=nonstopmode -recorder  "main.tex"

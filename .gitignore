@@ -271,7 +271,6 @@ TSWLatexianTemp*
 *.ist
 
 main.pdf
-!papers/main.pdf
 tex_version
 main.sbl
 main.slg
