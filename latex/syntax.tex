@@ -2,14 +2,16 @@
 \newcommand{\prc}{\lstinline[language=C,basicstyle=\ttfamily,keywordstyle=\mdseries]}
 \newcommand{\comm}[1]{\mathtt{#1}}
 
+\setmonofont[Path=fonts/, Extension=.ttf,UprightFont=*-Regular,BoldFont=*-Bold]{Inconsolata}
+
 \lstset{
-    basicstyle=\small\ttfamily\linespread{4},
     columns=[l]flexible,
+    basicstyle=\small\ttfamily\linespread{4},
     identifierstyle=\color{codeid},
     commentstyle=\color{codecomments},
     keywordstyle=\color{codekeywords}\bfseries,
     ndkeywordstyle=\color{codekeywords}\bfseries,
-    stringstyle=\color{codestrings}\ttfamily,
+    stringstyle=\color{codestrings},
     abovecaptionskip=-30pt,
     aboveskip=2em,
     belowskip=2em,
@@ -35,20 +37,19 @@
 
 % colorless
 \lstdefinestyle{Plain}{
+    language=C,
     identifierstyle=\color{black},
     commentstyle=\color{black},
     keywordstyle=\color{black}\bfseries,
     ndkeywordstyle=\color{black}\bfseries,
     stringstyle=\color{black}\ttfamily,
-    language=C
-}
-\lstdefinestyle{C}{
-    language=C
-}
-\lstdefinestyle{Coq}{
-    language=Coq
 }
 \lstdefinestyle{Dafny}{
-    keywordstyle={\color{codekeywords}\ttfamily},
-    language=dafny
+    language=dafny,
+    basicstyle=\small\ttfamily\linespread{4},
+    identifierstyle=\color{codeid},
+    keywordstyle={\color{codekeywords}\ttfamily\bfseries},
+    ndkeywordstyle={\color{codekeywords}\ttfamily\bfseries},
+    commentstyle=\color{codecomments},
+    stringstyle=\color{codestrings}
 }

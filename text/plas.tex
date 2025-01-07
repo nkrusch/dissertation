@@ -51,7 +51,7 @@ but a policy can be extended to arbitrary classes, refer to \autoref{ex-hasse-di
 For program analysis, we consider deterministic imperative programs, with conventional operational semantics and variables of simple data types.
 Let our expository program be:
 
-\begin{lstlisting}[style=C]
+\begin{lstlisting}[language=C]
 if (z==1)
   then if (x==1) then y=1 else y=0
   else x=y
@@ -730,7 +730,7 @@ This means that, to be non-interfering, such a program must be given levels sati
 As an example, we let the reader convince themselves that the \SFM of
 
 \begin{minipage}{.4\columnwidth}
-\begin{lstlisting}[style=C]
+\begin{lstlisting}[language=C]
 while(t[i]!=j){
 s1[i]=j*j;
 s2[i]=1/j;
@@ -840,7 +840,7 @@ iff \(\ell\) is non-interfering (\autoref{def:com-ni}).
 Consider a program of two commands.
 Although there is no direct assignment from \prc|h| to \prc|z|, they are transitively dependent through \prc|y|.
 
-\begin{lstlisting}[style=C]
+\begin{lstlisting}[language=C]
 if (h==0) then y=1 else skip  // C1
 if (y==0) then z=1 else y=z   // C2
 \end{lstlisting}
@@ -897,7 +897,7 @@ shows assignments to two string buffers, \prc|sb1| and \prc|sb2|.
 However, the potentially-sensitive variable \prc|request| does not interfere with \prc|query|.
 A context-sensitive analysis detects this fact and does not raise an unnecessary alarm.
 
-\begin{lstlisting}[style=C]
+\begin{lstlisting}[language=C]
 user=request["user"];
 sb1="SELECT * FROM Users WHERE name=";
 sb2="SELECT * FROM Users WHERE name=";
@@ -987,7 +987,7 @@ We sometimes abbreviate each level by its first three letters. \qed
 The mvt--kernel, from the {PolyBench/C}~\cite{polybenchc}
 parallel programming benchmark suite, calculates a Matrix Vector product and Transpose:
 
-\begin{lstlisting}[style=C]
+\begin{lstlisting}[language=C]
 void kernel_mvt( |$\dots$| ) {
 for (i=0; i < N; i++)
 for (j=0; j < N; j++)
