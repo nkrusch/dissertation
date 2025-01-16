@@ -14,18 +14,83 @@
 \input{text/intro}
 
 %-------------------------------------------------------------------------------
-%	2. MATERIALS AND METHODS
+%	2. PUBLISHED MANUSCRIPTS
 %-------------------------------------------------------------------------------
-\chapter{Materials and Methods}\label{ch:materials-and-methods}\clearpage
-\topskip0pt
-\vspace*{\fill}
-\begin{center}{\large\emph{This page is intentionally left blank.}}\end{center}
-\vspace*{\fill}
+\chapter{Published Manuscripts}\label{published-manuscripts}
+
+\clearpage
+\section{pymwp: A Static Analyzer Determining Polynomial Growth Bounds}\label{sec:atva}
+\ainfoX{\CTNT}{\href{https://atva-conference.org/2023}
+{The 21\stsup International Symposium on Automated Technology for Verification and Analysis (ATVA), 2023}}
+{\noindent Companion tool user guide: \aref{app:toolguide}
+\newline\noindent Software artifact: \href{https://doi.org/10.5281/zenodo.7908484}{10.5281/zenodo.7908484}
+\newline\noindent Citation:~\cite{aubert2023b}
+\newline\newline \textit{Reproduced with permission from Springer Nature.}}
+
+\includepdf[pages={1-}, addtotoc={
+1,subsection,2,{Introduction -- Making Use of Implicit Complexity},sec:intro,
+3,subsection,2,{Calculating Bounds with mwp-Analysis},sec:idea,
+5,subsection,2,{Technical Overview of pymwp},sec:tool,
+6,subsection,2,{Implementation Advancements},sec:solutions,
+8,subsection,2,{Experimental Evaluation},sec:eval,
+11,subsection,2,{Conclusion},sec:conc},
+addtolist={
+5,table,Comparison of obtained resource bounds,tab:compare,
+10,table,Benchmark results,tab:eval,
+10,table,Examples of obtained bounds,tab:bounds},
+pagecommand={\thispagestyle{empty}%
+\addtoindex{C4B}{4}
+\addtoindex{C4B}{5}
+\addtoindex{LOOPUS}{4}
+\addtoindex{LOOPUS}{5}
+\addtoindex{Abstract Syntax Tree}{5}
+\addtoindex{Abstract Syntax Tree}{6}
+\addtoindex{domain-specific languages}{11}
+\addtoindex{honest polynomial}{3}
+\addtoindex{intermediate representation}{11}
+\addtoindex{mwp-bound}{3}
+\addtoindex{mwp-bound}{8}
+\addtoindex{nondeterminism}{1}
+\addtoindex{nondeterminism}{6}
+\addtoindex{nondeterminism}{7}
+\addtoindex{nondeterminism}{9}
+\addtoindex{nondeterminism}{11}
+\addtoindex{pycparser}{6}
+\addtoindex{pymwp}{11}
+\addtoindex{pymwp}{1}
+\addtoindex{pymwp}{2}
+\addtoindex{pymwp}{4}
+\addtoindex{pymwp}{5}
+\addtoindex{pymwp}{6}
+\addtoindex{pymwp}{7}
+\addtoindex{pymwp}{8}
+\addtoindex{pymwp}{9}
+\addtoindex{choice vector}{8}
+\addtosymbols{Xprime}{10}
+\addtosymbols{Xprime}{2}
+\addtosymbols{Xprime}{3}
+\addtosymbols{Xprime}{4}
+\addtosymbols{Xprime}{5}
+\addtosymbols{Xprime}{9}
+\addtosymbols{hp}{3}
+\addtosymbols{infty}{10}
+\addtosymbols{infty}{3}
+\addtosymbols{infty}{4}
+\addtosymbols{infty}{7}
+\addtosymbols{infty}{8}
+\addtosymbols{infty}{9}
+\addtosymbols{m}{3}
+\addtosymbols{p}{3}
+\addtosymbols{w}{3}
+\addtosymbols{zero}{10}
+\addtosymbols{zero}{3}
+\addtosymbols{zero}{5}
+}]{pdf/pubs_atva.2023.pdf}
 
 %-------------------------------------------------------------------------------
-%	3. RESULTS
+%	3. UNPUBLISHED RESEARCH
 %-------------------------------------------------------------------------------
-\chapter{Results}\label{ch:results}\clearpage
+\chapter{Unpublished Research}\label{ch:unpublished-research}\clearpage
 
 \section{Polynomial Postconditions via mwp-Bounds}\label{sec:postcond}
 \ainfoX{Neea Rusch}{In review at \href{https://2025.ecoop.org/}
@@ -208,551 +273,6 @@ pagecommand={\thispagestyle{empty}%
 %-------------------------------------------------------------------------------
 %	4. DISCUSSION
 %-------------------------------------------------------------------------------
-
-\section{mwp-Analysis Improvement and Implementation: Realizing Implicit Computational Complexity}\label{app:sec:fscd}
-\ainfoX{\CTNT}{The 7\thsup International Conference on Formal Structures for Computation and Deduction (FSCD), 2022}
-{\newline\enquote{mwp-Analysis Improvement and Implementation: Realizing Implicit Computational Complexity} \textcopyright{ }by{ }\CTNT.
-The publication is licensed under a Creative Commons Attribution 4.0 International License.
-You should have received a copy of the license along with this work.
-If not, see \url{https://creativecommons.org/licenses/by/4.0/}.}
-
-\includepdf[pages={1-},
-    pagecommand={\thispagestyle{empty}%
-    \addtoindex{AProVE}{17}
-    \addtoindex{COSTA}{15}
-    \addtoindex{Cerco}{15}
-    \addtoindex{CoFloCo}{17}
-    \addtoindex{CompCert}{16}
-    \addtoindex{ComplexityParser}{15}
-    \addtoindex{Coq}{16}
-    \addtoindex{Gr\"{o}bner basis}{13}
-    \addtoindex{Resource Aware ML}{15}
-    \addtoindex{SPEED}{15}
-    \addtoindex{Verasco}{15}
-    \addtoindex{certified-llvm}{16}
-    \addtoindex{NP complexity class}{6}
-    \addtoindex{P complexity class}{3}
-    \addtoindex{delta graph}{14}
-    \addtoindex{delta graph}{15}
-    \addtoindex{monomial}{13}
-    \addtoindex{monomial}{14}
-    \addtoindex{mwp-bound}{14}
-    \addtoindex{mwp-bound}{15}
-    \addtoindex{nondeterminism}{4}
-    \addtoindex{nondeterminism}{5}
-    \addtoindex{nondeterminism}{6}
-    \addtoindex{nondeterminism}{7}
-    \addtoindex{nondeterminism}{11}
-    \addtoindex{nondeterminism}{14}
-    \addtoindex{intermediate representation}{6}
-    \addtoindex{pymwp}{15}
-    \addtoindex{pymwp}{17}
-    \addtoindex{pymwp}{22}
-    \addtoindex{pymwp}{23}
-    \addtoindex{quasi-invariant}{15}
-    \addtoindex{state explosion problem}{5}
-    \addtoindex{state explosion problem}{6}
-    \addtoindex{static single assignment}{16}
-    \addtosymbols{PsiProd}{12}
-    \addtosymbols{Psi}{12}
-    \addtosymbols{ai}{12}
-    \addtosymbols{ai}{13}
-    \addtosymbols{ai}{14}
-    \addtosymbols{ai}{7}
-    \addtosymbols{alpha}{20}
-    \addtosymbols{alpha}{12}
-    \addtosymbols{alpha}{13}
-    \addtosymbols{alpha}{3}
-    \addtosymbols{alpha}{4}
-    \addtosymbols{alpha}{7}
-    \addtosymbols{assgn}{10}
-    \addtosymbols{assgn}{11}
-    \addtosymbols{assgn}{14}
-    \addtosymbols{assgn}{21}
-    \addtosymbols{assgn}{7}
-    \addtosymbols{assgn}{9}
-    \addtosymbols{beta}{20}
-    \addtosymbols{beta}{12}
-    \addtosymbols{beta}{13}
-    \addtosymbols{beta}{3}
-    \addtosymbols{beta}{4}
-    \addtosymbols{beta}{7}
-    \addtosymbols{card}{14}
-    \addtosymbols{card}{7}
-    \addtosymbols{cartpi}{12}
-    \addtosymbols{cartpi}{13}
-    \addtosymbols{cartpi}{14}
-    \addtosymbols{cartpi}{7}
-    \addtosymbols{chunk}{11}
-    \addtosymbols{chunk}{12}
-    \addtosymbols{ci}{12}
-    \addtosymbols{ci}{13}
-    \addtosymbols{ci}{7}
-    \addtosymbols{cj}{12}
-    \addtosymbols{cj}{13}
-    \addtosymbols{cj}{14}
-    \addtosymbols{cj}{7}
-    \addtosymbols{closure}{11}
-    \addtosymbols{closure}{3}
-    \addtosymbols{closure}{4}
-    \addtosymbols{closure}{6}
-    \addtosymbols{cmat}{11}
-    \addtosymbols{cmat}{4}
-    \addtosymbols{cmat}{6}
-    \addtosymbols{cmat}{9}
-    \addtosymbols{cmat}{21}
-    \addtosymbols{delta}{10}
-    \addtosymbols{delta}{11}
-    \addtosymbols{delta}{12}
-    \addtosymbols{delta}{13}
-    \addtosymbols{delta}{14}
-    \addtosymbols{delta}{15}
-    \addtosymbols{delta}{7}
-    \addtosymbols{delta}{8}
-    \addtosymbols{delta}{9}
-    \addtosymbols{f}{10}
-    \addtosymbols{f}{11}
-    \addtosymbols{gamma}{13}
-    \addtosymbols{gamma}{3}
-    \addtosymbols{hp}{4}
-    \addtosymbols{infty}{10}
-    \addtosymbols{infty}{13}
-    \addtosymbols{infty}{14}
-    \addtosymbols{infty}{17}
-    \addtosymbols{infty}{21}
-    \addtosymbols{infty}{22}
-    \addtosymbols{infty}{23}
-    \addtosymbols{infty}{6}
-    \addtosymbols{infty}{7}
-    \addtosymbols{infty}{8}
-    \addtosymbols{iso}{7}
-    \addtosymbols{iso}{8}
-    \addtosymbols{iso}{20}
-    \addtosymbols{k}{10}
-    \addtosymbols{k}{12}
-    \addtosymbols{k}{13}
-    \addtosymbols{k}{14}
-    \addtosymbols{k}{7}
-    \addtosymbols{map}{6}
-    \addtosymbols{map}{7}
-    \addtosymbols{map}{8}
-    \addtosymbols{matrix}{10}
-    \addtosymbols{matrix}{11}
-    \addtosymbols{matrix}{20}
-    \addtosymbols{matrix}{3}
-    \addtosymbols{matrix}{4}
-    \addtosymbols{matrix}{6}
-    \addtosymbols{matrix}{7}
-    \addtosymbols{matrix}{9}
-    \addtosymbols{matrix}{21}
-    \addtosymbols{mi}{3}
-    \addtosymbols{mi}{4}
-    \addtosymbols{mi}{6}
-    \addtosymbols{mi}{7}
-    \addtosymbols{mi}{20}
-    \addtosymbols{mj}{20}
-    \addtosymbols{mj}{3}
-    \addtosymbols{mj}{4}
-    \addtosymbols{mj}{6}
-    \addtosymbols{mj}{7}
-    \addtosymbols{msring}{21}
-    \addtosymbols{msring}{12}
-    \addtosymbols{msring}{13}
-    \addtosymbols{msring}{3}
-    \addtosymbols{msring}{7}
-    \addtosymbols{mstar}{3}
-    \addtosymbols{mstar}{4}
-    \addtosymbols{mstar}{6}
-    \addtosymbols{mwpi}{12}
-    \addtosymbols{mwpi}{13}
-    \addtosymbols{mwpi}{14}
-    \addtosymbols{mwpi}{7}
-    \addtosymbols{mwpi}{9}
-    \addtosymbols{mwpi}{21}
-    \addtosymbols{mwpset}{13}
-    \addtosymbols{mwpset}{3}
-    \addtosymbols{mwpset}{6}
-    \addtosymbols{mwpset}{7}
-    \addtosymbols{mwpset}{9}
-    \addtosymbols{mzeroj}{4}
-    \addtosymbols{mzeroj}{6}
-    \addtosymbols{m}{11}
-    \addtosymbols{m}{12}
-    \addtosymbols{m}{13}
-    \addtosymbols{m}{20}
-    \addtosymbols{m}{3}
-    \addtosymbols{m}{4}
-    \addtosymbols{m}{5}
-    \addtosymbols{m}{6}
-    \addtosymbols{m}{7}
-    \addtosymbols{m}{8}
-    \addtosymbols{m}{9}
-    \addtosymbols{m}{21}
-    \addtosymbols{oplus}{20}
-    \addtosymbols{oplus}{10}
-    \addtosymbols{oplus}{11}
-    \addtosymbols{oplus}{12}
-    \addtosymbols{oplus}{3}
-    \addtosymbols{oplus}{4}
-    \addtosymbols{oplus}{6}
-    \addtosymbols{oplus}{8}
-    \addtosymbols{oplus}{9}
-    \addtosymbols{oplus}{21}
-    \addtosymbols{otimes}{20}
-    \addtosymbols{otimes}{11}
-    \addtosymbols{otimes}{12}
-    \addtosymbols{otimes}{3}
-    \addtosymbols{otimes}{4}
-    \addtosymbols{otimes}{6}
-    \addtosymbols{otimes}{8}
-    \addtosymbols{plusi}{7}
-    \addtosymbols{p}{11}
-    \addtosymbols{p}{12}
-    \addtosymbols{p}{13}
-    \addtosymbols{p}{20}
-    \addtosymbols{p}{3}
-    \addtosymbols{p}{4}
-    \addtosymbols{p}{5}
-    \addtosymbols{p}{6}
-    \addtosymbols{p}{7}
-    \addtosymbols{p}{8}
-    \addtosymbols{p}{9}
-    \addtosymbols{slot}{11}
-    \addtosymbols{slot}{12}
-    \addtosymbols{slot}{21}
-    \addtosymbols{smpi}{12}
-    \addtosymbols{smpi}{5}
-    \addtosymbols{smpi}{8}
-    \addtosymbols{smpi}{9}
-    \addtosymbols{sring}{7}
-    \addtosymbols{sring}{20}
-    \addtosymbols{timesi}{17}
-    \addtosymbols{timesi}{7}
-    \addtosymbols{v0a}{4}
-    \addtosymbols{v0a}{6}
-    \addtosymbols{vadd}{4}
-    \addtosymbols{vadd}{6}
-    \addtosymbols{vadd}{8}
-    \addtosymbols{vare}{4}
-    \addtosymbols{vec2}{11}
-    \addtosymbols{vec2}{12}
-    \addtosymbols{vec2}{13}
-    \addtosymbols{vec2}{21}
-    \addtosymbols{vec2}{5}
-    \addtosymbols{vec2}{7}
-    \addtosymbols{vec2}{8}
-    \addtosymbols{vec}{11}
-    \addtosymbols{vec}{4}
-    \addtosymbols{vec}{8}
-    \addtosymbols{vlist}{4}
-    \addtosymbols{vrep}{10}
-    \addtosymbols{vrep}{12}
-    \addtosymbols{vrep}{4}
-    \addtosymbols{vrep}{6}
-    \addtosymbols{vrep}{8}
-    \addtosymbols{w}{11}
-    \addtosymbols{w}{12}
-    \addtosymbols{w}{13}
-    \addtosymbols{w}{20}
-    \addtosymbols{w}{3}
-    \addtosymbols{w}{4}
-    \addtosymbols{w}{5}
-    \addtosymbols{w}{6}
-    \addtosymbols{w}{7}
-    \addtosymbols{w}{8}
-    \addtosymbols{w}{9}
-    \addtosymbols{w}{21}
-    \addtosymbols{zero}{11}
-    \addtosymbols{zero}{12}
-    \addtosymbols{zero}{13}
-    \addtosymbols{zero}{20}
-    \addtosymbols{zero}{3}
-    \addtosymbols{zero}{4}
-    \addtosymbols{zero}{5}
-    \addtosymbols{zero}{6}
-    \addtosymbols{zero}{7}
-    \addtosymbols{zero}{8}
-    \addtosymbols{zero}{9}
-    }]{pdf/pubs_fscd.2022.pdf}
-
-\section{Distributing and Parallelizing Non-canonical Loops}
-\label{app:sec:vmcai}
-\ainfoX{\CTNT}{The 24\thsup International Conference on Verification, Model Checking, and Abstract Interpretation (VMCAI), 2023}
-{\noindent Software artifact: \href{https://zenodo.org/records/7080145}{10.5281/zenodo.7080145}
-\newline\noindent Citation:~\cite{aubert202213}
-\newline\newline\textit{Reproduced with permission from Springer Nature.}}
-\includepdf[pages={1-}, addtolist={
-    5,figure,A simple imperative while language,fig-grammar,
-    6,table,{Definition of Out, In and Occ for commands},table:def-out-in-occ,
-    8,figure,{Statement examples, sets, and representations of their dependencies},fig:dependences,
-    9,figure,Data-Flow Graph of Composition,fig:composition,
-    13,figure,Distributing a more complex while loop,fig:exampe-complex,
-    16,table,Parallelization tools feature support comparison,tab:comparison,
-    17,figure,Code transformation example,fig:code-example,
-    19,figure,Speedup of selected benchmarks implemented using while loops,fig:while,
-    20,table,Speedup comparison between parallel benchmarks,tab:speedup,
-    20,table,Descriptions of evaluated parallel benchmarks,tab:benchmarks},
-    pagecommand={\thispagestyle{empty}%
-    \addtoindex{Clava}{15}
-    \addtoindex{Clava}{16}
-    \addtoindex{Clava}{19}
-    \addtoindex{Cetus}{15}
-    \addtoindex{Cetus}{16}
-    \addtoindex{MiBench}{17}
-    \addtoindex{MiBench}{20}
-    \addtoindex{NAS Parallel Benchmarks}{17}
-    \addtoindex{NAS Parallel Benchmarks}{20}
-    \addtoindex{OpenMP}{14}
-    \addtoindex{OpenMP}{15}
-    \addtoindex{OpenMP}{16}
-    \addtoindex{OpenMP}{18}
-    \addtoindex{OpenMP}{19}
-    \addtoindex{OpenMP}{20}
-    \addtoindex{OpenMP}{2}
-    \addtoindex{OpenMP}{3}
-    \addtoindex{OpenMP}{4}
-    \addtoindex{Par4All}{15}
-    \addtoindex{Par4All}{16}
-    \addtoindex{Pluto}{15}
-    \addtoindex{Pluto}{16}
-    \addtoindex{Polybench/C}{16}
-    \addtoindex{Polybench/C}{17}
-    \addtoindex{Polybench/C}{18}
-    \addtoindex{ROSE}{14}
-    \addtoindex{ROSE}{15}
-    \addtoindex{ROSE}{16}
-    \addtoindex{ROSE}{17}
-    \addtoindex{ROSE}{18}
-    \addtoindex{ROSE}{19}
-    \addtoindex{ROSE}{20}
-    \addtoindex{TRACO}{15}
-    \addtoindex{TRACO}{16}
-    \addtoindex{compilation!parallelizing}{15}
-    \addtoindex{compilation!parallelizing}{16}
-    \addtoindex{compilation!parallelizing}{17}
-    \addtoindex{compilation!parallelizing}{19}
-    \addtoindex{compilation!parallelizing}{3}
-    \addtoindex{compilation!source-to-source}{15}
-    \addtoindex{compilation!source-to-source}{1}
-    \addtoindex{compilation!source-to-source}{3}
-    \addtoindex{dependency analysis}{14}
-    \addtoindex{dependency analysis}{21}
-    \addtoindex{dependency analysis}{2}
-    \addtoindex{dependency analysis}{4}
-    \addtoindex{dependency analysis}{6}
-    \addtoindex{graph!bi-partite}{7}
-    \addtoindex{graph!condensation}{11}
-    \addtoindex{graph!condensation}{12}
-    \addtoindex{graph!condensation}{13}
-    \addtoindex{graph!covering}{11}
-    \addtoindex{graph!covering}{12}
-    \addtoindex{graph!covering}{13}
-    \addtoindex{graph!covering}{14}
-    \addtoindex{graph!data-flow}{6}
-    \addtoindex{graph!data-flow}{7}
-    \addtoindex{graph!dependence}{11}
-    \addtoindex{graph!dependence}{14}
-    \addtoindex{graph!dependence}{15}
-    \addtoindex{saturated covering}{12}
-    \addtoindex{saturated covering}{13}
-    \addtoindex{Intel's C++ compiler}{15}
-    \addtoindex{Intel's C++ compiler}{16}
-    \addtoindex{loop form!canonical}{15}
-    \addtoindex{loop form!canonical}{16}
-    \addtoindex{loop form!canonical}{17}
-    \addtoindex{loop form!canonical}{2}
-    \addtoindex{loop form!canonical}{4}
-    \addtoindex{loop form!non-canonical}{21}
-    \addtoindex{loop form!non-canonical}{2}
-    \addtoindex{loop transformation!distribution}{2}
-    \addtoindex{loop transformation!fission}{11}
-    \addtoindex{loop transformation!fission}{12}
-    \addtoindex{loop transformation!fission}{14}
-    \addtoindex{loop transformation!fission}{15}
-    \addtoindex{loop transformation!fission}{16}
-    \addtoindex{loop transformation!fission}{17}
-    \addtoindex{loop transformation!fission}{18}
-    \addtoindex{loop transformation!fission}{19}
-    \addtoindex{loop transformation!fission}{20}
-    \addtoindex{loop transformation!fission}{2}
-    \addtoindex{loop transformation!fission}{3}
-    \addtoindex{loop transformation!fission}{4}
-    \addtoindex{loop transformation!fission}{6}
-    \addtoindex{loop transformation!tiling}{4}
-    \addtoindex{loop transformation!fusion}{21}
-    \addtoindex{loop transformation!unrolling}{21}
-    \addtoindex{loop transformation!unrolling}{3}
-    \addtoindex{loop-carried dependency}{15}
-    \addtoindex{loop-level parallelism}{2}
-    \addtoindex{automatic parallelization}{15}
-    \addtoindex{automatic parallelization}{16}
-    \addtoindex{automatic parallelization}{19}
-    \addtoindex{automatic parallelization}{20}
-    \addtoindex{automatic parallelization}{3}
-    \addtoindex{automatic parallelization}{4}
-    \addtoindex{parallelization potential}{3}
-    \addtoindex{polyhedral optimization}{4}
-    \addtoindex{state explosion problem}{3}
-    \addtosymbols{corro}{9}
-    \addtosymbols{corr}{10}
-    \addtosymbols{corr}{8}
-    \addtosymbols{corr}{9}
-    \addtosymbols{dfg}{10}
-    \addtosymbols{dfg}{11}
-    \addtosymbols{dfg}{7}
-    \addtosymbols{dfg}{8}
-    \addtosymbols{et}{9}
-    \addtosymbols{graphw}{11}
-    \addtosymbols{graphw}{12}
-    \addtosymbols{graph}{12}
-    \addtosymbols{infty2}{10}
-    \addtosymbols{infty2}{11}
-    \addtosymbols{infty2}{7}
-    \addtosymbols{infty2}{8}
-    \addtosymbols{infty2}{9}
-    \addtosymbols{looppw}{12}
-    \addtosymbols{looppw}{13}
-    \addtosymbols{looppw}{14}
-    \addtosymbols{loopw}{10}
-    \addtosymbols{loopw}{11}
-    \addtosymbols{loopw}{12}
-    \addtosymbols{loopw}{13}
-    \addtosymbols{loopw}{14}
-    \addtosymbols{mdfg}{10}
-    \addtosymbols{mdfg}{11}
-    \addtosymbols{mdfg}{13}
-    \addtosymbols{mdfg}{7}
-    \addtosymbols{mdfg}{8}
-    \addtosymbols{mdfg}{9}
-    \addtosymbols{occ}{10}
-    \addtosymbols{occ}{6}
-    \addtosymbols{occ}{7}
-    \addtosymbols{occ}{9}
-    \addtosymbols{one}{10}
-    \addtosymbols{one}{7}
-    \addtosymbols{one}{8}
-    \addtosymbols{one}{9}
-    \addtosymbols{vin}{11}
-    \addtosymbols{vin}{6}
-    \addtosymbols{vin}{7}
-    \addtosymbols{vin}{8}
-    \addtosymbols{vout}{10}
-    \addtosymbols{vout}{11}
-    \addtosymbols{vout}{6}
-    \addtosymbols{vout}{7}
-    \addtosymbols{vout}{8}
-    \addtosymbols{vout}{9}
-    \addtosymbols{zero2}{10}
-    \addtosymbols{zero2}{7}
-    \addtosymbols{zero2}{8}
-    \addtosymbols{zero2}{9}
-    }]{pdf/pubs_vmcai.2023.pdf}
-
-\section{pymwp: A Static Analyzer Determining Polynomial Growth Bounds}\label{sec:atva}
-\ainfoX{\CTNT}{\href{https://atva-conference.org/2023}
-{The 21\stsup International Symposium on Automated Technology for Verification and Analysis (ATVA), 2023}}
-{\noindent Companion tool user guide: \aref{app:toolguide}
-\newline\noindent Software artifact: \href{https://doi.org/10.5281/zenodo.7908484}{10.5281/zenodo.7908484}
-\newline\noindent Citation:~\cite{aubert2023b}
-\newline\newline \textit{Reproduced with permission from Springer Nature.}}
-
-\includepdf[pages={1-}, addtotoc={
-    1,subsection,2,{Introduction -- Making Use of Implicit Complexity},sec:intro,
-    3,subsection,2,{Calculating Bounds with mwp-Analysis},sec:idea,
-    5,subsection,2,{Technical Overview of pymwp},sec:tool,
-    6,subsection,2,{Implementation Advancements},sec:solutions,
-    8,subsection,2,{Experimental Evaluation},sec:eval,
-    11,subsection,2,{Conclusion},sec:conc},
-    addtolist={
-        5,table,Comparison of obtained resource bounds,tab:compare,
-        10,table,Benchmark results,tab:eval,
-        10,table,Examples of obtained bounds,tab:bounds},
-    pagecommand={\thispagestyle{empty}%
-    \addtoindex{C4B}{4}
-    \addtoindex{C4B}{5}
-    \addtoindex{LOOPUS}{4}
-    \addtoindex{LOOPUS}{5}
-    \addtoindex{Abstract Syntax Tree}{5}
-    \addtoindex{Abstract Syntax Tree}{6}
-    \addtoindex{domain-specific languages}{11}
-    \addtoindex{honest polynomial}{3}
-    \addtoindex{intermediate representation}{11}
-    \addtoindex{mwp-bound}{3}
-    \addtoindex{mwp-bound}{8}
-    \addtoindex{nondeterminism}{1}
-    \addtoindex{nondeterminism}{6}
-    \addtoindex{nondeterminism}{7}
-    \addtoindex{nondeterminism}{9}
-    \addtoindex{nondeterminism}{11}
-    \addtoindex{pycparser}{6}
-    \addtoindex{pymwp}{11}
-    \addtoindex{pymwp}{1}
-    \addtoindex{pymwp}{2}
-    \addtoindex{pymwp}{4}
-    \addtoindex{pymwp}{5}
-    \addtoindex{pymwp}{6}
-    \addtoindex{pymwp}{7}
-    \addtoindex{pymwp}{8}
-    \addtoindex{pymwp}{9}
-    \addtoindex{choice vector}{8}
-    \addtosymbols{Xprime}{10}
-    \addtosymbols{Xprime}{2}
-    \addtosymbols{Xprime}{3}
-    \addtosymbols{Xprime}{4}
-    \addtosymbols{Xprime}{5}
-    \addtosymbols{Xprime}{9}
-    \addtosymbols{hp}{3}
-    \addtosymbols{infty}{10}
-    \addtosymbols{infty}{3}
-    \addtosymbols{infty}{4}
-    \addtosymbols{infty}{7}
-    \addtosymbols{infty}{8}
-    \addtosymbols{infty}{9}
-    \addtosymbols{m}{3}
-    \addtosymbols{p}{3}
-    \addtosymbols{w}{3}
-    \addtosymbols{zero}{10}
-    \addtosymbols{zero}{3}
-    \addtosymbols{zero}{5}
-    }]{pdf/pubs_atva.2023.pdf}
-
-\section{Tool User Guide for \enquote{pymwp: A Static Analyzer Determining Polynomial Growth Bounds}}\label{app:toolguide}
-\ainfo{\CTNT}{Publication companion.}
-\includepdf[pages={1-},scale=0.9,offset=0 0.25in,
-    pagecommand={\thispagestyle{empty}%
-    \addtoindex{mwp-bound}{3}
-    \addtoindex{mwp-bound}{8}
-    \addtoindex{nondeterminism}{2}
-    \addtoindex{nondeterminism}{6}
-    \addtoindex{pymwp}{10}
-    \addtoindex{pymwp}{11}
-    \addtoindex{pymwp}{1}
-    \addtoindex{pymwp}{2}
-    \addtoindex{pymwp}{4}
-    \addtoindex{pymwp}{5}
-    \addtoindex{pymwp}{6}
-    \addtoindex{pymwp}{7}
-    \addtoindex{pymwp}{8}
-    \addtoindex{pymwp}{9}
-    \addtosymbols{Xprime}{10}
-    \addtosymbols{Xprime}{2}
-    \addtosymbols{Xprime}{3}
-    \addtosymbols{Xprime}{6}
-    \addtosymbols{Xprime}{8}
-    \addtosymbols{hp}{3}
-    \addtosymbols{infty}{2}
-    \addtosymbols{infty}{7}
-    \addtosymbols{infty}{8}
-    \addtosymbols{m}{2}
-    \addtosymbols{m}{3}
-    \addtosymbols{p}{2}
-    \addtosymbols{p}{3}
-    \addtosymbols{vlist}{3}
-    \addtosymbols{w}{2}
-    \addtosymbols{w}{3}
-    \addtosymbols{zero}{2}
-    }]{pdf/pubs_pymwp_guide.pdf}
-
 \chapter{Discussion}\label{ch:discussion}
 \input{text/discussion}
 
@@ -774,8 +294,484 @@ If not, see \url{https://creativecommons.org/licenses/by/4.0/}.}
 %-------------------------------------------------------------------------------
 \appendix
 
-%\chapter{Co-author Statements}\label{app:sec:coauth}
-%\input{text/contrib}
+\chapter{mwp-Analysis Improvement and Implementation: Realizing Implicit Computational Complexity}\label{app:sec:fscd}
+\ainfoX{\CTNT}{The 7\thsup International Conference on Formal Structures for Computation and Deduction (FSCD), 2022}
+{\newline\enquote{mwp-Analysis Improvement and Implementation: Realizing Implicit Computational Complexity} \textcopyright{ }by{ }\CTNT.
+The publication is licensed under a Creative Commons Attribution 4.0 International License.
+You should have received a copy of the license along with this work.
+If not, see \url{https://creativecommons.org/licenses/by/4.0/}.}
+
+\includepdf[pages={1-},
+pagecommand={\thispagestyle{empty}%
+\addtoindex{AProVE}{17}
+\addtoindex{COSTA}{15}
+\addtoindex{Cerco}{15}
+\addtoindex{CoFloCo}{17}
+\addtoindex{CompCert}{16}
+\addtoindex{ComplexityParser}{15}
+\addtoindex{Coq}{16}
+\addtoindex{Gr\"{o}bner basis}{13}
+\addtoindex{Resource Aware ML}{15}
+\addtoindex{SPEED}{15}
+\addtoindex{Verasco}{15}
+\addtoindex{certified-llvm}{16}
+\addtoindex{NP complexity class}{6}
+\addtoindex{P complexity class}{3}
+\addtoindex{delta graph}{14}
+\addtoindex{delta graph}{15}
+\addtoindex{monomial}{13}
+\addtoindex{monomial}{14}
+\addtoindex{mwp-bound}{14}
+\addtoindex{mwp-bound}{15}
+\addtoindex{nondeterminism}{4}
+\addtoindex{nondeterminism}{5}
+\addtoindex{nondeterminism}{6}
+\addtoindex{nondeterminism}{7}
+\addtoindex{nondeterminism}{11}
+\addtoindex{nondeterminism}{14}
+\addtoindex{intermediate representation}{6}
+\addtoindex{pymwp}{15}
+\addtoindex{pymwp}{17}
+\addtoindex{pymwp}{22}
+\addtoindex{pymwp}{23}
+\addtoindex{quasi-invariant}{15}
+\addtoindex{state explosion problem}{5}
+\addtoindex{state explosion problem}{6}
+\addtoindex{static single assignment}{16}
+\addtosymbols{PsiProd}{12}
+\addtosymbols{Psi}{12}
+\addtosymbols{ai}{12}
+\addtosymbols{ai}{13}
+\addtosymbols{ai}{14}
+\addtosymbols{ai}{7}
+\addtosymbols{alpha}{20}
+\addtosymbols{alpha}{12}
+\addtosymbols{alpha}{13}
+\addtosymbols{alpha}{3}
+\addtosymbols{alpha}{4}
+\addtosymbols{alpha}{7}
+\addtosymbols{assgn}{10}
+\addtosymbols{assgn}{11}
+\addtosymbols{assgn}{14}
+\addtosymbols{assgn}{21}
+\addtosymbols{assgn}{7}
+\addtosymbols{assgn}{9}
+\addtosymbols{beta}{20}
+\addtosymbols{beta}{12}
+\addtosymbols{beta}{13}
+\addtosymbols{beta}{3}
+\addtosymbols{beta}{4}
+\addtosymbols{beta}{7}
+\addtosymbols{card}{14}
+\addtosymbols{card}{7}
+\addtosymbols{cartpi}{12}
+\addtosymbols{cartpi}{13}
+\addtosymbols{cartpi}{14}
+\addtosymbols{cartpi}{7}
+\addtosymbols{chunk}{11}
+\addtosymbols{chunk}{12}
+\addtosymbols{ci}{12}
+\addtosymbols{ci}{13}
+\addtosymbols{ci}{7}
+\addtosymbols{cj}{12}
+\addtosymbols{cj}{13}
+\addtosymbols{cj}{14}
+\addtosymbols{cj}{7}
+\addtosymbols{closure}{11}
+\addtosymbols{closure}{3}
+\addtosymbols{closure}{4}
+\addtosymbols{closure}{6}
+\addtosymbols{cmat}{11}
+\addtosymbols{cmat}{4}
+\addtosymbols{cmat}{6}
+\addtosymbols{cmat}{9}
+\addtosymbols{cmat}{21}
+\addtosymbols{delta}{10}
+\addtosymbols{delta}{11}
+\addtosymbols{delta}{12}
+\addtosymbols{delta}{13}
+\addtosymbols{delta}{14}
+\addtosymbols{delta}{15}
+\addtosymbols{delta}{7}
+\addtosymbols{delta}{8}
+\addtosymbols{delta}{9}
+\addtosymbols{f}{10}
+\addtosymbols{f}{11}
+\addtosymbols{gamma}{13}
+\addtosymbols{gamma}{3}
+\addtosymbols{hp}{4}
+\addtosymbols{infty}{10}
+\addtosymbols{infty}{13}
+\addtosymbols{infty}{14}
+\addtosymbols{infty}{17}
+\addtosymbols{infty}{21}
+\addtosymbols{infty}{22}
+\addtosymbols{infty}{23}
+\addtosymbols{infty}{6}
+\addtosymbols{infty}{7}
+\addtosymbols{infty}{8}
+\addtosymbols{iso}{7}
+\addtosymbols{iso}{8}
+\addtosymbols{iso}{20}
+\addtosymbols{k}{10}
+\addtosymbols{k}{12}
+\addtosymbols{k}{13}
+\addtosymbols{k}{14}
+\addtosymbols{k}{7}
+\addtosymbols{map}{6}
+\addtosymbols{map}{7}
+\addtosymbols{map}{8}
+\addtosymbols{matrix}{10}
+\addtosymbols{matrix}{11}
+\addtosymbols{matrix}{20}
+\addtosymbols{matrix}{3}
+\addtosymbols{matrix}{4}
+\addtosymbols{matrix}{6}
+\addtosymbols{matrix}{7}
+\addtosymbols{matrix}{9}
+\addtosymbols{matrix}{21}
+\addtosymbols{mi}{3}
+\addtosymbols{mi}{4}
+\addtosymbols{mi}{6}
+\addtosymbols{mi}{7}
+\addtosymbols{mi}{20}
+\addtosymbols{mj}{20}
+\addtosymbols{mj}{3}
+\addtosymbols{mj}{4}
+\addtosymbols{mj}{6}
+\addtosymbols{mj}{7}
+\addtosymbols{msring}{21}
+\addtosymbols{msring}{12}
+\addtosymbols{msring}{13}
+\addtosymbols{msring}{3}
+\addtosymbols{msring}{7}
+\addtosymbols{mstar}{3}
+\addtosymbols{mstar}{4}
+\addtosymbols{mstar}{6}
+\addtosymbols{mwpi}{12}
+\addtosymbols{mwpi}{13}
+\addtosymbols{mwpi}{14}
+\addtosymbols{mwpi}{7}
+\addtosymbols{mwpi}{9}
+\addtosymbols{mwpi}{21}
+\addtosymbols{mwpset}{13}
+\addtosymbols{mwpset}{3}
+\addtosymbols{mwpset}{6}
+\addtosymbols{mwpset}{7}
+\addtosymbols{mwpset}{9}
+\addtosymbols{mzeroj}{4}
+\addtosymbols{mzeroj}{6}
+\addtosymbols{m}{11}
+\addtosymbols{m}{12}
+\addtosymbols{m}{13}
+\addtosymbols{m}{20}
+\addtosymbols{m}{3}
+\addtosymbols{m}{4}
+\addtosymbols{m}{5}
+\addtosymbols{m}{6}
+\addtosymbols{m}{7}
+\addtosymbols{m}{8}
+\addtosymbols{m}{9}
+\addtosymbols{m}{21}
+\addtosymbols{oplus}{20}
+\addtosymbols{oplus}{10}
+\addtosymbols{oplus}{11}
+\addtosymbols{oplus}{12}
+\addtosymbols{oplus}{3}
+\addtosymbols{oplus}{4}
+\addtosymbols{oplus}{6}
+\addtosymbols{oplus}{8}
+\addtosymbols{oplus}{9}
+\addtosymbols{oplus}{21}
+\addtosymbols{otimes}{20}
+\addtosymbols{otimes}{11}
+\addtosymbols{otimes}{12}
+\addtosymbols{otimes}{3}
+\addtosymbols{otimes}{4}
+\addtosymbols{otimes}{6}
+\addtosymbols{otimes}{8}
+\addtosymbols{plusi}{7}
+\addtosymbols{p}{11}
+\addtosymbols{p}{12}
+\addtosymbols{p}{13}
+\addtosymbols{p}{20}
+\addtosymbols{p}{3}
+\addtosymbols{p}{4}
+\addtosymbols{p}{5}
+\addtosymbols{p}{6}
+\addtosymbols{p}{7}
+\addtosymbols{p}{8}
+\addtosymbols{p}{9}
+\addtosymbols{slot}{11}
+\addtosymbols{slot}{12}
+\addtosymbols{slot}{21}
+\addtosymbols{smpi}{12}
+\addtosymbols{smpi}{5}
+\addtosymbols{smpi}{8}
+\addtosymbols{smpi}{9}
+\addtosymbols{sring}{7}
+\addtosymbols{sring}{20}
+\addtosymbols{timesi}{17}
+\addtosymbols{timesi}{7}
+\addtosymbols{v0a}{4}
+\addtosymbols{v0a}{6}
+\addtosymbols{vadd}{4}
+\addtosymbols{vadd}{6}
+\addtosymbols{vadd}{8}
+\addtosymbols{vare}{4}
+\addtosymbols{vec2}{11}
+\addtosymbols{vec2}{12}
+\addtosymbols{vec2}{13}
+\addtosymbols{vec2}{21}
+\addtosymbols{vec2}{5}
+\addtosymbols{vec2}{7}
+\addtosymbols{vec2}{8}
+\addtosymbols{vec}{11}
+\addtosymbols{vec}{4}
+\addtosymbols{vec}{8}
+\addtosymbols{vlist}{4}
+\addtosymbols{vrep}{10}
+\addtosymbols{vrep}{12}
+\addtosymbols{vrep}{4}
+\addtosymbols{vrep}{6}
+\addtosymbols{vrep}{8}
+\addtosymbols{w}{11}
+\addtosymbols{w}{12}
+\addtosymbols{w}{13}
+\addtosymbols{w}{20}
+\addtosymbols{w}{3}
+\addtosymbols{w}{4}
+\addtosymbols{w}{5}
+\addtosymbols{w}{6}
+\addtosymbols{w}{7}
+\addtosymbols{w}{8}
+\addtosymbols{w}{9}
+\addtosymbols{w}{21}
+\addtosymbols{zero}{11}
+\addtosymbols{zero}{12}
+\addtosymbols{zero}{13}
+\addtosymbols{zero}{20}
+\addtosymbols{zero}{3}
+\addtosymbols{zero}{4}
+\addtosymbols{zero}{5}
+\addtosymbols{zero}{6}
+\addtosymbols{zero}{7}
+\addtosymbols{zero}{8}
+\addtosymbols{zero}{9}
+}]{pdf/pubs_fscd.2022.pdf}
+
+\chapter{Distributing and Parallelizing Non-canonical Loops}
+\label{app:sec:vmcai}
+\ainfoX{\CTNT}{The 24\thsup International Conference on Verification, Model Checking, and Abstract Interpretation (VMCAI), 2023}
+{\noindent Software artifact: \href{https://zenodo.org/records/7080145}{10.5281/zenodo.7080145}
+\newline\noindent Citation:~\cite{aubert202213}
+\newline\newline\textit{Reproduced with permission from Springer Nature.}}
+\includepdf[pages={1-}, addtolist={
+5,figure,A simple imperative while language,fig-grammar,
+6,table,{Definition of Out, In and Occ for commands},table:def-out-in-occ,
+8,figure,{Statement examples, sets, and representations of their dependencies},fig:dependences,
+9,figure,Data-Flow Graph of Composition,fig:composition,
+13,figure,Distributing a more complex while loop,fig:exampe-complex,
+16,table,Parallelization tools feature support comparison,tab:comparison,
+17,figure,Code transformation example,fig:code-example,
+19,figure,Speedup of selected benchmarks implemented using while loops,fig:while,
+20,table,Speedup comparison between parallel benchmarks,tab:speedup,
+20,table,Descriptions of evaluated parallel benchmarks,tab:benchmarks},
+pagecommand={\thispagestyle{empty}%
+\addtoindex{Clava}{15}
+\addtoindex{Clava}{16}
+\addtoindex{Clava}{19}
+\addtoindex{Cetus}{15}
+\addtoindex{Cetus}{16}
+\addtoindex{MiBench}{17}
+\addtoindex{MiBench}{20}
+\addtoindex{NAS Parallel Benchmarks}{17}
+\addtoindex{NAS Parallel Benchmarks}{20}
+\addtoindex{OpenMP}{14}
+\addtoindex{OpenMP}{15}
+\addtoindex{OpenMP}{16}
+\addtoindex{OpenMP}{18}
+\addtoindex{OpenMP}{19}
+\addtoindex{OpenMP}{20}
+\addtoindex{OpenMP}{2}
+\addtoindex{OpenMP}{3}
+\addtoindex{OpenMP}{4}
+\addtoindex{Par4All}{15}
+\addtoindex{Par4All}{16}
+\addtoindex{Pluto}{15}
+\addtoindex{Pluto}{16}
+\addtoindex{Polybench/C}{16}
+\addtoindex{Polybench/C}{17}
+\addtoindex{Polybench/C}{18}
+\addtoindex{ROSE}{14}
+\addtoindex{ROSE}{15}
+\addtoindex{ROSE}{16}
+\addtoindex{ROSE}{17}
+\addtoindex{ROSE}{18}
+\addtoindex{ROSE}{19}
+\addtoindex{ROSE}{20}
+\addtoindex{TRACO}{15}
+\addtoindex{TRACO}{16}
+\addtoindex{compilation!parallelizing}{15}
+\addtoindex{compilation!parallelizing}{16}
+\addtoindex{compilation!parallelizing}{17}
+\addtoindex{compilation!parallelizing}{19}
+\addtoindex{compilation!parallelizing}{3}
+\addtoindex{compilation!source-to-source}{15}
+\addtoindex{compilation!source-to-source}{1}
+\addtoindex{compilation!source-to-source}{3}
+\addtoindex{dependency analysis}{14}
+\addtoindex{dependency analysis}{21}
+\addtoindex{dependency analysis}{2}
+\addtoindex{dependency analysis}{4}
+\addtoindex{dependency analysis}{6}
+\addtoindex{graph!bi-partite}{7}
+\addtoindex{graph!condensation}{11}
+\addtoindex{graph!condensation}{12}
+\addtoindex{graph!condensation}{13}
+\addtoindex{graph!covering}{11}
+\addtoindex{graph!covering}{12}
+\addtoindex{graph!covering}{13}
+\addtoindex{graph!covering}{14}
+\addtoindex{graph!data-flow}{6}
+\addtoindex{graph!data-flow}{7}
+\addtoindex{graph!dependence}{11}
+\addtoindex{graph!dependence}{14}
+\addtoindex{graph!dependence}{15}
+\addtoindex{saturated covering}{12}
+\addtoindex{saturated covering}{13}
+\addtoindex{Intel's C++ compiler}{15}
+\addtoindex{Intel's C++ compiler}{16}
+\addtoindex{loop form!canonical}{15}
+\addtoindex{loop form!canonical}{16}
+\addtoindex{loop form!canonical}{17}
+\addtoindex{loop form!canonical}{2}
+\addtoindex{loop form!canonical}{4}
+\addtoindex{loop form!non-canonical}{21}
+\addtoindex{loop form!non-canonical}{2}
+\addtoindex{loop transformation!distribution}{2}
+\addtoindex{loop transformation!fission}{11}
+\addtoindex{loop transformation!fission}{12}
+\addtoindex{loop transformation!fission}{14}
+\addtoindex{loop transformation!fission}{15}
+\addtoindex{loop transformation!fission}{16}
+\addtoindex{loop transformation!fission}{17}
+\addtoindex{loop transformation!fission}{18}
+\addtoindex{loop transformation!fission}{19}
+\addtoindex{loop transformation!fission}{20}
+\addtoindex{loop transformation!fission}{2}
+\addtoindex{loop transformation!fission}{3}
+\addtoindex{loop transformation!fission}{4}
+\addtoindex{loop transformation!fission}{6}
+\addtoindex{loop transformation!tiling}{4}
+\addtoindex{loop transformation!fusion}{21}
+\addtoindex{loop transformation!unrolling}{21}
+\addtoindex{loop transformation!unrolling}{3}
+\addtoindex{loop-carried dependency}{15}
+\addtoindex{loop-level parallelism}{2}
+\addtoindex{automatic parallelization}{15}
+\addtoindex{automatic parallelization}{16}
+\addtoindex{automatic parallelization}{19}
+\addtoindex{automatic parallelization}{20}
+\addtoindex{automatic parallelization}{3}
+\addtoindex{automatic parallelization}{4}
+\addtoindex{parallelization potential}{3}
+\addtoindex{polyhedral optimization}{4}
+\addtoindex{state explosion problem}{3}
+\addtosymbols{corro}{9}
+\addtosymbols{corr}{10}
+\addtosymbols{corr}{8}
+\addtosymbols{corr}{9}
+\addtosymbols{dfg}{10}
+\addtosymbols{dfg}{11}
+\addtosymbols{dfg}{7}
+\addtosymbols{dfg}{8}
+\addtosymbols{et}{9}
+\addtosymbols{graphw}{11}
+\addtosymbols{graphw}{12}
+\addtosymbols{graph}{12}
+\addtosymbols{infty2}{10}
+\addtosymbols{infty2}{11}
+\addtosymbols{infty2}{7}
+\addtosymbols{infty2}{8}
+\addtosymbols{infty2}{9}
+\addtosymbols{looppw}{12}
+\addtosymbols{looppw}{13}
+\addtosymbols{looppw}{14}
+\addtosymbols{loopw}{10}
+\addtosymbols{loopw}{11}
+\addtosymbols{loopw}{12}
+\addtosymbols{loopw}{13}
+\addtosymbols{loopw}{14}
+\addtosymbols{mdfg}{10}
+\addtosymbols{mdfg}{11}
+\addtosymbols{mdfg}{13}
+\addtosymbols{mdfg}{7}
+\addtosymbols{mdfg}{8}
+\addtosymbols{mdfg}{9}
+\addtosymbols{occ}{10}
+\addtosymbols{occ}{6}
+\addtosymbols{occ}{7}
+\addtosymbols{occ}{9}
+\addtosymbols{one}{10}
+\addtosymbols{one}{7}
+\addtosymbols{one}{8}
+\addtosymbols{one}{9}
+\addtosymbols{vin}{11}
+\addtosymbols{vin}{6}
+\addtosymbols{vin}{7}
+\addtosymbols{vin}{8}
+\addtosymbols{vout}{10}
+\addtosymbols{vout}{11}
+\addtosymbols{vout}{6}
+\addtosymbols{vout}{7}
+\addtosymbols{vout}{8}
+\addtosymbols{vout}{9}
+\addtosymbols{zero2}{10}
+\addtosymbols{zero2}{7}
+\addtosymbols{zero2}{8}
+\addtosymbols{zero2}{9}
+}]{pdf/pubs_vmcai.2023.pdf}
+
+\chapter{Tool User Guide for \enquote{pymwp: A Static Analyzer Determining Polynomial Growth Bounds}}\label{app:toolguide}
+\ainfo{\CTNT}{Publication companion.}
+\includepdf[pages={1-},scale=0.9,offset=0 0.25in,
+pagecommand={\thispagestyle{empty}%
+\addtoindex{mwp-bound}{3}
+\addtoindex{mwp-bound}{8}
+\addtoindex{nondeterminism}{2}
+\addtoindex{nondeterminism}{6}
+\addtoindex{pymwp}{10}
+\addtoindex{pymwp}{11}
+\addtoindex{pymwp}{1}
+\addtoindex{pymwp}{2}
+\addtoindex{pymwp}{4}
+\addtoindex{pymwp}{5}
+\addtoindex{pymwp}{6}
+\addtoindex{pymwp}{7}
+\addtoindex{pymwp}{8}
+\addtoindex{pymwp}{9}
+\addtosymbols{Xprime}{10}
+\addtosymbols{Xprime}{2}
+\addtosymbols{Xprime}{3}
+\addtosymbols{Xprime}{6}
+\addtosymbols{Xprime}{8}
+\addtosymbols{hp}{3}
+\addtosymbols{infty}{2}
+\addtosymbols{infty}{7}
+\addtosymbols{infty}{8}
+\addtosymbols{m}{2}
+\addtosymbols{m}{3}
+\addtosymbols{p}{2}
+\addtosymbols{p}{3}
+\addtosymbols{vlist}{3}
+\addtosymbols{w}{2}
+\addtosymbols{w}{3}
+\addtosymbols{zero}{2}
+}]{pdf/pubs_pymwp_guide.pdf}
+
+\chapter{Co-author Statements}\label{app:sec:coauth}
+\input{text/contrib}
 
 % ACRONYMS
 \clearpage\pagestyle{plain}
