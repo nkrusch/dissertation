@@ -63,8 +63,6 @@ jobs:
           path: ${{ vars.OUTPUT_PATH }}
       - name: 🙈 Rename output file
         run: mv ${{ vars.OUTPUT_PATH }}/main.pdf ${{ vars.OUTPUT_PATH }}/${{ vars.OUTPUT_FNAME }}
-      - name: Must fake a git change
-        run: touch public/log && echo "${{ github.sha }}" > public/log
       - name: 🚀 Commit and push
         run: |
           export COMMIT_MESSAGE="Compiled dissertation from @${{ github.sha }}"
