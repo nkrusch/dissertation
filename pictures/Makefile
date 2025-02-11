@@ -4,7 +4,7 @@ PDF_IMG := ${SRC:%.tex=fig_%.pdf}
 all: $(PDF_IMG) mv_pdf_pics clean
 
 fig_%.pdf : %.tex
-	@latexmk -pdf -xelatex -jobname=$(subst .pdf,,$@) $<
+	@latexmk -pdf -lualatex -jobname=$(subst .pdf,,$@) $<
 
 mv_pdf_pics:
 	@mv $(PDF_IMG) ../pdf

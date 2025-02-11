@@ -1,17 +1,17 @@
-# Notes on Resource Analysis Papers & Tools
+# Resource Analysis Papers & Tools
 
-| Name    | Details              | The Best URL                                                |
-|:--------|----------------------|-------------------------------------------------------------|
-| Campy   | Java bytecode        | https://faculty.cc.gatech.edu/~wharris/campy.html#artifacts |
-| KoAT    | Integer programs     | https://aprove-developers.github.io/ComplexityMprfCfr/      |
-| PUBS    | Cost Equation System | https://costa.fdi.ucm.es/~costa/pubs/pubs.php               | 
-| Rank    |                      | Alias et al. 2010                                           |
-| CoFloCo |                      | https://github.com/aeflores/CoFloCo                         |
-| COSTA   |                      | https://costa.fdi.ucm.es/costa/costa.php                    |
-| Loopus  |                      |                                                             |
-| C4B     | (Dead) web demo      | https://www.cs.yale.edu/homes/qcar/aaa/                     |
-| TcT     |                      | http://cl-informatik.uibk.ac.at/software/tct/               | 
-| SPEED   | (Dead) C/C++         | https://tinyurl.com/e6s7j86x                                |**
+| Name    | The Best URL                                                |
+|:--------|-------------------------------------------------------------|
+| Campy   | https://faculty.cc.gatech.edu/~wharris/campy.html#artifacts |
+| KoAT    | https://aprove-developers.github.io/ComplexityMprfCfr/      |
+| PUBS    | https://costa.fdi.ucm.es/~costa/pubs/pubs.php               | 
+| Rank    | Alias et al. 2010                                           |
+| CoFloCo | https://github.com/aeflores/CoFloCo                         |
+| COSTA   | https://costa.fdi.ucm.es/costa/costa.php                    |
+| Loopus  |                                                             |
+| C4B     | https://www.cs.yale.edu/homes/qcar/aaa/                     |
+| TcT     | http://cl-informatik.uibk.ac.at/software/tct/               | 
+| SPEED   | https://tinyurl.com/e6s7j86x                                |
 
 * Campy (DEAD): (POPL'17) "Complexity Verification using Guided Theorem Enumeration" 
 * Loopus: https://arxiv.org/abs/1508.04958 and https://doi.org/10.29007/3xxr
