@@ -29,7 +29,7 @@ update_main:
 	cp tex_version/main.tex main.tex
 
 clean:
-	@rm -rf *.pdf *.mst *.acn *.alg *glg *.glo *.gls *.ist *.slg *.sym *.aux *.acr *.sbl *.idx *.ind *.ilg *.xdv *.bbl *.bcf *.blg *.out *.fdb_latexmk *.fls *.log *.run.xml *.tex.blg *.synctex.gz *.vtc *.lot *.lof *.toc *~ main.pdf
+	@rm -rf *.pdf *.mst *.acn *.alg *glg *.glo *.gls *.ist *.slg *.sym *.aux *.acr *.sbl *.idx *.ind *.ilg *.xdv *.bbl *.bcf *.blg *.out *.fdb_latexmk *.fls *.log *.run.xml *.tex.blg *.synctex.gz *.vtc *.lot *.lof *.lol *.toc *~ main.pdf
 
 count:  # the abstract has a word limit
 	@echo $$(wc -w < $(ABSTRACT)) '\t---' $(basename $(ABSTRACT))
