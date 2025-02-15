@@ -193,7 +193,7 @@ pagecommand={\thispagestyle{empty}%
 \addtoindex{specifications}{2}
 \addtoindex{specifications}{3}
 \addtoindex{specifications}{4}
-\addtoindex{state explosion problem}{5}
+\addtoindex{state explosion}{5}
 \addtosymbols{cv}{10}
 \addtosymbols{cv}{13}
 \addtosymbols{cv}{9}
@@ -310,13 +310,13 @@ pagecommand={\thispagestyle{empty}%
 \addtoindex{CompCert}{16}
 \addtoindex{ComplexityParser}{15}
 \addtoindex{Coq}{16}
-\addtoindex{Gr\"{o}bner basis}{13}
+\addtoindex{Gröbner basis}{13}
 \addtoindex{Resource Aware ML}{15}
 \addtoindex{SPEED}{15}
 \addtoindex{Verasco}{15}
 \addtoindex{certified-llvm}{16}
-\addtoindex{NP complexity class}{6}
-\addtoindex{P complexity class}{3}
+\addtoindex{complexity class@!NP}{6}
+\addtoindex{complexity class@!P}{3}
 \addtoindex{delta graph}{14}
 \addtoindex{delta graph}{15}
 \addtoindex{monomial}{13}
@@ -335,8 +335,8 @@ pagecommand={\thispagestyle{empty}%
 \addtoindex{pymwp}{22}
 \addtoindex{pymwp}{23}
 \addtoindex{quasi-invariant}{15}
-\addtoindex{state explosion problem}{5}
-\addtoindex{state explosion problem}{6}
+\addtoindex{state explosion}{5}
+\addtoindex{state explosion}{6}
 \addtoindex{static single assignment}{16}
 \addtosymbols{PsiProd}{12}
 \addtosymbols{Psi}{12}
@@ -567,14 +567,14 @@ pagecommand={\thispagestyle{empty}%
 \newline\noindent Citation:~\cite{aubert202213}
 \newline\newline\textit{Reproduced with permission from Springer Nature.}}
 \includepdf[pages={1-}, addtolist={
-5,figure,A simple imperative while language,fig-grammar,
+5,figure,{Simple imperative while language},fig-grammar,
 6,table,{Definition of Out, In and Occ for commands},table:def-out-in-occ,
 8,figure,{Statement examples, sets, and representations of their dependencies},fig:dependences,
-9,figure,Data-Flow Graph of Composition,fig:composition,
+9,figure,Data-Flow Graph of composition,fig:composition,
 13,figure,Distributing a more complex while loop,fig:exampe-complex,
 16,table,Parallelization tools feature support comparison,tab:comparison,
 17,figure,Code transformation example,fig:code-example,
-19,figure,Speedup of selected benchmarks implemented using while loops,fig:while,
+19,figure,Speedup of selected benchmarks,fig:while,
 20,table,Speedup comparison between parallel benchmarks,tab:speedup,
 20,table,Descriptions of evaluated parallel benchmarks,tab:benchmarks},
 pagecommand={\thispagestyle{empty}%
@@ -677,7 +677,7 @@ pagecommand={\thispagestyle{empty}%
 \addtoindex{automatic parallelization}{4}
 \addtoindex{parallelization potential}{3}
 \addtoindex{polyhedral optimization}{4}
-\addtoindex{state explosion problem}{3}
+\addtoindex{state explosion}{3}
 \addtosymbols{corro}{9}
 \addtosymbols{corr}{10}
 \addtosymbols{corr}{8}
@@ -768,6 +768,10 @@ pagecommand={\thispagestyle{empty}%
 \addtosymbols{w}{2}
 \addtosymbols{w}{3}
 \addtosymbols{zero}{2}
+\addtosymbols{land}{3}
+\addtosymbols{land}{6}
+\addtosymbols{land}{8}
+\addtosymbols{land}{10}
 }]{pdf/pubs_pymwp_guide.pdf}
 
 \chapter{Index of Artifacts}\label{app:sec:artifacts}
@@ -785,5 +789,5 @@ pagecommand={\thispagestyle{empty}%
 
 % SYMBOLS INDEX
 \clearpage\pagestyle{plain}
-\renewcommand{\glspostdescription}{,}
-\printglossary[type=symbols,style=longragged]
+%\renewcommand{\glspostdescription}{,}
+\printglossary[type=symbols,nopostdot,style=longraggedots]

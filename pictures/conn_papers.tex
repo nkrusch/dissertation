@@ -1,21 +1,6 @@
 \documentclass[crop,border={20pt 20pt 20pt 20pt}]{standalone}
-\usepackage{tikz,fontawesome5,fontspec,color}
-
-\setmainfont{TeXGyreTermes}[
-    Path = ../fonts/,
-    UprightFont = *-Regular,
-    BoldFont = *-Bold,
-    ItalicFont = *-Italic,
-    BoldItalicFont = *-BoldItalic]
-
-\definecolor{concept}{HTML}{ECEFF1}
-\definecolor{prior}{HTML}{E6EE9C}
-\definecolor{paper}{HTML}{BBDEFB}
-
-\newcommand{\op}{\textnormal{\scalebox{.65}{\faChartLine}}}
-\newcommand{\vi}{\textnormal{\scalebox{.65}{\faShield*}}}
-\newcommand{\fm}{\textnormal{\scalebox{.65}{\faCheck}}}
-\newcommand{\pa}{\textnormal{\scalebox{.65}{\faCode}}}
+\input{../latex/pics}
+\input{../latex/symbols}
 
 \tikzstyle{start} = [rectangle, 
   minimum width=7cm,
@@ -67,13 +52,13 @@
 \draw [rectangle connector=-4cm] (mwp) to (cca);
 
 \node (topics)   [rectangle, below of=nil, text width=5cm] {Related Topics};
-\node (analysis) [topic icon, xshift=-2.2cm, yshift=-.2cm, below of=topics] {\large\pa};
+\node (analysis) [topic icon, xshift=-2.2cm, yshift=-.2cm, below of=topics] {\large\iconSPA};
 \node            [topic label, right of=analysis] {Static Program Analysis};
-\node (optimize) [topic icon, below of=analysis] {\large\op};
+\node (optimize) [topic icon, below of=analysis] {\large\iconOPT};
 \node            [topic label, right of=optimize] {Program Optimization};
-\node (verify)   [topic icon, below of=optimize] {\large\fm};
+\node (verify)   [topic icon, below of=optimize] {\large\iconFM};
 \node            [topic label, right of=verify] {Verification/Formal Methods};
-\node (security) [topic icon, below of=verify] {\large\vi};
+\node (security) [topic icon, below of=verify] {\large\iconSEC};
 \node          	 [topic label, right of=security] {Security};
 
 \end{tikzpicture}

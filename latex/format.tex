@@ -12,8 +12,11 @@
 \algtext*{EndWhile} % Remove "end while" text
 \algtext*{EndIf} % Remove "end if" text
 
-% Glossaries
-\renewcommand{\glsdescwidth}{12cm}
+% set min-length for dot-fill
+\DeclareRobustCommand\mydotfill{%
+\leavevmode
+\cleaders \hbox to.44em{\hss.\hss}\hskip 1.32em plus 1fill
+\kern0pt }
 
 % Index
 \makeatletter
@@ -21,15 +24,30 @@
 {{\chapter{\indexname}\label{sec:app:index}}\par%
 \@mkboth{\MakeUppercase\indexname}{\MakeUppercase\indexname}%
 \parindent\z@
-\parskip\z@ \@plus .3\p@\relax
+\parskip\z@ \@plus .5\p@\relax
 \let\item\@idxitem
 \setlength{\columnsep}{20pt}
+\setlength{\parindent}{0em}
+\setlength{\marginparwidth}{0pc}
 \begin{multicols}{2}}
 {\end{multicols}}
 \makeatother
-% https://tex.stackexchange.com/a/53990
+
 \begin{filecontents}{\jobname.mst}
 headings_flag 1
-heading_prefix "\\textbf\{"
-heading_suffix "\}\\nopagebreak\n"
+heading_prefix "\{\\normalsize\\textbf\{"
+heading_suffix "\}\}\\nopagebreak\n"
+delim_0 " \\mydotfill \\footnotesize~"
+delim_1 " \\mydotfill \\footnotesize~"
+delim_2 " \\mydotfill \\footnotesize~"
+delim_t "\\normalsize"
 \end{filecontents}
+
+% Glossaries
+% custom glossary style, match index
+\renewcommand{\glsdescwidth}{11cm}
+\newglossarystyle{longraggedots}{%
+\glossarystyle{long}%
+\renewcommand*\glossaryentryfield[5]{%
+    \glstarget{##1}{##2} & \makefirstuc{##4}##3\glspostdescription\space\mydotfill\space\footnotesize{##5}\\
+}}

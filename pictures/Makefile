@@ -10,4 +10,4 @@ mv_pdf_pics:
 	@mv $(PDF_IMG) ../pdf
 
 clean:
-	@rm -rf *.dvi *.aux *.fdb_latexmk *.fls *.log *.xdv
+	@rm -rf *.dvi *.aux *.fdb_latexmk *.fls *.log *.xdv *.gz *.pdf

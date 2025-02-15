@@ -1,10 +1,9 @@
 # Dissertation
 
-
 [![Compile](https://github.com/nkrusch/thesis/actions/workflows/compile.yaml/badge.svg)](https://github.com/nkrusch/thesis/actions/workflows/compile.yaml)
-![Static Badge](https://img.shields.io/badge/draft-FF4081?style=flat-square&logo=%20&logoColor=ffffff&label=Status&labelColor=333333)
+[![Status](https://img.shields.io/badge/draft-FF4081?style=flat-square&logo=%20&logoColor=ffffff&label=Status&labelColor=333333)](https://github.com/nkrusch/dissertation/releases)
 
-Repository to host, automatically compile, and share my dissertation.
+Repository to host, compile, and share my dissertation.
 
 ### Formatting references & resources
 
@@ -15,9 +14,10 @@ Repository to host, automatically compile, and share my dissertation.
 
 ### 🐳 Docker environment for compilation
 
-This is the same environment as used by the actions-workflow.
+The same environment as used by the actions.
 
-Pull latest [texlive-full image](https://github.com/xu-cheng/latex-docker/pkgs/container/texlive-full), then launch the container.
+Pull latest [texlive-full image](https://github.com/xu-cheng/latex-docker/pkgs/container/texlive-full), 
+then launch the container.
 Run the container from the root of this repository.
 
 ```
@@ -37,6 +37,5 @@ apk update && apk add [whatever-package]
 
 ### Troubleshooting/notes
 
-Issues related to `\includepdf`
-* `addtotoc={…}` adding commands in the description string breaks compilation on _some_ machines.   
-   Error message: `Improper alphabetic constant` followed by `Incomplete (and hence corrupt) bcf file 'main.bcf'`
+* Issues with `\includepdf`: 
+  in `addtotoc={…}` using commands in the description breaks compilation on some machines (error: `Improper alphabetic constant`).
