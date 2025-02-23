@@ -106,10 +106,10 @@ pagecommand={\thispagestyle{empty}%
 19,subsection,2,Related works,related-works,
 20,subsection,2,Conclusion and future directions,conclusion},
 addtolist={
-    15,table,Benchmarks characteristics summarized,tab:suites,
-    17,table,{Analysis results for mwp analyses},tab:linear,
-    17,table,Daikon analysis results,tab:daikon,
-    19,table,Postcondition comparison on select benchmarks,tab:pc},
+15,table,Benchmarks characteristics summarized,tab:suites,
+17,table,{Analysis results for mwp analyses},tab:linear,
+17,table,Daikon analysis results,tab:daikon,
+19,table,Postcondition comparison on select benchmarks,tab:pc},
 pagecommand={\thispagestyle{empty}%
 \addtoindex{DIG}{20}
 \addtoindex{Dafny}{15}
@@ -254,12 +254,25 @@ pagecommand={\thispagestyle{empty}%
 }]{pdf/pubs_pc.2025.pdf}
 \clearpage
 
-\section{An Information Flow Calculus for Non-Interference}\label{ni-analysis}
-\ainfoX{Cl{\'{e}}ment Aubert, Neea Rusch}
-{\href{https://plas24.github.io}
-{The 19\thsup Workshop on Programming Languages and Analysis for Security (PLAS), 2024}}
-{\abspage{\input{text/abs_plas}}}
-\input{text/plas}
+\section{A Logic for Anytime Non-Interference}\label{ni-analysis}
+\ainfoX{Clément Aubert and Neea Rusch}{In review at \href{https://fscd2025.github.io}
+{FSCD 2025: Formal Structures for Computation and Deduction}}{}
+\includepdf[pages={1-},addtotoc={
+1,subsection,2,Introduction,sec:introduction,
+4,subsection,2,High-level Overview,sec:overview,
+4,subsection,2,The Non-interference Logic,ni-logic,
+9,subsection,2,Capturing Anytime Non-Interference,sec:soundness,
+10,subsection,2,Interpreting Function Calls in an Anytime Non-Interfering Context,sec:fct-calls,
+13,subsection,2,Practical Applications and Comparison,sec:apps,
+15,subsection,2,{Conclusion: Strengths, Limitations and Future Directions},sec:conclusion},
+addtolist={
+5,figure,{A Simple Imperative while Language},fig:grammar,
+5,table,{Definition of Out, In and Occ for commands},table:ni-def-out-in-occ,
+7,figure,{Statement Examples, Sets, Representations of Possible Violation(s)},fig:ni-dependences,
+7,figure,{Security-Flow Matrix of Compositions},fig:ni-composition,
+12,figure,{Statement Examples, Interpretation and Sets -- Involving Effects},fig:fct-effect},
+pagecommand={\thispagestyle{empty}%
+}]{pdf/pubs_ni.2025.pdf}
 \clearpage
 
 \section{Certifying Complexity Analysis}\label{coqpl}

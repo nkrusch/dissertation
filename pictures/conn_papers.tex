@@ -35,12 +35,12 @@
 \node (icc) [start, yshift=-2cm] {Implicit Computational Complexity};
 \node (mwp) [prior, below of=icc, xshift=-3.5cm] {``A Flow Calculus of mwp-Bounds\\for Complexity Analysis"\\\small{\textit{Jones \& Kristiansen (2009)}}};
 \node (qsi) [prior, right of=mwp, xshift=5cm] {``Loop Quasi-Invariant Chunk Detection"\\\small{\textit{Moyen, Rubiano \& Seiller (2017)}}};
-\node [block=imp:\pa:{``mwp-Analysis Improvement and Implementation: Realizing\\Implicit Computational Complexity"\\\small{\textit{Aubert, Rubiano, Rusch \& Seiller (2022)}}}, below of=mwp];
-\node [block=pym:\pa:{``pymwp: A Static Analyzer\\Determining Polynomial Growth Bounds"\\\small{\textit{Aubert, Rubiano, Rusch \& Seiller (2023)}}}, below of=imp];
-\node [block=pci:\fm:{``Polynomial Postconditions\\via mwp-Bounds"\\\small{\textit{Rusch (2025)$^*$}}}, below of=pym];
-\node [block=ncl:\op:{``Distributing and Parallelizing\\Non-canonical Loops"\\\small{\textit{Aubert, Rubiano, Rusch \& Seiller (2023)}}}, below of=qsi];
-\node [block=nil:\vi:{``An Information Flow Logic for Non-Interference"\\\small{\textit{Aubert \& Rusch (2025)$^*$}}}, below of=ncl];
-\node [block=cca:\fm:{``Certifying Complexity Analysis"\\\small{\textit{Aubert, Rubiano, Rusch \& Seiller (2023)}}\\\small{\textit{Rusch (2023 -- ?)}}}, below of=pci];
+\node [block=imp:\iconSPA:{``mwp-Analysis Improvement and Implementation: Realizing\\Implicit Computational Complexity"\\\small{\textit{Aubert, Rubiano, Rusch \& Seiller (2022)}}}, below of=mwp];
+\node [block=pym:\iconSPA:{``pymwp: A Static Analyzer\\Determining Polynomial Growth Bounds"\\\small{\textit{Aubert, Rubiano, Rusch \& Seiller (2023)}}}, below of=imp];
+\node [block=pci:\iconFM:{``Polynomial Postconditions\\via mwp-Bounds"\\\small{\textit{Rusch (2025)$^*$}}}, below of=pym];
+\node [block=ncl:\iconOPT:{``Distributing and Parallelizing\\Non-canonical Loops"\\\small{\textit{Aubert, Rubiano, Rusch \& Seiller (2023)}}}, below of=qsi];
+\node [block=nil:\iconSEC:{``A Logic for Anytime Non-Interference"\\\small{\textit{Aubert \& Rusch (2025)$^*$}}}, below of=ncl];
+\node [block=cca:\iconFM:{``Certifying Complexity Analysis"\\\small{\textit{Aubert, Rubiano, Rusch \& Seiller (2023)}}\\\small{\textit{Rusch (2023 -- ?)}}}, below of=pci];
 
 \draw [arrow] (icc) -- (mwp);
 \draw [arrow] (mwp) -- (imp);
