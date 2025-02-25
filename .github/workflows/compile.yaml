@@ -63,6 +63,8 @@ jobs:
           path: ${{ vars.OUTPUT_PATH }}
       - name: 🙈 Rename output file
         run: mv ${{ vars.OUTPUT_PATH }}/main.pdf ${{ vars.OUTPUT_PATH }}/${{ vars.OUTPUT_FNAME }}
+      - name: Update version
+        run: (cd site && npm run release)
       - name: 🚀 Commit and push
         run: |
           export COMMIT_MESSAGE="Compiled dissertation from @${{ github.sha }}"
