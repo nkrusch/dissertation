@@ -1,0 +1,48 @@
+\documentclass[crop,border={-16pt 20pt 1pt 20pt}]{standalone}
+\input{../latex/pics}
+\usetikzlibrary {arrows.meta}
+\tikzset{font={\footnotesize\selectfont}}
+\begin{document}
+
+\tikzstyle{arrow}  = [thin,{Circle[open]}-{Circle[open]}]
+\tikzstyle{label0} = [text centered, midway]
+\tikzstyle{label1} = [label0, text width=1cm, above, yshift=3pt]
+\tikzstyle{label2} = [text centered, text width=1.1cm, yshift=-75pt]
+\tikzstyle{tbox}   = [draw=black, thick, fill=white]
+
+\tikzstyle{doc}    = [
+	tbox,
+	text centered,
+	minimum height=1.7cm,
+	text width=1.0cm,
+	rounded corners=3pt,
+	font={\centering\large\textbf}]
+	
+\tikzstyle{phase}  = [
+	draw=black,
+	thin,
+	text centered,
+	minimum height=1.3cm,
+	text width=2cm]
+
+\begin{tikzpicture}[node distance=4cm]
+%\draw[gray!20!white,step=.25] (0,0) grid (16,3);
+
+\draw[tbox] (2.25,0) rectangle (13.75,2.7) node[label0, yshift=25pt] {\small pymwp static analyzer};    
+
+\node (0) [doc] at (0,1)     {\texttt{</>}};
+\node (1) [phase, right of=0] {\texttt{[front-end]}\\pycparser};
+\node (2) [phase, right of=1] {\texttt{[phase-I]}\\matrix\\construction};
+\node (3) [phase, right of=2] {\texttt{[phase-II]}\\evaluation};
+\node (4) [doc,   right of=3] {\texttt{\{…\}}};
+	
+\node[label2, above of=0] {\texttt{[input]}\\program};
+\node[label2, above of=4] {\texttt{[output]}\\result};	
+
+\draw [arrow] (0) -- (1) node[label1, xshift=-7pt] {C};
+\draw [arrow] (1) -- (2) node[label1] {AST}; 
+\draw [arrow] (2) -- (3) node[label1] {mwp\\matrix}; 
+\draw [arrow] (3) -- (4) node[label1, xshift=7pt] {object}; 
+
+\end{tikzpicture}
+\end{document}
