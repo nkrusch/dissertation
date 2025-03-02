@@ -6,6 +6,7 @@
 \newcommand{\tocless}[2]{\bgroup\let\addcontentsline=\nocontentsline#1{#2}\egroup}
 \newcommand{\aref}[1]{\hyperref[#1]{Appendix~\ref*{#1}}}
 \newcommand{\swlink}[2]{\texttt{\footnotesize{\href{#1}{#2}}}}
+\newcommand{\ccx}[1]{\textsc{#1}}
 
 % add index terms to \includepdf
 \makeatletter
@@ -30,8 +31,8 @@
 \newcolumntype{C}{>{\centering\arraybackslash}X}
 
 % Math operators etc.
-\newcommand\hypo{\Hypo}
-\newcommand\infer{\Infer}
+%\newcommand\hypo{\Hypo}
+%\newcommand\infer{\Infer}
 \newcommand{\zmat}{\mathbf{0}}
 \newcommand{\umat}{\mathbf{1}}
 \DeclareMathOperator{\In}{In}
@@ -42,6 +43,7 @@
 \DeclareMathOperator{\var}{var}
 \DeclareMathOperator{\Card}{Card}
 \DeclareMathOperator{\Occ}{Occ}
+\DeclareMathOperator{\poly}{poly}
 \renewcommand{\gets}{=} % algorithms
 
 \DeclarePairedDelimiter{\sem}{\llbracket}{\rrbracket} % Semantics of program.
@@ -114,4 +116,8 @@
 {etc}%
 {etc.\@\xspace}%
 }
+\makeatother
+
+\makeatletter
+\newcommand{\ssymbol}[1]{^{\@fnsymbol{#1}}}
 \makeatother

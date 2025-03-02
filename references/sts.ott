@@ -1,0 +1,80 @@
+grammar
+
+t {{ tex t }} :: 'tp_'       ::= {{ com types }}
+  | h                        ::   :: high   {{ com type high }}
+  | l                        ::   :: low    {{ com type low }}
+  | Γ                        ::   :: either {{ com type either }}
+
+ex {{ tex ex }} :: 'E_'      ::= {{ com expressions }}
+  | v                        ::   :: var
+  | e                        ::   :: bool
+
+formula :: formula_          ::=
+  | judgement                ::   :: judgement
+  | h ∉ vars( e )            ::   :: no_highs
+  | ex : t                   ::   :: has_type
+
+C {{ tex C }} :: 'C_'        ::= {{ com commands }}
+  | skip                     ::   :: skip
+  | v ≔ e                    ::   :: assign
+  | C_1 ; C_2                ::   :: sequence
+  | if e then C_1 else C_2   ::   :: if
+  | while e do C             ::   :: while
+
+G {{ tex G }} :: env_        ::= {{ com typing contexts }}
+  |                          :: :: nil  {{ com empty }}
+  | t                        :: :: cas  {{ com command assumption }}
+
+defns
+Jtype :: '' ::=
+
+
+defn
+⊢ ex : t  :: :: exp_typing :: E_ {{ com expression typing }}
+by
+
+
+------- :: High
+⊢ e : h
+
+h ∉ vars(e)
+----------- :: Low
+⊢ e : l
+
+
+defn
+G ⊢ C  :: :: com_typing :: C_ {{ com command typing }}
+by
+
+
+-------- :: Skip
+Γ ⊢ skip
+
+⊢ v : h
+--------- :: Assign1
+Γ ⊢ v ≔ e
+
+⊢ e : l
+--------- :: Assign2
+l ⊢ v ≔ e
+
+Γ ⊢ C_1
+Γ ⊢ C_2
+------------- :: Seq
+Γ ⊢ C_1 ; C_2
+
+⊢ e : Γ
+Γ ⊢ C
+---------------- :: While
+Γ ⊢ while e do C
+
+⊢ e : Γ
+Γ ⊢ C_1
+Γ ⊢ C_2
+-------------------------- :: If
+Γ ⊢ if e then C_1 else C_2
+
+h ⊢ C
+----- :: Sub
+l ⊢ C
+

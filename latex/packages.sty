@@ -2,18 +2,21 @@
 \RequirePackage{etex}
 \RequirePackage{xspace}
 \RequirePackage{fontawesome5}
+\RequirePackage[verbose]{newunicodechar}
+\RequirePackage{sansmath}
 % Document
 \RequirePackage[bottom]{footmisc}
 \RequirePackage{filecontents}
 \RequirePackage{pdfpages}
 \RequirePackage{color}
 \RequirePackage{adjustbox}
-\RequirePackage{enumitem}
+\RequirePackage[inline]{enumitem}
 \RequirePackage{fnpct}
 \RequirePackage{imakeidx}
 \RequirePackage[setpagesize=false]{hyperref} % FIX! https://tex.stackexchange.com/a/28800/
 \RequirePackage[acronym,nomain,section=chapter,numberedsection,nogroupskip]{glossaries}
 \RequirePackage{glossary-longragged}
+\RequirePackage{mdframed}
 % Math
 \RequirePackage{amsmath}
 \RequirePackage{mathtools}
@@ -25,15 +28,21 @@
 \RequirePackage[theorems,breakable,hooks,most]{tcolorbox}
 \RequirePackage{cases}
 \RequirePackage{stmaryrd}
-% Tables
+%\RequirePackage{bm}
+% Tables + figures
 \RequirePackage{tabularx}
 \RequirePackage{ltablex}
 \RequirePackage{multicol}
 \RequirePackage{multirow}
+\RequirePackage{caption}
+\RequirePackage{subcaption}
 % Code + algorithms
 \RequirePackage{algorithm}
-\RequirePackage{algpseudocode}
+\RequirePackage{algorithmicx}
+\RequirePackage[noend]{algpseudocode}
+\RequirePackage{ottalt}
 % Tikz/Drawing
-\RequirePackage{tikz}
-\RequirePackage{tikz-network}
-\usetikzlibrary{arrows,calc,tikzmark,fit,matrix,shapes,arrows,shadows}
+%\RequirePackage{tikz}
+%\RequirePackage{tikz-network}
+%\usetikzlibrary{arrows,calc,tikzmark,fit,matrix,shapes,arrows,shadows}
+
