@@ -2,11 +2,42 @@
 
 Statement of the problem and specific aims of the overall project.
 
-
 \begin{figure}[p]
-\centering
-\includegraphics[width=\linewidth,height=\textheight,keepaspectratio]{pdf/fig_conn_papers}
-\caption{Dissertation manuscript connections.}\label{fig:conn_papers}
+  \begin{subfigure}{\textwidth}
+    \includegraphics[width=.95\linewidth,height=\textheight,keepaspectratio]{pdf/fig_conn_papers}
+%    \caption[Conceptual connections]{Conceptual connections.}
+%    \label{fig:conn_papers-1}
+  \end{subfigure}
+  \begin{subfigure}{\textwidth}
+    \begin{tabularx}{\textwidth}{Xcr}
+      \toprule
+      \textbf{Title} & \textbf{Section} & \textbf{Background} \\
+      \midrule
+      {mwp-Analysis Improvement and Implementation\ldots}
+      & \aref{app:sec:fscd}
+      & \ref{icc}, \ref{static-analysis}, \ref{flow-calculus} \\
+      {Distributing and Parallelizing Non-canonical Loops}
+      & \aref{app:sec:vmcai}
+      & \ref{transforms} \\
+      {Polynomial Postconditions via mwp-Bounds}
+      & \ref{sec:postcond}
+      & \ref{flow-calculus}, \ref{verification} \\
+      {pymwp: A Static Analyzer Determining\ldots}
+      & \ref{sec:atva}
+      & \ref{icc}, \ref{static-analysis}, \ref{flow-calculus} \\
+      {A Logic for Anytime Non-Interference}
+      & \ref{sec:anytime}
+      & \ref{pl-sec} \\
+      {Certifying Complexity Analysis}
+      & \ref{coqpl}
+      & \ref{flow-calculus}, \ref{verification} \\
+      \bottomrule
+    \end{tabularx}
+%    \caption{Relevant publication background.}
+%    \label{fig:conn_papers-bg}
+  \end{subfigure}
+  \caption[Connected papers]{Connections between dissertation publications.}
+  \label{fig:conn_papers}
 \end{figure}
 
 % How to read notes
@@ -36,3 +67,11 @@ method DafnyEx() {
   assert x == 0;
 }
 \end{lstlisting}
+
+
+\subsection{Literature Topic 1: Implicit Computational Complexity}\label{icc}
+\subsection{Literature Topic 2: Static Resource Analysis}\label{static-analysis}
+\subsection{Literature Topic 3: The Flow Calculus of mwp-Bounds}\label{flow-calculus}
+\subsection{Literature Topic 4: Formal Verification}\label{verification}
+\subsection{Literature Topic 5: Loop Transformations for Parallel Programming}\label{transforms}
+\subsection{Literature Topic 6: Confidentiality and Non-Interference}\label{pl-sec}
