@@ -30,9 +30,10 @@
 \let\item\@idxitem
 \setlength{\columnsep}{20pt}
 \setlength{\parindent}{0em}
-\setlength{\marginparwidth}{0pc}
-\begin{multicols}{2}}
-{\end{multicols}}
+%\setlength{\marginparwidth}{0pc}
+\begin{multicols*}{2}\raggedcolumns}
+{\end{multicols*}}
+\renewcommand{\@idxitem}{\par\hangindent 21\p@}
 \makeatother
 
 \begin{filecontents}{\jobname.mst}

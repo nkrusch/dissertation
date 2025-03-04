@@ -14,7 +14,7 @@ formula :: formula_          ::=
   | h ∉ vars( e )            ::   :: no_highs
   | ex : t                   ::   :: has_type
 
-C {{ tex C }} :: 'C_'        ::= {{ com commands }}
+C {{ tex \nonterm C }} :: 'C_'  ::= {{ com commands }}
   | skip                     ::   :: skip
   | v ≔ e                    ::   :: assign
   | C_1 ; C_2                ::   :: sequence

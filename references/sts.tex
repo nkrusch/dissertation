@@ -48,12 +48,12 @@
 \ottprodline{|}{ex  \ottsym{:}  t}{}{}{}{}}
 
 \newcommand{\ottC}{
-\ottrulehead{C}{::=}{\ottcom{commands}}\ottprodnewline
+\ottrulehead{\nonterm C}{::=}{\ottcom{commands}}\ottprodnewline
 \ottfirstprodline{|}{\ottkw{skip}}{}{}{}{}\ottprodnewline
 \ottprodline{|}{\ottkw{v} \, \ottsym{≔} \, \ottkw{e}}{}{}{}{}\ottprodnewline
-\ottprodline{|}{C_{{\mathrm{1}}}  \ottsym{;}  C_{{\mathrm{2}}}}{}{}{}{}\ottprodnewline
-\ottprodline{|}{\ottkw{if} \, \ottkw{e} \, \ottkw{then} \, C_{{\mathrm{1}}} \, \ottkw{else} \, C_{{\mathrm{2}}}}{}{}{}{}\ottprodnewline
-\ottprodline{|}{\ottkw{while} \, \ottkw{e} \, \ottkw{do} \, C}{}{}{}{}}
+\ottprodline{|}{\nonterm C_{{\mathrm{1}}}  \ottsym{;}  \nonterm C_{{\mathrm{2}}}}{}{}{}{}\ottprodnewline
+\ottprodline{|}{\ottkw{if} \, \ottkw{e} \, \ottkw{then} \, \nonterm C_{{\mathrm{1}}} \, \ottkw{else} \, \nonterm C_{{\mathrm{2}}}}{}{}{}{}\ottprodnewline
+\ottprodline{|}{\ottkw{while} \, \ottkw{e} \, \ottkw{do} \, \nonterm C}{}{}{}{}}
 
 \newcommand{\ottG}{
 \ottrulehead{G}{::=}{\ottcom{typing contexts}}\ottprodnewline
@@ -63,7 +63,7 @@
 \newcommand{\ottJtype}{
 \ottrulehead{\ottnt{Jtype}}{::=}{}\ottprodnewline
 \ottfirstprodline{|}{\ottsym{⊢}  ex  \ottsym{:}  t}{}{}{}{\ottcom{expression typing}}\ottprodnewline
-\ottprodline{|}{G  \ottsym{⊢}  C}{}{}{}{\ottcom{command typing}}}
+\ottprodline{|}{G  \ottsym{⊢}  \nonterm C}{}{}{}{\ottcom{command typing}}}
 
 \newcommand{\ottjudgement}{
 \ottrulehead{\ottnt{judgement}}{::=}{}\ottprodnewline
@@ -74,7 +74,7 @@
 \ottfirstprodline{|}{t}{}{}{}{}\ottprodnewline
 \ottprodline{|}{ex}{}{}{}{}\ottprodnewline
 \ottprodline{|}{\ottnt{formula}}{}{}{}{}\ottprodnewline
-\ottprodline{|}{C}{}{}{}{}\ottprodnewline
+\ottprodline{|}{\nonterm C}{}{}{}{}\ottprodnewline
 \ottprodline{|}{G}{}{}{}{}}
 
 \newcommand{\ottgrammar}{\ottgrammartabular{
@@ -135,41 +135,41 @@
 
 
 \newcommand{\ottdruleCXXSeq}[1]{\ottdrule[#1]{%
-\ottpremise{\ottsym{Γ}  \ottsym{⊢}  C_{{\mathrm{1}}}}%
-\ottpremise{\ottsym{Γ}  \ottsym{⊢}  C_{{\mathrm{2}}}}%
+\ottpremise{\ottsym{Γ}  \ottsym{⊢}  \nonterm C_{{\mathrm{1}}}}%
+\ottpremise{\ottsym{Γ}  \ottsym{⊢}  \nonterm C_{{\mathrm{2}}}}%
 }{
-\ottsym{Γ}  \ottsym{⊢}  C_{{\mathrm{1}}}  \ottsym{;}  C_{{\mathrm{2}}}}{%
+\ottsym{Γ}  \ottsym{⊢}  \nonterm C_{{\mathrm{1}}}  \ottsym{;}  \nonterm C_{{\mathrm{2}}}}{%
 {\ottdrulename{C\_Seq}}{}%
 }}
 
 
 \newcommand{\ottdruleCXXWhile}[1]{\ottdrule[#1]{%
 \ottpremise{\ottsym{⊢}  \ottkw{e}  \ottsym{:}  \ottsym{Γ}}%
-\ottpremise{\ottsym{Γ}  \ottsym{⊢}  C}%
+\ottpremise{\ottsym{Γ}  \ottsym{⊢}  \nonterm C}%
 }{
-\ottsym{Γ}  \ottsym{⊢}  \ottkw{while} \, \ottkw{e} \, \ottkw{do} \, C}{%
+\ottsym{Γ}  \ottsym{⊢}  \ottkw{while} \, \ottkw{e} \, \ottkw{do} \, \nonterm C}{%
 {\ottdrulename{C\_While}}{}%
 }}
 
 
 \newcommand{\ottdruleCXXIf}[1]{\ottdrule[#1]{%
 \ottpremise{\ottsym{⊢}  \ottkw{e}  \ottsym{:}  \ottsym{Γ}}%
-\ottpremise{\ottsym{Γ}  \ottsym{⊢}  C_{{\mathrm{1}}}}%
-\ottpremise{\ottsym{Γ}  \ottsym{⊢}  C_{{\mathrm{2}}}}%
+\ottpremise{\ottsym{Γ}  \ottsym{⊢}  \nonterm C_{{\mathrm{1}}}}%
+\ottpremise{\ottsym{Γ}  \ottsym{⊢}  \nonterm C_{{\mathrm{2}}}}%
 }{
-\ottsym{Γ}  \ottsym{⊢}  \ottkw{if} \, \ottkw{e} \, \ottkw{then} \, C_{{\mathrm{1}}} \, \ottkw{else} \, C_{{\mathrm{2}}}}{%
+\ottsym{Γ}  \ottsym{⊢}  \ottkw{if} \, \ottkw{e} \, \ottkw{then} \, \nonterm C_{{\mathrm{1}}} \, \ottkw{else} \, \nonterm C_{{\mathrm{2}}}}{%
 {\ottdrulename{C\_If}}{}%
 }}
 
 
 \newcommand{\ottdruleCXXSub}[1]{\ottdrule[#1]{%
-\ottpremise{\ottkw{h}  \ottsym{⊢}  C}%
+\ottpremise{\ottkw{h}  \ottsym{⊢}  \nonterm C}%
 }{
-\ottkw{l}  \ottsym{⊢}  C}{%
+\ottkw{l}  \ottsym{⊢}  \nonterm C}{%
 {\ottdrulename{C\_Sub}}{}%
 }}
 
-\newcommand{\ottdefncomXXtyping}[1]{\begin{ottdefnblock}[#1]{$G  \ottsym{⊢}  C$}{\ottcom{command typing}}
+\newcommand{\ottdefncomXXtyping}[1]{\begin{ottdefnblock}[#1]{$G  \ottsym{⊢}  \nonterm C$}{\ottcom{command typing}}
 \ottusedrule{\ottdruleCXXSkip{}}
 \ottusedrule{\ottdruleCXXAssignOne{}}
 \ottusedrule{\ottdruleCXXAssignTwo{}}
