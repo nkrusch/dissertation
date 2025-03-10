@@ -4,7 +4,7 @@
 \tikzset{font={\footnotesize\selectfont}}
 \begin{document}
 
-\tikzstyle{arrow}  = [thin,{Circle[open]}-{Circle[open]}]
+\tikzstyle{arrow}  = [thin,arrows={-Latex[width=5pt, length=5pt]}]
 \tikzstyle{label0} = [text centered, midway]
 \tikzstyle{label1} = [label0, text width=1cm, above, yshift=3pt]
 \tikzstyle{label2} = [text centered, text width=1.1cm, yshift=-75pt]
@@ -39,7 +39,7 @@
 \node[label2, above of=0] {\texttt{[input]}\\program};
 \node[label2, above of=4] {\texttt{[output]}\\result};	
 
-\draw [arrow] (0) -- (1) node[label1, xshift=-7pt] {C};
+\draw [arrow, arrows={{Circle[open]}-Latex[width=5pt, length=5pt]}] (0) -- (1) node[label1, xshift=-7pt] {C};
 \draw [arrow] (1) -- (2) node[label1] {AST}; 
 \draw [arrow] (2) -- (3) node[label1] {mwp\\matrix}; 
 \draw [arrow] (3) -- (4) node[label1, xshift=7pt] {object}; 
