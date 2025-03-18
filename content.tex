@@ -16,17 +16,16 @@
 %-------------------------------------------------------------------------------
 %	2. PUBLISHED MANUSCRIPTS
 %-------------------------------------------------------------------------------
-\chapter{Published Manuscripts}\label{published-manuscripts}
+\chapter{Published Manuscripts}\label{published-manuscripts}\clearpage
 
-\clearpage
 \section{pymwp: A Static Analyzer Determining Polynomial Growth Bounds}\label{sec:atva}
+\pageIconAnalysis
 \ainfoX{\CTNT}{\href{https://atva-conference.org/2023}
 {The 21\stsup International Symposium on Automated Technology for Verification and Analysis (ATVA), 2023}}
 {\noindent Companion tool user guide: \aref{app:toolguide}
 \newline\noindent Software artifact: \href{https://doi.org/10.5281/zenodo.7908484}{10.5281/zenodo.7908484}
 \newline\noindent Citation:~\cite{aubert2023b}
 \newline\newline\textit{Reproduced with permission from Springer Nature.}}
-
 \includepdf[pages={1-}, addtotoc={
 1,subsection,2,{Introduction -- Making Use of Implicit Complexity},sec:intro,
 3,subsection,2,{Calculating Bounds with mwp-Analysis},sec:idea,
@@ -87,6 +86,189 @@ pagecommand={\thispagestyle{empty}%
 \addtosymbols{zero}{3}
 \addtosymbols{zero}{5}
 }]{pdf/pubs_atva.2023.pdf}
+\clearpage
+
+\section{Distributing and Parallelizing Non-canonical Loops}\label{sec:vmcai}
+\pageIconOpt
+\ainfoX{\CTNT}{The 24\thsup International Conference on Verification, Model Checking, and Abstract Interpretation (VMCAI), 2023}
+{\noindent Software artifact: \href{https://zenodo.org/records/7080145}{10.5281/zenodo.7080145}
+\newline\noindent Citation:~\cite{aubert202213}
+\newline\newline\textit{Reproduced with permission from Springer Nature.}}
+\includepdf[pages={1-},addtotoc={
+2,subsection,2,{Original Approaches to Automatic Parallelization},sec:vmcai-intro,
+4,subsection,2,{Background: Language and Dependency Analysis},sec:vmcai-background,
+11,subsection,2,{Loop Fission Algorithm},sec:fission-algo,
+14,subsection,2,{Limitations of Existing Alternative Approaches},sec:vmcai-limitations,
+16,subsection,2,{Evaluation},sec:vmcai-eval,
+21,subsection,2,{Conclusion},sec:vmcai-conc},
+addtolist={
+5,figure,{Simple imperative while language},fig-grammar,
+6,table,{Definition of Out, In and Occ for commands},table:def-out-in-occ,
+8,figure,{Statement examples, sets, and representations of their dependencies},fig:dependences,
+9,figure,Data-Flow Graph of composition,fig:composition,
+13,figure,Distributing a more complex while loop,fig:exampe-complex,
+16,table,Parallelization tools feature support comparison,tab:comparison,
+17,figure,Code transformation example,fig:code-example,
+19,figure,Speedup of selected benchmarks,fig:while,
+20,table,Speedup comparison between parallel benchmarks,tab:speedup,
+20,table,Descriptions of evaluated parallel benchmarks,tab:benchmarks},
+pagecommand={\thispagestyle{empty}%
+\addtoindex{Clava}{15}
+\addtoindex{Clava}{16}
+\addtoindex{Clava}{19}
+\addtoindex{Cetus}{15}
+\addtoindex{Cetus}{16}
+\addtoindex{MiBench}{17}
+\addtoindex{MiBench}{20}
+\addtoindex{NAS Parallel Benchmarks}{17}
+\addtoindex{NAS Parallel Benchmarks}{20}
+\addtoindex{OpenMP}{14}
+\addtoindex{OpenMP}{15}
+\addtoindex{OpenMP}{16}
+\addtoindex{OpenMP}{18}
+\addtoindex{OpenMP}{19}
+\addtoindex{OpenMP}{20}
+\addtoindex{OpenMP}{2}
+\addtoindex{OpenMP}{3}
+\addtoindex{OpenMP}{4}
+\addtoindex{matrix!empty}{7}
+\addtoindex{Par4All}{15}
+\addtoindex{Par4All}{16}
+\addtoindex{Pluto}{15}
+\addtoindex{Pluto}{16}
+\addtoindex{Polybench/C}{16}
+\addtoindex{Polybench/C}{17}
+\addtoindex{Polybench/C}{18}
+\addtoindex{ROSE}{14}
+\addtoindex{ROSE}{15}
+\addtoindex{ROSE}{16}
+\addtoindex{ROSE}{17}
+\addtoindex{ROSE}{18}
+\addtoindex{ROSE}{19}
+\addtoindex{ROSE}{20}
+\addtoindex{TRACO}{15}
+\addtoindex{TRACO}{16}
+\addtoindex{compilation!parallelizing}{15}
+\addtoindex{compilation!parallelizing}{16}
+\addtoindex{compilation!parallelizing}{17}
+\addtoindex{compilation!parallelizing}{19}
+\addtoindex{compilation!parallelizing}{3}
+\addtoindex{compilation!source-to-source}{15}
+\addtoindex{compilation!source-to-source}{1}
+\addtoindex{compilation!source-to-source}{3}
+\addtoindex{dependency analysis}{14}
+\addtoindex{dependency analysis}{21}
+\addtoindex{dependency analysis}{2}
+\addtoindex{dependency analysis}{4}
+\addtoindex{dependency analysis}{6}
+\addtoindex{graph!bi-partite}{7}
+\addtoindex{graph!condensation}{11}
+\addtoindex{graph!condensation}{12}
+\addtoindex{graph!condensation}{13}
+\addtoindex{graph!covering}{11}
+\addtoindex{graph!covering}{12}
+\addtoindex{graph!covering}{13}
+\addtoindex{graph!covering}{14}
+\addtoindex{graph!data-flow}{6}
+\addtoindex{graph!data-flow}{7}
+\addtoindex{graph!dependence}{11}
+\addtoindex{graph!dependence}{14}
+\addtoindex{graph!dependence}{15}
+\addtoindex{saturated covering}{12}
+\addtoindex{saturated covering}{13}
+\addtoindex{Intel's C++ compiler}{15}
+\addtoindex{Intel's C++ compiler}{16}
+\addtoindex{loop form!canonical}{15}
+\addtoindex{loop form!canonical}{16}
+\addtoindex{loop form!canonical}{17}
+\addtoindex{loop form!canonical}{2}
+\addtoindex{loop form!canonical}{4}
+\addtoindex{loop form!non-canonical}{21}
+\addtoindex{loop form!non-canonical}{2}
+\addtoindex{loop transformation!distribution}{2}
+\addtoindex{loop transformation!fission}{11}
+\addtoindex{loop transformation!fission}{12}
+\addtoindex{loop transformation!fission}{14}
+\addtoindex{loop transformation!fission}{15}
+\addtoindex{loop transformation!fission}{16}
+\addtoindex{loop transformation!fission}{17}
+\addtoindex{loop transformation!fission}{18}
+\addtoindex{loop transformation!fission}{19}
+\addtoindex{loop transformation!fission}{20}
+\addtoindex{loop transformation!fission}{2}
+\addtoindex{loop transformation!fission}{3}
+\addtoindex{loop transformation!fission}{4}
+\addtoindex{loop transformation!fission}{6}
+\addtoindex{loop transformation!tiling}{4}
+\addtoindex{loop transformation!fusion}{21}
+\addtoindex{loop transformation!unrolling}{21}
+\addtoindex{loop transformation!unrolling}{3}
+\addtoindex{loop-carried dependency}{15}
+\addtoindex{loop-level parallelism}{2}
+\addtoindex{automatic parallelization}{15}
+\addtoindex{automatic parallelization}{16}
+\addtoindex{automatic parallelization}{19}
+\addtoindex{automatic parallelization}{20}
+\addtoindex{automatic parallelization}{3}
+\addtoindex{automatic parallelization}{4}
+\addtoindex{parallelization potential}{3}
+\addtoindex{polyhedral optimization}{4}
+\addtoindex{state explosion}{3}
+\addtosymbols{corro}{9}
+\addtosymbols{corr}{10}
+\addtosymbols{corr}{8}
+\addtosymbols{corr}{9}
+\addtosymbols{dfg}{10}
+\addtosymbols{dfg}{11}
+\addtosymbols{dfg}{7}
+\addtosymbols{dfg}{8}
+\addtosymbols{et}{9}
+\addtosymbols{graphw}{11}
+\addtosymbols{graphw}{12}
+\addtosymbols{graph}{12}
+\addtosymbols{infty2}{10}
+\addtosymbols{infty2}{11}
+\addtosymbols{infty2}{7}
+\addtosymbols{infty2}{8}
+\addtosymbols{infty2}{9}
+\addtosymbols{looppw}{12}
+\addtosymbols{looppw}{13}
+\addtosymbols{looppw}{14}
+\addtosymbols{loopw}{10}
+\addtosymbols{loopw}{11}
+\addtosymbols{loopw}{12}
+\addtosymbols{loopw}{13}
+\addtosymbols{loopw}{14}
+\addtosymbols{mdfg}{10}
+\addtosymbols{mdfg}{11}
+\addtosymbols{mdfg}{13}
+\addtosymbols{mdfg}{7}
+\addtosymbols{mdfg}{8}
+\addtosymbols{mdfg}{9}
+\addtosymbols{occ}{10}
+\addtosymbols{occ}{6}
+\addtosymbols{occ}{7}
+\addtosymbols{occ}{9}
+\addtosymbols{one}{10}
+\addtosymbols{one}{7}
+\addtosymbols{one}{8}
+\addtosymbols{one}{9}
+\addtosymbols{vin}{11}
+\addtosymbols{vin}{6}
+\addtosymbols{vin}{7}
+\addtosymbols{vin}{8}
+\addtosymbols{vout}{10}
+\addtosymbols{vout}{11}
+\addtosymbols{vout}{6}
+\addtosymbols{vout}{7}
+\addtosymbols{vout}{8}
+\addtosymbols{vout}{9}
+\addtosymbols{zero2}{10}
+\addtosymbols{zero2}{7}
+\addtosymbols{zero2}{8}
+\addtosymbols{zero2}{9}
+}]{pdf/pubs_vmcai.2023.pdf}
+\clearpage
 
 %-------------------------------------------------------------------------------
 %	3. UNPUBLISHED RESEARCH
@@ -94,6 +276,7 @@ pagecommand={\thispagestyle{empty}%
 \chapter{Unpublished Research}\label{ch:unpublished-research}\clearpage
 
 \section{Polynomial Postconditions via mwp-Bounds}\label{sec:postcond}
+\pageIconFm
 \ainfoX{Neea Rusch}{In review at \href{https://2025.ecoop.org/}
 {The European Conference on Object-Oriented Programming (ECOOP) 2025}}{}
 \includepdf[pages={1-}, addtotoc={
@@ -260,6 +443,7 @@ pagecommand={\thispagestyle{empty}%
 \clearpage
 
 \section{A Logic for Anytime Non-Interference}\label{sec:anytime}
+\pageIconSecurity
 \ainfoX{Clément Aubert and Neea Rusch}{In review at \href{https://fscd2025.github.io}
 {FSCD 2025: Formal Structures for Computation and Deduction}}{}
 \includepdf[pages={1-},addtotoc={
@@ -269,7 +453,9 @@ pagecommand={\thispagestyle{empty}%
 9,subsection,2,Capturing Anytime Non-Interference,sec:at-soundness,
 10,subsection,2,Interpreting Function Calls in an Anytime Non-Interfering Context,sec:fct-calls,
 13,subsection,2,Practical Applications and Comparison,sec:apps,
-15,subsection,2,{Conclusion: Strengths, Limitations and Future Directions},sec:conclusion},
+15,subsection,2,{Conclusion: Strengths, Limitations and Future Directions},sec:conclusion,
+18,subsection,2,{Appendix A: Proof of Thm. 16},sec:app-a,
+19,subsection,2,{Appendix B: Examples},sec:app-b},
 addtolist={
 5,figure,{A Simple Imperative while Language},fig:grammar,
 5,table,{Definition of Out, In and Occ for commands},table:ni-def-out-in-occ,
@@ -401,6 +587,7 @@ pagecommand={\thispagestyle{empty}%
 \clearpage
 
 \section{Certifying Complexity Analysis}\label{coqpl}
+\pageIconFm
 \ainfoX{\CTNT}
 {\href{https://popl23.sigplan.org/home/CoqPL-2023}
 {The Ninth International Workshop on Coq for Programming Languages (CoqPL), 2023}}
@@ -432,14 +619,29 @@ pagecommand={\thispagestyle{empty}%
 %-------------------------------------------------------------------------------
 \appendix
 
-\chapter{mwp-Analysis Improvement and Implementation: Realizing Implicit Computational Complexity}\label{app:sec:fscd}
-\ainfoX{\CTNT}{The 7\thsup International Conference on Formal Structures for Computation and Deduction (FSCD), 2022}
-{\newline\enquote{mwp-Analysis Improvement and Implementation: Realizing Implicit Computational Complexity} \textcopyright{ }by{ }\CTNT.
-The publication is licensed under a Creative Commons Attribution 4.0 International License.
-You should have received a copy of the license along with this work.
-If not, see \url{https://creativecommons.org/licenses/by/4.0/}.}
+\chapter{Additional Manuscripts \& Publication Companions}\label{additional-manuscripts}\clearpage
 
-\includepdf[pages={1-},
+\section{mwp-Analysis Improvement and Implementation: Realizing Implicit Computational Complexity}\label{sec:fscd}
+\pageIconAnalysis
+\ainfoX{\CTNT}{The 7\thsup International Conference on Formal Structures for Computation and Deduction (FSCD), 2022}
+{\par\enquote{mwp-Analysis Improvement and Implementation: Realizing Implicit Computational Complexity} \textcopyright{ }by{ }\CTNT.
+\newline{}This work is licensed under a Creative Commons Attribution 4.0 International License.
+\newline{}You should have received a copy of the license along with this work. % (\aref{app:sec:cc-sa-40-license}).
+\newline{}If not, see \url{https://creativecommons.org/licenses/by/4.0/}.}
+\includepdf[pages={1-},addtotoc={
+ 2,subsection,2,{Introduction: letting ICC drive the development of static analyzers},sec:fscd-intro,
+ 3,subsection,2,{Background: the original flow analysis},sec:fscd-background,
+ 6,subsection,2,{A deterministic, always-terminating, declension of the mwp analysis},sec:fscd-det,
+10,subsection,2,{Extending and improving the analysis: functions and efficiency},sec:fscd-extending,
+15,subsection,2,{Implementing, testing and comparing the analysis},sec:fscd-eval,
+16,subsection,2,{Conclusion: limitations, strengths and future work},sec:fscd-conc,
+20,subsection,2,{Appendix A: Technical appendix on semi-rings (abridged)},sec:fscd-app-a,
+21,subsection,2,{Appendix B: Omitted Proofs},sec:fscd-app-b,
+22,subsection,2,{Appendix C: Benchmarks},sec:fscd-app-c
+}, addtolist={
+4,figure,{Original non-deterministic flow analysis rules},fig-jkrules,
+6,figure,{Deterministic improved flow analysis rules.},fig-det-rules,
+23,table,{Benchmark results produced by pymwp on C programs},table:fscd-bench},
 pagecommand={\thispagestyle{empty}%
 \addtoindex{AProVE}{17}
 \addtoindex{COSTA}{15}
@@ -711,185 +913,18 @@ pagecommand={\thispagestyle{empty}%
 \addtosymbols{zero}{8}
 \addtosymbols{zero}{9}
 }]{pdf/pubs_fscd.2022.pdf}
+\clearpage
 
-\chapter{Distributing and Parallelizing Non-canonical Loops}
-\label{app:sec:vmcai}
-\ainfoX{\CTNT}{The 24\thsup International Conference on Verification, Model Checking, and Abstract Interpretation (VMCAI), 2023}
-{\noindent Software artifact: \href{https://zenodo.org/records/7080145}{10.5281/zenodo.7080145}
-\newline\noindent Citation:~\cite{aubert202213}
-\newline\newline\textit{Reproduced with permission from Springer Nature.}}
-\includepdf[pages={1-}, addtolist={
-5,figure,{Simple imperative while language},fig-grammar,
-6,table,{Definition of Out, In and Occ for commands},table:def-out-in-occ,
-8,figure,{Statement examples, sets, and representations of their dependencies},fig:dependences,
-9,figure,Data-Flow Graph of composition,fig:composition,
-13,figure,Distributing a more complex while loop,fig:exampe-complex,
-16,table,Parallelization tools feature support comparison,tab:comparison,
-17,figure,Code transformation example,fig:code-example,
-19,figure,Speedup of selected benchmarks,fig:while,
-20,table,Speedup comparison between parallel benchmarks,tab:speedup,
-20,table,Descriptions of evaluated parallel benchmarks,tab:benchmarks},
-pagecommand={\thispagestyle{empty}%
-\addtoindex{Clava}{15}
-\addtoindex{Clava}{16}
-\addtoindex{Clava}{19}
-\addtoindex{Cetus}{15}
-\addtoindex{Cetus}{16}
-\addtoindex{MiBench}{17}
-\addtoindex{MiBench}{20}
-\addtoindex{NAS Parallel Benchmarks}{17}
-\addtoindex{NAS Parallel Benchmarks}{20}
-\addtoindex{OpenMP}{14}
-\addtoindex{OpenMP}{15}
-\addtoindex{OpenMP}{16}
-\addtoindex{OpenMP}{18}
-\addtoindex{OpenMP}{19}
-\addtoindex{OpenMP}{20}
-\addtoindex{OpenMP}{2}
-\addtoindex{OpenMP}{3}
-\addtoindex{OpenMP}{4}
-\addtoindex{matrix!empty}{7}
-\addtoindex{Par4All}{15}
-\addtoindex{Par4All}{16}
-\addtoindex{Pluto}{15}
-\addtoindex{Pluto}{16}
-\addtoindex{Polybench/C}{16}
-\addtoindex{Polybench/C}{17}
-\addtoindex{Polybench/C}{18}
-\addtoindex{ROSE}{14}
-\addtoindex{ROSE}{15}
-\addtoindex{ROSE}{16}
-\addtoindex{ROSE}{17}
-\addtoindex{ROSE}{18}
-\addtoindex{ROSE}{19}
-\addtoindex{ROSE}{20}
-\addtoindex{TRACO}{15}
-\addtoindex{TRACO}{16}
-\addtoindex{compilation!parallelizing}{15}
-\addtoindex{compilation!parallelizing}{16}
-\addtoindex{compilation!parallelizing}{17}
-\addtoindex{compilation!parallelizing}{19}
-\addtoindex{compilation!parallelizing}{3}
-\addtoindex{compilation!source-to-source}{15}
-\addtoindex{compilation!source-to-source}{1}
-\addtoindex{compilation!source-to-source}{3}
-\addtoindex{dependency analysis}{14}
-\addtoindex{dependency analysis}{21}
-\addtoindex{dependency analysis}{2}
-\addtoindex{dependency analysis}{4}
-\addtoindex{dependency analysis}{6}
-\addtoindex{graph!bi-partite}{7}
-\addtoindex{graph!condensation}{11}
-\addtoindex{graph!condensation}{12}
-\addtoindex{graph!condensation}{13}
-\addtoindex{graph!covering}{11}
-\addtoindex{graph!covering}{12}
-\addtoindex{graph!covering}{13}
-\addtoindex{graph!covering}{14}
-\addtoindex{graph!data-flow}{6}
-\addtoindex{graph!data-flow}{7}
-\addtoindex{graph!dependence}{11}
-\addtoindex{graph!dependence}{14}
-\addtoindex{graph!dependence}{15}
-\addtoindex{saturated covering}{12}
-\addtoindex{saturated covering}{13}
-\addtoindex{Intel's C++ compiler}{15}
-\addtoindex{Intel's C++ compiler}{16}
-\addtoindex{loop form!canonical}{15}
-\addtoindex{loop form!canonical}{16}
-\addtoindex{loop form!canonical}{17}
-\addtoindex{loop form!canonical}{2}
-\addtoindex{loop form!canonical}{4}
-\addtoindex{loop form!non-canonical}{21}
-\addtoindex{loop form!non-canonical}{2}
-\addtoindex{loop transformation!distribution}{2}
-\addtoindex{loop transformation!fission}{11}
-\addtoindex{loop transformation!fission}{12}
-\addtoindex{loop transformation!fission}{14}
-\addtoindex{loop transformation!fission}{15}
-\addtoindex{loop transformation!fission}{16}
-\addtoindex{loop transformation!fission}{17}
-\addtoindex{loop transformation!fission}{18}
-\addtoindex{loop transformation!fission}{19}
-\addtoindex{loop transformation!fission}{20}
-\addtoindex{loop transformation!fission}{2}
-\addtoindex{loop transformation!fission}{3}
-\addtoindex{loop transformation!fission}{4}
-\addtoindex{loop transformation!fission}{6}
-\addtoindex{loop transformation!tiling}{4}
-\addtoindex{loop transformation!fusion}{21}
-\addtoindex{loop transformation!unrolling}{21}
-\addtoindex{loop transformation!unrolling}{3}
-\addtoindex{loop-carried dependency}{15}
-\addtoindex{loop-level parallelism}{2}
-\addtoindex{automatic parallelization}{15}
-\addtoindex{automatic parallelization}{16}
-\addtoindex{automatic parallelization}{19}
-\addtoindex{automatic parallelization}{20}
-\addtoindex{automatic parallelization}{3}
-\addtoindex{automatic parallelization}{4}
-\addtoindex{parallelization potential}{3}
-\addtoindex{polyhedral optimization}{4}
-\addtoindex{state explosion}{3}
-\addtosymbols{corro}{9}
-\addtosymbols{corr}{10}
-\addtosymbols{corr}{8}
-\addtosymbols{corr}{9}
-\addtosymbols{dfg}{10}
-\addtosymbols{dfg}{11}
-\addtosymbols{dfg}{7}
-\addtosymbols{dfg}{8}
-\addtosymbols{et}{9}
-\addtosymbols{graphw}{11}
-\addtosymbols{graphw}{12}
-\addtosymbols{graph}{12}
-\addtosymbols{infty2}{10}
-\addtosymbols{infty2}{11}
-\addtosymbols{infty2}{7}
-\addtosymbols{infty2}{8}
-\addtosymbols{infty2}{9}
-\addtosymbols{looppw}{12}
-\addtosymbols{looppw}{13}
-\addtosymbols{looppw}{14}
-\addtosymbols{loopw}{10}
-\addtosymbols{loopw}{11}
-\addtosymbols{loopw}{12}
-\addtosymbols{loopw}{13}
-\addtosymbols{loopw}{14}
-\addtosymbols{mdfg}{10}
-\addtosymbols{mdfg}{11}
-\addtosymbols{mdfg}{13}
-\addtosymbols{mdfg}{7}
-\addtosymbols{mdfg}{8}
-\addtosymbols{mdfg}{9}
-\addtosymbols{occ}{10}
-\addtosymbols{occ}{6}
-\addtosymbols{occ}{7}
-\addtosymbols{occ}{9}
-\addtosymbols{one}{10}
-\addtosymbols{one}{7}
-\addtosymbols{one}{8}
-\addtosymbols{one}{9}
-\addtosymbols{vin}{11}
-\addtosymbols{vin}{6}
-\addtosymbols{vin}{7}
-\addtosymbols{vin}{8}
-\addtosymbols{vout}{10}
-\addtosymbols{vout}{11}
-\addtosymbols{vout}{6}
-\addtosymbols{vout}{7}
-\addtosymbols{vout}{8}
-\addtosymbols{vout}{9}
-\addtosymbols{zero2}{10}
-\addtosymbols{zero2}{7}
-\addtosymbols{zero2}{8}
-\addtosymbols{zero2}{9}
-}]{pdf/pubs_vmcai.2023.pdf}
-
-\chapter{Tool User Guide for \enquote{pymwp: A Static Analyzer Determining Polynomial Growth Bounds}}\label{app:toolguide}
+\section{Tool User Guide for \enquote{pymwp: A Static Analyzer Determining Polynomial Growth Bounds}}\label{app:toolguide}
+\pageIconAnalysis
 \ainfo{\CTNT}{Publication companion for \autoref{sec:atva}.}
 \includepdf[pages={1-},scale=0.9,offset=0 0.25in,
-pagecommand={\thispagestyle{empty}%
+addtotoc={
+ 2,subsection,2,{Introduction},sec:tool-guide-intro,
+ 4,subsection,2,{Installation},sec:tool-guide-intall,
+ 5,subsection,2,{Examples},sec:tool-guide-examples,
+11,subsection,2,{Learn More},sec:tool-guide-learnmore
+},pagecommand={\thispagestyle{empty}%
 \addtoindex{mwp-bound}{3}
 \addtoindex{mwp-bound}{8}
 \addtoindex{nondeterminism}{2}
@@ -926,6 +961,7 @@ pagecommand={\thispagestyle{empty}%
 \addtosymbols{land}{8}
 \addtosymbols{land}{10}
 }]{pdf/pubs_pymwp_guide.pdf}
+\clearpage
 
 \chapter{Index of Artifacts}\label{app:sec:artifacts}
 \input{text/artifacts}
@@ -944,3 +980,7 @@ pagecommand={\thispagestyle{empty}%
 \clearpage\pagestyle{plain}
 %\renewcommand{\glspostdescription}{,}
 \printglossary[type=symbols,nopostdot,style=longragged]
+
+%\chapter{Creative Commons Attribution 4.0 International Public License}
+%\label{app:sec:cc-sa-40-license}
+%\input{text/cc40}

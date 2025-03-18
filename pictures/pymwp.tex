@@ -5,7 +5,7 @@
 \begin{document}
 
 \definecolor{boxbg}{HTML}{ffffff}
-\tikzstyle{arrow}  = [thick,arrows={-Latex[width=7pt, length=7pt]}]
+\tikzstyle{arrow}  = [thick,arrows={-Latex[width=5pt, length=5pt]}]
 \tikzstyle{label0} = [text centered, midway]
 \tikzstyle{label1} = [label0, text width=1cm, above, yshift=3pt]
 \tikzstyle{label2} = [text centered, text width=1.1cm, yshift=-75pt]
@@ -35,14 +35,14 @@
 
 \node (0) [doc] at (0,1)     {\texttt{</>}};
 \node (1) [phase, right of=0] {\textnormal{{[front-end]}}\\pycparser};
-\node (2) [phase, right of=1] {\textnormal{{[phase-I]}}\\matrix\\construction};
+\node (2) [phase, right of=1] {\textnormal{{[phase-I]}}\\inference};
 \node (3) [phase, right of=2] {\textnormal{{[phase-II]}}\\evaluation};
 \node (4) [doc,   right of=3] {\texttt{\{…\}}};
 	
 \node[label2, above of=0] {\textnormal{{[input]}}\\program};
 \node[label2, above of=4] {\textnormal{{[output]}}\\result};
 
-\draw [arrow, arrows={{Circle[open]}-Latex[width=7pt, length=7pt]}] (0) -- (1) node[label1, xshift=-7pt] {C};
+\draw [arrow, arrows={{Circle[open]}-Latex[width=5pt, length=5pt]}] (0) -- (1) node[label1, xshift=-7pt] {C};
 \draw [arrow] (1) -- (2) node[label1] {AST}; 
 \draw [arrow] (2) -- (3) node[label1] {mwp\\matrix}; 
 \draw [arrow] (3) -- (4) node[label1, xshift=7pt] {object}; 

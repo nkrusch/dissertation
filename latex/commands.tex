@@ -9,6 +9,16 @@
 \newcommand{\ccx}[1]{\textsc{#1}}
 \newcommand{\nonterm}[1]{#1}
 
+% paper category icons
+\newcommand{\pageIcon}[2]{
+\raisebox{-0.3\height}{\begin{tikzpicture}
+\node[circle,inner sep=2pt,outer sep=.4pt,fill=white,draw=black,solid,thick]{#1};
+\end{tikzpicture}}\hspace{1em}\textit{Implicit computational complexity \& #2}\par}
+\newcommand{\pageIconAnalysis}{\pageIcon{\iconSPA}{static analysis}}
+\newcommand{\pageIconFm}{\pageIcon{\iconFM}{formal methods}}
+\newcommand{\pageIconOpt}{\pageIcon{\iconOPT}{program optimization}}
+\newcommand{\pageIconSecurity}{\pageIcon{\iconSEC}{security}}
+
 % add index terms to \includepdf
 \makeatletter
 \newcommand\addtoindex[2]{%

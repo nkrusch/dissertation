@@ -2,18 +2,11 @@
 \input{../latex/pics}
 \input{../latex/symbols}
 
-\tikzstyle{start} = [rectangle, 
-  minimum width=7cm,
-  minimum height=1.8cm,
-  text width=7cm, 
-  text centered,  
-  draw=black, 
-  densely dashed,
-  fill=concept]
-\tikzstyle{prior} = [start, solid, fill=prior, minimum height=2cm]
-\tikzstyle{node} = [prior, fill=paper]
-\tikzstyle{arrow} = [thick,->,>=stealth]
-\tikzstyle{rectangle connector} = [thick,->,>=stealth,pos=0.5, to path={(\tikztostart) -- ++(#1,0pt) \tikztonodes |- (\tikztotarget)}]
+\tikzstyle{start} = [rectangle, rounded corners=3pt, thick,minimum width=7cm,minimum height=1.8cm,text width=7cm,text centered, draw=black,densely dotted, fill=concept]
+\tikzstyle{prior} = [start, densely dashdotted, fill=prior, minimum height=2cm]
+\tikzstyle{node} = [prior, solid, fill=paper]
+\tikzstyle{arrow} = [thick,arrows={-Latex[width=5pt, length=5pt]}]
+\tikzstyle{rectangle connector} = [arrow,pos=0.5, to path={(\tikztostart) -- ++(#1,0pt) \tikztonodes |- (\tikztotarget)}]
 \tikzstyle{topic icon} = [rectangle, text width=.5cm, yshift=2.3cm]
 \tikzstyle{topic label} = [rectangle, text width=5cm, yshift=-.25mm]
 
@@ -23,14 +16,13 @@
 	name={#1}, draw,
     node contents={#3},
     append after command={
-    	node[circle, fill=white, draw=black, solid,
-        minimum size=3mm, inner sep=2pt, outer sep=0.4pt, xshift=3mm, yshift=1mm,
-        anchor=north west]
-        at (#1.north west) {#2}}}]
+    	node[circle, fill=white, draw=black, solid, thick,
+        minimum size=3mm, inner sep=2pt, outer sep=0.4pt,
+        xshift=3mm, yshift=1mm, anchor=north west] at (#1.north west) {#2}}}]
     
-\fill[line width=0mm, fill=concept, draw=black, densely dashed] (-6, 0) circle (.75ex) node[right, xshift=3mm]{Concept};
-\fill[line width=0mm, fill=prior, draw=black] (-3, 0) circle (.75ex) node[right, xshift=3mm]{Prior foundational work};
-\fill[line width=0mm, fill=paper, draw=black] (2.5, 0) circle (.75ex) node[right, xshift=3mm]{Work in this dissertation};
+\fill[draw=black, fill=concept,densely dotted] (-6, 0) circle (.75ex) node[right, xshift=3mm]{Concept};
+\fill[draw=black, fill=prior,densely dashdotted] (-3, 0) circle (.75ex) node[right, xshift=3mm]{Prior foundational work};
+\fill[draw=black, fill=paper] (2.5, 0) circle (.75ex) node[right, xshift=3mm]{Work in this dissertation};
 
 \node (icc) [start, yshift=-2cm] {Implicit Computational Complexity};
 \node (mwp) [prior, below of=icc, xshift=-3.5cm] {``A Flow Calculus of mwp-Bounds\\for Complexity Analysis"\\\small{\textit{Jones \& Kristiansen (2009)}}};
@@ -57,7 +49,7 @@
 \node (optimize) [topic icon, below of=analysis] {\large\iconOPT};
 \node            [topic label, right of=optimize] {Program Optimization};
 \node (verify)   [topic icon, below of=optimize] {\large\iconFM};
-\node            [topic label, right of=verify] {Verification/Formal Methods};
+\node            [topic label, right of=verify] {Formal Methods};
 \node (security) [topic icon, below of=verify] {\large\iconSEC};
 \node          	 [topic label, right of=security] {Security};
 

@@ -1,15 +1,8 @@
 \documentclass[crop,border={-9pt 1pt 1pt 0pt}]{standalone}
 \input{../latex/pics}
-\definecolor{header}{HTML}{CFD8DC}
-\definecolor{block1}{HTML}{80CBC4}
-\definecolor{block2}{HTML}{9FA8DA}
-\definecolor{block3}{HTML}{FFCC80}
-\usetikzlibrary {arrows.meta}
 \tikzset{font={\small\selectfont}}
 \begin{document}
 
-%\tikzstyle{arrow}  = [thin,arrows={-Latex[width=5pt, length=5pt]}]
-%\tikzstyle{label2} = [text centered, text width=1.1cm, yshift=-75pt]
 \tikzstyle{label0} = [text centered, midway]
 \tikzstyle{label1} = [label0, text width=2.5cm, above, yshift=9pt]
 \tikzstyle{tbox}   = [draw=black, thick, fill=white, rounded corners=3pt]
@@ -22,7 +15,7 @@
 \draw[tbox,above]  (6,.75) rectangle  (8.5,2.75);
 \draw[tbox,above]  (9,.75) rectangle (11.5,2.75) node[label0, yshift=45pt] {\textit{Parallelizable loops}};    
 \draw[tbox,above] (12,.75) rectangle (14.5,2.75);
-\draw[thick,->] (2.75,1.75) -- (5.75,1.75) node[label1] {\textit{transformation}};
+\draw[thick,arrows={-Latex[width=6pt, length=6pt]}] (2.75,1.75) -- (5.75,1.75) node[label1] {\textit{transformation}};
 
 \fill[header,above]  (0.25,2.55) rectangle  (2.25,2.95) node[black,label0,yshift=-6pt] {\textit{header}}; 
 \fill[header,above]  (6.25,2.10) rectangle  (8.25,2.50) ;
