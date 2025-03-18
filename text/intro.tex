@@ -8,8 +8,8 @@ Statement of the problem and specific aims of the overall project.
 %    \caption[Conceptual connections]{Conceptual connections.}
 %    \label{fig:conn_papers-1}
   \end{subfigure}
-  \begin{subfigure}{\textwidth}
-    \begin{tabularx}{\textwidth}{Xcr}
+  \begin{subfigure}{\textwidth}{
+    \begin{tabularx}{\textwidth}{@{}X@{}cr@{}}
       \toprule
       \textbf{Title} & \textbf{Section} & \textbf{Background} \\
       \midrule
@@ -17,13 +17,13 @@ Statement of the problem and specific aims of the overall project.
       & \aref{sec:fscd}
       & \ref{icc}, \ref{static-analysis}, \ref{flow-calculus} \\
       {Distributing and Parallelizing Non-canonical Loops}
-      & \autoref{sec:vmcai}
+      & \ref{sec:vmcai}
       & \ref{transforms} \\
       {Polynomial Postconditions via mwp-Bounds}
       & \ref{sec:postcond}
       & \ref{flow-calculus}, \ref{verification} \\
       {pymwp: A Static Analyzer Determining\ldots}
-      & \ref{sec:atva}
+      & \ref{sec:atva}, \aref{app:toolguide}
       & \ref{icc}, \ref{static-analysis}, \ref{flow-calculus} \\
       {A Logic for Anytime Non-Interference}
       & \ref{sec:anytime}
@@ -32,7 +32,7 @@ Statement of the problem and specific aims of the overall project.
       & \ref{coqpl}
       & \ref{flow-calculus}, \ref{verification} \\
       \bottomrule
-    \end{tabularx}
+    \end{tabularx}}
 %    \caption{Relevant publication background.}
 %    \label{fig:conn_papers-bg}
   \end{subfigure}
