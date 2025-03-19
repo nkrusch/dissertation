@@ -280,21 +280,24 @@ pagecommand={\thispagestyle{empty}%
 \ainfoX{Neea Rusch}{In review at \href{https://2025.ecoop.org/}
 {The European Conference on Object-Oriented Programming (ECOOP) 2025}}{}
 \includepdf[pages={1-}, addtotoc={
-1,subsection,2,Introduction,pc-intro,
-4,subsection,2,Preliminaries,prelim,
-6,subsection,2,Technical foundations,terms,
-8,subsection,2,Variable-guided matrix exploration,enhancements,
-12,subsection,2,mwp-bounds as postconditions,analysis,
-14,subsection,2,Implementation and evaluation,expr,
-16,subsection,2,Analysis of experiment results,results,
-19,subsection,2,Related works,related-works,
-20,subsection,2,Conclusion and future directions,conclusion},
-addtolist={
-15,table,Benchmarks characteristics summarized,tab:suites,
-17,table,{Analysis results for mwp analyses},tab:linear,
-17,table,Daikon analysis results,tab:daikon,
-19,table,Postcondition comparison on select benchmarks,tab:pc},
-pagecommand={\thispagestyle{empty}%
+1,subsection,2,{Introduction},pc-intro,
+4,subsection,2,{Conceptual preliminaries},pc-prelim,
+6,subsection,2,{Technical foundations},pc-terms,
+9,subsection,2,{Variable-guided matrix exploration},pc-enhancements,
+13,subsection,2,{mwp-bounds as postconditions},pc-analysis,
+16,subsection,2,{Implementation and evaluation},pc-expr,
+20,subsection,2,{Related works},pc-related-works,
+22,subsection,2,{Conclusion, open problems and future directions},pc-conclusion,
+26,subsection,2,{Appendix A: Application to concrete program verification},pc-app-a,
+26,subsection,2,{Appendix B: Technical details of analyzer comparisons},pc-app-b
+}, addtolist={
+6,figure,{Analysis workflow},fig:analysis-workflow,
+7,figure,{Rules for assigning vectors to expressions},fig:exp-rules,
+12,figure,{The mwp-calculus rules for commands while and loop},fig:loop-rules,
+18,table,{Summary of analyzer capabilities},tab:comparison,
+19,table,{Summarized benchmark suite characteristics},tab:suites,
+20,table,{Analysis results for mwpf and mwpl},tab:results
+}, pagecommand={\thispagestyle{empty}%
 \addtoindex{DIG}{20}
 \addtoindex{Dafny}{15}
 \addtoindex{Dafny}{18}
