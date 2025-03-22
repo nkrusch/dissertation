@@ -55,3 +55,8 @@ delim_t "\\normalsize"
 %        \glstarget{##1}{##2} & \makefirstuc{##4}##3\glspostdescription\space\mydotfill\space\footnotesize{##5}\tabularnewline
 %    }%
 %}
+
+% double space -> mdframed, captions
+\mdfsetup{startinnercode={\doublespacing}}
+\DeclareCaptionJustification{double}{\doublespacing}
+\captionsetup{justification=double}
