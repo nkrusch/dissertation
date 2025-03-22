@@ -56,7 +56,9 @@ delim_t "\\normalsize"
 %    }%
 %}
 
-% double space -> mdframed, captions
+% double space -> mdframed, captions, footnotes
 \mdfsetup{startinnercode={\doublespacing}}
 \DeclareCaptionJustification{double}{\doublespacing}
 \captionsetup{justification=double}
+\renewcommand{\footnotelayout}{\doublespacing}
+\setlength{\footnotesep}{\baselineskip}
