@@ -968,18 +968,22 @@ addtotoc={
 
 \chapter{Index of Artifacts}\label{app:sec:artifacts}
 \input{text/artifacts}
+\clearpage
 
 \chapter{Co-author Statements}\label{app:sec:coauth}
 \input{text/contrib}
+\clearpage
 
 % ACRONYMS
-\clearpage\pagestyle{plain}
+\pagestyle{plain}
 \printglossary[type=\acronymtype,nonumberlist,nopostdot,style=longragged]
+\clearpage
 
 % SYMBOLS INDEX
-\clearpage\pagestyle{plain}
+\pagestyle{plain}
 %\renewcommand{\glspostdescription}{,}
 \printglossary[type=symbols,nopostdot,style=longragged]
+\clearpage
 
 % TERMS INDEX
-\clearpage\printindex
+\printindex
