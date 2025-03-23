@@ -49,18 +49,14 @@ delim_t "\\normalsize"
 % Glossaries
 % custom glossary style, match index
 \renewcommand{\glsdescwidth}{11cm}
-\newglossarystyle{longraggeddots}{%
-    \glossarystyle{longragged}%
-    \providecommand{\glossaryentryfield}{}
-    \renewcommand*{\glossaryentryfield}[5]{%
-        \protect\glstarget{##1}{##2} & %
-        \makefirstuc{##4}##3\glspostdescription%
-        \space\mydotfill\space\footnotesize{##5}%
-        \tabularnewline
-    }%
+\newglossarystyle{longraggeddots}{
+    \setglossarystyle{longragged}%
+    \renewcommand*{\glossentry}[2]{%
+       \glstarget{##1}{\glossentryname{##1}} & \glossentrydesc{##1}
+       \space\mydotfill\space\footnotesize{##2}\tabularnewline
+   }
 }
 \setglossarystyle{longraggeddots}
-%\setglossarystyle{longragged}
 
 % double space -> mdframed, captions, footnotes
 \mdfsetup{startinnercode={\doublespacing}}
