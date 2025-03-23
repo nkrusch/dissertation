@@ -33,3 +33,6 @@ clean:
 
 count:  # the abstract has a word limit
 	@echo $$(wc -w < $(ABSTRACT)) '\t---' $(basename $(ABSTRACT))
+
+loc:
+	cloc . --exclude-dir=tex_version,env,.github,.idea
