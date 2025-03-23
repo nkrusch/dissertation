@@ -51,8 +51,10 @@ delim_t "\\normalsize"
 \renewcommand{\glsdescwidth}{11cm}
 \newglossarystyle{longraggeddots}{%
     \glossarystyle{longragged}%
-    \renewcommand*\glossaryentryfield[5]{%
-        \glstarget{##1}{##2} & \makefirstuc{##4}##3\glspostdescription%
+    \providecommand{\glossaryentryfield}{}
+    \renewcommand*{\glossaryentryfield}[5]{%
+        \protect\glstarget{##1}{##2} & %
+        \makefirstuc{##4}##3\glspostdescription%
         \space\mydotfill\space\footnotesize{##5}%
         \tabularnewline
     }%
