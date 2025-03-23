@@ -1,0 +1,291 @@
+\pageIconAnalysis
+\ainfoX{\CTNT}{The 7\thsup International Conference on Formal Structures for Computation and Deduction (FSCD), 2022}
+{\par\enquote{mwp-Analysis Improvement and Implementation: Realizing Implicit Computational Complexity} \textcopyright{ }by{ }\CTNT.
+\newline{}This work is licensed under a Creative Commons Attribution 4.0 International License.
+\newline{}You should have received a copy of the license along with this work.
+\newline{}If not, see \url{https://creativecommons.org/licenses/by/4.0/}.}
+\includepdf[pages={1-},addtotoc={
+    2,subsection,2,{Introduction: letting ICC drive the development of static analyzers},sec:fscd-intro,
+    3,subsection,2,{Background: the original flow analysis},sec:fscd-background,
+    6,subsection,2,{A deterministic, always-terminating, declension of the mwp analysis},sec:fscd-det,
+    10,subsection,2,{Extending and improving the analysis: functions and efficiency},sec:fscd-extending,
+    15,subsection,2,{Implementing, testing and comparing the analysis},sec:fscd-eval,
+    16,subsection,2,{Conclusion: limitations, strengths and future work},sec:fscd-conc,
+    20,subsection,2,{Appendix A: Technical appendix on semi-rings (abridged)},sec:fscd-app-a,
+    21,subsection,2,{Appendix B: Omitted Proofs},sec:fscd-app-b,
+    22,subsection,2,{Appendix C: Benchmarks},sec:fscd-app-c
+}, addtolist={
+    4,figure,{Original non-deterministic flow analysis rules},fig-jkrules,
+    6,figure,{Deterministic improved flow analysis rules.},fig-det-rules,
+    23,table,{Benchmark results produced by pymwp on C programs},table:fscd-bench},
+    pagecommand={\thispagestyle{empty}%
+    \addtoindex{AProVE}{17}
+    \addtoindex{COSTA}{15}
+    \addtoindex{Cerco}{15}
+    \addtoindex{CoFloCo}{17}
+    \addtoindex{CompCert}{16}
+    \addtoindex{ComplexityParser}{15}
+    \addtoindex{Coq}{16}
+    \addtoindex{Gröbner basis}{13}
+    \addtoindex{Resource Aware ML}{15}
+    \addtoindex{SPEED}{15}
+    \addtoindex{Verasco}{15}
+    \addtoindex{certified-llvm}{16}
+    \addtoindex{complexity class@!NP}{6}
+    \addtoindex{complexity class@!P}{3}
+    \addtoindex{delta graph}{14}
+    \addtoindex{delta graph}{15}
+    \addtoindex{monomial}{13}
+    \addtoindex{monomial}{14}
+    \addtoindex{mwp-bound}{14}
+    \addtoindex{mwp-bound}{15}
+    \addtoindex{matrix!dense}{15}
+    \addtoindex{matrix!mwp}{3}
+    \addtoindex{matrix!mwp}{5}
+    \addtoindex{matrix!mwp}{6}
+    \addtoindex{matrix!mwp}{7}
+    \addtoindex{matrix!mwp}{8}
+    \addtoindex{matrix!mwp}{10}
+    \addtoindex{matrix!mwp}{12}
+    \addtoindex{matrix!mwp}{13}
+    \addtoindex{matrix!mwp}{14}
+    \addtoindex{matrix!mwp}{15}
+    \addtoindex{matrix!mwp}{20}
+    \addtoindex{matrix!mwp}{21}
+    \addtoindex{matrix!mwp}{22}
+    \addtoindex{nondeterminism}{4}
+    \addtoindex{nondeterminism}{5}
+    \addtoindex{nondeterminism}{6}
+    \addtoindex{nondeterminism}{7}
+    \addtoindex{nondeterminism}{11}
+    \addtoindex{nondeterminism}{14}
+    \addtoindex{intermediate representation}{6}
+    \addtoindex{pymwp}{15}
+    \addtoindex{pymwp}{17}
+    \addtoindex{pymwp}{22}
+    \addtoindex{pymwp}{23}
+    \addtoindex{quasi-invariant}{15}
+    \addtoindex{state explosion}{5}
+    \addtoindex{state explosion}{6}
+    \addtoindex{static single assignment}{16}
+    \addtosymbols{PsiProd}{12}
+    \addtosymbols{Psi}{12}
+    \addtosymbols{ai}{12}
+    \addtosymbols{ai}{13}
+    \addtosymbols{ai}{14}
+    \addtosymbols{ai}{7}
+    \addtosymbols{alpha}{20}
+    \addtosymbols{alpha}{12}
+    \addtosymbols{alpha}{13}
+    \addtosymbols{alpha}{3}
+    \addtosymbols{alpha}{4}
+    \addtosymbols{alpha}{7}
+    \addtosymbols{assgn}{10}
+    \addtosymbols{assgn}{11}
+    \addtosymbols{assgn}{14}
+    \addtosymbols{assgn}{21}
+    \addtosymbols{assgn}{7}
+    \addtosymbols{assgn}{9}
+    \addtosymbols{beta}{20}
+    \addtosymbols{beta}{12}
+    \addtosymbols{beta}{13}
+    \addtosymbols{beta}{3}
+    \addtosymbols{beta}{4}
+    \addtosymbols{beta}{7}
+    \addtosymbols{card}{14}
+    \addtosymbols{card}{7}
+    \addtosymbols{cartpi}{12}
+    \addtosymbols{cartpi}{13}
+    \addtosymbols{cartpi}{14}
+    \addtosymbols{cartpi}{7}
+    \addtosymbols{chunk}{11}
+    \addtosymbols{chunk}{12}
+    \addtosymbols{ci}{12}
+    \addtosymbols{ci}{13}
+    \addtosymbols{ci}{7}
+    \addtosymbols{cj}{12}
+    \addtosymbols{cj}{13}
+    \addtosymbols{cj}{14}
+    \addtosymbols{cj}{7}
+    \addtosymbols{closure}{11}
+    \addtosymbols{closure}{3}
+    \addtosymbols{closure}{4}
+    \addtosymbols{closure}{6}
+    \addtosymbols{cmat}{11}
+    \addtosymbols{cmat}{4}
+    \addtosymbols{cmat}{6}
+    \addtosymbols{cmat}{9}
+    \addtosymbols{cmat}{21}
+    \addtosymbols{delta}{10}
+    \addtosymbols{delta}{11}
+    \addtosymbols{delta}{12}
+    \addtosymbols{delta}{13}
+    \addtosymbols{delta}{14}
+    \addtosymbols{delta}{15}
+    \addtosymbols{delta}{7}
+    \addtosymbols{delta}{8}
+    \addtosymbols{delta}{9}
+    \addtosymbols{f}{10}
+    \addtosymbols{f}{11}
+    \addtosymbols{gamma}{13}
+    \addtosymbols{gamma}{3}
+    \addtosymbols{hp}{4}
+    \addtosymbols{infty}{10}
+    \addtosymbols{infty}{13}
+    \addtosymbols{infty}{14}
+    \addtosymbols{infty}{17}
+    \addtosymbols{infty}{21}
+    \addtosymbols{infty}{22}
+    \addtosymbols{infty}{23}
+    \addtosymbols{infty}{6}
+    \addtosymbols{infty}{7}
+    \addtosymbols{infty}{8}
+    \addtosymbols{iso}{7}
+    \addtosymbols{iso}{8}
+    \addtosymbols{iso}{20}
+    \addtosymbols{k}{10}
+    \addtosymbols{k}{12}
+    \addtosymbols{k}{13}
+    \addtosymbols{k}{14}
+    \addtosymbols{k}{7}
+    \addtosymbols{map}{6}
+    \addtosymbols{map}{7}
+    \addtosymbols{map}{8}
+    \addtosymbols{matrix}{10}
+    \addtosymbols{matrix}{11}
+    \addtosymbols{matrix}{20}
+    \addtosymbols{matrix}{3}
+    \addtosymbols{matrix}{4}
+    \addtosymbols{matrix}{6}
+    \addtosymbols{matrix}{7}
+    \addtosymbols{matrix}{9}
+    \addtosymbols{matrix}{21}
+    \addtosymbols{mi}{3}
+    \addtosymbols{mi}{4}
+    \addtosymbols{mi}{6}
+    \addtosymbols{mi}{7}
+    \addtosymbols{mi}{20}
+    \addtosymbols{mj}{20}
+    \addtosymbols{mj}{3}
+    \addtosymbols{mj}{4}
+    \addtosymbols{mj}{6}
+    \addtosymbols{mj}{7}
+    \addtosymbols{msring}{21}
+    \addtosymbols{msring}{12}
+    \addtosymbols{msring}{13}
+    \addtosymbols{msring}{3}
+    \addtosymbols{msring}{7}
+    \addtosymbols{mstar}{3}
+    \addtosymbols{mstar}{4}
+    \addtosymbols{mstar}{6}
+    \addtosymbols{mwpi}{12}
+    \addtosymbols{mwpi}{13}
+    \addtosymbols{mwpi}{14}
+    \addtosymbols{mwpi}{7}
+    \addtosymbols{mwpi}{9}
+    \addtosymbols{mwpi}{21}
+    \addtosymbols{mwpset}{13}
+    \addtosymbols{mwpset}{3}
+    \addtosymbols{mwpset}{6}
+    \addtosymbols{mwpset}{7}
+    \addtosymbols{mwpset}{9}
+    \addtosymbols{mzeroj}{4}
+    \addtosymbols{mzeroj}{6}
+    \addtosymbols{m}{11}
+    \addtosymbols{m}{12}
+    \addtosymbols{m}{13}
+    \addtosymbols{m}{20}
+    \addtosymbols{m}{3}
+    \addtosymbols{m}{4}
+    \addtosymbols{m}{5}
+    \addtosymbols{m}{6}
+    \addtosymbols{m}{7}
+    \addtosymbols{m}{8}
+    \addtosymbols{m}{9}
+    \addtosymbols{m}{21}
+    \addtosymbols{oplus}{20}
+    \addtosymbols{oplus}{10}
+    \addtosymbols{oplus}{11}
+    \addtosymbols{oplus}{12}
+    \addtosymbols{oplus}{3}
+    \addtosymbols{oplus}{4}
+    \addtosymbols{oplus}{6}
+    \addtosymbols{oplus}{8}
+    \addtosymbols{oplus}{9}
+    \addtosymbols{oplus}{21}
+    \addtosymbols{otimes}{20}
+    \addtosymbols{otimes}{11}
+    \addtosymbols{otimes}{12}
+    \addtosymbols{otimes}{3}
+    \addtosymbols{otimes}{4}
+    \addtosymbols{otimes}{6}
+    \addtosymbols{otimes}{8}
+    \addtosymbols{plusi}{7}
+    \addtosymbols{p}{11}
+    \addtosymbols{p}{12}
+    \addtosymbols{p}{13}
+    \addtosymbols{p}{20}
+    \addtosymbols{p}{3}
+    \addtosymbols{p}{4}
+    \addtosymbols{p}{5}
+    \addtosymbols{p}{6}
+    \addtosymbols{p}{7}
+    \addtosymbols{p}{8}
+    \addtosymbols{p}{9}
+    \addtosymbols{slot}{11}
+    \addtosymbols{slot}{12}
+    \addtosymbols{slot}{21}
+    \addtosymbols{smpi}{12}
+    \addtosymbols{smpi}{5}
+    \addtosymbols{smpi}{8}
+    \addtosymbols{smpi}{9}
+    \addtosymbols{sring}{7}
+    \addtosymbols{sring}{20}
+    \addtosymbols{timesi}{17}
+    \addtosymbols{timesi}{7}
+    \addtosymbols{v0a}{4}
+    \addtosymbols{v0a}{6}
+    \addtosymbols{vadd}{4}
+    \addtosymbols{vadd}{6}
+    \addtosymbols{vadd}{8}
+    \addtosymbols{vare}{4}
+    \addtosymbols{vec2}{11}
+    \addtosymbols{vec2}{12}
+    \addtosymbols{vec2}{13}
+    \addtosymbols{vec2}{21}
+    \addtosymbols{vec2}{5}
+    \addtosymbols{vec2}{7}
+    \addtosymbols{vec2}{8}
+    \addtosymbols{vec}{11}
+    \addtosymbols{vec}{4}
+    \addtosymbols{vec}{8}
+    \addtosymbols{vlist}{4}
+    \addtosymbols{vrep}{10}
+    \addtosymbols{vrep}{12}
+    \addtosymbols{vrep}{4}
+    \addtosymbols{vrep}{6}
+    \addtosymbols{vrep}{8}
+    \addtosymbols{w}{11}
+    \addtosymbols{w}{12}
+    \addtosymbols{w}{13}
+    \addtosymbols{w}{20}
+    \addtosymbols{w}{3}
+    \addtosymbols{w}{4}
+    \addtosymbols{w}{5}
+    \addtosymbols{w}{6}
+    \addtosymbols{w}{7}
+    \addtosymbols{w}{8}
+    \addtosymbols{w}{9}
+    \addtosymbols{w}{21}
+    \addtosymbols{zero}{11}
+    \addtosymbols{zero}{12}
+    \addtosymbols{zero}{13}
+    \addtosymbols{zero}{20}
+    \addtosymbols{zero}{3}
+    \addtosymbols{zero}{4}
+    \addtosymbols{zero}{5}
+    \addtosymbols{zero}{6}
+    \addtosymbols{zero}{7}
+    \addtosymbols{zero}{8}
+    \addtosymbols{zero}{9}
+    }]{pdf/pubs_fscd.2022.pdf}

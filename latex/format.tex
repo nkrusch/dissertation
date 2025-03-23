@@ -52,9 +52,13 @@ delim_t "\\normalsize"
 %\newglossarystyle{longraggeddots}{%
 %    \glossarystyle{longragged}%
 %    \renewcommand*\glossaryentryfield[5]{%
-%        \glstarget{##1}{##2} & \makefirstuc{##4}##3\glspostdescription\space\mydotfill\space\footnotesize{##5}\tabularnewline
+%        \glstarget{##1}{##2} & \makefirstuc{##4}##3\glspostdescription%
+%        \space\mydotfill\space\footnotesize{##5}%
+%        \tabularnewline
 %    }%
 %}
+%\setglossarystyle{longraggeddots}
+\setglossarystyle{longragged}
 
 % double space -> mdframed, captions, footnotes
 \mdfsetup{startinnercode={\doublespacing}}
