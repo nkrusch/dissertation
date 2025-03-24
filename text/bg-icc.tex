@@ -1,0 +1,292 @@
+Theoretical computer science studies the fundamental capabilities and limitations of computation.
+A function is \emph{computable}\index{computable function}
+if it is algorithmically solvable in principle~\cite[p. 234]{sipser2012}.
+However, computability is independent of the required computational resources\index{resource usage},
+\ie \emph{cost} or \emph{resource usage} of computation.
+A computable function that requires an excessive amount of resources may not be solvable in practice.
+
+Computational complexity theory\index{complexity theory} enhances the study of computable functions\index{computable function} by classifying them into \emph{complexity classes}\index{complexity class}\footnote{
+    For an archive and exploration of complexity classes, see \href{https://complexityzoo.net/Complexity_Zoo}{ComplexityZoo.net}.}
+based on resources requirements\index{resource usage}.
+Algorithms computing those functions are categorized by the amount of required \emph{resources}\index{resource usage} when executed on a specified \emph{machine model}, such as a Turing Machine (TM)\index{Turing Machine}.
+Which particular model of computation\index{machine model} is used does not matter, as long as one adheres to Slot and van Emde Boas Invariance Thesis\index{Invariance Thesis}~\cite{slot1984}\footnote{
+    The Invariance Thesis\index{Invariance Thesis} asserts that a time (resp., space) cost model is reasonable for a computational model C\index{machine model} if there are mutual simulations between TMs and C such that the overhead is polynomial in time\index{complexity class!P} (resp., linear in space)~\cite{vanoni2022}.},
+and is concerned with complexity classes\index{complexity class}, \ie, order of magnitudes in the resources needed.
+The resource cost\index{resource usage} is estimated relative to the input size.
+This way algorithms are allowed to consume more resources when the input size grows while maintaining membership in the same complexity class\index{complexity class}.
+The common resources of interest are time\index{time complexity} and space (memory)\index{space complexity}.
+Complexity measures\index{complexity measure} are defined explicitly relative to the machine model\index{machine model}.
+For example, time complexity\index{time complexity}
+refers to the maximum number of computation steps a machine\index{machine model} uses on any input~\cite[p. 276]{sipser2012}.
+Besides (deterministic) time and space, various other resources can be viewed as complexity measures\index{complexity measure};
+for example, parallel time\index{parallel time} and circuit complexity\index{circuit complexity}~\cite[p. 428]{sipser2012}.
+
+\emph{Asymptotic analysis}\index{asymptotic analysis} is an approach for obtaining an estimation of an algorithm's resource requirements~\cite[p. 267--277]{sipser2012}\index{resource usage}.
+The analysis result is expressed as \emph{asymptotic bounds}\index{asymptotic bounds}.
+The $\mathcal{O}$-notation\symbo{bigo} (\enquote{big-oh}) denotes an asymptotic upper bound~\cite[p. 47]{cormen2022}\index{upper bound}.
+However, the bound may or may not be asymptotically tight\index{tight bound}.
+The \(o\)-notation\symbo{smallo} (\enquote{small-oh}) distinguishes an upper bound that is not asymptotically tight~\cite[p. 50]{cormen2022}.
+Other relevant notations are \(\Omega\)\symbo{bigomega} for an asymptotic lower bound\index{lower bound},
+and \(\Theta\)\symbo{bigtheta} for an asymptotic tight bound\index{tight bound}~\cite[Sect. 3.1]{cormen2022}.
+Among the benefits, complexity analysis\index{asymptotic analysis} develops insight of costs\index{resource usage} of computational patterns and identifies relationships between complexity classes\index{complexity class}.
+For algorithms, it produces measures of efficiency, and allows comparing relative performance of alternative algorithms~\cite{cormen2022}.
+
+This overview of the classical complexity theory\index{complexity theory} should be familiar from textbooks.
+However, a refresher on the basics gives a baseline for comparison for the discussion that is about to follow.
+The remainder of this dissertation builds on \emph{implicit} computational complexity.
+Implicit complexity complements the classical complexity theory\index{complexity theory} by offering alternative perspectives and systems for reasoning about cost of computation\index{resource usage}.
+
+\subsubsection{Computational Complexity, \emph{Implicitly}}
+
+\emph{Implicit Computational Complexity} (ICC) is a subfield of computational complexity theory\index{complexity theory} that explores \emph{machine-free characterizations} of complexity classes\index{complexity class}.
+It inherently shifts focus from computational models\index{machine model} to \emph{programs}.
+\begin{quotation}
+    \noindent By implicit, we here mean that classes are not given by constraining the amount of resources\index{resource usage} a machine\index{machine model} is allowed to use, but rather by imposing linguistic constraints on the way algorithms are formulated~\cite[p. 90]{dallago2011}.
+\end{quotation}
+In other words, complexity classes\index{complexity class} are described independently of notions of time or space related to a machine's definition.
+For example, polynomial time complexity\index{complexity class!P} has been thoroughly examined under these terms.
+The Cobham–Edmonds's Thesis~\cite{cobham1965,edmonds1965}\index{Cobham–Edmonds's Thesis} relates polynomial time class with the class of feasible functions\index{}\footnote{
+    The Cobham-Edmonds Thesis asserts that the time complexities in any two \enquote{reasonable and general} models of computation are polynomially related;
+    that is, a problem has time complexity \(t\) in some reasonable and general model of computation
+    if and only if it has time complexity poly(\(t\)) in the model of single-tape Turing machines~\cite[p. 33]{goldreich2008}.}.
+Multiple distinct implicit characterizations are known for many complexity classes\index{complexity class} -- \cf~\autoref{tab:icc-results}.
+
+Implicit computational complexity sees complexity bounds as consequences of restrictions on program structures.
+In this view, it studies the computational resources embedded in programming languages by \emph{construction}.
+Another common feature is that the characterizations may omit references to explicit resource bounds~\cite{moyen2017} -- refer to \eg~\textcite{bellantoni1992} or~\textcite{kristiansen2005} for examples.
+Thus, the focus is on studying the quality, rather than quantity, of the resources needed.
+Since an implicit characterization, or an \emph{ICC system}, captures a specific complexity class\index{complexity class}, complexity analysis becomes a task of determining class membership, rather than classifying computations among many classes as in classical asymptotic analysis\index{asymptotic analysis}.
+
+There are several good motivations for researching implicit characterizations of complexity classes\index{complexity class}~\cite[p. 36]{kristiansen2017,jones1999}, including the following.
+\begin{itemize}
+
+    \item Implicit complexity drive better understanding of complexity classes\index{complexity class} and sheds light on the notorious hard open problems of complexity theory\index{complexity theory}.
+
+    \item From a programming language perspective, implicit complexity is motivating because it suggests ways to control complexity properties, and quantifies the computational power present in programming languages by construction.
+
+    \item A programming language-based approach yields more {natural definitions and proofs} of central results than the classical approach.
+
+    \item The characterizations demonstrate that complexity classes are intrinsic mathematical entities that do not depend on a particular machine model\index{machine model}.
+
+    \item Implicit complexity introduces orthogonal program analysis techniques with potential to convert complexity-theoretic insights to practical analyses.
+\end{itemize}
+
+\subsubsection{Complexity via programming languages}
+
+Describing the goals of implicit complexity omits the details of \emph{how} such implicit characterizations should be designed.
+Over time, numerous distinct systems have been developed based on, or inspired by, \eg
+calculi,
+term rewriting\index{term rewriting},
+data flow analysis\index{data flow analysis},
+primitive recursion\index{primitive recursion},
+linear logic\index{linear logic},
+modal logic\index{modal logic},
+type systems\index{type system},
+digital circuits\index{digital circuit}, and more~\cite{kristiansen2017,marion2011,moyen2017,baillot2012}.
+With such rich versatility, it becomes challenging to identify ICC systems upon encounter and to find an overarching definition that matches them all\footnote{
+    On the the challenges of describing ICC systems,~\textcite[p. 14]{moyen2017} writes:
+    \enquote{For a long time, I have been convinced that ICC systems are like the proverbial blind men approaching an elephant:
+    each touching a different part and describing it in terms that let the others think this is a different beast.}}.
+
+\begin{figure}[t]
+    \begin{mdframed}
+        \paragraph*{Implicit complexity in a nutshell.}
+        The goal of implicit computational complexity can be summarized as follows.
+        Let \(\mathcal{L}\)\symbo{lang} be a programming language,
+        \(\mathcal{C}\)\symbo{cclass} a complexity class\index{complexity class},
+        and \(\sem{p}\)\symbo{funprog} the function computed by program \(p\)\symbo{prog}.
+        Then, the task is to find a restriction \(\mathcal{R}\)\symbo{restriction} \(\subseteq \mathcal{L}\), such that the following equality holds:
+        \begin{align*}\{ \sem{p} \mid p \in \mathcal{R} \} = \mathcal{C}.\end{align*}
+        The variables \(\mathcal{L}\),
+        \(\mathcal{C}\), and
+        \(\mathcal{R}\) are the parameters that vary greatly between different ICC systems.
+    \end{mdframed}
+    \caption[Implicit complexity in a nutshell.]
+    {Description of ICC systems -- adapted from~\textcite[p. 7]{pchoux2020}}
+    \label{fig:icc_systems}
+\end{figure}
+
+Recent reflective works~\cite{pchoux2020,hoffmann2022} converge on descriptions centered on programming languages.
+\autoref{fig:icc_systems} summarizes the idea succinctly.
+In this view, the unifying factor of implicit complexity is to find natural characterizations of complexity classes\index{complexity class} through \emph{restrictions} embedded in \emph{programming languages}~\cite{hoffmann2022}.
+It requires introducing a language-based \emph{syntactic} restriction that guarantees a \emph{semantic} property;
+typically, that a satisfactory program is a member of the characterized complexity class~\cite{moyen2017}\index{complexity class}.
+Then, if the restriction is maintained, the complexity bound will also be maintained.
+
+The programming language-based approach has minimally two significant effects compared to classical complexity theory\index{complexity theory}.
+The first is a \emph{temporal} shift that arises from making complexity an \emph{apriori} consideration in the language design.
+In other words, implicit complexity systems permit reasoning about runtime properties \emph{before a program exists}.
+The second is a \emph{relational} shift between a program developer and the task of performing complexity analysis\index{asymptotic analysis}.
+By embedding into a language a restriction by which a complexity bound will be guaranteed, the effort of satisfying that restriction is raised upstream to the developer~\cite{moyen2017}.
+In return, to obtain runtime guarantees, the developer does not need to know about the intricacies of complexity analysis or classes.
+The developer can focus on writing programs and the program's behavioral guarantees are obtained for free.
+Of course, this assumes that the restriction is not excessively prohibitive in expressing algorithms.
+
+\subsubsection{Implicit complexity by example: {safe recursion}}
+\label{safe-rec}\index{safe recursion}
+
+This example is adapted from a presentation by Dal Lago~\cite{dallago2022}.
+Consider Kleene's algebra\index{Kleene algebra} of general recursive functions\index{recursive function} as a programming language.
+In this language, programs are built from basic building blocks (the initial functions) by %way of
+composition, primitive recursion\index{primitive recursion}, and minimization.
+%Dropping minimization makes this formalism strictly less expressive: the functions one represents (the so-called primitive recursive functions) are, at least, all total.
+Primitive recursive functions\index{recursive function} are
+%however
+well beyond any reasonable complexity class\index{complexity class}
+%They are after all the class of functions which can be computed in time and space bounded by primitive recursive functions, the latter being strictly larger than Kalmar's elementary functions. %Essentially, this is
+due to the possibility of having nested recursive definitions.
+As an example, one can define addition from the initial functions
+
+\begin{center}
+    \pr|add(0, x) = x;|
+
+    \pr|add(n + 1, x) = add(n, x) + 1;|
+\end{center}
+
+and then define exponentiation \(n \mapsto 2^n\) from addition as follows:
+
+\begin{center}
+    \pr|exp(0) = 1;|
+
+    \pr|exp(n + 1) = add(exp(n), exp(n))|.
+\end{center}
+
+\noindent Composing \pr|exp| with itself allows us to form towers of exponentials of arbitrary size. %, thus saturating the Kalmar elementary functions.
+A recursion on \pr|exp| leads us even beyond the class of elementary recursive functions\index{recursive function}; %aforementioned class,
+already too broad complexity-wise.
+
+Rather than removing primitive recursion\index{primitive recursion} from the algebra up-front (which would have too strong an impact on the expressive power), % of the underlying function algebra)
+we want to refine the algebra by distinguishing arguments that matter for complexity from arguments that do not.
+The arguments of any function \(f\)\symbo{f} are dubbed either as \emph{normal}, when their value can have a relatively big impact on \(f\text{'s}\)\symbo{f} complexity, or \emph{safe} when their value can only influence \(f\)\(\text{'s}\)\symbo{f} behavior very mildly. %, combinatorially speaking.
+If \(\vec{x}\)\symbo{normx} are the normal parameters and \(\vec{y}\)\symbo{safey} are the safe ones,
+we indicate the value of \(f\)\symbo{f} on \(\vec{x}\)\symbo{normx} and \(\vec{y}\)\symbo{safey} as \(f(\vec{x};\vec{y})\)\symbo{normx}\symbo{safey},
+where the semicolon separates the normal from the safe.
+This way, the usual scheme of primitive recursion\index{primitive recursion} can be restricted as follows:
+
+\begin{center}
+    \(f (0, \vec{x};\vec{y}) = h (\vec{x};\vec{y})\);
+
+    \(f (n + 1,\vec{x};{ }\vec{y}) = g (n, \vec{x}; \vec{y}, f(n,\vec{x}; \vec{y})) \).
+\end{center}
+
+%Please notice that
+\noindent The way we define \(f\)\symbo{f} from \(g\) and \(h\) is morphologically identical to what happens in the usual primitive recursive scheme.
+That it is a restriction is a consequence of the distinction between normal and safe arguments: the recursive call \(f(n,\vec{x}; \vec{y})\)\symbo{normx}\symbo{safey} is required to be forwarded to one of g's safe argument, while the first parameter of \(f\)\symbo{f} must be normal.
+This makes \pr|exp| not expressible anymore, giving rise to new function algebra called \emph{safe recursion}\index{safe recursion}, discovered by Bellantoni and Cook~\cite{bellantoni1992} (BC in the following).
+
+\begin{theorem}
+    The class BC equals the class FP of polynomial time computable functions.
+\end{theorem}\index{complexity class!P}
+
+\subsubsection{A snapshot of theoretical results}
+\label{icc-theories}
+
+The breakthrough result of safe recursion\index{safe recursion} is regarded as the first implicit characterization of a complexity class\index{complexity class}~\cite{dallago2011,kristiansen2017,rubiano17}.
+However, the same result was independently discovered by~\textcite{leivant1993} in a slightly different setting of stratified recurrence\index{stratified recurrence}~\cite[p. 762]{dallago2022}.
+\autoref{tab:icc-results} shows a {very small} collection of additional impactful theoretical results.
+The inclusion criteria is varied and based on representing the rich variety of underlying techniques or complexity classes\index{complexity class};
+or for presenting foundational techniques that have been extended later;
+or for reflecting shifts in theoretical developments and interests over time.
+The table also marks with hyperlinks works that are discussed elsewhere in this dissertation.
+These theoretical results provide a conceptual \enquote{toolbox} of techniques that form the foundation
+for the rest of this dissertation.
+
+%! suppress = LineBreak
+%! suppress = NonBreakingSpace
+\begin{tabularx}{\textwidth}{@{}lclXr@{}}
+    \multicolumn{5}{@{}c@{}}{\resizebox{\textwidth}{!}{
+        \textbf{Symbols.}
+        \hspace{.6em}\logics{ }logics
+        \hspace{.6em}\types{ }type system
+        \hspace{.6em}\dataflow{ }data flow
+        \hspace{.6em}\syntax{ }syntactic
+        \hspace{.6em}\lalg{ }algebras
+        \hspace{.6em}\recs{ }recursion}} \\*[1em]
+    \toprule
+    \textbf{Year} & &
+    \textbf{Venue} &
+    \multicolumn{2}{l@{}}{\textbf{Description}\hfill\textbf{Complexity Classes}}
+    \\
+    \midrule
+    \endfirsthead
+    \multicolumn{5}{@{}c@{}}{\resizebox{\textwidth}{!}{
+        \textbf{Symbols.}
+        \hspace{.6em}\logics{ }logics
+        \hspace{.6em}\types{ }type system
+        \hspace{.6em}\dataflow{ }data flow
+        \hspace{.6em}\syntax{ }syntactic
+        \hspace{.6em}\lalg{ }algebras
+        \hspace{.6em}\recs{ }recursion}} \\*[1em]
+    \toprule
+    \textbf{Year} & &
+    \textbf{Venue} &
+    \multicolumn{2}{l@{}}{\textbf{Description}\hfill\textbf{Complexity Classes}}
+    \\
+    \midrule\endhead
+    \caption[]{(Cont.)}
+    \endfoot
+    \endlastfoot
+    1992\(^*\) & \syntax & Comput  & Safe recursion\index{safe recursion} -- \autoref{safe-rec} & \ccx{p}\index{complexity class!P} \\*
+    && Complex. & \textcite{bellantoni1992} \\*
+    \midrule
+    1993\(^*\) & \recs & POPL & Stratified recurrence\index{stratified recurrence} & \ccx{p}\index{complexity class!P} \\
+    &&& \textcite{leivant1993} \\*
+    \midrule
+    1995 & \lalg & CSL & Tiering \aka ramification\index{tiering}\index{ramification} & \ccx{pspace}\index{complexity class!PSPACE} \\*
+    &&& \textcite{leivant1995} \\*
+    \midrule
+    1999 & \types & LICS & Non-size-increasing programs\index{non-size-increasing programs} & \ccx{p}\index{complexity class!P} \\*
+    &&& \textcite{hofmann1999} \\*
+    \midrule
+    2000 & \recs & LPAR & Quasi-interpretations\index{quasi-interpretation} & \ccx{p}\index{complexity class!P} \\*
+    &&& \textcite{marion2000} \\*
+    \midrule
+    2001 & \syntax & J. Funct. & CONS-free programs\index{CONS-free programs} & \ccx{p}\index{complexity class!P}, \ccx{exp}\index{complexity class!EXP} \\*
+    && Program. & \textcite{jones2001} & \\*
+    \midrule
+    2001 & \dataflow & POPL & Size-change termination principle\index{size-change termination principle} & \ccx{pspace}\index{complexity class!PSPACE} \\*
+    &&& \textcite{lee2001} \\*
+    \midrule
+    2005 & \lalg & Comput. & \textsc{loop}$^{-}$ and \textsc{clip} programs & \ccx{l}\index{complexity class!L}, \ccx{linspace}\index{complexity class!LINSPACE} \\*
+    && Complex. & \textcite{kristiansen2005} \\*
+    \midrule
+    2009 & \logics & TOCL & Flow calculus of mwp-bounds\index{mwp-calculus} -- \autoref{flow-calculus} & \ccx{p}\index{complexity class!P} \\*
+    &&& \textcite{jones2009}  \\*
+    \midrule
+    2011 & \types & LICS & SAFE programs\index{SAFE programs} -- \autoref{icc-sec} & \ccx{p}\index{complexity class!P} \\*
+    &&& \textcite{marion2011} \\*
+    \midrule
+    2013 & \types & ICALP & Ramified programs\index{ramification}\index{ramified programs} -- \autoref{icc-sec}  & \ccx{p}\index{complexity class!P}, \ccx{l}\index{complexity class!L} \\*
+    &&& \textcite{leivant2013} \\*
+    \midrule
+    2015 & \types & LPAR & d$\ell$T\index{d\(\ell\)T} programs$^a$ -- \autoref{icc-sec} & \ccx{p}\index{complexity class!P} \\*
+    &&& \textcite{baillot2015} \\*
+    \midrule
+    2016 & \logics & Inf. & Complexity with pointer machines & \ccx{l}\index{complexity class!L} \\*
+    &&  Comput. & \textcite{aubert2016}  \\*
+    \midrule
+    2016 & \recs & Inf. & Complexity of uniform boolean circuits & \ccx{nc}\index{complexity class!NC} \\*
+    && Comput. &\textcite{bonfante2016} \\*
+    \midrule
+    2018 & \types & Inf & Object Oriented programs\index{SAFE programs!object-oriented} -- \autoref{icc-sec} & \ccx{p}\index{complexity class!P} \\*
+    && Comput. & \textcite{hainry2018} \\*
+    \midrule
+    2021 & \lalg & MFCS & Probabilistic characterization \(\text{ST}_\text{PP}\) & \ccx{pp}\index{complexity class!PP} \\*
+    &&& \textcite{dallago2021} \\*
+    \midrule
+    2023 & \types & POPL & Stratified (STR) programs\index{stratified programs} -- \autoref{icc-sec} & \ccx{p}\index{complexity class!P} \\*
+    &&& \textcite{hainry2023} \\*
+    \midrule
+    2024 & \types & POPL & Quantitative Type Theory (QTT)\index{quantitative type theory} & \ccx{p}\index{complexity class!P}, \ccx{np}\index{complexity class!NP}, \ccx{bpp}\index{complexity class!BPP} \\*
+    &&& with dependent types\index{dependent types}, \textcite{atkey2024} \\*
+    \midrule
+    2024 & \types & LICS & Aperiodic programs\index{aperiodic programs} -- \autoref{icc-sec} & \ccx{p}\index{complexity class!P} \\*
+    &&& \textcite{hainry2024} \\*
+    \bottomrule
+    \multicolumn{5}{@{}l}{$^a$ The system can handle sub-computations not in \ccx{p}.} \\
+    \caption[Theoretical implicit complexity systems and results.]{
+        A list of theoretical implicit complexity systems and results.
+        The historical first publications are marked with \(^*\)-symbol.
+        The graphical symbols on left describe the restriction techniques for enforcing complexity bounds (limited to one symbol).}
+    \label{tab:icc-results}
+\end{tabularx}

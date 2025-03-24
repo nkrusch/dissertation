@@ -1,9 +1,6 @@
 Statement of the problem and specific aims of the overall project.
 
 \subsection{Connecting the Dissertation Manuscripts}
-\label{subsec:connecting-the-dissertation-manuscripts}
-
-This dissertation is organized around the manuscripts of~\autoref{fig:conn_papers}.
 
 \begin{figure}[p]
 \begin{subfigure}{\textwidth}
@@ -26,7 +23,7 @@ This dissertation is organized around the manuscripts of~\autoref{fig:conn_paper
 & \ref{sec:postcond}
 & \ref{flow-calculus}, \ref{verification} \\
 {pymwp: A Static Analyzer Determining\ldots}
-& \ref{sec:atva}, \aref{app:toolguide}
+& \ref{sec:atva}
 & \ref{icc}, \ref{static-analysis}, \ref{flow-calculus} \\
 {A Logic for Anytime Non-Interference}
 & \ref{sec:anytime}
@@ -45,19 +42,19 @@ This dissertation is organized around the manuscripts of~\autoref{fig:conn_paper
 \subsection{Tips for Interacting With This Document}
 \label{subsec:tips}
 
-\subsubsection{Software Artifacts}\label{subsub:sw}
-Each published and publication-ready manuscript in this dissertation, including the dissertation itself, comes with a corresponding software artifact.
-A complete index of the artifacts is in~\aref{app:sec:artifacts}.
+\subsubsection{Software Artifacts and Data Availability}\label{subsub:sw}
+All software developed as part of this dissertation is publicly available.
+Each published and publication-ready manuscript in this dissertation, including the dissertation itself, comes with a software artifact, \cf~\aref{app:sec:artifacts}.
 Each piece of software is archived for long-term retention, according to the long-term archival policies of the Association for Computing Machinery artifact guidelines~\cite{acm_badging}.
 The software is achieved even if the venue of a manuscript did not arrange a formal artifact evaluation round.
 Thus, each manuscript extends beyond the paper pages of this dissertation.
 
 \subsubsection{Indices and Glossaries}
 
-For convenience of the reader, this dissertation comes with three indices and glossaries\index{hello}\symbo{bigomega}.
+For convenience of the reader, this dissertation comes with three indices and glossaries.
 The Term Index, in \aref{sec:app:index}, lists technical terms and identifies where they are used in the dissertation.
 The dissertation uses various acronyms where each acronym is defined at first-use.
-To locate the long form afterward, refer to~\aref{\acronymtype}.
+To locate the long form afterward, refer to~\aref{acronyms}.
 A similar glossary is available for symbolic notations in the~\aref{symbols}.
 
 \subsubsection{Back-up Archival of External Documents}
@@ -80,8 +77,10 @@ In that case, the corresponding Internet Archive address produces the same docum
 If a referenced external document was not readily available on the Internet even at the time of writing this dissertation,
 the document is hosted and archived with the software deposit of this dissertation, \cf~\autoref{subsub:sw}.
 
-\subsubsection{Line Numbers}
-When referring to a specific line of source code,
-we write \pr|L|, for \underline{L}ine;
-followed by a natural number or numeric range that specifies the row(s) of interest.
-For example, \pr|L3| means \enquote{line number 3}, and \pr|L10|--\pr|12| mean \enquote{lines 10 through 12}.
+\subsubsection{Notational Conventions}
+
+\paragraph*{Line numbers.}
+When referring to a specific line of source code or an algorithm,
+we write L, for \underline{l}ine;
+followed by a number or numeric range that specifies the rows of interest.
+For example, L3 means \enquote{line number 3}, and L10--12 means \enquote{lines 10 to 12}.
