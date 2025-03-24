@@ -12,6 +12,13 @@
 % apa-style citation fix
 \renewcommand{\cite}[2][]{\autocite[#1]{#2}}
 
+%\usepackage{listofitems}
+%\setsepchar{,}
+%\newcommand{\addtoindexm}[2]{
+%    \readlist\ipages{#2}
+%    \foreachitem\ipg\in\ipages{\ifnum\AM@page=\ipg\relax\index{#1}\fi}
+%}
+
 % paper category icons
 \newcommand{\pageIcon}[2]{
 \raisebox{-0.3\height}{\begin{tikzpicture}
@@ -36,6 +43,16 @@
 }
 \makeatother
 \newcommand\symbo[1]{\gls{symb:#1}}
+
+% multi index-add
+\setsepchar{,}
+\newcommand{\addtoindexm}[2]{
+\readlist\ipages{#2}
+\foreachitem\word\in\ipages{\addtoindex{#1}{\word}}}
+% multi symbols-add
+\newcommand{\addtosymbolsm}[2]{
+\readlist\ipages{#2}
+\foreachitem\word\in\ipages{\addtosymbols{#1}{\word}}}
 
 % Fix \sc undefined
 \providecommand{\sc}{}
