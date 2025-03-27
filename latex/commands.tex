@@ -1,3 +1,4 @@
+%! suppress = NonBreakingSpace
 \newcommand\CTNT{Clément Aubert, Thomas Rubiano, Neea Rusch, Thomas Seiller}
 \newcommand\ainfo[2]{\noindent{#1}\newline\noindent{#2}\newpage}
 \newcommand\ainfoX[3]{\noindent{#1}\newline\noindent{#2}\vspace{1em}\newline{#3}\newpage}
@@ -12,13 +13,6 @@
 % apa-style citation fix
 \renewcommand{\cite}[2][]{\autocite[#1]{#2}}
 
-%\usepackage{listofitems}
-%\setsepchar{,}
-%\newcommand{\addtoindexm}[2]{
-%    \readlist\ipages{#2}
-%    \foreachitem\ipg\in\ipages{\ifnum\AM@page=\ipg\relax\index{#1}\fi}
-%}
-
 % paper category icons
 \newcommand{\pageIcon}[2]{
 \raisebox{-0.3\height}{\begin{tikzpicture}
@@ -28,6 +22,10 @@
 \newcommand{\pageIconFm}{\pageIcon{\iconFM}{formal methods}}
 \newcommand{\pageIconOpt}{\pageIcon{\iconOPT}{program optimization}}
 \newcommand{\pageIconSecurity}{\pageIcon{\iconSEC}{security}}
+
+% small circled characters
+\newcommand{\circled}[1]{\hspace{-.5ex}\raisebox{-0.2\height}{\scalebox{.6}{%
+\tikz{\node[circle,inner sep=2pt,outer sep=.4pt,fill=white,draw=black,solid,thick]{\textbf{#1}};}}}}
 
 % add index terms to \includepdf
 \makeatletter
@@ -108,22 +106,22 @@
 \newcommand{\dfgtilde}[1]{\mathbb{\tilde{M}}(\comm{#1})}
 \newcommand{\scc}{\textsc{scc}\xspace}
 \newcommand{\sccs}{\textnormal{{\scshape SCC}s\xspace}}
-\newcommand{\SFM}{\textsc{sfm}\xspace}
-\newcommand{\SFMs}{\textsc{sfm}s\xspace}
-\newcommand{\sfm}[1]{\mathbb{M}(\comm{#1})}
 \newcommand{\condcorr}[1]{\mathrm{Corr}^{\mathtt{if}}(#1)}
 \newcommand{\whilecorr}[1]{\mathrm{Corr}^{\mathtt{while}}(#1)}
 \newcommand{\corr}[1]{\mathrm{Cr}(#1)}
 \newcommand{\corrc}[1]{\mathrm{Corr}(#1)}
 \newcommand{\Var}{\mathrm{Vars}}
 \newcommand{\lvl}[1]{\ell(#1)}
-\newcommand{\SC}{\mathrm{SC}}
-\newcommand{\LH}{\mathrm{LH}}
-\newcommand{\HMO}{\mathrm{HMO}}
-\newcommand{\scl}[1]{\ensuremath{\mathit{#1}}}
-\newcommand{\SSG}{\mathrm{SSG}}
-\newcommand{\nv}{\cdot} % no violation
-\newcommand{\vi}{\textnormal{\scalebox{.65}{\faTint}}} %\usym{1F322}} % Violation
+%\newcommand{\SFM}{\textsc{sfm}\xspace}
+%\newcommand{\SFMs}{\textsc{sfm}s\xspace}
+%\newcommand{\sfm}[1]{\mathbb{M}(\comm{#1})}
+%\newcommand{\SC}{\mathrm{SC}}
+%\newcommand{\LH}{\mathrm{LH}}
+%\newcommand{\HMO}{\mathrm{HMO}}
+%\newcommand{\scl}[1]{\ensuremath{\mathit{#1}}}
+%\newcommand{\SSG}{\mathrm{SSG}}
+%\newcommand{\nv}{\cdot} % no violation
+%\newcommand{\vi}{\textnormal{\scalebox{.65}{\faTint}}} %\usym{1F322}} % Violation
 
 % Comma after eg and ie
 \newcommand*{\eg}{e.g.\@,\xspace}

@@ -1,9 +1,8 @@
 \newcommand{\pr}{\lstinline[mathescape,language=C,basicstyle=\ttfamily,escapeinside={(*}{*)}]}
 \newcommand{\prc}{\lstinline[language=C,basicstyle=\ttfamily,keywordstyle=\mdseries]}
-\newcommand{\comm}[1]{\mathtt{#1}}
+\newcommand{\omp}[1]{\lstinline[style=inlineomp]|#1|\index{OpenMP directives!\texttt{#1}}}
 \newcommand{\prm}[1]{\text{\pr|#1|}}
-
-%\setmonofont[Path=fonts/, Extension=.ttf,UprightFont=*-Regular,BoldFont=*-Bold]{Inconsolata}
+\newcommand{\comm}[1]{\mathtt{#1}}
 
 \lstset{
     columns=[l]flexible,
@@ -36,7 +35,6 @@
     upquote=true,
 }
 
-% colorless
 \lstdefinestyle{Plain}{
     language=C,
     identifierstyle=\color{black},
@@ -54,4 +52,9 @@
     ndkeywordstyle={\color{codekeywords}\ttfamily\bfseries},
     commentstyle=\color{codecomments},
     stringstyle=\color{codestrings}
+}
+
+\lstdefinestyle{openmp}{
+    language=OpenMP,
+    directivestyle={\bfseries\itshape\ttfamily\color{teal!90!black}}
 }
