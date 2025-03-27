@@ -7,7 +7,8 @@
 \newcommand{\tocless}[2]{\bgroup\let\addcontentsline=\nocontentsline#1{#2}\egroup}
 \newcommand{\aref}[1]{\hyperref[#1]{Appendix~\ref*{#1}}}
 \newcommand{\swlink}[2]{\texttt{\footnotesize{\href{#1}{#2}}}}
-\newcommand{\ccx}[1]{\textsc{#1}}
+\newcommand{\ccxi}[1]{\index{complexity class!\textsc{#1}}}
+\newcommand{\ccx}[1]{\textsc{#1}\ccxi{#1}}
 \newcommand{\nonterm}[1]{#1}
 
 % apa-style citation fix
@@ -112,16 +113,6 @@
 \newcommand{\corrc}[1]{\mathrm{Corr}(#1)}
 \newcommand{\Var}{\mathrm{Vars}}
 \newcommand{\lvl}[1]{\ell(#1)}
-%\newcommand{\SFM}{\textsc{sfm}\xspace}
-%\newcommand{\SFMs}{\textsc{sfm}s\xspace}
-%\newcommand{\sfm}[1]{\mathbb{M}(\comm{#1})}
-%\newcommand{\SC}{\mathrm{SC}}
-%\newcommand{\LH}{\mathrm{LH}}
-%\newcommand{\HMO}{\mathrm{HMO}}
-%\newcommand{\scl}[1]{\ensuremath{\mathit{#1}}}
-%\newcommand{\SSG}{\mathrm{SSG}}
-%\newcommand{\nv}{\cdot} % no violation
-%\newcommand{\vi}{\textnormal{\scalebox{.65}{\faTint}}} %\usym{1F322}} % Violation
 
 % Comma after eg and ie
 \newcommand*{\eg}{e.g.\@,\xspace}

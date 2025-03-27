@@ -36,3 +36,6 @@ count:  # the abstract has a word limit
 
 loc:
 	cloc . --exclude-dir=tex_version,env,.github,.idea
+
+update:
+	cp ../review/s2-icc/text.tex text/bg-icc.tex
