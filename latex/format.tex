@@ -6,8 +6,15 @@
 \renewcommand{\subsubsectionautorefname}{Sect.}
 \renewcommand{\figureautorefname}{Fig.}
 \newcommand{\definitionautorefname}{Def.}
-\newcommand{\algorithmautorefname}{Algo.}
+\newcommand{\algorithmautorefname}{Algorithm}
 \newcommand{\notationautorefname}{Notation}}
+
+\AtBeginEnvironment{theorem}{\pushQED{\qed}}
+\AtEndEnvironment{theorem}{\popQED\endexample}
+\AtBeginEnvironment{example}{\pushQED{\qed}}
+\AtEndEnvironment{example}{\popQED\endexample}
+\AtBeginEnvironment{definition}{\pushQED{\qed}}
+\AtEndEnvironment{definition}{\popQED\enddefinition}
 
 % Algorithms
 \algtext*{EndWhile} % Remove "end while" text

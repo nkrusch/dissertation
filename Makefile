@@ -39,3 +39,7 @@ loc:
 
 update:
 	cp ../review/s2-icc/text.tex text/bg-icc.tex
+	cp ../review/s2-mwp/text.tex text/bg-mwp.tex
+
+ref_update:
+	cp ../review/extra/symbols.tex references/symbols.tex

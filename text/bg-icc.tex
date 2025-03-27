@@ -23,13 +23,13 @@ for example, parallel time\index{parallel time} and circuit complexity\index{cir
 
 \emph{Asymptotic analysis}\index{asymptotic analysis} is an approach for obtaining an estimation of an algorithm's resource requirements~\cite[p. 267--277]{sipser2012}\index{resource usage}.
 The analysis result is expressed as \emph{asymptotic bounds}\index{asymptotic bounds}.
-The \(\mathcal{O}\)-notation\symbo{bigo} (\enquote{big-oh}) denotes an asymptotic upper bound~\cite[p. 47]{cormen2022}\index{upper bound}.
+The \enquote{big-oh} \(\mathcal{O}\)-notation\symbo{bigo} denotes an asymptotic upper bound~\cite[p. 47]{cormen2009}\index{upper bound}.
 However, the bound may or may not be asymptotically tight\index{tight bound}.
-The \(o\)-notation\symbo{smallo} (\enquote{small-oh}) distinguishes an upper bound that is not asymptotically tight~\cite[p. 50]{cormen2022}.
+The \enquote{small-oh} \(o\)-notation\symbo{smallo} distinguishes an upper bound that is not asymptotically tight~\cite[p. 50]{cormen2009}.
 Other relevant notations are \(\Omega\)\symbo{bigomega} for an asymptotic lower bound\index{lower bound},
-and \(\Theta\)\symbo{bigtheta} for an asymptotic tight bound\index{tight bound}~\cite[Sect. 3.1]{cormen2022}.
+and \(\Theta\)\symbo{bigtheta} for an asymptotic tight bound\index{tight bound}~\cite[Sect. 3.1]{cormen2009}.
 Among the benefits, complexity analysis\index{asymptotic analysis} develops insight of costs\index{resource usage} of computational patterns and identifies relationships between complexity classes\index{complexity class}.
-For algorithms, it produces measures of efficiency, and allows comparing relative performance of alternative algorithms~\cite{cormen2022}.
+For algorithms, it produces measures of efficiency, and allows comparing relative performance of alternative algorithms~\cite{cormen2009}.
 
 This overview of the classical complexity theory\index{complexity theory} should be familiar from textbooks.
 However, a refresher on the basics gives a baseline for comparison for the discussion that is about to follow.
@@ -127,7 +127,7 @@ Of course, this assumes that the restriction is not excessively prohibitive in e
 \subsubsection{Implicit complexity by example: {safe recursion}}
 \label{safe-rec}\index{safe recursion}
 
-This example is adapted from a presentation by Dal Lago~\cite{dallago2022}.
+This example is adapted from a presentation by~\textcite{dallago2022}.
 Consider Kleene's algebra\index{Kleene algebra} of general recursive functions\index{recursive function} as a programming language.
 In this language, programs are built from basic building blocks (the initial functions) by %way of
 composition, primitive recursion\index{primitive recursion}, and minimization.
@@ -237,7 +237,7 @@ for the rest of this dissertation.
     1995 & \lalg & CSL & Tiering \aka ramification\index{tiering}\index{ramification} & \ccx{pspace} \\*
     &&& \textcite{leivant1995} \\*
     \midrule
-    1999 & \types & LICS & Non-size-increasing programs\index{non-size-increasing programs} & \ccx{p} \\*
+    1999 & \types & LICS & Non-size-increasing programs\index{non-size-increasing program} & \ccx{p} \\*
     &&& \textcite{hofmann1999} \\*
     \midrule
     2000 & \recs & LPAR & Quasi-interpretations\index{quasi-interpretation} & \ccx{p} \\*
@@ -261,7 +261,7 @@ for the rest of this dissertation.
     2013 & \types & ICALP & Ramified programs\index{ramification}\index{ramified programs} -- \autoref{icc-sec}  & \ccx{p}, \ccx{l} \\*
     &&& \textcite{leivant2013} \\*
     \midrule
-    2013 & \types & & SAFE processes\index{SAFE programs!process} -- \autoref{icc-sec} & \ccx{p} \\*
+    2013 & \types & FoSSaCS & SAFE processes\index{SAFE programs!process} -- \autoref{icc-sec} & \ccx{p} \\*
     &&& \textcite{hainry2013} \\*
     \midrule
     2015 & \types & LPAR & d\(\ell\)T\index{d\(\ell\)T} programs\(^a\) -- \autoref{icc-sec} & \ccx{p} \\*
