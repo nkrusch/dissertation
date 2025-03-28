@@ -74,7 +74,7 @@ The flow calculus\index{mwp-calculus} result is sound but incomplete.
 If a derivable\index{derivability} program terminates\index{termination},
 the soundness theorem~\cite[p. 11]{jones2009} guarantees that the variable value growth is polynomially bounded.
 
-\begin{theorem}[{Soundness}]\label{mwp-soundness}
+\begin{theorem}[{Soundness of mwp-calculus}]\label{mwp-soundness}
 \index{soundness theorem of mwp-calculus}
 \index{mwp-calculus!soundness theorem}
 \(\vdash \prm{C} : \prm{M}\text{ implies } \vDash \prm{C} : \prm{M}\)\symbo{cmat}\symbo{cmatsem}.
@@ -136,7 +136,7 @@ Furthermore, mwp-bounds\index{mwp-bound} can be incomparable.
 For example, between \(W \equiv \max(\prm{X1},\prm{X2})+\prm{X3}\) and \(V \equiv \prm{X1}+\prm{X2}\times\prm{X4}\), it is impossible to determine which mwp-bound\index{mwp-bound} evaluates to a lower value numerically.
 This means mwp-bounds\index{mwp-bound} cannot be totally ordered.
 
-\subsubsection{Technical Evolution of the Flow Calculus}
+\subsubsection{Evolution of the Flow Calculus}
 
 A central theme of this dissertation is the gradual technical advancement of the flow calculus of mwp-bounds\index{mwp-calculus}, as those developments are a prerequisite for its different applications.
 However, details of these developments are not totally obvious from the publications.
@@ -438,7 +438,7 @@ defined as an infinite sum \[M^* = 1 \oplus M \otimes M^2 \oplus M^3 \oplus \ldo
 \caption{Rules for assigning vectors to expressions}
 \label{fig:rules-expressions}
 \end{subfigure}
-\\[1.2em]
+\\[3em]
 \begin{subfigure}{\textwidth}
 \begin{centering}
 \begin{prooftree}[small]
@@ -537,7 +537,7 @@ therefore, the specifics are omitted here.
 The \textsc{mwp}\(^\infty\) variant of the flow calculus\index{mwp-calculus} internalizes the failure and always returns an mwp-matrix\index{mwp-matrix}.
 
 \begin{algorithm}
-\caption{Program analysis with flow calculus of mwp-bounds}\label{alg:prog}
+\caption{Program analysis with flow calculus of mwp-bounds.}\label{alg:prog}
 \textbf{Input}: sequence of commands \pr|P| \\
 \textbf{Output}: mwp-matrix\index{mwp-matrix} \(M\) or failure
 \begin{algorithmic}[1]
@@ -554,7 +554,7 @@ The \textsc{mwp}\(^\infty\) variant of the flow calculus\index{mwp-calculus} int
 \end{algorithm}
 
 \begin{algorithm}
-\caption{Command analysis with flow calculus of mwp-bounds}\label{alg:comms}
+\caption{Command analysis with flow calculus of mwp-bounds.}\label{alg:comms}
 \textbf{Input}: command \pr|C| \\
 \textbf{Output}: mwp-matrix\index{mwp-matrix} \(M\) or failure
 \begin{algorithmic}[1]
@@ -570,9 +570,10 @@ The \textsc{mwp}\(^\infty\) variant of the flow calculus\index{mwp-calculus} int
 \begin{example}[Polynomially bounded program is derivable]\label{ex:bounds1T}
 Recall the program from~\autoref{ex:bounds1},
 
-\begin{lstlisting}[language=C,numbers=none,caption={A derivable program.}]
-X1=X2+X3; X1=X1+X1
-\end{lstlisting}
+\lstinputlisting[
+language=IMP,
+caption={A derivable program.}
+]{derivable.c}
 
 The conclusion about derivability\index{derivability} can be reached by $3^2 = 9$ distinct derivations,
 one of which is shown below.
@@ -604,9 +605,10 @@ The program bound is a conjunction of the variables' mwp-bounds\index{mwp-bound}
 \begin{example}[Failing program admits no derivation]\label{ex:bounds2F}
 Consider the program fragment from~\autoref{ex:bounds2},
 
-\begin{lstlisting}[language=C,numbers=none,caption={A loop that always fails the derivation.}]
-loop X2 { X1=X1+X1 }
-\end{lstlisting}
+\lstinputlisting[
+language=IMP,
+caption={A loop that always fails the derivation.}
+]{failing.c}
 
 The command \pr|X1=X1+X1| admits three derivations.
 
@@ -640,13 +642,12 @@ Although the analysis focused only on a program fragment,
 the complete program fails because it contains a command that is not derivable\index{derivability}.
 \end{example}
 
-\begin{example}[Program is derivable despite partial derivation failure]\label{ex:partial}
+\begin{example}[Derivability in presence of partial derivation failure]\label{ex:partial}
 \index{derivability}
-Consider a program,
+Consider the following program, that is a slightly modified version of~\autoref{ex:bounds2F},
 
-\begin{lstlisting}[language=C,numbers=none,caption={A loop that sometimes fails the derivation.}]
-loop X3 { X2=X1+X2 }
-\end{lstlisting}
+%! suppress = FileNotFound
+\lstinputlisting[language=IMP,caption={A loop that fails along some derivation paths.},label={lst:partial-fail}]{partial.c}
 
 The body of the \pr|loop| command admits three different derivations,
 obtained by applying the tule A to one of the three derivation of the expression
@@ -709,7 +710,16 @@ but implicitly convert them to the core imperative language\index{imperative pro
 The examples omit function declarations since those are irrelevant for the analysis.
 
 \begin{example}[Binary assignment]\label{ex:binassign}
-The input program is \pr|Y2=Y1+Y1|.
+The input program
+
+\begin{minipage}{\textwidth}
+\lstinputlisting[
+language=C,
+caption={A program with a single assignment.}
+]{assign_expression.c}
+\end{minipage}
+
+contains a single command.
 The program has three derivations and all of them succeed.
 One derivation instance is shown below.
 
@@ -722,13 +732,15 @@ One derivation instance is shown below.
 The program bound is a \(y_1'\leq\prm{Y1} \land y_2' \leq\prm{Y1}\).
 \end{example}
 
-\begin{example}[Exponential program]\label{ex:expprog}
+\begin{example}[Exponential Program]\label{ex:expprog}
 The input program is
 
-\begin{lstlisting}[language=C,numbers=none,caption={Exponential program, exponent\_2.c.}]
-while(i<e) { r=r*b; i=i+1; }
-\end{lstlisting}
-The derivation proceeds sequentially, starting with the loop body\index{loop body}.
+\begin{minipage}{\textwidth}
+\lstinputlisting[
+language=C,
+caption={A program with exponential variable value growth.}
+]{exponent2.c}
+\end{minipage}
 
 \paragraph*{Step 1.} Analyze the command \pr|r=r*b|.
 It admits three derivations (\(\pi_0\), \(\pi_1\) and \(\pi_2\)).
@@ -784,8 +796,8 @@ Similarly, it admits three derivations (\(\pi_3\), \(\pi_4\) and \(\pi_5\)).
 \end{prooftree}}
 \end{center}
 
-\paragraph*{Step 3.} Compose the body commands \(\prm{B}\equiv\prm{\{r=r*b; i=i+1\}}\).
-There are 9 different combinations based on the derivation choices made in the preceding steps.
+\paragraph*{Step 3.} Compose the body commands, \pr|r=r*b; i=i+1|.
+There are 9 different combinations, by the derivation choices made in the previous steps.
 
 \begin{center}
 \begin{prooftree}
@@ -884,19 +896,17 @@ In every derivation, the mwp-matrix\index{mwp-matrix}  violates the side conditi
 \end{example}
 
 \begin{example}[While analysis]\label{ex:while1}
-The input program \(P\) is
+The input program, that we will refer to as \(P\), is
 
 \begin{minipage}{\textwidth}
-\begin{lstlisting}[language=C,caption={While loop analysis, notinfinite\_3.c.}]
-if(X1==1) {
-  X1=X2+X1; X2=X3+X2;
-}
-while(X0<10)
-  X0=X1+X2;
-\end{lstlisting}
+%! suppress = FileNotFound
+\lstinputlisting[
+language=C,
+caption={While loop analysis.}
+]{notinfinite3.c}
 \end{minipage}
 
-As the name hints, and the tool user guide confirms, the program is derivable\index{derivability}.
+The tool user guide reveals that the program is derivable\index{derivability}.
 Compared to derivation failure that requires exploring all derivation choices,
 a derivable\index{derivability} program simply requires showing one successful derivation.
 For presentation reasons, we show the two branches of the derivation tree individually.
@@ -956,13 +966,11 @@ This program bound matches the result of the tool user guide.
 The input program is
 
 \begin{minipage}{\textwidth}
-\begin{lstlisting}[language=C,caption={An infinite program, infinite\_3.c.}]
-if(X1==1) {
-  X1=X2+X1; X2=X3+X2;
-}
-while(X0<10)
-  X1=X2+X1;
-\end{lstlisting}
+%! suppress = FileNotFound
+\lstinputlisting[
+language=C,
+caption={An \enquote{infinite} program.}
+]{infinite3.c}
 \end{minipage}
 
 This program is similar to~\autoref{ex:while1}, with only a small change to the \pr|while| loop.
@@ -991,16 +999,11 @@ The program is not derivable\index{derivability}.
 The input program has four top-level commands, identified by the circled annotations.
 
 \begin{minipage}{\textwidth}
-\begin{lstlisting}[language=C,escapeinside=||,caption={A challenge program.}]
-if(X0)          |\circled{C0}|
-  X2=X0+X1;
-else
-  X2=X2+X1;
-X0=X2+X1;       |\circled{C1}|
-X1=X0+X2;       |\circled{C2}|
-while(X2)       |\circled{C3}|
-  X2=X1+X0;
-\end{lstlisting}
+%! suppress = FileNotFound
+\lstinputlisting[
+language=C,escapeinside=||,
+caption={A challenge program that may, or may not, be derivable.},
+label={lst:maybe-derivable}]{dense_loop.c}
 \end{minipage}
 
 We will refer to these commands as \(\prm{C}_0\)--\(\prm{C}_3\) and
