@@ -342,18 +342,17 @@ In contrast, the \textsc{mwp}\(^\infty\) calculus\index{mwp-calculus} generates 
 For the best exposition of how to construct complex mwp-matrices see~\aref{sec:fscd}.
 The evaluation procedure that extracts mwp-bounds\index{mwp-bound} from complex mwp-matrices is best described in~\autoref{sec:postcond}.
 
-\paragraph*{Imperative programming language.}
+\paragraph*{An imperative programming language.}
 The imperative language\index{imperative programs} specifies the inputs of the analysis.
-The language and semantics are defined in several dissertation manuscripts (\cf~\autoref{sec:postcond} and~\aref{sec:fscd}, also~\cite[p. 4]{jones2009}) thus not repeated here.
+The language and semantics are defined in~\autoref{sec:postcond} and~\aref{sec:fscd} thus not repeated here.
 A \emph{program} is a sequence of commands.
-A program manipulates sequentially a fixed number of natural number variables,
-with conditional branching and iteration permitted.
+A program manipulates sequentially a fixed number of natural number variables, with conditional branching and iteration permitted.
 Control expressions in \pr|if| statements and \pr|while| loops do not matter;
 all branches are analyzed and \pr|while| loops are over-approximated to iterate infinitely.
 Conventionally, a program in the flow calculus\index{mwp-calculus} corresponds to a procedure.
 Although simple, the imperative language\index{imperative programs} captures a core fragment of mainstream programming languages,
 like C\index{C}\index{programming language!C}
-and  Java\index{Java}\index{programming language!Java},
+and  Java\index{Java}\index{programming language!Java};
 and makes all languages that share the same core analyzable.
 
 \paragraph*{The mwp-matrix algebra.}\index{mwp-matrix}
@@ -390,7 +389,7 @@ We use \(M_{ij}\) to denote the matrix element at \emph{row} \({i}\) and \emph{c
 A \emph{zero matrix}\index{zero matrix} is denoted by \({0}\) and defined by \(M=0\) iff \(M_{ij} = 0\) for all indices \(i, j\).
 An \emph{identity matrix}\index{identity matrix} is denoted by \({1}\) and defined by \(M = 1\) iff \(M_{ij} = m\) for \(i = j\) and \(M_{ij} = 0\) for \(i \neq j\).
 The matrices are labelled by the program variables, as shown in~\autoref{fig:labels}, though the labels are typically omitted for compactness in derivations.
-If no labels are provided, assume ascending alphabetical ordering of variables by default.
+If no labels are provided, we assume ascending alphabetical ordering of variables.
 
 \item[Matrix operations.]\index{mwp-matrix}
 The least upper bound \( A \oplus B \) of the matrices \(A\) and \(B\) is defined component wise,
@@ -570,10 +569,8 @@ The \textsc{mwp}\(^\infty\) variant of the flow calculus\index{mwp-calculus} int
 \begin{example}[Polynomially bounded program is derivable]\label{ex:bounds1T}
 Recall the program from~\autoref{ex:bounds1},
 
-\lstinputlisting[
-language=IMP,
-caption={A derivable program.}
-]{derivable.c}
+%! suppress = FileNotFound
+\lstinputlisting[language=IMP,caption={A derivable program.},label={lst:ex-derivable}]{derivable.c}
 
 The conclusion about derivability\index{derivability} can be reached by $3^2 = 9$ distinct derivations,
 one of which is shown below.
@@ -605,10 +602,8 @@ The program bound is a conjunction of the variables' mwp-bounds\index{mwp-bound}
 \begin{example}[Failing program admits no derivation]\label{ex:bounds2F}
 Consider the program fragment from~\autoref{ex:bounds2},
 
-\lstinputlisting[
-language=IMP,
-caption={A loop that always fails the derivation.}
-]{failing.c}
+%! suppress = FileNotFound
+\lstinputlisting[language=IMP,caption={A loop that always fails the derivation.},label={lst:ex-failing}]{failing.c}
 
 The command \pr|X1=X1+X1| admits three derivations.
 
@@ -631,7 +626,7 @@ The command \pr|X1=X1+X1| admits three derivations.
 \end{prooftree}
 \end{center}
 
-The next step in the derivation requires accounting for the enclosing loop by applying the rule L.
+The next step in the derivation requires accounting for the enclosing loop by applying the rule L\@.
 The application involves computing the closure (fixed point) \(M^{*}\) of the mwp-matrix\index{mwp-matrix} assigned to
 the body command \pr|X1=X1+X1|.
 In this instance, the fixed point computation does not change the mwp-matrix\index{mwp-matrix} coefficients\index{flow coefficient}.
@@ -713,10 +708,8 @@ The examples omit function declarations since those are irrelevant for the analy
 The input program
 
 \begin{minipage}{\textwidth}
-\lstinputlisting[
-language=C,
-caption={A program with a single assignment.}
-]{assign_expression.c}
+%! suppress = FileNotFound
+\lstinputlisting[language=C,caption={A program with a single assignment.},label={lst:ex-assign}]{assign_expression.c}
 \end{minipage}
 
 contains a single command.
@@ -736,10 +729,8 @@ The program bound is a \(y_1'\leq\prm{Y1} \land y_2' \leq\prm{Y1}\).
 The input program is
 
 \begin{minipage}{\textwidth}
-\lstinputlisting[
-language=C,
-caption={A program with exponential variable value growth.}
-]{exponent2.c}
+%! suppress = FileNotFound
+\lstinputlisting[language=C,caption={A program with exponential variable value growth.},label={lst:ex-exponent2}]{exponent2.c}
 \end{minipage}
 
 \paragraph*{Step 1.} Analyze the command \pr|r=r*b|.
@@ -901,9 +892,7 @@ The input program, that we will refer to as \(P\), is
 \begin{minipage}{\textwidth}
 %! suppress = FileNotFound
 \lstinputlisting[
-language=C,
-caption={While loop analysis.}
-]{notinfinite3.c}
+language=C,caption={A program with a \pr|while| loop.},label={lst:notinfinite3}]{notinfinite3.c}
 \end{minipage}
 
 The tool user guide reveals that the program is derivable\index{derivability}.
@@ -967,10 +956,7 @@ The input program is
 
 \begin{minipage}{\textwidth}
 %! suppress = FileNotFound
-\lstinputlisting[
-language=C,
-caption={An \enquote{infinite} program.}
-]{infinite3.c}
+\lstinputlisting[language=C,caption={An \enquote{infinite} program.},label={lst:ex-infinite3}]{infinite3.c}
 \end{minipage}
 
 This program is similar to~\autoref{ex:while1}, with only a small change to the \pr|while| loop.
@@ -1002,7 +988,7 @@ The input program has four top-level commands, identified by the circled annotat
 %! suppress = FileNotFound
 \lstinputlisting[
 language=C,escapeinside=||,
-caption={A challenge program that may, or may not, be derivable.},
+caption={A challenge program whose derivability is unknown.},
 label={lst:maybe-derivable}]{dense_loop.c}
 \end{minipage}
 
