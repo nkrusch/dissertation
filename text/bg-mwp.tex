@@ -1,11 +1,16 @@
-The \emph{flow calculus of mwp-bounds} of~\textcite{jones2009} is a sound and compositional complexity analysis\index{complexity analysis} technique for reasoning about variable value growth in imperative programs\index{imperative programs}.
-It relies crucially on tracking data-size growth in variables between commands.
+The \emph{flow calculus of mwp-bounds}\index{mwp-calculus}, introduced by~\textcite{jones2009},
+is a sound and compositional complexity analysis\index{complexity analysis} technique
+for reasoning about variable value growth in imperative programs\index{imperative programs}.
+It tracks data-size growth in variables between commands.
 The information about variable value growth is captured and expressed as \emph{mwp-bounds}\index{mwp-bound}.
 
-More precisely, for program \pr|C|\symbo{p2} the analysis aims to discover \emph{polynomially bounded data-flow relations} between the \emph{initial values} \(x_1,\ldots,x_n\)\symbo{xpre}, for natural-number variables \(\prm{X}_1,\ldots,\prm{X}_n\)\symbo{xvar}, and the \emph{final values} \(x'_i\)\symbo{xprime2} of \(\prm{X}_i\) (for \(i=1,\ldots,n\)) that hold whenever \(\sem{\prm{C}}(x_i \rightsquigarrow x^\prime_i)\)\symbo{flowrel}.
-If it is possible to determine all variable values grow at most polynomially in inputs, the analysis assigns to program \pr|C|\symbo{p2} a \emph{bound} (a conjunction of mwp-bounds\index{mwp-bound}) that characterizes the value growth of all its variables.
+More precisely, for program \pr|C|\symbo{p2} the analysis aims to discover \emph{polynomially bounded data flow relations}\index{data flow relation},
+between the \emph{initial values} \(x_1,\ldots,x_n\)\symbo{xpre} of natural-number variables \(\prm{X}_1,\ldots,\prm{X}_n\)\symbo{xvar} and the \emph{final values} \(x'_i\)\symbo{xprime2} of \(\prm{X}_i\) (for \(i=1,\ldots,n\)),
+that hold whenever \(\sem{\prm{C}}(x_i \rightsquigarrow x^\prime_i)\)\symbo{flowrel}.
+If it is possible to determine that all variable values grow at most polynomially in inputs, the analysis assigns to program \pr|C|\symbo{p2} a \emph{bound}, \ie a conjunction of mwp-bounds\index{mwp-bound};
+that characterizes the value growth of all its variables.
 The conclusion is derived statically and syntactically by applying inference rules\index{inference rule} to the commands of the program.
-As a motivating preview, Examples~\ref{ex:bounds1} and ~\ref{ex:bounds2} demonstrate the semantic property the analysis detects.
+As a motivating preview, Examples~\ref{ex:bounds1} and~\ref{ex:bounds2} demonstrate the semantic property the analysis detects.
 
 \begin{example}[Polynomially bounded program]\label{ex:bounds1}
 The variable values of the program
@@ -13,8 +18,8 @@ The variable values of the program
 \pr|X1=X2+X3; X1=X1+X1|
 \end{center}
 are bounded by \(x_1' \leq 2x_2 + 2x_3\)\symbo{xpre}\symbo{xprime2} and \(x_2' \leq x_2\)\symbo{xpre}\symbo{xprime2} and \(x_3' \leq x_3\)\symbo{xpre}\symbo{xprime2}.
-Each variable can be bounded by at most a polynomial and the flow calculus accepts the program.
-The polynomially bounded data-flow relation \(\sem{\prm{C}}(x_1,x_2,x_3 \rightsquigarrow x^\prime_1,x^\prime_2,x^\prime_3)\)\symbo{flowrel}
+Each variable can be bounded by at most a polynomial and the flow calculus\index{mwp-calculus} accepts the program.
+The polynomially bounded data flow relation\index{data flow relation} \(\sem{\prm{C}}(x_1,x_2,x_3 \rightsquigarrow x^\prime_1,x^\prime_2,x^\prime_3)\)\symbo{flowrel}
 holds for all variables in all program states.
 \end{example}
 
@@ -26,16 +31,17 @@ Consider a program that repeats, for \pr|X2|\symbo{xvar} times, an arithmetic op
 The value of \pr|X2| never changes from its initial value;
 therefore, the final value of \pr|X2| is trivially bounded by a polynomial \(x_2' \leq x_2\)\symbo{xpre}\symbo{xprime2}.
 However, variable \pr|X1| grows at an exponential rate, with final value bounded by \(x_1' \leq 2^{x_2}\).
-Since variable \pr|X1| cannot be bounded by a polynomial, the program is rejected by the flow calculus of mwp-bounds.
+Since variable \pr|X1| cannot be bounded by a polynomial, the program is rejected by the flow calculus of mwp-bounds\index{mwp-calculus}.
 \end{example}
 
 \subsubsection{Tracking Value Growth With Coefficients}
 
-As a bookkeeping procedure, the flow calculus of mwp-bounds tracks
-\emph{coefficients}\index{flow coefficient} (or \enquote{flows}) representing how data flows in variables between commands.
+As a bookkeeping procedure, the flow calculus of mwp-bounds\index{mwp-calculus} tracks
+\emph{coefficients}\index{flow coefficient} (or \enquote{flows})
+representing how data flows in variables between commands.
 The name of the calculus comes from these coefficients.
-In the mwp-calculus\index{mwp-calculus}, harmless data-flows are acceptable.
-However, computations that are harmful lead to values not bounded by a polynomial in the inputs and the coefficients capture these data-flow facts.
+In the mwp-calculus\index{mwp-calculus}, harmless data flows are acceptable.
+However, computations that are harmful lead to values not bounded by a polynomial in the inputs and the coefficients capture these data flow facts.
 
 The coefficients\index{flow coefficient} are, in order of lowest to the highest degree of dependency:
 \({0}\)\symbo{zero} indicating no dependency,
@@ -46,8 +52,8 @@ The coefficients\index{flow coefficient} are, in order of lowest to the highest 
 \noindent The \(m\)\symbo{m}-flow is harmless.
 The \(w\)\symbo{w}- and \(p\)-flows are sometimes harmful and have restrictions on their use.
 The distinction between \(w\)\symbo{w} and \(p\)\symbo{p} is that \(w\)\symbo{w} is
-iteration-independent\index{iteration-independent} and \(p\)\symbo{p} is
-iteration-dependent\index{iteration-dependent} (more harmful).
+iteration-independent\index{iteration independence} and \(p\)\symbo{p} is
+iteration-dependent\index{iteration dependence} (more harmful).
 The \(\infty\)-flow\symbo{infty} is always harmful.
 For example, if an exponential dependency exists between two variables,
 the analysis assigns an \(\infty\)-coefficient\symbo{infty} to the target variable of the data flow.
@@ -61,49 +67,55 @@ For this introduction, it suffices to consider an mwp-matrix\index{mwp-matrix} a
 The analysis result is binary and indicates whether all final values can be bounded by polynomials in inputs.
 When affirmative, we call the analyzed program \emph{derivable}\index{derivability}.
 For a program \pr|C|\symbo{p2} and an mwp-matrix \(M\)\symbo{matrix},
-the \emph{syntactic relation} \(\vdash \prm{C} : M\)\symbo{cmat} holds if a program is derivable\index{derivability}.
-In other words, a derivable program can be assigned an mwp-matrix of at most $p$\symbo{p}-coefficients at each variable.
+the \emph{syntactic relation}\index{data flow relation} \(\vdash \prm{C} : M\)\symbo{cmat} holds if a program is derivable\index{derivability}.
+In other words, a derivable\index{derivability} program can be assigned an mwp-matrix\index{mwp-matrix} of at most $p$\symbo{p}-coefficients at each variable.
 If a command \pr|C|\symbo{p2} computes a function growing exponentially, the statement \(\prm{C} : M\) will be false for all matrices \(M\)\symbo{matrix}.
-The flow calculus result is sound but incomplete.
-If a derivable program terminates, the soundness theorem (\cf \autoref{mwp-soundness}) guarantees that the variable value growth is polynomially bounded.
-Since the analysis omits termination, the flow analysis provides a \emph{partial correctness}\index{partial correctness} guarantee.
+The flow calculus\index{mwp-calculus} result is sound but incomplete.
+If a derivable\index{derivability} program terminates\index{termination},
+the soundness theorem~\cite[p. 11]{jones2009} guarantees that the variable value growth is polynomially bounded.
 
-\begin{theorem}[{Soundness~\cite[p. 11]{jones2009}}]\label{mwp-soundness}\index{mwp soundness theorem}
+\begin{theorem}[{Soundness}]\label{mwp-soundness}
+\index{soundness theorem of mwp-calculus}
+\index{mwp-calculus!soundness theorem}
 \(\vdash \prm{C} : \prm{M}\text{ implies } \vDash \prm{C} : \prm{M}\)\symbo{cmat}\symbo{cmatsem}.
 \end{theorem}
 
-The soundness theorem connects the syntactic data-flow relation to the \emph{semantic property} \(\vDash \prm{C} : M\)\symbo{cmat}.
-Informally, derivability guarantees program \pr|C| has polynomially bounded variable value growth at runtime.
-From a complexity-theoretic perspective, this in turn ensures program \pr|C| runs in polynomial time~\cite{kristiansen2017}.
-The main result of the work introducing the flow calculus~\cite{jones2009} is precisely a proof of the soundness theorem.
+The soundness theorem connects the syntactic data flow relation\index{data flow relation} to the \emph{semantic property} \(\vDash \prm{C} : M\)\symbo{cmat}.
+Informally, derivability\index{derivability} guarantees program \pr|C| has polynomially bounded variable value growth at runtime.
+From a complexity-theoretic\index{complexity theory} perspective, this in turn ensures program \pr|C| runs in polynomial time\ccxi{p}~\cite{kristiansen2017}.
+The main result of the work introducing the flow calculus\index{mwp-calculus}~\cite{jones2009} is precisely a proof of the soundness theorem.
+Since the analysis omits termination\index{termination},
+the flow analysis provides a \emph{partial correctness}\index{partial correctness} guarantee.
 
-The flow calculus offers no guarantee to programs that are not derivable.
+The flow calculus\index{mwp-calculus} offers no guarantee to programs that are not derivable\index{derivability}.
 Then, variable value growth is interpreted as unknown.
 A program always fails if a variable value grows \enquote{too fast}, for example exponentially.
 A single variable can be the source of whole-program derivation failure.
 Alternatively, failure may occur from inability to express satisfiable behavior.
-The latter is a built-in limitation of the flow calculus.
-To increase expressiveness and capture a larger class of derivable programs, the mwp-calculus includes nondeterminism in its inference rules.
+The latter is a built-in limitation of the flow calculus\index{mwp-calculus}.
+To increase expressiveness and capture a larger class of derivable\index{derivability} programs,
+the mwp-calculus\index{mwp-calculus} includes nondeterminism\index{nondeterminism} in its inference rules\index{inference rule}.
 Consequently, a single program may admit multiple derivations with distinct matrices, which in turn complicates determining the result of the analysis.
-However, a program is derivable if there exists a derivation without an \(\infty\)-coefficient.
+However, a program is derivable\index{derivability} if there exists a derivation without an \(\infty\)-coefficient.
 
 \paragraph*{The mwp-bounds characterize value growth.}\label{interpreting-bounds}
-The column vectors of an mwp-matrix encode variable value growth bounds.
-An mwp-bound (denoted \(W,V,U,\ldots\)) characterizes the value growth of a single variable \wrt program inputs.
-An mwp-bound is an expression of form $\max(\vec{x}, \poly_1(\vec{y})) + \poly_2(\vec{z})$.
+The column vectors of an mwp-matrix\index{mwp-matrix} encode variable value growth bounds.
+An mwp-bound\index{mwp-bound} (denoted \(W,V,U,\ldots\)) characterizes the value growth of a single variable \wrt program inputs.
+An mwp-bound\index{mwp-bound} is an expression of form $\max(\vec{x}, \poly_1(\vec{y})) + \poly_2(\vec{z})$.
 Variables characterized by $m$-flow are listed in $\vec{x}$; $w$-flows in $\vec{y}$, and $p$-flows in $\vec{z}$.
-The notation \(W(\vec{x};\vec{y};\vec{z})\) displays all the variables in an mwp-bound $W$ where $\vec{x}$, $\vec{y}$ and $\vec{z}$
+The notation \(W(\vec{x};\vec{y};\vec{z})\) displays all the variables in an mwp-bound\index{mwp-bound} $W$ where $\vec{x}$, $\vec{y}$ and $\vec{z}$
 are respectively the $m$-, $w$- and $p$-variables of \(W\).
 Variables characterized by $0$-flow do not occur in the expression and no bound exists if some variable is characterized by $\infty$.
-The $\poly_1$ and $\poly_2$ are \textit{honest polynomials}, build up from constants and variables by applying $+$ and $\times$.
+The $\poly_1$ and $\poly_2$ are \textit{honest polynomials}\index{honest polynomial},
+build up from constants and variables by applying $+$ and $\times$.
 Any of the three variable lists might be empty, and $\poly_1$ and $\poly_2$ may not be present.
-When characterizing value growth, an mwp-bound is approximative;
+When characterizing value growth, an mwp-bound\index{mwp-bound} is approximative;
 it excludes precise constants and degrees of polynomials.
-We write an mwp-bound of variable \pr|X| as \(x' \leq W\) where \(x'\) is the final value of \pr|X| and W is an mwp-bound.
-A \emph{program bound} is a conjunction (\(\land\)) of its variables' mwp-bounds.
+We write an mwp-bound\index{mwp-bound} of variable \pr|X| as \(x' \leq W\) where \(x'\) is the final value of \pr|X| and W is an mwp-bound.
+A \emph{program bound} is a conjunction (\(\land\)) of its variables' mwp-bounds\index{mwp-bound}.
 
 \begin{example}[Interpreting mwp-bounds]
-For an arbitrary variable, the mwp-bound (on left) indicates the final value of the variable is bounded by\ldots
+For an arbitrary variable, the mwp-bound\index{mwp-bound} indicates the final value of the variable is bounded by\ldots
 
 \begin{center}\begin{tabular}{rl}
 \(0\) & \ldots a constant. \\
@@ -113,90 +125,96 @@ For an arbitrary variable, the mwp-bound (on left) indicates the final value of 
 \(\max(\prm{X0},\prm{X1}+\prm{X2}) + \prm{X3} \times \prm{X4}\) & \ldots the maximum of \pr|X0| or \(\prm{X1}+\prm{X2}\), and \(\prm{X3}\times\prm{X4}\).
 \end{tabular}\qedhere\end{center}\end{example}
 
-\noindent Multiple mwp-bounds of different form can evaluate to the same numerical value.
-For example, the mwp-bounds
+\noindent Multiple mwp-bounds\index{mwp-bound} of different form can evaluate to the same numerical value.
+For example, the mwp-bounds\index{mwp-bound}
 \(W \equiv \max(0,\prm{X1}+\prm{X2})+0\) and
 \(V \equiv \max(\prm{X1},0)+\prm{X2}\) and
 \(U \equiv \max(\prm{X2},0)+\prm{X1}\) are all numerically equal to \(\prm{X1}+\prm{X2}\).
-As each variable in the mwp-bound omits constants, an mwp-bound is best suited for recognizing the \emph{shape} of the value growth rather than its explicit numerical value.
-Furthermore, mwp-bounds can be incomparable.
-For example, between \(W \equiv \max(\prm{X1},\prm{X2})+\prm{X3}\) and \(V \equiv \prm{X1}+\prm{X2}\times\prm{X4}\), it is impossible to determine which mwp-bound evaluates to a lower value numerically.
-This means mwp-bounds cannot be totally ordered.
+As each variable in the mwp-bound\index{mwp-bound} omits constants.
+Thus, an mwp-bound\index{mwp-bound} is best suited for recognizing the \emph{shape} of the value growth rather than its explicit numerical value.
+Furthermore, mwp-bounds\index{mwp-bound} can be incomparable.
+For example, between \(W \equiv \max(\prm{X1},\prm{X2})+\prm{X3}\) and \(V \equiv \prm{X1}+\prm{X2}\times\prm{X4}\), it is impossible to determine which mwp-bound\index{mwp-bound} evaluates to a lower value numerically.
+This means mwp-bounds\index{mwp-bound} cannot be totally ordered.
 
 \subsubsection{Technical Evolution of the Flow Calculus}
 
-A central theme of this dissertation is the gradual technical advancement of the flow calculus of mwp-bounds, as those developments are a prerequisite for its different applications.
+A central theme of this dissertation is the gradual technical advancement of the flow calculus of mwp-bounds\index{mwp-calculus}, as those developments are a prerequisite for its different applications.
 However, details of these developments are not totally obvious from the publications.
 This section presents the technical developments, summarized in~\autoref{tab:evo}.
 They correspond to the four publications discussed here in chronological order.
 
 \paragraph*{The original flow calculus.}
-The flow calculus of mwp-bounds~\cite{jones2009} was designed to characterize sequential imperative polytime programs, 
+The flow calculus of mwp-bounds\index{mwp-calculus}~\cite{jones2009} was designed to characterize sequential imperative polytime programs\index{imperative programs},
 with an underlying ambition to study the boundary of decidability~\cite{kristiansen2017}.
-The complexity-theoretic result is obtained by bounding the growth of variable values by polynomials in inputs.
-In effect, the flow calculus provides a computational method \(\mathcal{M}\) for deciding a runtime property,
+The complexity-theoretic\index{complexity theory} result is obtained by bounding the growth of variable values by polynomials in inputs.
+In effect, the flow calculus\index{mwp-calculus} provides a computational method \(\mathcal{M}\) for deciding a runtime property,
 \begin{gather*}
 \mathcal{M}: programs \rightarrow \{yes, no \} \\
-\text{ such that } \{C_i \mid \mathcal{M}(C_i) = \text{yes} \} \subset \{ C_i \mid C_i \text{ runs in polynomial time}\}.
-\end{gather*}
+\text{ such that } \{C_i \mid \mathcal{M}(C_i) = \text{yes} \} \subset \{ C_i \mid C_i \text{ runs in polynomial time} \}.
+\end{gather*}\ccxi{p}
 The formulation naturally provides the theoretical foundations and a concrete technique for program analysis.
-The analysis is defined over nondeterministic inference rules and coefficients \{0, m, w, p\} where multiple matrices can be assigned to one program.
-A single program has \(3^k\) derivations where \(k\) is the count of binary arithmetic operations (the binary operations are the sources of nondeterminism).
+The analysis is defined over nondeterministic\index{nondeterminism} inference rules\index{inference rule} and coefficients \{0, m, w, p\}\index{flow coefficient} where multiple matrices can be assigned to one program.
+A single program has \(3^k\) derivations where \(k\) is the count of binary arithmetic operations (the binary operations are the sources of nondeterminism\index{nondeterminism}).
 The analysis proceeds in a \enquote{single-shot}, exploring one derivation path until the complete program syntax has been successfully analyzed, or the derivation fails.
 On derivation failure, the analysis restarts to explore a different deprivation path until all paths have been exhausted.
 
-Among the advantage of the original flow calculus is that if a derivation succeeds, the mwp-bounds are obtained immediately.
-Although on success the method produces mwp-bounds straightforwardly, it does not support searching for mwp-bounds of specific form.
+Among the advantage of the original flow calculus\index{mwp-calculus}
+is that if a derivation succeeds, the mwp-bounds\index{mwp-bound} are obtained immediately.
+Although on success the method produces mwp-bounds\index{mwp-bound} straightforwardly, it does not support searching for mwp-bounds\index{mwp-bound} of specific form.
 The mathematical framework is sophisticated and recognizes a larger class of programs than earlier similar systems, \eg~\cite{niggl2006}.
 However, beyond pen and paper examples, the technique is infeasible for practical implementation, due to the exponential blowup and inefficient handling of derivation failure.
 
-\paragraph*{Improvement and implementation: the enhanced \textsc{mwp}\(^\infty\)-calculus.}
-In an effort to move the flow calculus toward practical static analysis,
-in~\cite{aubert20222} (\aref{app:sec:fscd}) the calculus was refined to resolve its theoretical inefficiencies.
+\paragraph*{The enhanced \textsc{mwp}\(^\infty\)-calculus.}
+In an effort to move the flow calculus\index{mwp-calculus} toward practical static analysis,
+in~\cite{aubert20222} (\aref{sec:fscd}) the calculus\index{mwp-calculus} was refined to resolve its theoretical inefficiencies.
 There are several well-founded motivations for this goal:
 a practical analysis permits stress-testing the technique beyond paper examples, exports ideas from implicit complexity to broader communities, and exposes hidden challenges within the analysis technique.
 
-Most notably, the enhanced calculus \enquote{internalizes} the nondeterminism through deterministic inference rules.
+Most notably, the enhanced flow calculus \index{mwp-calculus}\enquote{internalizes}
+the nondeterminism\index{nondeterminism} through deterministic inference rules\index{inference rule}.
 A key notion is the introduction of the \(\infty\)-coefficient that tracks derivation failure.
-Instead of multiple matrices, every program is assigned exactly one (complex) matrix.
-The complex matrix captures all derivations at once, in a single data structure, resolving much of the combinatorial inefficiency of the original calculus.
+Instead of multiple matrices, every program is assigned exactly one (complex) mwp-matrix\index{mwp-matrix}.
+The complex mwp-matrix\index{mwp-matrix} captures all derivations at once, in a single data structure, resolving much of the combinatorial inefficiency of the original flow calculus\index{mwp-calculus}.
 Program analysis now transforms, from performing multiple derivations, to a question of determining if there exists a derivation without an \(\infty\)-coefficient.
-This splits the program analysis procedure into two phases of matrix construction and matrix evaluation.
-As a consequence, the mwp-bounds are no longer immediately obtained from the mwp-matrix.
+This splits the program analysis procedure into two phases of mwp-matrix\index{mwp-matrix} construction and mwp-matrix\index{mwp-matrix} evaluation.
+As a consequence, the mwp-bounds\index{mwp-bound} are no longer immediately obtained from the mwp-matrix\index{mwp-matrix}.
 
-The enhanced calculus is practically efficient as demonstrated by the prototype implementation, \emph{pymwp}\footnote{Pronounced /pai em double-U pe/.}, visualized in~\autoref{fig:pymwp}.
-The technique permits efficient construction of complex mwp-matrices, but only a brute force approach for matrix evaluation.
+The enhanced flow calculus\index{mwp-calculus} is practically efficient as demonstrated by the prototype implementation, \emph{pymwp}\index{pymwp}\footnote{
+    Pronounced \enquote{pa\textsc{i} em double-you p\={e}.}}, visualized in~\autoref{fig:pymwp}.
+The technique permits efficient construction of complex mwp-matrices, but only a brute force approach for mwp-matrix\index{mwp-matrix} evaluation.
 At the time, the analyzer could answer a question of whether all variables could be bounded (yes/no).
 However, in absence of an efficient evaluation strategy, it could not provide concrete bounds (\cf Table 1 in~\aref{sec:fscd}).
 
 \paragraph*{The pymwp static analyzer.}
-After continued development, the pymwp static analyzer was enhanced in two ways~\cite{aubert2023b}.
-The first introduced an efficient matrix evaluation strategy.
+After continued development, the pymwp\index{pymwp} static analyzer was enhanced in two ways~\cite{aubert2023b}.
+The first introduced an efficient mwp-matrix\index{mwp-matrix} evaluation strategy.
 It enabled representing all permissible derivations in a compact form and producing an arbitrary instance of a program bound, if at least one bound exists.
 The second introduced feedback about source of derivation failure.
-This is possible because the \(\infty\)-coefficient marks the locations of failure, yielding a more informative system than the original calculus.
-With these enhancements, the analysis produces results efficiently, while exceeding the informative capabilities of the original calculus.
+This is possible because the \(\infty\)-coefficient marks the locations of failure, yielding a more informative system than the original flow calculus\index{mwp-calculus}.
+With these enhancements, the analysis produces results efficiently,
+while exceeding the informative capabilities of the original flow calculus\index{mwp-calculus}.
 
 \begin{figure}[t]
 \centering
 \includegraphics[width=\textwidth,keepaspectratio]{fig_pymwp}
-\caption[pymwp static analyzer operation visualized.]{
-The pymwp static analyzer workflow.
-pymwp analyzes a C program and produces a result with information about the program's variable value growth.
-If the program is derivable, the result contains mwp-bounds for all variables.
-Otherwise, the result identifies the variables with problematic data-flows that cause derivation failure.
+\caption[The pymwp static analyzer workflow.]{
+The pymwp\index{pymwp} static analyzer workflow.
+pymwp analyzes a C\index{C}\index{programming language!C} program
+and produces a result with information about the program's variable value growth.
+If the program is derivable\index{derivability}, the result contains mwp-bounds\index{mwp-bound} for all variables.
+Otherwise, the result identifies the variables with problematic data flows that cause derivation failure.
 }\label{fig:pymwp}
 \end{figure}
 
-\paragraph*{Postconditions via mwp-bounds.}
-The most recent development applies the flow calculus to specification inference, namely postconditions~\cite{rusch2025}.
+\paragraph*{Postconditions via mwp-bounds.}\index{mwp-bound}
+The most recent development applies the flow calculus\index{mwp-calculus} to specification inference, namely postconditions~\cite{rusch2025}.
 This ia new use-case, shifting the focus form static analysis toward formal verification.
-Technically it introduces three flow calculus enhancements:
-projecting the mwp analysis on individual variables, improving the derivation failure handling strategy, an evaluation strategy to obtain optimal mwp-bounds through a query procedure.
-For example, it permits inferring bounds of some variables in presence of whole-program derivation failure.
+Technically it introduces three flow calculus\index{mwp-calculus} enhancements:
+projecting the mwp analysis on individual variables, improving the derivation failure handling strategy, an evaluation strategy to obtain optimal mwp-bounds\index{mwp-bound} through a query procedure.
+For example, it permits inferring mwp-bounds\index{mwp-bound} of some variables in presence of whole-program derivation failure.
 Due to focus on verifying numerical loops, the programming language is restricted to a language of loops.
 The language adjustment is now a prerequisite to obtain the technical enhancements.
-The loop analysis variant is implemented in pymwp as a special mode called mwp\(_\ell\).
+The loop analysis variant is implemented in pymwp\index{pymwp} as a special mode called mwp\(_\ell\).
 
 \begin{table}[p]
 \resizebox{\textwidth}{!}{%
@@ -211,7 +229,7 @@ The loop analysis variant is implemented in pymwp as a special mode called mwp\(
     \multicolumn{2}{@{}l}{\textsc{Analysis input}} \\
     Language & \(\mathcal{L}\) (baseline)\tabularnote{
         The baseline language \(\mathcal{L}\) is similar to the
-        imperative language IMP appearing in~\textcite{nielson2010,cpierce20221}.} \\[.5em]
+        imperative language IMP, appearing in~\textcite{nielson2010,cpierce20221}.} \\[.5em]
     \multicolumn{2}{@{}l}{\textsc{Analysis procedure}} \\
     Calculus variant & \textsc{mwp} \\
     Matrix type & simple flows \\
@@ -246,7 +264,7 @@ The loop analysis variant is implemented in pymwp as a special mode called mwp\(
 \midrule
 \textbf{2. The pymwp static analyzer}
 &
-\textbf{3. Postconditions via mwp-bounds} \\
+\textbf{3. Postconditions via mwp-bounds}\index{mwp-bound} \\
 \midrule
 \begin{tabular}{@{}ll}
     Motivation &  static analysis \\[.5em]
@@ -284,7 +302,13 @@ The loop analysis variant is implemented in pymwp as a special mode called mwp\(
 \\ \bottomrule
 \end{NiceTabular}}
 \caption[Technical developments of the flow calculus of mwp-bounds.]
-{Comparison of technical developments and features between works extending the flow calculus of mwp-bounds.}\label{tab:evo}
+{Comparison of technical developments and features in works extending the flow calculus of mwp-bounds.}
+\label{tab:evo}
+\index{imperative programs}
+\index{complexity theory}
+\index{mwp-calculus}
+\index{pymwp}
+\index{C}\index{programming language!C}
 \end{table}
 
 \paragraph*{Open problems for future developments.}
@@ -292,17 +316,17 @@ Throughout the technical progression, the class of programs covered by the analy
 with small adjustments.
 The semantic property of interest, variable value growth \wrt inputs, is never lost nor altered.
 % -- the goal is consistently bounding variable value growth \wrt inputs.
-Therefore, the flow calculus input/output behavior has remained the same.
+Therefore, the flow calculus\index{mwp-calculus} input/output behavior has remained the same.
 All notable changes concern the mechanics of the analysis and how to improve the process by which the analysis arrives to its conclusion.
-In the original mwp-calculus, determining program derivability is an NP-complete problem.
+In the original mwp-calculus\index{mwp-calculus}, determining program derivability\index{derivability} is an NP-complete\ccxi{np} problem.
 It is unknown if the efficiency has changed following the technical advancements.
 
 Among the remaining open problems are:
 \begin{enumerate*}
-\item extending the imperative language to cover a larger class of programs,
-\item formally verifying the calculus for obtain a rigorous soundness guarantee (\cf~\autoref{coqpl}),
+\item extending the imperative language\index{imperative programs} to cover a larger class of programs,
+\item formally verifying the flow calculus\index{mwp-calculus} for obtain a rigorous soundness guarantee (\cf~\autoref{coqpl}),
 \item exploring the extended analysis applications, and
-\item enhancing the precision of the calculus.
+\item enhancing the precision of the flow calculus\index{mwp-calculus}.
 \end{enumerate*}
 Matrix construction is currently the most costly analysis phase.
 It is possible to design data flows that make program analysis inefficient due to the resulting matrix size.
@@ -310,32 +334,35 @@ More effort is needed to scale the analysis to such inputs.
 
 \subsubsection{Sound and Compositional Static Program Analysis}\label{mwp-analysis}
 
-The flow calculus provides a static technique for analyzing programs written in an imperative language.
-Through its inference rules, the analysis assigns coefficients to program commands to determine if the program is derivable.
+The flow calculus\index{mwp-calculus} provides a static technique for analyzing programs written in an imperative language\index{imperative programs}.
+Through its inference rules\index{inference rule}, the analysis assigns coefficients\index{flow coefficient} to program commands to determine if the program is derivable\index{derivability}.
 This section gives an overview of the program analysis mechanics that suffices to understand the derivation examples that follow.
-We present the original flow calculus, because it generates mwp-matrices of plain coefficients which are easier to present and discuss on paper.
-In contrast, the \textsc{mwp}\(^\infty\) calculus generates complex mwp-matrices that requires two program analysis phases, for matrix construction and evaluation.
-For the best exposition of how to construct complex mwp-matrices see~\autoref{app:sec:fscd}.
-The evaluation procedure that extracts mwp-bounds from complex mwp-matrices is best described in~\autoref{sec:postcond}.
+We present the original flow calculus\index{mwp-calculus}, because it generates mwp-matrices of simple coefficients which are easier to present and discuss on paper.
+In contrast, the \textsc{mwp}\(^\infty\) calculus\index{mwp-calculus} generates complex mwp-matrices that requires two program analysis phases, for mwp-matrix\index{mwp-matrix} construction and evaluation.
+For the best exposition of how to construct complex mwp-matrices see~\aref{sec:fscd}.
+The evaluation procedure that extracts mwp-bounds\index{mwp-bound} from complex mwp-matrices is best described in~\autoref{sec:postcond}.
 
 \paragraph*{Imperative programming language.}
-The imperative language specifies the inputs of the analysis.
-The language and semantics are defined in several dissertation manuscripts (\cf~\autoref{sec:postcond} and~\autoref{app:sec:fscd}, also~\cite[p. 4]{jones2009}) thus not repeated here.
+The imperative language\index{imperative programs} specifies the inputs of the analysis.
+The language and semantics are defined in several dissertation manuscripts (\cf~\autoref{sec:postcond} and~\aref{sec:fscd}, also~\cite[p. 4]{jones2009}) thus not repeated here.
 A \emph{program} is a sequence of commands.
 A program manipulates sequentially a fixed number of natural number variables,
 with conditional branching and iteration permitted.
 Control expressions in \pr|if| statements and \pr|while| loops do not matter;
 all branches are analyzed and \pr|while| loops are over-approximated to iterate infinitely.
-Conventionally, a program in the flow calculus corresponds to a procedure.
-Although simple, the imperative language captures a core fragment of mainstream programming languages, like C and Java, and makes all languages that share the same core analyzable.
+Conventionally, a program in the flow calculus\index{mwp-calculus} corresponds to a procedure.
+Although simple, the imperative language\index{imperative programs} captures a core fragment of mainstream programming languages,
+like C\index{C}\index{programming language!C}
+and  Java\index{Java}\index{programming language!Java},
+and makes all languages that share the same core analyzable.
 
-\paragraph*{The mwp-matrix algebra.}
-We use the definitions from the original flow calculus~\cite{jones2009}.
-The matrix algebra provides a mathematical framework for tracking variable value growth.
+\paragraph*{The mwp-matrix algebra.}\index{mwp-matrix}
+We use the definitions from the original flow calculus\index{mwp-calculus}~\cite{jones2009}.
+The mwp-matrix algebra provides a mathematical framework for tracking variable value growth.
 
 \begin{description}
 \item[Elements.]
-The matrix elements are coefficients (or \emph{scalars}) in \(\mathcal{V} = \{ 0, m, w, p \} \).
+The mwp-matrix\index{mwp-matrix} elements are coefficients\index{flow coefficient} (or \emph{scalars}) in \(\mathcal{V} = \{ 0, m, w, p \} \).
 The elements in \(\mathcal{V}\) are ordered \( 0 < m < w < p \) and letters \(\alpha, \beta, \gamma, \ldots\) denote elements in \(\mathcal{V}\).
 The least upper bound of \(\alpha, \beta \in \mathcal{V}\) is denoted by \(\alpha + \beta\).
 The operation evaluates to \(\alpha + \beta = \alpha\) if \(\alpha \geq \beta\), otherwise \(\alpha + \beta = \beta\).
@@ -352,19 +379,20 @@ $\begin{pNiceMatrix}[first-row,first-col]
 \prm{X}_n & \iddots &      & \ddots
 \end{pNiceMatrix}$
 \end{center}
-\caption{Variables labeling an mwp-matrix.}
+\caption{Variables labeling an mwp-matrix\index{mwp-matrix}.}
 \label{fig:labels}
 \end{figure}
 
 \item[Matrices.]
-For a program with \(n\) variables, an mwp-matrix (denoted \(M, A, B, C, \ldots\)) is a \(n \times n\) matrix over \(\mathcal{V}\).
+For a program with \(n\) variables, an mwp-matrix\index{mwp-matrix}
+\item (denoted \(M, A, B, C, \ldots\)) is a \(n \times n\) matrix over \(\mathcal{V}\).
 We use \(M_{ij}\) to denote the matrix element at \emph{row} \({i}\) and \emph{column} \({j}\).
-A \emph{zero matrix} is denoted by \({0}\) and defined by \(M=0\) iff \(M_{ij} = 0\) for all indices \(i, j\).
-An \emph{identity matrix} is denoted by \({1}\) and defined by \(M = 1\) iff \(M_{ij} = m\) for \(i = j\) and \(M_{ij} = 0\) for \(i \neq j\).
+A \emph{zero matrix}\index{zero matrix} is denoted by \({0}\) and defined by \(M=0\) iff \(M_{ij} = 0\) for all indices \(i, j\).
+An \emph{identity matrix}\index{identity matrix} is denoted by \({1}\) and defined by \(M = 1\) iff \(M_{ij} = m\) for \(i = j\) and \(M_{ij} = 0\) for \(i \neq j\).
 The matrices are labelled by the program variables, as shown in~\autoref{fig:labels}, though the labels are typically omitted for compactness in derivations.
 If no labels are provided, assume ascending alphabetical ordering of variables by default.
 
-\item[Matrix operations.]
+\item[Matrix operations.]\index{mwp-matrix}
 The least upper bound \( A \oplus B \) of the matrices \(A\) and \(B\) is defined component wise,
 \ie \(C = A \oplus B\) iff \(C_{ij} =A_{ij} + B_{ij}\) for \(i, j \in \{ 1,\ldots,n \}\).
 The matrix product \( A \otimes B \) of the matrices \(A\) and \(B\) is defined by \(M = A \otimes B \) iff \(M_{ij} = \Sigma_{k=1\ldots n} A_{ik} \times B_{kj}\), \ie standard matrix multiplication.
@@ -373,6 +401,8 @@ defined as an infinite sum \[M^* = 1 \oplus M \otimes M^2 \oplus M^3 \oplus \ldo
 \end{description}
 
 \paragraph*{The inference rules of the mwp-calculus.}
+\index{inference rule}
+\index{mwp-calculus}
 
 \begin{figure}
 \begin{subfigure}{\textwidth}
@@ -446,56 +476,56 @@ defined as an infinite sum \[M^* = 1 \oplus M \otimes M^2 \oplus M^3 \oplus \ldo
 \end{centering}
 \end{subfigure}
 \caption{The nondeterministic inference rules of the original mwp-calculus.}
-\label{fig:jkrules}
+\label{fig:jkrules}\index{inference rule}\index{nondeterminism}
 \end{figure}
 
-The inference rules of the mwp-calculus \cf~\autoref{fig:jkrules} specify how different program operations impact variable value growth during computation.
-Effectively, they provide the mechanics of connecting the mwp-algebra with programs.
+The inference rules\index{inference rule} of the mwp-calculus\index{mwp-calculus} \cf~\autoref{fig:jkrules} specify how different program operations impact variable value growth during computation.
+Effectively, they provide the mechanics for connecting the mwp-matrix\index{mwp-matrix} algebra with imperative programs\index{imperative programs}.
 
 \begin{description}
 \item[Expressions.]
-An \emph{expression} \pr|e| is assigned a vector \(V\) of coefficients \(\prm{e} : V\).
+An \emph{expression} \pr|e| is assigned a vector \(V\) of coefficients\index{flow coefficient} \(\prm{e} : V\).
 The rules for analysing expressions, E1--E4, are defined in~\autoref{fig:rules-expressions}.
 The notation \(\{_{i}^{\alpha}\}\) means a vector with \(\alpha\) in its \(i^\text{th}\) row and $0$ everywhere else, and \(\var(\prm{e})\) means variables occurring in \pr|e|.
-The product \(\alpha V\), where \(\alpha\) is a coefficient and \(V\) is a vector, is defined by
+The product \(\alpha V\), where \(\alpha\) is a coefficient\index{flow coefficient} and \(V\) is a vector, is defined by
 standard scalar multiplication of the vector elements.
 Observe that there are 3 ways to analyze a binary operation.
-This is the source of nondeterminism is the flow calculus.
+This is the source of nondeterminism\index{nondeterminism} in the flow calculus\index{mwp-calculus}.
 For \(k\) binary operation in the input program, there are \(3^k\) different derivation paths to analyze.
 \item[Commands.]
-A \emph{command} \pr|C| is assigned a (\(n \times n\)) matrix \(M\) of coefficients \(\prm{C} : M\).
+A \emph{command} \pr|C| is assigned a (\(n \times n\)) matrix\index{mwp-matrix} \(M\) of coefficients\index{flow coefficient} \(\prm{C} : M\).
 The rules for analysing commands are defined in~\autoref{fig:rules-commands}.
 The notation \(M \xleftarrow{j} V\) means replacing in matrix $M$ the \(j^\text{th}\) column vector by $V$.
 The notation \(_{\text{\pr|l|}}^{p}\rightarrow j\) means adding coefficient \(p\) in column \(j\) at row \pr|l|,
-where \pr|l| is the column index of the loop guard variable \pr|Xl|.
+where \pr|l| is the column index of the loop guard variable\index{guard variable} \pr|Xl|.
 \end{description}
 The assignment rule A has the effect that the \emph{source} variables in the assignment expression impact the value growth of the assignment \emph{target}.
-By the composition rule C, the impact of a command sequence is the product of the mwp-matrices of the commands.
-Since matrix multiplication is not commutative, the command order is relevant in mwp-calculus.
+By the composition rule C, the impact of a command sequence is the product of the mwp-matrices\index{mwp-matrix} of the commands.
+Since matrix multiplication is not commutative, the command order is relevant in mwp-calculus\index{mwp-calculus}.
 The rule for \pr|if| statements accounts for computations in both branches, irrespective or order.
 Only the iterative commands, \pr|loop| and \pr|while| have side conditions.
 This means if a derivation fails, the source of failure is an iteration command.
-Similarly, proving polynomially bounded variable value growth is trivial in absence of iteration.
-Between the two iteration commands, \pr|while| is less permissive as it does not permit any \(p\)-flows in the mwp-matrix.
-The \pr|skip| command is simply an identity matrix and has no effect.
+Similarly, proving that variable value growth is polynomially bounded is trivial in absence of iteration.
+Between the two iteration commands, \pr|while| is less permissive as it does not permit any \(p\)-flows in the mwp-matrix\index{mwp-matrix}.
+The \pr|skip| command is simply an identity matrix\index{identity matrix} and has no effect.
 However, it is necessary to formally handle \eg an omitted \pr|else| branch.
 The \pr|skip| also permits handling commands that have no impact on variable value growth,
 but that occur in realistic programming languages, \eg assertions.
 
 \paragraph*{The analysis procedure.}
 Recall, a program is a sequence of commands.
-Program analysis using the flow calculus requires inspecting the sequence of commands,
-applying the inference rules, and composing the mwp-matrices of the commands.
-Each command is either derivable or raises a derivation failure.
+Program analysis using the flow calculus\index{mwp-calculus} requires inspecting the sequence of commands,
+applying the inference rules\index{inference rule}, and composing the mwp-matrices of the commands.
+Each command is either derivable\index{derivability} or raises a derivation failure.
 
-In practice, the analysis is performed over the program's abstract syntax tree (AST).
+In practice, the analysis is performed over the program's abstract syntax tree\index{abstract syntax tree} (AST).
 Since a tree is a hierarchical structure, the analysis proceeds in depth-first order, like evaluation of a sequential program.
 The derivation examples in~\autoref{mwp-derivations} demonstrate the concept.
 For simplicity, in describing the analysis procedure we assume a flattened parse-tree of commands.
 
-Let \(P = (\prm{C}_0,\prm{C}_1,\ldots,\prm{C}_m) \) be a program in an imperative language where \(m \geq 1\).
+Let \(P = (\prm{C}_0,\prm{C}_1,\ldots,\prm{C}_m) \) be a program in an imperative language\index{imperative programs} where \(m \geq 1\).
 A generalized program analysis proceeds by~\autoref{alg:prog}, with the analysis of individual commands is described in~\autoref{alg:comms}\footnote{
-    Detailed implementations of these algorithms are available in pymwp as
+    Detailed implementations of these algorithms are available in the pymwp\index{pymwp} source code as
     \href{https://github.com/statycc/pymwp/blob/40c9ceb644c734f15f82e63edc515716c4f35841/pymwp/analysis.py\#L118}
     {\pr|Analysis.cmds|} and
     \href{https://github.com/statycc/pymwp/blob/40c9ceb644c734f15f82e63edc515716c4f35841/pymwp/analysis.py\#L185}{\pr|Analysis.compute\_relation|}.}.
@@ -504,15 +534,12 @@ However, in practice care is needed to account for the exponential number of der
 and handling potential derivation failure.
 Failure handling varies between the different versions of the flow analysis (\cf~\autoref{tab:evo});
 therefore, the specifics are omitted here.
-The \textsc{mwp}\(^\infty\) variant of the flow calculus internalizes the failure and always returns a matrix.
+The \textsc{mwp}\(^\infty\) variant of the flow calculus\index{mwp-calculus} internalizes the failure and always returns an mwp-matrix\index{mwp-matrix}.
 
-%\begin{figure}
-%\noindent\begin{minipage}[t]{\textwidth}
-%\begin{minipage}[t]{.48\textwidth}
 \begin{algorithm}
-\caption{Program analysis}\label{alg:prog}
+\caption{Program analysis with flow calculus of mwp-bounds}\label{alg:prog}
 \textbf{Input}: sequence of commands \pr|P| \\
-\textbf{Output}: mwp-matrix \(M\) or failure
+\textbf{Output}: mwp-matrix\index{mwp-matrix} \(M\) or failure
 \begin{algorithmic}[1]
 \State Take the first command \(\prm{C}_0\) in \(P\)
 \State Analyze \(\prm{C}_0\) by \autoref{alg:comms}
@@ -525,32 +552,29 @@ The \textsc{mwp}\(^\infty\) variant of the flow calculus internalizes the failur
 \State \Return Matrix \(M\) \Comment{\(\vdash P : M\)}
 \end{algorithmic}
 \end{algorithm}
-%\end{minipage}\hfill\begin{minipage}[t]{.48\textwidth}
 
 \begin{algorithm}
-\caption{Command analysis}\label{alg:comms}
+\caption{Command analysis with flow calculus of mwp-bounds}\label{alg:comms}
 \textbf{Input}: command \pr|C| \\
-\textbf{Output}: mwp-matrix \(M\) or failure
+\textbf{Output}: mwp-matrix\index{mwp-matrix} \(M\) or failure
 \begin{algorithmic}[1]
-\State Analyze expressions in \pr|C| \\ \hspace{1em}by rules E1-E4
-\State Analyze \pr|C| by rules A-W \\ \hspace{1em}possibly recursively
+\State Analyze expressions in \pr|C| by rules E1-E4
+\State Analyze \pr|C| by rules A-W possibly recursively
 \State (Maybe signal failure)
 \State \Return \(M\) \Comment{\(\vdash\prm{C} : M\)}
 \end{algorithmic}
 \end{algorithm}
-%\end{minipage}
-%\end{minipage}
-%\caption{Program analysis procedures.}
-%\end{figure}
 
 \subsubsection{Illustrative Derivations I: The Range of Analysis Outcomes}\label{mwp-derivations}
 
 \begin{example}[Polynomially bounded program is derivable]\label{ex:bounds1T}
 Recall the program from~\autoref{ex:bounds1},
-\begin{center}
-\pr|X1=X2+X3; X1=X1+X1|
-\end{center}
-The conclusion about derivability can be reached by $3^2 = 9$ distinct derivations,
+
+\begin{lstlisting}[language=C,numbers=none,caption={A derivable program.}]
+X1=X2+X3; X1=X1+X1
+\end{lstlisting}
+
+The conclusion about derivability\index{derivability} can be reached by $3^2 = 9$ distinct derivations,
 one of which is shown below.
 
 \begin{center}\begin{prooftree}
@@ -565,23 +589,25 @@ one of which is shown below.
 \infer2[C]{\vdashJK \text{\pr|X1=X2+X3; X1=X1+X1|} :  \mat{0&0&0 \\ p&m&0 \\p&0&m}}
 \end{prooftree}\end{center}
 
-The mwp-bounds are obtained column-wise from the concluding mwp-matrix, cf.~\autoref{interpreting-bounds}.
+The mwp-bounds\index{mwp-bound} are obtained column-wise from the concluding mwp-matrix\index{mwp-matrix}, cf.~\autoref{interpreting-bounds}.
 For \pr|X1|, the vector \(\mat{0\\p\\p}\)
 corresponds to \(x_1' \leq \max(0) + \prm{X2}\times\prm{X3}\) and simplifies to \(x_1' \leq\prm{X2}\times\prm{X3}\).
-The mwp-bound is not as tight as possible (bound \pr|X2+X3| would be an improvement),
+The mwp-bound\index{mwp-bound} is not as tight as possible (expression \pr|X2+X3| would be an improvement),
 but discovering a better one requires exploring the derivation paths exhaustively.
-Variables \pr|X2| and \pr|X3| obtain the same mwp-bounds in every derivation.
-For \pr|X2|, the vector \(\mat{0\\m\\0}\) gives an mwp-bound \(x_2' \leq\prm{X2}\),
+Variables \pr|X2| and \pr|X3| obtain the same mwp-bounds\index{mwp-bound} in every derivation.
+For \pr|X2|, the vector \(\mat{0\\m\\0}\) gives an mwp-bound\index{mwp-bound} \(x_2' \leq\prm{X2}\),
 and for \pr|X3|, the vector \(\mat{0\\0\\m}\) gives \(x_3' \leq\prm{X3}\).
-The program bound is a conjunction of the variables' mwp-bounds, \ie
+The program bound is a conjunction of the variables' mwp-bounds\index{mwp-bound}, \ie
 \(x_1'\leq\prm{X2}\times\prm{X3} \land x_2' \leq\prm{X2} \land x_3' \leq\prm{X3}\).
 \end{example}
 
 \begin{example}[Failing program admits no derivation]\label{ex:bounds2F}
 Consider the program fragment from~\autoref{ex:bounds2},
-\begin{center}
-\pr|loop X2 { X1=X1+X1 }|
-\end{center}
+
+\begin{lstlisting}[language=C,numbers=none,caption={A loop that always fails the derivation.}]
+loop X2 { X1=X1+X1 }
+\end{lstlisting}
+
 The command \pr|X1=X1+X1| admits three derivations.
 
 \begin{center}
@@ -604,21 +630,24 @@ The command \pr|X1=X1+X1| admits three derivations.
 \end{center}
 
 The next step in the derivation requires accounting for the enclosing loop by applying the rule L.
-The application involves computing the closure (fixed point) \(M^{*}\) of the mwp-matrix assigned to
+The application involves computing the closure (fixed point) \(M^{*}\) of the mwp-matrix\index{mwp-matrix} assigned to
 the body command \pr|X1=X1+X1|.
-In this instance, the fixed point computation does not change the matrix coefficients.
+In this instance, the fixed point computation does not change the mwp-matrix\index{mwp-matrix} coefficients\index{flow coefficient}.
 The L side condition is \(\forall i, M_{ii}^* = m\).
 That is, it requires \(m\)-coefficients on the diagonal of \(M^{*}\).
-None of the derivations satisfy the side-condition, therefore the program is not derivable.
+None of the derivations satisfy the side condition, therefore the program is not derivable\index{derivability}.
 Although the analysis focused only on a program fragment,
-the complete program fails because it contains a command that is not derivable.
+the complete program fails because it contains a command that is not derivable\index{derivability}.
 \end{example}
 
-\begin{example}[Program is derivable despite partial derivation failure] \label{ex:partial}
+\begin{example}[Program is derivable despite partial derivation failure]\label{ex:partial}
+\index{derivability}
 Consider a program,
-\begin{center}
-\pr|loop X3 {X2=X1+X2}|
-\end{center}
+
+\begin{lstlisting}[language=C,numbers=none,caption={A loop that sometimes fails the derivation.}]
+loop X3 { X2=X1+X2 }
+\end{lstlisting}
+
 The body of the \pr|loop| command admits three different derivations,
 obtained by applying the tule A to one of the three derivation of the expression
 \pr|X1+X2|, that we name \(\pi_0\), \(\pi_1\) and \(\pi_2\):
@@ -666,17 +695,17 @@ because of the \(p\) coefficient in a box below:
 
 Similarly, using A after \(\pi_2\) gives a \(w\) coefficient on the
 diagonal and makes it impossible to use L, hence only one derivation for this program exists.
-A single successful derivation is sufficient to make the input program derivable.
+A single successful derivation is sufficient to make the input program derivable\index{derivability}.
 \end{example}
 
 \subsubsection{Illustrative Derivations II: Programs From the Tool User Guide}
 
-The pymwp\index{pymwp} tool user guide in ~\autoref{app:toolguide} discusses five cases of program analysis of programs written in C\index{C}\index{programming language!C}.
+The pymwp\index{pymwp} tool user guide, in ~\autoref{app:toolguide}, discusses five cases of program analysis of programs written in C\index{C}\index{programming language!C}.
 The tool user guide gives the analyzer input and output and describes the rationale for the obtained result.
 This section complements the tool user guide by showing the derivations behind those results.
 To retail fidelity with the C\index{C}\index{programming language!C} language examples,
 we show inputs in C\index{C}\index{programming language!C},
-but implicitly convert them to the core imperative language of the flow calculus.
+but implicitly convert them to the core imperative language\index{imperative programs} of the flow calculus\index{mwp-calculus}.
 The examples omit function declarations since those are irrelevant for the analysis.
 
 \begin{example}[Binary assignment]\label{ex:binassign}
@@ -696,13 +725,10 @@ The program bound is a \(y_1'\leq\prm{Y1} \land y_2' \leq\prm{Y1}\).
 \begin{example}[Exponential program]\label{ex:expprog}
 The input program is
 
-\begin{lstlisting}[language=C,numbers=none]
-while(i<e) {
-    r=r*b;
-    i=i+1;
-}
+\begin{lstlisting}[language=C,numbers=none,caption={Exponential program, exponent\_2.c.}]
+while(i<e) { r=r*b; i=i+1; }
 \end{lstlisting}
-The derivation proceeds sequentially, starting with the loop body.
+The derivation proceeds sequentially, starting with the loop body\index{loop body}.
 
 \paragraph*{Step 1.} Analyze the command \pr|r=r*b|.
 It admits three derivations (\(\pi_0\), \(\pi_1\) and \(\pi_2\)).
@@ -810,11 +836,11 @@ There are 9 different combinations based on the derivation choices made in the p
 
 \paragraph*{Step 4.}
 Apply rule W to account for the enclosing \pr|while| loop.
-It requires first computing mwp-matrix closure \(M^{*}\) for the body command.
+It requires first computing mwp-matrix\index{mwp-matrix}  closure \(M^{*}\) for the body command.
 The side conditions is \(\forall i, M_{ii}^* = m\) and \(\forall i, j, M^*_{ij} \neq p\).
 That is, the rule can be applied when only $m$-coefficients appear on the diagonal
-and no $p$-coefficients occur anywhere in the mwp-matrix.
-In every derivation, the mwp-matrix violates the side condition by the boxed coefficients.
+and no $p$-coefficients occur anywhere in the mwp-matrix\index{mwp-matrix} .
+In every derivation, the mwp-matrix\index{mwp-matrix}  violates the side condition by the boxed coefficients\index{flow coefficient}.
 
 \begin{center}
 \begin{prooftree}
@@ -854,27 +880,29 @@ In every derivation, the mwp-matrix violates the side condition by the boxed coe
 \end{prooftree}
 \end{center}
 
-\paragraph*{Step 5.} We conclude the input program is not derivable.
+\paragraph*{Step 5.} We conclude the input program is not derivable\index{derivability}.
 \end{example}
 
 \begin{example}[While analysis]\label{ex:while1}
 The input program \(P\) is
-\begin{lstlisting}[language=C,numbers=none]
+
+\begin{minipage}{\textwidth}
+\begin{lstlisting}[language=C,caption={While loop analysis, notinfinite\_3.c.}]
 if(X1==1) {
-    X1=X2+X1;
-    X2=X3+X2;
+  X1=X2+X1; X2=X3+X2;
 }
-while(X0<10) {
-    X0=X1+X2;
-}
+while(X0<10)
+  X0=X1+X2;
 \end{lstlisting}
-The tool user guide reveals the program is derivable.
+\end{minipage}
+
+As the name hints, and the tool user guide confirms, the program is derivable\index{derivability}.
 Compared to derivation failure that requires exploring all derivation choices,
-a derivable program simply requires showing one successful derivation.
+a derivable\index{derivability} program simply requires showing one successful derivation.
 For presentation reasons, we show the two branches of the derivation tree individually.
 
 \paragraph*{Step 1.} The derivation of the \pr|if| command (\(\pi_0\)){ }is straightforward.
-Observe that the control expression of the \pr|if| statement has no impact on the constructed mwp-matrix.
+Observe that the control expression of the \pr|if| statement has no impact on the constructed mwp-matrix\index{mwp-matrix}.
 
 \begin{center}
 \begin{prooftree}
@@ -886,12 +914,12 @@ Observe that the control expression of the \pr|if| statement has no impact on th
 \infer0[E1]{\vdashJK \text{\pr|X2|} : \mat{0\\0\\m\\0}}
 \infer2[E4]{\vdashJK \text{\pr|X3+X2|} : \mat{0\\0\\m\\p}}
 \infer1[A]{ \vdashJK \text{\pr|X2=X3+X2|} : \mat{m&0&0&0\\0&m&0&0\\0&0&m&0\\0&0&p&m}}
-\infer2[I]{ \vdashJK \text{\pr|if(X1==1)\{X1=X2+X1; X2=X3+X2;\}|} : \mat{m&0&0&0\\0&m&0&0\\0&p&m&0\\0&0&p&m}}
+\infer2[I]{ \vdashJK \text{\pr|if(X1==1) \{ X1=X2+X1; X2=X3+X2 \}|} : \mat{m&0&0&0\\0&m&0&0\\0&p&m&0\\0&0&p&m}}
 \end{prooftree}
 \end{center}
 
 \paragraph*{Step 2.} The derivation of the \pr|while| loop (\(\pi_1\)){ }is now permitted,
-because the rule W side condition is not violated by any coefficient.
+because the rule W side condition is not violated by any coefficient\index{flow coefficient}.
 
 \begin{center}
 \begin{prooftree}
@@ -899,12 +927,13 @@ because the rule W side condition is not violated by any coefficient.
 \infer0[E1]{\vdashJK \text{\pr|X2|} : \mat{0\\0\\w\\0}}
 \infer2[E4]{\vdashJK \text{\pr|X1+X2|} : \mat{0\\w\\w\\0}}
 \infer1[A]{ \vdashJK \text{\pr|X0=X1+X2|} : \mat{0&0&0&0\\w&m&0&0\\w&0&m&0\\0&0&0&m}}
-\infer1[W]{ \vdashJK \text{\pr|while(X0<10)\{X0=X1+X2;\}|} : \mat{m&0&0&0\\w&m&0&0\\w&0&m&0\\0&0&0&m}}
+\infer1[W]{ \vdashJK \text{\pr|while(X0<10) X0=X1+X2 |} : \mat{m&0&0&0\\w&m&0&0\\w&0&m&0\\0&0&0&m}}
 \end{prooftree}
 \end{center}
 
 \paragraph*{Step 3.} Composing the mwp-matrices of the two commands
-gives an mwp-matrix for the complete input program \(P\) and we conclude the syntactic relation \(\vdash P : M \) holds.
+gives an mwp-matrix\index{mwp-matrix} for the complete input program \(P\).
+We conclude the syntactic data-flow relation\index{data flow relation} \(\vdash P : M \) holds.
 
 \begin{center}
 \begin{prooftree}
@@ -913,71 +942,71 @@ gives an mwp-matrix for the complete input program \(P\) and we conclude the syn
 \infer1[C]{\vdashJK P : \mat{m&0&0&0\\w&m&0&0\\p&p&m&0\\p&0&p&m}}
 \end{prooftree}
 \end{center}
-If the program terminates for the input values of the variables (it does not terminate for all inputs),
+If the program terminates\index{termination} for the input values of the variables (it does not terminate for all inputs),
 the variable value growth is polynomially bounded.
-The mwp-bounds of the variables are
+The mwp-bounds\index{mwp-bound} of the variables are
 \(x_0' \leq \max(\prm{X0},\prm{X1})+\prm{X2}\times\prm{X3}\) and
 \(x_1' \leq \max(\prm{X1})+\prm{X2} \) and
 \(x_2' \leq \max(\prm{X2})+\prm{X3} \) and
 \(x_3' \leq \max(\prm{X3})\).
-This program bound matches exactly the result from the tool user guide.
+This program bound matches the result of the tool user guide.
 \end{example}
 
 \begin{example}[Infinite program]\label{ex:infprog}
 The input program is
-\begin{lstlisting}[language=C,numbers=none]
+
+\begin{minipage}{\textwidth}
+\begin{lstlisting}[language=C,caption={An infinite program, infinite\_3.c.}]
 if(X1==1) {
-    X1=X2+X1;
-    X2=X3+X2;
+  X1=X2+X1; X2=X3+X2;
 }
-while(X0<10) {
-    X1=X2+X1;
-}
+while(X0<10)
+  X1=X2+X1;
 \end{lstlisting}
-This program is similar to~\autoref{ex:while1} with only a small change to the \pr|while| loop.
-From the previous example, the \pr|if| statement is derivable as before by \(\pi_0\).
-Letting \(\prm{C}_2\) represent the fragment \pr|while(X0<10){ X1=X1+X2 }|,
-the \(\prm{C}_2\) mwp-matrix closures \(M^{*}\) are shown below.
+\end{minipage}
+
+This program is similar to~\autoref{ex:while1}, with only a small change to the \pr|while| loop.
+From the previous example, the \pr|if| statement is derivable\index{derivability} as before by \(\pi_0\).
+Letting \(\prm{C}_2\) represent the \pr|while| command, the mwp-matrix\index{mwp-matrix} closures \(M^{*}\) of \(\prm{C}_2\) are shown below.
 
 \begin{center}
 \begin{prooftree}
-\hypo{}\ellipsis{using E3}{M^{*} = \mat{m&0&0&0\\0&\boxed{p}&0&0\\0&m&m&0\\0&0&0&m}}
+\hypo{}\ellipsis{E3}{M^{*} = \mat{m&0&0&0\\0&\boxed{p}&0&0\\0&m&m&0\\0&0&0&m}}
 \end{prooftree}
 \hfill
 \begin{prooftree}
-\hypo{}\ellipsis{using E4}{M^{*} = \mat{m&0&0&0\\0&m&0&0\\0&\boxed{p}&m&0\\0&0&0&m}}
+\hypo{}\ellipsis{E4}{M^{*} = \mat{m&0&0&0\\0&m&0&0\\0&\boxed{p}&m&0\\0&0&0&m}}
 \end{prooftree}
 \hfill
 \begin{prooftree}
-\hypo{}\ellipsis{using E2}{M^{*} = \mat{m&0&0&0\\0&\boxed{w}&0&0\\0&w&m&0\\0&0&0&m}}
+\hypo{}\ellipsis{E2}{M^{*} = \mat{m&0&0&0\\0&\boxed{w}&0&0\\0&w&m&0\\0&0&0&m}}
 \end{prooftree}
 \end{center}
-Every \(M^{*}\) violates the side condition of rule W;
-the problematic coefficient is boxed for emphasis.
-The program is not derivable.
+Every \(M^{*}\) violates the side condition of rule W.
+The problematic coefficient\index{flow coefficient} is boxed for emphasis.
+The program is not derivable\index{derivability}.
 \end{example}
 
 \begin{example}[Challenge example]\label{ex:challange}
 The input program has four top-level commands, identified by the circled annotations.
 
-\begin{lstlisting}[language=C,numbers=none,escapeinside=||]
-if(X0) {        |\circled{C0}|
+\begin{minipage}{\textwidth}
+\begin{lstlisting}[language=C,escapeinside=||,caption={A challenge program.}]
+if(X0)          |\circled{C0}|
   X2=X0+X1;
-} else {
+else
   X2=X2+X1;
-}
 X0=X2+X1;       |\circled{C1}|
 X1=X0+X2;       |\circled{C2}|
-while(X2) {     |\circled{C3}|
+while(X2)       |\circled{C3}|
   X2=X1+X0;
-}
 \end{lstlisting}
+\end{minipage}
 
 We will refer to these commands as \(\prm{C}_0\)--\(\prm{C}_3\) and
 their derivations as \(\pi_0\)--\(\pi_3\), respectively.
 The program analysis proceeds in corresponding steps.
 To ease presentation, we will analyze command composition after each individual command.
-
 
 \paragraph*{Step 1.} Analyze command \(\prm{C}_0\) \ie the \pr|if-else| statement.
 
@@ -990,7 +1019,7 @@ To ease presentation, we will analyze command composition after each individual 
 \infer0[E1]{\vdashJK \text{\pr|X1|} : \mat{0\\m\\0}}
 \infer2[E4]{\vdashJK \text{\pr|X2+X1|} : \mat{0\\p\\m}}
 \infer1[A]{ \vdashJK \text{\pr|X2=X2+X1|} : \mat{m&0&0\\0&m&p\\0&0&m}}
-\infer2[I]{ \vdashJK \text{\pr|if(X0)\{X2=X0+X1;\} else \{X2=X2+X1;\}|} : \mat{m&0&m\\0&m&p\\0&0&m}}
+\infer2[I]{ \vdashJK \text{\pr|if(X0) X2=X0+X1; else X2=X2+X1|} : \mat{m&0&m\\0&m&p\\0&0&m}}
 \end{prooftree}\end{center}
 
 \paragraph*{Steps 2--3.} Analyze commands \(\prm{C}_1\) and \(\prm{C}_2\), \ie \pr|X0=X2+X1| and \pr|X1=X0+X2|.
@@ -1015,7 +1044,7 @@ To ease presentation, we will analyze command composition after each individual 
 \begin{prooftree}
 \infer0[E2]{\vdashJK \text{\pr|X1+X0|} : \mat{w\\w\\0}}
 \infer1[A]{\vdashJK \text{\pr|X2=X1+X0|} : \mat{m&0&w\\0&m&w\\0&0&0}}
-\infer1[W]{ \vdashJK \text{\pr|while(X2)\{X2=X1+X0;\}|} : \mat{m&0&w\\0&m&w\\0&0&m}}
+\infer1[W]{ \vdashJK \text{\pr|while(X2) X2=X1+X0|} : \mat{m&0&w\\0&m&w\\0&0&m}}
 \end{prooftree}
 \end{center}
 
@@ -1033,7 +1062,7 @@ To ease presentation, we will analyze command composition after each individual 
 \end{prooftree}}
 
 \vspace{1em}\noindent
-The derivation gives variable mwp-bounds
+The derivation gives variable mwp-bounds\index{mwp-bound}
 \(x_0' \leq \max(\prm{X0},\prm{X2})+\prm{X1}\) and
 \(x_1' \leq \prm{X0}+\prm{X2}+\prm{X1}\) and
 \(x_2' \leq \prm{X0}+\prm{X2}+\prm{X1}\).

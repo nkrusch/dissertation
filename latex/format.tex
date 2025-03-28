@@ -4,10 +4,13 @@
 \renewcommand{\sectionautorefname}{Sect.}
 \renewcommand{\subsectionautorefname}{Sect.}
 \renewcommand{\subsubsectionautorefname}{Sect.}
-\renewcommand{\figureautorefname}{Fig.}
+\renewcommand{\theoremautorefname}{Thm.}
 \newcommand{\definitionautorefname}{Def.}
+\newcommand{\exampleautorefname}{Ex.}
+\renewcommand{\figureautorefname}{Fig.}
 \newcommand{\algorithmautorefname}{Algorithm}
-\newcommand{\notationautorefname}{Notation}}
+\newcommand{\notationautorefname}{Notation}
+}
 
 \AtBeginEnvironment{theorem}{\pushQED{\qed}}
 \AtEndEnvironment{theorem}{\popQED\endexample}
@@ -67,6 +70,7 @@ delim_t "\\normalsize"
 
 % double space -> mdframed, captions, footnotes
 \mdfsetup{startinnercode={\doublespacing}}
+\AtBeginEnvironment{algorithmic}{\doublespacing}
 \DeclareCaptionJustification{double}{\doublespacing}
 \captionsetup{justification=double}
 \renewcommand{\footnotelayout}{\doublespacing}
