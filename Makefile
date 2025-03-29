@@ -40,6 +40,7 @@ loc:
 update:
 	cp ../review/s2-icc/text.tex text/bg-icc.tex
 	cp ../review/s2-mwp/text.tex text/bg-mwp.tex
+	cp ../review/s2-static/text.tex text/bg-static.tex
 	cp -R ../review/listings/. code
 
 ref_update:
