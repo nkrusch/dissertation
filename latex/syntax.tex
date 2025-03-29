@@ -58,3 +58,20 @@
     language=OpenMP,
     directivestyle={\color{ompdirective}\ttfamily\bfseries\itshape}
 }
+
+\lstnewenvironment{console}{\lstset{
+    backgroundcolor=\color{consolebg},
+    columns=fullflexible,
+%	basicstyle=\ttfamily\footnotesize,
+    showstringspaces=false,
+    tabsize=4,keepspaces=true,
+    showtabs=true,showspaces=false,
+    framesep=2pt, frame=single,
+    framerule=.5pt,
+    xleftmargin=.01\textwidth,
+    xrightmargin=.01\textwidth,
+    breaklines=true,postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space},
+    escapeinside={(*}{*)},
+    numbers=none,
+    emph={}
+}}{}
