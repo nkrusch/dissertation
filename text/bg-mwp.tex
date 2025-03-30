@@ -75,7 +75,7 @@ If a derivable\index{derivability} program terminates\index{termination},
 the soundness theorem~\cite[p. 11]{jones2009} guarantees that the variable value growth is polynomially bounded.
 
 \begin{theorem}[{Soundness of mwp-calculus}]\label{mwp-soundness}
-\index{soundness theorem of mwp-calculus}
+\index{soundness theorem}
 \index{mwp-calculus!soundness theorem}
 \(\vdash \prm{C} : \prm{M}\text{ implies } \vDash \prm{C} : \prm{M}\)\symbo{cmat}\symbo{cmatsem}.
 \end{theorem}
@@ -149,7 +149,7 @@ with an underlying ambition to study the boundary of decidability~\cite{kristian
 The complexity-theoretic\index{complexity theory} result is obtained by bounding the growth of variable values by polynomials in inputs.
 In effect, the flow calculus\index{mwp-calculus} provides a computational method \(\mathcal{M}\) for deciding a runtime property,
 \begin{gather*}
-\mathcal{M}: programs \rightarrow \{yes, no \} \\
+\mathcal{M}: \text{programs} \rightarrow \{ \text{yes}, \text{no} \} \\
 \text{ such that } \{C_i \mid \mathcal{M}(C_i) = \text{yes} \} \subset \{ C_i \mid C_i \text{ runs in polynomial time} \}.
 \end{gather*}\ccxi{p}
 The formulation naturally provides the theoretical foundations and a concrete technique for program analysis.

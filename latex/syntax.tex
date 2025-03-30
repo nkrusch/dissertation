@@ -1,8 +1,7 @@
 \newcommand{\pr}{\lstinline[mathescape,basicstyle=\ttfamily,escapeinside={(*}{*)}]}
 \newcommand{\prc}{\lstinline[language=C,basicstyle=\ttfamily,keywordstyle=\mdseries]}
-\newcommand{\omp}[1]{\lstinline[style=inlineomp]|#1|\index{OpenMP directives!\texttt{#1}}}
+\newcommand{\omp}[1]{\lstinline[language=InlineOmp]|#1|\index{OpenMP directives!\texttt{#1}}}
 \newcommand{\prm}[1]{\text{\pr|#1|}}
-\newcommand{\comm}[1]{\mathtt{#1}}
 
 \lstset{
     columns=[l]flexible,
@@ -62,16 +61,24 @@
 \lstnewenvironment{console}{\lstset{
     backgroundcolor=\color{consolebg},
     columns=fullflexible,
-%	basicstyle=\ttfamily\footnotesize,
+	basicstyle=\ttfamily\footnotesize\mdseries,
     showstringspaces=false,
-    tabsize=4,keepspaces=true,
-    showtabs=true,showspaces=false,
-    framesep=2pt, frame=single,
+    tabsize=4,
+    keepspaces=true,
+    showtabs=true,
+    showspaces=false,
+    framesep=2pt,
+    frame=single,
     framerule=.5pt,
-    xleftmargin=.01\textwidth,
-    xrightmargin=.01\textwidth,
-    breaklines=true,postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space},
-    escapeinside={(*}{*)},
+    framexleftmargin=5pt,
+    framexrightmargin=5pt,
+    xleftmargin=5.5pt,
+    xrightmargin=5.5pt,
+    breaklines=true,
+    prebreak=\raisebox{0ex}[0ex][0ex]{↲},
+    escapeinside={||},
     numbers=none,
     emph={}
+    aboveskip=0em,
+    belowskip=0em,
 }}{}
