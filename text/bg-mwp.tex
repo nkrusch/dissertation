@@ -15,7 +15,7 @@ As a motivating preview, Examples~\ref{ex:bounds1} and~\ref{ex:bounds2} demonstr
 \begin{example}[Polynomially bounded program]\label{ex:bounds1}
 The variable values of the program
 \begin{center}
-\pr|X1=X2+X3; X1=X1+X1|
+\lstinline[language=IMP]|X1=X2+X3; X1=X1+X1|
 \end{center}
 are bounded by \(x_1' \leq 2x_2 + 2x_3\)\symbo{xpre}\symbo{xprime2} and \(x_2' \leq x_2\)\symbo{xpre}\symbo{xprime2} and \(x_3' \leq x_3\)\symbo{xpre}\symbo{xprime2}.
 Each variable can be bounded by at most a polynomial and the flow calculus\index{mwp-calculus} accepts the program.
@@ -26,7 +26,7 @@ holds for all variables in all program states.
 \begin{example}[An always failing program]\label{ex:bounds2}
 Consider a program that repeats, for \pr|X2|\symbo{xvar} times, an arithmetic operation on the variable \pr|X1|\symbo{xvar}.
 \begin{center}
-\pr|X1=1; loop X2 {X1=X1+X1}|
+\lstinline[language=IMP]|X1=1; loop X2 {X1=X1+X1}|
 \end{center}
 The value of \pr|X2| never changes from its initial value;
 therefore, the final value of \pr|X2| is trivially bounded by a polynomial \(x_2' \leq x_2\)\symbo{xpre}\symbo{xprime2}.
@@ -76,8 +76,8 @@ the soundness theorem~\cite[p. 11]{jones2009} guarantees that the variable value
 
 \begin{theorem}[{Soundness of mwp-calculus}]\label{mwp-soundness}
 \index{soundness theorem}
-\index{mwp-calculus!soundness theorem}
-\(\vdash \prm{C} : \prm{M}\text{ implies } \vDash \prm{C} : \prm{M}\)\symbo{cmat}\symbo{cmatsem}.
+\index{mwp-calculus!soundness theorem}\symbo{cmat}\symbo{cmatsem}
+\(\vdash \prm{C} : M \text{ implies } \vDash \prm{C} : M \).
 \end{theorem}
 
 The soundness theorem connects the syntactic data flow relation\index{data flow relation} to the \emph{semantic property} \(\vDash \prm{C} : M\)\symbo{cmat}.
@@ -536,29 +536,31 @@ therefore, the specifics are omitted here.
 The \textsc{mwp}\(^\infty\) variant of the flow calculus\index{mwp-calculus} internalizes the failure and always returns an mwp-matrix\index{mwp-matrix}.
 
 \begin{algorithm}
-\caption{Program analysis with flow calculus of mwp-bounds.}\label{alg:prog}
+\caption[Program analysis with flow calculus of mwp-bounds]
+{Program analysis with flow calculus of mwp-bounds.}\label{alg:prog}
 \textbf{Input}: sequence of commands \pr|P| \\
 \textbf{Output}: mwp-matrix\index{mwp-matrix} \(M\) or failure
 \begin{algorithmic}[1]
-\State Take the first command \(\prm{C}_0\) in \(P\)
-\State Analyze \(\prm{C}_0\) by \autoref{alg:comms}
+\State Take the first command \(\prm{C}_0\) in \pr|P|
+\State Analyze \(\prm{C}_0\) by \autoref{alg:comms} to obtain \(M\)
 \State (Maybe signal failure)
 \For{Commands \(n = 1 \ldots m\)}
 \State Analyze \(\prm{C}_n\) by \autoref{alg:comms}
 \State (Maybe signal failure)
 \State Compose \(M = M \circ M_n \) by rule C
 \EndFor
-\State \Return Matrix \(M\) \Comment{\(\vdash P : M\)}
+\State \Return mwp-matrix \(M\) \Comment{\(\vdash \prm{P} : M\)}
 \end{algorithmic}
 \end{algorithm}
 
 \begin{algorithm}
-\caption{Command analysis with flow calculus of mwp-bounds.}\label{alg:comms}
+\caption[Command analysis with flow calculus of mwp-bounds]
+{Command analysis with flow calculus of mwp-bounds.}\label{alg:comms}
 \textbf{Input}: command \pr|C| \\
 \textbf{Output}: mwp-matrix\index{mwp-matrix} \(M\) or failure
 \begin{algorithmic}[1]
 \State Analyze expressions in \pr|C| by rules E1-E4
-\State Analyze \pr|C| by rules A-W possibly recursively
+\State Analyze \pr|C| by rules A-W, possibly recursively
 \State (Maybe signal failure)
 \State \Return \(M\) \Comment{\(\vdash\prm{C} : M\)}
 \end{algorithmic}
@@ -570,7 +572,7 @@ The \textsc{mwp}\(^\infty\) variant of the flow calculus\index{mwp-calculus} int
 Recall the program from~\autoref{ex:bounds1},
 
 %! suppress = FileNotFound
-\lstinputlisting[language=IMP,caption={A derivable program.},label={lst:ex-derivable}]{derivable.c}
+\lstinputlisting[language=IMP,caption={[Derivable program]A derivable program.},label={lst:ex-derivable}]{derivable.c}
 
 The conclusion about derivability\index{derivability} can be reached by $3^2 = 9$ distinct derivations,
 one of which is shown below.
@@ -603,7 +605,7 @@ The program bound is a conjunction of the variables' mwp-bounds\index{mwp-bound}
 Consider the program fragment from~\autoref{ex:bounds2},
 
 %! suppress = FileNotFound
-\lstinputlisting[language=IMP,caption={A loop that always fails the derivation.},label={lst:ex-failing}]{failing.c}
+\lstinputlisting[language=IMP,caption={[Loop that always fails the derivation]A loop that always fails the derivation.},label={lst:ex-failing}]{failing.c}
 
 The command \pr|X1=X1+X1| admits three derivations.
 
@@ -642,7 +644,7 @@ the complete program fails because it contains a command that is not derivable\i
 Consider the following program, that is a slightly modified version of~\autoref{ex:bounds2F},
 
 %! suppress = FileNotFound
-\lstinputlisting[language=IMP,caption={A loop that fails along some derivation paths.},label={lst:partial-fail}]{partial.c}
+\lstinputlisting[language=IMP,caption={[Loop that fails for some derivation paths]A loop that fails for some derivation paths.},label={lst:partial-fail}]{partial.c}
 
 The body of the \pr|loop| command admits three different derivations,
 obtained by applying the tule A to one of the three derivation of the expression
@@ -709,7 +711,7 @@ The input program
 
 \begin{minipage}{\textwidth}
 %! suppress = FileNotFound
-\lstinputlisting[language=C,caption={A program with a single assignment.},label={lst:ex-assign}]{assign_expression.c}
+\lstinputlisting[language=C,caption={[Program with a single assignment]A program with a single assignment.},label={lst:ex-assign}]{assign_expression.c}
 \end{minipage}
 
 contains a single command.
@@ -730,7 +732,7 @@ The input program is
 
 \begin{minipage}{\textwidth}
 %! suppress = FileNotFound
-\lstinputlisting[language=C,caption={A program with exponential variable value growth.},label={lst:ex-exponent2}]{exponent2.c}
+\lstinputlisting[language=C,caption={[Program with exponential variable value growth]A program with exponential variable value growth.},label={lst:ex-exponent2}]{exponent2.c}
 \end{minipage}
 
 \paragraph*{Step 1.} Analyze the command \pr|r=r*b|.
@@ -891,8 +893,7 @@ The input program, that we will refer to as \(P\), is
 
 \begin{minipage}{\textwidth}
 %! suppress = FileNotFound
-\lstinputlisting[
-language=C,caption={A program with a \pr|while| loop.},label={lst:notinfinite3}]{notinfinite3.c}
+\lstinputlisting[language=C,caption={[Program with a \pr|while| loop]A program with a \pr|while| loop.},label={lst:notinfinite3}]{notinfinite3.c}
 \end{minipage}
 
 The tool user guide reveals that the program is derivable\index{derivability}.
@@ -956,7 +957,7 @@ The input program is
 
 \begin{minipage}{\textwidth}
 %! suppress = FileNotFound
-\lstinputlisting[language=C,caption={An \enquote{infinite} program.},label={lst:ex-infinite3}]{infinite3.c}
+\lstinputlisting[language=C,caption={[\enquote{Infinite} program]An \enquote{infinite} program.},label={lst:ex-infinite3}]{infinite3.c}
 \end{minipage}
 
 This program is similar to~\autoref{ex:while1}, with only a small change to the \pr|while| loop.
@@ -988,7 +989,7 @@ The input program has four top-level commands, identified by the circled annotat
 %! suppress = FileNotFound
 \lstinputlisting[
 language=C,escapeinside=||,
-caption={A challenge program whose derivability is unknown.},
+caption={[Challenge program whose derivability is unknown]A challenge program whose derivability is unknown.},
 label={lst:maybe-derivable}]{dense_loop.c}
 \end{minipage}
 

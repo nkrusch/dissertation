@@ -1,16 +1,28 @@
+\lstdefinelanguage{IMP}{
+    mathescape=true,
+    morekeywords={loop,while,if,else,do,then},
+}[keywords]
+
+\lstdefinelanguage{text}{}
+
 \newcommand{\pr}{\lstinline[mathescape,basicstyle=\ttfamily,escapeinside={(*}{*)}]}
 \newcommand{\prc}{\lstinline[language=C,basicstyle=\ttfamily,keywordstyle=\mdseries]}
 \newcommand{\omp}[1]{\lstinline[language=InlineOmp]|#1|\index{OpenMP directives!\texttt{#1}}}
 \newcommand{\prm}[1]{\text{\pr|#1|}}
 
+\makeatletter
+\let\commentfullflexible\lst@column@fullflexible
+\makeatother
+
 \lstset{
-    columns=[l]flexible,
-    basicstyle=\small\ttfamily\linespread{4},
+    columns=fixed,
+    basicstyle=\small\color{sbase03}\ttfamily\linespread{4},
     identifierstyle=\color{codeid},
-    commentstyle=\color{codecomments},
+    commentstyle={\color{codecomments}\rmfamily\commentfullflexible},
     keywordstyle=\color{codekeywords}\bfseries,
     ndkeywordstyle=\color{codekeywords}\bfseries,
     stringstyle=\color{codestrings},
+    numberstyle=\color{sviolet}\footnotesize,
     abovecaptionskip=-30pt,
     aboveskip=2em,
     belowskip=2em,
@@ -32,6 +44,28 @@
     showtabs=false,
     tabsize=2,
     upquote=true,
+}
+
+\lstdefinestyle{solarized-light}{
+    frame=none,
+    breaklines=true,
+    showstringspaces=false,
+    tabsize=1,
+    columns=fixed,
+    mathescape=true,
+    extendedchars=true,
+    backgroundcolor=\color{sbase3},
+    keywordstyle=\bfseries\color{sbase01},
+    keywordstyle=[2]\bfseries\color{sbase01},
+    stringstyle=\color{sviolet},
+    numberstyle=\color{sviolet}\footnotesize,
+    identifierstyle=\color{sbase03},
+    commentstyle=\color{sgreen},
+    basicstyle=\color{sbase03}\ttfamily\lst@ifdisplaystyle\small\fi,
+    moredelim=[is][\color{sblue}]{\#}{\#},
+    inputpath={.},
+    aboveskip=0.25em,
+    belowskip=0.5em
 }
 
 \lstdefinestyle{Plain}{
@@ -58,27 +92,50 @@
     directivestyle={\color{ompdirective}\ttfamily\bfseries\itshape}
 }
 
-\lstnewenvironment{console}{\lstset{
-    backgroundcolor=\color{consolebg},
-    columns=fullflexible,
-	basicstyle=\ttfamily\footnotesize\mdseries,
-    showstringspaces=false,
-    tabsize=4,
-    keepspaces=true,
-    showtabs=true,
-    showspaces=false,
-    framesep=2pt,
-    frame=single,
-    framerule=.5pt,
-    framexleftmargin=5pt,
-    framexrightmargin=5pt,
-    xleftmargin=5.5pt,
-    xrightmargin=5.5pt,
-    breaklines=true,
-    prebreak=\raisebox{0ex}[0ex][0ex]{↲},
-    escapeinside={||},
-    numbers=none,
-    emph={}
-    aboveskip=0em,
-    belowskip=0em,
-}}{}
+
+\NewDocumentCommand{\newlang}{o m m m m m}{%
+    \IfNoValueTF{#1}{\def\n{#2}}{\def\n{#1}}
+    \expandafter\NewDocumentCommand\csname \n listing\endcsname{s O{} O{}}{%
+        \def\WithoutTitle{\tcblisting{
+            enhanced, %
+            before skip=\abovedisplayskip,
+            after skip=\belowdisplayskip,
+            sharp corners=all,
+            boxrule=1.5pt,
+            boxsep=-.7em,
+            colframe=#4,
+            colback={#5},
+            title={},
+            listing only,
+            listing options={language=#2,numbers=none,
+            style=solarized-light,backgroundcolor=\color{#5},{#6},##3},
+            ##2
+        }}%
+        \def\withTitle{\tcblisting{
+            enhanced, %
+            before skip=\abovedisplayskip,
+            after skip=\belowdisplayskip,
+            sharp corners=all,
+            boxrule=1.5pt,
+            boxsep=-.7em,
+            colframe=#4,
+            colback={#5},
+            detach title,
+            finish={\node[anchor=south east, font=\footnotesize\itshape,
+                text=sbase3,fill=#4] at (frame.south east) {#3};},
+            title={},
+            listing only,
+            listing options={
+                language=#2,numbers=left,
+                style=solarized-light,backgroundcolor=\color{#5},{#6},##3},
+            ##2
+        }}%
+        \IfBooleanTF{##1}{\WithoutTitle}{\withTitle}}
+    \expandafter\def\csname end\n listing\endcsname{\endtcblisting\noindent}
+    \expandafter\def\csname\n\endcsname{\lstinline[language=#2,style=solarized-light]}
+}
+
+
+\newlang[out]{text}{Output}{sbase01}{sbase3}{}
+\newlang[cmd]{text}{CLI}{sbase01}{consolebg}{numbers=none}
+
