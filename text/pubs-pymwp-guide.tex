@@ -26,7 +26,7 @@ For a program written in C language\index{C}\index{programming language!C}, this
 \lstinputlisting[language=C,nolol]{guide.c}
 \end{minipage}
 
-Question: \(\forall n\), is \(\texttt{X}_n \rightsquigarrow \texttt{X}_n^\prime\) polynomially bounded in inputs?
+Question: \(\forall n\), is \(\texttt{X}_n \rightsquigarrow \texttt{X'}_n\) polynomially bounded in inputs?
 
 We answer this question using the mwp-flow analysis\index{mwp-calculus}, implemented in the pymwp\index{pymwp} static analyzer.
 
@@ -76,19 +76,20 @@ Each variable list may be empty and \(poly_1\)\symbo{hp} and \(poly_2\)\symbo{hp
 For multiple input variables, the result is a conjunction of mwp-bounds\index{mwp-bound}, one for each input variable.
 
 \begin{example}
-    Assume program has one input variable named \pr|X|, and we have obtained a bound: \(\prm{X}' \leq \prm{X}\)\symbo{Xprime}.
+    Assume program has one input variable named \pr|X|, and we have obtained a bound: \(\prm{X'} \leq \prm{X}\)\symbo{Xprime}.
     The bound expression means the final value \pr|X'|\symbo{Xprime} depends only on its own initial value \pr|X|.
 \end{example}
 
 \begin{example}
     Assume program has two inputs, \pr|X| and \pr|Y|, and we obtained a bound:
-    \(\texttt{X}' \leq \texttt{X} \land \texttt{Y}' \leq \max(\texttt{X}, 0) + \texttt{Y}\).
+    \(\prm{X'} \leq \prm{X} \land \prm{Y'} \leq \max(\prm{X}, 0) + \prm{Y}\).
 \end{example}
 
 \begin{itemize}
     \item Final value \pr|X'|\symbo{Xprime} depends on its own initial value \pr|X|.
     \item Final value \pr|Y'|\symbo{Xprime} depends on initial values of inputs \pr|X| and \pr|Y|.
-    \item The bound expression can be simplified to \(\texttt{X}' \leq \texttt{X} \land \texttt{Y}' \leq \texttt{X} + \texttt{Y}\).
+    \item The bound expression can be simplified to
+          \(\prm{X'} \leq \prm{X} \land \prm{Y'} \leq \prm{X} + \prm{Y}\).
 \end{itemize}
 
 \subsubsection{Installation}\label{guide-install}
@@ -182,8 +183,8 @@ Comparing to the precise value determined earlier, this bound is correct, becaus
 Due to non-determinism\index{nondeterminism}, the analyzer finds three different derivations that yield a bound.
 From the \texttt{.json} file, that captures the analysis result in more technical detail, it is possible to determine these three bounds are:
 \begin{itemize}
-\item \pr|y1'|\symbo{Xprime} ≤ \pr|y1| ∧ \pr|y2'| ≤ \(\max(0,0) + y1\)
-\item \pr|y1'|\symbo{Xprime} ≤ \pr|y1| ∧ \pr|y2'| ≤ \(\max(0,0) + y1\)
+\item \pr|y1'|\symbo{Xprime} ≤ \pr|y1| ∧ \pr|y2'| ≤ \(\max(0,0) + \prm{y1}\)
+\item \pr|y1'|\symbo{Xprime} ≤ \pr|y1| ∧ \pr|y2'| ≤ \(\max(0,0) + \prm{y1}\)
 \item \pr|y1'|\symbo{Xprime} ≤ \pr|y1| ∧ \pr|y2'| ≤ \(\max(0,\prm{y1}) + 0\)
 \end{itemize}
 They all simplify to \pr|y1'| ≤ \pr|y1| ∧ \pr|y2'| ≤ \pr|y1|\symbo{Xprime}.

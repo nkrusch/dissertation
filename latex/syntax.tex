@@ -18,7 +18,7 @@
     columns=fixed,
     basicstyle=\small\color{sbase03}\ttfamily\linespread{4},
     identifierstyle=\color{codeid},
-    commentstyle={\color{codecomments}\rmfamily\commentfullflexible},
+    commentstyle={\color{codecomments}\itshape\commentfullflexible},
     keywordstyle=\color{codekeywords}\bfseries,
     ndkeywordstyle=\color{codekeywords}\bfseries,
     stringstyle=\color{codestrings},
@@ -54,6 +54,7 @@
     columns=fixed,
     mathescape=true,
     extendedchars=true,
+    escapeinside=||,
     backgroundcolor=\color{sbase3},
     keywordstyle=\bfseries\color{sbase01},
     keywordstyle=[2]\bfseries\color{sbase01},
@@ -67,31 +68,6 @@
     aboveskip=0.25em,
     belowskip=0.5em
 }
-
-\lstdefinestyle{Plain}{
-    language=C,
-    identifierstyle=\color{black},
-    commentstyle=\color{black},
-    keywordstyle=\color{black}\bfseries,
-    ndkeywordstyle=\color{black}\bfseries,
-    stringstyle=\color{black}\ttfamily,
-}
-
-\lstdefinestyle{Dafny}{
-    language=dafny,
-    basicstyle=\small\ttfamily\linespread{4},
-    identifierstyle=\color{codeid},
-    keywordstyle={\color{codekeywords}\ttfamily\bfseries},
-    ndkeywordstyle={\color{codekeywords}\ttfamily\bfseries},
-    commentstyle=\color{codecomments},
-    stringstyle=\color{codestrings}
-}
-
-\lstdefinestyle{openmp}{
-    language=OpenMP,
-    directivestyle={\color{ompdirective}\ttfamily\bfseries\itshape}
-}
-
 
 \NewDocumentCommand{\newlang}{o m m m m m}{%
     \IfNoValueTF{#1}{\def\n{#2}}{\def\n{#1}}

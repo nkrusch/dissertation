@@ -1,6 +1,125 @@
-Statement of the problem and specific aims of the overall project.
+There is a feature about programs that has always fascinated me immensely.
+It is that there are \emph{multiple different ways} to write a program to compute the \emph{same result}.
+Essentially, we fix the program input and output, but are free to change what happens in-between.
+Software engineers will recognize this activity as the art of refactoring.
+A more scientifically inclined reader will describe it as multiple algorithms compute the same function.
 
-\subsection{Connecting the Dissertation Manuscripts}
+To demonstrate the idea, consider the following two programs where \pr|bit| is either \(0\) or \(1\).
+\begin{center}
+\begin{minipage}{.3\textwidth}
+\begin{lstlisting}[nolol,label={p1},frame=none,numbers=none,aboveskip=0pt,belowskip=0pt]
+if (bit) { Z = X; }
+else     { Z = Y; }
+\end{lstlisting}
+\end{minipage}\hspace{3em}%
+\begin{minipage}{.4\textwidth}
+\begin{lstlisting}[nolol,label={p2},frame=none,numbers=none,aboveskip=0pt,belowskip=0pt]
+Z = X * bit + Y * (1 - bit);
+\end{lstlisting}
+\end{minipage}
+\end{center}
+It is clear the programs look different. 
+Yet, I claim they compute equivalent results.
+
+It is natural to ask \enquote{which one is better?}
+The former is {easier} to understand {to a human};
+a useful criteria if the program is intended for software engineers.
+The latter has the benefit that it eliminates the conditional branching and evaluates in {constant time}, which is a desirable for program security.
+Choosing the preferable program form therefore depends on the semantics -- what do we mean by \enquote{better}?
+Moreover, how do we discover these alternative-but-equivalent ways to write a program?
+We also need ways to confirm that the programs {actually} compute the same result, not just my claim!
+ 
+Recognizing (and {embracing}) this ambiguity brings us to the world of program analysis and formal methods.
+These are two foundational topics of this dissertation.
+As the name implies, program analysis provides the techniques to inspect programs, and determine whether they satisfy some desirable criterion.
+The general term for such criterion is a \emph{property}.
+Formal methods complements the setting by adding the mathematical tools that we need to obtain rigorous guarantees.
+With formal methods it is possible to provide \emph{proofs} for the analysis conclusions. 
+Then, we can swap claims for confident assertions.
+
+However, to make the exploration more adventurous and worthy of a multiyear doctoral study, we bring in \emph{implicit computational complexity} (ICC).
+The topic is covered in detail in~\autoref{icc};
+but briefly, ICC finds ways to characterize programs' runtime properties by introducing \emph{restrictions} at the level of programming languages.
+This enables reasoning about program properties \emph{before} any program even exists.
+Through the temporal shift, implicit complexity empowers us to think about properties as part of language \emph{design}, rather than an aposteriori activity.
+
+Combining the three topics mentioned, we craft a setting where the goal is to \emph{analyze} programs, ideally with formal \emph{guarantees}, and starting with a \emph{programming language} that provides those guarantees \emph{by construction}.
+Embedded in the setting is the assumption that when we restrict a language, we will not be able to write every program;
+\ie we sacrifice Turing-completeness.
+This naturally leads to the question, \enquote{what can we do with such a language?}\footnote{
+See \url{https://stackoverflow.com/questions/315340} for an inspirational warm-up.}
+Every manuscript of this dissertation is an instance responding to this broader question.
+
+The existing works in implicit computational complexity focus primarily on \emph{defining} theoretical systems that ensure desirable runtime properties;
+typically, in terms of computational resource usage (\cf~\autoref{tab:icc-results}).
+What separates this dissertation from those works is that it never defines such systems;
+rather, it centers on \emph{applications}.
+In this view, we take the existing ICC systems as a baseline---a kind of metaphorical \enquote{toolbox}---and assess their utility.
+Each dissertation manuscripts approaches this task by combining implicit computational complexity with some other application domain.
+The task of expanding ICC outside its traditional (theoretical) realm is difficult for at least three reasons.
+
+\begin{enumerate}
+\item Taking any pure theory and applying it reveals the shortcomings of the theory, and those issues must then be resolved.
+\item Broad insight is required to first identify suitable application domains, then to convert theories to applications\footnote{
+Consider a related comment about a letter-counting theorem:
+\enquote{Although the classical formulation of Parikh’s Theorem concerns mainly the expressiveness of language models [\ldots] its usefulness in applications was enabled \textbf{only decades later} by the development of efficient algorithms [\ldots] These results enabled the exploitation of Parikh’s Theorem in many applications.}~\cite[pg. 2]{hague2024}}.
+\item Presenting the applications requires communicating the findings to (potentially new) audiences who are motivated differently to assess the {usefulness} of those findings.
+\end{enumerate}
+
+In other words, publishing findings involves a degree of technical evangelism: promoting implicit computational complexity to audiences who may have not encountered it previously (at least not in the presented way), and getting them excited about its \emph{application} potential.
+After many decades of theoretical development, the quest for applications is critical to move implicit computational complexity forward~\cite[p.~7]{moyen2017}.
+Through the effort, we gain insight of the technical power, limitations, and benefits of ICC systems as compared to alternative techniques; and like the manuscripts in this dissertation will demonstrate.
+
+\subsection{Specific Aims}\label{subsec:specific-aims}
+
+This dissertation has three scientific goals.
+
+The first is to show that implicit computational complexity is useful in \emph{automated} complexity analysis.
+All too often practitioners regard theory as irrelevant, and theoreticians think of practice as trivial; but in reality, the two are symbiotic.
+This goal shows the bidirectional importance of theory and practice that concurrently requires resolving various unexpected challenges. 
+The findings are materialized in a series of manuscripts that extend the flow calculus of mwp-bounds (\autoref{flow-calculus}).
+
+The second is to show that the analytical techniques developed around implicit computational complexity can be adjusted to track \emph{other} semantic properties.
+This goal shows that ICC-based techniques are flexible enough to extend beyond their original design, and can accommodate numerous properties.
+By extension, it suggests that the view of ICC as a niche subfield of complexity theory does not adequately recognize its true analytical power;
+and that the extended applications should be explored more broadly.
+The manuscripts in this dissertation show two cases of applications, in program optimization and security analysis.
+ 
+The third goal is to strengthen the hypothesis that implicit computational complexity is naturally suited to formal reasoning.
+Classic complexity theory is predicated on machine models that are difficult to represent formally~\footnote{
+For example, a formal model of TMs in~\textcite{forster2020} took five years to complete.}.
+In contrast, the programming languages-based approach of implicit computational complexity makes formal reasoning more accessible.
+The findings of this dissertation are sufficient to motivate and justify the effort for undertaking rigorous formalization projects.
+
+\subsection{Overview of the Dissertation Manuscripts}
+\label{subsec:conn-papers}
+
+The dissertation manuscripts stem from two works in implicit computational complexity.
+Based on the origin, the manuscripts can be categorized in two disjoint tracks, as shown in~\autoref{fig:conn_papers}.
+The tracks align with the three goals of~\autoref{subsec:specific-aims} as follows.
+
+\begin{description}
+\item[The flow calculus-track.]
+The first track extends the flow calculus of mwp-bounds of~\textcite{jones2009}.
+The technique is introduced detail in~\autoref{flow-calculus}.
+The flow calculus is a syntactical analysis for reasoning about variable value growth during computation.
+The manuscripts apply and demonstrate the utility of the calculus, first though static program analysis, then extending it to formal methods.
+Thus, the manuscripts supports two of the three dissertation goals.
+One of the manuscripts is in the appendix due to the university policies, but the placement should not distract from its significance;
+several other manuscripts follow from it.
+
+\item[The LQICM-track.]
+The second track is inspired by \enquote{Loop Quasi-Invariant Chunk Detection} (LQICM)~\cite{moyen20172}.
+The idea in LQICM is to identify blocks of code in loops that become invariant after some finite number of loop iterations.
+These quasi-invariant blocks can then be lifted from the loop to ideally improve the loop's complexity profile.
+The manuscripts in this track support the second dissertation goal,
+as they use the mathematical framework of LQICM to track other program properties.
+In particular, they show how to adjust the mathematics to obtain a program optimization to increase parallelism and detect the security property of non-interference.
+\end{description}
+
+Each manuscript combines implicit computational complexity with some other topic in computer science.
+The manuscripts are marked with thematic graphical icons that identify the related topic, among static program analysis, security, program optimization, and formal methods.
+These icons will appear and are used with this designation throughout the dissertation.
 
 \begin{figure}[p]
 \begin{subfigure}{\textwidth}
@@ -9,7 +128,7 @@ Statement of the problem and specific aims of the overall project.
 \begin{center}
 \resizebox{.85\textwidth}{!}{
 \begin{subfigure}{\textwidth}{
-\begin{tabularx}{\textwidth}{@{}X@{}cr@{}}
+\begin{tabularx}{\textwidth}{@{}Xcr@{}}
 \toprule
 \textbf{Title} & \textbf{Section} & \textbf{Background} \\
 \midrule
@@ -19,15 +138,15 @@ Statement of the problem and specific aims of the overall project.
 {Distributing and Parallelizing Non-canonical Loops}
 & \ref{sec:vmcai}
 & \ref{transforms} \\
-{Polynomial Postconditions via mwp-Bounds}
-& \ref{sec:postcond}
-& \ref{flow-calculus}, \ref{verification} \\
 {pymwp: A Static Analyzer Determining\ldots}
 & \ref{sec:atva}
 & \ref{icc}, \ref{static-analysis}, \ref{flow-calculus} \\
 {A Logic for Anytime Non-Interference}
 & \ref{sec:anytime}
 & \ref{pl-sec} \\
+{Polynomial Postconditions via mwp-Bounds}
+& \ref{sec:postcond}
+& \ref{flow-calculus}, \ref{verification} \\
 {Certifying Complexity Analysis}
 & \ref{coqpl}
 & \ref{flow-calculus}, \ref{verification} \\
@@ -35,52 +154,77 @@ Statement of the problem and specific aims of the overall project.
 \end{tabularx}}
 \end{subfigure}}
 \end{center}
-\caption{Dissertation manuscripts.}
+\caption[Dissertation manuscripts]{Dissertation manuscripts.}
 \label{fig:conn_papers}
 \end{figure}
+
+% \subsection{Significance}\label{subsec:significance}
+
+% This research proposal intersects computer science theory and application, with the intent of using those theoretical approaches to solve existing challenges in automatic program analysis.
+% In 2017, Jean-Yves Moyen---a notable researcher in the ICC community, whose career spans 3 decades of advancements---remarked enthusiastically, that after twenty years and many results, ICC was ready to move into real-world and to concrete applications~\cite[p.~7]{moyen2017}.
+% And although a few early results exist, as noted earlier in this section, progress in this direction is still at early stages.
+% With similar aspirations, this proposal hopes to move further in that direction.
+% It is conceivable that certified complexity would be of significant interest to multiple research communities.
+% The next section will detail the specifics of the methodology, that consists of multiple projects.
+% Assuming the successful completion of each project, they would show that certifiably correct complexity analysis is achievable, and that ICC techniques can be used to obtain efficient and practical complexity analysis.
+% These results would extend current capabilities in automatic complexity analysis, and move those techniques closer to becoming a standard in real-world software verification.
 
 \subsection{Tips for Interacting With This Document}
 \label{subsec:tips}
 
 \subsubsection{Software Artifacts and Data Availability}\label{subsub:sw}
+
 All software developed as part of this dissertation is publicly available.
 Each published and publication-ready manuscript in this dissertation, including the dissertation itself, comes with a software artifact, \cf~\aref{app:sec:artifacts}.
 Each piece of software is archived for long-term retention, according to the long-term archival policies of the Association for Computing Machinery artifact guidelines~\cite{acm_badging}.
 The software is achieved even if the venue of a manuscript did not arrange a formal artifact evaluation round.
 Thus, each manuscript extends beyond the paper pages of this dissertation.
 
-\subsubsection{Indices and Glossaries}
+\subsubsection{Term and Notational Indices}
 
-For convenience of the reader, this dissertation comes with three indices and glossaries.
-The Term Index, in \aref{sec:app:index}, lists technical terms and identifies where they are used in the dissertation.
-The dissertation uses various acronyms where each acronym is defined at first-use.
-To locate the long form afterward, refer to~\aref{acronyms}.
-A similar glossary is available for symbolic notations in the~\aref{symbols}.
+This dissertation includes three indices.
+The \hyperref[sec:app:index]{Term Index} lists technical terms and their uses.
+Acronyms are generally defined at first-use, but it is always possible to locate the long form in the~\nameref{\acronymtype}.
+A similar collection is available for symbolic notations in the~\nameref{symbols}.
 
 \subsubsection{Back-up Archival of External Documents}
 
 The unpublished or miscellaneous external web pages and PDF files, that are referenced in the bibliography of this dissertation,
 are pre-emptively archived on the Internet Archive with the Wayback Machine.
 To recover a document from the Internet Archive, use the following format, substituting \pr|<URL>| by the document's URL\@.
+
 \begin{center}
-    \pr|https://web.archive.org/web/<URL>|
-\end{center}
-For example, the following URL may disappear in the future.
-\begin{center}
-    \url{https://types22.inria.fr/files/2022/06/TYPES_2022_paper_14.pdf}
-\end{center}
-In that case, the corresponding Internet Archive address produces the same document.
-\begin{center}
-    \url{https://web.archive.org/web/https://types22.inria.fr/files/2022/06/TYPES_2022_paper_14.pdf}
+\pr|https://web.archive.org/web/<URL>|
 \end{center}
 
-If a referenced external document was not readily available on the Internet even at the time of writing this dissertation,
-the document is hosted and archived with the software deposit of this dissertation, \cf~\autoref{subsub:sw}.
+\begin{example}
+The following \href{https://types22.inria.fr/files/2022/06/TYPES_2022_paper_14.pdf}{URL} may disappear in the future.
+\begin{cmdlisting}*[label={lst:types-url}]
+https://types22.inria.fr/files/2022/06/TYPES_2022_paper_14.pdf
+\end{cmdlisting}
+
+The \href{https://web.archive.org/web/https://types22.inria.fr/files/2022/06/TYPES_2022_paper_14.pdf}{corresponding Internet Archive address} produces the same document.
+\begin{cmdlisting}*[label={lst:types-archive}]
+https://web.archive.org/web/https://types22.inria.fr/files/2022/06/TYPES_2022_paper_14.pdf
+\end{cmdlisting}
+
+\end{example}
+
+If a referenced external document was not readily available even at the time of writing this dissertation,
+the document is hosted with the software deposit of this dissertation, \cf~\autoref{subsub:sw}.
 
 \subsubsection{Notational Conventions}
 
-\paragraph*{Line numbers.}
-When referring to a specific line of source code or an algorithm,
-we write L, for \underline{l}ine;
-followed by a number or numeric range that specifies the rows of interest.
+\paragraph*{Code blocks and line numbers.}
+Syntactic constructs (variables, expressions, commands, \etc) appearing in textual paragraphs are typeset in \texttt{teletype}.
+Larger code blocks are displayed in dedicated listings.
+When referring to a specific line of source code or an algorithm, we write L, for \underline{l}ine;
+followed by a number or a numeric range that specifies the rows of interest.
 For example, L3 means \enquote{line number 3}, and L10--12 means \enquote{lines 10 to 12}.
+
+\paragraph*{Distinguishing variable states.}
+When referring to the same variable in different states of computation, we use special notation to identify the \emph{new} (post) states.
+This is the convention of the \emph{Z specification language}\index{Z specification language}~\cite[p. 34]{furia2014} of~\textcite{spivey1992}.
+A plain variable refers to a state where the variable holds its \emph{initial} value.
+If the same variable has a postfix decoration \pr|'| then it refers to a state of its \emph{final} value.
+For example, \pr|X| refers to the initial value and \pr|X'| to the final value.

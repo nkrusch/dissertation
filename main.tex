@@ -510,25 +510,25 @@ twoside=false, bindingoffset=0pt, nohead]{geometry}
 % cf. https://tex.stackexchange.com/a/272133
 
 \lstset{
-    % Space skipped before code block    
+    % Space skipped before code block
     % Default style fors listings
     basicstyle=\small\ttfamily\linespread{4},
     % flexible columns
     columns=[l]flexible,
-    commentstyle=\color[rgb]{0.127,0.427,0.514}\ttfamily\itshape,
+    %commentstyle=\color[rgb]{0.127,0.427,0.514}\ttfamily\itshape,
     escapechar=@,
     % Enables ASCII chars 128 to 255
     extendedchars=true,
     % Frame only at the top and bottom
     frame=tb,
     % Coloring schemes
-    identifierstyle=\color{black},
-    keywordstyle=\color[HTML]{228B22}\bfseries,
-    ndkeywordstyle=\color[HTML]{228B22}\bfseries,
+    %identifierstyle=\color{black},
+    %keywordstyle=\color[HTML]{228B22}\bfseries,
+    %ndkeywordstyle=\color[HTML]{228B22}\bfseries,
     % Style for strings
-    stringstyle=\ttfamily,
+    %stringstyle=\ttfamily,
     % Style for comments
-    commentstyle={\ttfamily\color[HTML]{228B22}},
+    %commentstyle={\ttfamily\color[HTML]{228B22}},
     % Line numbers at the left, and font left by default
     numbers=left,
     % numberstyle=\tiny, % uncomment if you want smaller line numbers.
@@ -539,7 +539,7 @@ twoside=false, bindingoffset=0pt, nohead]{geometry}
     % in the other header file (head_a.tex).
     prebreak=\raisebox{0ex}[0ex][0ex]{↲},
     % How strings are formatted, and style of quote sign.
-    stringstyle=\color[rgb]{0.639,0.082,0.082}\ttfamily,
+    %stringstyle=\color[rgb]{0.639,0.082,0.082}\ttfamily,
     upquote=true,
     % Anything betweeen $ does not become LaTeX math mode
     mathescape=false,
@@ -552,7 +552,7 @@ twoside=false, bindingoffset=0pt, nohead]{geometry}
     % Position of captions is bottom
     captionpos=b,
     % We reduce the space between the caption and the code.
-    % This seems to come from a strange interaction between 
+    % This seems to come from a strange interaction between
     % the listings and caption packages,
     % cf. https://tex.stackexchange.com/a/365260/
     abovecaptionskip=-30pt,
@@ -560,7 +560,7 @@ twoside=false, bindingoffset=0pt, nohead]{geometry}
     float=H,
     % We increment the space before and after the listings.
     aboveskip=2em,
-    belowskip=2em, 
+    belowskip=2em,
 }
 
 \lstset{literate=%
@@ -775,6 +775,6 @@ twoside=false, bindingoffset=0pt, nohead]{geometry}
 
 \input{content}
 
-\backmatter
-\printbibliography
+%\backmatter
+%\printbibliography
 \end{document}
