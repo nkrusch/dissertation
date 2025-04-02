@@ -216,91 +216,86 @@ Due to focus on verifying numerical loops, the programming language is restricte
 The language adjustment is now a prerequisite to obtain the technical enhancements.
 The loop analysis variant is implemented in pymwp\index{pymwp} as a special mode called mwp\(_\ell\).
 
-\begin{table}[p]
-\resizebox{\textwidth}{!}{%
-\begin{NiceTabular}{l|l@{}}
+\begin{landscape}
+\begin{table}
+\begin{center}
+\begin{NiceTabular}{@{}llllll@{}}
 \toprule
-\textbf{0. The original flow calculus}
-&
-\textbf{1. The enhanced \textsc{mwp}\(^\infty\) calculus} \\
+    &
+    & \textbf{The original}
+    & \textbf{The enhanced}
+    & \textbf{The pymwp}
+    & \textbf{Postconditions}
+\\
+Phase
+    & Description
+    & \textbf{flow calculus}
+    & \textbf{\textsc{mwp}\(^\infty\) calculus}
+    & \textbf{static analyzer}
+    & \textbf{via mwp-bounds}
+\\
 \midrule
-\begin{tabular}{@{}ll}
-    Motivation & complexity theory \\ \\[.5em]
-    \multicolumn{2}{@{}l}{\textsc{Analysis input}} \\
-    Language & \(\mathcal{L}\) (baseline)\tabularnote{
-        The baseline language \(\mathcal{L}\) is similar to the
-        imperative language IMP, appearing in~\textcite{nielson2010,cpierce20221}.} \\[.5em]
-    \multicolumn{2}{@{}l}{\textsc{Analysis procedure}} \\
-    Calculus variant & \textsc{mwp} \\
-    Matrix type & simple flows \\
-    Matrix count & 0--\(3^k\) \\
-    Failure recovery & complete restart \\
-    Failure feedback & none \\[.5em]
-    \multicolumn{2}{@{}l}{\textsc{Analysis output}} \\
-    Discovery procedure & immediate \\
-    Bound output & arbitrary \\
-    Bounds granularity  & whole-program \\
-    Implementation & none \\
-\end{tabular}
-&
-\begin{tabular}{@{}ll}
-    Motivation & complexity theory \\
-    & to static analysis \\[.5em]
-    \multicolumn{2}{@{}l}{\textsc{Analysis input}}\\
-    Language & \(\mathcal{L} + f +\) recursion \\[.5em]
-    \multicolumn{2}{@{}l}{\textsc{Analysis procedure}} \\
-    Calculus variant & \textsc{mwp}\(^\infty\)  \\
-    Matrix type &  complex \\
-    Matrix count & 1 \\
-    Failure recovery & \(\infty\) \\
-    Feedback report & none  \\[.5em]
-    \multicolumn{2}{@{}l}{\textsc{Analysis output}} \\
-    Discovery procedure & brute force  \\
-    Bound output  & exists (y/n)\tabularnote{
-        The analysis determines if a bound exists, but does not provide mwp-bounds by default.} \\
-    Bounds granularity  & whole-program \\
-    Implementation & pymwp 0.1.6 \\
-\end{tabular} \\
-\midrule
-\textbf{2. The pymwp static analyzer}
-&
-\textbf{3. Postconditions via mwp-bounds}\index{mwp-bound} \\
-\midrule
-\begin{tabular}{@{}ll}
-    Motivation &  static analysis \\[.5em]
-    \multicolumn{2}{@{}l}{\textsc{Analysis input}} \\
-    Language & \(\mathcal{L} \mapsto \) C99 \\[.5em]
-    \multicolumn{2}{@{}l}{\textsc{Analysis procedure}} \\
-    Calculus variant & \textsc{mwp}\(^\infty\)  \\
-    Matrix type &  complex \\
-    Matrix count & 1 \\
-    Failure recovery & \(\infty\) \\
-    Feedback report & failing variables  \\[.5em]
-    \multicolumn{2}{@{}l}{\textsc{Analysis output}} \\
-    Discovery procedure & evaluation  \\
-    Bound output  & arbitrary \\
-    Bounds granularity  & whole-program \\
-    Implementation & pymwp 0.4.2 \\
-\end{tabular}
-&
-\begin{tabular}{@{}ll}
-    Motivation & verification \\[.5em]
-    \multicolumn{2}{@{}l}{\textsc{Analysis input}} \\
-    Language & loops \(\subset \mathcal{L}\) \\[.5em]
-    \multicolumn{2}{@{}l}{\textsc{Analysis procedure}} \\
-    Calculus variant & \textsc{mwp}\(^\infty\)  \\
-    Matrix type &  complex \\
-    Matrix count & 1 \\
-    Failure recovery & \(\infty\) \\
-    Feedback report & failing variables  \\[.5em]
-    \multicolumn{2}{@{}l}{\textsc{Analysis output}} \\
-    Discovery procedure & evaluation  \\
-    Bound output  & optimal \\
-    Bounds granularity  & variables \\
-    Implementation & mwp\(_\ell\) 0.5.4 \\
-\end{tabular}
-\\ \bottomrule
-\end{NiceTabular}}
+& Motivation
+    & complexity theory
+    & toward static analysis
+    & static analysis
+    & verification \\
+\textsc{input}
+& Language
+    & \(\mathcal{L}\) (baseline)\tabularnote{A language is similar to IMP in~\textcite{nielson2010,cpierce20221}.}
+    & \(\mathcal{L} + f +\) recursion
+    & \(\mathcal{L} \mapsto \) C99
+    & loops \(\subset \mathcal{L}\) \\
+\textsc{analysis}
+& Calculus variant
+    & \textsc{mwp}
+    & \textsc{mwp}\(^\infty\)
+    & \textsc{mwp}\(^\infty\)
+    & \textsc{mwp}\(^\infty\) \\
+& Matrix type
+    & simple flows
+    & complex
+    & complex
+    & complex \\
+& Matrix count
+    & 0--\(3^k\)
+    & 1
+    & 1
+    & 1 \\
+& Failure recovery
+    & complete restart
+    & \(\infty\)
+    & \(\infty\)
+    & \(\infty\) \\
+& Feedback on failure
+    & none
+    & none
+    & failing variables
+    & failing variables \\
+\textsc{output}
+& Bounds discovery
+    & immediate
+    & brute force
+    & evaluation
+    & evaluation \\
+& Generated bound
+    & arbitrary
+    & exists (y/n)\tabularnote{Determines if a bound exists, but does not provide bounds by default.}
+    & arbitrary
+    & optimal \\
+& Bounds granularity
+    & whole-program
+    & whole-program
+    & whole-program
+    & variables \\
+& Implementation
+    & none
+    & pymwp 0.1.6
+    & pymwp 0.4.2
+    & mwp\(_\ell\) 0.5.4 \\
+\bottomrule
+\end{NiceTabular}
+\end{center}
 \caption[Technical developments of the flow calculus of mwp-bounds]
 {Comparison of technical developments and features in works extending the flow calculus of mwp-bounds.}
 \label{tab:evo}
@@ -310,6 +305,7 @@ The loop analysis variant is implemented in pymwp\index{pymwp} as a special mode
 \index{pymwp}
 \index{C}\index{programming language!C}
 \end{table}
+\end{landscape}
 
 \paragraph*{Open problems for future developments.}
 Throughout the technical progression, the class of programs covered by the analysis has remained similar;

@@ -59,10 +59,14 @@ Each dissertation manuscripts approaches this task by combining implicit computa
 The task of expanding ICC outside its traditional (theoretical) realm is difficult for at least three reasons.
 
 \begin{enumerate}
+
 \item Taking any pure theory and applying it reveals the shortcomings of the theory, and those issues must then be resolved.
+
 \item Broad insight is required to first identify suitable application domains, then to convert theories to applications\footnote{
-Consider a related comment about a letter-counting theorem:
-\enquote{Although the classical formulation of Parikh’s Theorem concerns mainly the expressiveness of language models [\ldots] its usefulness in applications was enabled \textbf{only decades later} by the development of efficient algorithms [\ldots] These results enabled the exploitation of Parikh’s Theorem in many applications.}~\cite[pg. 2]{hague2024}}.
+The is supported by history of Parikh's Theorem, a celebrated letter-counting theorem in automata theory.
+\enquote{Although the classical formulation [\ldots] concerns mainly the expressiveness of language models [\ldots] its usefulness in applications was enabled {only decades later} by the development of efficient algorithms [\ldots] These results enabled the exploitation of Parikh’s Theorem in many applications.}~\cite[pg. 2]{hague2024}
+Since then, Parikh's Theorem has found uses in SMT-solvers, verification of cryptographic protocols and concurrent programs, query evaluation over graph databases, and many more.}.
+
 \item Presenting the applications requires communicating the findings to (potentially new) audiences who are motivated differently to assess the {usefulness} of those findings.
 \end{enumerate}
 
@@ -122,15 +126,15 @@ The manuscripts are marked with thematic graphical icons that identify the relat
 These icons will appear and are used with this designation throughout the dissertation.
 
 \begin{figure}[p]
-\begin{subfigure}{\textwidth}
 \includegraphics[width=\linewidth,keepaspectratio]{fig_conn_papers}
-\end{subfigure}
-\begin{center}
-\resizebox{.85\textwidth}{!}{
-\begin{subfigure}{\textwidth}{
-\begin{tabularx}{\textwidth}{@{}Xcr@{}}
+\caption[Dissertation manuscripts]{Dissertation manuscripts.}
+\label{fig:conn_papers}
+\end{figure}
+
+\begin{table}
+\begin{tabularx}{\linewidth}{@{}Xcr@{}}
 \toprule
-\textbf{Title} & \textbf{Section} & \textbf{Background} \\
+\textbf{Manuscript Title} & \textbf{Section} & \textbf{Background} \\
 \midrule
 {mwp-Analysis Improvement and Implementation\ldots}
 & \aref{sec:fscd}
@@ -138,7 +142,7 @@ These icons will appear and are used with this designation throughout the disser
 {Distributing and Parallelizing Non-canonical Loops}
 & \ref{sec:vmcai}
 & \ref{transforms} \\
-{pymwp: A Static Analyzer Determining\ldots}
+{pymwp: A Static Analyzer Determining Polynomial\ldots}
 & \ref{sec:atva}
 & \ref{icc}, \ref{static-analysis}, \ref{flow-calculus} \\
 {A Logic for Anytime Non-Interference}
@@ -151,12 +155,10 @@ These icons will appear and are used with this designation throughout the disser
 & \ref{coqpl}
 & \ref{flow-calculus}, \ref{verification} \\
 \bottomrule
-\end{tabularx}}
-\end{subfigure}}
-\end{center}
-\caption[Dissertation manuscripts]{Dissertation manuscripts.}
-\label{fig:conn_papers}
-\end{figure}
+\end{tabularx}
+\caption[Manuscript backgrounds]{Manuscript backgrounds.}
+\label{tab:paper-bg}
+\end{table}
 
 % \subsection{Significance}\label{subsec:significance}
 

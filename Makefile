@@ -20,13 +20,16 @@ terms:
 figures:
 	make -C pictures
 
+%.tex: %.ott
+	ott -i $< -o $@ -tex_wrap false
+
 pull_template:
 	@wget $(TEMPLATE) -O template.zip
 	@unzip -o template.zip
 	@rm -rf template.zip
 
-update_main:
-	cp tex_version/main.tex main.tex
+#update_main:
+#	cp tex_version/main.tex main.tex
 
 clean:
 	@rm -rf *.pdf *.mst *.acn *.loa *.alg *glg *.glo *.gls *.ist *.slg *.listing *.sym *.aux *.acr *.sbl *.idx *.ind *.ilg *.xdv *.bbl *.bcf *.blg *.out *.fdb_latexmk *.fls *.log *.run.xml *.tex.blg *.synctex.gz *.vtc *.lot *.lof *.lol *.toc *~ main.pdf

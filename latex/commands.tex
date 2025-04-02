@@ -11,6 +11,9 @@
 \newcommand{\ccx}[1]{\textsc{#1}\ccxi{#1}}
 \newcommand{\nonterm}[1]{#1} % ott
 \newcommand*\lstinputpath[1]{\lstset{inputpath=#1}}
+\newcommand{\hlc}[2][highlight]{{%
+    \colorlet{foo}{#1}%
+    \sethlcolor{foo}\hl{#2}}}
 
 % apa-style citation fix
 \renewcommand{\cite}[2][]{\autocite[#1]{#2}}
