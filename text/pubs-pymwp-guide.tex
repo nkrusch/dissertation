@@ -23,7 +23,7 @@ For an imperative program, the goal is to discover a polynomially bounded data-f
 For a program written in C language\index{C}\index{programming language!C}, this property can be presented as follows.
 
 \begin{minipage}{\textwidth}
-\lstinputlisting[language=C,nolol]{guide.c}
+\lstinputlisting[language=C,caption={[An imperative program that manipulates variables]An imperative program that manipulates numeric variables.}]{guide.c}
 \end{minipage}
 
 Question: \(\forall n\), is \(\texttt{X}_n \rightsquigarrow \texttt{X'}_n\) polynomially bounded in inputs?
@@ -152,10 +152,10 @@ pymwp --help
 \paragraph{Binary Assignment}\label{binary-assignment}
 This example shows that assigning a compounded expression to a variable results in correct analysis.
 
-\subparagraph*{Analyzed Program \texttt{assign\_expression.c}}\mbox{}
+\subparagraph*{Analyzed Program}\mbox{}
 
 \begin{minipage}{\textwidth}
-\lstinputlisting[language=C,nolol]{assign_expression.c}
+\lstinputlisting[language=C,caption={[Program \texttt{assign\_expression.c}]Program \texttt{assign\_expression.c}.}]{assign_expression.c}
 \end{minipage}
 
 It is straightforward to observe that this program has a polynomial growth bound.
@@ -193,10 +193,10 @@ This concludes the obtained result matches the expected result.
 \paragraph{Exponential Program}\label{exponential-program}
 A program computing the exponentiation returns an infinite coefficient, no matter the derivation strategy chosen.
 
-\subparagraph*{Analyzed Program \texttt{exponent\_2.c}}\mbox{}
+\subparagraph*{Analyzed Program}\mbox{}
 
 \begin{minipage}{\textwidth}
-\lstinputlisting[language=C,nolol]{exponent2_og.c}
+\lstinputlisting[language=C,caption={[Program \texttt{exponent\_2.c}]Program \texttt{exponent\_2.c}.}]{exponent2_og.c}
 \end{minipage}
 
 This program's variable \(\texttt{result}\) grows exponentially.
@@ -228,10 +228,10 @@ repaired, to improve program's complexity properties.
 \paragraph{While Analysis}\label{while-analysis}
 A program that shows infinite coefficients for some derivations.
 
-\subparagraph*{Analyzed Program \texttt{notinfinite\_3.c}}\mbox{}
+\subparagraph*{Analyzed Program}\mbox{}
 
 \begin{minipage}{\textwidth}
-\lstinputlisting[language=C,nolol]{notinfinite3.c}
+\lstinputlisting[language=C,caption={[Program \texttt{notinfinite\_3.c}]Program \texttt{notinfinite\_3.c}.}]{notinfinite3.c}
 \end{minipage}
 This program contains decision logic, iteration, and multiple variables.
 Determining if a polynomial growth bound exists is not immediate by inspection.
@@ -271,10 +271,10 @@ Overall, the analysis concludes the program has a polynomial growth bound.
 \paragraph{Infinite Program}\label{inf-prog}
 A program that shows infinite coefficients for all choices.
 
-\subparagraph*{Analyzed Program: \texttt{infinite\_3.c}}\mbox{}
+\subparagraph*{Analyzed Program}\mbox{}
 
 \begin{minipage}{\textwidth}
-\lstinputlisting[language=C,nolol]{infinite3.c}
+\lstinputlisting[language=C,caption={[Program \texttt{infinite\_3.c}]Program \texttt{infinite\_3.c}.}]{infinite3.c}
 \end{minipage}
 
 If you studied the previous example carefully, you might notice that this example is \emph{very similar}.
@@ -311,7 +311,7 @@ Try to guess the analysis outcome before determining the result with pymwp\index
 \subparagraph*{Analyzed Program}\mbox{}
 
 \begin{minipage}{\textwidth}
-\lstinputlisting[language=C,nolol]{dense_loop_og.c}
+\lstinputlisting[language=C,caption={[Challenge program \texttt{dense\_loop.c}]A challenge program \texttt{dense\_loop.c}.}]{dense_loop_og.c}
 \end{minipage}
 
 After seeing the various preceding examples -- with and without polynomial bounds -- we present the following challenge.

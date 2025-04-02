@@ -217,85 +217,28 @@ The language adjustment is now a prerequisite to obtain the technical enhancemen
 The loop analysis variant is implemented in pymwp\index{pymwp} as a special mode called mwp\(_\ell\).
 
 \begin{landscape}
-\begin{table}
-\begin{center}
-\begin{NiceTabular}{@{}llllll@{}}
+\begin{table}[p!]\centering
+\begin{NiceTabular}{@{}lXlllll@{}}
 \toprule
-    &
-    & \textbf{The original}
-    & \textbf{The enhanced}
-    & \textbf{The pymwp}
-    & \textbf{Postconditions}
-\\
-Phase
-    & Description
-    & \textbf{flow calculus}
-    & \textbf{\textsc{mwp}\(^\infty\) calculus}
-    & \textbf{static analyzer}
-    & \textbf{via mwp-bounds}
-\\
+  & & \textbf{The original} & \textbf{The enhanced} & \textbf{The pymwp} & \textbf{Postconditions} \\
+Phase & Description & \textbf{flow calculus} & \textbf{\textsc{mwp}\(^\infty\) calculus} & \textbf{static analyzer} & \textbf{via mwp-bounds} \\
 \midrule
-& Motivation
-    & complexity theory
-    & toward static analysis
-    & static analysis
-    & verification \\
+  & Motivation & complexity theory & toward static analysis & static analysis & verification \\
 \textsc{input}
-& Language
-    & \(\mathcal{L}\) (baseline)\tabularnote{A language is similar to IMP in~\textcite{nielson2010,cpierce20221}.}
-    & \(\mathcal{L} + f +\) recursion
-    & \(\mathcal{L} \mapsto \) C99
-    & loops \(\subset \mathcal{L}\) \\
+  & Language & \(\mathcal{L}\) (baseline)\smtabularnote{A language is similar to IMP in~\textcite{nielson2010,cpierce20221}.} & \(\mathcal{L} + f +\) recursion & \(\mathcal{L} \mapsto \) C99 & loops \(\subset \mathcal{L}\) \\
 \textsc{analysis}
-& Calculus variant
-    & \textsc{mwp}
-    & \textsc{mwp}\(^\infty\)
-    & \textsc{mwp}\(^\infty\)
-    & \textsc{mwp}\(^\infty\) \\
-& Matrix type
-    & simple flows
-    & complex
-    & complex
-    & complex \\
-& Matrix count
-    & 0--\(3^k\)
-    & 1
-    & 1
-    & 1 \\
-& Failure recovery
-    & complete restart
-    & \(\infty\)
-    & \(\infty\)
-    & \(\infty\) \\
-& Feedback on failure
-    & none
-    & none
-    & failing variables
-    & failing variables \\
+  & Calculus variant & \textsc{mwp} & \textsc{mwp}\(^\infty\) & \textsc{mwp}\(^\infty\) & \textsc{mwp}\(^\infty\) \\
+  & Matrix type & simple flows & complex & complex & complex \\
+  & Matrix count & 0--\(3^k\) & 1 & 1 & 1 \\
+  & Failure recovery & complete restart & \(\infty\) & \(\infty\) & \(\infty\) \\
+  & Feedback on failure & none & none & failing variables & failing variables \\
 \textsc{output}
-& Bounds discovery
-    & immediate
-    & brute force
-    & evaluation
-    & evaluation \\
-& Generated bound
-    & arbitrary
-    & exists (y/n)\tabularnote{Determines if a bound exists, but does not provide bounds by default.}
-    & arbitrary
-    & optimal \\
-& Bounds granularity
-    & whole-program
-    & whole-program
-    & whole-program
-    & variables \\
-& Implementation
-    & none
-    & pymwp 0.1.6
-    & pymwp 0.4.2
-    & mwp\(_\ell\) 0.5.4 \\
+  & Bounds discovery & immediate & brute force & evaluation & evaluation \\
+  & Generated bound & arbitrary & exists (y/n)\smtabularnote{Analysis determines if a bound exists, but does not provide bounds by default.} & arbitrary & optimal \\
+  & Bounds granularity & whole-program & whole-program & whole-program & variables \\
+  & Implementation & none & pymwp 0.1.6 & pymwp 0.4.2 & mwp\(_\ell\) 0.5.4 \\
 \bottomrule
 \end{NiceTabular}
-\end{center}
 \caption[Technical developments of the flow calculus of mwp-bounds]
 {Comparison of technical developments and features in works extending the flow calculus of mwp-bounds.}
 \label{tab:evo}
@@ -890,7 +833,7 @@ The input program, that we will refer to as \(P\), is
 
 \begin{minipage}{\textwidth}
 %! suppress = FileNotFound
-\lstinputlisting[language=C,caption={[Program with a \pr|while| loop]A program with a \pr|while| loop.},label={lst:notinfinite3}]{notinfinite3.c}
+\lstinputlisting[language=C,caption={[Program with a \texttt{while} loop]A program with a \texttt{while} loop.},label={lst:notinfinite3}]{notinfinite3.c}
 \end{minipage}
 
 The tool user guide reveals that the program is derivable\index{derivability}.
