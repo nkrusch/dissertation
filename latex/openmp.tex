@@ -1,11 +1,12 @@
 \lstdefinelanguage{OpenMP}{
     mathescape=true,
     morekeywords={for,int},
-    moredirectives={pragma,omp,parallel,teams,schedule,single,for,%
-    distribute,barrier,critical,atomic,private,shared,
-    nowait,target,loop,order,unroll,full,partial
-    },
+    moredirectives={pragma},
     moredelim=*[directive]\#,%
+    morekeywords={omp,parallel,teams,schedule,%
+    single,for,distribute,barrier,critical,atomic,private,
+    shared,nowait,target,loop,order,unroll,full,partial
+    },
     morecomment=[l]{//},
     morecomment=[s]{/*}{*/},
     morestring=[b]",%
@@ -17,10 +18,3 @@
     prebreak={\space\textbackslash},
     postbreak={},
 }[keywords,comments,strings,directives]
-
-\lstdefinelanguage{InlineOmp}{
-    morekeywords={pragma,omp,parallel,teams,schedule,%
-    single,for,distribute,barrier,critical,atomic,private,
-    shared,nowait,target,loop,order,unroll,full,partial
-    },
-    keywordstyle={\ttfamily\color{black}}}

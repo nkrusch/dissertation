@@ -16,6 +16,12 @@
     \colorlet{foo}{#1}%
     \sethlcolor{foo}\hl{#2}}}
 
+\newcommand{\ompi}[1]{\index{OpenMP directives!{#1}}}
+\newcommand{\pr}{\lstinline[mathescape,basicstyle=\ttfamily,escapeinside={(*}{*)}]}
+\newcommand{\prc}{\lstinline[language=C,basicstyle=\ttfamily,keywordstyle=\mdseries]}
+\newcommand{\omp}[1]{\lstinline[language=OpenMP,basicstyle=\ttfamily\color{black},keywordstyle=\ttfamily\color{black}]|#1|\ompi{#1}}
+\newcommand{\prm}[1]{\text{\pr|#1|}}
+
 % apa-style citation fix
 \renewcommand{\cite}[2][]{\autocite[#1]{#2}}
 

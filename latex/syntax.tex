@@ -1,14 +1,9 @@
 \lstdefinelanguage{IMP}{
-    mathescape=true,
+    mathescape=false,
     morekeywords={loop,while,if,else,do,then},
 }[keywords]
 
 \lstdefinelanguage{text}{}
-
-\newcommand{\pr}{\lstinline[mathescape,basicstyle=\ttfamily,escapeinside={(*}{*)}]}
-\newcommand{\prc}{\lstinline[language=C,basicstyle=\ttfamily,keywordstyle=\mdseries]}
-\newcommand{\omp}[1]{\lstinline[language=InlineOmp]|#1|\index{OpenMP directives!\texttt{#1}}}
-\newcommand{\prm}[1]{\text{\pr|#1|}}
 
 \makeatletter
 \let\commentfullflexible\lst@column@fullflexible
@@ -66,7 +61,8 @@
     moredelim=[is][\color{sblue}]{\#}{\#},
     inputpath={.},
     aboveskip=0.25em,
-    belowskip=0.5em
+    belowskip=0.5em,
+    captionpos=b,
 }
 
 \NewDocumentCommand{\newlang}{o m m m m m}{%
@@ -109,9 +105,27 @@
         \IfBooleanTF{##1}{\WithoutTitle}{\withTitle}}
     \expandafter\def\csname end\n listing\endcsname{\endtcblisting\noindent}
     \expandafter\def\csname\n\endcsname{\lstinline[language=#2,style=solarized-light]}
+    \expandafter\NewTCBInputListing\expandafter{\csname\n inputlisting\endcsname}{O{} O{} m}{%
+        listing file={./code/##3},
+        enhanced,%
+        before skip=\abovedisplayskip,
+        after skip=\belowdisplayskip,
+        sharp corners=all,
+        boxrule=1.5pt,
+        boxsep=-.7em,
+        colframe=#4,
+        colback=#5,
+        title={},
+        detach title,
+        finish={\node[anchor=south east, font=\footnotesize\itshape,
+            text=sbase3,fill=#4] at (frame.south east) {#3};},
+        listing only,
+        listing options={language=#2,numbers=left,
+        style=solarized-light,backgroundcolor=\color{#5},{#6},##2},##1
+    }
 }
 
 
 \newlang[out]{text}{Output}{sbase01}{sbase3}{}
 \newlang[cmd]{text}{CLI}{sbase01}{consolebg}{numbers=none}
-
+\newlang[c]{C}{C}{scyan}{sbase3}{}

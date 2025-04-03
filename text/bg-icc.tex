@@ -1,8 +1,7 @@
 Theoretical computer science studies the fundamental capabilities and limitations of computation.
 A function is \emph{computable}\index{computable function}
 if it is algorithmically solvable in principle~\cite[p. 234]{sipser2012}.
-However, computability is independent of the required computational resources\index{resource usage},
-\ie \emph{cost} or \emph{resource usage} of computation.
+However, computability is independent of the required computational resources, \ie \emph{cost} or \emph{resource usage}\index{resource usage} of computation.
 A computable function that requires an excessive amount of resources may not be solvable in practice.
 
 Computational complexity theory\index{complexity theory} enhances the study of computable functions\index{computable function} by classifying them into \emph{complexity classes}\index{complexity class}\footnote{
@@ -73,7 +72,7 @@ There are several good motivations for researching implicit characterizations of
 
 \end{itemize}
 
-\subsubsection{Complexity via programming languages}
+\subsubsection{Complexity via Programming Languages}
 
 Describing the goals of implicit complexity omits the details of \emph{how} such implicit characterizations should be designed.
 Over time, numerous distinct systems have been developed based on, or inspired by, \eg
@@ -124,7 +123,7 @@ In return, to obtain runtime guarantees, the developer does not need to know abo
 The developer can focus on writing programs and the program's behavioral guarantees are obtained for free.
 Of course, this assumes that the restriction is not excessively prohibitive in expressing algorithms.
 
-\subsubsection{Implicit complexity by example: {safe recursion}}
+\subsubsection{Implicit Complexity by Example: Safe Recursion}
 \label{safe-rec}\index{safe recursion}
 
 This example is adapted from a presentation by~\textcite{dallago2022}.
@@ -140,17 +139,17 @@ due to the possibility of having nested recursive definitions.
 As an example, one can define addition from the initial functions
 
 \begin{center}
-\(\text{add}(0, x) = x\);
+    \(\text{add}(0, x) = x\);
 
-\(\text{add}(n + 1, x) = \text{add}(n, x) + 1\);
+    \(\text{add}(n + 1, x) = \text{add}(n, x) + 1\);
 \end{center}
 
 and then define exponentiation \(n \mapsto 2^n\) from addition as follows:
 
 \begin{center}
-\(\text{exp}(0) = 1\);
+    \(\text{exp}(0) = 1\);
 
-\(\text{exp}(n + 1) = \text{add}(\text{exp}(n), \text{exp}(n))\).
+    \(\text{exp}(n + 1) = \text{add}(\text{exp}(n), \text{exp}(n))\).
 \end{center}
 
 \noindent Composing exp with itself allows us to form towers of exponentials of arbitrary size. %, thus saturating the Kalmar elementary functions.
@@ -180,7 +179,7 @@ This makes exp not expressible anymore, giving rise to new function algebra call
     The class BC equals the class FP of polynomial time computable functions.
 \end{theorem}\ccxi{p}
 
-\subsubsection{A snapshot of theoretical results}
+\subsubsection{A Snapshot of Theoretical Results}
 \label{icc-theories}
 
 The breakthrough result of safe recursion\index{safe recursion} is regarded as the first implicit characterization of a complexity class\index{complexity class}~\cite{dallago2011,kristiansen2017,rubiano17}.
@@ -255,6 +254,9 @@ for the rest of this dissertation.
     2009 & \logics & TOCL & Flow calculus of mwp-bounds\index{mwp-calculus} -- \autoref{flow-calculus} & \ccx{p} \\*
     &&& \textcite{jones2009}  \\*
     \midrule
+    2010 & \logics & Theor. & Quantum implicit computational complexity & \ccx{eqp}, \ccx{bqp}, \ccx{zqp} \\*
+    && Comput. Sci. & \textcite{dallago2010} \\*
+    \midrule
     2011 & \types & LICS & SAFE programs\index{SAFE programs} -- \autoref{icc-sec} & \ccx{p} \\*
     &&& \textcite{marion2011} \\*
     \midrule
@@ -267,14 +269,14 @@ for the rest of this dissertation.
     2015 & \types & LPAR & d\(\ell\)T\index{d\(\ell\)T} programs\(^a\) -- \autoref{icc-sec} & \ccx{p} \\*
     &&& \textcite{baillot2015} \\*
     \midrule
-    2016 & \logics & Inf. & Complexity with pointer machines & \ccx{l} \\*
-    &&  Comput. & \textcite{aubert2016}  \\*
+    2016 & \logics & Inf. Comput. & Complexity with pointer machines & \ccx{l} \\*
+    &&& \textcite{aubert2016}  \\*
     \midrule
-    2016 & \recs & Inf. & Complexity of uniform boolean circuits & \ccx{nc} \\*
-    && Comput. &\textcite{bonfante2016} \\*
+    2016 & \recs & Inf. Comput. & Complexity of uniform boolean circuits & \ccx{nc} \\*
+    &&& \textcite{bonfante2016} \\*
     \midrule
-    2018 & \types & Inf & Object Oriented programs\index{SAFE programs!object-oriented} -- \autoref{icc-sec} & \ccx{p} \\*
-    && Comput. & \textcite{hainry2018} \\*
+    2018 & \types & Inf. Comput. & Object Oriented programs\index{SAFE programs!object-oriented} -- \autoref{icc-sec} & \ccx{p} \\*
+    &&& \textcite{hainry2018} \\*
     \midrule
     2021 & \lalg & MFCS & Probabilistic characterization \(\text{ST}_\text{PP}\) & \ccx{pp} \\*
     &&& \textcite{dallago2021} \\*
