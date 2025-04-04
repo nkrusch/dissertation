@@ -58,7 +58,7 @@
     identifierstyle=\color{sbase03},
     commentstyle=\color{sgreen},
     basicstyle=\color{sbase03}\ttfamily\lst@ifdisplaystyle\small\fi,
-    moredelim=[is][\color{sblue}]{\#}{\#},
+    % moredelim=[is][\color{sblue}]{\#}{\#},
     inputpath={.},
     aboveskip=0.25em,
     belowskip=0.5em,
@@ -70,8 +70,8 @@
     \expandafter\NewDocumentCommand\csname \n listing\endcsname{s O{} O{}}{%
         \def\WithoutTitle{\tcblisting{
             enhanced, %
-            before skip=\abovedisplayskip,
-            after skip=\belowdisplayskip,
+            before skip=2em,
+            after skip=2em,
             sharp corners=all,
             boxrule=1.5pt,
             boxsep=-.7em,
@@ -85,8 +85,8 @@
         }}%
         \def\withTitle{\tcblisting{
             enhanced, %
-            before skip=\abovedisplayskip,
-            after skip=\belowdisplayskip,
+            before skip=2em,
+            after skip=2em,
             sharp corners=all,
             boxrule=1.5pt,
             boxsep=-.7em,
@@ -108,8 +108,8 @@
     \expandafter\NewTCBInputListing\expandafter{\csname\n inputlisting\endcsname}{O{} O{} m}{%
         listing file={./code/##3},
         enhanced,%
-        before skip=\abovedisplayskip,
-        after skip=\belowdisplayskip,
+        before skip=2em,
+        after skip=2em,
         sharp corners=all,
         boxrule=1.5pt,
         boxsep=-.7em,
@@ -128,4 +128,5 @@
 
 \newlang[out]{text}{Output}{sbase01}{sbase3}{}
 \newlang[cmd]{text}{CLI}{sbase01}{consolebg}{numbers=none}
-\newlang[c]{C}{C}{scyan}{sbase3}{}
+\newlang[c]{C}{C}{sblue}{sbase3}{}
+\newlang[ompcode]{OpenMP}{omp}{scyan}{sbase3}{}

@@ -95,6 +95,16 @@ For example, a formal model of TMs in~\textcite{forster2020} took five years to 
 In contrast, the programming languages-based approach of implicit computational complexity makes formal reasoning more accessible.
 The findings of this dissertation are sufficient to motivate and justify the effort for undertaking rigorous formalization projects.
 
+\begin{figure}[t]
+    \begin{mdframed}
+        \paragraph*{Main hypothesis.}
+        \color{red}{write here very clearly.}
+    \end{mdframed}
+    \caption[Main hypothesis summarized]
+    {Main hypothesis summarized.}
+    \label{fig:hypothesis}
+\end{figure}
+
 \subsection{Overview of the Dissertation Manuscripts}
 \label{subsec:conn-papers}
 
@@ -103,7 +113,7 @@ Based on the origin, the manuscripts can be categorized in two disjoint tracks, 
 The tracks align with the three goals of~\autoref{subsec:specific-aims} as follows.
 
 \begin{description}
-\item[The flow calculus-track.]
+\item[Derivatives of the flow calculus of mwp-bounds.]
 The first track extends the flow calculus of mwp-bounds of~\textcite{jones2009}.
 The technique is introduced detail in~\autoref{flow-calculus}.
 The flow calculus is a syntactical analysis for reasoning about variable value growth during computation.
@@ -112,7 +122,7 @@ Thus, the manuscripts supports two of the three dissertation goals.
 One of the manuscripts is in the appendix due to the university policies, but the placement should not distract from its significance;
 several other manuscripts follow from it.
 
-\item[The LQICM-track.]
+\item[Extensions of Loop Quasi-Invariant Chunk Detection.]
 The second track is inspired by \enquote{Loop Quasi-Invariant Chunk Detection} (LQICM)~\cite{moyen20172}.
 The idea in LQICM is to identify blocks of code in loops that become invariant after some finite number of loop iterations.
 These quasi-invariant blocks can then be lifted from the loop to ideally improve the loop's complexity profile.
@@ -216,6 +226,11 @@ If a referenced external document was not readily available even at the time of 
 the document is hosted with the software deposit of this dissertation, \cf~\autoref{subsub:sw}.
 
 \subsubsection{Notational Conventions}
+
+\paragraph*{Regular and special figures.}
+The significance of the dissertation figures is communicated via framing.
+Regular figures have no frame.
+A figure with a boxed frame means it contains a fundamental concept and should be viewed with additional care.
 
 \paragraph*{Code blocks and line numbers.}
 Syntactic constructs (variables, expressions, commands, \etc) appearing in textual paragraphs are typeset in \texttt{teletype}.
