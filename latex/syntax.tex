@@ -11,7 +11,7 @@
 
 \lstset{
     columns=fixed,
-    basicstyle=\small\color{sbase03}\ttfamily\linespread{4},
+    basicstyle=\small\color{sbase03}\ttfamily\textnormal\linespread{4},
     identifierstyle=\color{codeid},
     commentstyle={\color{codecomments}\itshape\commentfullflexible},
     keywordstyle=\color{codekeywords}\bfseries,
@@ -57,7 +57,7 @@
     numberstyle=\color{sviolet}\footnotesize,
     identifierstyle=\color{sbase03},
     commentstyle=\color{sgreen},
-    basicstyle=\color{sbase03}\ttfamily\lst@ifdisplaystyle\small\fi,
+    basicstyle=\color{sbase03}\ttfamily\textnormal\lst@ifdisplaystyle\small\fi,
     % moredelim=[is][\color{sblue}]{\#}{\#},
     inputpath={.},
     aboveskip=0.25em,
@@ -127,6 +127,6 @@
 
 
 \newlang[out]{text}{Output}{sbase01}{sbase3}{}
-\newlang[cmd]{text}{CLI}{sbase01}{consolebg}{numbers=none}
+\newlang[cmd]{text}{cmd}{sbase01}{consolebg}{numbers=none}
 \newlang[c]{C}{C}{sblue}{sbase3}{}
 \newlang[ompcode]{OpenMP}{omp}{scyan}{sbase3}{}
