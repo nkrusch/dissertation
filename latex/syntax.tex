@@ -3,6 +3,11 @@
     morekeywords={loop,while,if,else,do,then},
 }[keywords]
 
+\lstdefinelanguage{ces}{ %cost equation system
+    morekeywords={entry,eq},
+    morecomment=[l]{\%},
+}[keywords]
+
 \lstdefinelanguage{text}{}
 
 \makeatletter
@@ -11,7 +16,7 @@
 
 \lstset{
     columns=fixed,
-    basicstyle=\small\color{sbase03}\ttfamily\textnormal\linespread{4},
+    basicstyle=\small\color{sbase03}\normalfont\ttfamily\linespread{4},
     identifierstyle=\color{codeid},
     commentstyle={\color{codecomments}\itshape\commentfullflexible},
     keywordstyle=\color{codekeywords}\bfseries,
@@ -57,7 +62,7 @@
     numberstyle=\color{sviolet}\footnotesize,
     identifierstyle=\color{sbase03},
     commentstyle=\color{sgreen},
-    basicstyle=\color{sbase03}\ttfamily\textnormal\lst@ifdisplaystyle\small\fi,
+    basicstyle=\color{sbase03}\normalfont\ttfamily\lst@ifdisplaystyle\small\fi,
     % moredelim=[is][\color{sblue}]{\#}{\#},
     inputpath={.},
     aboveskip=0.25em,
@@ -130,3 +135,5 @@
 \newlang[cmd]{text}{cmd}{sbase01}{consolebg}{numbers=none}
 \newlang[c]{C}{C}{sblue}{sbase3}{}
 \newlang[ompcode]{OpenMP}{omp}{scyan}{sbase3}{}
+\newlang[imp]{IMP}{Imp}{sgreen}{sbase3}{}
+\newlang[ces]{ces}{ces}{sgreen}{sbase3}{}

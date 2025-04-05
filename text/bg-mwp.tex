@@ -225,7 +225,7 @@ Phase & Description & \textbf{flow calculus} & \textbf{\textsc{mwp}\(^\infty\) c
 \midrule
   & Motivation & complexity theory & toward static analysis & static analysis & verification \\
 \textsc{input}
-  & Language & \(\mathcal{L}\) (baseline)\smtabularnote{A language is similar to IMP in~\textcite{nielson2010,cpierce20221}.} & \(\mathcal{L} + f +\) recursion & \(\mathcal{L} \mapsto \) C99 & loops \(\subset \mathcal{L}\) \\
+  & Language & \(\mathcal{L}\) (baseline)\smtabularnote{A language is similar to IMP of~\textcite{nielson2010,cpierce20221}.} & \(\mathcal{L} + f +\) recursion & \(\mathcal{L} \mapsto \) C99 & loops \(\subset \mathcal{L}\) \\
 \textsc{analysis}
   & Calculus variant & \textsc{mwp} & \textsc{mwp}\(^\infty\) & \textsc{mwp}\(^\infty\) & \textsc{mwp}\(^\infty\) \\
   & Matrix type & simple flows & complex & complex & complex \\
@@ -271,7 +271,8 @@ Matrix construction is currently the most costly analysis phase.
 It is possible to design data flows that make program analysis inefficient due to the resulting matrix size.
 More effort is needed to scale the analysis to such inputs.
 
-\subsubsection{Sound and Compositional Static Program Analysis}\label{mwp-analysis}
+\subsubsection{Sound and Compositional Static Program Analysis}
+\label{mwp-analysis}
 
 The flow calculus\index{mwp-calculus} provides a static technique for analyzing programs written in an imperative language\index{imperative programs}.
 Through its inference rules\index{inference rule}, the analysis assigns coefficients\index{flow coefficient} to program commands to determine if the program is derivable\index{derivability}.
@@ -282,8 +283,8 @@ For the best exposition of how to construct complex mwp-matrices see~\aref{sec:f
 The evaluation procedure that extracts mwp-bounds\index{mwp-bound} from complex mwp-matrices is best described in~\autoref{sec:postcond}.
 
 \paragraph*{An imperative programming language.}
-The imperative language\index{imperative programs} specifies the inputs of the analysis.
-The language and semantics are defined in~\autoref{sec:postcond} and~\aref{sec:fscd} thus not repeated here.
+The inputs of the analysis are specified in a simple imperative language (referred to as \pr|Imp| in code listings).
+Because the language and semantics are defined in~\autoref{sec:postcond} and~\aref{sec:fscd}, they are not repeated here.
 A \emph{program} is a sequence of commands.
 A program manipulates sequentially a fixed number of natural number variables, with conditional branching and iteration permitted.
 Control expressions in \pr|if| statements and \pr|while| loops do not matter;
@@ -512,7 +513,9 @@ The \textsc{mwp}\(^\infty\) variant of the flow calculus\index{mwp-calculus} int
 Recall the program from~\autoref{ex:bounds1},
 
 %! suppress = FileNotFound
-\lstinputlisting[language=IMP,caption={[Derivable program]A derivable program.},label={lst:ex-derivable}]{derivable.c}
+\impinputlisting{derivable.c}
+\captionof{lstlisting}[Derivable program]{A derivable program.}
+\label{lst:ex-derivable}
 
 The conclusion about derivability\index{derivability} can be reached by $3^2 = 9$ distinct derivations,
 one of which is shown below.
@@ -545,7 +548,9 @@ The program bound is a conjunction of the variables' mwp-bounds\index{mwp-bound}
 Consider the program fragment from~\autoref{ex:bounds2},
 
 %! suppress = FileNotFound
-\lstinputlisting[language=IMP,caption={[Loop that always fails the derivation]A loop that always fails the derivation.},label={lst:ex-failing}]{failing.c}
+\impinputlisting{failing.c}
+\captionof{lstlisting}[Loop that always fails the derivation]{A loop that always fails the derivation.}
+\label{lst:ex-failing}
 
 The command \pr|X1=X1+X1| admits three derivations.
 
@@ -584,7 +589,9 @@ the complete program fails because it contains a command that is not derivable\i
 Consider the following program, that is a slightly modified version of~\autoref{ex:bounds2F},
 
 %! suppress = FileNotFound
-\lstinputlisting[language=IMP,caption={[Loop that fails for some derivation paths]A loop that fails for some derivation paths.},label={lst:partial-fail}]{partial.c}
+\impinputlisting{partial.c}
+\captionof{lstlisting}[Loop that fails for some derivation paths]{A loop that fails for some derivation paths.}
+\label{lst:partial-fail}
 
 The body of the \pr|loop| command admits three different derivations,
 obtained by applying the tule A to one of the three derivation of the expression
@@ -647,14 +654,16 @@ but implicitly convert them to the core imperative language\index{imperative pro
 The examples omit function declarations since those are irrelevant for the analysis.
 
 \begin{example}[Binary assignment]\label{ex:binassign}
-The input program
+The input program in~\autoref{lst:ex-assign} contains a single command.
 
+\begin{center}
 \begin{minipage}{\textwidth}
-%! suppress = FileNotFound
-\lstinputlisting[language=C,caption={[Program with a single assignment]A program with a single assignment.},label={lst:ex-assign}]{assign_expression.c}
+\cinputlisting{assign_expression.c}
+\captionof{lstlisting}[Program with a single assignment]{A program with a single assignment.}
+\label{lst:ex-assign}
 \end{minipage}
+\end{center}
 
-contains a single command.
 The program has three derivations and all of them succeed.
 One derivation instance is shown below.
 
@@ -668,14 +677,17 @@ The program bound is a \(y_1'\leq\prm{Y1} \land y_2' \leq\prm{Y1}\).
 \end{example}
 
 \begin{example}[Exponential Program]\label{ex:expprog}
-The input program is
+The input program is in~\autoref{lst:ex-exponent2}.
 
+\begin{center}
 \begin{minipage}{\textwidth}
-%! suppress = FileNotFound
-\lstinputlisting[language=C,caption={[Program with exponential variable value growth]A program with exponential variable value growth.},label={lst:ex-exponent2}]{exponent2.c}
+\cinputlisting{exponent2_og.c}
+\captionof{lstlisting}[Program with exponential variable value growth]{A program with exponential variable value growth.}
+\label{lst:ex-exponent2}
 \end{minipage}
+\end{center}
 
-\paragraph*{Step 1.} Analyze the command \pr|r=r*b|.
+\paragraph*{Step 1.} Analyze the command \pr|result = result * base| (simplified to \pr|r=r*b|).
 It admits three derivations (\(\pi_0\), \(\pi_1\) and \(\pi_2\)).
 
 \begin{center}
@@ -831,10 +843,13 @@ In every derivation, the mwp-matrix\index{mwp-matrix}  violates the side conditi
 \begin{example}[While analysis]\label{ex:while1}
 The input program, that we will refer to as \(P\), is
 
+\begin{center}
 \begin{minipage}{\textwidth}
-%! suppress = FileNotFound
-\lstinputlisting[language=C,caption={[Program with a \texttt{while} loop]A program with a \texttt{while} loop.},label={lst:notinfinite3}]{notinfinite3.c}
+\cinputlisting{notinfinite3.c}
+\captionof{lstlisting}[Program with a \texttt{while} loop]{A program with a \texttt{while} loop.}
+\label{lst:ex-notinfinite3}
 \end{minipage}
+\end{center}
 
 The tool user guide reveals that the program is derivable\index{derivability}.
 Compared to derivation failure that requires exploring all derivation choices,
@@ -895,10 +910,13 @@ This program bound matches the result of the tool user guide.
 \begin{example}[Infinite program]\label{ex:infprog}
 The input program is
 
+\begin{center}
 \begin{minipage}{\textwidth}
-%! suppress = FileNotFound
-\lstinputlisting[language=C,caption={[\enquote{Infinite} program]An \enquote{infinite} program.},label={lst:ex-infinite3}]{infinite3.c}
+\cinputlisting{infinite3.c}
+\captionof{lstlisting}[\enquote{Infinite} program]{An \enquote{infinite} program.}
+\label{lst:ex-infinite3}
 \end{minipage}
+\end{center}
 
 This program is similar to~\autoref{ex:while1}, with only a small change to the \pr|while| loop.
 From the previous example, the \pr|if| statement is derivable\index{derivability} as before by \(\pi_0\).
@@ -925,16 +943,15 @@ The program is not derivable\index{derivability}.
 \begin{example}[Challenge example]\label{ex:challange}
 The input program has four top-level commands, identified by the circled annotations.
 
+\begin{center}
 \begin{minipage}{\textwidth}
-%! suppress = FileNotFound
-\lstinputlisting[
-language=C,escapeinside=||,
-caption={[Challenge program whose derivability is unknown]A challenge program whose derivability is unknown.},
-label={lst:maybe-derivable}]{dense_loop.c}
+\cinputlisting{dense_loop.c}
+\captionof{lstlisting}[Challenge program whose derivability is unknown]{A challenge program whose derivability is unknown.}
+\label{lst:maybe-derivable}
 \end{minipage}
+\end{center}
 
-We will refer to these commands as \(\prm{C}_0\)--\(\prm{C}_3\) and
-their derivations as \(\pi_0\)--\(\pi_3\), respectively.
+We will refer to these commands as \(\prm{C}_0\)--\(\prm{C}_3\) and their derivations as \(\pi_0\)--\(\pi_3\), respectively.
 The program analysis proceeds in corresponding steps.
 To ease presentation, we will analyze command composition after each individual command.
 

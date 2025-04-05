@@ -1,0 +1,33 @@
+\documentclass[crop,border={-8pt 20pt 2pt 20pt}]{standalone}
+\input{../latex/pics}
+\usetikzlibrary {arrows.meta}
+\tikzset{font={\selectfont\itshape}}
+\begin{document}
+
+\definecolor{boxbg}{HTML}{ffffff}
+\tikzstyle{arrow}  = [thick,arrows={-Latex[width=5pt, length=5pt]}]
+\tikzstyle{label} = [midway,fill=white]
+
+\tikzstyle{phase}  = [
+	draw=black,
+	thick,
+	fill=white,
+	text centered,
+	rounded corners=3pt,
+	minimum height=1.3cm,
+	text width=3cm]
+
+\begin{tikzpicture}[node distance=3cm]
+%\draw[gray!20!white,step=.25] (0,0) grid (4,9);
+
+\node (0) [phase, below] at (2,9) {Dafny program};
+\node (1) [phase, below of=0] {Boogie};
+\node (2) [phase, below of=1] {SMT formulas};
+\node (3) [phase, below of=2] {Correctness, Error model, or Timeout};
+
+\draw [arrow] (0) -- (1) node[label] {Translation}; 
+\draw [arrow] (1) -- (2) node[label] {Verification condition generator}; 
+\draw [arrow] (2) -- (3) node[label] {Z3 SMT Solver};
+
+\end{tikzpicture}
+\end{document}

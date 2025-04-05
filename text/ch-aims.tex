@@ -62,10 +62,11 @@ The task of expanding ICC outside its traditional (theoretical) realm is difficu
 
 \item Taking any pure theory and applying it reveals the shortcomings of the theory, and those issues must then be resolved.
 
-\item Broad insight is required to first identify suitable application domains, then to convert theories to applications\footnote{
-The is supported by history of Parikh's Theorem, a celebrated letter-counting theorem in automata theory.
-\enquote{Although the classical formulation [\ldots] concerns mainly the expressiveness of language models [\ldots] its usefulness in applications was enabled {only decades later} by the development of efficient algorithms [\ldots] These results enabled the exploitation of Parikh’s Theorem in many applications.}~\cite[pg. 2]{hague2024}
-Since then, Parikh's Theorem has found uses in SMT-solvers, verification of cryptographic protocols and concurrent programs, query evaluation over graph databases, and many more.}.
+\item Broad insight is required to first identify suitable application domains, then to convert theories to applications.
+A supporting case exists in automata theory, in Parikh's Theorem\footnote{
+The classic formulation of Parikh's Theorem concerns language expressiveness.
+Its usefulness in applications was enabled {only decades later}, by the development of efficient algorithms,
+enabling the exploitation of Parikh's Theorem in applications including SMT-solvers, verification of cryptographic protocols and concurrent programs, query evaluation over graph databases, \etc~\cite[pg. 2]{hague2024}}.
 
 \item Presenting the applications requires communicating the findings to (potentially new) audiences who are motivated differently to assess the {usefulness} of those findings.
 \end{enumerate}
@@ -79,7 +80,8 @@ Through the effort, we gain insight of the technical power, limitations, and ben
 This dissertation has three scientific goals.
 
 The first is to show that implicit computational complexity is useful in \emph{automated} complexity analysis.
-All too often practitioners regard theory as irrelevant, and theoreticians think of practice as trivial; but in reality, the two are symbiotic.
+All too often practitioners regard theory as irrelevant, and theoreticians think of practice as trivial;
+but in reality, the two are symbiotic.
 This goal shows the bidirectional importance of theory and practice that concurrently requires resolving various unexpected challenges. 
 The findings are materialized in a series of manuscripts that extend the flow calculus of mwp-bounds (\autoref{flow-calculus}).
 
