@@ -7,4 +7,7 @@
 \AddEverypageHook{\smash{\hspace*{\dimexpr-\PageLeftMargin-\hoffset+#1\relax}%
 \raisebox{\dimexpr\PageTopMargin+\voffset-#2\relax}{#3}}}}
 \atxy{\dimexpr1.5in}{0.1in}{%
-\raisebox{-\height}{\small\sffamily{compiled: {\yyyymmdddate\today} \currenttime}}}
+\raisebox{-\height}{\small\normalfont\sffamily{compiled: {\yyyymmdddate\today} \currenttime}}}
+\usepackage[pagewise]{lineno}
+\renewcommand{\linenumberfont}{\normalfont\sffamily\tiny\color{red}}
+\AtBeginDocument{\linenumbers}

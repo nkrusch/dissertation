@@ -1,3 +1,11 @@
+%``As we all know, the programmable computer, with its current speed and storage, is a gadget without precedent.
+%It is a gadget that we may appreciate in many different ways:
+%in this series of lectures I would like to appreciate it as the embodiment of an intellectual challenge that is also without precedent, viz.
+%the challenge to program the gadgets.
+%This challenge seems unique in the combination of the possibility for unmastered complexity
+%-- programs are among the most complex things ever conceived --
+%and the ultimate, but misleading, simplicity of a world of zeros and ones alone.''~\cite{dijkstra1979}
+
 There is a feature about programs that has always fascinated me immensely.
 It is that there are \emph{multiple different ways} to write a program to compute the \emph{same result}.
 Essentially, we fix the program input and output, but are free to change what happens in-between.
@@ -50,6 +58,11 @@ This naturally leads to the question, \enquote{what can we do with such a langua
 See \url{https://stackoverflow.com/questions/315340} for an inspirational warm-up.}
 Every manuscript of this dissertation is an instance responding to this broader question.
 
+% These amazing advances in computer application can distract attention from
+%the fact that Computer Science also has a central core of fundamental discoveries
+%which are particular to itself as an independent intellectual discipline. Computing Research is driven, like research in other mature branches of pure science, by natural curiosity, exploring the basic foundations and limitations of the programmable computer, independent of any particular area of application. Because of its effective combination of pure knowledge and applied invention, Computer
+%Science can reasonably be classified as a branch of Engineering Science. \cite{hoare2006}
+
 The existing works in implicit computational complexity focus primarily on \emph{defining} theoretical systems that ensure desirable runtime properties;
 typically, in terms of computational resource usage (\cf~\autoref{tab:icc-results}).
 What separates this dissertation from those works is that it never defines such systems;
@@ -62,8 +75,8 @@ The task of expanding ICC outside its traditional (theoretical) realm is difficu
 
 \item Taking any pure theory and applying it reveals the shortcomings of the theory, and those issues must then be resolved.
 
-\item Broad insight is required to first identify suitable application domains, then to convert theories to applications.
-A supporting case exists in automata theory, in Parikh's Theorem\footnote{
+\item Broad insight is required to first identify suitable application domains and to convert theories to applications.
+A supporting case exists in automata theory\footnote{
 The classic formulation of Parikh's Theorem concerns language expressiveness.
 Its usefulness in applications was enabled {only decades later}, by the development of efficient algorithms,
 enabling the exploitation of Parikh's Theorem in applications including SMT-solvers, verification of cryptographic protocols and concurrent programs, query evaluation over graph databases, \etc~\cite[pg. 2]{hague2024}}.
@@ -168,7 +181,7 @@ These icons will appear and are used with this designation throughout the disser
 & \ref{flow-calculus}, \ref{verification} \\
 \bottomrule
 \end{tabularx}
-\caption[Manuscript backgrounds]{Manuscript backgrounds.}
+\caption[Manuscript dependency association]{A rough manuscript dependency association.}
 \label{tab:paper-bg}
 \end{table}
 
@@ -194,6 +207,47 @@ Each piece of software is archived for long-term retention, according to the lon
 The software is achieved even if the venue of a manuscript did not arrange a formal artifact evaluation round.
 Thus, each manuscript extends beyond the paper pages of this dissertation.
 
+\subsubsection{Notational Conventions}
+
+\paragraph*{Regular and special figures.}
+The significance of the dissertation figures is communicated via framing.
+Regular figures have no frame.
+A figure with a boxed frame means it contains a fundamental concept and should be viewed with additional care.
+
+\paragraph*{Code blocks and line numbers.}
+Syntactic constructs (variables, expressions, commands, \etc) appearing in textual paragraphs are typeset in \texttt{teletype}.
+Larger code blocks are displayed in dedicated listings.
+The listings will display, in bottom right corner, the associated programming language or context according to~\autoref{tbl:pls}.
+
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{@{}lcl@{}}
+\toprule
+Language & Color & Description \\
+\midrule
+C    && the C language \\
+C*   && a generic C-\emph{like} language (more broadly). \\
+omp  && C code that includes OpenMP directives \\
+imp  && the simple imperative language of mwp-calculus \\
+cmd  && runnable terminal (console) command \\
+\bottomrule
+\end{tabular}\end{center}
+\caption{Code listings languages.}
+\label{tbl:pls}
+\end{table}
+
+When referring to a specific line of source code or an algorithm, we write L, for \underline{l}ine;
+followed by a number or a numeric range that specifies the rows of interest.
+For example, L3 means \enquote{line number 3}, and L10--12 means \enquote{lines 10 to 12}.
+
+
+\paragraph*{Distinguishing variable states.}
+When referring to the same variable in different states of computation, we use special notation to identify the \emph{new} (post) states.
+This is the convention of the \emph{Z specification language}\index{Z specification language}~\cite[p. 34]{furia2014} of~\textcite{spivey1992}.
+A plain variable refers to a state where the variable holds its \emph{initial} value.
+If the same variable has a postfix decoration \pr|'| then it refers to a state of its \emph{final} value.
+For example, \pr|X| refers to the initial value and \pr|X'| to the final value.
+
 \subsubsection{Term and Notational Indices}
 
 This dissertation includes three indices.
@@ -213,37 +267,25 @@ To recover a document from the Internet Archive, use the following format, subst
 
 \begin{example}
 The following \href{https://types22.inria.fr/files/2022/06/TYPES_2022_paper_14.pdf}{URL} may disappear in the future.
-\begin{cmdlisting}*[label={lst:types-url}]
+
+\begin{center}
+\begin{minipage}{\textwidth}
+\begin{cmdlisting}*[]
 https://types22.inria.fr/files/2022/06/TYPES_2022_paper_14.pdf
 \end{cmdlisting}
+\end{minipage}
+\end{center}
 
 The \href{https://web.archive.org/web/https://types22.inria.fr/files/2022/06/TYPES_2022_paper_14.pdf}{corresponding Internet Archive address} produces the same document.
-\begin{cmdlisting}*[label={lst:types-archive}]
+
+\begin{center}
+\begin{minipage}{\textwidth}
+\begin{cmdlisting}*[]
 https://web.archive.org/web/https://types22.inria.fr/files/2022/06/TYPES_2022_paper_14.pdf
 \end{cmdlisting}
-
+\end{minipage}
+\end{center}
 \end{example}
 
 If a referenced external document was not readily available even at the time of writing this dissertation,
 the document is hosted with the software deposit of this dissertation, \cf~\autoref{subsub:sw}.
-
-\subsubsection{Notational Conventions}
-
-\paragraph*{Regular and special figures.}
-The significance of the dissertation figures is communicated via framing.
-Regular figures have no frame.
-A figure with a boxed frame means it contains a fundamental concept and should be viewed with additional care.
-
-\paragraph*{Code blocks and line numbers.}
-Syntactic constructs (variables, expressions, commands, \etc) appearing in textual paragraphs are typeset in \texttt{teletype}.
-Larger code blocks are displayed in dedicated listings.
-When referring to a specific line of source code or an algorithm, we write L, for \underline{l}ine;
-followed by a number or a numeric range that specifies the rows of interest.
-For example, L3 means \enquote{line number 3}, and L10--12 means \enquote{lines 10 to 12}.
-
-\paragraph*{Distinguishing variable states.}
-When referring to the same variable in different states of computation, we use special notation to identify the \emph{new} (post) states.
-This is the convention of the \emph{Z specification language}\index{Z specification language}~\cite[p. 34]{furia2014} of~\textcite{spivey1992}.
-A plain variable refers to a state where the variable holds its \emph{initial} value.
-If the same variable has a postfix decoration \pr|'| then it refers to a state of its \emph{final} value.
-For example, \pr|X| refers to the initial value and \pr|X'| to the final value.

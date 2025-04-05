@@ -31,7 +31,7 @@ A {loop} has two parts: a header (L\ref{line:header})\index{loop header} and a b
 
 \begin{center}
 \begin{minipage}{\textwidth}
-\cinputlisting{insertion.c}
+\cstarinputlisting{insertion.c}
 \captionof{lstlisting}[Loop of insertion sort]{Adaptation of insertion sort from~\textcite{cormen2009}.}
 \label{lst:loop-ex}
 \end{minipage}
@@ -61,7 +61,7 @@ A \emph{canonical loop}~\cite[p. 196--202]{openmp_api}\index{canonical loop}\foo
 The definition is specific to the programming model of~\autoref{openmp} and~\autoref{sec:vmcai}.} has form,
 \begin{center}
 \begin{minipage}{.6\textwidth}
-\lstinputlisting[language=C,label={lst:canonical},caption={[Canonical loop form]Canonical loop form.}]{canonical.c}
+\lstinputlisting[language=C,label={lst:canonical},caption={[Canonical loop form]Canonical loop form.}]{canonical.imp}
 \end{minipage}
 \end{center}
 The header must additionally satisfy the following restrictions\footnote{
@@ -111,12 +111,12 @@ In both transformations, the loop header and iteration space remain unchanged.
 \begin{center}
 \begin{minipage}{\textwidth}
 \begin{minipage}[t]{.45\textwidth}
-\cinputlisting{fusion.c}
+\cstarinputlisting{fusion.c}
 \captionof{lstlisting}[Loop fusion transformation]{Loop fusion.}
 \label{lst:fusion}
 \end{minipage}\hfill%
 \begin{minipage}[t]{.45\textwidth}
-\cinputlisting{fission.c}
+\cstarinputlisting{fission.c}
 \captionof{lstlisting}[Loop fission transformation]{Loop fission.}
 \label{lst:fission}
 \end{minipage}
@@ -136,12 +136,12 @@ For example, if \(0, 1,\ldots, n-2, n-1\) are the logical iteration numbers of a
 \begin{center}
 \begin{minipage}{\textwidth}
 \begin{minipage}{.45\textwidth}
-\cinputlisting{split.c}
+\cstarinputlisting{split.c}
 \captionof{lstlisting}[Loop splitting transformation]{Loop splitting.}
 \label{lst:split}
 \end{minipage}\hfill%
 \begin{minipage}{.45\textwidth}
-\cinputlisting{tiling.c}
+\cstarinputlisting{tiling.c}
 \captionof{lstlisting}[Loop tiling transformation]{Loop tiling.}
 \label{lst:tiling}
 \end{minipage}
@@ -155,12 +155,12 @@ The loop iteration space is adjusted accordingly.
 \begin{center}
 \begin{minipage}{\textwidth}
 \begin{minipage}[t]{.45\textwidth}
-\cinputlisting{peel.c}
+\cstarinputlisting{peel.c}
 \captionof{lstlisting}[Loop peeling transformation]{Loop peeling.}
 \label{lst:peel}
 \end{minipage}\hfill%
 \begin{minipage}[t]{.45\textwidth}
-\cinputlisting{unroll.c}
+\cstarinputlisting{unroll.c}
 \captionof{lstlisting}[Loop unrolling transformation]{Loop unrolling.}
 \label{lst:unroll}
 \end{minipage}
@@ -183,12 +183,12 @@ as shown in Listings~\ref{lst:pre-interchange} and~\ref{lst:post-interchange}.
 \begin{center}
 \begin{minipage}{\textwidth}
 \begin{minipage}[t]{.45\textwidth}
-\cinputlisting{pre-interchange.c}
+\cstarinputlisting{pre-interchange.c}
 \captionof{lstlisting}[Loop before interchange]{Pre-interchange.}
 \label{lst:pre-interchange}
 \end{minipage}\hfill%
 \begin{minipage}[t]{.45\textwidth}
-\cinputlisting{post-interchange.c}
+\cstarinputlisting{post-interchange.c}
 \captionof{lstlisting}[Loop after interchange]{Post-interchange.}
 \label{lst:post-interchange}
 \end{minipage}
@@ -228,17 +228,25 @@ The interesting variables, that reference a memory location of interest, are emp
 
 \begin{center}
 \begin{minipage}[t]{.4\textwidth}
-\lstinputlisting[language=text,caption={True dependence},label={dep-true},escapeinside=||,emph={X},emphstyle={\color{pthread}\textbf},numbers=none]{dep-true.c}
+\cstarinputlisting[][emph={X},emphstyle={\color{pthread}\textbf},numbers=none]{dep-true.imp}
+\captionof{lstlisting}[True dependence]{True dependence.}
+\label{dep-true}
 \end{minipage}\hspace{3em}
 \begin{minipage}[t]{.4\textwidth}
-\lstinputlisting[language=text,caption={Antidependence},label={dep-anti},escapeinside=||,emph={X},emphstyle={\color{pthread}\textbf},numbers=none]{dep-anti.c}
+\cstarinputlisting[][emph={X},emphstyle={\color{pthread}\textbf},numbers=none]{dep-anti.imp}
+\captionof{lstlisting}[Antidependence]{Antidependence.}
+\label{dep-anti}
 \end{minipage}
 
 \begin{minipage}[t]{.4\textwidth}
-\lstinputlisting[language=text,caption={Output dependence},label={dep-out},escapeinside=||,emph={X},emphstyle={\color{pthread}\textbf},numbers=none]{dep-out.c}
+\cstarinputlisting[][emph={X},emphstyle={\color{pthread}\textbf},numbers=none]{dep-out.imp}
+\captionof{lstlisting}[Output dependence]{Output dependence.}
+\label{dep-out}
 \end{minipage}\hspace{3em}
 \begin{minipage}[t]{.4\textwidth}
-\lstinputlisting[language=text,caption={Control dependence},label={dep-control},escapeinside=||,emph={X},emphstyle={\color{pthread}\textbf},numbers=none]{dep-control.c}
+\cstarinputlisting[][emph={X},emphstyle={\color{pthread}\textbf},numbers=none]{dep-control.imp}
+\captionof{lstlisting}[Control dependence]{Control dependence.}
+\label{dep-control}
 \end{minipage}
 \end{center}
 
@@ -276,7 +284,7 @@ More precisely, a statement \pr|S2| has a loop-carried dependence on statement \
 \begin{center}
 \begin{minipage}{\textwidth}
 \begin{minipage}{.4\textwidth}
-\cinputlisting{loop-carried.c}
+\cstarinputlisting{loop-carried.c}
 \end{minipage}\hfill%
 \begin{minipage}{.5\textwidth}
 \hfill\begin{tikzpicture}
@@ -298,7 +306,7 @@ More precisely, a statement \pr|S2| has a loop-carried dependence on statement \
 \draw[black,arrows={-Latex[width=5pt, length=4pt]}] (6,0) -- (6.5,0) node[right,xshift=5pt] {\small\circled{\texttt{S2}}};
 \draw[black,arrows={-Latex[width=5pt, length=4pt, fill=white]}] (1.75,1) -- (3.2,2);
 \draw[black,arrows={-Latex[width=5pt, length=4pt, fill=white]}] (3.25,1) -- (4.75,2);
-\draw[black,arrows={-Latex[width=5pt, length=4pt, fill=white]}] (6,.45) -- (6.5,.45) node[right,xshift=5pt] {\small\circled{\texttt{S1}}};
+\draw[black,arrows={-Latex[width=5pt, length=4pt, fill=white]}] (6,.65) -- (6.5,.65) node[right,xshift=5pt] {\small\circled{\texttt{S1}}};
 \end{tikzpicture}
 \end{minipage}
 \captionof{lstlisting}[Loop-carried dependence]{Loop-carried dependence.
@@ -378,7 +386,7 @@ a runtime-based model for \pr|C++|\index{C++}\index{programming language!C++} pr
 \subsubsection{The OpenMP Programming Model}
 \label{openmp}
 
-\emph{OpenMP}\index{OpenMP}\index{parallel programming model!OpenMP}, for Open Multi-Processing,
+{OpenMP}\index{OpenMP}\index{parallel programming model!OpenMP}, for Open Multi-Processing,
 is a parallel programming model for developing portable, shared memory\index{shared memory} parallel applications in
 \pr|C|\index{C}\index{programming language!C},
 \pr|C++|\index{C++}\index{programming language!C++} and
@@ -522,44 +530,77 @@ Thus, \omp{nowait} enables specifying that an implicit barrier should not occur.
 \begin{center}
 \begin{minipage}{\textwidth}
 
-\begin{minipage}{\textwidth}
+One thread\index{thread} executes each iteration sequentially, \(\text{total time} = N \times t_\text{iter}\).
+
+\begin{center}
 \begin{minipage}{.45\textwidth}
 \cinputlisting{serial-exec.c}
-\captionof{lstlisting}[Serial execution]{Serial execution.}
-\label{lst:serial}
 \end{minipage}\hfill%
 \begin{minipage}{.45\textwidth}
-One thread\index{thread} executes each iteration sequentially.
-\(\text{Total time} = N \times t_\text{iter}\).
+\hfill\begin{tikzpicture}
+\draw[rectangle, draw=black, fill=tgrey] (0,0) rectangle (5.9,1.5);
+\draw[thread,pthread] (2.95,1.5) -- (2.95,0);
+\node[above] at (2.95,1.5) {thread 0};
+\end{tikzpicture}
 \end{minipage}
-\end{minipage}
+\captionof{lstlisting}[Serial execution]{Serial execution}
+\label{lst:serial}
+\end{center}
 
-\begin{minipage}{\textwidth}
+All available threads\index{thread} will execute each iteration sequentially, overwriting values of array \pr|C|, \(\text{total time} = N \times t_\text{iter}\).
+
+\begin{center}
 \begin{minipage}{.45\textwidth}
 \ompcodeinputlisting{parallel-loop.c}
+\end{minipage}\hfill%
+\begin{minipage}{.45\textwidth}
+\hfill\begin{tikzpicture}
+\draw[rectangle,draw=black,fill=tgrey] (0.0,0) rectangle (5.9,1.5);
+\draw[thread,pthread]
+              (2.50,1.5) -- (2.50,0);
+\draw[thread] (2.83,1.5) -- (2.83,0);
+\draw[thread] (3.17,1.5) -- (3.17,0);
+\draw[thread] (3.50,1.5) -- (3.50,0);
+\node[above] at (2.50, 1.5) {0};
+\node[above] at (2.83, 1.5) {1};
+\node[above] at (3.17, 1.5) {2};
+\node[above] at (3.50, 1.5) {3};
+\draw[thick,line width=.5mm] (0,0) -- (5.9,0) ;
+\end{tikzpicture}
+\end{minipage}
 \captionof{lstlisting}[Parallel execution]{Parallel execution.\ompi{parallel}\ompi{pragma omp}}
 \label{lst:just-parallel}
-\end{minipage}\hfill%
-\begin{minipage}{.45\textwidth}
-All available threads\index{thread} will execute each iteration sequentially, overwriting values of array \pr|C|.
-\(\text{Total time} = N \times t_\text{iter}\).
-\end{minipage}
-\end{minipage}
+\end{center}
 
-\begin{minipage}{\textwidth}
+Assuming a thread\index{thread} count of 4, the threads distribute the loop iteration space uniformly, \(\text{total time} = \frac{N}{4} \times t_\text{iter}\).
+
+\begin{center}
 \begin{minipage}{.45\textwidth}
 \ompcodeinputlisting{parallel-for.c}
-\captionof{lstlisting}[Parallel worksharing]{Parallel worksharing.\ompi{for}\ompi{parallel}\ompi{pragma omp}}
-\label{lst:parallel-for}
 \end{minipage}\hfill%
 \begin{minipage}{.45\textwidth}
-Assuming a thread\index{thread} count of 4, the threads distribute the loop iteration space uniformly.
-\(\text{Total time} = \frac{N}{4} \times t_\text{iter}\).
+\hfill\begin{tikzpicture}
+\draw[rectangle,draw=black,fill=tgrey] (0.0,0) rectangle (5.9,1.5);
+\draw[black, thick, densely dotted] (1.5,0) -- (1.5,1.5);
+\draw[black, thick, densely dotted] (3.0,0) -- (3.0,1.5);
+\draw[black, thick, densely dotted] (4.5,0) -- (4.5,1.5);
+\draw[thread,pthread] (0.7,1.5) -- (0.7,0);
+\draw[thread] (2.3,1.5) -- (2.3,0);
+\draw[thread] (3.8,1.5) -- (3.8,0);
+\draw[thread] (5.3,1.5) -- (5.3,0);
+\node[above] at (0.7, 1.5) {0};
+\node[above] at (2.3, 1.5) {1};
+\node[above] at (3.8, 1.5) {2};
+\node[above] at (5.3, 1.5) {3};
+\draw[thick,line width=.5mm] (0,0) -- (5.9,0) ;
+\end{tikzpicture}
 \end{minipage}
-\end{minipage}
+\captionof{lstlisting}[Parallel worksharing]{Parallel worksharing.\ompi{for}\ompi{parallel}\ompi{pragma omp}}
+\label{lst:parallel-for}
+\end{center}
 
 \captionof{figure}[Parallel worksharing in loop executions]
-{Impact of parallel worksharing directives in loop executions~\cite{oak-slides}.}
+{The impact of applying parallel worksharing directives to loop executions, adapted from~\textcite{oak-slides}.}
 \label{fig:parallel-for}
 \end{minipage}
 \end{center}
@@ -613,54 +654,31 @@ The programmer must ensure, with proper synchronization, that the shared memory 
 
 \begin{example}[Parallel transformation]\label{ex:seq-transformation}
 
-Example of a parallelization transformation inspired by~\cite{singal2019}.
-Often OpenMP makes parallelization straightforward, in this case requiring just one line of directives.
-In~\autoref{lst:para-block}, the loop iteration space is distributed equally between the available threads.
-By the data-sharing attribute clauses, the arrays are explicitly shared across threads\index{thread} and the iteration variable \pr|i| is privatized.
+We demonstrate a parallelization transformation inspired by~\textcite{singal2019}.
+The original sequential code is in~\autoref{lst:seq-block}, where a loop iterates over
+fixed-size array length \pr|N|, manipulating each array index in arrays \pr|A| and \pr|B|
+(we assume both arrays to be of length \pr|N|).
 
 \begin{center}
 \begin{minipage}{\textwidth}
 \begin{minipage}{.45\textwidth}
 \cinputlisting{seq-block.c}
-\end{minipage}\hfill%
-\begin{minipage}{.45\textwidth}
-\hfill\begin{tikzpicture}
-\draw[rectangle, draw=black, fill=tgrey] (0,0) rectangle (5.9,2);
-\draw[thread,pthread] (2.95,2) -- (2.95,0);
-\node[above] at (2.95,2) {thread 0};
-\end{tikzpicture}
-\end{minipage}
 \captionof{lstlisting}[Sequential version]{Sequential version.}
 \label{lst:seq-block}
-\end{minipage}
-\end{center}
-
-\begin{center}
-\begin{minipage}{\textwidth}
-\begin{minipage}{.45\textwidth}
-\ompcodeinputlisting{para-block.c}
 \end{minipage}\hfill%
 \begin{minipage}{.45\textwidth}
-\hfill\begin{tikzpicture}
-\draw[rectangle,draw=black,fill=tgrey] (0.0,0) rectangle (5.9,2);
-\draw[black, thick, densely dotted] (1.5,0) -- (1.5,2);
-\draw[black, thick, densely dotted] (3.0,0) -- (3.0,2);
-\draw[black, thick, densely dotted] (4.5,0) -- (4.5,2);
-\draw[thread,pthread] (0.7,2) -- (0.7,0);
-\draw[thread] (2.3,2) -- (2.3,0);
-\draw[thread] (3.8,2) -- (3.8,0);
-\draw[thread] (5.3,2) -- (5.3,0);
-\node[above] at (0.7, 2) {0};
-\node[above] at (2.3, 2) {1};
-\node[above] at (3.8, 2) {2};
-\node[above] at (5.3, 2) {3};
-\draw[thick,line width=.5mm] (0,0) -- (5.9,0) ;
-\end{tikzpicture}
-\end{minipage}
+\ompcodeinputlisting{para-block.c}
 \captionof{lstlisting}[Parallel version]{Parallel version.\ompi{private}\ompi{shared}\ompi{for}\ompi{parallel}\ompi{pragma omp}}
 \label{lst:para-block}
 \end{minipage}
+\end{minipage}
 \end{center}
+
+In~\autoref{lst:para-block}, the loop iteration space is distributed equally between the threads of a team.
+Given a team of \(j\) threads, each thread will roughly complete the work of \(N/j\) iterations.
+OpenMP often makes the parallelization step straightforward, in this case requiring just one line of directives.
+By the data-sharing attribute clauses, the arrays \pr|A| and \pr|B| are explicitly shared across
+the threads\index{thread} and the iteration variable \pr|i| is privatized.
 \end{example}
 
 \subsubsection{Built-In Loop Transformations in OpenMP}
@@ -730,7 +748,7 @@ For example, the worksharing loop expects loops to be in canonical form\index{ca
 Afterward, a transformation that increases the program's parallelization potential\index{parallelization potential} enables making use of multicore hardware during execution.
 Thus, an important challenge of parallelizing compilers and program optimizations is to find generalized strategies to increase parallelization potential.
 
-\subsubsection{Implicit Computational Complexity for Parallelizable Loop Transformations}
+\subsubsection{Implicit Computational Complexity for Parallel Transformations}
 \label{icc-fission}
 
 Since implicit computational complexity has developed many systems for reasoning about loops, it seems natural that in extended use, it has potential to support loop-based program transformations.

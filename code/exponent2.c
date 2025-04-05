@@ -1,6 +1,6 @@
-int foo(int b, int e, int i, int r) {
-    while (i < e) {
-        r = r * b;
+int foo(int base, int exp, int i, int result) {
+    while (i < exp) {
+        result = result * base;
         i = i + 1;
     }
 }

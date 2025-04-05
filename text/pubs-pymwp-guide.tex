@@ -26,15 +26,14 @@ For a program written in C language\index{C}\index{programming language!C}, this
 
 \begin{center}
 \begin{minipage}{\textwidth}
-\lstinputlisting[language=C,caption={[An imperative program that manipulates variables]An imperative program that manipulates numeric variables.}]{guide.c}
-%\cinputlisting{guide.c}
-%\captionof{lstlisting}[An imperative program that manipulates variables]
-%{An imperative program that manipulates numeric variables.}
-%\label{lst:guide}
+\cinputlisting{guide.c}
+\captionof{lstlisting}[An imperative program that manipulates variables]
+{An imperative program that manipulates numeric variables.}
+\label{lst:guide}
 \end{minipage}
 \end{center}
 
-Question: \(\forall n\), is \(\texttt{X}_n \rightsquigarrow \texttt{X'}_n\) polynomially bounded in inputs?
+Question: \(\forall n\), is \(\prm{X}_n \rightsquigarrow \prm{X'}_n\) polynomially bounded in inputs?
 
 We answer this question using the mwp-flow analysis\index{mwp-calculus}, implemented in the pymwp\index{pymwp} static analyzer.
 
@@ -110,9 +109,13 @@ We recommend installing pymwp\index{pymwp} locally for an interactive tutorial e
 pymwp\index{pymwp} requires Python runtime 3.7 -- 3.11 (current latest).
 To check currently installed version, run:
 
-\begin{cmdlisting}*[label={lst:python-version}]
+\begin{center}
+\begin{minipage}{\textwidth}
+\begin{cmdlisting}[label={lst:python-version}]
 python3 --version
 \end{cmdlisting}
+\end{minipage}
+\end{center}
 
 On systems that default to Python 3 runtime, use \texttt{python} instead of \texttt{python3}.
 Instructions for installing Python for different operating systems can be found at \href{https://python.org}{python.org} ↗.
@@ -120,16 +123,24 @@ Instructions for installing Python for different operating systems can be found 
 \paragraph*{2. Install pymwp}
 Install pymwp\index{pymwp} from Python Package Index:
 
-\begin{cmdlisting}*[label={lst:install-cmd}]
+\begin{center}
+\begin{minipage}{\textwidth}
+\begin{cmdlisting}[label={lst:install-cmd}]
 pip3 install pymwp==0.4.2
 \end{cmdlisting}
+\end{minipage}
+\end{center}
 
 \paragraph*{3. Download examples}
 Download a set of examples.
 
-\begin{cmdlisting}*[label={lst:get-examples}]
+\begin{center}
+\begin{minipage}{\textwidth}
+\begin{cmdlisting}[label={lst:get-examples}]
 wget https://github.com/statycc/pymwp/releases/download/0.4.2/examples.zip
 \end{cmdlisting}
+\end{minipage}
+\end{center}
 
 Alternatively, download the set of examples using a web browser:
 
@@ -146,16 +157,20 @@ We now demonstrate use of pymwp\index{pymwp} on several examples.
 To ease the presentation, we will use multiple command line arguments.
 
 \begin{itemize}
-\item \texttt{-\/-fin} --- always run analysis to completion (even on failure)
-\item \texttt{-\/-info} --- reduces amount of terminal output to info level
-\item \texttt{-\/-no\_time} --- omits timestamps from output log
+\item \pr|--fin| --- always run analysis to completion (even on failure)
+\item \pr|--info| --- reduces amount of terminal output to info level
+\item \pr|--no_time| --- omits timestamps from output log
 \end{itemize}
 
 For a complete list of available command arguments, run:
 
-\begin{cmdlisting}*[label={lst:help-cmd}]
+\begin{center}
+\begin{minipage}{\textwidth}
+\begin{cmdlisting}[label={lst:help-cmd}]
 pymwp --help
 \end{cmdlisting}
+\end{minipage}
+\end{center}
 
 \paragraph{Binary Assignment}\label{binary-assignment}
 This example shows that assigning a compounded expression to a variable results in correct analysis.
@@ -176,16 +191,24 @@ Although the program is simple, it is interesting because binary operations intr
 
 The current working directory should be the location of unzipped examples from \hyperref[guide-install]{Installation} Step 4.
 
+\begin{center}
+\begin{minipage}{\textwidth}
 \begin{cmdlisting}[label={lst:ex1-run}]
 pymwp basics/assign_expression.c --fin --info --no_time
 \end{cmdlisting}
+\end{minipage}
+\end{center}
 
+\begin{center}
+\begin{minipage}{\textwidth}
 \begin{outlisting}[label={lst:ex-output}]
 INFO (result): Bound: y1' ≤ y1 ∧ y2' ≤ y1
 INFO (result): Bounds: 3
 INFO (result): Total time: 0.0 s (0 ms)
 INFO (file_io): saved result in output/assign_expression.json
 \end{outlisting}
+\end{minipage}
+\end{center}
 
 \subparagraph*{Discussion}
 The analysis correctly assigns a polynomial bound to the program.
@@ -209,7 +232,7 @@ A program computing the exponentiation returns an infinite coefficient, no matte
 
 \begin{center}
 \begin{minipage}{\textwidth}
-\cinputlisting{exponent2_og.c}
+\cinputlisting{exponent2.c}
 \captionof{lstlisting}[Program \texttt{exponent\_2.c}]{\texttt{exponent\_2.c}.}
 \label{lst:exponent2}
 \end{minipage}
@@ -219,10 +242,16 @@ This program's variable \(\texttt{result}\) grows exponentially.
 It is impossible to find a polynomial growth bound, and the analysis is expected to report \(\infty\)\symbo{infty}-result.
 This example demonstrates how pymwp\index{pymwp} arrives to that conclusion.
 
+\begin{center}
+\begin{minipage}{\textwidth}
 \begin{cmdlisting}[label={lst:ex2-run-cmd}]
 pymwp infinite/exponent_2.c --fin --info --no_time
 \end{cmdlisting}
+\end{minipage}
+\end{center}
 
+\begin{center}
+\begin{minipage}{\textwidth}
 \begin{outlisting}[label={lst:ex2-output}]
 INFO (result): foo is infinite
 INFO (result): Possibly problematic flows:
@@ -230,6 +259,9 @@ INFO (result): base → result ‖ exp → result ‖ i → result ‖ result �
 INFO (result): Total time: 0.0 s (2 ms)
 INFO (file_io): saved result in output/exponent_2.json
 \end{outlisting}
+\end{minipage}
+\end{center}
+
 
 \subparagraph*{Discussion}
 The output shows that the analyzer correctly detects that no bound can
@@ -258,16 +290,24 @@ This program contains decision logic, iteration, and multiple variables.
 Determining if a polynomial growth bound exists is not immediate by inspection.
 It is therefore an interesting candidate for analysis with pymwp\index{pymwp}!
 
+\begin{center}
+\begin{minipage}{\textwidth}
 \begin{cmdlisting}[label={lst:ex3-run-cmd}]
 pymwp not_infinite/notinfinite_3.c --fin --info --no_time
 \end{cmdlisting}
+\end{minipage}
+\end{center}
 
+\begin{center}
+\begin{minipage}{\textwidth}
 \begin{outlisting}[label={lst:ex3-output}]
 INFO (result): Bound: X0' ≤ max(X0,X1)+X2*X3 ∧ X1' ≤ X1+X2 ∧ X2' ≤ X2+X3 ∧ X3' ≤ X3
 INFO (result): Bounds: 9
 INFO (result): Total time: 0.0 s (3 ms)
 INFO (file_io): saved result in output/notinfinite_3.json
-\end{outlisting}\symbo{Xprime}
+\end{outlisting}
+\end{minipage}
+\end{center}
 
 \subparagraph*{Discussion}\label{discussion}
 
@@ -306,10 +346,16 @@ If you studied the previous example carefully, you might notice that this exampl
 There is a subtle differences: variable \pr|X0| has been removed and its usages changed to \pr|X1|.
 This example demonstrates how this seemingly small change impacts the analysis result.
 
+\begin{center}
+\begin{minipage}{\textwidth}
 \begin{cmdlisting}[label={lst:ex4-run-cmd}]
 pymwp infinite/infinite_3.c --fin --info --no_time
 \end{cmdlisting}
+\end{minipage}
+\end{center}
 
+\begin{center}
+\begin{minipage}{\textwidth}
 \begin{outlisting}[label={lst:ex4-output}]
 INFO (result): foo is infinite
 INFO (result): Possibly problematic flows:
@@ -317,6 +363,8 @@ INFO (result): X1 → X1 ‖ X2 → X1 ‖ X3 → X1
 INFO (result): Total time: 0.0 s (2 ms)
 INFO (file_io): saved result in output/infinite_3.json
 \end{outlisting}
+\end{minipage}
+\end{center}
 
 \subparagraph*{Discussion}
 
@@ -337,7 +385,7 @@ Try to guess the analysis outcome before determining the result with pymwp\index
 
 \begin{center}
 \begin{minipage}{\textwidth}
-\cinputlisting{dense_loop_og.c}
+\cinputlisting{dense_loop.imp}
 \captionof{lstlisting}[Challenge program \texttt{dense\_loop.c}]{A challenge program \texttt{dense\_loop.c}.}
 \label{lst:challange}
 \end{minipage}
@@ -348,16 +396,24 @@ By inspection, try to determine if this program is polynomially bounded \wrt its
 
 It is unknown which \texttt{if} branch will be taken, and whether the \pr|while| loop will terminate\index{termination}, but this is not a problem for determining the result.
 
+\begin{center}
+\begin{minipage}{\textwidth}
 \begin{cmdlisting}[label={lst:ex5-run-cmd}]
 pymwp other/dense_loop.c --fin --no_time --info
 \end{cmdlisting}
+\end{minipage}
+\end{center}
 
+\begin{center}
+\begin{minipage}{\textwidth}
 \begin{outlisting}[label={lst:ex5-output}]
 INFO (result): Bound: X0' ≤ max(X0,X2)+X1 ∧ X1' ≤ X0*X1*X2 ∧ X2' ≤ max(X0,X2)+X1
 INFO (result): Bounds: 81
 INFO (result): Total time: 0.0 s (29 ms)
 INFO (file_io): saved result in output/dense_loop.json
-\end{outlisting}\symbo{Xprime}
+\end{outlisting}
+\end{minipage}
+\end{center}
 
 \subparagraph*{Discussion}
 Even with just 3 variables we can see---in the obtained bound expression and the number of bounds---that this is a complicated derivation problem.

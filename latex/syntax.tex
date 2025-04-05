@@ -85,7 +85,7 @@
             title={},
             listing only,
             listing options={language=#2,numbers=none,
-            style=solarized-light,backgroundcolor=\color{#5},{#6},##3},
+            style=solarized-light,backgroundcolor=\color{#5},#6},
             ##2
         }}%
         \def\withTitle{\tcblisting{
@@ -104,7 +104,7 @@
             listing only,
             listing options={
                 language=#2,numbers=left,
-                style=solarized-light,backgroundcolor=\color{#5},{#6},##3},
+                style=solarized-light,backgroundcolor=\color{#5},#6},
             ##2
         }}%
         \IfBooleanTF{##1}{\WithoutTitle}{\withTitle}}
@@ -131,9 +131,10 @@
 }
 
 
-\newlang[out]{text}{Output}{sbase01}{sbase3}{}
-\newlang[cmd]{text}{cmd}{sbase01}{consolebg}{numbers=none}
+\newlang[out]{text}{output}{sbase01}{sbase3}{}
+\newlang[cmd]{text}{cmd}{sbase01}{consolebg}{numbers=none,prebreak=none}
 \newlang[c]{C}{C}{sblue}{sbase3}{}
+\newlang[cstar]{C}{C*}{sviolet}{sbase3}{}
 \newlang[ompcode]{OpenMP}{omp}{scyan}{sbase3}{}
-\newlang[imp]{IMP}{Imp}{sgreen}{sbase3}{}
-\newlang[ces]{ces}{ces}{sgreen}{sbase3}{}
+\newlang[imp]{IMP}{imp}{sgreen}{sbase3}{}
+\newlang[ces]{ces}{CES}{sgreen}{sbase3}{}

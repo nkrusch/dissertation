@@ -318,7 +318,7 @@ $\begin{pNiceMatrix}[first-row,first-col]
 \prm{X}_n & \iddots &      & \ddots
 \end{pNiceMatrix}$
 \end{center}
-\caption[Variables labeling of an mwp-matrix]{Variables labeling of an mwp-matrix\index{mwp-matrix}.}
+\caption[Variable-labels of an mwp-matrix]{Variable-labels of an mwp-matrix\index{mwp-matrix}.}
 \label{fig:labels}
 \end{figure}
 
@@ -513,7 +513,7 @@ The \textsc{mwp}\(^\infty\) variant of the flow calculus\index{mwp-calculus} int
 Recall the program from~\autoref{ex:bounds1},
 
 %! suppress = FileNotFound
-\impinputlisting{derivable.c}
+\impinputlisting[][numbers=none]{derivable.imp}
 \captionof{lstlisting}[Derivable program]{A derivable program.}
 \label{lst:ex-derivable}
 
@@ -548,7 +548,7 @@ The program bound is a conjunction of the variables' mwp-bounds\index{mwp-bound}
 Consider the program fragment from~\autoref{ex:bounds2},
 
 %! suppress = FileNotFound
-\impinputlisting{failing.c}
+\impinputlisting[][numbers=none]{failing.imp}
 \captionof{lstlisting}[Loop that always fails the derivation]{A loop that always fails the derivation.}
 \label{lst:ex-failing}
 
@@ -589,7 +589,7 @@ the complete program fails because it contains a command that is not derivable\i
 Consider the following program, that is a slightly modified version of~\autoref{ex:bounds2F},
 
 %! suppress = FileNotFound
-\impinputlisting{partial.c}
+\impinputlisting[][numbers=none]{partial.imp}
 \captionof{lstlisting}[Loop that fails for some derivation paths]{A loop that fails for some derivation paths.}
 \label{lst:partial-fail}
 
@@ -681,13 +681,13 @@ The input program is in~\autoref{lst:ex-exponent2}.
 
 \begin{center}
 \begin{minipage}{\textwidth}
-\cinputlisting{exponent2_og.c}
+\cinputlisting{exponent2.c}
 \captionof{lstlisting}[Program with exponential variable value growth]{A program with exponential variable value growth.}
 \label{lst:ex-exponent2}
 \end{minipage}
 \end{center}
 
-\paragraph*{Step 1.} Analyze the command \pr|result = result * base| (simplified to \pr|r=r*b|).
+\paragraph*{Step 1.} Analyze the command \pr|result = result * base| (simplified to \pr|r=r*b| in the following).
 It admits three derivations (\(\pi_0\), \(\pi_1\) and \(\pi_2\)).
 
 \begin{center}

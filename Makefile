@@ -41,10 +41,10 @@ loc:
 	cloc . --exclude-dir=tex_version,env,.github,.idea
 
 update:
+	cp ../review/s1-aims/text.tex text/ch-aims.tex
 	cp ../review/s2-icc/text.tex text/bg-icc.tex
 	cp ../review/s2-mwp/text.tex text/bg-mwp.tex
 	cp ../review/s2-loops/text.tex text/bg-loops.tex
 	cp ../review/tool-guide/text.tex text/pubs-pymwp-guide.tex
-	cp ../review/s1-aims/text.tex text/ch-aims.tex
 	cp -R ../review/listings/. code
 
