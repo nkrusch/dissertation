@@ -45,6 +45,7 @@ update:
 	cp ../review/s2-icc/text.tex text/bg-icc.tex
 	cp ../review/s2-mwp/text.tex text/bg-mwp.tex
 	cp ../review/s2-loops/text.tex text/bg-loops.tex
+	cp ../review/s2-security/text.tex text/bg-security.tex
 	cp ../review/tool-guide/text.tex text/pubs-pymwp-guide.tex
 	cp -R ../review/listings/. code
 

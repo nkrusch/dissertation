@@ -5,6 +5,13 @@
 %This challenge seems unique in the combination of the possibility for unmastered complexity
 %-- programs are among the most complex things ever conceived --
 %and the ultimate, but misleading, simplicity of a world of zeros and ones alone.''~\cite{dijkstra1979}
+%These amazing advances in computer application can distract attention from the fact that Computer Science
+%also has a central core of fundamental discoveries which are particular to itself as an independent
+%intellectual discipline. Comput- ing Research is driven, like research in other mature branches of
+%pure science, by natural curiosity, exploring the basic foundations and limitations of the pro- grammable computer,
+%independent of any particular area of application. Because of its effective combination of pure knowledge
+%and applied invention, Computer Science can reasonably be classified as a branch of Engineering Science.
+%\cite{hoare2006}
 
 There is a feature about programs that has always fascinated me immensely.
 It is that there are \emph{multiple different ways} to write a program to compute the \emph{same result}.
@@ -12,7 +19,10 @@ Essentially, we fix the program input and output, but are free to change what ha
 Software engineers will recognize this activity as the art of refactoring.
 A more scientifically inclined reader will describe it as multiple algorithms compute the same function.
 
-To demonstrate the idea, consider the following two programs where \pr|bit| is either \(0\) or \(1\).
+To demonstrate the idea, consider the two programs in~\autoref{lst:intro} where the variable \pr|bit| is either \(0\) or \(1\).
+It is clear the programs look different.
+Yet, I claim they compute equivalent results.
+
 \begin{center}
 \begin{minipage}{.3\textwidth}
 \begin{lstlisting}[nolol,label={p1},frame=none,numbers=none,aboveskip=0pt,belowskip=0pt]
@@ -24,10 +34,10 @@ else     { Z = Y; }
 \begin{lstlisting}[nolol,label={p2},frame=none,numbers=none,aboveskip=0pt,belowskip=0pt]
 Z = X * bit + Y * (1 - bit);
 \end{lstlisting}
+\captionof{lstlisting}[Equivalent programs]{Equivalent programs.}
+\label{lst:intro}
 \end{minipage}
 \end{center}
-It is clear the programs look different. 
-Yet, I claim they compute equivalent results.
 
 It is natural to ask \enquote{which one is better?}
 The former is {easier} to understand {to a human};
@@ -58,11 +68,6 @@ This naturally leads to the question, \enquote{what can we do with such a langua
 See \url{https://stackoverflow.com/questions/315340} for an inspirational warm-up.}
 Every manuscript of this dissertation is an instance responding to this broader question.
 
-% These amazing advances in computer application can distract attention from
-%the fact that Computer Science also has a central core of fundamental discoveries
-%which are particular to itself as an independent intellectual discipline. Computing Research is driven, like research in other mature branches of pure science, by natural curiosity, exploring the basic foundations and limitations of the programmable computer, independent of any particular area of application. Because of its effective combination of pure knowledge and applied invention, Computer
-%Science can reasonably be classified as a branch of Engineering Science. \cite{hoare2006}
-
 The existing works in implicit computational complexity focus primarily on \emph{defining} theoretical systems that ensure desirable runtime properties;
 typically, in terms of computational resource usage (\cf~\autoref{tab:icc-results}).
 What separates this dissertation from those works is that it never defines such systems;
@@ -76,10 +81,10 @@ The task of expanding ICC outside its traditional (theoretical) realm is difficu
 \item Taking any pure theory and applying it reveals the shortcomings of the theory, and those issues must then be resolved.
 
 \item Broad insight is required to first identify suitable application domains and to convert theories to applications.
-A supporting case exists in automata theory\footnote{
-The classic formulation of Parikh's Theorem concerns language expressiveness.
-Its usefulness in applications was enabled {only decades later}, by the development of efficient algorithms,
-enabling the exploitation of Parikh's Theorem in applications including SMT-solvers, verification of cryptographic protocols and concurrent programs, query evaluation over graph databases, \etc~\cite[pg. 2]{hague2024}}.
+Evidence supporting this statement can be found, \eg in automata theory\footnote{
+The classic formulation of Parikh's Theorem concerns language expressiveness;
+however, its usefulness in applications was enabled {only decades later}, by the development of efficient algorithms.
+Parikh's Theorem has since then been exploited in applications including SMT solvers, verification of cryptographic protocols and concurrent programs, and query evaluation over graph databases, to name a few~\cite[pg. 2]{hague2024}}.
 
 \item Presenting the applications requires communicating the findings to (potentially new) audiences who are motivated differently to assess the {usefulness} of those findings.
 \end{enumerate}
@@ -110,15 +115,15 @@ For example, a formal model of TMs in~\textcite{forster2020} took five years to 
 In contrast, the programming languages-based approach of implicit computational complexity makes formal reasoning more accessible.
 The findings of this dissertation are sufficient to motivate and justify the effort for undertaking rigorous formalization projects.
 
-%\begin{figure}[t]
-%    \begin{mdframed}
-%        \paragraph*{Main hypothesis.}
-%        \color{red}{write here very clearly.}
-%    \end{mdframed}
-%    \caption[Main hypothesis summarized]
-%    {Main hypothesis summarized.}
-%    \label{fig:hypothesis}
-%\end{figure}
+\begin{figure}[t]
+\begin{mdframed}
+\paragraph*{Main hypothesis.}
+The utility of implicit computational complexity extends beyond \emph{theoretical reasoning} about the usage of computational resources.
+\end{mdframed}
+\caption[Main hypothesis summarized]
+{Main hypothesis summarized.}
+\label{fig:hypothesis}
+\end{figure}
 
 \subsection{Overview of the Dissertation Manuscripts}
 \label{subsec:conn-papers}
@@ -225,11 +230,14 @@ The listings will display, in bottom right corner, the associated programming la
 \toprule
 Language & Color & Description \\
 \midrule
-C    && the C language \\
-C*   && a generic C-\emph{like} language (more broadly). \\
-omp  && C code that includes OpenMP directives \\
-imp  && the simple imperative language of mwp-calculus \\
-cmd  && runnable terminal (console) command \\
+C     && the C language \\
+C*    && a generic C-like language \\
+cmd   && an executable terminal command \\
+Imp   && the simple imperative language of mwp-calculus \\
+omp   && C code that includes OpenMP directives \\
+Coq   && code for Coq (Roqc) interactive theorem prover \\
+Dafny && Dafny programming language \\
+Java  && the Java language \\
 \bottomrule
 \end{tabular}\end{center}
 \caption{Code listings languages.}
@@ -239,7 +247,6 @@ cmd  && runnable terminal (console) command \\
 When referring to a specific line of source code or an algorithm, we write L, for \underline{l}ine;
 followed by a number or a numeric range that specifies the rows of interest.
 For example, L3 means \enquote{line number 3}, and L10--12 means \enquote{lines 10 to 12}.
-
 
 \paragraph*{Distinguishing variable states.}
 When referring to the same variable in different states of computation, we use special notation to identify the \emph{new} (post) states.
