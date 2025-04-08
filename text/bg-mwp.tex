@@ -217,28 +217,28 @@ The language adjustment is now a prerequisite to obtain the technical enhancemen
 The loop analysis variant is implemented in pymwp\index{pymwp} as a special mode called mwp\(_\ell\).
 
 \begin{landscape}
-\begin{table}[p!]\centering
-\begin{NiceTabular}{@{}lXlllll@{}}
+\begin{table}[p]
+\begin{NiceTabularX}{\hsize}{XXllll}
 \toprule
   & & \textbf{The original} & \textbf{The enhanced} & \textbf{The pymwp} & \textbf{Postconditions} \\
 Phase & Description & \textbf{flow calculus} & \textbf{\textsc{mwp}\(^\infty\) calculus} & \textbf{static analyzer} & \textbf{via mwp-bounds} \\
 \midrule
   & Motivation & complexity theory & toward static analysis & static analysis & verification \\
-\textsc{input}
+\textsc{analysis input}
   & Language & \(\mathcal{L}\) (baseline)\smtabularnote{A language is similar to IMP of~\textcite{nielson2010,cpierce20221}.} & \(\mathcal{L} + f +\) recursion & \(\mathcal{L} \mapsto \) C99 & loops \(\subset \mathcal{L}\) \\
-\textsc{analysis}
+\textsc{analysis procedure}
   & Calculus variant & \textsc{mwp} & \textsc{mwp}\(^\infty\) & \textsc{mwp}\(^\infty\) & \textsc{mwp}\(^\infty\) \\
   & Matrix type & simple flows & complex & complex & complex \\
   & Matrix count & 0--\(3^k\) & 1 & 1 & 1 \\
   & Failure recovery & complete restart & \(\infty\) & \(\infty\) & \(\infty\) \\
   & Feedback on failure & none & none & failing variables & failing variables \\
-\textsc{output}
+\textsc{analysis output}
   & Bounds discovery & immediate & brute force & evaluation & evaluation \\
   & Generated bound & arbitrary & exists (y/n)\smtabularnote{Analysis determines if a bound exists, but does not provide bounds by default.} & arbitrary & optimal \\
   & Bounds granularity & whole-program & whole-program & whole-program & variables \\
   & Implementation & none & pymwp 0.1.6 & pymwp 0.4.2 & mwp\(_\ell\) 0.5.4 \\
 \bottomrule
-\end{NiceTabular}
+\end{NiceTabularX}
 \caption[Technical developments of the flow calculus of mwp-bounds]
 {Comparison of technical developments and features in works extending the flow calculus of mwp-bounds.}
 \label{tab:evo}

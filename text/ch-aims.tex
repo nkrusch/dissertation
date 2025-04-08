@@ -23,6 +23,7 @@ To demonstrate the idea, consider the two programs in~\autoref{lst:intro} where 
 It is clear the programs look different.
 Yet, I claim they compute equivalent results.
 
+\begin{minipage}{\textwidth}
 \begin{center}
 \begin{minipage}{.3\textwidth}
 \begin{lstlisting}[nolol,label={p1},frame=none,numbers=none,aboveskip=0pt,belowskip=0pt]
@@ -34,10 +35,11 @@ else     { Z = Y; }
 \begin{lstlisting}[nolol,label={p2},frame=none,numbers=none,aboveskip=0pt,belowskip=0pt]
 Z = X * bit + Y * (1 - bit);
 \end{lstlisting}
+\end{minipage}
+\end{center}
 \captionof{lstlisting}[Equivalent programs]{Equivalent programs.}
 \label{lst:intro}
 \end{minipage}
-\end{center}
 
 It is natural to ask \enquote{which one is better?}
 The former is {easier} to understand {to a human};
@@ -214,43 +216,47 @@ Thus, each manuscript extends beyond the paper pages of this dissertation.
 
 \subsubsection{Notational Conventions}
 
-\paragraph*{Regular and special figures.}
-The significance of the dissertation figures is communicated via framing.
+\paragraph*{Significant figures.}
+Important figures, that present some fundamental concept, have a boxed frame.
 Regular figures have no frame.
-A figure with a boxed frame means it contains a fundamental concept and should be viewed with additional care.
 
 \paragraph*{Code blocks and line numbers.}
-Syntactic constructs (variables, expressions, commands, \etc) appearing in textual paragraphs are typeset in \texttt{teletype}.
-Larger code blocks are displayed in dedicated listings.
-The listings will display, in bottom right corner, the associated programming language or context according to~\autoref{tbl:pls}.
+Syntactic constructs (variables, expressions, commands, \etc), that appear in textual paragraphs, are typeset in \texttt{teletype}.
+Larger code blocks are displayed in dedicated standalone listings.
+The listings will display, in bottom right corner, the associated programming language or context according to~\autoref{tab:pls}.
+In the same table, version shows the programming language or specification release version assumed in the code blocks.
+The pseudo-languages have no \enquote{version}.
 
 \begin{table}[h]
 \begin{center}
-\begin{tabular}{@{}lcl@{}}
+\begin{tabular}{@{}lllr@{}}
 \toprule
-Language & Color & Description \\
+\multicolumn{2}{@{}l}{Language} & Description & Version \\
 \midrule
-C     && the C language \\
-C*    && a generic C-like language \\
-cmd   && an executable terminal command \\
-Imp   && the simple imperative language of mwp-calculus \\
-omp   && C code that includes OpenMP directives \\
-Coq   && code for Coq (Roqc) interactive theorem prover \\
-Dafny && Dafny programming language \\
-Java  && the Java language \\
+\langclr{cces}      & CES   & cost equation system &  / \\
+\langclr{ccmd}      & cmd   & executable shell/terminal command & /  \\
+\langclr{ccstar}    & C*    & a generic imperative C-like language & / \\
+\langclr{cc}        & C     & C language & C99 \\
+\langclr{cdafny}    & Dafny & Dafny language & 4.10.0 \\
+\langclr{cimp}      & Imp   & the imperative language of mwp-calculus & / \\
+\langclr{cjava}     & Java  & Java language & SE 24 \\
+\langclr{compcode}  & OMP   & C code that includes OpenMP directives & 6.0 \\
+\langclr{crocq}     & Rocq  & Roqc interactive theorem prover & 9.0.0 \\
+\langclr{cmathc}    & ssreflect & the ssreflect language extension of Rocq & 2.3.0 \\
 \bottomrule
 \end{tabular}\end{center}
-\caption{Code listings languages.}
-\label{tbl:pls}
+\caption[The programming languages of code listings]{The programming languages of code listings.}
+\label{tab:pls}
 \end{table}
+Plaintext command outputs are labelled as \enquote{output}.
 
 When referring to a specific line of source code or an algorithm, we write L, for \underline{l}ine;
 followed by a number or a numeric range that specifies the rows of interest.
 For example, L3 means \enquote{line number 3}, and L10--12 means \enquote{lines 10 to 12}.
 
 \paragraph*{Distinguishing variable states.}
-When referring to the same variable in different states of computation, we use special notation to identify the \emph{new} (post) states.
-This is the convention of the \emph{Z specification language}\index{Z specification language}~\cite[p. 34]{furia2014} of~\textcite{spivey1992}.
+When referring to the same variable in different states of computation, we use special notation to identify the \emph{new} (post) states,
+in the style of the Z specification language\index{Z specification language} of~\textcite{spivey1992}.
 A plain variable refers to a state where the variable holds its \emph{initial} value.
 If the same variable has a postfix decoration \pr|'| then it refers to a state of its \emph{final} value.
 For example, \pr|X| refers to the initial value and \pr|X'| to the final value.
@@ -272,8 +278,7 @@ To recover a document from the Internet Archive, use the following format, subst
 \pr|https://web.archive.org/web/<URL>|
 \end{center}
 
-\begin{example}
-The following \href{https://types22.inria.fr/files/2022/06/TYPES_2022_paper_14.pdf}{URL} may disappear in the future.
+For example, the following \href{https://types22.inria.fr/files/2022/06/TYPES_2022_paper_14.pdf}{URL} may disappear in the future.
 
 \begin{center}
 \begin{minipage}{\textwidth}
@@ -292,7 +297,6 @@ https://web.archive.org/web/https://types22.inria.fr/files/2022/06/TYPES_2022_pa
 \end{cmdlisting}
 \end{minipage}
 \end{center}
-\end{example}
 
 If a referenced external document was not readily available even at the time of writing this dissertation,
 the document is hosted with the software deposit of this dissertation, \cf~\autoref{subsub:sw}.

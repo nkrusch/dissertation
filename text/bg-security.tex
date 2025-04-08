@@ -158,7 +158,7 @@ The more advanced benchmarks involve cases of aliasing, reflection, context sens
 \label{ni-bool-secure}
 \end{minipage}
 \captionof{figure}[Secure and insecure Boolean operations]{
-\textsc{Boolean Operations.} The programs are parametric on a Boolean variable \pr|high|.
+{Boolean Operations.} The programs are parametric on a Boolean variable \pr|high|.
 In the insecure version, the value of \pr|high| is deducible from the value of \pr|ret|.
 }\label{fig:bool-ops}
 \end{minipage}
@@ -177,7 +177,7 @@ In the insecure version, the value of \pr|high| is deducible from the value of \
 \label{ni-array-secure}
 \end{minipage}
 \captionof{figure}[Implicit information flow leak in an array]{
-\textsc{Arrays Implicit Leak.}
+{Arrays Implicit Leak.}
 The insecure program's output reveals if the value of \pr|secret| is or is not 42.
 This leak\index{leak} is small, since it corresponds to 1 bit of information.
 However, the secure version reveals nothing about the value of \pr|secret|.}
@@ -198,7 +198,7 @@ However, the secure version reveals nothing about the value of \pr|secret|.}
 \label{ni-loop-secure}
 \end{minipage}
 \captionof{figure}[High conditional incremental leak]{
-\textsc{High Conditional Incremental Leak.}
+{High Conditional Incremental Leak.}
 Through the returned value \pr|l|, the insecure version reveals implicitly\index{information flow!implicit} the value of the secret variable \pr|h|.
 Compared to~\autoref{fig:arrays}, the program reveals every value of \pr|h|, so the leak\index{leak} here is more significant.
 In the secure version, the value of \pr|h| cannot be deduced by the same reasoning.

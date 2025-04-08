@@ -39,6 +39,8 @@
 \newcommand{\circled}[1]{\hspace{-.5ex}\raisebox{-0.2\height}{\scalebox{.6}{%
 \tikz{\node[circle,inner sep=2pt,outer sep=.4pt,fill=white,draw=black,solid,thick]{\textbf{#1}};}}}}
 
+\newcommand{\langclr}[1]{\tikz{\node[rectangle,minimum size=3mm,rounded corners=3pt,fill=#1]{};}}
+
 % add index terms to \includepdf
 \makeatletter
 \newcommand\addtoindex[2]{%
@@ -91,7 +93,6 @@
 \newcommand{\BNF}{\enspace \ensuremath{\Vert} \enspace} % BNF separator
 \newcommand{\mat}[1]{\left(\begin{smallmatrix}#1\end{smallmatrix}\right)} % Shorthand for matrices
 \ebproofnewstyle{small}{separation = 1em, rule margin = .5ex}
-
 
 \newtheorem{thm}{Theorem}
 \newtheorem{corollary}[thm]{Corollary}

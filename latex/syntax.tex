@@ -128,17 +128,18 @@
             text=sbase3,fill=#4] at (frame.south east) {#3};},
         listing only,
         listing options={language=#2,numbers=left,
-        style=solarized-light,backgroundcolor=\color{#5},{#6},##2},##1
+        style=solarized-light,backgroundcolor=\color{#5},#6,##2},##1
     }
 }
 
-\newlang[out]{text}{output}{sbase01}{sbase3}{}
-\newlang[cmd]{text}{cmd}{sbase01}{consolebg}{numbers=none,prebreak={}}
-\newlang[c]{C}{C}{sblue}{sbase3}{}
-\newlang[cstar]{C}{C*}{sviolet}{sbase3}{}
-\newlang[ompcode]{OpenMP}{omp}{scyan}{sbase3}{}
-\newlang[imp]{IMP}{imp}{sgreen}{sbase3}{}
-\newlang[ces]{ces}{CES}{sgreen}{sbase3}{}
-\newlang[coq]{Coq}{coq}{scoral}{sbase3}{escapeinside={}}
-\newlang[dafny]{Dafny}{\color{sbase03}{Dafny}}{dyellow}{sbase3}{escapeinside={}}
-\newlang[java]{Java}{Java}{sgreen}{sbase3}{}
+\newlang[out]{text}{output}{cout}{sbase3}{}
+\newlang[cmd]{text}{cmd}{ccmd}{consolebg}{numbers=none,prebreak={}}
+\newlang[c]{C}{C}{cc}{sbase3}{}
+\newlang[cstar]{C}{C*}{ccstar}{sbase3}{}
+\newlang[ompcode]{OpenMP}{OMP}{compcode}{sbase3}{}
+\newlang[imp]{IMP}{Imp}{cimp}{sbase3}{}
+\newlang[ces]{ces}{CES}{cces}{sbase3}{}
+\newlang[rocq]{Rocq}{Rocq}{crocq}{sbase3}{escapeinside={}}
+\newlang[dafny]{Dafny}{\color{sbase03}{Dafny}}{cdafny}{sbase3}{escapeinside={}}
+\newlang[java]{Java}{Java}{cjava}{sbase3}{escapeinside={}}
+\newlang[mathcomp]{Rocq}{ssreflect}{cmathc}{sbase3}{escapeinside={}}
