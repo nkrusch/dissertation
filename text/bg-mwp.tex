@@ -15,7 +15,7 @@ As a motivating preview, Examples~\ref{ex:bounds1} and~\ref{ex:bounds2} demonstr
 \begin{example}[Polynomially bounded program]\label{ex:bounds1}
 The variable values of the program
 \begin{center}
-\lstinline[language=IMP]|X1=X2+X3; X1=X1+X1|
+\pr|X1=X2+X3; X1=X1+X1|
 \end{center}
 are bounded by \(x_1' \leq 2x_2 + 2x_3\)\symbo{xpre}\symbo{xprime2} and \(x_2' \leq x_2\)\symbo{xpre}\symbo{xprime2} and \(x_3' \leq x_3\)\symbo{xpre}\symbo{xprime2}.
 Each variable can be bounded by at most a polynomial and the flow calculus\index{mwp-calculus} accepts the program.
@@ -26,7 +26,7 @@ holds for all variables in all program states.
 \begin{example}[An always failing program]\label{ex:bounds2}
 Consider a program that repeats, for \pr|X2|\symbo{xvar} times, an arithmetic operation on the variable \pr|X1|\symbo{xvar}.
 \begin{center}
-\lstinline[language=IMP]|X1=1; loop X2 {X1=X1+X1}|
+\pr|X1=1; loop X2 {X1=X1+X1}|
 \end{center}
 The value of \pr|X2| never changes from its initial value;
 therefore, the final value of \pr|X2| is trivially bounded by a polynomial \(x_2' \leq x_2\)\symbo{xpre}\symbo{xprime2}.
@@ -75,8 +75,7 @@ If a derivable\index{derivability} program terminates\index{termination},
 the soundness theorem~\cite[p. 11]{jones2009} guarantees that the variable value growth is polynomially bounded.
 
 \begin{theorem}[{Soundness of mwp-calculus}]\label{mwp-soundness}
-\index{soundness theorem}
-\index{mwp-calculus!soundness theorem}\symbo{cmat}\symbo{cmatsem}
+\index{soundness of mwp-calculus}\symbo{cmat}\symbo{cmatsem}
 \(\vdash \prm{C} : M \text{ implies } \vDash \prm{C} : M \).
 \end{theorem}
 
