@@ -31,7 +31,7 @@ A {loop} has two parts: a header (L\ref{line:header})\index{loop header} and a b
 
 \begin{center}
 \begin{minipage}{\textwidth}
-\cstarinputlisting{insertion.c}
+\cstarinputlisting[][escapeinside=||]{insertion.c}
 \captionof{lstlisting}[Loop of insertion sort]{Adaptation of insertion sort from~\textcite{cormen2009}.}
 \label{lst:loop-ex}
 \end{minipage}
@@ -60,7 +60,7 @@ The canonical loop form simplifies several program analyses and makes transforma
 A \emph{canonical loop}~\cite[p. 196--202]{openmp_api}\index{canonical loop}\footnote{
 The definition is specific to the programming model of~\autoref{openmp} and~\autoref{sec:vmcai}.} has form,
 \begin{center}
-\begin{minipage}{.6\textwidth}
+\begin{minipage}{\textwidth}
 \cstarinputlisting{canonical.imp}
 \captionof{lstlisting}[Canonical loop form]{Canonical loop form.}
 \label{lst:canonical}
@@ -230,23 +230,23 @@ The interesting variables, that reference a memory location of interest, are emp
 
 \begin{center}
 \begin{minipage}[t]{.4\textwidth}
-\cstarinputlisting[][emph={X},emphstyle={\color{pthread}\textbf},numbers=none]{dep-true.imp}
+\cstarinputlisting[][emph={X},emphstyle={\color{pthread}\textbf},numbers=none,escapeinside={||}]{dep-true.imp}
 \captionof{lstlisting}[True dependence]{True dependence.}
 \label{dep-true}
 \end{minipage}\hspace{3em}
 \begin{minipage}[t]{.4\textwidth}
-\cstarinputlisting[][emph={X},emphstyle={\color{pthread}\textbf},numbers=none]{dep-anti.imp}
+\cstarinputlisting[][emph={X},emphstyle={\color{pthread}\textbf},numbers=none,escapeinside={||}]{dep-anti.imp}
 \captionof{lstlisting}[Antidependence]{Antidependence.}
 \label{dep-anti}
 \end{minipage}
 
 \begin{minipage}[t]{.4\textwidth}
-\cstarinputlisting[][emph={X},emphstyle={\color{pthread}\textbf},numbers=none]{dep-out.imp}
+\cstarinputlisting[][emph={X},emphstyle={\color{pthread}\textbf},numbers=none,escapeinside={||}]{dep-out.imp}
 \captionof{lstlisting}[Output dependence]{Output dependence.}
 \label{dep-out}
 \end{minipage}\hspace{3em}
 \begin{minipage}[t]{.4\textwidth}
-\cstarinputlisting[][emph={X},emphstyle={\color{pthread}\textbf},numbers=none]{dep-control.imp}
+\cstarinputlisting[][emph={X},emphstyle={\color{pthread}\textbf},numbers=none,escapeinside={||}]{dep-control.imp}
 \captionof{lstlisting}[Control dependence]{Control dependence.}
 \label{dep-control}
 \end{minipage}
@@ -286,7 +286,7 @@ More precisely, a statement \pr|S2| has a loop-carried dependence on statement \
 \begin{center}
 \begin{minipage}{\textwidth}
 \begin{minipage}{.4\textwidth}
-\cstarinputlisting{loop-carried.c}
+\cstarinputlisting[][escapeinside=||]{loop-carried.c}
 \end{minipage}\hfill%
 \begin{minipage}{.5\textwidth}
 \hfill\begin{tikzpicture}

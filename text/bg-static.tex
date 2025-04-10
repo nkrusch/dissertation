@@ -86,14 +86,14 @@ A sound analyzer never misses a violation---\ie when a property does \underline{
 A complete analyzer detects all satisfactory programs, but also accepts cases where the tracked property does not truly hold.
 The analysis approximation should be \emph{conservative}\index{conservative analysis}
 whereby all errors occur on the \enquote{safe side} of the application domain~\cite[p. 5]{moller2023}.
-Refer to Figures~\ref{fig:approx} and~\ref{fig:bug-verify} for visual examples.
+Refer to Figures~\ref{fig:approx} and~\ref{fig:bug-verify} for examples.
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=.9\textwidth,keepaspectratio]{fig_bugverify}
+\includegraphics[width=.85\textwidth,keepaspectratio]{fig_bugv}
 \caption[Sound and incomplete bug detector vs. verifier]{
-Comparison of sound and incomplete bug detector vs. verifier, inspired by~\textcite{moller2024}.
-An error refers to a property-X tracked by the analyzer.}
+Comparison of sound and incomplete bug detector vs. sound and incomplete verifier~\cite{moller2024}.
+An error refers to a property tracked by the analyzer.}
 \label{fig:bug-verify}
 \end{figure}
 
@@ -158,10 +158,10 @@ but may have issues with multiphase loops and with programs with require complex
 \begin{minipage}{\textwidth}
 \cesinputlisting{example.ces}
 \captionof{lstlisting}[A cost equation system]{
-    A simple cost equation system representing an exponential function.
-    The \pr|A(n)| is the \emph{head}, and the terms right of head form the \emph{body}.
-    The body terms represent costs and constraints.
-    The analyzer PUBS assigns the CES an upper bound \(2^A-1\).}
+A simple cost equation system (CES) representing an exponential function.
+The \pr|A(n)| is the \emph{head}, and the terms right of head form the \emph{body}.
+The body terms represent costs and constraints.
+The analyzer PUBS assigns the CES an upper bound \(2^A-1\).}
 \label{fig:ces}
 \end{minipage}
 \end{center}
@@ -172,13 +172,13 @@ but may have issues with multiphase loops and with programs with require complex
 The following list presents a small survey of automatic complexity analysis implementations, interpreted broadly.
 It prioritizes tools that are open source or at minimum provide a public interface.
 
-\begin{itemize}
+\begin{description}
 
-\item \href{https://costa.fdi.ucm.es/~costa/pubs/pubs.php}{{PUBS}: Practical Upper Bounds Solver}\index{PUBS}~\cite{albert2010}
+\item \href{https://costa.fdi.ucm.es/~costa/pubs/pubs.php}{\emph{PUBS}: Practical Upper Bounds Solver}\index{PUBS}~\cite{albert2010}
       computes closed form upper bounds for cost equation systems\index{cost equation system};
       specifically, for the \pr|entry| and all cost equations that depend on \pr|entry|.
 
-\item \href{https://aprove.informatik.rwth-aachen.de}{{AProVE}}\index{AProVE}~\cite{giesl2017}
+\item \href{https://aprove.informatik.rwth-aachen.de}{\emph{AProVE}}\index{AProVE}~\cite{giesl2017}
       produces termination proofs and complexity bounds for
       term rewrite systems (TRS)\index{term rewrite system},
       Java\index{programming language!Java} bytecode\index{bytecode},
@@ -219,7 +219,7 @@ It prioritizes tools that are open source or at minimum provide a public interfa
        written in RaML or OCaml\index{programming language!OCaml}.
        The RaML analysis is based on AARA and can produce precise amortized bounds.
 
-\item \href{https://www.cs.yale.edu/homes/qcar/diss/}{Pastis}~\cite{carbonneaux2017}
+\item \href{https://www.cs.yale.edu/homes/qcar/diss/}{\emph{Pastis}}~\cite{carbonneaux2017}
       is a static analyzer that can infer, but is not limited to, polynomial complexity bounds.
       Additionally, it generates proof certificates that guarantee the validity of the inferred bounds.
 
@@ -227,31 +227,31 @@ It prioritizes tools that are open source or at minimum provide a public interfa
       Higher-Order Size Analysis}~\cite{avanzini2017}
       is a complexity analyzer for program written in a strongly typed functional language.
 
-\item \href{https://github.com/davidnowak/cecoa}{\emph{Cecoa}: polytime computability library}~\cite{feree2018}
+\item \href{https://github.com/davidnowak/cecoa}{\emph{Cecoa}}~\cite{feree2018}
        is a formal library (in Coq/Rocq) based on implicit computational ocmplexity.
        It assists in producing proofs that show a program is poly-time computable\ccxi{p} -- \autoref{icc-formally}.
 
 \item \href{https://costa.fdi.ucm.es/maxcore/}{\emph{MaxCore}\index{MaxCore}}~\cite{albert2019}
-       is an enhanced cost equation solver---related to PUBS and CoFloCo---that improves solving capabilities under complex program control flow.
+       is a cost equation solver that improves solving capabilities under complex program control flow.
        The enhancement is derived from results of a termination analysis.
 
 \item \href{https://www-sop.inria.fr/members/Martin.Avanzini/software/eco-imp/}%
-      {\emph{Eco-Imp}\index{eco-imp}}~\cite{avanzini2020}
+      {\emph{ecoimp}\index{eco-imp}}~\cite{avanzini2020}
       computes expected cost bounds for programs written in a probabilistic imperative \textsc{pWhile} language.
 
-\item \href{https://gitlab.inria.fr/complexityparser/complexityparser/-/tree/master}{{ComplexityParser}\index{ComplexityParser}}~\cite{hainry2021}
+\item \href{https://gitlab.inria.fr/complexityparser/complexityparser/-/tree/master}{\emph{ComplexityParser}\index{ComplexityParser}}~\cite{hainry2021}
       is a complexity analyzer for Java\index{Java}\index{programming language!Java} programs.
       A typable program is guaranteed to run in polynomial time if the program terminates.
       The analyzer is based on~\cite{hainry2015} and~\cite{hainry2018}, discussed more in~\autoref{icc-sec}.
 
-\item \href{https://github.com/statycc/pymwp}{{pymwp}\index{pymwp}}~\cite{aubert2023b}
+\item \href{https://github.com/statycc/pymwp}{\emph{pymwp}\index{pymwp}}~\cite{aubert2023b}
       is an implementation of the flow calculus of mwp-bounds.
       It analyzes C\index{C}\index{programming language!C} programs to determine if the program's variable value growth is polynomially bounded in inputs -- \autoref{sec:atva}.
 
-\item \href{https://zenodo.org/records/10457566}{{Quantitative probabilistic bounds}}~\cite{chatterjee2024}
+\item \href{https://zenodo.org/records/10457566}{\emph{Quantitative probabilistic bounds}}~\cite{chatterjee2024}
       is an analyzer that computes tail and expectation bounds for programs written in a probabilistic imperative programming language \textsc{Prog}.
 
-\end{itemize}
+\end{description}
 
 \subsubsection{Feature Considerations of ICC Techniques}\label{icc-feat}
 
