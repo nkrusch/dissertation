@@ -422,8 +422,9 @@
     articleno    = 25,
     numpages     = 29
 }
+
 @article{dallago2022,
-    title        = {Implicit computation complexity in higher-order programming languages: A Survey in Memory of Martin Hofmann},
+    title        = {{Implicit computation complexity in higher-order programming languages: A Survey in Memory of Martin Hofmann}},
     author       = {Dal Lago, Ugo},
     year         = 2022,
     month        = 3,
@@ -1277,6 +1278,19 @@
     isbn         = 9783319633909,
     issn         = {1611-3349}
 }
+@inproceedings{ngo2018,
+    title        = {Bounded expectations: resource analysis for probabilistic programs},
+    author       = {Ngo, Van Chan and Carbonneaux, Quentin and Hoffmann, Jan},
+    year         = 2018,
+    month        = jun,
+    booktitle    = {Proceedings of the 39th ACM SIGPLAN Conference on Programming Language Design and Implementation},
+    publisher    = {ACM},
+    series       = {PLDI ’18},
+    pages        = {496--512},
+    doi          = {10.1145/3192366.3192394},
+    collection   = {PLDI ’18}
+}
+
 @inbook{casali2013,
     title        = {Extracting Correlated Patterns on Multicore Architectures},
     author       = {Casali, Alain and Ernst, Christian},
@@ -1320,6 +1334,17 @@
     doi          = {10.1007/978-3-319-48989-6_16},
     isbn         = 9783319489896,
     issn         = {1611-3349}
+}
+@phdthesis{floresmontoya2017,
+    title        = {Cost Analysis of Programs Based on the Refinement of Cost Relations},
+    author       = {Antonio Flores Montoya},
+    year         = 2017,
+    month        = {August},
+    address      = {Darmstadt},
+    url          = {http://tuprints.ulb.tu-darmstadt.de/6746/},
+    language     = {en},
+    school       = {Technische Universit{\"a}t Darmstadt},
+    abstract     = {Cost analysis aims at statically inferring the amount of resources, such as time or memory, needed to execute a program. This amount of resources is the cost of the program and it depends on its input parameters. Obtaining a function (in terms of the input parameters) that represents the cost of a program precisely is generally not possible. Thus, cost analyses attempt to infer functions that represent upper or lower bounds of the cost of programs instead.  Many existing cost analyses approach the problem in two stages. First, the target program is transformed into an integer abstract representation where the resource consumption is explicit and second, the abstract representation is analyzed and cost bounds are inferred from it. The advantage of this approach is that the second part is language independent and resource independent. That is, it can be reused across different programming languages and to analyze the program cost with respect to different resources. Cost relations are a possible abstract representation. They are similar to constraint logic programs annotated with costs and they can easily represent both imperative and functional programs.  Existing cost analyses based on cost relations have limited support for programs that have a complex control flow, or present amortized complexity, that is, when the sum of the cost of the parts yields a higher asymptotic cost than the cost of the whole. This thesis identifies these limitations, and presents a new analysis of cost relations that overcomes them.  The analysis can obtain upper and lower bounds of programs expressed as cost relations and it contains three parts:  1. The first part reduces any mutually recursive cost relations to cost relations that only have direct recursion and performs some simplifications.  2. The second part consists of a refinement of cost relations that partitions all possible executions of the program into a finite set of execution patterns named chains. The refinement also infers precise invariants for each of the chains, discards unfeasible execution patterns and proves termination.  3. In the third part of the analysis, cost bounds are inferred compositionally. For that purpose, a novel cost representation, named cost structures, is presented. Cost structures reduce the computation of complex bounds to the inference of simple constraints using linear programming. They can represent polynomial upper and lower bounds of programs with max and min operators.  The analysis is proven sound with respect to a new semantics of cost relations. This semantics distinguishes between terminating and non-terminating executions and models the behavior of non-terminating executions accurately.  In addition, the analysis has been implemented in the tool CoFloCo and it has been extensively evaluated against other state-of-the-art tools and with respect to a variety of benchmarks. These benchmarks include imperative programs, functional programs, and term rewrite systems. CoFloCo performs well in all categories which demonstrates both the power of the analysis and its versatility.}
 }
 @inbook{floresmontoya2014,
     title        = {Resource Analysis of Complex Programs with Cost Equations},
@@ -2277,6 +2302,58 @@
     note         = {Accessed: 2024-12-06},
     type         = {Lecture notes},
     permalink    = {https://web.archive.org/web/20241129204918/https://ppc.cs.aalto.fi/}
+}
+@inbook{terbeek2018,
+    title        = {X-by-Construction},
+    author       = {ter Beek, Maurice H. and Cleophas, Loek and Schaefer, Ina and Watson, Bruce W.},
+    year         = 2018,
+    booktitle    = {Leveraging Applications of Formal Methods, Verification and Validation. Modeling},
+    publisher    = {Springer International Publishing},
+    pages        = {359--364},
+    doi          = {10.1007/978-3-030-03418-4_21},
+    isbn         = 9783030034184,
+    issn         = {1611-3349}
+}
+@inproceedings{rosendahl1989,
+    title        = {Automatic complexity analysis},
+    author       = {Rosendahl, Mads},
+    year         = 1989,
+    booktitle    = {Proceedings of the fourth international conference on Functional programming languages and computer architecture  - FPCA ’89},
+    publisher    = {ACM Press},
+    series       = {FPCA ’89},
+    pages        = {144–156},
+    doi          = {10.1145/99370.99381},
+    url          = {http://dx.doi.org/10.1145/99370.99381},
+    collection   = {FPCA ’89}
+}
+
+@article{wegbreit1975,
+    title        = {Mechanical program analysis},
+    author       = {Wegbreit, Ben},
+    year         = 1975,
+    month        = sep,
+    journal      = {Commun. ACM},
+    publisher    = {Association for Computing Machinery},
+    address      = {New York, NY, USA},
+    volume       = 18,
+    number       = 9,
+    pages        = {528--539},
+    doi          = {10.1145/361002.361016},
+    issn         = {0001-0782},
+    url          = {https://doi.org/10.1145/361002.361016},
+    issue_date   = {Sept. 1975},
+    numpages     = 12,
+}
+@inbook{albert2008,
+    title        = {Automatic Inference of Upper Bounds for Recurrence Relations in Cost Analysis},
+    author       = {Albert, Elvira and Arenas, Puri and Genaim, Samir and Puebla, Germán},
+    year         = 2008,
+    booktitle    = {Static Analysis},
+    publisher    = {Springer Berlin Heidelberg},
+    pages        = {221--237},
+    doi          = {10.1007/978-3-540-69166-2_15},
+    isbn         = 9783540691662,
+    issn         = {1611-3349}
 }
 @misc{torlak2015,
     title        = {Static Analysis},
