@@ -8,12 +8,12 @@ The origin version of this guide is available at \url{https://statycc.github.io/
 \subsubsection{Introduction}
 \label{guide-introduction}
 
-pymwp\index{pymwp} (\enquote{pai m-w-p}) is a tool for automatically performing static analysis on programs written in a subset of the C language\index{C}\index{programming language!C}.
+pymwp\index{pymwp} (\enquote{pai m-w-p}) is a tool for automatically performing static analysis on programs written in a subset of the C language\index{C}.
 It analyzes resource usage and determines if program variables' growth rates are no more than polynomially related to their inputs sizes.
 
 The theoretical foundations are described in paper the \hyperref[sec:fscd]{\enquote{mwp-Analysis Improvement and Implementation: Realizing Implicit Computational Complexity}} (\cf \hyperref[guide-learn-more]{\enquote{Learn More}} for additional references and links).
 The technique is generic and applicable to any imperative language\index{imperative programs}.
-pymwp\index{pymwp} is an implementation demonstrating this technique concretely on C programs\index{C}\index{programming language!C}.
+pymwp\index{pymwp} is an implementation demonstrating this technique concretely on C programs\index{C}.
 The technique is originally inspired by \enquote{A Flow Calculus of mwp-Bounds for Complexity Analysis}\index{mwp-calculus}.
 
 This guide explains pymwp\index{pymwp} usage and behavior through several examples.
@@ -22,7 +22,7 @@ This guide explains pymwp\index{pymwp} usage and behavior through several exampl
 
 For an imperative program, the goal is to discover a polynomially bounded data-flow relation\index{data flow relation}, between the \emph{initial values} of the variables (denoted \pr|X1|,\ldots{},\pr|Xn|) and its \emph{final values} (denoted \pr|X1'|,\ldots{},\pr|Xn'|)\symbo{Xprime}.
 
-For a program written in C language\index{C}\index{programming language!C}, this property can be presented as follows.
+For a program written in C language\index{C}, this property can be presented as follows.
 
 \begin{center}
 \begin{minipage}{\textwidth}
@@ -460,7 +460,7 @@ Describes theoretical foundations behind pymwp\index{pymwp}.
 {\enquote{A Flow Calculus of mwp-Bounds for Complexity Analysis}}\index{mwp-calculus}\\
 Original mwp-flow analysis technique.
 
-\item \href{https://statycc.github.io/pymwp}{Documentation} -- Includes information about supported C language\index{C}\index{programming language!C} features, \etc
+\item \href{https://statycc.github.io/pymwp}{Documentation} -- Includes information about supported C language\index{C} features, \etc
 
 \item \href{https://statycc.github.io/pymwp/demo/}{Online demo} -- Run pymwp\index{pymwp} online on more than 40 examples.
 

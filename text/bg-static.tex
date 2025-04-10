@@ -88,12 +88,12 @@ The analysis approximation should be \emph{conservative}\index{conservative anal
 whereby all errors occur on the \enquote{safe side} of the application domain~\cite[p. 5]{moller2023}.
 Refer to Figures~\ref{fig:approx} and~\ref{fig:bug-verify} for examples.
 
-\begin{figure}[h]
+\begin{figure}[t]
 \centering
 \includegraphics[width=.85\textwidth,keepaspectratio]{fig_bugv}
 \caption[Sound and incomplete bug detector vs. verifier]{
-Comparison of sound and incomplete bug detector vs. sound and incomplete verifier~\cite{moller2024}.
-An error refers to a property tracked by the analyzer.}
+Behavior of sound and incomplete static analyzers: bug detector vs. verifier~\cite{moller2024}.
+Error refers to some property tracked by the analyzer.}
 \label{fig:bug-verify}
 \end{figure}
 
@@ -132,25 +132,25 @@ Numerous techniques can be used to reason about such properties.
 Among the specific and well-established techniques are automatic amortized resource analysis and cost equation systems, presented briefly next.
 
 \paragraph*{Automatic amortized resource analysis.}
-Automatic amortized resource analysis (AARA)~\cite{hoffmann2022} is an automatic static technique for deriving arithmetic resource bounds.
-It originated from works in implicit computation complexity, particular from the contributions of Martin Hofmann.
-In AARA, bounds are analyzed based on the potential method of amortized analysis;
-this adds the ability to account for amortization effects across operation sequences.
-The analysis is based on inference rules such that derivation trees are proofs of the resource bounds.
-AARA-based analyses have been implemented on functional~\cite{hoffmann2017}, imperative~\cite{carbonneaux2015,carbonneaux2017},
-and probabilistic~\cite{ngo2018} programming languages.
+Amortized analysis\index{amortization} averages the time required to perform a sequence of operations over all the operations performed~\cite[p. 451]{cormen2009}.
+It enables to show that the average cost of an operation is small, even if a single operation might be expensive.
+Automatic amortized resource analysis (AARA)~\cite{hoffmann2022} builds on this idea to provide an automatic static technique for deriving arithmetic resource bounds.
+AARA bounds programs based amortized analysis, which adds the ability to account for amortization effects across operation sequences.
+The analysis relies on inference rules, and derivation trees provide proofs of the resource bounds.
+AARA originated from works in implicit computation complexity, particular from the contributions of Martin Hofmann~\cite{hoffmann2022}.
+AARA-based techniques has been implemented on functional~\cite{hoffmann2017}, imperative~\cite{carbonneaux2015,carbonneaux2017}, and probabilistic~\cite{ngo2018} programming languages.
 
 \paragraph*{Cost equation systems.}
-A \emph{cost equation system} (CES)---in \autoref{fig:ces}---is a kind of abstract representation of a program's resource cost~\cite{floresmontoya2017}.
-It consists of a set of \emph{cost equations}, \ie non-deterministic recurrence relations annotated with constraints~\cite{floresmontoya2014}.
-The analysis technique is based on the seminal work of~\textcite{wegbreit1975}.
+A \emph{cost equation system} (CES) (alternatively: cost relation system) is an abstract representation format of a program's resource cost~\cite{floresmontoya2017,albert2019}.
+It consists of a set of cost equations, that are non-deterministic recurrence relations annotated with constraints, as shown in \autoref{fig:ces}~\cite{floresmontoya2014}.
+The analyzing technique of cost equations is based on the seminal work of~\textcite{wegbreit1975}.
 Such analysis operates in two phases.
-The first phase extracts a set of equations that capture the program cost \wrt data-size and a parametric cost measure\footnote{
-The generation step converts the program's iteration constructs (loops and recursion) into recurrences,
-then infers size relations that approximate how the program's argument sizes vary.}.
-This set can be regarded as recurrence relations, or as time-bound programs~\cite{rosendahl1989}.
+The first phase extracts a set of equations that capture the program cost \wrt data-size and a parametric cost measure.
+%\footnote{The generation phase converts the program's iteration constructs (loops and recursion) into recurrences,
+%then infers size relations that approximate how the program's argument sizes vary.}.
+This set can be regarded as recurrence relations, or as a kind of time-bound programs of~\textcite{rosendahl1989}.
 The second phase searches for a non-recursive representation of the equations known as \emph{closed form}.
-In most cases it is not possible to find an exact solution and the closed form provides an upper bound~\cite{albert2008}.
+In most cases, it is not possible to find an exact solution, and the closed form provides an upper bound~\cite{albert2008}.
 Cost equations deal with loops and recursion in a uniform manner,
 but may have issues with multiphase loops and with programs with require complex termination proofs~\cite{floresmontoya2014}.
 
@@ -158,98 +158,107 @@ but may have issues with multiphase loops and with programs with require complex
 \begin{minipage}{\textwidth}
 \cesinputlisting{example.ces}
 \captionof{lstlisting}[A cost equation system]{
-A simple cost equation system (CES) representing an exponential function.
-The \pr|A(n)| is the \emph{head}, and the terms right of head form the \emph{body}.
-The body terms represent costs and constraints.
-The analyzer PUBS assigns the CES an upper bound \(2^A-1\).}
+A cost equation system representing an exponential function.
+The term \pr|a(n)| is called the {head} and the rightward terms are the {body}.
+The body terms represent costs and constraints.}
 \label{fig:ces}
 \end{minipage}
 \end{center}
 
-\subsubsection{A Sample of Resource Analyzers}
+\subsubsection{A Sampler of Public Static Resource Analyzers}
 \label{resource-analysis-tools}
 
 The following list presents a small survey of automatic complexity analysis implementations, interpreted broadly.
-It prioritizes tools that are open source or at minimum provide a public interface.
+It prioritizes tools that are open source or, at minimum, provide a public interface.
+A comprehensive comparison of resource bounds computed by various tools is available online~\cite{flores_experiments}.
 
 \begin{description}
 
-\item \href{https://costa.fdi.ucm.es/~costa/pubs/pubs.php}{\emph{PUBS}: Practical Upper Bounds Solver}\index{PUBS}~\cite{albert2010}
-      computes closed form upper bounds for cost equation systems\index{cost equation system};
+\item[\href{https://costa.fdi.ucm.es/~costa/pubs/pubs.php}{{PUBS}}]
+      \emph{\underline{P}ractical \underline{U}pper \underline{B}ounds} \underline{S}olver~\cite{albert2010}\index{PUBS}
+      is a CES solver that computes closed form upper bounds for cost equation systems\index{cost equation system};
       specifically, for the \pr|entry| and all cost equations that depend on \pr|entry|.
 
-\item \href{https://aprove.informatik.rwth-aachen.de}{\emph{AProVE}}\index{AProVE}~\cite{giesl2017}
+\item[\href{https://aprove.informatik.rwth-aachen.de}{{AProVE}}]
+      \emph{\underline{A}utomated \underline{Pro}gram \underline{V}erification \underline{E}nvironment}~\cite{giesl2017}\index{AProVE}
       produces termination proofs and complexity bounds for
-      term rewrite systems (TRS)\index{term rewrite system},
-      Java\index{programming language!Java} bytecode\index{bytecode},
+      term rewrite systems,\index{term rewrite system},
+      Java bytecode\index{bytecode},
       and programs written in
-      C\index{programming language!C},
-      Prolog\index{programming language!Prolog}, or
-      Haskell\index{programming language!Haskell}.
+      C\index{C},
+      Prolog\index{Prolog}, or
+      Haskell\index{Haskell}.
       AProVE is a regular contestant in international tool competitions, including the
       \href{https://termination-portal.org/wiki/Termination_Competition}{Termination Competition}~\cite{giesl2019}
       and \href{https://sv-comp.sosy-lab.org/}{Competition on Software Verification} (SV-Comp)~\cite{beyer2022}.
 
-\item \href{https://github.com/aeflores/CoFloCo}{\emph{CoFloCo}}\index{CoFloCo}~\cite{floresmontoya2014}
-      is an open-source analyzer that infers symbolic upper and lower complexity bounds for CESs.
-      CoFloCo is not bound to any particular programming language, but expects a program translated to a CES.
+\item[\href{https://github.com/aeflores/CoFloCo}{{CoFloCo}}]
+      \emph{\underline{Co}ntrol \underline{Flo}w refinement of \underline{Co}st Relations}~\cite{floresmontoya2014}\index{CoFloCo}
+      is an open-source analyzer and CES solver that infers symbolic upper and lower complexity bounds for CESs.
+      CoFloCo is not bound to any particular programming language, but expects a input program translated to a CES\@.
 
-\item \href{https://www.cs.yale.edu/homes/qcar/aaa/}{\emph{C4B}\index{C4B}:
-      Certified compositional resource bounds}~\cite{carbonneaux2015}
-      is an AARA-based analysis to obtain asymptotic tight bounds for C programs
-      by amortization\index{asymptotic tight bound} -- \autoref{tab:atva-compare}.
+\item[\href{https://www.cs.yale.edu/homes/qcar/aaa/}{C4B}]\cite{carbonneaux2015}\index{C4B}
+      is an AARA-based analyzer of certified compositional resource bounds.
+      It infers linear resource bounds on C-like programs by amortization\index{amortization} -- \autoref{tab:atva-compare}.
 
-\item  \href{http://cl-informatik.uibk.ac.at/software/tct/}{\emph{TcT}\index{TcT}: Tyrolean Complexity Tool}~\cite{avanzini2016}
-       is a modular analyzer with front-ends for term rewrite system, integer transition system, high-order system, and Java bytecode.
+\item[\href{http://cl-informatik.uibk.ac.at/software/tct/}{TcT}]
+       \emph{\underline{T}yrolean \underline{C}omplexity \underline{T}ool}~\cite{avanzini2016}\index{TcT}
+       is a modular analyzer with front-ends to support term rewrite- and integer transition systems;
+       high-order functional programs, and Java bytecode.
        The complexity problem and metric of interest are parametric.
        TcT has also competed in the Termination Competition.
 
-\item  \href{https://koat.verify.rwth-aachen.de/cfr_mprf}{\emph{KoAT}\index{KoAT}:
-       \underline{Ko}mplexitäts-\underline{A}nalyse-\underline{T}ool}~\cite{brockschmidt2016}
+\item[\href{https://koat.verify.rwth-aachen.de/cfr_mprf}{KoAT}]
+       \emph{\underline{Ko}mplexitäts-\underline{A}nalyse-\underline{T}ool}~\cite{brockschmidt2016}\index{KoAT}
        is a complexity analyzer for computing time-, cost- and size bounds.
        As inputs, KoAT accepts Integer Programs (IPs)\index{integer program} and C integers programs that follow
        \href{https://termination-portal.org/wiki/C_Integer_Programs}{the grammar specification} of the Termination Competition -- \autoref{pc-expr}.
 
-\item  \href{https://github.com/statycc/LQICM_On_C_Toy_Parser}{\emph{LQICM}: Loop Quasi-Invariant Chunk Motion}~\cite{moyen20172}
+\item[\href{https://github.com/statycc/LQICM_On_C_Toy_Parser}{LQICM}]
+      \emph{\underline{L}oop \underline{Q}uasi-\underline{I}nvariant \underline{C}hunk \underline{M}otion}~\cite{moyen20172}\index{LQICM}
        is a compile-time program optimization pass for C programs.
-       The aims to peel (\cf~\autoref{loop-transforms}) inner loops, that then reduces program complexity.
+       It aims to peel (\cf~\autoref{loop-transforms}) inner loops to reduce program's time complexity.
 
-\item   \href{https://www.raml.co/about/}{\emph{RaML}\index{RaML}: Resource aware ML}~\cite{hoffmann2017}
-       is a functional programming language, and an analuyzer to compute upper bounds of cost for programs
-       written in RaML or OCaml\index{programming language!OCaml}.
+\item[\href{https://www.raml.co/about}{RaML}]
+       \emph{\underline{R}esource \underline{a}ware \underline{ML}}~\cite{hoffmann2017}\index{RaML}
+       is an analyzer of worst-case upper bounds and best-case lower bounds of cost, for functional programs written in OCaml\index{OCaml}.
+       The cost resource can be any quantity that is of interest.
        The RaML analysis is based on AARA and can produce precise amortized bounds.
 
-\item \href{https://www.cs.yale.edu/homes/qcar/diss/}{\emph{Pastis}}~\cite{carbonneaux2017}
-      is a static analyzer that can infer, but is not limited to, polynomial complexity bounds.
+\item[\href{https://www.cs.yale.edu/homes/qcar/diss/}{Pastis}]\cite{carbonneaux2017,carbonneaux2018}
+      is an AARA-based analyzer.
+      It infers various resource bounds and size change information of programs expressed in LLVM bitcode (interprocedural CFGs).
       Additionally, it generates proof certificates that guarantee the validity of the inferred bounds.
 
-\item \href{http://cl-informatik.uibk.ac.at/users/zini/software/hosa/}{\emph{HoSA}\index{HoSA}:
-      Higher-Order Size Analysis}~\cite{avanzini2017}
-      is a complexity analyzer for program written in a strongly typed functional language.
+\item[\href{http://cl-informatik.uibk.ac.at/users/zini/software/hosa/}{HoSA}]
+      \emph{\underline{H}igher-\underline{O}rder \underline{S}ize \underline{A}nalysis}~\cite{avanzini2017}\index{HoSA}
+      is a time complexity analyzer for higher-order functional programs written in a (generic) strongly typed functional programming language.
+      The analysis technique is based on a type system and inference of sized types, and constraint solving.
 
-\item \href{https://github.com/davidnowak/cecoa}{\emph{Cecoa}}~\cite{feree2018}
-       is a formal library (in Coq/Rocq) based on implicit computational ocmplexity.
-       It assists in producing proofs that show a program is poly-time computable\ccxi{p} -- \autoref{icc-formally}.
+\item[\href{https://github.com/davidnowak/cecoa}{Cecoa}]\cite{feree2018}\index{Cecoa}
+     is a formal proof library based on implicit computational complexity.
+     It enables creating proofs to show a program is poly-time computable\ccxi{p} -- \autoref{icc-formally}.
 
-\item \href{https://costa.fdi.ucm.es/maxcore/}{\emph{MaxCore}\index{MaxCore}}~\cite{albert2019}
-       is a cost equation solver that improves solving capabilities under complex program control flow.
-       The enhancement is derived from results of a termination analysis.
+\item[\href{https://costa.fdi.ucm.es/maxcore/}{MaxCore}]%
+      \emph{\underline{Max}-SMT termination analyzer + \underline{CO}st \underline{R}ecurrence \underline{E}quation solver}~\cite{albert2019}\index{MaxCore}
+      is an upper bounds complexity analyzer for C programs\index{C}.
+      The underlying technique is based on cost equations and termination analysis, and MaxCore uses CoFloCo and PUBS as back-end CES solvers.
 
-\item \href{https://www-sop.inria.fr/members/Martin.Avanzini/software/eco-imp/}%
-      {\emph{ecoimp}\index{eco-imp}}~\cite{avanzini2020}
+\item[\href{https://www-sop.inria.fr/members/Martin.Avanzini/software/eco-imp/}{eco-imp}]\cite{avanzini2020}\index{eco-imp}
       computes expected cost bounds for programs written in a probabilistic imperative \textsc{pWhile} language.
 
-\item \href{https://gitlab.inria.fr/complexityparser/complexityparser/-/tree/master}{\emph{ComplexityParser}\index{ComplexityParser}}~\cite{hainry2021}
-      is a complexity analyzer for Java\index{Java}\index{programming language!Java} programs.
+\item[\href{https://gitlab.inria.fr/complexityparser/complexityparser}{ComplexityParser}]\cite{hainry2021}\index{ComplexityParser}
+      is a complexity analyzer for Java\index{Java} programs.
       A typable program is guaranteed to run in polynomial time if the program terminates.
       The analyzer is based on~\cite{hainry2015} and~\cite{hainry2018}, discussed more in~\autoref{icc-sec}.
 
-\item \href{https://github.com/statycc/pymwp}{\emph{pymwp}\index{pymwp}}~\cite{aubert2023b}
+\item[\href{https://github.com/statycc/pymwp}{pymwp}]\cite{aubert2023b}\index{pymwp}
       is an implementation of the flow calculus of mwp-bounds.
-      It analyzes C\index{C}\index{programming language!C} programs to determine if the program's variable value growth is polynomially bounded in inputs -- \autoref{sec:atva}.
+      It is purely syntactical analysis of C\index{C} programs, to determine if the program's variable value growth is polynomially bounded in inputs -- \autoref{sec:atva}.
 
-\item \href{https://zenodo.org/records/10457566}{\emph{Quantitative probabilistic bounds}}~\cite{chatterjee2024}
-      is an analyzer that computes tail and expectation bounds for programs written in a probabilistic imperative programming language \textsc{Prog}.
+\item[\href{https://zenodo.org/records/10457566}{Quantitative probabilistic bounds}]\cite{chatterjee2024}
+      analyzer computes tail and expectation bounds for programs written
+      in a probabilistic imperative programming language \textsc{Prog}.
 
 \end{description}
 

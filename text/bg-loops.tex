@@ -26,7 +26,7 @@ Extending the presentation to more general loop forms is generally challenging.
 Refer to~\autoref{icc-fission} and ~\autoref{sec:vmcai} for an approach that circumvents the limitation.}
 in an imperative programming language.
 We will refer to~\autoref{lst:loop-ex} to highlight essential concepts and terms.
-The examples use the C\index{C}\index{programming language!C} language, but the concepts extend to other imperative languages.
+The examples use the C\index{C} language, but the concepts extend to other imperative languages.
 A {loop} has two parts: a header (L\ref{line:header})\index{loop header} and a body (L\ref{line:header-2}--\ref{line:body})\index{loop body}.
 
 \begin{center}
@@ -383,15 +383,15 @@ Other approaches include the
 \emph{Parallel Patterns Library} (PPL)\index{PPL}\index{parallel programming model!PPL}~\cite{ppl2021,campbell2011},
 that parallelizes tasks through built-in algorithms and containerization;
 and the \emph{oneAPI Threading Building Blocks} (oneTBB)\index{oneTBB}\index{parallel programming model!oneTBB},
-a runtime-based model for \pr|C++|\index{C++}\index{programming language!C++} programs~\cite{onetbb}.
+a runtime-based model for \pr|C++|\index{C++} programs~\cite{onetbb}.
 
 \subsubsection{The OpenMP Programming Model}
 \label{openmp}
 
 {OpenMP}\index{OpenMP}\index{parallel programming model!OpenMP}, for Open Multi-Processing,
 is a parallel programming model for developing portable, shared memory\index{shared memory} parallel applications in
-\pr|C|\index{C}\index{programming language!C},
-\pr|C++|\index{C++}\index{programming language!C++} and
+\pr|C|\index{C},
+\pr|C++|\index{C++} and
 \pr|Fortran|\index{Fortran}\index{programming language!Fortran}~\cite{openmp_api}.
 OpenMP is not a programming language;
 rather, it provides directives for sequential programs that translate the programs to parallel execution instructions at compile-time.
@@ -465,8 +465,8 @@ A complete definition is available in the OpenMP API technical specification~\ci
 
 \item \texttt{\#}\omp{pragma omp}
 is a directive specification in the style of
-\pr|C|\index{C}\index{programming language!C}/%
-\pr|C++|\index{C++}\index{programming language!C++}.
+\pr|C|\index{C}/%
+\pr|C++|\index{C++}.
 A {parallelization directive}~\index{parallelization directive} must start with these keywords.
 
 \item The \omp{parallel} construct
