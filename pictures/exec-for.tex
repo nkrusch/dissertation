@@ -1,0 +1,29 @@
+\documentclass[crop,border={-7.5pt 0pt 0pt -2pt}]{standalone}
+\input{../latex/pics}
+\begin{document}
+
+\tikzstyle{base} = [rectangle,draw=black,fill=tgrey]
+\tikzstyle{barr} = [thick,line width=.5mm,line cap=round]
+\tikzstyle{sep}  = [black, thick, densely dotted]
+
+\begin{tikzpicture}
+\newcommand\threads{4}
+\newcommand\oneless{3}
+\newcommand\sx{0}
+\newcommand\sy{0}
+\newcommand\pw{6}
+\newcommand\ph{2}
+\newcommand\pt{\pw/\threads} 
+
+\draw[base] (\sx,\sy) rectangle ++(\pw,\ph);
+\draw[barr] (\sx,\sy) -- (\pw,\sy) ;
+
+\foreach \i in {1,...,\oneless} { 
+	\draw[sep](\i*\pt,\sy) -- (\i*\pt,\ph); }
+	
+\foreach \i in {0,...,\oneless} { 
+    \draw[thread](\i*\pt+\pt/2,\ph) -- (\i*\pt+\pt/2,\sy); 
+	\node[above] at (\i*\pt+\pt/2, \ph) {\i}; }
+	
+\end{tikzpicture}
+\end{document}

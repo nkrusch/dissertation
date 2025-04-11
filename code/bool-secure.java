@@ -1,4 +1,3 @@
 boolean ret;
-ret = (high || true) ||
-      (high || false);
+ret = (high || true);
 return ret;

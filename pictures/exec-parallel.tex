@@ -1,0 +1,26 @@
+\documentclass[crop,border={-5pt 0pt 0pt -2pt}]{standalone}
+\input{../latex/pics}
+\begin{document}
+
+\tikzstyle{base} = [rectangle,draw=black,fill=tgrey]
+\tikzstyle{barr} = [thick,line width=.5mm,line cap=round]
+
+\begin{tikzpicture}
+\newcommand\threads{4}
+\newcommand\oneless{3}
+\newcommand\sx{0}
+\newcommand\sy{0}
+\newcommand\pw{6}
+\newcommand\ph{2}
+\newcommand\pt{\pw/\threads/2}
+\newcommand\offset{1.875} % \pw-\oneless*\pt*.5
+
+\draw[base] (\sx,\sy) rectangle ++(\pw,\ph);
+\draw[barr] (\sx,\sy) -- ++(\pw, 0) ;
+
+\foreach \i in {0,...,\oneless} {
+    \draw[thread](\offset+\i*\pt,\ph) -- (\offset+\i*\pt,\sy);
+    \node[above] at (\offset+\i*\pt,\ph) {\i}; }
+
+\end{tikzpicture}
+\end{document}

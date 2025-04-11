@@ -11,12 +11,6 @@
 \newcommand{\lalg}{\textnormal{\raisebox{0.15\height}{\scalebox{.65}{\faSuperscript}}}}
 \newcommand{\recs}{\textnormal{\raisebox{0.15\height}{\scalebox{.65}{\faRedo*}}}}
 
-\newcommand{\oss}{\textnormal{\raisebox{0.15\height}{\scalebox{.65}{\faGlobe}}}\@\xspace}
-
-% drawings
-\tikzstyle{thread} = [
-    thick,
-    decorate,
-    decoration={snake,amplitude=.5mm,segment length=3mm,post length=1.8mm},
-    arrows={-Latex[width=5pt, length=5pt]}
-]
+% small circled characters
+\newcommand{\circled}[1]{\hspace{-.5ex}\raisebox{-0.2\height}{\scalebox{.6}{%
+    \tikz{\node[circle,inner sep=2pt,outer sep=.4pt,fill=white,draw=black,solid,thick]{\textbf{#1}};}}}}

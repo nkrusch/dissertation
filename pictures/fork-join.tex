@@ -1,0 +1,19 @@
+\documentclass[crop,border={20pt 20pt 20pt 20pt}]{standalone}
+\input{../latex/pics}
+\begin{document}
+
+\begin{tikzpicture}
+\draw[rectangle,draw=tgrey,fill=tgrey] (0,2) rectangle  (4,3.5) ;
+\draw[rectangle,draw=black] (0,3.5) rectangle (4,4) node[midway] {fork};
+\draw[rectangle,draw=black] (0,1.5) rectangle (4,2) node[midway] {join};
+\draw[pthread, thread] (2,5) -- (2,4);
+\draw[pthread, thread] (0.5,3.5) -- (0.5,2);
+\draw[thread] (1.5,3.5) -- (1.5,2);
+\draw[thread] (2.5,3.5) -- (2.5,2);
+\draw[thread] (3.5,3.5) -- (3.5,2);
+\draw[pthread, thread] (2,1.5) -- (2,0.5);
+\node[right] at (5,4.5) {primary thread};
+\node[right,text width=3cm] at (5,2.75) {(parallel region)\\team of threads};
+\node[right] at (5,1) {primary thread};
+\end{tikzpicture}
+\end{document}

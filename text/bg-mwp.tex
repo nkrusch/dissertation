@@ -135,7 +135,7 @@ Furthermore, mwp-bounds\index{mwp-bound} can be incomparable.
 For example, between \(W \equiv \max(\prm{X1},\prm{X2})+\prm{X3}\) and \(V \equiv \prm{X1}+\prm{X2}\times\prm{X4}\), it is impossible to determine which mwp-bound\index{mwp-bound} evaluates to a lower value numerically.
 This means mwp-bounds\index{mwp-bound} cannot be totally ordered.
 
-\subsubsection{Evolution of the Flow Calculus}
+\subsubsection{Developments of the Flow Calculus}
 
 A central theme of this dissertation is the gradual technical advancement of the flow calculus of mwp-bounds\index{mwp-calculus}, as those developments are a prerequisite for its different applications.
 However, details of these developments are not totally obvious from the publications.
@@ -149,7 +149,7 @@ The complexity-theoretic\index{complexity theory} result is obtained by bounding
 In effect, the flow calculus\index{mwp-calculus} provides a computational method \(\mathcal{M}\) for deciding a runtime property,
 \begin{gather*}
 \mathcal{M}: \text{programs} \rightarrow \{ \text{yes}, \text{no} \} \\
-\text{ such that } \{C_i \mid \mathcal{M}(C_i) = \text{yes} \} \subset \{ C_i \mid C_i \text{ runs in polynomial time} \}.
+\text{ such that } \{C_i \mid \mathcal{M}(C_i) = \text{yes} \} \subset \{ C_i \mid C_i \text{ runs in polynomial time } \}.
 \end{gather*}\ccxi{p}
 The formulation naturally provides the theoretical foundations and a concrete technique for program analysis.
 The analysis is defined over nondeterministic\index{nondeterminism} inference rules\index{inference rule} and coefficients \{0, m, w, p\}\index{flow coefficient} where multiple matrices can be assigned to one program.
@@ -262,7 +262,7 @@ It is unknown if the efficiency has changed following the technical advancements
 Among the remaining open problems are:
 \begin{enumerate*}
 \item extending the imperative language\index{imperative programs} to cover a larger class of programs,
-\item formally verifying the flow calculus\index{mwp-calculus} for obtain a rigorous soundness guarantee (\cf~\autoref{coqpl}),
+\item formally verifying the flow calculus\index{mwp-calculus} for obtain a rigorous soundness guarantee (\cf~\autoref{certcpx}),
 \item exploring the extended analysis applications, and
 \item enhancing the precision of the flow calculus\index{mwp-calculus}.
 \end{enumerate*}
@@ -270,7 +270,7 @@ Matrix construction is currently the most costly analysis phase.
 It is possible to design data flows that make program analysis inefficient due to the resulting matrix size.
 More effort is needed to scale the analysis to such inputs.
 
-\subsubsection{Sound and Compositional Static Program Analysis}
+\subsubsection{Technical Details of Program Analysis}
 \label{mwp-analysis}
 
 The flow calculus\index{mwp-calculus} provides a static technique for analyzing programs written in an imperative language\index{imperative programs}.
@@ -644,7 +644,7 @@ A single successful derivation is sufficient to make the input program derivable
 
 \subsubsection{Illustrative Derivations II: Programs From the Tool User Guide}
 
-The pymwp\index{pymwp} tool user guide, in ~\autoref{app:toolguide}, discusses five cases of program analysis of programs written in C\index{C}.
+The pymwp\index{pymwp} tool user guide, in ~\autoref{sec:toolguide}, discusses five cases of program analysis of programs written in C\index{C}.
 The tool user guide gives the analyzer input and output and describes the rationale for the obtained result.
 This section complements the tool user guide by showing the derivations behind those results.
 To retail fidelity with the C\index{C} language examples,

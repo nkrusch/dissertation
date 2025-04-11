@@ -1,3 +1,4 @@
+%! suppress = LabelConvention
 Computer security is a broad, interdisciplinary field with technical and non-technical challenges.
 An important subset of the technical aspects can be modeled and studied mathematically~\cite{piessens2024}.
 At its core, computer security is concerned with three properties:
@@ -116,7 +117,7 @@ A policy that restricts information flow from a lower security class to a higher
 \item[Information flow control] (IFC)\index{information flow!control}
 is a mechanism that enforces a {policy\index{information flow!policy}}~\cite{bishop2003}.
 Designing adequately expressive and effective controls is an active topic in security research~\cite{vandermeyden2007,bossi2005,sabelfeld2003}.
-Like in static analysis (refer to~\autoref{static-analysis}), designing a sound and complete control for arbitrary programs is impossible.
+Like in static analysis (\cf~\autoref{static-analysis-basics}), designing a sound and complete control for arbitrary programs is impossible.
 A sound IFC guarantees to find all policy violations\index{violation} and a precise IFC avoids raising excessive false alarms.
 However, an overly restrictive IFC is challenging because it compromises availability\index{availability}.
 The challenge of information flow control is more nuanced than classic data-flow analysis of functional properties,
@@ -139,73 +140,52 @@ In the context of integrity\index{integrity}, declassification is also called {e
 
 \paragraph*{Secure and insecure information flows.}
 Figures~\ref{fig:bool-ops}--\ref{fig:hi-cond} show basic examples of insecure and secure information flows\index{information flow}.
-Variables \pr|high|, \pr|secret|, and \pr|h| are assumed to be secret;
-their values should not leak\index{leak} from executions.
-The programs are fragments from the {IFSPEC benchmark suite\index{IFSPEC}}~\cite{hamann2018,ifspec} in \pr|Java|\index{Java}.
-The more advanced benchmarks involve cases of aliasing, reflection, context sensitivity, and exception handling,
- but are not included here for brevity.
+Variables \pr|high|, \pr|secret|, and \pr|h| are assumed to be secret and their values should not leak\index{leak} from executions.
+The programs are fragments from the {IFSPEC benchmark suite}~\cite{hamann2018}\index{IFSPEC} available at~\cite{ifspec}.
+The more advanced benchmarks involve, \eg aliasing, reflection, context sensitivity, and exception handling.
 
 \begin{center}
-\begin{minipage}{\textwidth}
 \begin{minipage}{.45\textwidth}
-\javainputlisting{bool-insecure.java}
-\captionof{lstlisting}[Insecure boolean program]{Insecure.}
-\label{ni-bool-insecure}
-\end{minipage}\hfill
-\begin{minipage}[]{.45\textwidth}
-\javainputlisting{bool-secure.java}
-\captionof{lstlisting}[Secure boolean program]{Secure.}
-\label{ni-bool-secure}
-\end{minipage}
-\captionof{figure}[Secure and insecure Boolean operations]{
-{Boolean Operations.} The programs are parametric on a Boolean variable \pr|high|.
-In the insecure version, the value of \pr|high| is deducible from the value of \pr|ret|.
-}\label{fig:bool-ops}
-\end{minipage}
-\end{center}
-
-\begin{center}
-\begin{minipage}{\textwidth}
-\begin{minipage}{.45\textwidth}
-\javainputlisting{array-insecure.java}
-\captionof{lstlisting}[Insecure array program]{Insecure.}
-\label{ni-array-insecure}
+\begin{center}\javainputlisting{bool-insecure.java}{Insecure.}\end{center}
 \end{minipage}\hfill%
 \begin{minipage}{.45\textwidth}
-\javainputlisting{array-secure.java}
-\captionof{lstlisting}[Secure array program]{Secure.}
-\label{ni-array-secure}
+\begin{center}\javainputlisting{bool-secure.java}{Secure.}\end{center}
 \end{minipage}
-\captionof{figure}[Implicit information flow leak in an array]{
-{Arrays Implicit Leak.}
-The insecure program's output reveals if the value of \pr|secret| is or is not 42.
-This leak\index{leak} is small, since it corresponds to 1 bit of information.
-However, the secure version reveals nothing about the value of \pr|secret|.}
-\label{fig:ni-arrays}
-\end{minipage}
+\captionof{lstlisting}[Secure and insecure Boolean operations]{
+Boolean Operations. The programs are parametric on a Boolean variable \pr|high|.
+In the insecure version, the value of \pr|high| is deducible from the value of \pr|ret|.
+}\label{lst:bool-ops}
 \end{center}
 
 \begin{center}
-\begin{minipage}{\textwidth}
 \begin{minipage}{.45\textwidth}
-\javainputlisting{loop-insecure.java}
-\captionof{lstlisting}[Insecure loop program]{Insecure.}
-\label{ni-loop-insecure}
+\begin{center}\javainputlisting{array-insecure.java}{Insecure.}\end{center}
+\end{minipage}\hfill%
+\begin{minipage}{.45\textwidth}
+\begin{center}\javainputlisting{array-secure.java}{Secure.}\end{center}
+\end{minipage}
+\captionof{lstlisting}[Implicit information flow leak in an array]{
+Arrays Implicit Leak. The insecure program's output reveals if the value of \pr|secret| is or is not 42.
+This leak\index{leak} is small, since it corresponds to 1 bit of information.
+However, the secure version reveals nothing about the value of \pr|secret|.}
+\label{lst:ni-arrays}
+\end{center}
+
+\begin{center}
+\begin{minipage}{.45\textwidth}
+\begin{center}\javainputlisting{loop-insecure.java}{Insecure.}\end{center}
 \end{minipage}\hfill
 \begin{minipage}{.45\textwidth}
-\javainputlisting{loop-secure.java}
-\captionof{lstlisting}[Secure loop program]{Secure.}
-\label{ni-loop-secure}
+\begin{center}\javainputlisting{loop-secure.java}{Secure.}\end{center}
 \end{minipage}
-\captionof{figure}[High conditional incremental leak]{
-{High Conditional Incremental Leak.}
+\captionof{lstlisting}[High conditional incremental leak]{
+High Conditional Incremental Leak.
 Through the returned value \pr|l|, the insecure version reveals implicitly\index{information flow!implicit} the value of the secret variable \pr|h|.
-Compared to~\autoref{fig:arrays}, the program reveals every value of \pr|h|, so the leak\index{leak} here is more significant.
+Compared to~\autoref{lst:ni-arrays}, the program reveals every value of \pr|h|, so the leak\index{leak} here is more significant.
 In the secure version, the value of \pr|h| cannot be deduced by the same reasoning.
 However, the secure version is also potentially vulnerable through a side channel\index{side channel},
 if the loop execution time is observable to an attacker\index{attacker (adversary)}.}
-\label{fig:hi-cond}
-\end{minipage}
+\label{lst:hi-cond}
 \end{center}
 
 \subsubsection{Techniques for Information Flow Modeling and Analysis}
@@ -439,93 +419,112 @@ The judgement \(\Gamma\vdash\text{\pr|C|}\) means the program \pr|C| is typable 
 Expression types and security contexts can be either low (\({l}\)) or high (\({h}\)).
 The symbol \(\Gamma\) refers to the current context (low or high).
 
-\paragraph*{Derivations.} Consider the programs in Figures~\ref{fig:bool-ops}--\ref{fig:hi-cond}.
-Since the programs are written in \pr|Java|\index{Java},
-the constructs are richer than available in the type system grammar\index{grammar}, and thus the programs are not fully analyzable.
-For example, the {security type system\index{security type system}} 
-does not specify how to handle the insecure and secure assignments in~\ref{fig:bool-ops}.
-However, we can analyze sub-programs, like the \pr|while| loops in~\ref{fig:hi-cond}, by mapping them to the grammar\index{grammar}.
+\paragraph*{Derivations.}
+Consider the programs in Figures~\ref{lst:bool-ops}--\ref{lst:hi-cond}.
+Since the programs are written in Java\index{Java}, the constructs are richer than available in the type system grammar\index{grammar}.
+The programs are not fully analyzable.
+For example, the {security type system\index{security type system}} does not specify how to handle the array in~\autoref{lst:ni-arrays}.
+However, we can analyze sub-programs, like the \pr|while| loops in~\autoref{lst:hi-cond} through a mapping to the grammar.
 The following examples show basic non-interference\index{non-interference} derivations.
 
-\begin{example}[High conditional incremental leak/secure]\label{ex:high-cond-sec}
-Consider the \pr|Java|\index{Java} program fragment \pr|while(h>0){h--;}|.
-Ignoring the identifier, we assume \pr|h| is an arbitrarily typed variable (neither low or high) and will analyze both cases.
-We map the program to the grammar by substituting \pr|h>0| with \(\prm{e}_\prm{0}\) and \pr|h--| with \(\text{\pr|v:=e|}_\prm{1}\)\footnote{
-We lose detail of the compound assignment, but the loss is acceptable for the example.}.
+\begin{example}[Secure high conditional incremental leak]\label{ex:high-cond-sec}
+We will analyze the following program fragment.
 
-\paragraph*{Case: \(\prm{e}_\prm{0},\,\prm{v},\,\prm{e}_\prm{1}\) are of type high.}
-The program is derivable as follows.
-\begin{center}\begin{prooftree}
-\infer0[\textsc{E-High}]{\vdash \prm{e}_\prm{0} : \mathbf{h}}
-\infer0[\textsc{C-Assign1}]{\mathbf{h} \vdash \prm{v:=e}_\prm{1}}
-\infer2[\textsc{C-While}]{\mathbf{h} \vdash \prm{while(e}_\prm{0}\prm{)} \{ \prm{v:=e}_\prm{1} \}}
-\end{prooftree}\end{center}
-The program is non-interfering.
+\begin{center}
+\begin{minipage}{\textwidth}
+\javainputlisting[][linerange={2-2},numbers=none]{loop-secure.java}
+\end{minipage}
+\end{center}
 
-\paragraph*{Case: \(\prm{e}_\prm{0},\,\prm{v},\,\prm{e}_\prm{1}\) are of type low.}
-The program is derivable in low context as follows.
+We assume \pr|h| is an arbitrarily typed variable---neither low or high---and will analyze both cases.
+We map the program to the grammar by substituting \pr|h > 0| with \pr|e|₀ and \pr|h--| with \pr|v:=e|₁\footnote{
+We lose detail of the compound assignment, but the loss is acceptable for this example.}
+to obtain \pr|while(e$_0$) { v:=e$_1$ }|.
+
+\paragraph*{Case 1:  \pr|e|₀, \pr|v|, and \pr|e|₁ are of type high.}
+Since the program is derivable as follows, it is non-interfering.
+
 \begin{center}\begin{prooftree}
-\hypo{\mathbf{h} \notin \text{vars}(\prm{e}_\prm{0})}
-\infer1[\textsc{E-Low}]{\vdash \prm{e}_\prm{0} : \mathbf{l}}
-\hypo{\mathbf{h} \notin \text{vars}(\prm{e}_\prm{1})}
-\infer1[\textsc{E-Low}]{\vdash \prm{e}_\prm{1} : \mathbf{l}}
-\infer1[\textsc{C-Assign2}]{\mathbf{l} \vdash \prm{v:=e}_\prm{1}}
-\infer2[\textsc{C-While}]{\mathbf{l} \vdash \prm{while(e}_\prm{0}\text{\pr|)|} \{ \prm{v:=e}_\prm{1} \}}
+\infer0[\textsc{E-High}]{\vdash \prm{e}₀ : \mathbf{h}}
+\infer0[\textsc{C-Assign1}]{\mathbf{h} \vdash \prm{v:=e}₁}
+\infer2[\textsc{C-While}]{\mathbf{h} \vdash \prm{while(e$_0$) \{ v:=e$_1$ \}}}
 \end{prooftree}\end{center}
-Again, the program is non-interfering.
-Intuitively, in both cases, the program is non-interfering\index{non-interference}
-because it processes only high (secret) values, or low (public) values, without mixing the two security classes.
+
+\paragraph*{Case 2: \pr|e$_0$|, \pr|v|, and \pr|e$_1$| are of type low.}
+The program is also derivable in low context, and again, is non-interfering.
+
+\begin{center}\begin{prooftree}
+\hypo{\mathbf{h} \notin \text{vars}(\prm{e}₀)}
+\infer1[\textsc{E-Low}]{\vdash \prm{e}₀ : \mathbf{l}}
+\hypo{\mathbf{h} \notin \text{vars}(\prm{v:=e}₁)}
+\infer1[\textsc{E-Low}]{\vdash \prm{v:=e}₁ : \mathbf{l}}
+\infer1[\textsc{C-Assign2}]{\mathbf{l} \vdash \prm{v:=e}₁}
+\infer2[\textsc{C-While}]{\mathbf{l} \vdash \prm{while(e$_0$) \{ v:=e$_1$ \}}}
+\end{prooftree}\end{center}
+
+Intuitively, the program is always non-interfering because it processes only high (secret) values, or low (public) values;
+never mixing the two security classes.
 \end{example}
 
-\begin{example}[High conditional incremental leak/insecure]\label{ex:high-cond-insecure}
-Consider the program \pr|while(h>0){h--;l++;}| that is labeled insecure in the benchmark suite.
+\begin{example}[Insecure high conditional incremental leak]\label{ex:high-cond-insecure}
+We analyze the following program.
+It is labeled insecure in the benchmark suite.
+
+\begin{center}
+\begin{minipage}{\textwidth}
+\javainputlisting[][linerange={2-2},numbers=none]{loop-insecure.java}
+\end{minipage}
+\end{center}
+
 The goal of this example is to reveal the assumptions that make it insecure.
-Using a similar procedure as in~\autoref{ex:high-cond-sec},
-we express the program in the grammar\index{grammar} as
-\(\text{\pr|while(e|}_\prm{0}\text{\pr|)|} \{ \prm{v}_\prm{1}\prm{:=e}_\prm{1}\text{\pr|;|} \prm{v}_\prm{2}\prm{:=e}_\prm{2} \}\).
+Using a similar procedure as in~\autoref{ex:high-cond-sec}, we express the program in the type system grammar.
+\begin{center}
+\begin{minipage}{.5\textwidth}
+\begin{lstlisting}[mathescape=true,numbers=none,label={lst:insecure-derivation}]
+while(e$_0$) { v$_1$:=e$_1$; v$_2$:=e$_2$ }
+\end{lstlisting}
+\end{minipage}
+\end{center}
 To maintain the original information flow\index{information flow} behavior,
-we require that \(\prm{e}_\prm{0}, \prm{v}_\prm{1}, \prm{e}_\prm{1}\)
-(\resp \(\prm{v}_\prm{2}\) and \(\prm{e}_\prm{2}\)) are typable in the same security class\index{security class}.
-We know from \autoref{ex:high-cond-sec} that without multiple security classes\index{security class}, 
+expressions  \pr|e|₀, \pr|v|₁,  \pr|e|₁
+(\resp \pr|v|₂ and \pr|e|₂) must be typable in the same security class\index{security class}.
+We also know from \autoref{ex:high-cond-sec} that without multiple security classes\index{security class},
 the program is non-interfering\index{non-interference}.
-Thus, there are two interesting cases.
+There are two interesting cases.
 
-\paragraph*{Case: \(\prm{e}_\prm{0},\,\prm{v}_\prm{1},\,\prm{e}_\prm{1}\) are of type high
-and \(\prm{v}_\prm{2},\,\prm{e}_\prm{2}\) are of type low.}
+\paragraph*{Case 1: \pr|e|₀, \pr|v|₁, \pr|e|₁ are high, and \pr|v|₂, \pr|e|₂ are low.}
 The derivation beings as follows.
+
 \begin{center}\begin{prooftree}
-\infer0[\textsc{E-High}]{\vdash \prm{e}_\prm{0} : \mathbf{h}}
-\infer0[\textsc{C-Assign1}]{\mathbf{h} \vdash \prm{v}_\prm{1}\prm{:=e}_\prm{1}}
-\infer0[]{\mathsf{X} \vdash \prm{v}_\prm{2}\prm{:=e}_\prm{2}}
-\infer2[\textsc{C-Seq}]{\mathbf{h} \vdash
-\prm{v}_\prm{1}\prm{:=e}_\prm{1}\prm{;} \prm{v}_\prm{2}\prm{:=e}_\prm{2}}
-\infer2[\textsc{C-While}]{\mathbf{h} \vdash
-\prm{while(e}_\prm{0}\prm{)} \{ \prm{v}_\prm{1}\prm{:=e}_\prm{1}\prm{;} \prm{v}_\prm{2}\prm{:=e}_\prm{2}\}}
+\infer0[\textsc{E-High}]{\vdash \prm{e}₀ : \mathbf{h}}
+\infer0[\textsc{C-Assign1}]{\mathbf{h} \vdash \prm{v}₁\prm{:=e}₁}
+\infer0[]{{\color{red}{\text{\circled{\texttt{X}}}}} \vdash \prm{v}₂\prm{:=e}₂}
+\infer2[\textsc{C-Seq}]{\mathbf{h} \vdash \prm{v$_1$:=e$_1$; v$_2$:=e$_2$}}
+\infer2[\textsc{C-While}]{\mathbf{h} \vdash \prm{while(e$_0$) \{ v$_1$:=e$_1$; v$_2$:=e$_2$ \}}}
 \end{prooftree}\end{center}
-However, since \(\prm{v}_\prm{2}\) is of type low, there is no way to handle \( \prm{v}_\prm{2}\prm{:=e}_\prm{2} \).
-The derivation gets stuck at point marked with \(\mathsf{X}\).
-The program has a non-interference\index{non-interference} violation\index{violation}.
-Intuitively, it is because the program operates on a low variable inside a loop with a guard variable\index{guard variable} that has type high.
-This construction is not safe.
 
-\paragraph*{Case: \(\prm{e}_\prm{0},\,\prm{v}_\prm{1},\,\prm{e}_\prm{1}\) are of type low
-and \(\prm{v}_\prm{2},\,\prm{e}_\prm{2}\) are of type high.}
+Since \pr|v|₂ is of type low, there is no way to handle \pr|v|₂\pr|:=e|₂.
+The derivation gets stuck at point marked{ }{\color{red}{\circled{\texttt{X}}}}{ }because the program has a non-interference\index{non-interference} violation.
+Intuitively, it is because the program operates on a low variable inside a loop with a guard variable\index{guard variable} that is of type high.
+This construction is not safe because it leaks information.
+
+\paragraph*{Case: \pr|e|₀, \pr|v|₁, \pr|e|₁ are low and \pr|v|₂, \pr|e|₂ are of type high.}
 
 \begin{center}\begin{prooftree}
-\hypo{\mathbf{h} \notin \text{vars}(\prm{e}_\prm{0})}
-\infer1[\textsc{E-Low}]{\vdash \prm{e}_\prm{0} : \mathbf{l}}
-\hypo{\mathbf{h} \notin \text{vars}(\prm{e}_\prm{1})}
-\infer1[\textsc{E-Low}]{\vdash \prm{e}_\prm{1} : \mathbf{l}}
-\infer1[\textsc{C-Assign2}]{\mathbf{l} \vdash \prm{v}_\prm{1}\prm{:=e}_\prm{1}}
-\infer0[\textsc{C-Assign1}]{\mathsf{h} \vdash \prm{v}_\prm{2}\prm{:=e}_\prm{2}}
-\infer1[\textsc{C-Sub}]{\mathsf{l} \vdash \prm{v}_\prm{2}\prm{:=e}_\prm{2}}
+\hypo{\mathbf{h} \notin \text{vars}(\prm{e}₀)}
+\infer1[\textsc{E-Low}]{\vdash \prm{e}₀ : \mathbf{l}}
+\hypo{\mathbf{h} \notin \text{vars}(\prm{e}₁)}
+\infer1[\textsc{E-Low}]{\vdash \prm{e}₁ : \mathbf{l}}
+\infer1[\textsc{C-Assign2}]{\mathbf{l} \vdash \prm{v}₁\prm{:=e}₁}
+\infer0[\textsc{C-Assign1}]{\mathsf{h} \vdash \prm{v}₂\prm{:=e}₂}
+\infer1[\textsc{C-Sub}]{\mathsf{l} \vdash \prm{v}₂\prm{:=e}₂}
 \infer2[\textsc{C-Seq}]{\mathbf{l} \vdash
-\prm{v}_\prm{1}\prm{:=e}_\prm{1}\prm{;} \prm{v}_\prm{2}\prm{:=e}_\prm{2}}
-\infer2[\textsc{C-While}]{\mathbf{l} \vdash
-\prm{while(e}_\prm{0}\prm{)} \{ \prm{v}_\prm{1}\prm{:=e}_\prm{1}\prm{;} \prm{v}_\prm{2}\prm{:=e}_\prm{2}\}}
+\prm{v}_\prm{1}\prm{:=e}_\prm{1}\prm{;}\prm{v}₂\prm{:=e}₂}
+\infer2[\textsc{C-While}]{\mathbf{l} \vdash\prm{while(e$_0$) \{ v$_1$:=e$_1$; v$_2$:=e$_2$ \}}}
 \end{prooftree}\end{center}
+
 Reversing the security label configuration makes the program typable.
-A critical rule is \textsc{C-Sub} (subsumption) that permits lowering the security class\index{security class} label of a high command.
+A critical rule is \textsc{C-Sub} (subsumption) that permits lowering the security class label of a high command.
 Unlike in the previous case, the loop guard\index{guard variable} is now low type.
 It permits manipulating a variable of high type inside the loop body.
 \end{example}
@@ -570,9 +569,9 @@ With the same end-goal, aperiodic programs (AP)~\cite{hainry2024}\index{aperiodi
 another mechanism adopted from the security domain.
 In the latter, the main result is a proof that SAFE and terminating aperiodic programs is the class of Basic Feasible Functionals\index{Basic Feasible Functionals}, \ie \(\sem{\text{SAFE} \cap \text{AP} \cap \text{terminating} = \text{BFF}}\)~\cite{hainry2020,hainry2024}.
 
-\paragraph*{From complexity to cryptography: the d\(\ell\)T system.}\index{d\(\ell\)T}
+\paragraph*{From complexity to cryptography: the d\(\ell\)T system.}
 In opposite direction, a separate track of work uses implicit computation complexity for applications in the security domain.
-The type system d\(\ell\)T~\cite{baillot2015,baillot2019} is both complexity-aware and has capabilities to support cryptographic proofs\index{cryptography}.
+The type system d\(\ell\)T~\cite{baillot2015,baillot2019}\index{d\(\ell\)T} is both complexity-aware and has capabilities to support cryptographic proofs\index{cryptography}.
 The system over-approximates the complexity of typable programs.
 Among the applications, d\(\ell\)T allows proving that the constructed adversary for 
 the Goldreich-Levin Theorem\index{Goldreich-Levin Theorem} is polynomial time\index{complexity class!P}.

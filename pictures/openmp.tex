@@ -1,0 +1,20 @@
+\documentclass[crop,border={20pt 20pt 20pt 20pt}]{standalone}
+\input{../latex/pics}
+\begin{document}
+
+\begin{tikzpicture}
+\draw[rectangle,draw=black,fill=tgrey] (0,1) rectangle (6,3) node[text centered, midway,xshift=13pt] {parallel region};
+\draw[thread,pthread] (0.6,3.25) -- (0.6,0.5);
+\draw[thread] (1.6,3.00) -- (1.6,1.0);
+\draw[thread] (5.3,3.00) -- (5.3,1.0);
+\draw[black,thick,dotted] (1.8,3.25) -- (5.0,3.25);
+\draw[black,thick,dotted] (0.9,3.25) -- (1.35,3.25);
+\node[above] at (0.6,3.35) {{primary}};
+\node[above] at (1.6,3.00) {1};
+\node[above] at (5.3,3.00) {\textit{j}};
+\node[text centered,above] at (3.5, 3.4) {team of threads};
+\draw[thick,line width=.5mm,line cap=round] (0,1) -- (6,1);
+\draw[black] (3,.73) -- (3,1);
+\node[below] at (3, .7) {barrier};
+\end{tikzpicture}
+\end{document}

@@ -1,0 +1,32 @@
+\documentclass[crop,border={-8pt 8pt 2pt 8pt}]{standalone}
+\input{../latex/pics}
+\tikzset{font={\selectfont\itshape}}
+\begin{document}
+
+\tikzstyle{arrowB} = [black,arrows={-Latex[width=5pt, length=5pt]}]
+\tikzstyle{arrowW} = [black,arrows={-Latex[width=5pt, length=5pt, fill=white]}]
+\tikzstyle{box}    = [draw=black,fill=tgrey]
+\tikzstyle{tnode}  = [font={\selectfont\ttfamily},right,xshift=5pt]
+
+\begin{tikzpicture}
+\node (i) at (0.5,0) {iteration};
+\node (1) at (1.75,0) {0};
+\node (2) at (3.25,0) {1};
+\node (3) at (4.75,0) {2};
+\node (B) [tnode] at (0.2,0.75) {B};
+\node (A) [tnode] at (0.2,2.25) {A};
+\node at (6,1.5) {\large\ldots};
+\draw[box] (1,2) rectangle (2.5,2.5);
+\draw[box] (2.5,2) rectangle (4,2.5);
+\draw[box] (4,2) rectangle (5.5,2.5);
+\draw[box] (1,.5) rectangle (2.5,1);
+\draw[box] (2.5,.5) rectangle (4,1);
+\draw[box] (4,.5) rectangle (5.5,1);
+\draw[arrowB] (1.75,2) -- (3.2,1);
+\draw[arrowB] (3.25,2) -- (4.75,1);
+\draw[arrowB] (6,0) -- (6.5,0) node[tnode] {\circled{S2}};
+\draw[arrowW] (1.75,1) -- (3.2,2);
+\draw[arrowW] (3.25,1) -- (4.75,2);
+\draw[arrowW] (6,.65) -- (6.5,.65) node[tnode] {\circled{S1}};
+\end{tikzpicture}
+\end{document}

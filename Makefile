@@ -50,4 +50,3 @@ update:
 	cp ../review/tool-guide/text.tex text/pubs-pymwp-guide.tex
 	cp ../review/bib.bib references/references.bib
 	cp -R ../review/listings/. code
-
