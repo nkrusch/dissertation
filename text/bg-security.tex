@@ -498,13 +498,13 @@ The derivation beings as follows.
 \begin{center}\begin{prooftree}
 \infer0[\textsc{E-High}]{\vdash \prm{e}₀ : \mathbf{h}}
 \infer0[\textsc{C-Assign1}]{\mathbf{h} \vdash \prm{v}₁\prm{:=e}₁}
-\infer0[]{{\color{red}{\text{\circled{\texttt{X}}}}} \vdash \prm{v}₂\prm{:=e}₂}
+\infer0[]{{\color{red}{\text{\circled{\normalfont{\texttt{X}}}}}} \vdash \prm{v}₂\prm{:=e}₂}
 \infer2[\textsc{C-Seq}]{\mathbf{h} \vdash \prm{v$_1$:=e$_1$; v$_2$:=e$_2$}}
 \infer2[\textsc{C-While}]{\mathbf{h} \vdash \prm{while(e$_0$) \{ v$_1$:=e$_1$; v$_2$:=e$_2$ \}}}
 \end{prooftree}\end{center}
 
 Since \pr|v|₂ is of type low, there is no way to handle \pr|v|₂\pr|:=e|₂.
-The derivation gets stuck at point marked{ }{\color{red}{\circled{\texttt{X}}}}{ }because the program has a non-interference\index{non-interference} violation.
+The derivation gets stuck at point marked{ }{ }{\color{red}{\circled{\normalfont{\texttt{X}}}}}{ }because the program has a non-interference\index{non-interference} violation.
 Intuitively, it is because the program operates on a low variable inside a loop with a guard variable\index{guard variable} that is of type high.
 This construction is not safe because it leaks information.
 

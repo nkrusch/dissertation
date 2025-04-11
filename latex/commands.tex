@@ -12,12 +12,9 @@
 \newcommand{\nonterm}[1]{#1} % ott
 \newcommand*\lstinputpath[1]{\lstset{inputpath=#1}}
 \newcommand{\smtabularnote}[1]{\tabularnote{\small{#1}}}
-\newcommand{\hlc}[2][highlight]{{%
-    \colorlet{foo}{#1}%
-    \sethlcolor{foo}\hl{#2}}}
 
 \newcommand{\ompi}[1]{\index{OpenMP directives!{#1}}}
-\newcommand{\pr}{\lstinline[mathescape,basicstyle=\ttfamily,escapeinside={(*}{*)}]}
+\newcommand{\pr}{\lstinline[mathescape,basicstyle=\ttfamily,escapeinside={(*}{*)},prebreak={}]}
 \newcommand{\prc}{\lstinline[language=C,basicstyle=\ttfamily,keywordstyle=\mdseries]}
 \newcommand{\omp}[1]{\lstinline[language=OpenMP,basicstyle=\ttfamily\color{black},keywordstyle=\ttfamily\color{black}]|#1|\ompi{#1}}
 \newcommand{\prm}[1]{\text{\pr|#1|}}
@@ -34,9 +31,6 @@
 \newcommand{\pageIconFm}{\pageIcon{\iconFM}{formal methods}}
 \newcommand{\pageIconOpt}{\pageIcon{\iconOPT}{program optimization}}
 \newcommand{\pageIconSecurity}{\pageIcon{\iconSEC}{security}}
-
-
-\newcommand{\langclr}[1]{\tikz{\node[rectangle,minimum size=3mm,rounded corners=3pt,fill=#1]{};}}
 
 % add index terms to \includepdf
 \makeatletter

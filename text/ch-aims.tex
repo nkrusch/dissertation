@@ -151,8 +151,8 @@ One of the manuscripts is in the appendix due to the university policies, but th
 several other manuscripts follow from it.
 
 \item[Extensions of Loop Quasi-Invariant Chunk Detection.]
-The second track is inspired by \enquote{Loop Quasi-Invariant Chunk Detection} (LQICM)~\cite{moyen20172}.
-The idea in LQICM is to identify blocks of code in loops that become invariant after some finite number of loop iterations.
+The second track is inspired by \enquote{Loop Quasi-Invariant Chunk Detection}~\cite{moyen20172}.
+The idea is to identify blocks of code in loops that become invariant after some finite number of loop iterations.
 These quasi-invariant blocks can then be lifted from the loop to ideally improve the loop's complexity profile.
 The manuscripts in this track support the second dissertation goal,
 as they use the mathematical framework of LQICM to track other program properties.
@@ -180,23 +180,22 @@ These icons will appear and are used with this designation throughout the disser
 \subsubsection{Software Artifacts and Data Availability}\label{subsub:sw}
 
 All software developed as part of this dissertation is publicly available.
-Each published and publication-ready manuscript in this dissertation, including the dissertation itself, comes with a software artifact, \cf~\aref{app:sec:artifacts}.
+Each published and publication-ready manuscript in this dissertation, including the dissertation itself, comes with a software artifact specified in~\aref{app:sec:artifacts}.
 Each piece of software is archived for long-term retention, according to the long-term archival policies of the Association for Computing Machinery artifact guidelines~\cite{acm_badging}.
 The software is achieved even if the venue of a manuscript did not arrange a formal artifact evaluation round.
 Thus, each manuscript extends beyond the paper pages of this dissertation.
 
 \subsubsection{Notational Conventions}
 
-\paragraph*{Significant figures.}
-Important figures, that present some fundamental concept, have a boxed frame.
-Regular figures have no frame.
-
 \paragraph*{Code blocks and line numbers.}
 Syntactic constructs (variables, expressions, commands, \etc), that appear in textual paragraphs, are typeset in \texttt{teletype}.
+
 Larger code blocks are displayed in dedicated standalone listings.
-The listings will display, in bottom right corner, the associated programming language or context according to~\autoref{tab:pls}.
-In the same table, version shows the programming language or specification release version assumed in the code blocks.
-The pseudo-languages have no version.
+The listings will display, in bottom right corner, the associated programming language or context, according to~\autoref{tab:pls}.
+Version shows the programming language or specification release version assumed in the code blocks.
+Pseudo-languages have no version.
+Plain text command outputs are labelled as \enquote{output}.
+The Rocq theorem prover (formerly Coq) is undergoing a name change, and we refer to the new name as consistently as possible.
 
 \begin{table}[h]
 \begin{center}
@@ -205,47 +204,50 @@ The pseudo-languages have no version.
 \multicolumn{2}{@{}l}{Language} & Description & Version \\
 \midrule
 \langclr{cc}        & C     & C language & C99 \\
-\langclr{ccstar}    & C*    & an imperative C-like pseudo language & -- \\
+\langclr{ccstar}    & C*    & imperative C-like pseudo-language & -- \\
 \langclr{cces}      & CES   & cost equation system &  -- \\
 \langclr{ccmd}      & cmd   & executable shell/terminal command & --  \\
 \langclr{cdafny}    & Dafny & Dafny language & 4.10.0 \\
 \langclr{cimp}      & Imp   & the imperative language of mwp-calculus & -- \\
 \langclr{cjava}     & Java  & Java language & SE 24 \\
 \langclr{compcode}  & OMP   & C code that includes OpenMP directives & 6.0 \\
-\langclr{crocq}     & Rocq  & Roqc interactive theorem prover\footnote{
-    The Rocq theorem prover -- formerly Coq -- is undergoing a name change.
-    We refer to the new name
-} & 9.0.0 \\
+\langclr{crocq}     & Rocq  & Roqc interactive theorem prover & 9.0.0 \\
 \langclr{cmathc}    & SSR   & the SSReflect proof language & 2.3.0 \\
 \bottomrule
 \end{tabular}\end{center}
 \caption[The programming languages of code listings]{The programming languages of code listings.}
 \label{tab:pls}
 \end{table}
-Plain text command outputs are labelled as \enquote{output}.
 
 When referring to a specific line of source code or an algorithm, we write L, for \underline{l}ine;
 followed by a number or a numeric range that specifies the rows of interest.
 For example, L3 means \enquote{line number 3}, and L10--12 means \enquote{lines 10 to 12}.
 
 \paragraph*{Distinguishing variable states.}
-When referring to the same variable in different states of computation, we use special notation to identify the \emph{new} (post) states,
-in the style of the Z specification language\index{Z specification language} of~\textcite{spivey1992}.
+When referring to the same variable in different states of computation, we use notation that identifies the \emph{new} (post) states,
+in the style of the Z specification language\index{Z specification language}~\cite{spivey1992}.
 A plain variable refers to a state where the variable holds its \emph{initial} value.
-If the same variable has a postfix decoration \pr|'| then it refers to a state of its \emph{final} value.
+If the same variable has a postfix decoration \pr|'| then it refers to a state where the variable holds its \emph{final} value.
 For example, \pr|X| refers to the initial value and \pr|X'| to the final value.
+
+\paragraph*{Significant figures.}
+When a figure present an important or fundamental concept, the figure is emphasized with a boxed frame.
+Regular figures have no frame.
 
 \subsubsection{Term and Notational Indices}
 
 This dissertation includes three indices.
-The \hyperref[sec:app:index]{Term Index} lists technical terms and their uses.
+The \hyperref[sec:app:index]{term index} lists technical terms and their uses.
 Acronyms are generally defined at first-use, but it is always possible to locate the long form in the~\nameref{\acronymtype}.
-A similar collection is available for symbolic notations in the~\nameref{symbols}.
+A similar lookup reference is available for symbolic notations in the~\nameref{symbols}.
 
-\subsubsection{Back-up Archival of External Documents}
+\subsubsection{Archival of Non-publication References}
 
-The unpublished or miscellaneous external web pages and PDF files, that are referenced in the bibliography of this dissertation,
-are pre-emptively archived on the Internet Archive with the Wayback Machine.
+Some entries in the dissertation bibliography refer to unpublished or miscellaneous external resources: web pages, lecture notes, PDF files, \etc
+Extra consideration has been applied to ensure long-term availability of such resources.
+
+\paragraph*{Written documents.}
+Web pages and PDF files are pre-emptively archived at the Internet Archive.
 To recover a document from the Internet Archive, use the following format, substituting \pr|<URL>| by the document's URL\@.
 
 \begin{center}
@@ -274,3 +276,11 @@ https://web.archive.org/web/https://types22.inria.fr/files/2022/06/TYPES_2022_pa
 
 If a referenced external document was not readily available even at the time of writing this dissertation,
 the document is hosted with the software deposit of this dissertation, \cf~\autoref{subsub:sw}.
+
+\paragraph*{Software repositories.}
+Version controlled software repositories are archived by \href{https://softwareheritage.org/}{Software Heritage}.
+For a repository at \pr|<URL>|, the recovery address is:
+
+\begin{center}
+\pr|https://archive.softwareheritage.org/browse/origin/directory/?origin_url=<URL>|
+\end{center}
