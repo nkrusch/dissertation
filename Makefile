@@ -42,6 +42,7 @@ loc:
 
 update:
 	cp ../review/s1-aims/text.tex text/ch-aims.tex
+	cp ../review/s2-intro/text.tex text/bg-intro.tex
 	cp ../review/s2-icc/text.tex text/bg-icc.tex
 	cp ../review/s2-static/text.tex text/bg-static.tex
 	cp ../review/s2-mwp/text.tex text/bg-mwp.tex
