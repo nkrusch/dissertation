@@ -1,7 +1,5 @@
 TEMPLATE_VERSION := 0.2.1
-
 TEMPLATE := https://github.com/the-au-forml-lab/au_ccs_dissertation_template/releases/download/$(TEMPLATE_VERSION)/tex_version.zip
-ABSTRACT := text/abstract.tex
 
 all: compile
 
@@ -28,14 +26,11 @@ pull_template:
 	@unzip -o template.zip
 	@rm -rf template.zip
 
-#update_main:
-#	cp tex_version/main.tex main.tex
-
 clean:
-	@rm -rf *.pdf *.mst *.acn *.loa *.alg *glg *.glo *.gls *.ist *.slg *.listing *.sym *.aux *.acr *.sbl *.idx *.ind *.ilg *.xdv *.bbl *.bcf *.blg *.out *.fdb_latexmk *.fls *.log *.run.xml *.tex.blg *.synctex.gz *.vtc *.lot *.lof *.lol *.toc *~ main.pdf
-
-count:  # the abstract has a word limit
-	@echo $$(wc -w < $(ABSTRACT)) '\t---' $(basename $(ABSTRACT))
+	@rm -rf *.pdf *.mst *.acn *.loa *.alg *glg *.glo *.gls *.ist *.slg \
+ 	*.listing *.sym *.aux *.acr *.sbl *.idx *.ind *.ilg *.xdv *.bbl \
+ 	*.bcf *.blg *.out *.fdb_latexmk *.fls *.log *.run.xml *.tex.blg \
+ 	*.synctex.gz *.vtc *.lot *.lof *.lol *.toc *~ main.pdf
 
 loc:
 	cloc . --exclude-dir=tex_version,env,.github,.idea
