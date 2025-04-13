@@ -676,7 +676,9 @@ then independent blocks are then transformed into multiple parallelizable loops,
 \begin{figure}[h]
 {\centering\includegraphics[width=\textwidth,keepaspectratio]{fig_parallel}}
 \caption[Loop fission transformation]
-{Loop fission of a sequential loop into parallelizable loops.}\label{fig:icc-fission}
+{Loop fission of a sequential loop into parallelizable loops.
+The loop header (the leading \langclr{header} block) is replicated across the generated loops.
+Each generated loop takes a part of the original loop's body.}\label{fig:icc-fission}
 \end{figure}
 
 The technique is interesting because it is applicable even when the loop iteration space is unknown;

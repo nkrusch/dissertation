@@ -215,8 +215,10 @@ Due to focus on verifying numerical loops, the programming language is restricte
 The language adjustment is now a prerequisite to obtain the technical enhancements.
 The loop analysis variant is implemented in pymwp\index{pymwp} as a special mode called mwp\(_\ell\).
 
+\afterpage{%
+\clearpage% To flush out all floats, might not be what you want
 \begin{landscape}
-\begin{table}[p]
+\begin{table}[p!]
 \begin{NiceTabularX}{\hsize}{XXllll}
 \toprule
   & & \textbf{The original} & \textbf{The enhanced} & \textbf{The pymwp} & \textbf{Postconditions} \\
@@ -247,7 +249,7 @@ Phase & Description & \textbf{flow calculus} & \textbf{\textsc{mwp}\(^\infty\) c
 \index{pymwp}
 \index{C}
 \end{table}
-\end{landscape}
+\end{landscape}}
 
 \paragraph*{Open problems for future developments.}
 Throughout the technical progression, the class of programs covered by the analysis has remained similar;

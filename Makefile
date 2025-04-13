@@ -18,23 +18,6 @@ terms:
 figures:
 	make -C pictures
 
-%.tex: %.ott
-	ott -i $< -o $@ -tex_wrap false
-
-pull_template:
-	@wget $(TEMPLATE) -O template.zip
-	@unzip -o template.zip
-	@rm -rf template.zip
-
-clean:
-	@rm -rf *.pdf *.mst *.acn *.loa *.alg *glg *.glo *.gls *.ist *.slg \
- 	*.listing *.sym *.aux *.acr *.sbl *.idx *.ind *.ilg *.xdv *.bbl \
- 	*.bcf *.blg *.out *.fdb_latexmk *.fls *.log *.run.xml *.tex.blg \
- 	*.synctex.gz *.vtc *.lot *.lof *.lol *.toc *~ main.pdf
-
-loc:
-	cloc . --exclude-dir=tex_version,env,.github,.idea
-
 update:
 	cp ../review/s1-aims/text.tex text/ch-aims.tex
 	cp ../review/s2-intro/text.tex text/bg-intro.tex
@@ -46,3 +29,20 @@ update:
 	cp ../review/tool-guide/text.tex text/pubs-pymwp-guide.tex
 	cp ../review/bib.bib references/references.bib
 	cp -R ../review/listings/. code
+
+%.tex: %.ott
+	ott -i $< -o $@ -tex_wrap false
+
+loc:
+	cloc . --exclude-dir=tex_version,env,.github,.idea
+
+pull_template:
+	@wget $(TEMPLATE) -O template.zip
+	@unzip -o template.zip
+	@rm -rf template.zip
+
+clean:
+	@rm -rf *.pdf *.mst *.acn *.loa *.alg *glg *.glo *.gls *.ist *.slg \
+ 	*.listing *.sym *.aux *.acr *.sbl *.idx *.ind *.ilg *.xdv *.bbl \
+ 	*.bcf *.blg *.out *.fdb_latexmk *.fls *.log *.run.xml *.tex.blg \
+ 	*.synctex.gz *.vtc *.lot *.lof *.lol *.toc *~ main.pdf

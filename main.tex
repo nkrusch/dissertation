@@ -321,7 +321,7 @@ twoside=false, bindingoffset=0pt, nohead]{geometry}
 \newenvironment{abstract}{%
     % At the beginning of the environment:
     \pdfbookmark[0]{Abstract}{abs} % We add it to the pdf toc
-    \chapter*{Abstract}
+    \chapter*{Abstract}\label{abs}
     {                       % This group must be single-spaced.
         \linespread{1}
         \textsc{\yourname} \\
