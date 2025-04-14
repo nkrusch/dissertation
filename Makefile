@@ -19,6 +19,8 @@ figures:
 	make -C pictures
 
 update:
+	cp ../review/s0-abs/text.tex text/abstract.tex
+	cp ../review/s0-acks/text.tex text/acks.tex
 	cp ../review/s1-aims/text.tex text/ch-aims.tex
 	cp ../review/s2-intro/text.tex text/bg-intro.tex
 	cp ../review/s2-icc/text.tex text/bg-icc.tex
