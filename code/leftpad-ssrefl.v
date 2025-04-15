@@ -3,7 +3,7 @@ From mathcomp Require Import ssreflect ssrbool ssrnat seq.
 Section LeftPad.
   Variables (T : Type) (def : T).  
   Implicit Types (c : T) (n : nat) (s : seq T).
-  Local Notation nth := (nth def).  (* nth list element *)
+  Local Notation nth := (nth def).  (* nth element *)
 
   Definition leftpad c n s : seq T :=
       ncons (n - size s) c s.
