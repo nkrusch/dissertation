@@ -32,9 +32,7 @@ Section MessagingSpec.
     if r == 0 then 7 else r.
 
   Definition send t := encode t.1.1 t.1.2 t.2 7.
-    
   Definition recv t m := encode t.1.1 t.1.2 t.2 m.
-
   Definition recover t n :=
     T3 [seq x <- outside (L t) | x != recv t n].
 

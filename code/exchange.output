@@ -1,0 +1,3 @@
+Finished, 7 targets (7 cached) in 00:00:00.
+B sends 4 ==> C got A=2 and B=(5, 1, 4)
+C sends 5 ==> B got A=2 and C=(7, 3, 6)

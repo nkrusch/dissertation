@@ -141,7 +141,7 @@ module Equality =
 (** val eq_op0 : Equality.coq_type -> Equality.sort rel **)
 
 let eq_op0 s =
-  (Equality.eqtype_hasDecEq_mixin (Equality.coq_class s)).Coq_hasDecEq.eq_op
+  s.Coq_hasDecEq.eq_op
 
 (** val eqn : nat -> nat -> bool **)
 
@@ -169,25 +169,15 @@ let hB_unnamed_factory_1 =
 let datatypes_nat__canonical__eqtype_Equality =
   Obj.magic hB_unnamed_factory_1
 
-(** val addn_rec : nat -> nat -> nat **)
-
-let addn_rec =
-  add
-
 (** val addn : nat -> nat -> nat **)
 
 let addn =
-  addn_rec
-
-(** val subn_rec : nat -> nat -> nat **)
-
-let subn_rec =
-  sub
+  add
 
 (** val subn : nat -> nat -> nat **)
 
 let subn =
-  subn_rec
+  sub
 
 (** val leq : nat -> nat -> bool **)
 

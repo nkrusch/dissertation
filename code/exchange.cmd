@@ -1,0 +1,1 @@
+ocamlbuild exchange.byte && ./exchange.byte

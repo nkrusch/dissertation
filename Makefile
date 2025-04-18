@@ -22,12 +22,13 @@ update:
 	cp ../review/s0-abs/text.tex text/abstract.tex
 	cp ../review/s0-acks/text.tex text/acks.tex
 	cp ../review/s1-aims/text.tex text/ch-aims.tex
-	cp ../review/s2-intro/text.tex text/bg-intro.tex
+	#cp ../review/s2-formal/text.tex text/bg-formal.tex
 	cp ../review/s2-icc/text.tex text/bg-icc.tex
-	cp ../review/s2-static/text.tex text/bg-static.tex
-	cp ../review/s2-mwp/text.tex text/bg-mwp.tex
+	cp ../review/s2-intro/text.tex text/bg-intro.tex
 	cp ../review/s2-loops/text.tex text/bg-loops.tex
+	cp ../review/s2-mwp/text.tex text/bg-mwp.tex
 	cp ../review/s2-security/text.tex text/bg-security.tex
+	cp ../review/s2-static/text.tex text/bg-static.tex
 	cp ../review/tool-guide/text.tex text/pubs-pymwp-guide.tex
 	cp ../review/bib.bib references/references.bib
 	cp -R ../review/listings/. code
