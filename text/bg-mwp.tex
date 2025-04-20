@@ -344,84 +344,84 @@ defined as an infinite sum \[M^* = 1 \oplus M \otimes M^2 \oplus M^3 \oplus \ldo
 \index{inference rule}
 \index{mwp-calculus}
 
-\begin{figure}
-\begin{subfigure}{\textwidth}
-\begin{center}
-\begin{tabular}{l}
-\begin{prooftree}[small]
-\infer0[E1]{ \vdashJK \text{\pr|Xi|} : \{_{\text{\,\pr|i|}}^{m}\}}
-\end{prooftree}
-\hspace{2em}
-\begin{prooftree}[small]
-\infer0[E2]{ \vdashJK \text{\pr|e|} : \{_{\text{\,\pr|i|}}^{w} \mid \text{\pr|Xi|} \in \var(\text{\pr|e|}) \}}
-\end{prooftree}
-\end{tabular}
-\end{center}
-\end{subfigure}
-\\[1.2em]
-\begin{subfigure}{\textwidth}
-\begin{center}
-\begin{tabular}{l}
-\begin{prooftree}[small]
-\hypo{\vdashJK \text{\pr{Xi}} : V_1}
-\hypo{\vdashJK \text{\pr{Xj}} : V_2}
-\infer[left label={\(\star\in\{+, -\}\)}]2[E3]{\vdashJK \text{\pr|Xi $\star$ Xj|} : pV_1 \oplus V_2}
-\end{prooftree}
-\hspace{1em}
-\begin{prooftree}[small]
-\hypo{\vdashJK \text{\pr{Xi}} : V_1}
-\hypo{\vdashJK \text{\pr{Xj}} : V_2}
-\infer[left label={\(\star\in\{+, -\}\)}]2[E4]{\vdashJK \text{\pr|Xi $\star$ Xj|} : V_1 \oplus pV_2}
-\end{prooftree}
-\end{tabular}
-\end{center}
-\caption{Rules for assigning vectors to expressions}
-\label{fig:rules-expressions}
-\end{subfigure}
-\\[3em]
-\begin{subfigure}{\textwidth}
-\begin{centering}
-\begin{prooftree}[small]
-\infer0[S]{ \vdashJK \text{\pr|skip|} : \mathbf{1} }
-\end{prooftree}
-\hspace{3em}
-\begin{prooftree}[small]
-\hypo{ \vdashJK \text{\pr{e}} : V}
-\infer1[A]{\vdashJK \text{\pr|Xj = e|} : \mathbf{1} \xleftarrow{\text{\pr|j|}} V}
-\end{prooftree}
-\hspace{3em}
-\begin{prooftree}[small]
-\hypo{ \vdashJK \text{\pr{C1}} : M_1}
-\hypo{ \vdashJK \text{\pr{C2}} : M_2}
-\infer2[C]{\vdashJK \text{\pr{C1;C2}} : M_1 \otimes M_2}
-\end{prooftree}
-\\[1.2em]
-\begin{prooftree}[small]
-\hypo{ \vdashJK \text{\pr{C1}} : M_1}
-\hypo{ \vdashJK \text{\pr{C2}} : M_2}
-\infer2[I]{\vdashJK \text{\pr|if b then C1 $\text{\hspace{.3em}}$ else C2|} : M_1 \oplus M_2}
-\end{prooftree}
-\\[1.2em]
-\begin{prooftree}[small]
-\hypo{\vdashJK \text{\pr|C|} : M}
-\infer[left label={\(\forall i, M_{ii}^* = m\)}]1[L]{\vdashJK \text{\pr|loop Xl \{C\}|} : M^* \oplus \{_{\text{\pr|l|}}^{p}\rightarrow j \mid \exists i, M_{ij}^* = p\}}
-\end{prooftree}
-\\[1.2em]
-\begin{prooftree}[small]
-\hypo{\vdashJK \text{\pr|C|} : M}
-\infer[left label={\(\forall i, M_{ii}^* = m\) and \(\forall i, j, M^*_{ij} \neq p\)}]1[W]{\vdashJK \text{\pr|while b do  \{C\}|} : M^*}
-\end{prooftree}
-\caption{Rules for assigning matrices to commands}
-\label{fig:rules-commands}
-\end{centering}
-\end{subfigure}
-\caption[The inference rules of the original mwp-calculus]
-{The nondeterministic inference rules of the original mwp-calculus.}
-\label{fig:jkrules}\index{inference rule}\index{nondeterminism}
-\end{figure}
-
 The inference rules\index{inference rule} of the mwp-calculus\index{mwp-calculus} \cf~\autoref{fig:jkrules} specify how different program operations impact variable value growth during computation.
 Effectively, they provide the mechanics for connecting the mwp-matrix\index{mwp-matrix} algebra with imperative programs\index{imperative programs}.
+
+\begin{figure}
+    \begin{subfigure}{\textwidth}
+        \begin{center}
+            \begin{tabular}{l}
+                \begin{prooftree}[small]
+                    \infer0[E1]{ \vdashJK \text{\pr|Xi|} : \{_{\text{\,\pr|i|}}^{m}\}}
+                \end{prooftree}
+                \hspace{2em}
+                \begin{prooftree}[small]
+                    \infer0[E2]{ \vdashJK \text{\pr|e|} : \{_{\text{\,\pr|i|}}^{w} \mid \text{\pr|Xi|} \in \var(\text{\pr|e|}) \}}
+                \end{prooftree}
+            \end{tabular}
+        \end{center}
+    \end{subfigure}
+    \\[1.2em]
+    \begin{subfigure}{\textwidth}
+        \begin{center}
+            \begin{tabular}{l}
+                \begin{prooftree}[small]
+                    \hypo{\vdashJK \text{\pr{Xi}} : V_1}
+                    \hypo{\vdashJK \text{\pr{Xj}} : V_2}
+                    \infer[left label={\(\star\in\{+, -\}\)}]2[E3]{\vdashJK \text{\pr|Xi $\star$ Xj|} : pV_1 \oplus V_2}
+                \end{prooftree}
+                \hspace{1em}
+                \begin{prooftree}[small]
+                    \hypo{\vdashJK \text{\pr{Xi}} : V_1}
+                    \hypo{\vdashJK \text{\pr{Xj}} : V_2}
+                    \infer[left label={\(\star\in\{+, -\}\)}]2[E4]{\vdashJK \text{\pr|Xi $\star$ Xj|} : V_1 \oplus pV_2}
+                \end{prooftree}
+            \end{tabular}
+        \end{center}
+        \caption{Rules for assigning vectors to expressions}
+        \label{fig:rules-expressions}
+    \end{subfigure}
+    \\[3em]
+    \begin{subfigure}{\textwidth}
+        \begin{centering}
+            \begin{prooftree}[small]
+                \infer0[S]{ \vdashJK \text{\pr|skip|} : \mathbf{1} }
+            \end{prooftree}
+            \hspace{3em}
+            \begin{prooftree}[small]
+                \hypo{ \vdashJK \text{\pr{e}} : V}
+                \infer1[A]{\vdashJK \text{\pr|Xj = e|} : \mathbf{1} \xleftarrow{\text{\pr|j|}} V}
+            \end{prooftree}
+            \hspace{3em}
+            \begin{prooftree}[small]
+                \hypo{ \vdashJK \text{\pr{C1}} : M_1}
+                \hypo{ \vdashJK \text{\pr{C2}} : M_2}
+                \infer2[C]{\vdashJK \text{\pr{C1;C2}} : M_1 \otimes M_2}
+            \end{prooftree}
+            \\[1.2em]
+            \begin{prooftree}[small]
+                \hypo{ \vdashJK \text{\pr{C1}} : M_1}
+                \hypo{ \vdashJK \text{\pr{C2}} : M_2}
+                \infer2[I]{\vdashJK \text{\pr|if b then C1 $\text{\hspace{.3em}}$ else C2|} : M_1 \oplus M_2}
+            \end{prooftree}
+            \\[1.2em]
+            \begin{prooftree}[small]
+                \hypo{\vdashJK \text{\pr|C|} : M}
+                \infer[left label={\(\forall i, M_{ii}^* = m\)}]1[L]{\vdashJK \text{\pr|loop Xl \{C\}|} : M^* \oplus \{_{\text{\pr|l|}}^{p}\rightarrow j \mid \exists i, M_{ij}^* = p\}}
+            \end{prooftree}
+            \\[1.2em]
+            \begin{prooftree}[small]
+                \hypo{\vdashJK \text{\pr|C|} : M}
+                \infer[left label={\(\forall i, M_{ii}^* = m\) and \(\forall i, j, M^*_{ij} \neq p\)}]1[W]{\vdashJK \text{\pr|while b do  \{C\}|} : M^*}
+            \end{prooftree}
+            \caption{Rules for assigning matrices to commands}
+            \label{fig:rules-commands}
+        \end{centering}
+    \end{subfigure}
+    \caption[The inference rules of the original mwp-calculus]
+    {The nondeterministic inference rules of the original mwp-calculus.}
+    \label{fig:jkrules}\index{inference rule}\index{nondeterminism}
+\end{figure}
 
 \begin{description}
 \item[Expressions.]
@@ -464,6 +464,37 @@ Since a tree is a hierarchical structure, the analysis proceeds in depth-first o
 The derivation examples in~\autoref{mwp-derivations} demonstrate the concept.
 For simplicity, in describing the analysis procedure we assume a flattened parse-tree of commands.
 
+\begin{algorithm}
+    \caption[Program analysis with flow calculus of mwp-bounds]
+    {Program analysis with flow calculus of mwp-bounds.}\label{alg:prog}
+    \textbf{Input}: sequence of commands \pr|P| \\
+    \textbf{Output}: mwp-matrix\index{mwp-matrix} \(M\) or failure
+    \begin{algorithmic}[1]
+        \State Take the first command \(\prm{C}_0\) in \pr|P|
+        \State Analyze \(\prm{C}_0\) by \autoref{alg:comms} to obtain \(M\)
+        \State (Maybe signal failure)
+        \For{Commands \(n = 1 \ldots m\)}
+            \State Analyze \(\prm{C}_n\) by \autoref{alg:comms}
+            \State (Maybe signal failure)
+            \State Compose \(M = M \circ M_n \) by rule C
+        \EndFor
+        \State \Return mwp-matrix \(M\) \Comment{\(\vdash \prm{P} : M\)}
+    \end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}
+    \caption[Command analysis with flow calculus of mwp-bounds]
+    {Command analysis with flow calculus of mwp-bounds.}\label{alg:comms}
+    \textbf{Input}: command \pr|C| \\
+    \textbf{Output}: mwp-matrix\index{mwp-matrix} \(M\) or failure
+    \begin{algorithmic}[1]
+        \State Analyze expressions in \pr|C| by rules E1-E4
+        \State Analyze \pr|C| by rules A-W, possibly recursively
+        \State (Maybe signal failure)
+        \State \Return \(M\) \Comment{\(\vdash\prm{C} : M\)}
+    \end{algorithmic}
+\end{algorithm}
+
 Let \(P = (\prm{C}_0,\prm{C}_1,\ldots,\prm{C}_m) \) be a program in an imperative language\index{imperative programs} where \(m \geq 1\).
 A generalized program analysis proceeds by~\autoref{alg:prog}, with the analysis of individual commands is described in~\autoref{alg:comms}\footnote{
     Detailed implementations of these algorithms are available in the pymwp\index{pymwp} source code as
@@ -477,36 +508,6 @@ Failure handling varies between the different versions of the flow analysis (\cf
 therefore, the specifics are omitted here.
 The \textsc{mwp}\(^\infty\) variant of the flow calculus\index{mwp-calculus} internalizes the failure and always returns an mwp-matrix\index{mwp-matrix}.
 
-\begin{algorithm}
-\caption[Program analysis with flow calculus of mwp-bounds]
-{Program analysis with flow calculus of mwp-bounds.}\label{alg:prog}
-\textbf{Input}: sequence of commands \pr|P| \\
-\textbf{Output}: mwp-matrix\index{mwp-matrix} \(M\) or failure
-\begin{algorithmic}[1]
-\State Take the first command \(\prm{C}_0\) in \pr|P|
-\State Analyze \(\prm{C}_0\) by \autoref{alg:comms} to obtain \(M\)
-\State (Maybe signal failure)
-\For{Commands \(n = 1 \ldots m\)}
-\State Analyze \(\prm{C}_n\) by \autoref{alg:comms}
-\State (Maybe signal failure)
-\State Compose \(M = M \circ M_n \) by rule C
-\EndFor
-\State \Return mwp-matrix \(M\) \Comment{\(\vdash \prm{P} : M\)}
-\end{algorithmic}
-\end{algorithm}
-
-\begin{algorithm}
-\caption[Command analysis with flow calculus of mwp-bounds]
-{Command analysis with flow calculus of mwp-bounds.}\label{alg:comms}
-\textbf{Input}: command \pr|C| \\
-\textbf{Output}: mwp-matrix\index{mwp-matrix} \(M\) or failure
-\begin{algorithmic}[1]
-\State Analyze expressions in \pr|C| by rules E1-E4
-\State Analyze \pr|C| by rules A-W, possibly recursively
-\State (Maybe signal failure)
-\State \Return \(M\) \Comment{\(\vdash\prm{C} : M\)}
-\end{algorithmic}
-\end{algorithm}
 
 \subsubsection{Illustrative Derivations I: The Range of Analysis Outcomes}\label{mwp-derivations}
 

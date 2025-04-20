@@ -1,0 +1,30 @@
+\documentclass[crop,border={20pt 3pt 0pt 2pt}]{standalone}
+\input{../latex/pics}
+\begin{document}
+ 
+\tikzstyle{triangle} = [
+	draw=black, 
+	isosceles triangle, 
+	isosceles triangle apex angle=60, 
+	fill=tgrey,
+	rotate=90, thick,
+	rounded corners=0pt, 
+	minimum size=5cm]
+\tikzstyle{aside} = [font={\selectfont\itshape\small\color{sorange}},xshift=80pt]
+\tikzstyle{label} = [midway, text width=2cm, text centered]
+\tikzstyle{up} = [label, above, yshift= 8pt]
+\tikzstyle{dn} = [label, below, yshift=-8pt]
+\tikzstyle{sep} = [black, densely dotted, line width=.25mm]
+
+\begin{tikzpicture}[align=center]
+
+\node[triangle] (T) at (0,0){};
+\draw[sep]  (T.35) -- (T.325) node[up] (TS) {top\\secret} node[dn] {secret};
+\draw[sep]  (T.74) -- (T.286) node {};
+\draw[sep] (T.105) -- (T.255) node[up] {confidential} node[dn] (UC) {unclassified};
+\node[right of=TS, aside] {\small\textit{highest}};
+\node[right of=UC, aside] {\small\textit{lowest}};
+
+\end{tikzpicture}
+\end{document}
+	
