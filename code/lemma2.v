@@ -5,5 +5,5 @@ Lemma send_ambiguous (alloc1 : alloc):
   /\ send alloc1.(B) = send alloc2.(B)
   /\ send alloc1.(C) = send alloc2.(C)
   (* but allocated numbers are different *)
-  /\ ~[alloc1.(B)] ⤭ [alloc2.(B)].
-  /\ ~[alloc1.(C)] ⤭ [alloc2.(C)].
+  /\ ~[alloc1.(B)] $\times$ [alloc2.(B)].
+  /\ ~[alloc1.(C)] $\times$ [alloc2.(C)].

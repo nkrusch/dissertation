@@ -23,7 +23,7 @@ update:
 	cp ../review/0-acks/text.tex text/ch-acks.tex
 	cp ../review/1-aims/text.tex text/ch-aims.tex
 	cp ../review/1-bg-intro/text.tex text/bg-intro.tex
-	#cp ../review/1-formal/text.tex text/bg-formal.tex
+	cp ../review/1-formal/text.tex text/bg-formal.tex
 	cp ../review/1-icc/text.tex text/bg-icc.tex
 	cp ../review/1-loops/text.tex text/bg-loops.tex
 	cp ../review/1-mwp/text.tex text/bg-mwp.tex

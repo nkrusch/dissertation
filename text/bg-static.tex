@@ -122,9 +122,13 @@ Numerous techniques can be used to reason about such properties.
 
 \begin{itemize}
 \item Termination analyses tend to focus on values that are copied or decreased.
-      They aim to discover conditions, like program-dependent well-founded orders on loops~\cite{lee2001} or difference constraints~\cite{sinn2017},
+      Establishing termination is a critical aspect of correctness of recursive calls and commands.
+      Termination analyses aim to discover conditions---like difference constraints~\cite{sinn2017},
+      program-dependent well-founded orders on loops~\cite{lee2001}, or
+      establishing that recursive reduction sequence are finite\footnote{
+      Showing that every reduction sequence is finite is called the \emph{strong normalization} property~\cite[p. 36]{bertot2004}}---
       that guarantee termination.
-      A prolific technique in termination analysis, that comes from implicit computational complexity, is the size-change termination principle\index{size-change termination principle} of~\textcite{lee2001}.
+      A specific technique for termination analysis, that originates from implicit computational complexity, is the size-change termination principle\index{size-change termination principle} of~\textcite{lee2001}.
 \item Data-size analyses focus on memory consumption, estimating how large various variable values may become~\cite{lommen2023}.
       Obtaining bounds thus requires studying patterns of data-size changes during computation.
       In imperative programs, interesting data-size behaviors arise from counter increments and resets, particularly in loops~\cite{sinn2017,benamram2020}.
@@ -144,7 +148,7 @@ AARA-based techniques has been implemented on functional~\cite{hoffmann2017}, im
 
 \paragraph*{Cost equation systems.}
 A \emph{cost equation system} (CES) (alternatively: cost relation system) is an abstract representation format of a program's resource cost~\cite{floresmontoya2017,albert2019}.
-It consists of a set of cost equations, that are non-deterministic recurrence relations annotated with constraints, as shown in \autoref{fig:ces}~\cite{floresmontoya2014}.
+It consists of a set of cost equations, that are non-deterministic recurrence relations annotated with constraints, as shown in \autoref{lst:ces}~\cite{floresmontoya2014}.
 The analyzing technique of cost equations is based on the seminal work of~\textcite{wegbreit1975}.
 Such analysis operates in two phases.
 The first phase extracts a set of equations that capture the program cost \wrt data-size and a parametric cost measure.
@@ -158,12 +162,13 @@ but may have issues with multiphase loops and with programs with require complex
 
 \begin{center}
 \begin{minipage}{\textwidth}
+\captionsetup{type=lstlisting}
 \cesinputlisting{example.ces}
 \captionof{lstlisting}[A cost equation system]{
 A cost equation system representing an exponential function.
 The term \pr|a(n)| is called the {head} and the rightward terms are the {body}.
 The body terms represent costs and constraints.}
-\label{fig:ces}
+\label{lst:ces}
 \end{minipage}
 \end{center}
 

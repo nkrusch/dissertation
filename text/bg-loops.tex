@@ -31,6 +31,7 @@ A {loop} has two parts: a header (L\ref{line:header})\index{loop header} and a b
 
 \begin{center}
 \begin{minipage}{\textwidth}
+\captionsetup{type=lstlisting}
 \cstarinputlisting[][escapeinside=||]{insertion.c}
 \captionof{lstlisting}[Loop of insertion sort]{Adaptation of insertion sort from~\textcite{cormen2009}.}
 \label{lst:loop-ex}
@@ -61,6 +62,7 @@ A \emph{canonical loop}~\cite[p. 196--202]{openmp_api}\index{canonical loop}\foo
 The definition is specific to the programming model of~\autoref{openmp} and~\autoref{sec:vmcai}.} has form,
 \begin{center}
 \begin{minipage}{\textwidth}
+\captionsetup{type=lstlisting}
 \cstarinputlisting{canonical.imp}
 \captionof{lstlisting}[Canonical loop form]{Canonical loop form.}
 \label{lst:canonical}
@@ -112,12 +114,14 @@ In both transformations, the loop header and iteration space remain unchanged.
 
 \begin{center}
 \begin{minipage}{\textwidth}
-\begin{minipage}[t]{.45\textwidth}
+\captionsetup{type=lstlisting}
+\begin{minipage}{.45\textwidth}
+\captionsetup{type=lstlisting}
 \cstarinputlisting{fusion.c}
 \captionof{lstlisting}[Loop fusion transformation]{Loop fusion.}
 \label{lst:fusion}
 \end{minipage}\hfill%
-\begin{minipage}[t]{.45\textwidth}
+\begin{minipage}{.45\textwidth}
 \cstarinputlisting{fission.c}
 \captionof{lstlisting}[Loop fission transformation]{Loop fission.}
 \label{lst:fission}
@@ -137,6 +141,7 @@ For example, if \(0, 1,\ldots, n-2, n-1\) are the logical iteration numbers of a
 
 \begin{center}
 \begin{minipage}{\textwidth}
+\captionsetup{type=lstlisting}
 \begin{minipage}{.45\textwidth}
 \cstarinputlisting{split.c}
 \captionof{lstlisting}[Loop splitting transformation]{Loop splitting.}
@@ -156,6 +161,7 @@ The loop iteration space is adjusted accordingly.
 
 \begin{center}
 \begin{minipage}{\textwidth}
+\captionsetup{type=lstlisting}
 \begin{minipage}[t]{.45\textwidth}
 \cstarinputlisting{peel.c}
 \captionof{lstlisting}[Loop peeling transformation]{Loop peeling.}
@@ -184,6 +190,7 @@ as shown in Listings~\ref{lst:pre-interchange} and~\ref{lst:post-interchange}.
 
 \begin{center}
 \begin{minipage}{\textwidth}
+\captionsetup{type=lstlisting}
 \begin{minipage}[t]{.45\textwidth}
 \cstarinputlisting{pre-interchange.c}
 \captionof{lstlisting}[Loop before interchange]{Pre-interchange.}
@@ -230,22 +237,26 @@ The interesting variables, that reference a memory location of interest, are emp
 
 \begin{center}
 \begin{minipage}[t]{.4\textwidth}
+\captionsetup{type=lstlisting}
 \cstarinputlisting[][emph={X},emphstyle={\color{pthread}\textbf},numbers=none,escapeinside={||}]{dep-true.imp}
 \captionof{lstlisting}[True dependence]{True dependence.}
 \label{dep-true}
 \end{minipage}\hspace{3em}
 \begin{minipage}[t]{.4\textwidth}
+\captionsetup{type=lstlisting}
 \cstarinputlisting[][emph={X},emphstyle={\color{pthread}\textbf},numbers=none,escapeinside={||}]{dep-anti.imp}
 \captionof{lstlisting}[Antidependence]{Antidependence.}
 \label{dep-anti}
 \end{minipage}
 
 \begin{minipage}[t]{.4\textwidth}
+\captionsetup{type=lstlisting}
 \cstarinputlisting[][emph={X},emphstyle={\color{pthread}\textbf},numbers=none,escapeinside={||}]{dep-out.imp}
 \captionof{lstlisting}[Output dependence]{Output dependence.}
 \label{dep-out}
 \end{minipage}\hspace{3em}
 \begin{minipage}[t]{.4\textwidth}
+\captionsetup{type=lstlisting}
 \cstarinputlisting[][emph={X},emphstyle={\color{pthread}\textbf},numbers=none,escapeinside={||}]{dep-control.imp}
 \captionof{lstlisting}[Control dependence]{Control dependence.}
 \label{dep-control}
@@ -284,6 +295,7 @@ More precisely, a statement \pr|S2| has a loop-carried dependence on statement \
 \end{enumerate}
 
 \begin{center}
+\captionsetup{type=lstlisting}
 \begin{minipage}{.4\textwidth}
 \cstarinputlisting[][escapeinside=||]{loop-carried.c}
 \end{minipage}%
@@ -450,6 +462,7 @@ After the parallel region, the {primary thread}\index{primary thread} resumes ex
 \end{itemize}
 
 \begin{center}
+\captionsetup{type=lstlisting}
 \begin{minipage}{.45\textwidth}
 \ompcodeinputlisting{parallel.c}
 \end{minipage}\hfill%
@@ -484,6 +497,7 @@ Thus, \omp{nowait} enables specifying that an implicit barrier should not occur.
 \begin{minipage}{\textwidth}
 One thread\index{thread} executes each iteration sequentially, \(\text{total time} = N \times t_\text{iter}\).
 \begin{center}
+\captionsetup{type=lstlisting}
 \begin{minipage}{.45\textwidth}
 \cinputlisting{serial-exec.c}
 \end{minipage}\hfill%
@@ -495,6 +509,7 @@ One thread\index{thread} executes each iteration sequentially, \(\text{total tim
 \end{center}
 All available threads\index{thread} will execute each iteration sequentially, overwriting values of array \pr|C|, \(\text{total time} = N \times t_\text{iter}\).
 \begin{center}
+\captionsetup{type=lstlisting}
 \begin{minipage}{.45\textwidth}
 \ompcodeinputlisting{parallel-loop.c}
 \end{minipage}\hfill%
@@ -506,6 +521,7 @@ All available threads\index{thread} will execute each iteration sequentially, ov
 \end{center}
 Assuming a thread\index{thread} count of 4, the threads distribute the loop iteration space uniformly, \(\text{total time} = \frac{N}{4} \times t_\text{iter}\).
 \begin{center}
+\captionsetup{type=lstlisting}
 \begin{minipage}{.45\textwidth}
 \ompcodeinputlisting{parallel-for.c}
 \end{minipage}\hfill
@@ -578,6 +594,7 @@ fixed-size array length \pr|N|, manipulating each array index in arrays \pr|A| a
 \begin{center}
 \begin{minipage}{\textwidth}
 \begin{minipage}{.45\textwidth}
+\captionsetup{type=lstlisting}
 \cinputlisting{seq-block.c}
 \captionof{lstlisting}[Sequential version]{Sequential version.}
 \label{lst:seq-block}
@@ -625,6 +642,7 @@ Full unroll requires that the iteration count of the associated loop is a consta
 
 \begin{center}
 \begin{minipage}{\textwidth}
+\captionsetup{type=lstlisting}
 \begin{minipage}{.45\textwidth}
 \ompcodeinputlisting{full-unroll.c}
 \captionof{lstlisting}[Applying full unroll]{Applying full unroll.}
@@ -646,15 +664,16 @@ Partial transformation is illustrated in \autoref{lst:pt-unroll} and~\autoref{ls
 
 \begin{center}
 \begin{minipage}{\textwidth}
+\captionsetup{type=lstlisting}
 \begin{minipage}{.45\textwidth}
-    \ompcodeinputlisting{pt-unroll.c}
-    \captionof{lstlisting}[Applying partial unroll]{Applying partial unroll.}
-    \label{lst:pt-unroll}
+\ompcodeinputlisting{pt-unroll.c}
+\captionof{lstlisting}[Applying partial unroll]{Applying partial unroll.}
+\label{lst:pt-unroll}
 \end{minipage}\hfill%
 \begin{minipage}{.45\textwidth}
-    \cinputlisting{pt-unroll-post.c}
-    \captionof{lstlisting}[Partially transformed loop]{Partially transformed loop.}
-    \label{lst:post-pt-unroll}
+\cinputlisting{pt-unroll-post.c}
+\captionof{lstlisting}[Partially transformed loop]{Partially transformed loop.}
+\label{lst:post-pt-unroll}
 \end{minipage}
 \end{minipage}
 \end{center}
