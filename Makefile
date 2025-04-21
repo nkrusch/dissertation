@@ -1,6 +1,3 @@
-TEMPLATE_VERSION := 0.2.1
-TEMPLATE := https://github.com/the-au-forml-lab/au_ccs_dissertation_template/releases/download/$(TEMPLATE_VERSION)/tex_version.zip
-
 all: compile
 
 compile:
@@ -19,8 +16,8 @@ figures:
 	make -C pictures
 
 update:
-	cp ../review/0-abs/text.tex text/ch-abstract.tex
-	cp ../review/0-acks/text.tex text/ch-acks.tex
+#	cp ../review/0-abs/text.tex text/ch-abstract.tex
+#	cp ../review/0-acks/text.tex text/ch-acks.tex
 	cp ../review/1-aims/text.tex text/ch-aims.tex
 	cp ../review/1-bg-intro/text.tex text/bg-intro.tex
 	cp ../review/1-formal/text.tex text/bg-formal.tex
@@ -30,6 +27,7 @@ update:
 	cp ../review/1-security/text.tex text/bg-security.tex
 	cp ../review/1-static/text.tex text/bg-static.tex
 	cp ../review/2-guide/text.tex text/pubs-pymwp-guide.tex
+	cp ../review/3-coqpl/text.tex text/pubs-coqpl.tex
 	cp ../review/bib.bib references/references.bib
 	cp -R ../review/listings/. code
 
@@ -38,11 +36,6 @@ update:
 
 loc:
 	cloc . --exclude-dir=tex_version,env,.github,.idea
-
-pull_template:
-	@wget $(TEMPLATE) -O template.zip
-	@unzip -o template.zip
-	@rm -rf template.zip
 
 clean:
 	@rm -rf *.pdf *.mst *.acn *.loa *.alg *glg *.glo *.gls *.ist *.slg \

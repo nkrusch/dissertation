@@ -1,7 +1,3 @@
-\pageIconFm
-\ainfoX{\CTNT}
-{\href{https://popl23.sigplan.org/home/CoqPL-2023}
-{The Ninth International Workshop on Coq for Programming Languages (CoqPL), 2023}}
 
 \subsection*{Abstract}
 
@@ -18,7 +14,7 @@ analyses into larger formal developments.
 Unfortunately, computational complexity is notoriously difficult to represent formally for several reasons.
 In general, deriving a complexity bound for an arbitrary program is an undecidable problem.
 In the area of complexity theory, \textcquote[p.~114]{forster2020}{%
-  formalisations of even basic complexity-theoretic results are not available}, hindering certification attempts.
+    formalisations of even basic complexity-theoretic results are not available}, hindering certification attempts.
 
 For practical complexity analyses, many existing techniques present methodological challenges if they require
 \eg program termination or inlining functions~\cite{carbonneaux2015}.
@@ -37,7 +33,7 @@ We speculate these combined properties could make ICC-approaches a conceivable p
 \subsection{Preliminary Action Plan}\label{coqpl-preliminary-action-plan}
 
 We plan to formalize in Coq an ICC-based complexity analysis technique, the \emph{mwp-flow analysis}~\cite{jones2009}\footnote{%
-  Where mwp stands for \emph{m}aximum, \emph{w}eak polynomial and \emph{p}olynomial, representing increasing growth rates of variables values.}.
+    Where mwp stands for \emph{m}aximum, \emph{w}eak polynomial and \emph{p}olynomial, representing increasing growth rates of variables values.}.
 We chose this method because its internal mechanics has been recently studied~\cite{aubert20222}, and by our assessment, it seems suitable for formalization in Coq\index{Coq}.
 As for Coq, it seems like the ideal target language because of its existing libraries and preliminary work--some of which are discussed in \autoref{coqpl-related}--, most notably related to compilers~\cite{leroy2009}.
 
@@ -60,33 +56,33 @@ Of course, this implies the correctness of the bounds as a by-product but consti
 Preliminary explorations have led us to establish the following milestones.
 
 \begin{description}
-  \item[The mathematical foundations]
-  Our first goal is to define the mathematical structure required to carry out the rest of the construction.
-  This requires defining vectors, matrices and their operations, semi-rings, and honest polynomials\index{honest polynomial}\footnote{%
-    Which are \textcquote[p.~5]{jones2009}{polynomial build up from constants in \(\mathbb{N}\) and variables by applying the operations \(+\) (addition) and \(\times\) (multiplication).}} that are needed to represent the \emph{mwp}-bounds\index{mwp-bound}.
-  The Mathematical Components library~\cite{mahboubi2022,mathcomp}\index{Mathematical Components} will lay the foundations for the linear algebra representations, but likely requires extensions to accommodate our specific analysis.
+    \item[The mathematical foundations]
+    Our first goal is to define the mathematical structure required to carry out the rest of the construction.
+    This requires defining vectors, matrices and their operations, semi-rings, and honest polynomials\index{honest polynomial}\footnote{%
+        Which are \textcquote[p.~5]{jones2009}{polynomial build up from constants in \(\mathbb{N}\) and variables by applying the operations \(+\) (addition) and \(\times\) (multiplication).}} that are needed to represent the \emph{mwp}-bounds\index{mwp-bound}.
+    The Mathematical Components library~\cite{mahboubi2022,mathcomp}\index{Mathematical Components} will lay the foundations for the linear algebra representations, but likely requires extensions to accommodate our specific analysis.
 
-  \item[Implementing the language]
-  The analyzed language is a simple imperative language that manipulates natural numbers, held in a fixed number of program variables.
-  Its syntax includes variables, expressions (operations \(+\) and \(\times\)), Boolean expressions, and commands
-  (\eg  assignment, loop and decision statements, command sequences, and skip), with their usual semantics.
-  We expect implementing it and its small-steps semantics\index{small-steps semantics} in Coq\index{Coq} to be relatively simple, following the examples from Software Foundations~\cite{cpierce20221,cpierce20222}\index{Software Foundations}.
+    \item[Implementing the language]
+    The analyzed language is a simple imperative language that manipulates natural numbers, held in a fixed number of program variables.
+    Its syntax includes variables, expressions (operations \(+\) and \(\times\)), Boolean expressions, and commands
+    (\eg  assignment, loop and decision statements, command sequences, and skip), with their usual semantics.
+    We expect implementing it and its small-steps semantics\index{small-steps semantics} in Coq\index{Coq} to be relatively simple, following the examples from Software Foundations~\cite{cpierce20221,cpierce20222}\index{Software Foundations}.
 
-  \item[Implementing the typing system]
-  Even if it can be computationally expensive to run an automatic inference~\cite{aubert2023b}, the typing system \emph{in itself} is relatively simple.
-  It contains only 10 rules, essentially one for each type of command, and except for the initial assignment of vectors to variables, is fully deterministic.
-  We conjecture that standard methods~\cite{chlipala2022, chlipala2010} to implement simple type systems will be enough, but will require some care to scale to the matrix-as-type paradigm of this analysis.
+    \item[Implementing the typing system]
+    Even if it can be computationally expensive to run an automatic inference~\cite{aubert2023b}, the typing system \emph{in itself} is relatively simple.
+    It contains only 10 rules, essentially one for each type of command, and except for the initial assignment of vectors to variables, is fully deterministic.
+    We conjecture that standard methods~\cite{chlipala2022, chlipala2010} to implement simple type systems will be enough, but will require some care to scale to the matrix-as-type paradigm of this analysis.
 
-  \item[Certifying the analysis]
-  This will be the most demanding part of our plan.
-  The original paper contains all the required handwritten proofs, but the authors caution that
-  \enquote{\textins{t}hese proofs are long, technical and occasionally highly nontrivial}~\cite[p.~2]{jones2009}.
-  The main result of the paper is the soundness proof of the analysis~\cite[Theorem 5.3]{jones2009},
-  \ie the proof of the existence of a matrix\index{mwp-matrix} typing the program implies the existence of an honest polynomial\index{honest polynomial} bounding the variables' growth rates.
-  The main result follows from 15 pages of proofs presented in section 7 of the paper.
-  This section revolves around proving the soundness properties of the calculus, and we expect the most substantial effort to be spent on formalizing these proofs.
-  Some of them are quite intricate but with a satisfactory level of detail.
-  The cases concerning soundness of loops are the most difficult on paper, but their inductive nature \emph{should} (we hope!) be processed by Coq\index{Coq} rather easily.
+    \item[Certifying the analysis]
+    This will be the most demanding part of our plan.
+    The original paper contains all the required handwritten proofs, but the authors caution that
+    \enquote{\textins{t}hese proofs are long, technical and occasionally highly nontrivial}~\cite[p.~2]{jones2009}.
+    The main result of the paper is the soundness proof of the analysis~\cite[Theorem 5.3]{jones2009},
+    \ie the proof of the existence of a matrix\index{mwp-matrix} typing the program implies the existence of an honest polynomial\index{honest polynomial} bounding the variables' growth rates.
+    The main result follows from 15 pages of proofs presented in section 7 of the paper.
+    This section revolves around proving the soundness properties of the calculus, and we expect the most substantial effort to be spent on formalizing these proofs.
+    Some of them are quite intricate but with a satisfactory level of detail.
+    The cases concerning soundness of loops are the most difficult on paper, but their inductive nature \emph{should} (we hope!) be processed by Coq\index{Coq} rather easily.
 \end{description}
 
 We leave for future work the possibility of creating a formally verified, automatic static analyzer founded on the proof of correctness of this method: as we discussed in other works~\cite{aubert2023b,aubert20222}, care is required to implement a typing strategy that does not rapidly become intractable.
@@ -97,14 +93,14 @@ A few prior results exist that combine formalization of complexity and Coq\index
 They range from practical analyses to proofs in computational complexity theory.
 
 For practical application, Coq has been used to verify stack bounds for assembly code~\cite{carbonneaux2014} and to obtain WCET loop-bound estimation~\cite{blazy2013}.
-  {Carbonneaux et al.}~\cite{carbonneaux2017} presented an automatic static analyzer for imperative programs, and although the analyzer itself is not verified, it generates bounds with machine-checkable certificates, to guarantee that the computed bound holds.
+    {Carbonneaux et al.}~\cite{carbonneaux2017} presented an automatic static analyzer for imperative programs, and although the analyzer itself is not verified, it generates bounds with machine-checkable certificates, to guarantee that the computed bound holds.
 For functional paradigm, McCarthy et al.~\cite{mccarthy2018} developed a Coq\index{Coq} library, with a monad that counts abstract steps, which enabled running time analysis of programs written using the monad.
 An ICC-based characterization was introduced by Férée et al.~\cite{feree2018}, in the form of a Coq\index{Coq} library, that allows for readily proving that a function is computable in polynomial time.
 
 Coq\index{Coq} has also been used to formalize some of the foundations of modern complexity theory.
-  {Ciaffaglione}~\cite{ciaffaglione2016} proved the undecidability of the halting problem.
-  {Guéneau et al.}~\cite{gueneau2018} formalize the \(\mathcal{O}\)\symbo{bigo} notation.
-  {Forster et al.}~\cite{forster2020} implemented a multi-tape to single-tape compiler, and introduced the first formalized universal Turing Machine verified \wrt time and space complexity, for any model of computation, in any proof assistant.
+    {Ciaffaglione}~\cite{ciaffaglione2016} proved the undecidability of the halting problem.
+    {Guéneau et al.}~\cite{gueneau2018} formalize the \(\mathcal{O}\)\symbo{bigo} notation.
+    {Forster et al.}~\cite{forster2020} implemented a multi-tape to single-tape compiler, and introduced the first formalized universal Turing Machine verified \wrt time and space complexity, for any model of computation, in any proof assistant.
 More recently, Gäher and Kunze formalized the Cook-Levin theorem in Coq~\cite{gaher2021}.
 Despite these advances, formalization of complexity is in early stages and basic complexity-theoretic results \eg time and space hierarchy theorems, remain unavailable.
 
