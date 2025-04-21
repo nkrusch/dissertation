@@ -503,7 +503,7 @@ The derivation beings as follows.
 \end{prooftree}\end{center}
 
 Since \pr|v|₂ is of type low, there is no way to handle \pr|v|₂\pr|:=e|₂.
-The derivation gets stuck at point marked{ }{ }{\circled[red]{\normalfont{\textbf{\texttt{X}}}}}{ }because the program has a non-interference\index{non-interference} violation.
+The derivation gets stuck at point marked{ }{ }{\circled[red]{\textbf{\texttt{X}}}}{ }because the program has a non-interference\index{non-interference} violation.
 Intuitively, it is because the program operates on a low variable inside a loop with a guard variable\index{guard variable} that is of type high.
 This construction is not safe because it leaks information.
 

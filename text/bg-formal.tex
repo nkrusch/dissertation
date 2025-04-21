@@ -475,10 +475,11 @@ For example, if we wanted to prove the lemma of~\autoref{lst:rocq-basic} in Dafn
 \caption[Dafny running in Visual Studio Code]
 {The Dafny verifier, checking Dafny code, running in Visual Studio Code.
 An \pr|ensures| clause defines a postcondition.
-A small green check means the verifier succeeds at the proof obligation of the corresponding line.
-A big green check indicates success with the full construct.
-The verification fails on the declarations that are marked with a red block.
-The big red \circled{X} marks constructs that fail to verify (even if some declarations succeed).}
+A green filled check {\color{dafnyok}{\scalebox{.8}{\faCheckCircle}}}
+means the verifier succeeds at the proof obligation of the corresponding line.
+A big green check{ }{ }\circled[dafnyok]{\faCheck}{ }indicates success with the full construct.
+The verification fails on the declarations that are marked with a red block and squiggly underline.
+A big red{ }{ }\circled[dafnyno]{\faTimes}{ }marks full constructs that fail to verify, even if some inner declarations succeed.}
 \label{fig:dafny-use}
 \end{figure}
 

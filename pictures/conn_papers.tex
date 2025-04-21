@@ -1,37 +1,45 @@
-\documentclass[crop,border={1pt 1pt 1pt 0pt}]{standalone}
+\documentclass[crop,border={0pt 10pt 0pt 0pt}]{standalone}
 \input{../latex/pics}
 
-\tikzstyle{start} = [rectangle, rounded corners=3pt, thick,minimum width=7cm,minimum height=1.8cm,text width=7cm,text centered, draw=black,densely dotted, fill=concept]
-\tikzstyle{prior} = [start, densely dashdotted, fill=prior, minimum height=2cm]
-\tikzstyle{node} = [prior, solid, fill=paper]
+\tikzset{font={\selectfont\normalsize}}
+
+\newcommand\authA{Jones \& Kristiansen\@\xspace}    
+\newcommand\authB{Aubert, Rubiano, Rusch \& Seiller\@\xspace}    
+\newcommand\authC{Moyen, Rubiano \& Seiller\@\xspace}    
+\newcommand\authD{Aubert \& Rusch\@\xspace}    
+\newcommand\authE{Rusch\@\xspace}    
+\newcommand\authT[2]{\enquote{\textbf{#1}}\\{{#2}}}
+
+\tikzstyle{start} = [
+	rectangle, rounded corners=0pt, line width=1.5pt, minimum width=7cm, minimum height=2cm, 
+	text width=7cm, text centered, draw=concept, solid, fill=conceptbase, line cap=round]
+	
+\tikzstyle{prior} = [start, draw=prior, fill=priorbase, double, line width=.7pt]
+\tikzstyle{node} =  [start, draw=paper, fill=paperbase]
 \tikzstyle{arrow} = [thick,arrows={-Latex[width=5pt, length=5pt]}]
 \tikzstyle{rectangle connector} = [arrow,pos=0.5, to path={(\tikztostart) -- ++(#1,0pt) \tikztonodes |- (\tikztotarget)}]
-\tikzstyle{topic icon} = [rectangle, text width=.5cm, yshift=2.3cm]
-\tikzstyle{topic label} = [rectangle, text width=5cm, yshift=-.25mm]
+\tikzstyle{topic icon} = [rectangle, text width=.5cm, yshift=2.3cm, font={\selectfont\large}]
+\tikzstyle{topic label} = [rectangle, text width=5cm, yshift=-.25mm, align=left]
 
 \begin{document}
-\begin{tikzpicture}[node distance=3cm,
-	block/.style args={#1:#2:#3}{node, 
+\begin{tikzpicture}[node distance=3cm,align=center,
+	block/.style args={#1:#2:#3:#4}{node, 
 	name={#1}, draw,
-    node contents={#3},
+    node contents={\authT{#3}{#4}},
     append after command={
-    	node[circle, fill=white, draw=black, solid, thick,
-        minimum size=3mm, inner sep=2pt, outer sep=0.4pt,
-        xshift=3mm, yshift=1mm, anchor=north west] at (#1.north west) {#2}}}]
-    
-\fill[draw=black, fill=concept,densely dotted] (-6, 0) circle (.75ex) node[right, xshift=3mm]{Concept};
-\fill[draw=black, fill=prior,densely dashdotted] (-3, 0) circle (.75ex) node[right, xshift=3mm]{Prior foundational work};
-\fill[draw=black, fill=paper] (2.5, 0) circle (.75ex) node[right, xshift=3mm]{Work in this dissertation};
-
-\node (icc) [start, yshift=-2cm] {Implicit Computational Complexity};
-\node (mwp) [prior, below of=icc, xshift=-3.5cm] {``A Flow Calculus of mwp-Bounds\\for Complexity Analysis"\\\small{\textit{Jones \& Kristiansen (2009)}}};
-\node (qsi) [prior, right of=mwp, xshift=5cm] {``Loop Quasi-Invariant Chunk Detection"\\\small{\textit{Moyen, Rubiano \& Seiller (2017)}}};
-\node [block=imp:\iconSPA:{``mwp-Analysis Improvement and Implementation: Realizing\\Implicit Computational Complexity"\\\small{\textit{Aubert, Rubiano, Rusch \& Seiller (2022)}}}, below of=mwp];
-\node [block=pym:\iconSPA:{``pymwp: A Static Analyzer\\Determining Polynomial Growth Bounds"\\\small{\textit{Aubert, Rubiano, Rusch \& Seiller (2023)}}}, below of=imp];
-\node [block=pci:\iconFM:{``Polynomial Postconditions\\via mwp-Bounds"\\\small{\textit{Rusch (2025)$^*$}}}, below of=pym];
-\node [block=ncl:\iconOPT:{``Distributing and Parallelizing\\Non-canonical Loops"\\\small{\textit{Aubert, Rubiano, Rusch \& Seiller (2023)}}}, below of=qsi];
-\node [block=nil:\iconSEC:{``A Logic for Anytime Non-Interference"\\\small{\textit{Aubert \& Rusch (2025)$^*$}}}, below of=ncl];
-\node [block=cca:\iconFM:{``Certifying Complexity Analysis"\\\small{\textit{Aubert, Rubiano, Rusch \& Seiller (2023)}}\\\small{\textit{Rusch (2023 -- ?)}}}, below of=pci];
+    	node[circle, fill=white, draw=paper, solid, line width=1.5pt,
+		inner sep=2pt, outer sep=0.4pt,
+        xshift=3mm, yshift=1mm, anchor=north west] at (#1.north west) {\large #2}}}]
+   
+\node (icc) [start, loosely dotted] at (5,10) {Implicit Computational Complexity};
+\node (mwp) [prior, below of=icc, xshift=-3.5cm] {\authT{A Flow Calculus of mwp-Bounds\\for Complexity Analysis}{\authA (2009)}};
+\node (qsi) [prior, right of=mwp, xshift=5cm] {\authT{Loop Quasi-Invariant Chunk Detection}{\authC (2017)}};
+\node [below of=mwp, block=imp:\iconSPA:{mwp-Analysis Improvement and Implementation: Realizing\\Implicit Computational Complexity}:{\authB (2022)}];
+\node [below of=imp, block=pym:\iconSPA:{pymwp: A Static Analyzer\\Determining Polynomial Growth Bounds}:{\authB (2023)}];
+\node [below of=pym, block=pci:\iconFM:{Polynomial Postconditions\\via mwp-Bounds}:{\authE (2025)$^*$}];
+\node [below of=qsi, block=ncl:\iconOPT:{Distributing and Parallelizing\\Non-canonical Loops}:{\authB (2023)}];
+\node [below of=ncl, block=nil:\iconSEC:{A Logic for Anytime Non-Interference}:{\authD (2025)$^*$}];
+\node [below of=pci, block=cca:\iconFM:{Certifying Complexity Analysis}:{\authB (2023)\\\authE (2023 -- ?)}];
 
 \draw [arrow] (icc) -- (mwp);
 \draw [arrow] (mwp) -- (imp);
@@ -51,6 +59,11 @@
 \node            [topic label, right of=verify] {Formal Methods};
 \node (security) [topic icon, below of=verify] {\large\iconSEC};
 \node          	 [topic label, right of=security] {Security};
+   
+\fill[draw=concept, line width=1pt, fill=conceptbase, densely dotted] (0, 12) circle (.75ex) node[right, xshift=3mm]{Concept};
+\fill[draw=prior, thick, fill=priorbase, double] (3, 12) circle (.75ex) node[right, xshift=3mm]{Prior foundational work};
+\fill[draw=paper, thick, fill=paperbase, solid] (8, 12) circle (.75ex) node[right, xshift=3mm]{Work in this dissertation};
+
 
 \end{tikzpicture}
 \end{document}
