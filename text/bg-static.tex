@@ -300,26 +300,25 @@ This sidesteps Rice's theorem, but cannot be \emph{intentionally} complete, sinc
 Correctly analysing a real world programming language is very difficult because of the large number of constructions allowed in it.
 
 \begin{quotation}
-    \noindent We must understand all the diﬃculty because for a Turing-complete language for example the class of PTime programs is not recursively enumerable, and therefore an intentionally complete criterion would not be decidable~\cite[Sect. 4.1]{mogbil2012}.
+\noindent We must understand all the diﬃculty because for a Turing-complete language for example the class of PTime programs is not recursively enumerable, and therefore an intentionally complete criterion would not be decidable~\cite[Sect. 4.1]{mogbil2012}.
 \end{quotation}
 
 \noindent For this reason, most research\footnote{
-    Among the exceptions, quasi-interpretations~\cite{marion2000} considers a Turing-complete language.}
+Among exceptions, quasi-interpretations~\cite{marion2000} considers a Turing-complete language.}
 in implicit complexity techniques focuses on \enquote{toy languages}~\cite{moyen2017,rubiano17};
-such as Term Rewriting Systems (TRS) or the \textsc{Loop} language~\cite{kristiansen2005}.
+like term rewrite systems or the \textsc{Loop} language~\cite{kristiansen2005}.
 % functional, imperative (oop, loops), flowchart, term rewriting,...
 While such languages capture the core of mainstream programming languages, they are far from the rich constructs allowed in real languages.
-That limits the spread of implicit complexity-based techniques beyond academic circles and complicates rigorously assessing their potential.
+%That limits the spread of implicit complexity-based techniques beyond academic circles and complicates rigorously assessing their potential.
 
 \paragraph*{Analysis mechanics and obtained bounds.}
-The fact that ICC systems are designed to characterize a specific complexity classes has implications on the results they produce.
-If they deliver bounds, they deliver asymptotic (symbolic) bounds, rather than concrete bounds~\cite{baillot2019}.
-An existing research direction in implicit complexity is to improve precision of obtained resource bounds~\cite{benamram2020}.
-If the system is designed as a sound under-approximation, it can only provide upper bounds~\cite[p. 119]{moyen2017}.
-A satisfactory program can be provided run-time complexity guarantee,
-but if a program is rejected, nothing is known of the program's runtime behavior.
+That ICC systems are designed to characterize a specific complexity classes has implications on the results they produce.
+If they generate bounds, they are asymptotic (symbolic) bounds, rather than concrete bounds~\cite{baillot2019}.
+An existing research direction in ICC concerns improving precision of obtained resource bounds~\cite{benamram2020}.
+However, if the system is designed as a sound under-approximation, it can only provide upper bounds~\cite[p. 119]{moyen2017}.
+A satisfactory program can be provided run-time complexity guarantee, but nothing is known of the runtime behavior of unsatisfactory programs.
 ICC system is inherently restricted to analyzing programs whose sub-computations also satisfy the membership criterion of the target complexity class~\cite{baillot2019}.
-On the other hand, unlike many other static analysis techniques;
+On the other hand, unlike many other static analysis techniques,
 ICC systems may not require establishing termination and avoid difficult control-flow analysis by abstraction and over-approximation~\cite{jones2009}.
 
 \subsubsection{Prospects and Directions in ICC-Based Program Analysis}

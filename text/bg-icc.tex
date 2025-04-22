@@ -170,16 +170,20 @@ This way, the usual scheme of primitive recursion\index{primitive recursion} can
     \(f (n + 1,\vec{x};{ }\vec{y}) = g (n, \vec{x}; \vec{y}, f(n,\vec{x}; \vec{y})) \).
 \end{center}
 
-%Please notice that
 \noindent The way we define \(f\)\symbo{f} from \(g\) and \(h\) is morphologically identical to what happens in the usual primitive recursive scheme.
 That it is a restriction is a consequence of the distinction between normal and safe arguments: the recursive call \(f(n,\vec{x}; \vec{y})\)\symbo{normx}\symbo{safey} is required to be forwarded to one of g's safe argument, while the first parameter of \(f\)\symbo{f} must be normal.
 This makes exp not expressible anymore, giving rise to new function algebra called \emph{safe recursion}\index{safe recursion}, discovered by Bellantoni and Cook~\cite{bellantoni1992} (BC in the following).
 
 \begin{theorem}
-    The class BC equals the class FP of polynomial time computable functions.
+The class BC equals the class FP of polynomial time computable functions.
 \end{theorem}\ccxi{p}
 
-The Bellantoni and Cook result was formalized~\cite{bc_formal} by~\textcite{heraud2011}.
+The Bellantoni and Cook result extends an earlier result by Cobham.
+Cobham's thesis asserts that being feasible is the same as being computable in polynomial time~\cite{cobham1965}.
+Although Cobham characterizes the polynomial time functions independently of any particular execution model, the characterization is not fully syntactic.
+This prevents an automatic procedure to check whether a program satisfies the criteria of Cobham's class~\cite{heraud2011}.
+In contrast, the Bellantoni and Cook characterization is a fully-syntactic mechanism and membership in BC can be checked automatically.
+The Bellantoni and Cook result was proved formally~\cite{bc_formal} by~\textcite{heraud2011}.
 
 \subsubsection{A Snapshot of Theoretical Results}
 \label{icc-theories}

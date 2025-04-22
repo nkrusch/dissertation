@@ -568,17 +568,20 @@ With the same end-goal, aperiodic programs (AP)~\cite{hainry2024}\index{aperiodi
 another mechanism adopted from the security domain.
 In the latter, the main result is a proof that SAFE and terminating aperiodic programs is the class of Basic Feasible Functionals\index{Basic Feasible Functionals}, \ie \(\sem{\text{SAFE}\;\cap\;\text{AP}\;\cap\;\text{terminating} = \text{BFF}}\)~\cite{hainry2020,hainry2024}.
 
-\paragraph*{From complexity to cryptography: the d\(\ell\)T system.}
-In opposite direction, a separate track of work uses implicit computation complexity for applications in the security domain.
-The type system d\(\ell\)T~\cite{baillot2015,baillot2019}\index{d\(\ell\)T} is both complexity-aware and has capabilities to support cryptographic proofs\index{cryptography}.
-The system over-approximates the complexity of typable programs.
-Among the applications, d\(\ell\)T allows proving that the constructed adversary for 
-the Goldreich-Levin Theorem\index{Goldreich-Levin Theorem} is polynomial time\index{complexity class!P}.
+\paragraph*{From complexity to cryptography.}\index{cryptography}
+In opposite direction, a separate track of works uses implicit computation complexity for applications in the security domain.
+The formalization of safe recursion (\cf~\autoref{safe-rec}) was primarily motivated by its envisioned utility in cryptography~\cite{heraud2011}.
+The type system d\(\ell\)T~\cite{baillot2015,baillot2019}\index{d\(\ell\)T} is simultaneously complexity-aware, and has capabilities to support cryptographic proofs.
+%The system over-approximates the complexity of typable programs.
+Among the applications, d\(\ell\)T allows proving that the constructed adversary for the Goldreich-Levin Theorem\index{Goldreich-Levin Theorem} is polynomial time\ccxi{p}.
 Such applications are interesting because they involve computations that are inherently non-polynomial in time complexity.
-Handing sub-computations that are non-polynomial time requires pushing ICC techniques beyond their standard capabilities.
-It is still early to judge the long-term impact of system d\(\ell\)T\@;
-among the challenges, it has not been implemented.
-However, is has already inspired mechanized proofs~\cite{barbosa2021,feree2018}.
+Handing such sub-computations %that are non-polynomial time
+requires pushing ICC techniques beyond their standard capabilities.
+%It is still early to judge the long-term impact of system d\(\ell\)T\@;
+%among the challenges, it has not been implemented.
+Although d\(\ell\)T has not been implemented, together with the formalization of safe recursion, it
+%However, d\(\ell\)T and the formalization of safe recursion have
+already inspired other mechanized proofs~\cite{barbosa2021,feree2018}.
 
 \subsubsection{From Quasi-Invariant Chunks to Non-Interference}
 \label{quasi-ni}

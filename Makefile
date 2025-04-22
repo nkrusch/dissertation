@@ -16,7 +16,7 @@ figures:
 	make -C pictures
 
 update:
-#	cp ../review/0-abs/text.tex text/ch-abstract.tex
+	cp ../review/0-abs/abstract.txt text/ch-abstract.tex
 #	cp ../review/0-acks/text.tex text/ch-acks.tex
 	cp ../review/1-aims/text.tex text/ch-aims.tex
 	cp ../review/1-bg-intro/text.tex text/bg-intro.tex
