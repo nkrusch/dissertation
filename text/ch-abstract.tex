@@ -1,3 +1,31 @@
-The abstract must not exceed 350 words.
-The abstract consists of a succinct summary of the thesis/dissertation and the conclusions reached.
-Opinions should be omitted.
+Implicit computational complexity (ICC) complements classic complexity theory by
+aiming to discover machine-independent characterizations of complexity classes.
+The key idea is to introduce a restriction, at the level of a programming
+language, that guarantees every program satisfying the restriction belongs to a
+particular complexity class. There are several strong motivations for reasoning
+about computational complexity implicitly. ICC allows guaranteeing program
+properties by construction, it drives better understanding of complexity
+classes, and yields more natural definitions and proofs of central results than
+the classical approach. In addition, due to its focus on programming languages,
+ICC produces static techniques for program analysis for free.
+
+However, despite the advantages, implicit computational complexity has remained
+largely a theoretical novelty. The true potential of ICC-based
+techniques---including its power, utility, and limitations---are not
+well-understood. The goal of the work in this dissertation is to ``put
+theoretical ICC techniques to test" and to investigate their capabilities. A
+guiding principle is that the applications of ICC techniques extend beyond
+theoretical reasoning about computational complexity.
+
+Through a series of research projects---that cover static program analysis,
+formal methods, parallel programming, and language-based security---the
+dissertation culminates in three key findings. First, it shows ICC offers
+complementary and orthogonal techniques for automatic complexity analysis.
+Second, it shows it is possible to adjust the baseline techniques to track other
+semantic properties. The final, and perhaps the most important finding, is
+reflective and concerns a long-term perspective. A fundamental feature about ICC
+is that, in principle, it offers the potential to achieve desirable properties
+apriori; by language design and before any program exists, without ever having
+to run post-analysis on programs. The practical attainability of this goal
+depends crucially on a community shift in viewing ICC in the broader context it
+offers, and the continued exploration of its applied potential.
