@@ -17,7 +17,7 @@ figures:
 
 update:
 	cp ../review/0-abs/abstract.txt text/ch-abstract.tex
-#	cp ../review/0-acks/text.tex text/ch-acks.tex
+	#cp ../review/0-acks/text.tex text/ch-acks.tex
 	cp ../review/1-aims/text.tex text/ch-aims.tex
 	cp ../review/1-bg-intro/text.tex text/bg-intro.tex
 	cp ../review/1-formal/text.tex text/bg-formal.tex
@@ -28,6 +28,8 @@ update:
 	cp ../review/1-static/text.tex text/bg-static.tex
 	cp ../review/2-guide/text.tex text/pubs-pymwp-guide.tex
 	cp ../review/3-coqpl/text.tex text/pubs-coqpl.tex
+	#cp ../review/4-discussion/text.tex text/ch-discussion.tex
+	#cp ../review/5-summary/text.tex text/ch-summary.tex
 	cp ../review/bib.bib references/references.bib
 	cp -R ../review/listings/. code
 
