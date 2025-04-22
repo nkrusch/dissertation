@@ -15,9 +15,9 @@
 
 \newcommand{\ompi}[1]{\index{OpenMP directives!{#1}}}
 \newcommand{\pr}{\lstinline[mathescape,basicstyle=\ttfamily,escapeinside={(*}{*)},prebreak={}]}
-\newcommand{\prc}{\lstinline[language=C,basicstyle=\ttfamily,keywordstyle=\mdseries]}
 \newcommand{\omp}[1]{\lstinline[language=OpenMP,basicstyle=\ttfamily\color{black},keywordstyle=\ttfamily\color{black}]|#1|\ompi{#1}}
 \newcommand{\prm}[1]{\text{\pr|#1|}}
+\newcommand{\prc}{\lstinline[language=C, mathescape=true]}
 
 % apa-style citation fix
 \renewcommand{\cite}[2][]{\autocite[#1]{#2}}
@@ -115,6 +115,37 @@
 \newcommand{\corrc}[1]{\mathrm{Corr}(#1)}
 \newcommand{\Var}{\mathrm{Vars}}
 \newcommand{\lvl}[1]{\ell(#1)}
+\newcommand{\vi}{\textnormal{\scalebox{.65}{\faTint}}}
+\newcommand{\nv}{\cdot} % Command for "no leak" / "no violation.
+\newcommand{\lname}{\(\top^{\ast}_{\textsc{ni}}\)\@\xspace} % change it if you don't like it
+\newcommand{\tool}{\textsc{tyni}\@\xspace}
+\newcommand{\nupce}[1]{\buildrel #1 \over \nsim}% Not up to c equilavence
+
+\newcommand{\SFM}{{\sc sfm}\xspace}
+\newcommand{\SFMs}{{\sc sfm}s\xspace}
+\newcommand{\sfm}[1]{\mathbb{M}(#1)}
+\newcommand{\sfmb}[1]{\ensuremath{\mathbb{M}^{\mathtt{e}}(#1)}}
+\renewcommand{\qedsymbol}{$\square$}
+\newcommand\hypo{\Hypo}
+%\newcommand\infer{\Infer}
+\newcommand{\replabel}{\label} % will be redefined in restatements
+\newcommand{\SC}{\mathrm{SC}}
+\newcommand{\SCset}{\mathit{SC}}
+\newcommand{\LH}{\mathrm{LH}}
+\newcommand{\HMO}{\mathrm{HMO}}
+\newcommand{\scl}[1]{\ensuremath{\mathit{#1}}}
+\newcommand{\SSG}{\mathrm{SSG}}
+\newcommand{\orth}{\mathbin{\bot}} % orthogonal
+\newcommand{\upce}[1]{\buildrel #1 \over\sim}% Up to c equilavence
+\makeatletter
+\renewcommand{\nsim}{\mathrel{\mathpalette\n@sim\relax}}
+\newcommand{\n@sim}[2]{%
+\ooalign{%
+    $\m@th#1\sim$\cr
+    \hidewidth$\m@th#1\rotatebox[origin=c]{50}{$#1-$}$\hidewidth\cr
+}%
+}
+\makeatother
 
 % Comma after eg and ie
 \newcommand*{\eg}{e.g.\@,\xspace}
