@@ -1,0 +1,21 @@
+\makeatletter
+\def\lstinline@#1{%
+\lst@IfNextCharActive{\lst@InlineM#1}{\lst@InlineJ#1}%
+}
+\def\lst@InlineJ#1{%
+\def\lst@temp##1#1{%
+\textnormal{%  ← this is added around
+\lst@Init\relax  % the init is moved to here
+\let\lst@arg\@empty \lst@InsideConvert{##1}%
+\lst@arg
+\lst@DeInit
+}%  ← we end up doing the init 4 times
+\egroup}%
+\lst@temp}
+\makeatother
+\newcommand{\prcc}{\lstinline[mathescape=true]}
+\definecolor{lipicsGray}{HTML}{9E9E9E}
+\colorlet{fillborder}{gray!80}
+\colorlet{fillcolor}{gray!20}
+\usetikzlibrary{fit,matrix,shapes,arrows,shadows,positioning, calc}
+\usetikzlibrary{backgrounds}
