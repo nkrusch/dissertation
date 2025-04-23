@@ -475,7 +475,6 @@ For example, if we wanted to prove the lemma of~\autoref{lst:rocq-basic} in Dafn
 \end{center}
 \caption[Dafny running in Visual Studio Code]
 {The Dafny verifier, checking Dafny code, running in Visual Studio Code.
-An \pr|ensures| clause defines a postcondition.
 A green filled check {\color{dafnyok}{\scalebox{.8}{\faCheckCircle}}}
 means the verifier succeeds at the proof obligation of the corresponding line.
 A big green check{ }{ }\circled[dafnyok]{\faCheck}{ }indicates success with the full construct.
@@ -786,7 +785,12 @@ The \pr|send S| is the value of the exchanged message.
 \begin{center}
 \begin{minipage}{\textwidth}
 \captionsetup{type=lstlisting}
-\mathcompinputlisting[][]{lemma1.v}
+\begin{mathcomplisting}
+(* symbol $\times$ is a permutation *)
+Lemma receiver_knows_sender S R :
+(S = B /\ R = C) \/ (S = C /\ R = B)
+-> [recover R (send S)] $\times$ [S].
+\end{mathcomplisting}
 \captionof{lstlisting}[Receiver knows sender]{First requirement formally -- receiver knows sender.}
 \label{lst:lemma-1}
 \end{minipage}
@@ -805,7 +809,17 @@ because there exists an alternate (different) \pr|alloc2| that explains the obse
 \begin{center}
 \begin{minipage}{\textwidth}
 \captionsetup{type=lstlisting}
-\mathcompinputlisting{lemma2.v}
+\begin{mathcomplisting}
+Lemma send_ambiguous (alloc1 : alloc):
+exists (alloc2: alloc),
+(* observed exchange is the same *)
+alloc1.(A) = alloc2.(A)
+/\ send alloc1.(B) = send alloc2.(B)
+/\ send alloc1.(C) = send alloc2.(C)
+(* but allocated numbers are different *)
+/\ ~[alloc1.(B)] $\times$ [alloc2.(B)].
+/\ ~[alloc1.(C)] $\times$ [alloc2.(C)].
+\end{mathcomplisting}
 \captionof{lstlisting}[A cannot recover the allocation]{
 Second requirement formally -- \(\mathsf{A}\) does not learn anything.}
 \label{lst:lemma-2}
@@ -814,7 +828,7 @@ Second requirement formally -- \(\mathsf{A}\) does not learn anything.}
 
 A complete machine-checkable implementation and proof is available with the dissertation artifact (\cf~\aref{app:sec:artifacts}).
 Checking the proof requires an installation for Rocq Prover (v8.20) and Mathematical Components (v2.3.0) on the host system.
-To machine-check, compile the proof by running \pr|coqc moscow.v| (the expectation is it should compile without errors).
+To machine-check, compile the proof by running \pr|coqc moscow.v| (the expectation is it should compile without errors in \textasciitilde{}20s).
 Compilation also runs an extraction routine that generated a certified OCaml program \pr|message.ml| from the implemented messaging functions.
 Also in the dissertation artifact is a program \pr|exchange.ml| that is a \emph{driver} for the certified program.
 The driver uses the certified program to perform a message exchange, when run as shown in ~\autoref{lst:run-exchange}.

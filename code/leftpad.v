@@ -1,4 +1,4 @@
-Require Import Arith List. Import Nat.
+From Stdlib Require Import Arith List. Import Nat.
 
 Parameter char : Set.
 Implicit Type (s xs ys: list char).
@@ -33,7 +33,7 @@ Theorem leftpad_correctness c n s :
       in allEqual prefix c /\ suffix = s.
 Proof.
  unfold leftpad, allEqual. split.
- - rewrite app_length, repeat_length; apply minus_plus_max. 
+ - rewrite length_app, repeat_length; apply minus_plus_max.
  - exists (n-length s); rewrite cutn_app.
    + apply conj; auto; apply repeat_spec.
    + erewrite repeat_length; auto.

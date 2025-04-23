@@ -90,17 +90,17 @@ We generally use a Hasse diagram to represent the information flow policy and cl
 
 \noindent
 \begin{minipage}{.68\textwidth}
-    \noindent
-    \begin{alignat*}{7}
-        & \SCset = \{b, m_1, m_2, t\} \span \span \\ % \span are here to "ignore" the & alignment
-        & b < m_1 & \hspace{1.6em} & b < m_2 & \hspace{1.6em} & m_1 < t &\hspace{1.6em} & m_2 < t\\
-        & \lvl{\prc|x|} = b && \lvl{\prc|y$_1$|} = m_1 && \lvl{\prc|y$_2$|}= m_2 && \lvl{\prc|w|} =  \lvl{\prc|z|}  = t
-    \end{alignat*}
-\end{minipage}
-\begin{minipage}{.3\textwidth}
-    \begin{tikzpicture}[anchor=base, baseline=1.7em, node distance=1.2cm]
-        \node (b) {\(\lvl{\prc|x|}\)};
-        \node (m1) [above left of = b] {\(\lvl{\prc|y$_1$|}\)};
+\noindent
+\begin{alignat*}{7}
+& \SCset = \{b, m_1, m_2, t\} \span \span \\ % \span are here to "ignore" the & alignment
+& b < m_1 & \hspace{1.6em} & b < m_2 & \hspace{1.6em} & m_1 < t &\hspace{1.6em} & m_2 < t\\
+& \lvl{\prc|x|} = b && \lvl{\prc|y$_1$|} = m_1 && \lvl{\prc|y$_2$|}= m_2 && \lvl{\prc|w|} =  \lvl{\prc|z|}  = t
+\end{alignat*}
+\end{minipage}\hfill%
+\begin{minipage}{.3\textwidth}\hfill%
+\begin{tikzpicture}[anchor=base, baseline=1.7em, node distance=1.2cm]
+\node (b) {\(\lvl{\prc|x|}\)};
+\node (m1) [above left of = b]  {\(\lvl{\prc|y$_1$|}\)};
 \node (m2) [above right of = b] {\(\lvl{\prc|y$_2$|}\)};
 \node (t) [above right of = m1] {\(\lvl{\prc|w|} = \lvl{\prc|z|}\)};
 \draw[->] (b) -- (m1);
@@ -157,13 +157,13 @@ to include by describing our prototype static analyzer \tool for analysis of \te
 We consider deterministic imperative programs, with conventional operational semantics, and variables of basic data types (integers, strings, \etc).
 Let our expository program be
 
-\noindent\begin{center} % adds some vertical gap
-\begin{minipage}{\textwidth} % prevents page break in the middle of the ex.
-\begin{lstlisting}
+\noindent\begin{center}
+\begin{minipage}{\textwidth}
+\begin{cstarlisting}
 if (z==1)
 then if (x==1) then y = 1 else y = 0
 else x = y
-\end{lstlisting}
+\end{cstarlisting}
 \end{minipage}\end{center}
 In the program, certain data flows are potentially problematic.
 The assignment \prc|x = y| is an instances of an explicit flow, since there is a direct flow from variable \prc|y| to \prc|x|.
@@ -223,8 +223,8 @@ and it maps easily to the core fragment of \texttt{C}, Java, and other imperativ
 \tag{Expression} \\
 \emph{com} \Coloneqq & \emph{var \;} \prc|=| \mathit{\; exp}\ |\  \prc|skip|% \ |\ \prc|use|(\emph{var}, \hdots, \emph{var})\ |
 \ | \ %
-\prc|if| \emph{ exp } \prc|then| \emph{ com } \prc|else| \emph{ com } \ | \
-\prc|while| \emph{ exp } \prc|do| \emph{ com} \ | \ %\emph{fun}(\emph{exp}, \hdots, \emph{exp}) \ | \
+\prc|if| \emph{ exp } \prc|then| \emph{ com } \prc|else| \emph{ com } \hfill \\
+& \ | \ \prc|while| \emph{ exp } \prc|do| \emph{ com} \ | \ %\emph{fun}(\emph{exp}, \hdots, \emph{exp}) \ | \
 \emph{com;com} \tag{Command}
 \end{align*}%
 \caption{A simple imperative \prc|while| language}%
@@ -574,22 +574,26 @@ be $\sfm{\prc|C$_1$|} + \cdots + \sfm{\prc|C$_n$|}$.
 % https://tex.stackexchange.com/a/10792
 \newsavebox\cone
 \begin{lrbox}{\cone}
-\begin{lstlisting}
+\begin{minipage}{.25\textwidth}
+\begin{lstlisting}[numbers=none]
 w = w + x;
 z = y + 2
 \end{lstlisting}
+\end{minipage}
 \end{lrbox}
 \newsavebox\ctwo
 \begin{lrbox}{\ctwo}
-\begin{lstlisting}
+\begin{minipage}{.25\textwidth}
+\begin{lstlisting}[numbers=none]
 x = y * 2;
 z = 0
 \end{lstlisting}
+\end{minipage}
 \end{lrbox}
 
 \begin{figure}
 \setlength{\tabcolsep}{2pt}
-\begin{tabular}{ccccc}
+\begin{center}\begin{tabular}{ccccc}
 \prc|C$_1$| && \prc|C$_2$| && \prc|C$_1$;C$_2$| \\
 $\begin{pNiceMatrix}[first-row,first-col,left-margin=-2pt,right-margin=-2pt]
 & \prc|w| & \prc|x| & \prc|y| & \prc|z|\\
@@ -611,12 +615,11 @@ $\begin{pNiceMatrix}[first-row,first-col,left-margin=-2pt,right-margin=-2pt]
 \prc|x| & \vi      & \nv      & \nv      & \nv     \\
 \prc|y| & \nv      & \vi      & \nv      & \vi     \\
 \prc|z| & \nv      & \nv      & \nv      & \nv
-\end{pNiceMatrix}$\\
-\usebox\cone
-& &
-\usebox\ctwo
-\end{tabular}
-\caption{Security-Flow Matrix of Compositions.}\label{fig:composition}
+\end{pNiceMatrix}$\\[1em]
+\usebox\cone & & \usebox\ctwo
+\end{tabular}\end{center}
+\caption[Security-Flow Matrix of Compositions]
+{Security-Flow Matrix of Compositions.}\label{fig:composition}
 \end{figure}
 
 The composition of commands \prc|C$_1$| and \prc|C$_2$|---themselves already the result of compositions of assignments involving disjoint variables---is illustrated in~\autoref{fig:composition}.
