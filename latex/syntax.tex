@@ -8,6 +8,14 @@
     morecomment=[l]{\%},
 }[keywords]
 
+\lstdefinelanguage{WHILE}{
+    mathescape=false,
+    morekeywords={skip,while,if,else,do,then},
+    morecomment=[l]{//},
+    morecomment=[s]{/*}{*/},
+    morestring=[b]",
+}[keywords,comments,strings]
+
 \lstdefinelanguage{text}{}
 
 \makeatletter
@@ -87,8 +95,7 @@
             title={},
             listing only,
             listing options={language=#2,numbers=none,
-            style=solarized-light,backgroundcolor=\color{#5},#6},
-            ##2
+            style=solarized-light,backgroundcolor=\color{#5},#6,##2}
         }}%
         \def\withTitle{\tcblisting{
             enhanced, %
@@ -106,8 +113,7 @@
             listing only,
             listing options={
                 language=#2,numbers=left,
-                style=solarized-light,backgroundcolor=\color{#5},#6},
-            ##2
+                style=solarized-light,backgroundcolor=\color{#5},#6,##2}
         }}%
         \IfBooleanTF{##1}{\WithoutTitle}{\withTitle}}
     \expandafter\def\csname end\n listing\endcsname{\endtcblisting\noindent}
@@ -143,3 +149,4 @@
 \newlang[dafny]{Dafny}{\color{sbase03}{Dafny}}{cdafny}{sbase3}{escapeinside={}}
 \newlang[java]{Java}{Java}{cjava}{sbase3}{escapeinside={}}
 \newlang[mathcomp]{Rocq}{SSR}{cmathc}{sbase3}{escapeinside={}}
+\newlang[while]{WHILE}{While}{cwhile}{sbase3}{}

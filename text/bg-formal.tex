@@ -785,12 +785,7 @@ The \pr|send S| is the value of the exchanged message.
 \begin{center}
 \begin{minipage}{\textwidth}
 \captionsetup{type=lstlisting}
-\begin{mathcomplisting}
-(* symbol $\times$ is a permutation *)
-Lemma receiver_knows_sender S R :
-(S = B /\ R = C) \/ (S = C /\ R = B)
--> [recover R (send S)] $\times$ [S].
-\end{mathcomplisting}
+\mathcompinputlisting[][]{lemma1.v}
 \captionof{lstlisting}[Receiver knows sender]{First requirement formally -- receiver knows sender.}
 \label{lst:lemma-1}
 \end{minipage}
@@ -809,17 +804,7 @@ because there exists an alternate (different) \pr|alloc2| that explains the obse
 \begin{center}
 \begin{minipage}{\textwidth}
 \captionsetup{type=lstlisting}
-\begin{mathcomplisting}
-Lemma send_ambiguous (alloc1 : alloc):
-exists (alloc2: alloc),
-(* observed exchange is the same *)
-alloc1.(A) = alloc2.(A)
-/\ send alloc1.(B) = send alloc2.(B)
-/\ send alloc1.(C) = send alloc2.(C)
-(* but allocated numbers are different *)
-/\ ~[alloc1.(B)] $\times$ [alloc2.(B)].
-/\ ~[alloc1.(C)] $\times$ [alloc2.(C)].
-\end{mathcomplisting}
+\mathcompinputlisting{lemma2.v}
 \captionof{lstlisting}[A cannot recover the allocation]{
 Second requirement formally -- \(\mathsf{A}\) does not learn anything.}
 \label{lst:lemma-2}

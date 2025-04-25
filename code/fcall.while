@@ -1,0 +1,6 @@
+while(y < f(b)){
+  t[f(b)] = x;
+  a = t[a] + b;
+  y = g(b, x);
+  x = f(a);
+}

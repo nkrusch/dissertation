@@ -1,0 +1,2 @@
+if (h==0) then y = 1 else skip    |\circled{C1}|
+if (y==0) then z = 1 else y = z   |\circled{C2}|

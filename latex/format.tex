@@ -69,7 +69,7 @@ delim_t "\\normalsize"
 }
 \setglossarystyle{longraggeddots}
 
-% double space -> mdframed, captions, footnotes
+% double space various environments
 \mdfsetup{startinnercode={\doublespacing}}
 \AtBeginEnvironment{algorithmic}{\doublespacing}
 \DeclareCaptionJustification{double}{\doublespacing}
@@ -81,6 +81,10 @@ delim_t "\\normalsize"
 \AtBeginEnvironment{NiceTabular}{\doublespacing}
 \AtBeginEnvironment{NiceTabularX}{\doublespacing}
 \AtBeginEnvironment{figure}{\doublespacing}
+\AtBeginEnvironment{align*}{\linespread{2}\selectfont}
+%... but NOT matrices
+\BeforeBeginEnvironment{pNiceMatrix}{\renewcommand{\arraystretch}{0.67}}
+\AfterEndEnvironment{pNiceMatrix}{\renewcommand{\arraystretch}{\doublespacing}}
 
 % framed images
 \mdfsetup{
@@ -90,6 +94,6 @@ delim_t "\\normalsize"
     rightmargin=0,
     innertopmargin=1em,
     innerbottommargin=1em,
-    linewidth=1.5pt,
+    linewidth=1.5pt,   % same as listings
     linecolor=sbase01, % dark grey frames
 }

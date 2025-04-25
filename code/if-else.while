@@ -1,0 +1,6 @@
+if (w > x) then
+  w = w + x;
+  z = y + 2
+else
+  x = y * 2;
+  z = 0
