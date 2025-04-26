@@ -854,7 +854,7 @@ variables at or below \(\scl{c}\) (with the grayed out background) are updated.
 
 \newsavebox\ifconectwoo
 \begin{lrbox}{\ifconectwoo}
-\begin{minipage}{4cm}
+\begin{minipage}{5cm}
 \begin{whilelisting}*[numbers=none]
 if (w > x) then
   w = w + x;
@@ -1178,7 +1178,7 @@ decide of its output and hence if \prc|x = 0| will execute.
 \newsavebox\effectif
 \begin{lrbox}{\effectif}
 \begin{lstlisting}[frame=none,numbers=none,aboveskip=0em,belowskip=0em]
-if(g()==1)
+if (g()==1)
   then x = 0
 else skip
 \end{lstlisting}
@@ -1276,7 +1276,7 @@ Indeed, a program
 \begin{minipage}{.4\textwidth}
 \begin{whilelisting}*[numbers=none]
 success = print(secret);
-if(success==0)
+if (success==0)
   then x++
 else x--
 \end{whilelisting}

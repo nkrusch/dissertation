@@ -378,7 +378,7 @@ The bottom-right view shows search results that appear after a database lookup f
 \end{figure}
 
 \paragraph*{Mathematical Components.}
-The Mathematical Components library---\hyp{}colloquially mathcomp---extends the Rocq ecosystem with an extensive and coherent collection of formalized mathematical theories.
+The Mathematical Components library---colloquially mathcomp---extends the Rocq ecosystem with an extensive and coherent collection of formalized mathematical theories.
 The library covers a wide spectrum of topics, including formal theory of general purpose data structures like lists;
 prime numbers and finite graphs, and advanced topics in algebra.
 The theories are organized into hierarchical levels where the design facilitates reuse.
@@ -436,8 +436,8 @@ Dafny was designed for reasoning, and it can automatically check programs agains
 \begin{figure}[ht]
 \centering
 \includegraphics[width=\textwidth,keepaspectratio]{fig_dafny}
-\caption[Overview of Dafny implementation and workflow]{
-A (simplified) overview of Dafny implementation and workflow.
+\caption[Overview of Dafny implementation and verification workflow]{
+A (simplified) overview of Dafny implementation and verification workflow.
 \enquote{A well-designed language and verifier, plus a great SMT solver, go a long way.} -- \textcite{leino2010b}.}
 \label{fig:dfy-flow}
 \end{figure}
@@ -813,11 +813,13 @@ Second requirement formally -- \(\mathsf{A}\) does not learn anything.}
 
 A complete machine-checkable implementation and proof is available with the dissertation artifact (\cf~\aref{app:sec:artifacts}).
 Checking the proof requires an installation for Rocq Prover (v8.20) and Mathematical Components (v2.3.0) on the host system.
-To machine-check, compile the proof by running \pr|coqc moscow.v| (the expectation is it should compile without errors in \textasciitilde{}20s).
+To machine-check, we compile the proof by running \pr|coqc moscow.v|.
+The expectation is it should compile without errors in \textasciitilde{}20s.
 Compilation also runs an extraction routine that generated a certified OCaml program \pr|message.ml| from the implemented messaging functions.
 Also in the dissertation artifact is a program \pr|exchange.ml| that is a \emph{driver} for the certified program.
 The driver uses the certified program to perform a message exchange, when run as shown in ~\autoref{lst:run-exchange}.
-The last step assumes \href{https://github.com/ocaml/ocamlbuild}{\texttt{ocamlbuild}} tool is installed on host (it can be installed with Opam).
+The last step assumes a tool called \href{https://github.com/ocaml/ocamlbuild}{\texttt{ocamlbuild}} is installed on the host\footnote{
+The \texttt{ocamlbuild} tool can be installed with Opam.}
 
 \begin{center}
 \captionsetup{type=lstlisting}
@@ -830,7 +832,7 @@ The last step assumes \href{https://github.com/ocaml/ocamlbuild}{\texttt{ocamlbu
 \end{center}
 
 The solution can be adjusted to a numbers 0--6 with a small modification.
-Solutions for other modifications (\eg more numbers or people) are unknown.
+Solutions for other modifications (\eg more numbers or more people) are unknown.
 
 \subsubsection{Bridging Formal Methods and Implicit Computational Complexity}
 \label{icc-formally}
