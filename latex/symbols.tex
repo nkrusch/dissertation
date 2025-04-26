@@ -17,10 +17,6 @@
         circle,inner sep=2pt,outer sep=.4pt,fill=white,
         draw=#1,solid,thick]{\textbf{#2}};}}}}
 
-\makeatletter
-\renewcommand{\boxed}[1]{\text{\fboxsep=.2em\fbox{\m@th$\displaystyle#1$}}}
-\makeatother
-
 % small colored square
 \newcommand{\langclr}[1]{%
     \tikz{\node[rectangle,minimum size=2mm,rounded corners=2pt,fill=#1]{};}}

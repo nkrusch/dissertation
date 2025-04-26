@@ -152,11 +152,11 @@ there is endless opportunity in building increasingly capable program verifiers.
 Formal methods is inherently concerned with \emph{computer-aided} reasoning.
 This means there is a strong emphasis on the software tools that support those motivations.
 The tools include solvers, theorem provers, model checkers, verifiers, \etc, with each tool category supporting different use cases.
-As a formal methods practitioner, it is helpful to maintain a mental map of available tools and their capabilities, like the one in~\autoref{fig:fm-tools}.
+As a formal methods practitioner, it is helpful to maintain a mental map of available tools and their capabilities, like the one in~\autoref{tab:fm-tools}.
 Among the tools, interactive theorem proving and verification-aware programming languages are of special interest to this dissertation.
 
 \begin{table}[p!]
-\begin{tabularx}{\linewidth}{@{}lX@{}}
+\begin{NiceTabularX}{\linewidth}{@{}lX@{}}
 \toprule
 \multicolumn{2}{@{}l}{\textbf{Automatic theorem proving}} \\
 &
@@ -185,7 +185,7 @@ Among the tools, interactive theorem proving and verification-aware programming 
 }
 \\
 \midrule
-\multicolumn{2}{@{}l}{\textbf{Language-based verification}} \\
+\multicolumn{2}{@{}l}{\textbf{Language-based verification and modelling languages}} \\
 &
     \href{https://github.com/boogie-org/boogie}{Boogie},
     \href{https://dafny.org}{Dafny},
@@ -195,15 +195,15 @@ Among the tools, interactive theorem proving and verification-aware programming 
     \href{https://en.wikipedia.org/wiki/SPARK_(programming_language)}{SPARK},
     \href{https://en.wikipedia.org/wiki/TLA\%2B}{TLA+},
     \href{https://www.pm.inf.ethz.ch/research/viper.html}{Viper},
-    \href{https://whiley.org/}{Whiley},
-    \href{https://www.why3.org/}{Why3}
+    \href{https://whiley.org}{Whiley},
+    \href{https://www.why3.org}{Why3}
 \\
 \midrule
 \multicolumn{2}{@{}l}{\textbf{Language extensions adding verification features}} \\
 &
     \href{https://en.wikipedia.org/wiki/ACL2}{ACL2}, %(Common LISP),
     \href{https://www.atelierb.eu/en/atelier-b-tools/online-documentation/}{Atelier B},
-    \href{https://frama-c.com/}{Frama-C}, %(C),
+    \href{https://frama-c.com}{Frama-C}, %(C),
     \href{https://github.com/viperproject/gobra}{Gobra}, %(Go),
     \href{https://www.key-project.org/applications/program-verification/}{KeY}, %(Java),
     \href{https://ucsd-progsys.github.io/liquidhaskell/}{LiquidHaskell}, %(Haskell),
@@ -227,8 +227,8 @@ Among the tools, interactive theorem proving and verification-aware programming 
 \midrule
 \multicolumn{2}{@{}l}{\textbf{Model checkers}
 \hspace{1em}
-    \href{https://alloytools.org/}{Alloy},
-    \href{https://cpachecker.sosy-lab.org/index.php}{CPAChecker},
+    \href{https://alloytools.org}{Alloy},
+    \href{https://cpachecker.sosy-lab.org}{CPAChecker},
     \href{https://sri-csl.github.io/sally/}{Sally},
     \href{https://github.com/tlaplus/tlaplus}{TLC}
 }
@@ -242,12 +242,12 @@ Among the tools, interactive theorem proving and verification-aware programming 
 \\
 \midrule
 \multicolumn{2}{@{}l}{\textbf{SMT solvers}\hspace{1em}
-    \href{https://alt-ergo.ocamlpro.com/}{Alt-Ergo},
+    \href{https://alt-ergo.ocamlpro.com}{Alt-Ergo},
     \href{https://github.com/bitwuzla/bitwuzla}{bitwuzla},
-    \href{https://cvc5.github.io/}{CVC5},\index{CVC5}
-    \href{https://mathsat.fbk.eu/}{MathSAT}\index{MathSAT},
-    \href{https://verit.loria.fr/}{veriT},\index{veriT}
-    \href{https://yices.csl.sri.com/}{Yices},\index{Yices}
+    \href{https://cvc5.github.io}{CVC5},\index{CVC5}
+    \href{https://mathsat.fbk.eu}{MathSAT}\index{MathSAT},
+    \href{https://verit.loria.fr}{veriT},\index{veriT}
+    \href{https://yices.csl.sri.com}{Yices},\index{Yices}
     \href{https://github.com/Z3Prover/z3}{Z3}\index{Z3}}
 \\
 \midrule
@@ -259,18 +259,17 @@ Among the tools, interactive theorem proving and verification-aware programming 
 \midrule
 \multicolumn{2}{@{}l}{\textbf{Symbolic execution}
 \hspace{1em}
-    \href{https://klee-se.org/}{KLEE},
+    \href{https://klee-se.org}{KLEE},
     \href{https://github.com/jburnim/crest}{CREST},
     \href{https://github.com/SymbolicPathFinder/jpf-symbc}{Symbolic JPF}
 }
 \\
 \bottomrule
-\end{tabularx}
-\caption[Tools for formal methods]
-{A collection of formal methods tools.
+\end{NiceTabularX}
+\caption[Tools for formal methods]{A collection of formal methods tools.
 The categorization is somewhat rough because some tools could fit multiple categories.
 The list is a limited sample, but with more prominent tools to improve its usefulness.}
-\label{fig:fm-tools}
+\label{tab:fm-tools}
 \end{table}
 
 One of the main goals of formal methods is to produce mechanized, \ie machine-checked, proofs.
@@ -398,15 +397,16 @@ Conventional uses of Rocq include proving properties of programming languages, f
 \toprule
 \textbf{Formalization target} & \textbf{Authors} \\
 \midrule
-\href{https://github.com/rocq-community/fourcolor}{Four Color theorem} & \textcite{gonthier2008}\smtabularnote{based on~\cite{robertson1997} and~\cite{appel1989}}\\
+\href{https://users.dimi.uniud.it/~ivan.scagnetto/pi-calculus.html}{\(\pi\)-calculus in (Co)inductive-type theory} & \textcite{honsell2001} \\
 \href{https://github.com/rocq-community/goedel}{Gödel-Rosser 1st incompleteness theorem} & \textcite{oconnor2005} \\
+Modal model of impredicative semantics & \textcite{appel2007} \\
+\href{https://github.com/rocq-community/fourcolor}{Four Color theorem}\smtabularnote{based on~\cite{robertson1997} and~\cite{appel1989}} & \textcite{gonthier2008} \\
 \href{https://github.com/AbsInt/CompCert}{Verified Optimizing C Compiler, CompCert}\index{CompCert}\smtabularnote{A verifying compiler is one of the grand challenges for computing research posed in~\textcite{hoare2003}}\smtabularnote{CompCert received the ACM Software System Award in 2021.} & \textcite{leroy2009} \\
+\href{http://plv.csail.mit.edu/bedrock/}{Bedrock: low-level programming library} & \textcite{chlipala2011} \\
+\href{https://github.com/davidnowak/bellantonicook}{Safe Recursion} -- \autoref{safe-rec} & \textcite{heraud2011} \\
+\href{https://github.com/ProjectiveGeometry/ProjectiveGeometry}{Desargues's theorem in projective geometry} & \textcite{magaud2012} \\
 \href{https://github.com/math-comp/odd-order}{Feit-Thompson's Odd Order theorem} & \textcite{gonthier2013} \\
 \href{https://github.com/HoTT/Coq-HoTT}{Homotopy Type Theory} & \textcite{bauer2017} \\
-\href{http://plv.csail.mit.edu/bedrock/}{Bedrock: low-level programming library} & \textcite{chlipala2011} \\
-Modal model of impredicative semantics  & \textcite{appel2007} \\
-Desargues's theorem in projective geometry & \textcite{magaud2012} \\
-\href{https://github.com/davidnowak/bellantonicook}{Safe Recursion} -- \autoref{safe-rec} & \textcite{heraud2011} \\
 \bottomrule
 \end{NiceTabularX}
 \caption[The Rocq prover formalization results]{A small sample of results formalized with the Rocq prover.}
@@ -671,7 +671,7 @@ otherwise, one must search the proofs database.
 \captionsetup{type=lstlisting}
 \begin{minipage}{\linewidth}
 \mathcompinputlisting[][]{leftpad-ssrefl.v}
-\captionof{lstlisting}[Mathcomp variant of leftpad]{Leftpad in the SSReflect proof language of the Mathematical Components library.}
+\captionof{lstlisting}[Leftpad in SSReflect proof language]{Leftpad in the SSReflect proof language of the Mathematical Components library.}
 \label{lst:mathcomp-leftpad}
 \end{minipage}
 \end{center}
@@ -680,7 +680,7 @@ otherwise, one must search the proofs database.
 \begin{minipage}{\linewidth}
 \captionsetup{type=lstlisting}
 \dafnyinputlisting[][]{leftpad.dfy}
-\captionof{lstlisting}[Formally verified leftpad in Dafny]{Formally verified leftpad in Dafny.}
+\captionof{lstlisting}[Leftpad formally verified in Dafny]{Formally verified leftpad in Dafny.}
 \label{lst:leftdfy}
 \end{minipage}
 \end{center}
@@ -805,7 +805,7 @@ because there exists an alternate (different) \pr|alloc2| that explains the obse
 \begin{minipage}{\textwidth}
 \captionsetup{type=lstlisting}
 \mathcompinputlisting{lemma2.v}
-\captionof{lstlisting}[A cannot recover the allocation]{
+\captionof{lstlisting}[Person A cannot recover the allocation]{
 Second requirement formally -- \(\mathsf{A}\) does not learn anything.}
 \label{lst:lemma-2}
 \end{minipage}
@@ -819,7 +819,7 @@ Compilation also runs an extraction routine that generated a certified OCaml pro
 Also in the dissertation artifact is a program \pr|exchange.ml| that is a \emph{driver} for the certified program.
 The driver uses the certified program to perform a message exchange, when run as shown in ~\autoref{lst:run-exchange}.
 The last step assumes a tool called \href{https://github.com/ocaml/ocamlbuild}{\texttt{ocamlbuild}} is installed on the host\footnote{
-The \texttt{ocamlbuild} tool can be installed with Opam.}
+The \texttt{ocamlbuild} tool can be installed with the \href{https://opam.ocaml.org}{Opam} package manager.}
 
 \begin{center}
 \captionsetup{type=lstlisting}
@@ -879,7 +879,7 @@ However, converting the mwp-calculus to a formal proof---and in Rocq this means 
 Further, such proof would not extend to enhanced \textsc{mwp}$^\infty$-calculus variant of the calculus that is used in program analysis.
 Yet, starting with the core mwp-calculus and paper proofs is a solid strategy toward formalizing complexity.
 The result would extend broadly to all programs that share the same imperative core.
-This project idea is discussed in~\autoref{certcpx}.
+This project idea is discussed in~\autoref{sec:mwp-calc-formal}.
 
 It is important to note the utility of implicit computational complexity is not limited to formalizing complexity results.
 Another perspective is to use ICC systems in assisting formal methods tools in program verification efforts.

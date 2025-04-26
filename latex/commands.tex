@@ -14,7 +14,7 @@
 \newcommand{\smtabularnote}[1]{\tabularnote{\small{#1}}}
 \newcommand{\ompi}[1]{\index{OpenMP directives!{#1}}}
 
-\newcommand{\pr}{\lstinline[mathescape,basicstyle=\ttfamily,escapeinside={(*}{*)},prebreak={}]}
+\newcommand{\pr}{\lstinline[mathescape,basicstyle=\normalfont\ttfamily,escapeinside={(*}{*)},prebreak={}]}
 \newcommand{\prm}[1]{\text{\pr|#1|}}
 \newcommand{\prc}{\lstinline[mathescape=true]}
 \newcommand{\omp}[1]{\lstinline[language=OpenMP,basicstyle=\ttfamily\color{black},keywordstyle=\ttfamily\color{black}]|#1|\ompi{#1}}
@@ -31,6 +31,10 @@
 \newcommand{\pageIconFm}{\pageIcon{\iconFM}{formal methods}}
 \newcommand{\pageIconOpt}{\pageIcon{\iconOPT}{program optimization}}
 \newcommand{\pageIconSecurity}{\pageIcon{\iconSEC}{security}}
+
+\makeatletter
+\renewcommand{\boxed}[1]{\text{\fboxsep=.2em\fbox{\m@th$\displaystyle#1$}}}
+\makeatother
 
 % add index terms to \includepdf
 \makeatletter

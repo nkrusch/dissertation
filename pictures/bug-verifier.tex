@@ -1,17 +1,17 @@
-\documentclass[crop,border={-8pt 5pt 2pt 5pt}]{standalone}
+\documentclass[crop,border={-5pt 5pt 2pt 5pt}]{standalone}
 \input{../latex/pics}
 \tikzset{font={\small\selectfont}}
 \begin{document}
 
 \tikzstyle{arrow}  = [thick,arrows={-Latex[width=5pt, length=5pt]}]
 \tikzstyle{vbox}   = [rectangle, draw=black, thick, minimum width=2.5cm, text centered, minimum height=.8cm, rounded corners=3pt]
-\tikzstyle{cbox}   = [vbox,text width=3.5cm]
+\tikzstyle{cbox}   = [vbox,text width=3.5cm,dotted,draw=concept,line cap=round,minimum height=1.2cm]
 
 \begin{tikzpicture}[node distance=2cm]
-\node (BF) [vbox,right] at (.75,.5) {\textsc{Bug finder}};
+\node (BF) [vbox,right] at (.75,.5) {{Bug finder}};
 \node (B0) [cbox,above of=BF] {``there is definitely an\\error in the program"};
 \node (B1) [cbox,right of=BF,xshift=2cm] {``there may be errors\\in the program"};
-\node (VF) [vbox,right of=B1,xshift=2cm] {\textsc{Verifier}};
+\node (VF) [vbox,right of=B1,xshift=2cm] {{Verifier}};
 \node (B2) [cbox,above of=VF] {``there are definitely no\\errors in the program"};
 \draw [arrow] (BF) -- (B0);
 \draw [arrow] (BF) -- (B1);
