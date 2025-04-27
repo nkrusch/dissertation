@@ -14,12 +14,14 @@
 \newcommand\w{1.5}
 
 \foreach \x in {0,...,\n} {
-  \draw[box] (\w*\x+.5,0.5) rectangle node[below=.5cm, midway] {\x} ++(\w,+0.5) ; 
+  \draw[box] (\w*\x+.5,0.5) rectangle node[below=.6cm, midway] (\x) {\x} ++(\w,+0.5) ; 
   \draw[box] (\w*\x+.5,2.0) rectangle ++(\w,+0.5) ; }
   
 \path (0,.75) node[tnode] (B) {B}
 	++(0,1.5) node[tnode] (A) {A}	
 	++(\w*\n+\w+\w/2,-.75) node {\large\ldots};
+	
+\node[left  = .85cm of 0] {i};	
 
 \draw[arrowB] (3,3.1) -- ++(.5,0) 
 	node[tnode, right, xshift=3pt] {\circled{S2}};
