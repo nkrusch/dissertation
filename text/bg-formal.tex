@@ -787,7 +787,7 @@ The \pr|send S| is the value of the exchanged message.
 \begin{minipage}{\textwidth}
 \captionsetup{type=lstlisting}
 \mathcompinputlisting[][]{lemma1.v}
-\captionof{lstlisting}[Receiver knows sender]{First requirement formally -- receiver knows sender.}
+\captionof{lstlisting}[Receiver knows sender]{First requirement formally -- receiver learns the numbers held by sender.}
 \label{lst:lemma-1}
 \end{minipage}
 \end{center}
@@ -812,30 +812,36 @@ Second requirement formally -- \(\mathsf{A}\) does not learn anything.}
 \end{minipage}
 \end{center}
 
-A complete machine-checkable implementation and proof is available with the dissertation artifact (\cf~\aref{app:sec:artifacts}).
+A complete machine-checkable implementation and proof is available in the dissertation artifact (\cf~\aref{app:sec:artifacts}), in file in \pr|moscov.v|.
 Checking the proof requires an installation for Rocq Prover (v8.20) and Mathematical Components (v2.3.0) on the host system.
-To machine-check, we compile the proof by running \pr|coqc moscow.v|.
-The expectation is it should compile without errors in \textasciitilde{}20s.
-Compilation also runs an extraction routine that generated a certified OCaml program \pr|message.ml| from the implemented messaging functions.
-Also in the dissertation artifact is a program \pr|exchange.ml| that is a \emph{driver} for the certified program.
-The driver uses the certified program to perform a message exchange, when run as shown in ~\autoref{lst:run-exchange}.
-The last step assumes a tool called \href{https://github.com/ocaml/ocamlbuild}{\texttt{ocamlbuild}} is installed on the host\footnote{
-The \texttt{ocamlbuild} tool can be installed with the \href{https://opam.ocaml.org}{Opam} package manager.}
+To machine-check, we compile the proof by running the command \pr|coqc moscow.v| in a terminal.
+The expectation is the proof should compile without errors in \textasciitilde{}20s.
+It does not print any terminal output.
+
+The proof compilation also runs an extraction routine.
+The extraction generates a certified OCaml program, \pr|message.ml|, from the messaging functions implemented in SSReflect.
+Within in the dissertation artifact (\cf~\autoref{tab:pub-artifacts}), another program \pr|exchange.ml| is a {driver} for running the certified program.
+The driver uses the certified program to perform a message exchange when run as shown in~\autoref{lst:run-exchange}\footnote{%
+The last step assumes a tool \href{https://github.com/ocaml/ocamlbuild}{\texttt{ocamlbuild}} installed on the host.
+It can be installed with the \href{https://opam.ocaml.org}{Opam package manager} by \pr|opam install ocamlbuild|.}.
 
 \begin{center}
 \captionsetup{type=lstlisting}
 \begin{minipage}{\textwidth}
 \cmdinputlisting{exchange.cmd}
-\outinputlisting{exchange.output}
+\outinputlisting[][firstline=2,lastline=3]{exchange.output}
 \end{minipage}
-\captionof{lstlisting}{Running a certified message exchange.}
+\captionof{lstlisting}{Running a certified message exchange.
+In this scenario, \(\mathsf{A}\) holds the number 2, and everyone observes the messages \enquote{4} and \enquote{5}.
+This information is not enough for \(\mathsf{A}\) to learn what numbers \(\mathsf{B}\) (\resp \(\mathsf{C}\)) is holding.
+However, by the end of the exchange, \(\mathsf{B}\) and \(\mathsf{C}\) are fully informed.}
 \label{lst:run-exchange}
 \end{center}
 
-The solution can be adjusted to a numbers 0--6 with a small modification.
-Solutions for other modifications (\eg more numbers or more people) are unknown.
+The presented moscow problem solution could be adjusted to a universe of \([0, 6]\) with a small change.
+However, solutions to other modifications---\eg larger set of numbers, different allocations, or more people---are unknown.
 
-\subsubsection{Bridging Formal Methods and Implicit Computational Complexity}
+\subsubsection{Connecting Formal Methods and Implicit Computational Complexity}
 \label{icc-formally}
 
 There are several ways to relate complexity theory and formal methods.
