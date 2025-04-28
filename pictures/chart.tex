@@ -1,7 +1,5 @@
 \documentclass[crop,border={-10pt 0pt 0pt 0pt}]{standalone}
 \input{../latex/pics}
-\tikzset{font={\selectfont}}
-\usetikzlibrary{positioning}
 \begin{document}
  
 \tikzstyle{arrow} = [thick,arrows={-Latex[width=6pt, length=6pt]},line cap=round]
@@ -9,14 +7,13 @@
 \tikzstyle{entry} = [font=\bfseries\color{sblue}]
 \tikzstyle{axname} = [font=\color{sbase03}]
 
-
 \begin{tikzpicture}[align=center]
 \newcommand\sx{2.5}
 \newcommand\sy{1.5}
 \newcommand\dx{5.5}
 \newcommand\dy{3.5}
 
-\draw[gray!25!white,step=.5] (\sx,\sy) grid ++(\dx,\dy);
+\draw[gray!35!white,step=.5] (\sx,\sy) grid ++(\dx,\dy);
 
 \draw[arrow] (\sx,\sy) -- ++(0, \dy)
 	node[axname,above,yshift=10pt] {Assurance}

@@ -1,51 +1,38 @@
-\documentclass[crop,border={-18pt 20pt 2pt 20pt}]{standalone}
+\documentclass[crop,border={-22pt 10pt 2pt 10pt}]{standalone}
 \input{../latex/pics}
-\usetikzlibrary {arrows.meta}
-\tikzset{font={\selectfont\itshape}}
 \begin{document}
 
-\definecolor{boxbg}{HTML}{ffffff}
+\tikzstyle{cmt}    = [font={\selectfont\color{sorange}}]
+\tikzstyle{open}   = [arrows={{Circle[open]}-Latex[width=5pt, length=5pt]}]
 \tikzstyle{arrow}  = [thick,arrows={-Latex[width=5pt, length=5pt]}]
-\tikzstyle{label0} = [text centered, midway]
-\tikzstyle{label1} = [label0, text width=1cm, above, yshift=3pt]
-\tikzstyle{label2} = [text centered, text width=1.5cm, yshift=-75pt]
-\tikzstyle{tbox}   = [draw=black, thick, rounded corners=3pt,fill=boxbg]
+\tikzstyle{label}  = [cmt, midway, above, align=center, yshift=3pt]
+\tikzstyle{box}    = [draw=black, anchor=south west, thick, rounded corners=3pt, text centered]
+\tikzstyle{phase}  = [box, minimum height=1.25cm, text width=2cm]
+\tikzstyle{doc}    = [box, minimum width=1.2cm, minimum height=1.75cm, font={\selectfont\large\ttfamily}]
 
-\tikzstyle{doc}    = [
-	tbox,
-	fill=white,
-	text centered,
-	minimum height=1.7cm,
-	text width=1.0cm,
-	font={\centering\large\textbf}]
-	
-\tikzstyle{phase}  = [
-	draw=black,
-	thick,
-	fill=white,
-	text centered,
-	rounded corners=3pt,
-	minimum height=1.3cm,
-	text width=2cm]
+\newcommand\lbl[2]{{#1}\\{#2}}
+\newcommand\sx{3.75}
 
-\begin{tikzpicture}[node distance=4cm]
-%\draw[gray!20!white,step=.25] (0,0) grid (16,3);
+\begin{tikzpicture}[align=left]
+%\draw[gray!40,step=.25,right] (0,0) grid (4*\sx+2.25,3);
 
-\draw[tbox] (2.25,0) rectangle (13.75,2.7) node[label0, yshift=25pt] {pymwp static analyzer};    
+\draw[box] (\sx-.5, 0) rectangle node[above=.55cm] {pymwp static analyzer} ++(3*\sx-.5, 3);
 
-\node (0) [doc] at (0,1)     {\texttt{</>}};
-\node (1) [phase, right of=0] {\textnormal{{[front-end]}}\\pycparser};
-\node (2) [phase, right of=1] {\textnormal{{[phase-I]}}\\inference};
-\node (3) [phase, right of=2] {\textnormal{{[phase-II]}}\\evaluation};
-\node (4) [doc,   right of=3] {\texttt{\{…\}}};
-	
-\node[label2, above of=0] {\textnormal{{[input]}}\\program};
-\node[label2, above of=4] {\textnormal{{[output]}}\\result};
+\path (0. ,.25)    node[doc]   (0) {</>} 
+	++(\sx,.25)    node[phase] (1) {\lbl{[front-end]}{pycparser}} 
+	++(\sx,0)      node[phase] (2) {\lbl{[phase-I]}{inference}}
+    ++(\sx,0)      node[phase] (3) {\lbl{[phase-II]}{evaluation}}
+    ++(\sx+1,-.25) node[doc]   (4) {\{…\}} ;	
 
-\draw [arrow, arrows={{Circle[open]}-Latex[width=5pt, length=5pt]}] (0) -- (1) node[label1, xshift=-7pt] {C};
-\draw [arrow] (1) -- (2) node[label1] {AST}; 
-\draw [arrow] (2) -- (3) node[label1] {mwp\\matrix}; 
-\draw [arrow] (3) -- (4) node[label1, xshift=7pt] {object}; 
+\node[above=.2cm of 0] (P) {program}; 
+\node[above=.2cm of 4] (Q) {result}; 
+\node[cmt,below=.2cm of 0] {input};
+\node[cmt,below=.2cm of 4] {output};
+
+\draw [arrow, open] (0) -- (1) node[label] {C};
+\draw [arrow] (1) -- (2) node[label] {AST}; 
+\draw [arrow] (2) -- (3) node[label] {matrix}; 
+\draw [arrow] (3) -- (4) node[label, xshift=7pt] {object}; 
 
 \end{tikzpicture}
 \end{document}
