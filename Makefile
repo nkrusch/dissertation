@@ -30,7 +30,7 @@ update:
 	cp ../review/3-coqpl/text.tex text/pubs-coqpl.tex
 	cp ../review/3-ni/text.tex text/pubs-ni.tex
 	#cp ../review/4-discussion/text.tex text/ch-discussion.tex
-	#cp ../review/5-summary/text.tex text/ch-summary.tex
+	cp ../review/5-summary/text.tex text/ch-summary.tex
 	cp ../review/bib.bib references/references.bib
 	cp -R ../review/listings/. code
 
