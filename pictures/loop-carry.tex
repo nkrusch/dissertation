@@ -1,27 +1,25 @@
-\documentclass[crop,border={-5pt 2pt 2pt 2pt}]{standalone}
+\documentclass[crop,border={-5pt 5pt 2pt 5pt}]{standalone}
 \input{../latex/pics}
 \tikzset{font={\selectfont\itshape}}
 \begin{document}
 
 \tikzstyle{box}    = [draw=black,fill=tgrey]
 \tikzstyle{tnode}  = [font={\selectfont\ttfamily}]
-\tikzstyle{arrowB} = [black,arrows={-Latex[width=5pt, length=5pt]}]
-\tikzstyle{arrowW} = [black,arrows={-Latex[width=5pt, length=5pt, fill=white]}]
+\tikzstyle{arrowB} = [black,arrows={-Triangle}]
+\tikzstyle{arrowW} = [black,arrows={-Triangle[black,fill=white]}]
 
 \begin{tikzpicture}[align=center]
-
-\newcommand\n{2}
 \newcommand\w{1.5}
+\newcommand\n{2}
 
 \foreach \x in {0,...,\n} {
-  \draw[box] (\w*\x+.5,0.5) rectangle node[below=.6cm, midway] (\x) {\x} ++(\w,+0.5) ; 
+  \draw[box] (\w*\x+.5,0.5) rectangle node[below=.5cm, midway] (\x) {\x} ++(\w,+0.5) ; 
   \draw[box] (\w*\x+.5,2.0) rectangle ++(\w,+0.5) ; }
   
-\path (0,.75) node[tnode] (B) {B}
+\path (0, 0)  node {i}   
+	++(0,.75) node[tnode] (B) {B}
 	++(0,1.5) node[tnode] (A) {A}	
-	++(\w*\n+\w+\w/2,-.75) node {\large\ldots};
-	
-\node[left  = .85cm of 0] {i};	
+	++(\w*\n+\w+\w/2,-.75) node {\large\ldots};		
 
 \draw[arrowB] (3,3.1) -- ++(.5,0) 
 	node[tnode, right, xshift=3pt] {\circled{S2}};

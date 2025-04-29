@@ -1,15 +1,16 @@
 \subsection*{Abstract}
-Non-interference is an information flow policy for guaranteeing confidentiality,
+Non-interference\index{non-interference} is an information flow policy\index{information flow!policy}
+for guaranteeing confidentiality\index{confidentiality},
 \ie that effects of sensitive data are not exposed to lower-level users, even
 indirectly. When phrased in terms of programming languages, non-interference is
-studied by attaching security classes to variables, then analyzing the classes
+studied by attaching security classes\index{security class} to variables, then analyzing the classes
 to determine if a violation, or a data \enquote{leak}, can occur. Security type
-systems are common controls for analyzing and enforcing non-interference.
+systems\index{security type system} are common controls for analyzing and enforcing non-interference.
 Unfortunately, they require inference algorithms, program-level security
 specifications, non-standard compilers, and are generally too restrictive or
 complex for practical implementation. In this paper, we present a program logic
 \lname that guarantees the semantic security property of \emph{anytime
-non-interference}. By anytime, we mean a malicious actor with low-level access
+non-interference}\index{non-interference!anytime}. By anytime, we mean a malicious actor with low-level access
 cannot infer anything about higher-level values at any point of the program
 execution. The logic links non-interference violations precisely to the faulty
 commands and violations cannot be erased by program composition. We draw rich
@@ -32,64 +33,67 @@ we no longer have the same guarantee for the same function. The hash function
 then \enquote{leaks} information that possibly enables the actor to recover the
 secret data.
 
-\emph{Non-interference}~\cite{goguen1982} is a classical semantic security
-property that constrains information flow during computation. It is a mechanism
-to enforce \emph{confidentiality}, \ie concealment of information or resources
-from unauthorized parties~\cite{bishop2003}. Non-interference is an attractive
+\emph{Non-interference}~\cite{goguen1982}\index{non-interference} is a classical semantic security
+property that constrains information flow\index{information flow} during computation. It is a mechanism
+to enforce \emph{confidentiality}\index{confidentiality}, \ie concealment of information or resources
+from unauthorized parties~\cite{bishop2003}. Non-interference\index{non-interference} is an attractive
 target of study because it offers strong end-to-end guarantees for data
 protection, it is inherently compositional, and can be enforced with program
-logics or security type systems~\cite{cecchetti2017,frumin2021}. Informally, a
+logics or security type systems~\cite{cecchetti2017,frumin2021}\index{security type system}. Informally, a
 program is non-interfering when secret data does not affect calculation of its
 public outputs~\cite{sabelfeld2003}. In other words, data can only stay at the
-same security class or flow to higher classes. Although a desirable property,
-non-interference is in general undecidable by Rice's Theorem~\cite{rice1953} and
-constructing a system that completely adheres to non-interference is overly
+same security class\index{security class} or flow to higher classes. Although a desirable property,
+non-interference\index{non-interference} is in general undecidable by Rice's Theorem~\cite{rice1953}\index{Rice's Theorem} and
+constructing a system that completely adheres to non-interference\index{non-interference} is overly
 restrictive to capture real-world security
 requirements~\cite{bossi2005,cecchetti2017}. However, unattainability of an
 ideal construction does not restrict analysis of imperfect systems. Program
-analysis enables detecting information flow issues, supports informed
+analysis enables detecting information flow\index{information flow} issues, supports informed
 assessments of vulnerabilities, and identifies potential mitigations.
 
-Our work extends the analysis of non-interference in theoretical directions
+Our work extends the analysis of non-interference\index{non-interference} in theoretical directions
 while yielding practical advantages. In literature, terminology around
-non-interference is defined somewhat fluidly~\cite{sabelfeld2003}; admitting
+non-interference\index{non-interference} is defined somewhat fluidly~\cite{sabelfeld2003}; admitting
 multiple different but related {formal definitions}~\cite{nelson2020}, and
 generalizing to the informal description provided previously. In this paper, we
-introduce the notion of \emph{anytime non-interference}. The anytime property is
+introduce the notion of \emph{anytime non-interference}\index{non-interference!anytime}.
+The anytime property is
 powerful because it accounts for intermediate states of computation. Thus, it is
 strictly stronger than the classic non-interference that is expressed in terms
 of inputs and outputs. To lift our theory toward the real world, we provide our
 main result: a program logic \lname that enables lightweight automatic static
-program analysis of anytime non-interference. We demonstrate practicality of
+program analysis of anytime non-interference\index{non-interference!anytime}.
+We demonstrate practicality of
 \lname through examples, a prototype implementation, and discussions of how
-anytime non-interference elegantly supports numerous program analysis
+anytime non-interference\index{non-interference!anytime} elegantly supports numerous program analysis
 applications.
 
-Anytime non-interference tracks potential information flow leaks in every legal
+Anytime non-interference\index{non-interference!anytime} tracks potential information flow\index{information flow} leaks in every legal
 program state. A non-interfering program can be interrupted arbitrarily without
-compromising its non-interference guarantee. Conversely, once a violating
+compromising its non-interference\index{non-interference} guarantee. Conversely, once a violating
 operation has occurred, it is impossible to erase it. We consider time as
 updates of public variable values. In other words, the latency between public
 variable updates is instant. A change between two secret values, that causes a
 loop to iterate longer according to a physical clock, has no observable side
-effect. In general, anytime non-interference models security at the abstraction
+effect. In general, anytime non-interference\index{non-interference!anytime} models security at the abstraction
 level of programming languages and excludes lower-level execution details.
-However, we consider the approach justified because potential information flow
+However, we consider the approach justified because potential information flow\index{information flow}
 issues are often detectable from syntax.
  
-Anytime non-interference is furthermore \emph{termination-insensitive}. Because
+Anytime non-interference\index{non-interference!anytime} is furthermore \emph{termination-insensitive}\index{non-interference!termination-insensitive}. Because
 information signaled through termination can leak secrets indirectly,
-termination handling is an ongoing design challenge for non-interference
+termination\index{termination} handling is an ongoing design challenge for non-interference\index{non-interference}
 systems~\cite{bay2020}. Untrusted programs, that pose high security risks,
-require strong \emph{progress-sensitive} non-interference that considers both
+require strong \emph{progress-sensitive} non-interference\index{non-interference!progress-sensitive} that considers both
 termination and I/O interactions~\cite{hedin2012}. Trusted programs, with
 predictable run-time behavior, permit weaker security checks and
-termination-insensitivity. Unfortunately, the binary situation provides no
+termination-insensitivity\index{non-interference!termination-insensitive}.
+Unfortunately, the binary situation provides no
 middle ground for programs that mix trusted and untrusted code, \eg by dynamic
-code loading. In \autoref{subsub:termination} we discuss how to address this
-limitation by partitioning computations based on security classes. This hybrid
-approach relaxes the limitations of termination-insensitivity and monolithic
-termination handing.
+code loading\index{dynamic code loading}. In \autoref{subsub:termination} we discuss how to address this
+limitation by partitioning computations based on security classes\index{security class}. This hybrid
+approach relaxes the limitations of termination-insensitivity\index{non-interference!termination-insensitive} and monolithic
+termination handing\index{termination}.
 
 \subsubsection{The Essential Security Terminology Decoded}
 \label{subsubsec:ni-terms}
@@ -103,38 +107,38 @@ has applications in static program analysis; thus our work intersects many
 related fields. Although we assume prior familiarity with logic and programming
 languages, we define the relevant security concepts in this section.
 
-\emph{Information flow} denotes an observable action between two agents \(A\)
+\emph{Information flow}\index{information flow} denotes an observable action between two agents \(A\)
 and \(B\). If an action performed by \(A\) is observable to \(B\), then there
-exists an information flow from \(A\) to \(B\). The flow is \emph{explicit} if
-it is directly observable from a single action. The flow is \emph{implicit} when
+exists an information flow from \(A\) to \(B\). The flow is \emph{explicit}\index{information flow!explicit} if
+it is directly observable from a single action. The flow is \emph{implicit}\index{information flow!implicit} when
 it is not directly observable, but reveals deductively the initial performed
 action, after a sequence of other actions. To represent information flow, we
-manipulate the conventional lattice model à la Denning~\cite{denning76}.
+manipulate the conventional lattice\index{lattice} model à la Denning~\cite{denning76}.
 
-An \emph{information flow policy} is a statement of what is, and what is not,
+An \emph{information flow policy}\index{information flow!policy} is a statement of what is, and what is not,
 permissible~\cite{bishop2003} for a program \prc|C| in terms of flow between its
 variables; formally defined as follows:
 
 \begin{definition}[Information Flow Policy~\protect{\cite{volpanoI1996}}, Class
-Assignment]\label{def:ifp} An \emph{information flow policy} is a lattice \(\SC
+Assignment]\label{def:ifp} An \emph{information flow policy}\index{information flow!policy} is a lattice\index{lattice} \(\SC
 = (\SCset, <)\) where \(\SCset\) is a partially \(<\)-ordered finite set of
-\emph{security classes}.
+\emph{security classes}\index{security class}.
 
 We write \(\ell\) for the class assignment that assigns statically and
 definitely to each variable \prc|x| occurring in a program \prc|C| its security
 class \(\lvl{\prc|x|} \in \SC\). \end{definition}
 
 By abuse of notation, we assume that a class assignment always comes with an
-information flow policy, we write \(c \in \SC\), and for any two classes
+information flow policy\index{information flow!policy}, we write \(c \in \SC\), and for any two classes
 \(c_1\), \(c_2\), we write \(c_1 \leqslant c_2\) if \(c_1 < c_2\) or \(c_1 =
 c_2\), and \(c_1 \orth c_2\) if  \(c_1 \nleqslant c_2\) and \(c_2 \nleqslant
 c_1\)--in this case, we say that \(c_1\) and \(c_2\) are \emph{orthogonal}.
 
-A simple policy has two security classes, \eg \(\LH=(\{\scl{l}, \scl{h}\},
+A simple policy\index{information flow!policy} has two security classes\index{security class}, \eg \(\LH=(\{\scl{l}, \scl{h}\},
 \{\scl{l} < \scl{h}\})\)---for \emph{low} and \emph{high}; but a policy can be
 arbitrarily complex (refer to \autoref{ex-hasse-diagram-HMO}, located in
-Appendix, for a more concrete example). We generally use a Hasse diagram to
-represent the information flow policy and class assignment in a compact manner,
+Appendix, for a more concrete example). We generally use a Hasse diagram\index{Hasse diagram} to
+represent the information flow policy\index{information flow!policy} and class assignment in a compact manner,
 as follows:
 
 \begin{center}
@@ -159,28 +163,30 @@ as follows:
 \end{minipage}
 \end{center}
 
-An \emph{information flow control} (IFC) is a mechanism to enforce a
-policy~\cite{bishop2003}. Security type systems (presented in
+An \emph{information flow control}\index{{information flow!control}} (IFC) is a mechanism to enforce a
+policy~\cite{bishop2003}. Security type systems\index{security type system} (presented in
 \autoref{sec:related-works}) are an example of a programming languages based
-IFCs. They enforce a policy by annotating a program with security types. Then,
+IFCs. They enforce a policy by annotating a program with security types\index{security type}. Then,
 to be secure, a program must pass a compile-time type check. A sound IFC
 guarantees to find all policy violations and a precise IFC avoids raising
 excessive false alarms.
 
 Formal security analysis uses the terms system model, security objective, and an
-attacker model~\cite{bau2011,bognar2022}. Our \emph{system model}, \ie the
+attacker model~\cite{bau2011,bognar2022}\index{attacker model}.
+Our \emph{system model}\index{system model}, \ie the
 system we want to secure, is a sequential imperative program, as specified
 in~\autoref{subsec:language}, with effectful function calls discussed in
-\autoref{sec:fct-calls}. Our \emph{security objective}, \ie the system behaviors
-that are considered secure, is defined by anytime non-interference
+\autoref{sec:fct-calls}. Our \emph{security objective}\index{security objective},
+\ie the system behaviors
+that are considered secure, is defined by anytime non-interference\index{non-interference!anytime}
 (\autoref{def:com-ni}). An \emph{adversary} is a malicious actor who poses a
 threat to the system. An \emph{attacker model} specifies the capabilities and
 motivations of the adversary. We assume a
-\emph{program-centric}~\cite{hedin2012} attacker model, where the adversary can
+\emph{program-centric}~\cite{hedin2012} attacker model\index{program centric attacker model}, where the adversary can
 \begin{enumerate*}[label=(\roman*)]
 \item see the program syntax
 \item control public inputs and observe public outputs, and
-\item up to the attacker's security class, access memory registers after updates.
+\item up to the attacker's security class\index{security class}, access memory registers after updates.
 \end{enumerate*}
 
 \subsubsection{Contributions}
@@ -189,9 +195,9 @@ Our contributions are three-fold.
 \begin{enumerate}
 \item The main result is a lightweight syntactic IFC logic \lname
 (\autoref{ni-logic}), with a built-in automatable inference algorithm, that
-captures the semantic property of anytime non-interference.
+captures the semantic property of anytime non-interference\index{non-interference!anytime}.
 
-\item We introduce the definition of anytime non-interference
+\item We introduce the definition of anytime non-interference\index{non-interference!anytime}
 (\autoref{def:com-ni}), and prove its correspondence with \lname, that follows
 from the fundamental theorem (\autoref{thm:corr}).
 
@@ -200,7 +206,7 @@ from the fundamental theorem (\autoref{thm:corr}).
 \tool for analysis of \texttt{Java} programs. \end{enumerate}
 
 \autoref{sec:fct-calls} furthermore discusses in detail how our approach can
-accommodate different treatments of functions with and without side effects, and
+accommodate different treatments of functions with and without side effects\index{side effect}, and
 \autoref{subsec:ni-examples} gathers additional examples to help understanding.
 
 \subsection{High-level Overview}
@@ -220,25 +226,25 @@ Let our expository program be the one in~\autoref{lst:expository}.
 \end{center}
 
 In the program, certain data flows are potentially problematic. The assignment
-\prc|x = y| is an instances of an explicit flow, since there is a direct flow
+\prc|x = y| is an instances of an explicit flow\index{information flow!explicit}, since there is a direct flow
 from variable \prc|y| to \prc|x|. The control expressions \prc|z==1| and
-\prc|x==1| represent implicit flows. They reveal information over execution
+\prc|x==1| represent implicit flows\index{information flow!implicit}. They reveal information over execution
 paths, and indirectly expose values of the control statement variables.
-Admissibility of these data flows depends on the security classes of the
-variables, since non-interference forbids data flowing from higher classes to
+Admissibility of these data flows depends on the security classes\index{security class} of the
+variables, since non-interference\index{non-interference} forbids data flowing from higher classes to
 lower or between orthogonal classes. A sound IFC detects such issues and raises
 an alarm.
 
 The logic \lname produces a matrix of coefficients by applying inference rules
 to programs. In a single derivation, it captures dependencies between all the
-program variables, for all execution paths and security classes. The matrix is
+program variables, for all execution paths and security classes\index{security class}. The matrix is
 interpreted by matching the \emph{in-variables}, \prc|v|\(_{\text{in}}\) (rows),
 with the \emph{out-variables}, \prc|v|\(_{\text{out}}\) (columns).
 The coefficients indicate:
 
 \begin{description}
 
-\item[\(\nv\)] -- \emph{no \emph{(non-interference)} violation}, no dependency
+\item[\(\nv\)] -- \emph{no \emph{(non-interference)\index{non-interference}} violation}, no dependency
 from \prc|v|$_\text{in}$ to \prc|v|$_\text{out}$,
 
 \item[\(\vi\)] -- a \emph{violation}---or \enquote{leak}, hence the symbol---,
@@ -257,8 +263,8 @@ $\begin{pNiceMatrix}[first-row,first-col]
 \end{pNiceMatrix}$
 \end{center}
 expectedly shows \emph{potential} violations in from \prc|y| to \prc|x|
-(explicit, in gray here) and \prc|x| to \prc|y|, \prc|z| to \prc|x|, and \prc|z|
-to \prc|y| (implicit). The matrix gives a summary of potential violations for
+(explicit\index{information flow!explicit}, in gray here) and \prc|x| to \prc|y|, \prc|z| to \prc|x|, and \prc|z|
+to \prc|y| (implicit)\index{information flow!implicit}. The matrix gives a summary of potential violations for
 the program that induced it. Evaluating the matrix determines if the program is
 non-interfering; or if there exists a class assignment that makes the program
 non-interfering. The evaluation function is parametric on the policy, enabling
@@ -356,33 +362,33 @@ Command \prc|C| & $\Out(\prc|C|)$  & $\In(\prc|C|)$ & $\Occ(\prc|C|)=\Out(\prc|C
 \end{table}
 
 \subsubsection{Security-Flow Matrices for Non-interference Violation}
-\label{subsec:sfg}
+\label{subsec:sfg}\index{violation}
 
 The \lname logic relies fundamentally on its ability to analyze data-flow
 dependencies between variables occurring in commands. In this section, we define
-the principles of this dependency analysis, founded on the theory of
+the principles of this dependency analysis\index{dependence analysis}, founded on the theory of
 \emph{security-flow matrices}, and how it maps to the presented language. This
 dependency analysis is reminiscent of the one we developed to distribute
 loops~\cite{aubert202213}. We assume familiarity with monoids and matrices
 addition.
 
-A security-flow matrix $\sfm{\prc|C|}$ for a command \prc|C| is a hollow matrix
+A security-flow matrix\index{security-flow matrix} $\sfm{\prc|C|}$ for a command \prc|C| is a hollow matrix
 (\ie a matrix with only $\nv$ on the diagonal\footnote{This choice is clarified
 after \autoref{def:violation}.}) over a monoid with an implicit choice of a
 denumeration of \(\Occ(\prc|C|)\)\footnote{We will use the order in which the
 variables occur in the program as their implicit order.}
 
-\begin{definition}[Security monoid]
+\begin{definition}[Security monoid]\index{security monoid}
 The \emph{security monoid} is \((\{\nv, \vi\}, \max)\), with \(\nv < \vi\).
 \end{definition}
 
 This monoid is isomorphic to the two-element Boolean algebra with only the
-disjunction, with \(\vi\) representing a possible (non-interference) violation
+disjunction, with \(\vi\) representing a possible (non-interference) violation\index{violation}
 that cannot be erased.
 
-\begin{definition}[Security-flow matrix]
+\begin{definition}[Security-flow matrix]\index{security-flow matrix}
 \prc|C|, its \emph{security-flow matrix} $\sfm{\prc|C|}$ is a
-$|\Occ(\prc|C|)|\times |\Occ(\prc|C|)|$ matrix over the security monoid, whose
+$|\Occ(\prc|C|)|\times |\Occ(\prc|C|)|$ matrix over the security monoid\index{security monoid}, whose
 construction is the object of \autoref{subsec:construction}.
 
 For \(\prc|x|, \prc|y| \in \Occ(\prc|C|)\), we write
@@ -392,7 +398,7 @@ to the \emph{out-variable} $\prc|y|$. \end{definition}
 
 \begin{definition}[Violation]%
 \label{def:violation}
-Given \prc|C|, its security-flow matrix $\sfm{\prc|C|}$ and a class assignment
+Given \prc|C|, its security-flow matrix\index{security-flow matrix} $\sfm{\prc|C|}$ and a class assignment
 \(\ell\), \prc|C| \emph{has a violation} if there exists \prc|x| and \prc|y|
 such that $\sfm{\prc|C|}(\prc|x|,\prc|y|)=\vi$ and either \(\lvl{\prc|y|} <
 \lvl{\prc|x|}\) or \(\lvl{\prc|y|} \orth \lvl{\prc|x|}\):
@@ -415,7 +421,7 @@ this is why hollow matrices are enough. This is also confirmed by the intuition:
 it does not make sense to track data \enquote{leaking} from a variable to
 itself.
 
-How a security-flow matrix is constructed by induction over the command is
+How a security-flow matrix\index{security-flow matrix} is constructed by induction over the command is
 explained in \autoref{subsec:construction}. To avoid resizing matrices whenever
 additional variables are considered, we identify $\sfm{\prc|C|}$ with its
 embedding in any larger matrix, \ie we abusively call the security-flow matrix
@@ -448,7 +454,7 @@ $\begin{pNiceMatrix}[first-row,first-col]
 \hfill~
 \end{center}
 Continuing this example and using our compact presentation of information flow
-policy and class assignment as single Hasse diagram, \prc|C| would have a
+policy\index{information flow!policy} and class assignment as single Hasse diagram\index{Hasse diagram}, \prc|C| would have a
 violation with the level assignments
 \begin{tikzpicture}[anchor=base, baseline=1.3em, node distance=1.2cm]
 \node (y) {\(\lvl{\prc|y|}\)};
@@ -474,10 +480,10 @@ but would be free of violation with \(\lvl{\prc|x|} = \lvl{\prc|y|}\) or
 \end{tikzpicture}.
 
 \subsubsection{Constructing Security-Flow Matrices}%
-\label{subsec:construction}
+\label{subsec:construction}\index{security-flow matrix}
 
 The security-flow matrix of a command is constructed by induction, using the
-security monoid. \autoref{subsec:ni-examples} gathers additional examples with
+security monoid\index{security monoid}. \autoref{subsec:ni-examples} gathers additional examples with
 longer discussion.
 
 \paragraph{Base Cases: Assignment and Skip} The security-flow matrix for an
@@ -592,7 +598,7 @@ any size.
 
 \paragraph{Composition as a Commutative Operation}
 
-The security-flow matrix for a composition of commands is an abstraction that
+The security-flow matrix\index{security-flow matrix} for a composition of commands is an abstraction that
 allows manipulating a sequence of commands as one command with its own matrix.
 
 \begin{definition}[Composition]
@@ -649,7 +655,9 @@ $\begin{pNiceMatrix}[first-row,first-col,left-margin=-2pt,right-margin=-2pt]
 \end{tabular}
 \end{center}
 \caption[Security-Flow Matrix of compositions]
-{Security-Flow Matrix of compositions.}\label{fig:composition}
+{Security-Flow Matrix of compositions.}
+\label{fig:composition}
+\index{security-flow matrix}
 \end{figure}
 
 The composition of commands \prc|C$_1$| and \prc|C$_2$|---themselves already the
@@ -662,15 +670,15 @@ Some existing approaches might consider \prc|C$_1$;C$_2$| as free of violation
 even if \(\lvl{\prc|z|} < \lvl{\prc|y|}\), since \(\prc|z = 0|\) will wipe out
 the content of \prc|z| and \enquote{cancel} the violation introduced by \prc|z =
 y|. The intuition is that an attacker observing the output (or even all the
-final values) cannot deduce anything about \prc|z|'s value (and, transitively,
+final values) cannot deduce anything about \prc|z|'s value (and, transitively\index{information flow!transitive},
 about the value of the higher-class \prc|y|) once the computation is over. Our
 \enquote{once a violation, always a violation} approach ignores the fact that
-\enquote{ultimately}, this violation may be hidden--the anytime non-interference
+\enquote{ultimately}, this violation may be hidden--the anytime non-interference\index{non-interference!anytime}
 guarantee is discussed in \autoref{subsec:ni-soundness}.
 \item
 Interestingly, $\sfm{\prc|C$_1$;C$_2$|} = \sfm{\prc|C$_2$;C$_1$|}$ since
 composition is interpreted as a sum of matrices over our \emph{commutative}
-security monoid. While previous flow-based
+security monoid\index{security monoid}. While previous flow-based
 approaches~\cite{aubert20222,aubert20232,jones2009} requires semi-ring because
 composition was handled \emph{via} product of matrices, the current set-up
 simplifies the machinery precisely to keep track of past violations.
@@ -679,7 +687,7 @@ simplifies the machinery precisely to keep track of past violations.
 \paragraph{A Correction for Implicit Flows}%
 \label{sssec:correction}
 
-To account for implicit flows, branchings and loops require a \emph{correction}.
+To account for implicit flows\index{information flow!implicit}, branchings and loops require a \emph{correction}.
 The main idea is that interpreting \prc|if e then C$_1\;$ else C$_2$| (\resp
 \prc|while e do C|) require to record that all the variables modified in
 \prc|C$_1$| and \prc|C$_2$| (\resp in \prc|C|) depend on the variables
@@ -789,7 +797,7 @@ of \prc|s1|, \prc|s2| and \prc|i|, since they determine how many times the body
 will execute.
 
 \subsection{Capturing Anytime Non-Interference}%
-\label{subsec:ni-soundness}
+\label{subsec:ni-soundness}\index{non-interference!anytime}
 
 In the seminal work of Volpano et al.~\cite[pg.~173]{volpanoI1996},
 \enquote{\textins{s}oundness \textins{wa}s formulated as a kind of
@@ -797,11 +805,11 @@ noninterference property. \textins{\dots I}f a variable $v$ has security
 \textins{class $c$} , then one can change the initial values of any variables
 whose security levels are not dominated by \textins{$c$} , execute the program,
 and the \emph{final value} of $v$ will be the same, \emph{provided the program
-terminates successfully}.} (our emphasis). \emph{Anytime non-interference},
+terminates successfully}.} (our emphasis). \emph{Anytime non-interference}\index{non-interference!anytime},
 defined below and captured by \lname, inspects the values \emph{while the
 program is being executed}. It allows us to
 \begin{enumerate*}
-\item avoid making assumptions of program termination, or avoid waiting for
+\item avoid making assumptions of program termination\index{termination}, or avoid waiting for
 termination, and
 \item model attackers who are capable of observing updates to variables at class
 $c$ or lower.
@@ -809,14 +817,14 @@ $c$ or lower.
 
 First, we need to define a notion of \emph{timed} execution, which captures the
 idea that an external observer can see updates on variables below a particular
-security class in \enquote{real time}.
+security class\index{security class} in \enquote{real time}.
 
 \begin{definition}[Timed command execution]
 Given
 \begin{enumerate}
 \item a program \prc|C| with variables \(\prc|x|_1, \hdots, \prc|x|_n\),
 \item a class assignment \(\ell : \Occ(\prc|C|) \to \SC\),
-\item a security class \(\scl{c} \in \SC\),
+\item a security class\index{security class} \(\scl{c} \in \SC\),
 \item a \emph{time (counter)} \(t \in \mathbb{N}\),
 \item and a value list \(\vec{v} = v_1, \hdots, v_n\),
 \end{enumerate}
@@ -845,7 +853,7 @@ generality, but simple checks as \eg testing for membership in
 \(\Out(\prc|C|')\) for \(\prc|C|' \subseteq \prc|C|\) the subprogram of \prc|C|
 that remains to be executed can give in some cases a rapid answer.
 
-We give below a program along with a class assignment (where the security class
+We give below a program along with a class assignment (where the security class\index{security class}
 \(\scl{c}\) is grayed out) and two tables containing the value held by memory
 locations at time counter \(t\). The initial value lists are \(\vec{v_1} =
 \prc|1|, \prc|2|, \prc|3|, \prc|4|\) and \(\vec{v_2} = \prc|5|, \prc|2|,
@@ -914,12 +922,12 @@ the values of the variables of class \(\scl{c}\) or lower: re-using the example
 above, we have \(\vec{v_1} \upce{\lvl{\prc|y|}} \vec{v_2}\) but  \(\vec{v_1}
 \nupce{\lvl{\prc|w|}} \vec{v_2}\).
 
-We can now formally state the anytime non-interference property:
+We can now formally state the anytime non-interference\index{non-interference!anytime} property:
 
 \begin{definition}[Anytime non-interference]%
 \label{def:com-ni}
 A program \prc|C| is \emph{anytime non-interfering for \(\ell : \Occ(\prc|C|)
-\to \SC\)} if for all security class \(\scl{c} \in \SC\), for all time \(t \in
+\to \SC\)} if for all security class\index{security class} \(\scl{c} \in \SC\), for all time \(t \in
 \mathbb{N}\) and all \(\vec{v}\) and \(\vec{w}\),
 \[
 \vec{v}\upce{\scl{c}} \vec{w}, \prc|C|[\vec{v} \rightarrow \vec{v'}]_t,
@@ -944,7 +952,7 @@ non-interfering for \prc|C|} iff \prc|C| has no violation
 \end{definition}
 
 Note that the trivial class assignment \(\scl{i}\) that assigns to all values
-the same security class \(c_i\) is always non-interfering, since in that case
+the same security class\index{security class} \(c_i\) is always non-interfering, since in that case
 \(\scl{i}(\prc|y|) < \scl{i}(\prc|x|)\) and \(\scl{i}(\prc|y|) \orth
 \scl{i}(\prc|x|)\) are always false. Conversely, any program is anytime
 non-interfering for \(\scl{i}\), since value lists are up-to \(c_i\) equivalent
@@ -960,7 +968,7 @@ The proof is detailed in \autoref{app:proof}, it leverages the idea that only
 assignments and corrections can introduce \(\vi\) in security-flow matrices.
 This mirror the idea that only assignments, loops and branchings can trigger the
 update of an element in a value list, hence connecting the two definitions of
-anytime non-interference. An important assumption is that expressions are
+anytime non-interference\index{non-interference!anytime}. An important assumption is that expressions are
 falsifiable, \eg that if \(\prc|x$_i$| \in \Occ(\prc|e|)\), then there exists at
 least one value for \(\prc|v$_i$|\) that will make \prc|e| evaluate to
 \prc|false|, and at least one value that will make it evaluate to \prc|true|.
@@ -969,11 +977,11 @@ least one value for \(\prc|v$_i$|\) that will make \prc|e| evaluate to
 \label{sec:fct-calls}
 
 We detail below how function calls can be integrated into our analysis. The main
-challenge is to nail down the correct interpretation of anytime non-interference
-for functions that may have side effects or, conversely, that may return a value
+challenge is to nail down the correct interpretation of anytime non-interference\index{non-interference!anytime}
+for functions that may have side effects\index{side effect} or, conversely, that may return a value
 with a lower class than its inputs. We start, as a warm-up, by discussing how to
-add to \lname pure functions, then functions with side effects, before finally
-discussing the meaning of anytime non-interference for functions.
+add to \lname pure functions, then functions with side effects\index{side effect}, before finally
+discussing the meaning of anytime non-interference\index{non-interference!anytime} for functions.
 
 \subsubsection{Warm-Up: Pure Functions}%
 \label{ssec:pure-fct}
@@ -1040,7 +1048,7 @@ else skip
 \end{center}
 \caption[Anytime non-interference with pure functions]
 {Anytime non-interference with pure functions.}
-\label{tab:func}
+\label{tab:func}\index{non-interference!anytime}
 \end{table}
 
 It may seem surprising that \prc|y| does not occur in the \(\In(\prc|C|)\) sets,
@@ -1054,7 +1062,7 @@ variable. Multiple design choices exist, \eg
 \begin{itemize}
 \item \(\ell(\prc|f$_{\vec{\mathtt{e}}}$|)\) can be a constant class
 \(\scl{c}\), reflecting the fact that all function outputs should be assigned
-the same security class regardless of the classes assigned to its inputs,
+the same security class\index{security class} regardless of the classes assigned to its inputs,
 
 \item \(\ell(\prc|f$_{\vec{\mathtt{e}}}$|)\) can be a function of
 \(\lvl{\prc|x|}\) for \(\prc|x| \in \Occ(\mathtt{e}_1) \cup \cdots \cup
@@ -1072,7 +1080,7 @@ This adds \enquote{external} constraints to our definition of violation:
 on the classes of the \prc|f$_{\vec{\mathtt{e}}}$| variables are met. As an
 additional benefit, this allows to handle functions with \(0\) parameters, since
 the flow from the argument(s, or lack thereof) to the function's output need not
-to be tracked in the security-flow matrix.
+to be tracked in the security-flow matrix\index{security-flow matrix}.
 
 Going back to our first example above, if we consider that \prc|f|'s output
 class must be strictly higher than its input class, then we have the additional
@@ -1125,10 +1133,10 @@ repetition and swapping in the argument list, would be required but presents no
 challenge.
 
 \subsubsection{Completing the Picture: Functions With Side Effects}%
-\label{ssec:impure-fct}
+\label{ssec:impure-fct}\index{side effect}
 
 Our development so far assumes that the only way a function can leak information
-is through its return value. Considering functions with side effects (such as
+is through its return value. Considering functions with side effects\index{side effect} (such as
 \prc|print|, \prc|read|, accessing a non-local variable, passing argument by
 reference, etc.) increases \lname's expressivity, but requires to discuss more
 precisely what is meant by anytime non-interfering function calls.
@@ -1311,14 +1319,14 @@ since \(\prc|y| \notin \In(\prc|x = f(y))|)\), \(\sfmb{\prc|x = f(y)|}(\prc|x|,
 \prc|y| to control \prc|x|'s value when processed through \prc|f|: this allows
 finer constraints on the level of \prc|f$^{\mathtt{in}}_{\mathtt{y}}$|.
 
-\item It rigidly assumes that functions with side effects will reveal all their
+\item It rigidly assumes that functions with side effects\index{side effect} will reveal all their
 data at all times. This conservative approach is also a feature, but could be
 tuned by refining how constraints for
 \prc|f$^{\mathtt{out}}_{\vec{\mathtt{e}}}$| class assignments are recorded.
 
-\item Developing a definition of anytime non-interference for programs with side
+\item Developing a definition of anytime non-interference\index{non-interference!anytime} for programs with side
 effects (\autoref{def:com-ni}) will requires to develop a notion of external
-observer and of contextual equivalences, to correctly account for side effects
+observer and of contextual equivalences, to correctly account for side effects\index{side effect}
 and multiple communication channels.
 
 \end{itemize}
@@ -1330,6 +1338,7 @@ work.
 \subsection{Practical Applications and Comparison}\label{sec:apps}
 
 \subsubsection{Implementing the Anytime Non-interference Logic}\label{sec:analyzer}
+\index{non-interference!anytime}
 
 We have created a prototype static analyzer \tool that implements the \lname
 logic. The way matrices are composed in \lname is a key feature in making the
@@ -1348,9 +1357,9 @@ of \lname, that already handles all the examples
 from~\autoref{subsec:ni-examples}.
 
 The outlined engineering choices have multiple advantages. \texttt{Java} is
-frequently used to implement taint analyzers---an instance of non-interference
-fixed to two security classes---thus preparing \tool for a similar use case.
-Since \prc|Java| compiles into bytecode, a kind of intermediate stack language,
+frequently used to implement taint\index{taint analysis} analyzers---an instance of non-interference\index{non-interference}
+fixed to two security classes\index{security class}---thus preparing \tool for a similar use case.
+Since \prc|Java| compiles into bytecode\index{bytecode}, a kind of intermediate stack language,
 it enables program analysis at multiple language representations. Although
 compiler optimizations could reduce the rate of false alarms, \eg by eliminating
 dead-code, it would artificially inflate the analysis precision and thus we
@@ -1359,23 +1368,24 @@ programs. The security flow matrices serve as basis for the extended
 applications, including the directions presented next.
 
 \begin{description}
-\item[Preservation of anytime non-interference.] The \lname logic does not
+\item[Preservation of anytime non-interference.]\index{non-interference!anytime}
+The \lname logic does not
 require much language structure; in particular, it assumes no language-specific
 syntactic features. It is possible to map its grammar to numerous language
-representations, including intermediate representations and bytecode. Comparing
+representations, including intermediate representations\index{intermediate representation} and bytecode\index{bytecode}. Comparing
 security-flow matrices of the same program at different representations enables
 analyzing preservation of security properties and detecting compilation issues.
 
-\item[Security class inference.]
-When security classes of variables are known partially, it is possible to infer
+\item[Security class inference.]\index{security class inference}
+When security classes\index{security class} of variables are known partially, it is possible to infer
 them for all variables. The inference requires a security flow-matrix, an
-information flow policy, and the known class assignments. The inference is then
+information flow policy\index{information flow!policy}, and the known class assignments. The inference is then
 framed as a satisfiability problem. If a satisfactory assignment exists, it
 provides the security classes for all variables. This application is similar to
 type inference, but requires no program as input. Further, the same security
 flow-matrix can be easily evaluated against different information flow policies.
 
-\item[Taint analysis.]
+\item[Taint analysis.]\index{taint analysis}
 Taint analysis detects information flow issues between a high source and a low
 sink. Aside a program, the sources and sinks are necessary, and analyzers
 commonly assume them as inputs. The analyzers then compete on precision along
@@ -1385,7 +1395,7 @@ analyzing source to sink connectivity.
 \end{description}
 
 \subsubsection{Circumventing Termination-insensitivity via Distribution}
-\label{subsub:termination}
+\label{subsub:termination}\index{termination}
 
 Several real-world programs are non-terminating by design: web servers, embedded
 systems, and cyber-physical systems are among the examples. While the programs
@@ -1393,8 +1403,9 @@ can terminate, the termination events are infrequent and uncharacteristic of
 standard behavior. Security analyses that can handle absence of termination are
 necessary to support such programs.
 
-Anytime non-interference is termination-insensitive and compatible with the
-study of non-terminating programs. However, termination-insensitivity is too
+Anytime non-interference\index{non-interference!anytime}
+is termination-insensitive\index{non-interference!termination-insensitive}\index{termination}
+and compatible with the study of non-terminating programs. However, termination-insensitivity is too
 weak to guard against untrusted code, \eg execution of the \prc|eval| command.
 To offer an alleviation strategy, we present an approach to distribute
 security-sensitive computation. This way, computations that require elevated
@@ -1413,40 +1424,41 @@ program security.
 To combine the two analysis, we first analyze a program with \lname to identify
 its information flow constraints. Then, we use the distribution analysis to
 identify the program's distribution potential. Merging the results, the disjoint
-program fragments are assigned appropriate security classes. The fragments are
+program fragments are assigned appropriate security classes\index{security class}. The fragments are
 then allocated to different execution contexts, where each fragment can have a
-different security class designation. This way, a program must not adhere to a
+different security class\index{security class} designation. This way, a program must not adhere to a
 monolithic security strategy, but can have a finer-grained strategy based on its
 content. Due to paper scope, we reserve a detailed treatment for an extended
 version.
 
 \subsubsection{Overview of Alternative and Related Approaches}\label{sec:related-works}
 
-In language-based security, non-interference is commonly achieved through
-security types systems. Type theoretic non-interference provides strong
-end-to-end confidentiality guarantees in a static and scalable way. Initiating
+In language-based security\index{language-based security}, non-interference\index{non-interference} is commonly achieved through
+security types systems\index{security type system}.
+Type theoretic non-interference provides strong
+end-to-end confidentiality\index{confidentiality} guarantees in a static and scalable way. Initiating
 from the seminal work of Volpano et al.~\cite{volpanoI1996}, security type
 systems have been extended to consider non-interference under numerous
 paradigms, including concurrency~\cite{volpano1998,derakhshan2024,frumin2021},
 formal reasoning~\cite{nelson2020,frumin2021}, compilation~\cite{barthe2004},
-\etc. A major challenge among the security type systems is
-\emph{declassification}, a kind of security downgrading
+\etc. A major challenge among the security type systems\index{security type system} is
+\emph{declassification}\index{declassification}, a kind of security downgrading
 operation~\cite{cecchetti2017}. A \emph{downgrading} mechanisms permits
 elevating the security judgement around control-flow constructs then lowering it
 afterward. In other words, information is allowed to flow contrary to the
 policy~\cite{cecchetti2017}. The mechanism is necessary to increase the
 expressive power of security type systems; however, downgrading is generally not
 safe~\cite{derakhshan2024} and eliminates the strong compositional guarantees of
-non-interference~\cite{cecchetti2017}. In practice, security type systems are
+non-interference~\cite{cecchetti2017}\index{non-interference}. In practice, security type systems\index{security type system} are
 challenging to use because they modify the programming language. A program must
 be annotated with security types and compiled with non-standard tools that can
 enforce the types~\cite{lamba2024}. There is also a stark contrast in
 expressiveness of theoretical and practical systems; \eg \cite{huang2014}
-categorically excludes implicit flows.
+categorically excludes implicit flows\index{information flow!implicit}.
 
-The Dependency Core Calculus (DCC)~\cite{abadi1999b} is conceptually related to
+The Dependency Core Calculus (DCC)~\cite{abadi1999b}\index{Dependency Core Calculus} is conceptually related to
 \lname. The DCC is an extension of lambda calculus, framed around the notion of
-data dependency, of which non-interference is an instance. Though similarly
+data dependency, of which non-interference\index{non-interference} is an instance. Though similarly
 rooted in dependency analysis, \lname originates from works of implicit
 computational complexity (ICC). It is a refinement
 of~\cite{moyen20172,aubert20232}, but \lname required significant adjustment,
@@ -1457,28 +1469,28 @@ ICC studies machine-free characterizations of complexity classes by introducing
 properties~\cite{dallago2011}. A critical idea is that ICC techniques can
 benefit from, and offer support in, other analytic domains. The use of ICC
 techniques is such extended ways is an emerging research topic. Previously, a
-non-interference type system provided a foundation for a series of
+non-interference type system\index{security type system} provided a foundation for a series of
 complexity-theoretic results~\cite{marion2011,hainry2023}. In the opposite
 direction, an ICC system was applied to cryptographic proofs~\cite{baillot2019}.
 Although \lname has transformed from its origins to not enforce complexity
 bounds, it reinforces the bidirectional connection between ICC and
-language-based security.
+language-based security\index{language-based security}.
 
 \subsection{Conclusion: Strengths, Limitations and Future Directions}
 \label{sec:conclusion}
 
-Anytime non-interference detects violations at any program point, enforcing a
-finer-grained security policy than classic non-interference that is defined in
+Anytime non-interference\index{non-interference!anytime} detects violations at any program point, enforcing a
+finer-grained security policy than classic non-interference\index{non-interference} that is defined in
 terms of inputs and outputs. We have presented \lname, a sound and compositional
 program logic, that captures the semantic security property of anytime
-non-interference in imperative programs. The logic assigns security flow
+non-interference\index{non-interference!anytime} in imperative programs. The logic assigns security flow
 matrices to commands where the matrices represent the program's potentially
-interfering information flows. The logic is lightweight and does not require
+interfering information flows\index{information flow}. The logic is lightweight and does not require
 program annotations, specialty compilers, and adds no run-time overhead. Beside
 the compelling theory, \lname can be implemented to obtain automated security
 analysis in practice. We have constructed a prototype static analyzer \tool to
 analyze \texttt{Java} programs. By extension, \tool can support a range of
-applications, \eg security class inference, taint analysis, and preservation
+applications, \eg security class inference\index{security class inference}, taint analysis\index{taint analysis}, and preservation
 analysis.
 
 Although the utility of \lname is encouraging, the development is still mainly
@@ -1556,7 +1568,7 @@ class. To handle, this case, one simply replaces \prc|x$_i$| and \prc|x$_j$|
 with those \enquote{problematic} variables, decreases the counter \(t\) to when
 the value of the one with the lower class was changed, and carry out the same
 reasoning, possibly repeating this step again. Since \(t\) decreased, we are
-guaranteed to identify \enquote{the first} anytime non-interference violation
+guaranteed to identify \enquote{the first} anytime non-interference\index{non-interference!anytime} violation
 and to reason about it.}. Furthermore, thanks to \autoref{eq:xi-level} we know
 that
 \begin{align}
@@ -1627,7 +1639,7 @@ Note that if \(i = j\), then \autoref{eq:proof-assumption} cannot hold since
 security-flow matrices are hollow, hence we only have to prove the \(i \neq j\)
 case. We prove it below, factoring-in as previously the remarks about
 \prc|x$_i$| possibly being an array and having to \enquote{chase down} the exact
-pair of variables violating anytime non-interference.
+pair of variables violating\index{violation} anytime non-interference\index{non-interference!anytime}.
 
 \autoref{eq:proof-assumption} implies that there is a sub-program \(\prc|C|'\)
 of \prc|C| such that \(\prc|x$_j$| \in \In(\prc|C|')\) and \(\prc|x$_i$| \in
@@ -1647,7 +1659,7 @@ that at any time counter \(t\), we should have \(\prc|C|'[\vec{v} \rightarrow
 \(\prc|C|'\), the value held by \prc|x$_j$| will impact directly (A) or
 indirectly ((L), (B)) the value held by \prc|x$_i$| at a particular time, or the
 number of time it is updated\footnote{This is where our \enquote{falsifiability
-of expressions} hypothesis is used.}, contradicting anytime non-interference of
+of expressions} hypothesis is used.}, contradicting anytime non-interference\index{non-interference!anytime} of
 $\prc|C|'$ and hence of $\prc|C|$.
 \end{description}
 \end{proof}
@@ -1659,7 +1671,7 @@ rules, treating the inductive ones as inference rules with hypothesis, and the
 base cases (assignment, \prc|skip|, but also computing the correction) as
 axioms.
 
-\begin{example}[Transitive information flow]
+\begin{example}[Transitive information flow]\index{information flow!transitive}
 Consider a program of two commands:
 
 \begin{center}
@@ -1707,7 +1719,7 @@ We conclude the derivation by composing the command matrices.
 The concluding matrix captures the flows: \prc|z| to \prc|y|, \prc|h| to \prc|y|
 and \prc|y| to \prc|z|, but does not show (at top-right) the transitive flow
 from \prc|h| to \prc|z|. A violation depends on the assignment of security
-classes. Non-interference requires \(\lvl{\prc|h|} \leqslant \lvl{\prc|y|}\) and
+classes. Non-interference\index{non-interference} requires \(\lvl{\prc|h|} \leqslant \lvl{\prc|y|}\) and
 \(\lvl{\prc|y|} \leqslant \lvl{\prc|z|}\). This exposes the transitive flow
 $\lvl{\prc|h|} \leqslant \lvl{\prc|z|}$. A \SFM contains more information than
 what is immediately visible.
@@ -1733,7 +1745,7 @@ by
 
 The matrix labels are \prc|x y z|. If \prc|y| holds secret data, and \prc|x| is
 a public with \(\lvl{\prc|x|} < \lvl{\prc|y|}\), the program violates anytime
-non-interference. Although \prc|x| is overwritten in a later command, a
+non-interference\index{non-interference!anytime}. Although \prc|x| is overwritten in a later command, a
 violation cannot be erased once it has occurred. Also observe that composition
 is commutative -- composing the commands in any order would yield the same
 program matrix.
@@ -1765,21 +1777,21 @@ $\begin{pNiceMatrix}[first-row,first-col]
 \end{center}
 
 The program matrix is on the right.
-An anytime non-interference violation is avoided if
+An anytime non-interference\index{non-interference!anytime} violation is avoided if
 \(\lvl{\prc|request|} \leqslant \lvl{\prc|user|}\),
 \(\lvl{\prc|user|} \leqslant \lvl{\prc|sb1|}\), and
 \(\lvl{\prc|sb2|} \leqslant \lvl{\prc|query|}\).
 Since \prc|request| and \prc|query| are disjoint in the matrix, the variables
-are anytime non-interfering for all security classes.
+are anytime non-interfering for all security classes\index{security class}.
 
 \end{example}
 
-Our next analysis example requires a policy with incomparable security classes,
+Our next analysis example requires a policy with incomparable security classes\index{security class},
 like the one we present now.
 
 \begin{example}[HMO information flow policy]\label{ex-hasse-diagram-HMO} The
-\(\HMO\) (for Health Maintenance Organization) information flow policy,
-represented as a Hasse diagram, is:
+\(\HMO\) (for Health Maintenance Organization) information flow policy\index{information flow!policy},
+represented as a Hasse diagram\index{Hasse diagram}, is:
 
 \begin{center}
 \begin{minipage}{.8\textwidth}
@@ -1801,8 +1813,8 @@ represented as a Hasse diagram, is:
 \end{center}
  \end{example}
 
-\begin{example}[Incomparable security classes]
-The mvt--kernel, from the {PolyBench/C}~\cite{polybenchc} parallel programming
+\begin{example}[Incomparable security classes]\index{security class}
+The mvt--kernel, from the {PolyBench/C}~\cite{polybenchc}\index{Polybench/C} parallel programming
 benchmark suite, calculates a \underline{m}atrix \underline{v}ector product and
 \underline{t}ranspose.
 
@@ -1826,7 +1838,7 @@ benchmark suite, calculates a \underline{m}atrix \underline{v}ector product and
 \end{center}
 
 Observe that \prc|x1| and \prc|x2| are disjoint, sharing no observable
-information flow in the matrix. Their security classes may be incomparable.
+information flow in the matrix. Their security classes\index{security class} may be incomparable.
 Using the HMO policy, the assignment
 \begin{align*}
 \{\prc|i|, \prc|j|, \prc|N|, \prc|A|\} &\mapsto \text{public} &&&
@@ -1835,7 +1847,7 @@ Using the HMO policy, the assignment
 \end{align*}
 is satisfactory.
 Similarly, assignment \(\lvl{\prc|x1|} = \text{organization}\) satisfies anytime
-non-interference. However, \(\lvl{\prc|A|} = \text{research}\) is a violation
+non-interference\index{non-interference!anytime}. However, \(\lvl{\prc|A|} = \text{research}\) is a violation
 because we have $\sfm{\prc|C|}(\prc|A|,\prc|x2|)=\vi$. It would require that
 research $\leqslant$ funding, but by the HMO policy the classes are
 incomparable.
@@ -1869,9 +1881,9 @@ condition and inside the body of a \prc|while| loop:
 
 Since variables introduced for (pure) function calls correspond to
 \emph{expressions}, they do not belong to any \(\Out\) set, and their columns in
-a security flow matrix will always be empty. However, the class of function
+a security flow matrix\index{security-flow matrix} will always be empty. However, the class of function
 parameters can be considered with additional constraints, not reported in the
-security-flow matrix. Typically, one can require that
+security-flow matrix\index{security-flow matrix}. Typically, one can require that
 \(\lvl{\prc|g$^{\mathtt{in}}_{\mathtt{b}, \mathtt{x}}$|} = \max(\lvl{\prc|b|},
 \lvl{\prc|x|})\) for all pairs \prc|x|, \prc|b| such that \prc|g(b, x)| occurs
 in the program. This would invalidate a level assignment with \eg
@@ -1879,5 +1891,5 @@ in the program. This would invalidate a level assignment with \eg
 \lvl{\prc|g$^{\mathtt{in}}_{\mathtt{b}, \mathtt{x}}$|}\) would be required by
 this condition, and \(\lvl{\prc|g$^{\mathtt{in}}_{\mathtt{b}, \mathtt{x}}$|}
 \leqslant \lvl{\prc|y|} \leqslant \lvl{\prc|t|}\) are required by the
-security-flow matrix.
+security-flow matrix\index{security-flow matrix}.
  \end{example}

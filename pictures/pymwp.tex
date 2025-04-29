@@ -1,35 +1,33 @@
-\documentclass[crop,border={-22pt 10pt 2pt 10pt}]{standalone}
+\documentclass[crop,border={-23pt 10pt 0pt 10pt}]{standalone}
 \input{../latex/pics}
 \begin{document}
 
 \tikzstyle{cmt}    = [font={\selectfont\color{sorange}}]
+\tikzstyle{it}     = [font={\selectfont\itshape}]
 \tikzstyle{open}   = [arrows={{Circle[open]}-Latex[width=5pt, length=5pt]}]
 \tikzstyle{arrow}  = [thick,arrows={-Latex[width=5pt, length=5pt]}]
 \tikzstyle{label}  = [cmt, midway, above, align=center, yshift=3pt]
 \tikzstyle{box}    = [draw=black, anchor=south west, thick, rounded corners=3pt, text centered]
 \tikzstyle{phase}  = [box, minimum height=1.25cm, text width=2cm]
-\tikzstyle{doc}    = [box, minimum width=1.2cm, minimum height=1.75cm, font={\selectfont\large\ttfamily}]
+\tikzstyle{doc}    = [box, minimum width=1.25cm, minimum height=1.75cm, font={\selectfont\large\ttfamily}]
+\newcommand\sx{4}
 
-\newcommand\lbl[2]{{#1}\\{#2}}
-\newcommand\sx{3.75}
+\begin{tikzpicture}[align=center]
+%\draw[gray!40,step=.25] (0,0) grid (4*\sx+1.25,3);
 
-\begin{tikzpicture}[align=left]
-%\draw[gray!40,step=.25,right] (0,0) grid (4*\sx+2.25,3);
+\draw[box] (\sx-1, 0) rectangle node[above=.55cm, it] {pymwp static analyzer} ++(3*\sx-.75, 3);
 
-\draw[box] (\sx-.5, 0) rectangle node[above=.55cm] {pymwp static analyzer} ++(3*\sx-.5, 3);
+\path (0,.25)       node[doc]   (0) {</>} 
+	++(0,0)         node[above=.2cm of 0] {program}
+	++(0,0)         node[below=.2cm of 0, it] {input}
+	++(\sx-.5,.25)  node[phase] (1) {[front-end]\\pycparser} 
+	++(\sx,0)       node[phase] (2) {[phase-I]\\inference}
+    ++(\sx,0)       node[phase] (3) {[phase-II]\\evaluation}
+    ++(\sx+.5,-.25) node[doc]   (4) {\{…\}}
+    ++(0,0)         node[above=.2cm of 4]   {analysis\\result}
+    ++(0,0)         node[below=.2 of 4, it] {output} ;	
 
-\path (0. ,.25)    node[doc]   (0) {</>} 
-	++(\sx,.25)    node[phase] (1) {\lbl{[front-end]}{pycparser}} 
-	++(\sx,0)      node[phase] (2) {\lbl{[phase-I]}{inference}}
-    ++(\sx,0)      node[phase] (3) {\lbl{[phase-II]}{evaluation}}
-    ++(\sx+1,-.25) node[doc]   (4) {\{…\}} ;	
-
-\node[above=.2cm of 0] (P) {program}; 
-\node[above=.2cm of 4] (Q) {result}; 
-\node[cmt,below=.2cm of 0] {input};
-\node[cmt,below=.2cm of 4] {output};
-
-\draw [arrow, open] (0) -- (1) node[label] {C};
+\draw [arrow, open] (0) -- (1) node[label, xshift=-7pt] {source\\code};
 \draw [arrow] (1) -- (2) node[label] {AST}; 
 \draw [arrow] (2) -- (3) node[label] {matrix}; 
 \draw [arrow] (3) -- (4) node[label, xshift=7pt] {object}; 
