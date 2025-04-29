@@ -109,7 +109,7 @@ Assuming a sequential source program, these transformations are straightforward 
 Loop \emph{fusion}\index{loop transformation!fusion}, in~\autoref{lst:fusion}, merges multiple loops by replacing them with a single loop.
 In each iteration, the generated loop executes an iteration of each original loop.
 Loop \emph{fission}\index{loop transformation!fission}, in~\autoref{lst:fission}, operates in the reverse direction.
-It breaks the original loop into multiple loops, with each generated iteration taking only a part of the original loop's body.
+It breaks the original loop into multiple loops, with each generated iteration taking only a part of the original loop's body~\cite{zhao2018}.
 In both transformations, the loop header and iteration space remain unchanged.
 
 \begin{center}
