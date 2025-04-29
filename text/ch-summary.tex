@@ -3,7 +3,7 @@
 \section{Applied Implicit Computational Complexity (Extended Abstract)}
 
 The gold standard in formal verification is showing that a program (\ie an implementation), is \emph{totally correct}.
-Total correctness requires proving two conditions.
+Total correctness requires proving two conditions~\cite{leino2023}.
 The first is showing that the implementation meets its specification.
 Typically, a specification is expressed in terms of \emph{functional} input/output behavior.
 In other words, a correct program computes the expected output for all inputs.
@@ -25,7 +25,7 @@ Exchanging machine models for language-based criteria is powerful because it ena
 This way, we can obtain {guarantees} about runtime behavior, without manual assistance and without executing the program of interest.
 ICC systems have been designed around various baseline techniques, including term rewriting, calculi, data flow analysis, type systems, \etc~\cite{baillot2012,moyen2017}
 
-\subsection{Motivation, Problem Description, and Goals}
+\subsection{Problem Description and Goals}
 
 There are several good motivations for reasoning about complexity implicitly.
 For example, ICC allows guaranteeing program properties by construction \emph{before} any program exists.
@@ -37,69 +37,92 @@ Compositionality is critical for analysis scalability~\cite{carbonneaux2015}, an
 but is missed by many alternative static techniques~\cite{carbonneaux2015,schiebel2024}.
 
 Despite the rich inventory of compelling features, unfortunately implicit computational complexity has remained primarily as a theoretical novelty;
-with a few exceptions~\cite{avanzini2017,avanzini2008,moyen20172,hoffmann2012,hainry2021}.
+with a few exceptions~\cite{avanzini2017,avanzini2008,moyen20172,hoffmann2012,hainry2021,feree2018}.
 A theory in absence of applications means the potential, power, limitations, and utilities of the theory are difficult to recognize\footnote{
 Reviewer \#2 might even call such theory \enquote{useless}.}.
 In our view, theory and application are symbiotic, and mutual investigation of both is vital for scientific advancement~\cite[pg. xxxv]{bishop2003}~\cite[p. 75]{moyen2017}.
 
-A kind of \emph{implicit manifesto} of this dissertation is that application is necessary to push forward our collective understanding of implicit computational complexity.
+An \emph{implicit manifesto} embedded in this dissertation is that application is necessary to push forward our collective understanding of implicit computational complexity.
 Potentially great power and utility is \enquote{locked} within these theoretical systems, but it remains an open problem to release it.
-Investigations are needed, within the ICC community, to explore the practical capabilities of the existing techniques.
-We must also expose the ICC techniques to broader research communities, to discover new use cases and to facilitate fruitful collaboration~\cite[p. 7]{moyen2017},
+Within the ICC community, investigations are needed to explore the practical capabilities of the existing techniques.
+Externally, we should want to expose the ICC techniques to broader research communities, to push the techniques further and to facilitate discovery of new use cases.
 
 The work in this dissertation is only a small step toward these ambitious long-term goals.
-The realistic expectations are technical and social, as follows.
-\begin{enumerate*}
+The realistic expectations are about technical and social advancement.
+\begin{enumerate}
 \item Extend {applied} capabilities of ICC-based techniques in automatic program analysis and verification.
 \item Take ICC techniques a few steps closer to becoming a standard in real world development workflows.
 \item Open discourse and highlight the relevance of applications within the ICC community.
 \item Expose and generate interest in techniques of implicit computational complexity in broader research communities.
-\end{enumerate*}
-A guiding intuition is that, \emph{if applied}, implicit complexity could provide us practical methods for formal reasoning and verification of \emph{many} non-functional program properties.
+\end{enumerate}
+A guiding intuition behind these goals is that, \emph{if applied}, implicit complexity could provide us practical methods for formal reasoning and verification of \emph{many} non-functional program properties.
 
 \subsection{Hypothesis, Research Questions, and Approaches}
 \label{subsec:research-goals}
 
-To make the investigation more concrete, the dissertation defines a \emph{main hypothesis}.
+To make the investigation more concrete, the dissertation defines the following \emph{main hypothesis}.
 \begin{quotation}
-\noindent We question whether implicit computational complexity can offer utility when lifted outside the theoretical domain.
+\noindent We question whether implicit computational complexity can offer applied utility when lifted outside the theoretical domain.
 \end{quotation}
-However, because the hypothesis is not \enquote{research paper-sized}, it must be broken down further.
-The dissertation investigation is organized into smaller projects, along two disjoint tracks, that collectively challenge the main hypothesis.
+However, since the hypothesis is not \emph{research paper-sized}, it is necessary to break it down further.
+The dissertation investigation is organized into smaller projects, along two disjoint \enquote{tracks}.
+This enables formulating more specific research objectives that challenge the main hypothesis.
 
-\begin{description}
-\item[\#1]
-    The first series focuses on the \emph{flow calculus of mwp-bounds}~\cite{jones2009}.
-    The flow calculus is a canonical instance of a theoretical ICC-system.
-    Several research questions arise from the flow calculus.
-    \begin{enumerate}
-    \item (\aref{sec:fscd} and \autoref{sec:atva}) Is it possible to develop practical static program analysis based on it?
-    \item (\autoref{sec:mwp-calc-formal}) Can we formally prove the soundness of the flow calculus?
-    \item (\autoref{sec:postcond}) What are the extended use cases of the flow calculus?
-    \end{enumerate}
-\end{description}
+\paragraph*{1. Extending the flow calculus of mwp-bounds.}
+The first series of work focuses on the \emph{flow calculus of mwp-bounds}~\cite{jones2009}.
+The flow calculus is a canonical instance of a theoretical ICC system.
+It analyzes imperative programs to determine if it is possible to bound value growth of variables by polynomials.
+The motivation to focus on it relies on intuition.
+As a syntactical and logic-based data-flow analysis, it \emph{seems like} a good candidate for applications of implicit computational complexity.
+Several research questions arise from the flow calculus.
+\begin{enumerate}
+\item (In \aref{sec:fscd} and \autoref{sec:atva}) Is it possible to develop automatic static program analysis based on the flow calculus?
+\item (In \autoref{sec:mwp-calc-formal}) Is it correct, \ie can we prove \emph{formally} the soundness of the flow calculus?
+\item (In \autoref{sec:postcond}) What are the extended use cases of the flow calculus?
+\end{enumerate}
 
-The questions about the flow calculus are still conventional, in the sense that they focus on resource analysis.
-In other words, given a complexity-theoretic technique, we \emph{should} be able to apply it for reasoning about resource usage properties\footnote{
-Turns out this is not as straightforward as it seems, but that will be revealed in the manuscripts.}.
-To be more innovative, another line of work is needed.
+The questions are still conventional in that they focus on resource analysis.
+In other words, given a complexity-theoretic technique, it is conceivable that we \emph{should} be able to apply
+such technique to analysis of programs' resource consumption\footnote{
+Turns out, this is actually \emph{not} straightforward, but that will be revealed in the manuscripts.},
+and prove its soundness based on its paper proofs.
+The purpose of the second track of work is to challenge the main hypothesis in more unconventional ways.
 
-\begin{description}
-\item[\#2]
-    The second series concerns applying ICC toward tracking \emph{other} semantic program properties.
-    The idea is to take an ICC-technique as a baseline, then see if the technique can be adjusted to a different use case.
-    Here the base system stems from quasi-invariants~\cite{marion2000}, particularly as formulated in~\textcite{moyen20172}.
-    We then ask the following questions about its \emph{extended} uses\footnote{
-    Although posed here as \enquote{obvious} questions, a substantial step here is actually \emph{identifying} other research areas where ICC-based techniques \emph{might} offer benefit (like compilers, parallel programming, or language-based security). The second challenge is then delivering on that intuition.}.
-    \begin{enumerate}
-    \item (\autoref{sec:vmcai}) How to develop a program optimization to increase parallelization potential?
-    \item (\autoref{sec:anytime}) How to use is to analyze programs information flow security properties?
-    \end{enumerate}
-    This line of work is different in the sense that we are no longer concerned with analyzing a complexity properties.
-    Rather, we ask if there is something inherent in the \emph{technique} itself that makes it flexible enough to reason about other program properties.
+\paragraph*{2. Applying ICC in alternative domains.}
+The second series concerns applying implicit computational complexity toward tracking \emph{other} semantic non-functional program properties.
+The core idea is to take an ICC system and adjust it to a new use case in program analysis.
+The motivation is two-fold.
+First, it requires deep inspection of the underlying \emph{technique} (rather than a property) and assessing its flexibility.
+Second, it requires thinking about implicit complexity outside its usual frame of complexity theory.
+Thinking broadly, investigations in this direction are particularly relevant if we wish to expose ICC to wider research communities.
 
-\end{description}
+In this line of work, the baseline ICC technique is a data-flow analysis inspired by quasi-invariants~\cite{marion2000} (QI),
+as formulated in~\textcite{moyen20172}.
+In that previous work, the technique was used to obtain a compile-time program optimization,
+by looking for opportunities to peel (\cf~\autoref{loop-transforms}) nested loops, such that the whole-program complexity is reduced.
+The technique has many compelling features\footnote{
+For example, unlike the flow calculus of mwp-bounds, the QI-framework accommodates a richer input language and can operate on arrays.}
+that make it a suitable candidate for the investigation.
+We then ask the following questions about the \emph{extended} uses of QI framework.
 
+\begin{enumerate}
+\item (\autoref{sec:vmcai}) How to develop a program transformation to increase parallelization potential?
+\item (\autoref{sec:anytime}) How to use it to analyze security properties of information flow, particularly non-interference?
+\end{enumerate}
+
+Although posed here with an air of obviousness;
+a substantial challenge of the research plan is {identifying} potential research domains---like parallel programming or language-based security---where ICC techniques might offer benefit, and how such benefit could be derived compared to the established approaches in those domains.
+
+This track of investigation is no longer concerned with complexity properties.
+\Ie we may \enquote{lose} the complexity result in a trade for some other guarantee.
+Rather, the investigation aims to uncover whether there is something inherent in the {technique} itself that makes it adjustable to other semantic properties.
+
+Finally, this investigation track embeds a {bonus-challenge}.
+It is not enough to just show that ICC techniques can solve some problems it other application domains.
+Setting aside the neat origins, we must show that the developed solutions are \emph{independently} relevant in the receiving domain.
+This criterion is strongly enforced by the peer review process.
+
+\paragraph*{Generation of new knowledge, understanding and artifacts.}
 The research questions reflect a kind of dynamic process of discovery --
 for example, to investigate the applications of the flow calculus requires first to understand its theory deeply.
 We can be satisfied that the questions adequately challenge the main hypothesis.
