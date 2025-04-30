@@ -247,28 +247,23 @@ A plain variable refers to a state where the variable holds its \emph{initial} v
 If the same variable has a postfix decoration \pr|'| then it refers to a state where the variable holds its \emph{final} value.
 For example, \pr|X| refers to the initial value and \pr|X'| to the final value.
 
-%\paragraph*{Significant figures.}
-%When a figure present an important or fundamental concept, the figure is emphasized with a boxed frame.
-%Regular figures have no frame.
-
-\subsubsection{Term- and Notational Indices}
+\subsubsection{Term and Notational Indices}
 
 This dissertation includes three indices.
-The \hyperref[sec:app:index]{Term Index} lists technical terms and their most relevant uses\footnote{
-To keep the index helpful, not every term occurrence is indexed;
-rather, the pages point to the most pertinent discussion about a particular term.}
+The \hyperref[sec:app:index]{Term Index} lists technical terms and their most relevant uses.
 Acronyms are generally defined at first-use, but it is always possible to locate the long form in the~\nameref{\acronymtype}.
 A similar lookup reference is available for symbolic notations in the~\nameref{symbols}.
 
-\subsubsection{Archival of Nontraditional Bibliographic References}
+\subsubsection{Archival and Recovery of Nontraditional Bibliographic Entries}
 
-Some bibliography entries refer to dynamic, non-publication resources like software, web pages, lecture notes, PDF files, \etc
-To improve long-term availability of such bibliographic entries, these resources are archived in well-established online archives.
+Some bibliography entries refer to dynamic non-publication resources like software, web pages, lecture notes, and PDF files.
+To improve long-term availability of such bibliographic entries, they are pre-emptively deposited in well-established online archives.
+
+Documents that were not posted online even at the time of writing this dissertation are archived in the companion software artifact of this dissertation, \cf~\aref{app:sec:artifacts}.
 
 \paragraph*{Written documents.}
-Web pages and PDF files are pre-emptively archived at the Internet Archive.
-To recover a document from the Internet Archive, use the following format, substituting \pr|<URL>| by the document's URL\@.
-
+Web pages and PDF files are archived at the Internet Archive.
+To recover a document, substitute \pr|<URL>| by the document's URL\@.
 \begin{center}
 \pr|https://web.archive.org/web/<URL>|
 \end{center}
@@ -278,7 +273,7 @@ For example, the following \href{https://types22.inria.fr/files/2022/06/TYPES_20
 \begin{center}
 \begin{minipage}{\textwidth}
 %! suppress = EscapeUnderscore
-\begin{cmdlisting}*[]
+\begin{cmdlisting}*[nolol]
 https://types22.inria.fr/files/2022/06/TYPES_2022_paper_14.pdf
 \end{cmdlisting}
 \end{minipage}
@@ -289,18 +284,15 @@ The \href{https://web.archive.org/web/https://types22.inria.fr/files/2022/06/TYP
 \begin{center}
 \begin{minipage}{\textwidth}
 %! suppress = EscapeUnderscore
-\begin{cmdlisting}*[]
+\begin{cmdlisting}*[nolol]
 https://web.archive.org/web/https://types22.inria.fr/files/2022/06/TYPES_2022_paper_14.pdf
 \end{cmdlisting}
 \end{minipage}
 \end{center}
 
-Documents that were not posted online even at the time of writing this dissertation are archived in the companion software artifact of this dissertation, \cf~\autoref{subsub:sw}.
-
 \paragraph*{Software repositories.}
-Version controlled third party software repositories are archived by \href{https://softwareheritage.org/}{Software Heritage}.
-For a repository at \pr|<URL>|, the recovery address is:
-
+Version-controlled third party software repositories are archived by \href{https://softwareheritage.org/}{Software Heritage}.
+For a repository at \pr|<URL>|, the recovery address is: %
 %! suppress = EscapeUnderscore
 \begin{center}
 \pr|https://archive.softwareheritage.org/browse/origin/directory/?origin_url=<URL>|

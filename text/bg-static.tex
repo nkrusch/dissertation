@@ -137,7 +137,7 @@ Numerous techniques can be used to reason about such properties.
 This dissertation is concerned with techniques of data-size analysis.
 Among the specific and well-established techniques are automatic amortized\index{amortization} resource analysis and cost equation systems, presented briefly next.
 
-\paragraph*{Automatic amortized resource analysis.}\index{automatic amortized resource analysis}
+\paragraph*{Automatic amortized resource analysis.}\index{AARA}
 Amortized analysis\index{amortization} averages the time required to perform a sequence of operations over all the operations performed~\cite[p. 451]{cormen2009}.
 It enables to show that the average cost of an operation is small, even if a single operation might be expensive.
 Automatic amortized resource analysis (AARA)~\cite{hoffmann2022} builds on this idea to provide an automatic static technique for deriving arithmetic resource bounds.
@@ -146,7 +146,7 @@ The analysis relies on inference rules, and derivation trees provide proofs of t
 AARA originated from works in implicit computation complexity, particular from the contributions of Martin Hofmann~\cite{hoffmann2022}.
 AARA-based techniques has been implemented on functional~\cite{hoffmann2017}, imperative~\cite{carbonneaux2015,carbonneaux2017}, and probabilistic~\cite{ngo2018} programming languages.
 
-\paragraph*{Cost equation systems.}
+\paragraph*{Cost equation systems.}\index{cost equation system}
 A \emph{cost equation system} (CES) (alternatively: cost relation system) is an abstract representation format of a program's resource cost~\cite{floresmontoya2017,albert2019}.
 It consists of a set of cost equations, that are non-deterministic recurrence relations annotated with constraints, as shown in \autoref{lst:ces}~\cite{floresmontoya2014}.
 The analyzing technique of cost equations is based on the seminal work of~\textcite{wegbreit1975}.
