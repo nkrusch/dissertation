@@ -1,5 +1,11 @@
-%% All sections begin on a new page
-\AddToHook{cmd/section/before}{\clearpage}
+%% Sections begin on a new page
+%% (but in some cases we need a toggle)
+% https://tex.stackexchange.com/a/629027/233737
+\AddToHook{cmd/section/before}[./section-new]{\clearpage}
+\AddToHook{cmd/section/before}[./section-flow]{}
+\newcommand\newsect{\ClearHookRule{cmd/section/before}{./section-new}{./section-flow}}
+\newcommand\newsectoff{\DeclareHookRule{cmd/section/before}{./section-flow}{voids}{./section-new}}
+\newsect % initially on
 
 % autorefs
 \AtBeginDocument{%
