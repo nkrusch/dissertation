@@ -384,7 +384,7 @@ a runtime-based model for \pr|C++|\index{C++} programs~\cite{onetbb}.
 is a parallel programming model for developing portable, shared memory\index{shared memory} parallel applications in
 \pr|C|\index{C},
 \pr|C++|\index{C++} and
-\pr|Fortran|\index{Fortran}\index{programming language!Fortran}~\cite{openmp_api}.
+\pr|Fortran|\index{Fortran}~\cite{openmp_api}.
 OpenMP is not a programming language;
 rather, it provides directives for sequential programs that translate the programs to parallel execution instructions at compile-time.
 The OpenMP\index{OpenMP} infrastructure includes compiler directives, library routines, environment variables, and tool support for creating, debugging, and analyzing parallel applications.
@@ -683,7 +683,7 @@ For example, the worksharing loop expects loops to be in canonical form\index{ca
 Afterward, a transformation that increases the program's parallelization potential\index{parallelization potential} enables making use of multicore hardware during execution.
 Thus, an important challenge of parallelizing compilers and program optimizations is to find generalized strategies to increase parallelization potential.
 
-\subsubsection{Implicit Computational Complexity for Parallel Transformations}
+\subsubsection{ICC for Parallel Loop Transformations}
 \label{icc-fission}
 
 Since implicit computational complexity has developed many systems for reasoning about loops, it seems natural that in extended use, it has potential to support loop-based program transformations.

@@ -1,11 +1,10 @@
 % Basics + Fonts
 \RequirePackage{etex}
 \RequirePackage{xspace}
+\RequirePackage{sansmath}
 \RequirePackage{fontawesome5}
 \RequirePackage[verbose]{newunicodechar}
-\RequirePackage{sansmath}
 \RequirePackage[scaled=.9]{FiraMono}
-\RequirePackage{hyphenat}
 % Document
 \RequirePackage[bottom]{footmisc}
 \RequirePackage{filecontents}
@@ -16,7 +15,7 @@
 \RequirePackage{fnpct}
 \RequirePackage{imakeidx}
 \RequirePackage[setpagesize=false]{hyperref} % FIX! https://tex.stackexchange.com/a/28800/
-\RequirePackage[acronym,toc,nomain,nopostdot,section=chapter,numberedsection=nameref,nogroupskip]{glossaries}
+\RequirePackage[acronym,toc,nomain,nopostdot,section=chapter,numberedsection=autolabel,nogroupskip]{glossaries}
 \RequirePackage{glossary-longragged}
 \RequirePackage[framemethod=TikZ]{mdframed}
 \RequirePackage{listofitems} % list-iter
@@ -41,10 +40,9 @@
 \RequirePackage{multirow}
 \RequirePackage{caption}
 \RequirePackage{subcaption}
+\RequirePackage{colortbl}
 \RequirePackage{float}
 \RequirePackage{tikz}
-\RequirePackage{colortbl}
-\usepackage{wrapfig}
 % Code + algorithms
 \RequirePackage[boxed]{algorithm}
 \RequirePackage{algorithmicx}

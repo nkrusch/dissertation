@@ -1,6 +1,7 @@
 %! suppress = MissingLabel
 %! suppress = NonBreakingSpace
-\section{Applied Implicit Computational Complexity \mbox{(Extended Abstract)}}
+
+\section*{Applied Implicit Computational Complexity \mbox{(Extended Abstract)}}
 
 The gold standard in formal verification is showing that a program (\ie an implementation), is \emph{totally correct}.
 Total correctness requires proving two conditions~\cite{leino2023}.
@@ -56,7 +57,6 @@ The realistic expectations are about technical and social advancement.
 A guiding intuition behind these goals is that, \emph{if applied}, implicit complexity could provide us practical methods for formal reasoning and verification of \emph{many} non-functional program properties.
 
 \subsection{Research Questions and Approaches}
-\label{subsec:research-goals}
 
 To make the investigation more concrete, the dissertation defines the following \emph{main hypothesis}.
 \begin{quotation}
@@ -95,7 +95,7 @@ Thinking broadly, investigations in this direction are particularly relevant if 
 
 In this line of work, the baseline ICC technique is a data-flow analysis inspired by quasi-invariants (QI) as formulated in~\textcite{moyen20172}.
 In that previous work, the technique was used to obtain a compile-time program optimization.
-It works by looking for opportunities to peel (\cf~\autoref{loop-transforms}) nested loops, such that the whole-program complexity is reduced.
+It works by looking for opportunities to lift nested loops outside the containing loop, such that post-transformation the whole-program complexity is reduced.
 The technique has many compelling features\footnote{For example, unlike the flow calculus of mwp-bounds, the QI framework supports a richer input language, including arrays.} that make it a suitable candidate for the investigation.
 We then ask the following questions about the \emph{extended} uses of QI framework.
 \begin{enumerate}
@@ -115,9 +115,8 @@ We must show that the developed solutions are \emph{independently} relevant in t
 This criterion is strongly enforced by the peer review process.
 
 \subsection{Research Findings and Conclusions}
-\label{subsec:results}
 
-The identified research questions were investigated in a series of publications~\cite{aubert20222,aubert20232,aubert2023b}, and drafts presented in Sections~\ref{sec:postcond}--\ref{sec:anytime} and ongoing work in \autoref{aubert20231}.
+The identified research questions were investigated in a series of publications~\cite{aubert20222,aubert20232,aubert2023b}, and drafts presented in Sections~\ref{sec:postcond}--\ref{sec:anytime} and ongoing work in \cite{aubert20231}.
 Deriving from this series, we recognize several findings.
 
 \paragraph*{Findings about the flow calculus of mwp-bounds.}

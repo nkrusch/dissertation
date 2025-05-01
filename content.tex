@@ -131,16 +131,16 @@
 %-------------------------------------------------------------------------------
 %	6. REFERENCES
 %-------------------------------------------------------------------------------
-\backmatter
-\printbibliography[label=chap:references, title=References]
-\let\printbibliography\relax
+
+\printbibliography[label=chap:references, title=References, heading=bibnumbered]
 
 %-------------------------------------------------------------------------------
-%	7. APPENDICES
+%	7--X. APPENDICES
 %-------------------------------------------------------------------------------
 \appendix
+\continousappendix
 
-\chapter{Additional Published Manuscripts}\label{additional-manuscripts}
+\chapter{Additional Published Manuscripts}\label{app:additional-manuscripts}
 
     \section{mwp-Analysis Improvement and Implementation: Realizing Implicit
     Computational Complexity}\label{sec:fscd}
@@ -163,7 +163,7 @@
 \clearpage
 
 \pagestyle{plain}
-\printglossary[type=\acronymtype,nonumberlist,title={Index of Acronyms},style=longragged]
+\printglossary[title={Index of Acronyms},type=\acronymtype,nonumberlist,style=longragged]
 \clearpage
 
 \pagestyle{plain}

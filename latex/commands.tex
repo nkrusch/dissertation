@@ -5,7 +5,7 @@
 \newcommand\abspage[1]{\noindent\textbf{Abstract.}{ }{#1}\newpage}
 \newcommand{\nocontentsline}[3]{}
 \newcommand{\tocless}[2]{\bgroup\let\addcontentsline=\nocontentsline#1{#2}\egroup}
-\newcommand{\aref}[1]{\hyperref[#1]{Appendix~\ref*{#1}}}
+\newcommand{\aref}[1]{\hyperref[#1]{\ref*{#1}}} %Appendix~\ref*{#1}}}}
 \newcommand{\swlink}[2]{\texttt{\footnotesize{\href{#1}{#2}}}}
 \newcommand{\ccxi}[1]{\index{complexity class!\textsc{#1}}}
 \newcommand{\ccx}[1]{\textsc{#1}\ccxi{#1}}
@@ -14,6 +14,7 @@
 \newcommand{\smtabularnote}[1]{\tabularnote{\small{#1}}}
 \newcommand{\ompi}[1]{\index{OpenMP directives!{#1}}}
 
+
 \newcommand{\pr}{\lstinline[mathescape,basicstyle=\normalfont\ttfamily,escapeinside={(*}{*)},prebreak={}]}
 \newcommand{\prm}[1]{\text{\pr|#1|}}
 \newcommand{\prc}{\lstinline[mathescape=true]}
@@ -21,6 +22,14 @@
 
 % apa-style citation fix
 \renewcommand{\cite}[2][]{\autocite[#1]{#2}}
+
+% continuous appendix
+\newcommand{\continousappendix}{
+    \renewcommand{\thechapter}{\arabic{chapter}}
+    \setcounter{chapter}{6} % it is fixed anyway
+}
+
+
 
 % paper category icons
 \newcommand{\pageIcon}[2]{

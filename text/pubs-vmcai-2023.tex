@@ -1,10 +1,23 @@
 \includepdf[pages={1-},
     addtotoc={
         2,subsection,2,{Original Approaches to Automatic Parallelization},sec:vmcai-intro,
+        2,subsubsection,3,{The Challenge of Unknown Iteration Space},sssec:unknown-iter,
+        3,subsubsection,3,{Motivations for Correct, Universal and Automatic Parallelization},sssec:vmcai-motivation,
+        3,subsubsection,3,{Our Technique: Properties, Benefits and Limitations},sssec:vmcai-technique,
+        4,subsubsection,3,{Contributions: From Theory to Benchmarks},sssec:vmcai-contrib,
         4,subsection,2,{Background: Language and Dependency Analysis},sec:vmcai-background,
+        4,subsubsection,3,{A Simple While Imperative Language With Parallel Capacities},sssec:vmcai-lang,
+        6,subsubsection,3,{Data-flow Graphs for Loop Dependency Analysis},sssec:vmcai-dfgs,
+        7,subsubsection,3,{Constructing Data-Flow Graphs},sssec:constructing-dfgs,
         11,subsection,2,{Loop Fission Algorithm},sec:fission-algo,
+        11,subsubsection,3,{Algorithm, Presentation and Intuition},sssec:vmcai-algo,
+        13,subsubsection,3,{Correctness of the Algorithm},sssec:vmcai-corr,
         14,subsection,2,{Limitations of Existing Alternative Approaches},sec:vmcai-limitations,
+        14,subsubsection,3,{Comparing Dependency Analyses},sssec:vmcai-comparing,
+        15,subsubsection,3,{Assessment of Existing Automated Loop Transformation and Parallelization Tools},sssec:vmcai-tools,
         16,subsection,2,{Evaluation},sec:vmcai-eval,
+        16,subsubsection,3,{Benchmarks},sssec:vmcai-bench,
+        18,subsubsection,3,{Results},sssec:vmcai-results,
         21,subsection,2,{Conclusion},sec:vmcai-conc},
     addtolist={
         5,figure,{Simple imperative while language},fig-grammar,
@@ -64,8 +77,6 @@
     \addtoindexm{parallelization potential}{3}
     \addtoindexm{parallelizing compilation}{3,15,16,17,19}
     \addtoindexm{polyhedral optimization}{4}
-    \addtoindexm{programming language!C++}{15}
-    \addtoindexm{programming language!C}{15}
     \addtoindexm{saturated covering}{12,13}
     \addtoindexm{source-to-source compilation}{1,3,15}
     \addtoindexm{state explosion}{3}

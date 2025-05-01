@@ -44,7 +44,6 @@
 \let\item\@idxitem
 \setlength{\columnsep}{20pt}
 \setlength{\parindent}{0em}
-%\setlength{\marginparwidth}{0pc}
 \begin{multicols*}{2}\raggedcolumns}
 {\end{multicols*}}
 \renewcommand{\@idxitem}{\par\hangindent 21\p@}
@@ -71,6 +70,17 @@ delim_t "\\normalsize"
    }
 }
 \setglossarystyle{longraggeddots}
+
+% patch glossary hyperref
+% https://tex.stackexchange.com/a/40121/233737
+\makeatletter
+\patchcmd{\@glossarysection}{%
+    \@@glossaryseclabel%
+}{%
+    \@@glossaryseclabel%
+    \label{\glsautoprefix\@glo@type}
+}{}{}
+\makeatother
 
 % double space various environments
 \mdfsetup{startinnercode={\doublespacing}}
