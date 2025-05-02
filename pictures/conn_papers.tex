@@ -1,4 +1,4 @@
-\documentclass[crop,border={0pt 10pt 0pt 0pt}]{standalone}
+\documentclass[crop,border={0pt 5pt 0pt 0pt}]{standalone}
 \input{../latex/pics}
 
 \tikzset{font={\selectfont\normalsize}}
@@ -11,7 +11,7 @@
 \newcommand\authT[2]{\enquote{\textbf{#1}}\\{{#2}}}
 
 \tikzstyle{start} = [
-	rectangle, rounded corners=0pt, line width=1.5pt, minimum width=7cm, minimum height=2cm, 
+	rectangle, rounded corners=0pt, line width=1.5pt, minimum height=2cm,
 	text width=7cm, text centered, draw=concept, solid, fill=conceptbase, line cap=round]
 	
 \tikzstyle{prior} = [start, draw=prior, fill=priorbase, double, line width=.7pt]
@@ -32,8 +32,8 @@
         xshift=3mm, yshift=1mm, anchor=north west] at (#1.north west) {\large #2}}}]
    
 \node (icc) [start, loosely dotted] at (5,10) {Implicit Computational Complexity};
-\node (mwp) [prior, below of=icc, xshift=-3.5cm] {\authT{A Flow Calculus of mwp-Bounds\\for Complexity Analysis}{\authA (2009)}};
-\node (qsi) [prior, right of=mwp, xshift=5cm] {\authT{Loop Quasi-Invariant Chunk Detection}{\authC (2017)}};
+\node (mwp) [prior, below of=icc, xshift=-3.75cm] {\authT{A Flow Calculus of mwp-Bounds\\for Complexity Analysis}{\authA (2009)}};
+\node (qsi) [prior, right of=mwp, xshift=4.75cm] {\authT{Loop Quasi-Invariant Chunk Detection}{\authC (2017)}};
 \node [below of=mwp, block=imp:\iconSPA:{mwp-Analysis Improvement and Implementation: Realizing\\Implicit Computational Complexity}:{\authB (2022)}];
 \node [below of=imp, block=pym:\iconSPA:{pymwp: A Static Analyzer\\Determining Polynomial Growth Bounds}:{\authB (2023)}];
 \node [below of=pym, block=pci:\iconFM:{Polynomial Postconditions\\via mwp-Bounds}:{\authE$^*$}];
@@ -62,7 +62,7 @@
    
 \fill[draw=concept, line width=1pt, fill=conceptbase, densely dotted] (0, 12) circle (.75ex) node[right, xshift=3mm]{Concept};
 \fill[draw=prior, thick, fill=priorbase, double] (3, 12) circle (.75ex) node[right, xshift=3mm]{Prior foundational work};
-\fill[draw=paper, thick, fill=paperbase, solid] (8, 12) circle (.75ex) node[right, xshift=3mm]{Work in dissertation};
+\fill[draw=paper, thick, fill=paperbase, solid] (8, 12) circle (.75ex) node[right, xshift=3mm]{Dissertation work};
 
 
 \end{tikzpicture}
