@@ -1,31 +1,20 @@
-Implicit computational complexity (ICC) complements classic complexity theory by
-aiming to discover machine-independent characterizations of complexity classes.
-The key idea is to introduce a restriction, at the level of a programming
-language, that guarantees every program satisfying the restriction belongs to a
-particular complexity class. There are several strong motivations for reasoning
-about computational complexity implicitly. ICC allows guaranteeing program
-properties by construction, it drives better understanding of complexity
-classes, and yields more natural definitions and proofs of central results than
-the classical approach. In addition, due to its focus on programming languages,
-ICC produces static techniques for program analysis for free.
+Implicit computational complexity (ICC) complements classic complexity theory by developing machine-independent characterizations of complexity classes.
+The idea is to introduce a restriction, at the level of a programming language, that guarantees every program satisfying the restriction belongs to a particular complexity class.
+There are several strong motivations for this approach.
+ICC allows guaranteeing program properties by construction, it drives better understanding of complexity classes, and yields more natural definitions and proofs of central results than the classical approach.
+Due to its focus on programming languages, ICC produces automatable techniques for program analysis for free.
+However, despite these numerous advantages, ICC remains largely a theoretical novelty.
+The true power and advantages of ICC-based program analyses are not well-understood.
+The goal of the dissertation is to ``put theoretical ICC to test'' by investigating its capabilities outside the theoretical domain.
+A guiding intuition is that, if applied, implicit computational complexity could provide us new techniques for program analysis and verification.
 
-However, despite the advantages, implicit computational complexity has remained
-largely a theoretical novelty. The true potential of ICC-based
-techniques---including its power, utility, and limitations---are not
-well-understood. The goal of the work in this dissertation is to ``put
-theoretical ICC techniques to test" and to investigate their capabilities. A
-guiding principle is that the applications of ICC techniques extend beyond
-theoretical reasoning about computational complexity.
-
-Through a series of research projects---that cover static program analysis,
-formal methods, parallel programming, and language-based security---the
-dissertation culminates in three key findings. First, it shows ICC offers
-complementary and orthogonal techniques for automatic complexity analysis.
-Second, it shows it is possible to adjust the baseline techniques to track other
-semantic properties. The final, and perhaps the most important finding, is
-reflective and concerns a long-term perspective. A fundamental feature about ICC
-is that, in principle, it offers the potential to achieve desirable properties
-apriori; by language design and before any program exists, without ever having
-to run post-analysis on programs. The practical attainability of this goal
-depends crucially on a community shift in viewing ICC in the broader context it
-offers, and the continued exploration of its applied potential.
+Over a series of research projects, the dissertation results yield three main findings.
+The first shows that ICC offers complementary techniques to automatically analysis of resource consumption.
+Beyond resources, it is possible to adjust ICC systems to track other program properties.
+This second finding suggests that unrealized potential is available in the ICC systems;
+but we must learn to leverage it.
+The final finding is a reflective and visionary.
+A fundamental aspect of ICC is that it enables guaranteeing program properties {by construction}, before any program exists.
+This means we can ensure correct behavior without needing to run any post-analysis.
+This is a powerful concept, in principle, but still mostly beyond reach.
+The practical attainability of the goal depends crucially on a viewpoint shift---we should consider ICC in the broader context it offers and continue exploration of its applied potential.
