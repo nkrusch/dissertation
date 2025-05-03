@@ -31,7 +31,7 @@
 		inner sep=2pt, outer sep=0.4pt,
         xshift=3mm, yshift=1mm, anchor=north west] at (#1.north west) {\large #2}}}]
    
-\node (icc) [start, loosely dotted] at (5,10) {Implicit Computational Complexity};
+\node (icc) [start, loosely dotted] at (5,10) {\textbf{Implicit Computational Complexity}};
 \node (mwp) [prior, below of=icc, xshift=-3.75cm] {\authT{A Flow Calculus of mwp-Bounds\\for Complexity Analysis}{\authA (2009)}};
 \node (qsi) [prior, right of=mwp, xshift=4.75cm] {\authT{Loop Quasi-Invariant Chunk Detection}{\authC (2017)}};
 \node [below of=mwp, block=imp:\iconSPA:{mwp-Analysis Improvement and Implementation: Realizing\\Implicit Computational Complexity}:{\authB (2022)}];
@@ -50,7 +50,7 @@
 \draw [arrow] (ncl) -- (nil); 
 \draw [rectangle connector=-4cm] (mwp) to (cca);
 
-\node (topics)   [rectangle, below of=nil, text width=5cm] {Related Topics};
+\node (topics)   [rectangle, below of=nil, text width=5cm,yshift=20pt] {Related Topics};
 \node (analysis) [topic icon, xshift=-2.2cm, yshift=-.2cm, below of=topics] {\large\iconSPA};
 \node            [topic label, right of=analysis] {Static Program Analysis};
 \node (optimize) [topic icon, below of=analysis] {\large\iconOPT};
@@ -58,12 +58,13 @@
 \node (verify)   [topic icon, below of=optimize] {\large\iconFM};
 \node            [topic label, right of=verify] {Formal Methods};
 \node (security) [topic icon, below of=verify] {\large\iconSEC};
-\node          	 [topic label, right of=security] {Security};
+\node (SL)       [topic label, right of=security] {Security};
+
+\node          	 [topic label, below of=SL, yshift=50pt, xshift=-13pt] {$^*$ \emph{in review/near submission}};
    
 \fill[draw=concept, line width=1pt, fill=conceptbase, densely dotted] (0, 12) circle (.75ex) node[right, xshift=3mm]{Concept};
 \fill[draw=prior, thick, fill=priorbase, double] (3, 12) circle (.75ex) node[right, xshift=3mm]{Prior foundational work};
 \fill[draw=paper, thick, fill=paperbase, solid] (8, 12) circle (.75ex) node[right, xshift=3mm]{Dissertation work};
-
 
 \end{tikzpicture}
 \end{document}

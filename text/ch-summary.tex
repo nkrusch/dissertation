@@ -19,8 +19,8 @@ Non-functional properties characterize the program's quality features like execu
 Pure functional correctness is \emph{practically unsatisfactory} if a program requires exorbitant time to compute its result;
 aggressively drains a device battery, or reveals secret information~\cite{heraud2011,aubert20222}.
 Thus, engineering high-quality programs requires we can also formally verify non-functional behavior.
-Unfortunately, the task is not straightforward, and generally undecidable~\cite{rice1953}.
-Active topics of research include developing approaches to express specifications of non-functional properties, and developing analyses to check programs against such specifications~\cite{etaps2025}.
+Unfortunately, the task is non-trivial, and generally undecidable~\cite{rice1953}.
+Active research topics involve developing specification formalism and reasoning methods that enable verifying programs against non-functional properties~\cite{etaps2025}.
 
 The field of \emph{Implicit Computational Complexity (ICC)}~\cite{dallago2011} offers a conceivable pathway toward formal verification of certain non-functional properties.
 At a high level, complexity theory reasons about resource requirements of computations.
@@ -35,7 +35,7 @@ In this view, every program satisfying the restriction is known to belong to a p
 Exchanging machine models for syntactic criteria is powerful in several ways.
 For example, it facilitates formal verification of programs.
 ICC systems enable defining syntactical specifications of resource consumption, and developing fully \emph{automatable} analyses for verifying whether a program satisfies the specification~\cite{heraud2011}.
-ICC systems have been designed for numerous combinations of programming languages (imperative,  lambda-calculus, function algebras, quantum, term rewrite systems, \(\pi\)-calculus, \ldots), restriction-techniques (linear logic, data-flow analysis, type systems, category theory, \ldots), and complexity classes (\textsc{p}, \textsc{pspace}, \textsc{l}, \textsc{pp}, \ldots)~\cite{baillot2012,moyen2017,pchoux2020}.
+ICC systems have been designed for numerous combinations of programming languages (imperative,  lambda-calculus, function algebras, quantum, term rewrite systems, \(\pi\)-calculus, \ldots), restriction-techniques (linear logic, data-flow analysis, type systems, category theory, \ldots), and complexity classes (\textsc{p}, \textsc{pspace}, \textsc{l}, \textsc{pp}, \ldots)~\cite{moyen2017,pchoux2020}.
 
 \section{Addressed Problem and Goals}
 \label{sec:aicc-goals}
@@ -45,15 +45,15 @@ ICC allows guaranteeing program properties \emph{by construction}, before any pr
 ICC drives better understanding of complexity classes and yields more natural definitions and proofs of central results than the classical approach~\cite{kristiansen2017}.
 Multiple ICC systems (\eg~\cite{jones2009,marion2011}) are expressive enough to enable writing {natural} algorithms.
 Since the reasoning techniques differ from alternative analyses, the results ICC systems produce are often orthogonal to the alternatives~\cite{aubert20222}.
-Finally, many ICC systems are \emph{compositional} (\eg~\cite{jones2009,marion2011,hainry2023,atkey2024}); a kind of modular reasoning approach.
+Finally, many ICC systems are \emph{compositional} (\eg~\cite{jones2009,marion2011,hainry2023}); a kind of modular reasoning approach.
 Compositionality is critical for scalability~\cite{carbonneaux2015} and useful for proving soundness~\cite{keidel2021}, \ie that the analysis itself is correct.
-However, compositionality is missed by many prominent program analysis techniques~\cite{carbonneaux2015,schiebel2024}.
+However, compositionality is missed by many prominent program analysis techniques~\cite{carbonneaux2015}.
 
-Despite this rich inventory of compelling features, implicit computational complexity has remained primarily as a theoretical novelty, with a few exceptions~\cite{avanzini2017,avanzini2008,moyen20172,hoffmann2012,hainry2021,feree2018}.
-A theory in absence of applications means the power, limitations, and utilities of the theory are difficult to recognize\footnote{
-Reviewer \#2 might even call such theory \enquote{useless}.}.
-In our view~\cite[pg. xxxv]{bishop2003}~\cite[p. 75]{moyen2017}, theory and application are \emph{symbiotic}.
-Investigations of both are needed for scientific advancement.
+Despite this rich inventory of compelling features, implicit computational complexity has remained primarily as a theoretical novelty, with a few exceptions~\cite{avanzini2017,avanzini2008,moyen20172,hainry2021}.
+A theory in absence of applications means the power, limitations, and utilities of the theory are difficult to recognize%
+%\footnote{Reviewer \#2 might even call such theory \enquote{useless}.}
+.
+In our view~\cite[pg. xxxv]{bishop2003}~\cite[p. 75]{moyen2017}, theory and application are \emph{symbiotic}, and investigations of both are needed for scientific advancement.
 
 An implied manifesto of the dissertation is that \emph{applications are necessary} to push forward our collective understanding of implicit computational complexity.
 Potentially great power is locked in the theoretical systems, and it remains an open problem to release that power.
@@ -122,7 +122,7 @@ The idea is to pick an ICC system, then adjust it to capture a different  proper
 The motivation is multifaceted.
 On the technical side, it requires deep inspection of the ICC system and challenging its flexibility.
 Conceptually, it pushes to think about ICC outside the usual frame of complexity theory.
-Finally, investigations in this direction are relevant toward the goal of exposing ICC to wider research communities.
+Finally, investigations in this direction are important to expose ICC to wider research communities.
 
 In this series of work, the starting point is an ICC system inspired by quasi-invariants (QI) as formulated in~\cite{moyen20172}.
 Similar to the flow calculus, the QI framework is a data-flow analysis of imperative programs.
@@ -153,22 +153,21 @@ This criterion is strongly enforced by the scientific peer review process.
 \section{Methodology and Research Deliverables}
 \label{aicc-methods}
 
-Following the approaches identified in~\autoref{aicc-approaches},
-the investigations we conducted resulted in a series of publications~\cite{aubert20222,aubert20232,aubert2023b}, workshop presentations~\cite{aubert20231,aubert202217,splash22,plas2024},
-oral presentations at multiple international research labs, and ongoing work.
+Following the approaches of~\autoref{aicc-approaches},
+the investigations we conducted resulted in a series of publications~\cite{aubert20222,aubert20232,aubert2023b},
+workshop presentations~\cite{aubert20231,aubert202217,splash22}, and ongoing work.
 \IfFileExists{papers}{\input{papers}The dependence associations of the written works are illustrated in \autoref{fig:papers}.}{}
-The presentation venues involved programming languages, verification, formal methods, and security communities.
-While we defer the full exposition to the respective publications,
-we can summarize the main contributions as follows.
+The presentation venues include programming languages, verification, formal methods, and security communities.
+We can summarize the main contributions as follows.
 
 For RQ1, we enhanced the theory to develop an automatic analysis in~\cite{aubert20222,aubert2023b,rusch2025}.
 Due to inherent nondeterminism, developing an efficient and useful practical analysis was surprisingly difficult, but ultimately achievable.
 The enhanced analysis is more expressive,
 \ie it covers a larger class of programs than the original theory~\cite{rusch2025}.
-The flow calculus is implemented as an open source static analyzer,
-\href{https://statycc.github.io/pymwp/}{pymwp}%
-\footnote{https://statycc.github.io/pymwp/}%
-\footnote{Pronounced \emph{pa\textsc{i} em double-you p\={e}.}} for analyzing C programs~\cite{pymwp}.
+The flow calculus is implemented as an open source static analyzer, pymwp%
+%\footnote{Pronounced \emph{pa\textsc{i} em double-you p\={e}.}}
+%\footnote{https://statycc.github.io/pymwp/}%
+for analyzing C programs~\cite{aubert2023b}.
 Based on this work, we discovered that the analysis can support
 inference of formal specification conditions~\cite{rusch2025}, corresponding to RQ3.
 Proving the soundness of the flow calculus, RQ2, is still ongoing work.
@@ -177,24 +176,26 @@ However, given the other developments, a formalization effort is now even more s
 Along the second direction, for RQ4, we applied the QI framework to develop a program optimization for loop parallelization~\cite{aubert20232}.
 This application is useful, because it can be applied to loops whose iteration count is unknown.
 Parallelizing such loops is outside the capabilities of the prior techniques.
-An ongoing investigation, for RQ5, applies the QI framework to tracking programs \emph{non-interference}, a kind of confidentiality property.
+An ongoing investigation, for RQ5, applies the QI framework to tracking programs \emph{non\hyp{}interference}, a kind of confidentiality property.
 Non-interference ensures a program does not reveal secrets;
 and if it does, we can identify where the violations occur.
 Our working intuition is that, since the analysis can be adjusted to different programming languages,
-this enables studying \emph{preservation} of non-interference property at different compilation stages,
+this enables analysing \emph{preservation} of non-interference property at different compilation stages,
 while a program is transformed from source code to an executable.
+This is different from many existing techniques that analyze programs only at one representation stage.
 
 \section{Research Findings and Conclusions}
 \label{aicc-discussion}
 
-Based on the results of~\autoref{aicc-methods}, we can now reflect on the
-research questions, main hypothesis, and broader dissertation goals.
+%Based on the results of~\autoref{aicc-methods}, we can now reflect on the
+%research questions, main hypothesis, and broader dissertation goals.
 
-\subsubsection*{On automatic resource analysis and the flow calculus.}
-We can now confirm that it is possible to obtain automatic program analysis from the flow calculus of mwp-bounds, but \emph{only after substantial} adjustments.
+%! suppress = IncorrectSectionNesting
+\subsubsection*{On automatic resource analysis.}
+We can now confirm that it is possible to obtain automatic program analysis from the flow calculus of mwp-bounds, but \emph{only after substantial adjustments}.
 An efficient program analysis requires inventing ways to manage costly sub-computations and solving additional problems that arise in the process.
 At conclusion, the enhanced technique is not just automatable, but can analyze more programs than the original theory.
-We can now also confirm the analysis results a complementary to alternative state-of-the-art techniques (\cf~\cite[p. 5]{aubert2023b}), enabling us to analyze different resource consumption questions.
+We can now also confirm the analysis results a complementary to alternative state-of-the-art techniques~\cite[p. 5]{aubert2023b}, enabling us to analyze different questions about resource consumption.
 The implemented flow calculus can also be used in specification inference.
 There are potentially many other applications remaining to be discovered.
 
@@ -205,8 +206,8 @@ For example, to track a complexity property, must compute fixed points and prese
 In the adjusted analyses, it was possible to relax some of these conditions, leading to a simpler analysis.
 More generally, that the QI framework can be used to track various properties resembles the Dependency Core Calculus (DCC)~\cite{abadi1999b}.
 In DCC, different program properties are modelled as instances of a central notion of dependency.
-This parallels our use of the QI framework.
-This observation suggests that the QI framework (like DCC) encapsulates much wider utility than yet discovered during this dissertation.
+This mirrors our use of the QI framework.
+This suggests that the QI framework encapsulates wider utility than yet uncovered during this dissertation.
 
 \subsubsection*{On the main hypothesis and broader dissertation goals.}
 Zooming out, the findings relating to the main hypothesis are threefold.
@@ -220,7 +221,6 @@ thus, we can achieve guarantees before any program exists;
 never having to run any post-analysis.
 While the works in the dissertation did not directly investigate this question, we recognize it as a future goal.
 Its attainability depends crucially on a community shift to view ICC in the broader context it offers and the continued exploration of the applied potential of ICC.
-
 Initially, these research questions were crafter with certain technical and social goals in mind.
 %Extend {applied} capabilities of ICC-based techniques in automatic program analysis and verification.
 %Take ICC techniques a few steps closer to becoming a standard in real world development workflows.
