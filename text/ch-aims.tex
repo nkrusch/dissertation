@@ -101,7 +101,14 @@ as the manuscripts in this dissertation will demonstrate.
 
 \subsection{Specific Aims}\label{subsec:specific-aims}
 
-This dissertation has three scientific goals.
+This dissertation has four goals.
+
+\begin{enumerate}
+\item Extend {applied} capabilities of ICC in automatic program analysis and verification.
+\item Take ICC-bases analyses a few steps closer to becoming a standard in real world development workflows.
+\item Initiate discourse on relevance of applications within the ICC community.
+\item Expose ICC-based analyses to broader research communities.
+\end{enumerate}
 
 The first is to show that implicit computational complexity is useful in \emph{automated} complexity analysis.
 All too often practitioners regard theory as irrelevant, and theoreticians think of practice as trivial;
@@ -134,18 +141,20 @@ Implicit computational complexity offers applied utilities when lifted outside t
 \subsection{Overview of the Dissertation Manuscripts}
 \label{subsec:conn-papers}
 
-The dissertation manuscripts stem from two works in implicit computational complexity.
-Based on the origin, the manuscripts can be categorized in two disjoint tracks, as shown in~\autoref{fig:conn_papers}.
-The tracks align with the three goals of~\autoref{subsec:specific-aims} as follows.
-
 \begin{figure}[p]
-\includegraphics[width=\linewidth,keepaspectratio]{fig_conn_papers}
-\caption[Dissertation manuscripts]{Dissertation manuscripts. The manuscripts marked with $\ast$ are near submission or in review.}
+\includegraphics[width=\linewidth,keepaspectratio]{fig_conn_papers}\vspace{1em}
+\caption[Dissertation manuscripts and their associations]
+{Dissertation manuscripts and their associations.
+The symbol $^*$ means the manuscript is in review or near submission.}
 \label{fig:conn_papers}
 \end{figure}
 
+All dissertation manuscripts are inspired by theoretical works in implicit computational complexity.
+Based on the foundation, the manuscripts are organized into two \enquote{paths}, as shown in~\autoref{fig:conn_papers}.
+The paths align with the dissertation goals (\autoref{subsec:specific-aims}) as follows.
+
 \begin{description}
-\item[Extensions of the flow calculus of mwp-bounds.]
+\item[Automatic resource analysis with the flow calculus of mwp-bounds.]
 The first track extends the flow calculus of mwp-bounds of~\textcite{jones2009}.
 The technique is introduced detail in~\autoref{flow-calculus}.
 The flow calculus is a syntactical analysis for reasoning about variable value growth during computation.
@@ -153,24 +162,44 @@ The manuscripts apply and demonstrate the utility of the calculus, first though 
 Thus, the manuscripts supports two of the three dissertation goals.
 One of the manuscripts is in the appendix due to the university policies, but the placement should not distract from its significance;
 several other manuscripts follow from it.
+%\item Can we develop an \emph{automatic} program analysis based on the theory?
+%\item Given its paper proofs, is the theory correct? Can we prove formally the soundness of the flow calculus?
+%\item Assuming the theory can be automated, what are the use cases of the analysis?
 
-\item[Repurposing of Loop Quasi-Invariant Chunk Detection.]
+\item[Analyzing extended program properties via quasi sinvariants.]
 The second track is inspired by \enquote{Loop Quasi-Invariant Chunk Detection}~\cite{moyen20172}.
 The idea is to identify blocks of code in loops that become invariant after some finite number of loop iterations.
 These quasi-invariant blocks can then be lifted from the loop to ideally improve the loop's complexity profile.
 The manuscripts in this track support the second dissertation goal,
 as they use the mathematical framework of LQICM to track other program properties.
 In particular, they show how to adjust the mathematics to obtain a program optimization to increase parallelism and detect the security property of non-interference.
+%\item How to develop a program transformation to increase parallelization potential?
+%\item How to use it to analyze security properties, specifically non-interference?
 \end{description}
 
-Each manuscript combines implicit computational complexity with some other topic in computer science.
-The manuscripts are marked with thematic graphical icons that identify the related topic, among static program analysis, security, program optimization, and formal methods.
-These icons will appear and are used with this designation throughout the dissertation.
+\paragraph*{Related topics.}
+Each manuscript relates implicit computational complexity with some other research topic.
+The topics include: static program analysis, security, program optimization, and formal methods.
+Throughout the dissertation, each manuscript is decorated with a icon that denotes the primary related topic.
 
+\paragraph*{On manuscript authorship.}
 The manuscript authors are listed in alphabetical order.
+The manuscripts in Chapters~\ref{published-manuscripts}--\ref{ch:unpublished-research} are \enquote{first author} works,
+and manuscripts in~\autoref{app:additional-manuscripts} are \enquote{non-first author} works.
+The contributions of the co-authors are detailed in~\autoref{app:sec:coauth}.
+
+\paragraph*{On manuscript peer review.}
+The entire Chapters~\ref{published-manuscripts},~\ref{ch:unpublished-research},~\ref{ch:summary}, and ~\ref{app:additional-manuscripts}
+has been previously peer-reviewed.
+The published works (Chapters~\ref{published-manuscripts} and~\ref{app:additional-manuscripts}) were inspected by 7--10 reviewers before acceptance.
+% pymwp: tacas (4) aplas (3) + (3) = 10 | fscd: aplas (3) fossacs (3) + (3) = 9 | vmcai: atva (4) + (3) = 7
+The unpublished works (\autoref{ch:unpublished-research}) have been reviewed, so far, by 3--6 reviewers.
+Preliminary versions of most unpublished works have been accepted for presentation at workshops (without proceedings).
+% ni: fscd (4) + plas (2) | pc: ecoop (3)| coqpl: 4
+\autoref{ch:summary} is an extended abstract about the whole dissertation.
+It has been peer-reviewed as a doctoral symposium submission.
 
 % \subsection{Significance}\label{subsec:significance}
-
 % This research proposal intersects computer science theory and application, with the intent of using those theoretical approaches to solve existing challenges in automatic program analysis.
 % In 2017, Jean-Yves Moyen---a notable researcher in the ICC community, whose career spans 3 decades of advancements---remarked enthusiastically, that after twenty years and many results, ICC was ready to move into real-world and to concrete applications~\cite[p.~7]{moyen2017}.
 % And although a few early results exist, as noted earlier in this section, progress in this direction is still at early stages.
@@ -180,27 +209,27 @@ The manuscript authors are listed in alphabetical order.
 % Assuming the successful completion of each project, they would show that certifiably correct complexity analysis is achievable, and that ICC techniques can be used to obtain efficient and practical complexity analysis.
 % These results would extend current capabilities in automatic complexity analysis, and move those techniques closer to becoming a standard in real-world software verification.
 
-\subsection{Tips for Interacting With This Document}
+\subsection{Important Tips for Interacting With This Document}
 \label{subsec:tips}
 
 This dissertation contains three different-length versions of its contents.
+Read the version that best fits your needs and available time.
 
-\begin{itemize}
+\begin{mdframed}[backgroundcolor=priorbase,linecolor=cc]
+\begin{enumerate}[wide, labelwidth=!, labelindent=0pt]
 \item The \hyperref[abs]{abstract} includes the highlights only.
-\item The summary, in~\autoref{ch:summary}, is an extended abstract.
-\item Chapters~\ref{introduction}--\ref{ch:discussion} and \autoref{app:additional-manuscripts} contain the full length presentation.
-\end{itemize}
-
-The options vary in detail and reading time.
-Read the version that best fits your needs.
+\item Chapters~\ref{introduction}--\ref{ch:discussion} and \ref{app:additional-manuscripts} contain the full length presentation.
+\item \autoref{ch:summary} summarizes the full-length presentation in a standalone way.
+\end{enumerate}
+\end{mdframed}
 
 \subsubsection{Software Artifacts and Data Availability}\label{subsub:sw}
 
 All software developed as part of this dissertation is publicly available.
-Each published and publication-ready manuscript in this dissertation, including the dissertation itself, comes with a software artifact specified in~\aref{app:sec:artifacts}.
-Each piece of software is archived for long-term retention, according to the long-term archival policies of the Association for Computing Machinery artifact guidelines~\cite{acm_badging}.
-The software is achieved even if the venue of a manuscript did not arrange a formal artifact evaluation round.
-Thus, each manuscript extends beyond the paper pages of this dissertation.
+Each published and publication-ready manuscript---including the dissertation itself---comes with a software artifact, as specified in~\autoref{app:sec:artifacts}.
+The publication ready software is archived for long-term retention, according to the policies of the Association for Computing Machinery (ACM) artifact guidelines~\cite{acm_badging}.
+The software is achieved even if the venue of a manuscript did not have a formal artifact evaluation round.
+Thus, each manuscript consists of more than \enquote{just the text pages} of this dissertation.
 
 \subsubsection{Notational Conventions}
 
@@ -223,7 +252,7 @@ The Rocq theorem prover (formerly Coq) is undergoing a name change; whenever pos
 \langclr{cc}        & C     & C language & C99 \\
 \langclr{ccstar}    & C*    & imperative C-like pseudo-language & -- \\
 \langclr{cces}      & CES   & cost equation system &  -- \\
-\langclr{ccmd}      & cmd   & executable shell/terminal command & --  \\
+\langclr{ccmd}      & cmd   & executable shell (terminal) command & --  \\
 \langclr{cdafny}    & Dafny & Dafny language & 4.10.0 \\
 \langclr{cimp}      & Imp   & imperative language of mwp-calculus & -- \\
 \langclr{cjava}     & Java  & Java language & SE 24 \\
@@ -251,25 +280,37 @@ For example, \pr|X| refers to the initial value and \pr|X'| to the final value.
 \subsubsection{Term and Notational Indices}
 
 This dissertation includes three indices.
-The \hyperref[sec:app:index]{Term Index} lists technical terms and their most relevant uses.
-Acronyms are generally defined at first-use, but it is always possible to locate the long form in the %~\nameref{\acronymtype}.
-A similar lookup reference is available for symbolic notations in the %~\nameref{symbols}.
+The Term Index (\autoref{sec:app:index}) lists technical terms and their most relevant uses.
+Acronyms are generally defined at first-use.
+After that, it is always possible to locate the long form in the index of acronyms (\autoref{glo:acr}).
+A similar lookup reference is available for symbolic notations (\autoref{glo:symb}).
 
-\subsubsection{Nontraditional Bibliographic Entries}
+\subsubsection{Dynamic Bibliographic Entries}
 
-Some bibliography entries refer to dynamic non-publication resources like software, web pages, lecture notes, and PDF files.
-To improve long-term availability of such bibliographic entries, they are pre-emptively deposited in well-established online archives.
+Some bibliography entries refer to resources that are not traditional scientific papers --
+like software, web pages, lecture notes, and technical reports.
+To improve long-term availability of such dynamic entries, a backup is deposited in well-established online archives.
 
-Documents that were not posted online even at the time of writing this dissertation are archived in the companion software artifact of this dissertation, \cf~\aref{app:sec:artifacts}.
-
-\paragraph*{Written documents.}
+\begin{description}
+\item[Written documents.]
 Web pages and PDF files are archived at the Internet Archive.
-To recover a document, substitute \pr|<URL>| by the document's URL\@.
+To recover a document, substitute \pr|<URL>| by the document's URL.
 \begin{center}
 \pr|https://web.archive.org/web/<URL>|
 \end{center}
+\item[Software repositories.]
+Version-controlled third party software repositories are archived by \href{https://softwareheritage.org/}{Software Heritage}.
+For a repository at \pr|<URL>|, the recovery address is:%
+\begin{center}
+    \pr|https://archive.softwareheritage.org/browse/origin/directory/|
+    \mbox{\pr|?origin_url=<URL>|}
+\end{center}
+\end{description}
 
-For example, the following \href{https://types22.inria.fr/files/2022/06/TYPES_2022_paper_14.pdf}{URL} may disappear in the future.
+Documents that were not readily available online even at the time of writing this dissertation, are archived in the dissertation companion artifact (\autoref{tab:pub-artifacts}).
+
+\paragraph*{Recovering archived documents.}
+For example, the following \href{https://types22.inria.fr/files/2022/06/TYPES_2022_paper_14.pdf}{URL} is fragile and may disappear in the future.
 
 \begin{center}
 \begin{minipage}{\textwidth}
@@ -280,7 +321,8 @@ https://types22.inria.fr/files/2022/06/TYPES_2022_paper_14.pdf
 \end{minipage}
 \end{center}
 
-The \href{https://web.archive.org/web/https://types22.inria.fr/files/2022/06/TYPES_2022_paper_14.pdf}{corresponding Internet Archive address} produces the same document.
+If a request of the original document fails, the \href{https://web.archive.org/web/https://types22.inria.fr/files/2022/06/TYPES_2022_paper_14.pdf}
+{corresponding Internet Archive address} produces the same document.
 
 \begin{center}
 \begin{minipage}{\textwidth}
@@ -289,12 +331,4 @@ The \href{https://web.archive.org/web/https://types22.inria.fr/files/2022/06/TYP
 https://web.archive.org/web/https://types22.inria.fr/files/2022/06/TYPES_2022_paper_14.pdf
 \end{cmdlisting}
 \end{minipage}
-\end{center}
-
-\paragraph*{Software repositories.}
-Version-controlled third party software repositories are archived by \href{https://softwareheritage.org/}{Software Heritage}.
-For a repository at \pr|<URL>|, the recovery address is: %
-%! suppress = EscapeUnderscore
-\begin{center}
-\pr|https://archive.softwareheritage.org/browse/origin/directory/?origin_url=<URL>|
 \end{center}

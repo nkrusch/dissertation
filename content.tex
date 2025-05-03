@@ -103,7 +103,7 @@
     \pageIconSecurity
     \ainfo{Clément Aubert and Neea Rusch}
     {\emph{Research paper draft.}
-    \newline\newline{}An earlier version of this work appeared at the 19th
+    \newline\newline{}An early version of this work appeared at the 19th
     workshop on \href{https://plas24.github.io/}
     {Programming Languages and Analysis for Security (PLAS)}, in 2024.}
     \clearpage
@@ -114,7 +114,7 @@
     \pageIconFm
     \ainfo{Neea Rusch}
     {\emph{Workshop paper/ongoing research.}
-    \newline\newline{}The workshop paper by~\text{aubert20231} was presented at
+    \newline\newline{}The workshop paper was presented at
     the \href{https://popl23.sigplan.org/home/CoqPL-2023} {Ninth International
     Workshop on Coq for Programming Languages (CoqPL)}, in 2023.}
     \clearpage
@@ -131,11 +131,7 @@
 %	5. SUMMARY
 %-------------------------------------------------------------------------------
 \chapter{Summary}\label{ch:summary}
-\begin{center}
-    \emph{An extended abstract that summarizes the full-length chapters.}
-\end{center}
-\clearpage
-{\newsectoff\input{text/ch-summary}\newsect}
+\clearpage\newsectoff\input{text/ch-summary}\newsect
 
 %-------------------------------------------------------------------------------
 %	6. REFERENCES
@@ -176,10 +172,19 @@
 \pagestyle{plain}
 \printglossary[title={Index of Acronyms},type=\acronymtype,nonumberlist,
     style=longragged]
+\makeatletter
+\def\@currentlabelname{\@glotype@\acronymtype@title}
+\label{glo:acr}
+\makeatother
 \clearpage
 
 \pagestyle{plain}
 \printglossary[type=symbols]
+\def\@currentlabelname{\@glotype@symbols@title}
+\label{glo:symb}
+\makeatother
+\clearpage
+
 \clearpage
 
 \printindex

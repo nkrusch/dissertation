@@ -45,11 +45,11 @@ ICC allows guaranteeing program properties \emph{by construction}, before any pr
 ICC drives better understanding of complexity classes and yields more natural definitions and proofs of central results than the classical approach~\cite{kristiansen2017}.
 Multiple ICC systems (\eg~\cite{jones2009,marion2011}) are expressive enough to enable writing {natural} algorithms.
 Since the reasoning techniques differ from alternative analyses, the results ICC systems produce are often orthogonal to the alternatives~\cite{aubert20222}.
-Finally, many ICC systems are \emph{compositional} (\eg~\cite{jones2009,marion2011,hainry2023}); a kind of modular reasoning approach.
+Finally, many ICC systems are \emph{compositional} (\eg~\cite{jones2009,marion2011,hainry2023,atkey2024}); a kind of modular reasoning approach.
 Compositionality is critical for scalability~\cite{carbonneaux2015} and useful for proving soundness~\cite{keidel2021}, \ie that the analysis itself is correct.
 However, compositionality is missed by many prominent program analysis techniques~\cite{carbonneaux2015}.
 
-Despite this rich inventory of compelling features, implicit computational complexity has remained primarily as a theoretical novelty, with a few exceptions~\cite{avanzini2017,avanzini2008,moyen20172,hainry2021}.
+Despite this rich inventory of compelling features, implicit computational complexity has remained primarily as a theoretical novelty, with a few exceptions~\cite{avanzini2017,avanzini2008,moyen20172,hainry2021,hoffmann2012,feree2018}.
 A theory in absence of applications means the power, limitations, and utilities of the theory are difficult to recognize%
 %\footnote{Reviewer \#2 might even call such theory \enquote{useless}.}
 .
@@ -165,9 +165,9 @@ Due to inherent nondeterminism, developing an efficient and useful practical ana
 The enhanced analysis is more expressive,
 \ie it covers a larger class of programs than the original theory~\cite{rusch2025}.
 The flow calculus is implemented as an open source static analyzer, pymwp%
-%\footnote{Pronounced \emph{pa\textsc{i} em double-you p\={e}.}}
-%\footnote{https://statycc.github.io/pymwp/}%
-for analyzing C programs~\cite{aubert2023b}.
+\footnote{Pronounced \emph{pa\textsc{i} em double-you p\={e}.}}
+\footnote{https://statycc.github.io/pymwp/}%
+{ }for analyzing C programs~\cite{aubert2023b}.
 Based on this work, we discovered that the analysis can support
 inference of formal specification conditions~\cite{rusch2025}, corresponding to RQ3.
 Proving the soundness of the flow calculus, RQ2, is still ongoing work.
@@ -186,9 +186,6 @@ This is different from many existing techniques that analyze programs only at on
 
 \section{Research Findings and Conclusions}
 \label{aicc-discussion}
-
-%Based on the results of~\autoref{aicc-methods}, we can now reflect on the
-%research questions, main hypothesis, and broader dissertation goals.
 
 %! suppress = IncorrectSectionNesting
 \subsubsection*{On automatic resource analysis.}
@@ -209,20 +206,33 @@ In DCC, different program properties are modelled as instances of a central noti
 This mirrors our use of the QI framework.
 This suggests that the QI framework encapsulates wider utility than yet uncovered during this dissertation.
 
-\subsubsection*{On the main hypothesis and broader dissertation goals.}
-Zooming out, the findings relating to the main hypothesis are threefold.
-Based on the works on the flow calculus, ICC offers complementary and orthogonal techniques of automatic resource analysis.
-However, since the techniques are approximative, convincing other communities of their relevance still remains a challenge.
-The second demonstrated finding is that it is possible to adjust the ICC techniques to track other semantic properties.
-While this direction allows ICC techniques shine outside their usual domain, it requires that the demonstrated application is \emph{actually} relevant, independent of the origin of the technique.
-The final finding is projective and social.
-By restricting the programming languages, ICC offers the potential to achieve desirable properties apriori, via language design.
-thus, we can achieve guarantees before any program exists;
-never having to run any post-analysis.
-While the works in the dissertation did not directly investigate this question, we recognize it as a future goal.
-Its attainability depends crucially on a community shift to view ICC in the broader context it offers and the continued exploration of the applied potential of ICC.
-Initially, these research questions were crafter with certain technical and social goals in mind.
-%Extend {applied} capabilities of ICC-based techniques in automatic program analysis and verification.
-%Take ICC techniques a few steps closer to becoming a standard in real world development workflows.
-%Initiate discourse and highlight the relevance of applications within the ICC community.
-%Expose and generate interest in techniques of implicit computational complexity in broader research communities.
+\subsubsection*{On broader dissertation goals.}
+Zooming out of the projects, we can reflect on the main hypothesis and research goals.
+We have successfully gathered evidence of the application potential of ICC.
+The evidence supports the main hypothesis, but is still too limited to draw any generalizing conclusions.
+However, our experience of developing the flow calculus strongly reinforced the symbiotic view of theory and application.
+In the process, we faced scientific and engineering challenges, but also identified compelling arguments to justify the investigation.
+At conclusion, we have strengthened the theory and clarified its relevance.
+
+In~\autoref{sec:aicc-goals}, we crafted four goals to define the dissertation expectations.
+The first was about extending the applied capabilities of ICC, which was met successfully.
+The second was about introducing ICC in development workflows.
+Although we have developed a static analyzer, it is a step in \enquote{isolation.}
+Integrating ICC analyses into other development tools (compilers, verifiers, \etc) remains as an outstanding task.
+Such integration is important to promote relevance and continue development of ICC {applications};
+%in particular, since the analyses often produce orthogonal results.
+Our work in using the flow calculus to infer specification conditions~\cite{rusch2025} is a first step in that direction.
+The last two goals were social, and about disseminating ideas across research communities.
+Within the ICC community, our efforts included seminar talks.
+Although this record is suboptimal, our written ideas remain discoverable to others asynchronously and in perpetuity, like~\cite{moyen2017}.
+In regard to other communities, we were successful at presenting the work at verification, programming languages, and security venues.
+Thus, the fourth goal was satisfactorily met.
+
+\subsubsection*{Final \& future thoughts.}
+The ICC approach of guaranteeing program properties demonstrates great applied potential;
+for example, toward formal verification of non-functional properties.
+One investigative direction that deserves more attention is applying ICC to guarantee properties by construction.
+This would provide guarantees before any program exists and eliminates the need for \emph{aposteriori} analysis.
+Although the dissertation did not extend that far, exploring this direction is an intriguing future goal.
+Whether it is attainable depends crucially on a viewpoint shift.
+We should regard ICC in the broader context it offers and continue the exploration of its applied potential.
