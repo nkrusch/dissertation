@@ -153,11 +153,11 @@ This criterion is strongly enforced by the scientific peer review process.
 \section{Methodology and Research Deliverables}
 \label{aicc-methods}
 
-Following the approaches of~\autoref{aicc-approaches},
-the investigations we conducted resulted in a series of publications~\cite{aubert20222,aubert20232,aubert2023b},
+Following the approaches of~\autoref{aicc-approaches}, we conducted a series of investigations.
+The resulted in several publications~\cite{aubert20222,aubert20232,aubert2023b},
 workshop presentations~\cite{aubert20231,aubert202217,splash22}, and ongoing work.
-\IfFileExists{papers}{\input{papers}The dependence associations of the written works are illustrated in \autoref{fig:papers}.}{}
-The presentation venues include programming languages, verification, formal methods, and security communities.
+\IfFileExists{papers}{\input{papers}The dependence associations of the written works are illustrated in~\autoref{fig:papers}.}{}
+%The presentation venues include programming languages, verification, formal methods, and security communities.
 We can summarize the main contributions as follows.
 
 For RQ1, we enhanced the theory to develop an automatic analysis in~\cite{aubert20222,aubert2023b,rusch2025}.
@@ -166,8 +166,7 @@ The enhanced analysis is more expressive,
 \ie it covers a larger class of programs than the original theory~\cite{rusch2025}.
 The flow calculus is implemented as an open source static analyzer, pymwp%
 \footnote{Pronounced \emph{pa\textsc{i} em double-you p\={e}.}}
-\footnote{https://statycc.github.io/pymwp/}%
-{ }for analyzing C programs~\cite{aubert2023b}.
+\footnote{https://statycc.github.io/pymwp/}{ }for analyzing C programs~\cite{aubert2023b}.
 Based on this work, we discovered that the analysis can support
 inference of formal specification conditions~\cite{rusch2025}, corresponding to RQ3.
 Proving the soundness of the flow calculus, RQ2, is still ongoing work.
@@ -225,10 +224,10 @@ Our work in using the flow calculus to infer specification conditions~\cite{rusc
 The last two goals were social, and about disseminating ideas across research communities.
 Within the ICC community, our efforts included seminar talks.
 Although this record is suboptimal, our written ideas remain discoverable to others asynchronously and in perpetuity, like~\cite{moyen2017}.
-In regard to other communities, we were successful at presenting the work at verification, programming languages, and security venues.
+In regard to other communities, we were successful at presenting the work at verification, programming languages, formal methods, and security venues.
 Thus, the fourth goal was satisfactorily met.
 
-\subsubsection*{Final \& future thoughts.}
+\subsubsection*{Final thoughts \& future perspectives.}
 The ICC approach of guaranteeing program properties demonstrates great applied potential;
 for example, toward formal verification of non-functional properties.
 One investigative direction that deserves more attention is applying ICC to guarantee properties by construction.
