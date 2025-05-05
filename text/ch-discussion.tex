@@ -1,4 +1,254 @@
-A comprehensive discussion that integrates the findings of all research presented
-in the dissertation and that identifies how the goals or specific aims of the project
-were attained, and how the research has answered the hypotheses put forth in the
-dissertation.
+%! suppress = UnresolvedReference
+%! suppress = LabelConvention
+%! suppress = LabelConvention
+% A comprehensive discussion that integrates the findings
+% of all research presented in the dissertation
+% That identifies how the goals or specific aims of the project were attained.
+% How the research has answered the hypotheses.
+
+\section{Technique-Specific Observations}
+\label{sec:res-specific}
+
+\subsection{On Advancements of the Flow Calculus}
+\label{subsec:res-flow-calc}
+
+The original flow calculus of mwp-bounds provides a purely syntactic, sound and compositional theoretical technique for analyzing value growth of variables in imperative programs.
+Although promising, the technique poses various challenges for applications.
+In particular, issues arise from nondeterministic inference rules and handling of potential derivation failure.
+The developments presented in this dissertation resolve or ease those tensions in several directions.
+At conclusion, we obtain an enhanced flow calculus with richer capabilities and utility than the original system.
+
+The essential technical changes involve introducing an \(\infty\)-coefficient (\cf~\aref{sec:fscd}) that tracks derivation failure.
+It enables exploring all derivation paths {concurrently}, \ie without the need to back-track during program analysis procedure.
+Then,---instead of 0 to exponentially many simple matrices---every analyzed program is characterized by precisely one \emph{complex} mwp-matrix.
+Although the introduction of the \(\infty\)-coefficient (and the related technical adjustments) make program analysis automatable,
+they also introduce a new problem.
+The mwp-bounds, that represent variable value growth, are \enquote{lost} in such a complex matrix until
+we discover ways to \emph{interpret} the new complex data structures.
+
+How to completely solve this new problem is described in a second phase of technical developments (\cf~\autoref{sec:postcond}).
+The manuscript provides an \emph{evaluation procedure} that enables recovering the mwp-bounds from a complex mwp-matrix.
+However, since the matrix contains information about all derivations, it is now possible to also obtain the \emph{optimal} mwp-bounds of each program variable.
+A critical step is to \emph{project} mwp-matrices on individual variables.
+The projection also enables bounding certain variables in presence of whole-program derivation failure.
+This leads to increased expressiveness in abilities to bound more variables than in the original system (\cf~\autoref{tab:pc-results}).
+
+One fascinating side-effect of the enhanced calculus is that it enables extracting \emph{new information} about the analyzed program.
+A complex mwp-matrix encapsulates this information, but requires a clever strategy to extract it.
+To this end, we view the evaluation procedure as a kind of \enquote{oracle} method, against which we can issue queries (\cf~\autoref{pc-analysis}).
+For example, it is possible to pose questions such as the following.
+\begin{enumerate}
+\item Does a variable always fail the derivation?
+\item What variables are sources of failure?
+\item By what sequence of derivation choices is a program (not) derivable?
+\item What is the optimal mwp-bound assigned to a variable?
+\item What is the maximal coefficient of dependency between a pair of variables?
+\item Is a pair of variables independent \wrt data flow?
+\item Does a derivation exist where many variables obtain optimal mwp-bounds?
+\end{enumerate}
+All of these questions can be answered in the enhanced calculus.
+However, in the original flow calculus, answering \emph{any} of them is either outside the capabilities or would require exhaustive enumeration, which is infeasible.
+
+The developments also reveal deeper insights of the technique.
+For example, we now know that the \(0\)-coefficients are interesting, because they track data-flow independence between variables
+(refer to~\autoref{dependence-analysis} and~\autoref{subsec:ni} on the relevance of this property).
+Although the original formulation of the flow calculus notes that the \(w\)-coefficient is iteration-independent, the significance of that term remained mysterious.
+We now know that when a variable is characterized by at most \(w\)-coefficients, the variable is subject to a loop
+quasi-invariance property, and will (at some point) become unaffected by increase in loop iteration count (\cf~\autoref{pc-analysis}).
+Finally, we also know that focusing the analysis to loops (instead of functions as in the original design) is beneficial for practical analysis.
+The modification enables extracting results in some cases where function-based analysis fails (\cf~\autoref{tab:pc-results}).
+This reinforces the view that it is justified to limit complexity analyses on loop constructs~\cite{benamram2020}.
+
+To summarize, the enhanced \textsc{mwp}\(^\infty\)-calculus makes the flow calculus automatable for static program analysis,
+but is also richer in the information it provides.
+The enhanced technique is applicable in automatic analysis of complexity properties of imperative programs, as shown in~\autoref{sec:atva}.
+Another use case is providing assistance in formal specification conditions inference (\cf~\autoref{sec:postcond}).
+The latter is an unconventional application of complexity-based analyses, but one that \emph{should be} explored more --
+the pioneering results of~\autoref{sec:postcond} are encouraging.
+At current stage, the flow calculus can derive results efficiently, including for several natural algorithms (\cf~\autoref{tab:pc-results}).
+These results are significant to motivate the relevance of formally verifying the core calculus (\cf~\autoref{sec:mwp-calc-formal}).
+
+\subsection{Extended Properties via Quasi Invariants}
+\label{subsec:res-qi}
+
+We have applied the framework of quasi invariants in two use cases.
+% TODO: general comments, based on those two projects
+
+\subsubsection{Use in Program Optimization}
+\label{subsubsec:qi-opt}
+
+In \enquote{Distributing and Parallelizing Non-canonical Loops},
+we used the QI framework to design a program optimization to improve programs' runtime execution profile.
+The optimization seeks to increase parallelization \emph{potential} in initially sequential imperative loops.
+The analysis evaluates \emph{dependence} between commands to discover \emph{independent} sub-computations.
+If such independence exists, we replace the original loop with multiple new loops.
+The new loops can be distributed between available processors for parallel execution.
+The analysis is intended for use as a compiler optimization technique.
+
+The exception attribute of the analysis is that it enables reasoning about
+loops whose iteration count is unknown.
+Such loops are beyond the capabilities of traditional parallelizing transformations.
+However, many ICC systems---including the flow calculus of mwp-bounds---over-approximate loop iterations by assuming them to be infinite\footnote{If a loop terminates earlier, the behavior is still within the over-approximation.}.
+This way, the provided guarantees apply across all conceivable iteration behaviors.
+The cost of the flexibility is reduced precision;
+however, sometimes the trade is beneficial.
+For the parallelizing optimization, the property of interest is \emph{independence} of data flow in and between commands.
+Therefore, the focus is binary, \ie whether a data flow exists.
+Beyond existence, recurrences of data flow are irrelevant.
+This enables relaxing the need to know loop iteration count.
+
+Although the goal of the analysis is to improve running time,
+the optimization is no longer defined in terms of complexity classes\footnote{
+This is different from the prior use of the QI framework~\cite{moyen20172}
+that aimed to alter the program's overall complexity by modifying nested loops.}
+Thus, in this work, we shift the analysis technique outside complexity theory.
+The original complexity result is lost, but we gain a practical program optimization in return.
+
+\subsubsection{Use in Non-Interference}
+\label{subsubsec:qi-ni}
+
+In subsequent work (\autoref{sec:anytime}) we have explored
+using the QI framework to track non-interference.
+Non-interference is a security property for establishing that secret information does not \enquote{leak} to lower security classes (\cf~\autoref{pl-sec}).
+Although this property \emph{seems} different from parallelizing loops,
+the two applications have a clear commonality.
+Both are about data flow independence.
+Therefore, the QI framework is suitable for both analyses.
+
+We started developing a non-interference logic, taking as a starting point
+the loop parallelization formulation.
+A surprising discovery that soon followed, was that we could relax many of the mathematical constraints that were needed previously.
+For example, the order of command composition is important if we want to
+transform loops and preserve the loop's functional behavior.
+For the non-interference analysis, which is read-only, the relevant question is whether an information flow leak occurs.
+Once such leak is detected, it is not possible to erase it.
+Therefore, the analysis becomes \enquote{composition-insensitive}.
+Overall, it was enlightening how changing the evaluated property altered the analysis mechanics.
+
+The non-interference analysis also provides us an opportunity to evaluate a yet another aspect about ICC systems.
+Our long-held assumption is that, because the QI framework targets a core imperative \pr|while| language;
+it can be applied to any language representation that shares that same core\footnote{The same argument applies to the flow calculus of mwp-bounds.}.
+Through non-interference analysis, we can actually challenge this assumption.
+We plan to map our non-interference logic to two different language representations, at different stages of compilation.
+The intuition is to study whether (or how) the non-interference property is preserved during compilation.
+Assuming the idea is achievable, it gives us a different perspective to reason about non-interference.
+The typical approach is using a type system, with a singular type check.
+We are optimistic that the idea could work, and if so,
+we can reinforce the bi-directionality (\cf~\autoref{icc-sec}) between ICC and language-based security.
+
+\section{On Broader Research Findings}
+\label{sec:broader-findings}
+
+\subsection{Applications in Automatic Resource Analysis}
+\label{subsec:res-resource-analysis}
+
+% What new do we know about ICC now, based on the manuscripts
+We can now confirm that it is possible to obtain automatic program analysis from the flow calculus of mwp-bounds, but \emph{only after substantial adjustments}.
+An efficient program analysis requires inventing ways to manage costly sub-computations and solving additional problems that arise in the process.
+At conclusion, the enhanced technique is not just automatable, but can analyze more programs than the original theory.
+We can now also confirm the analysis results a complementary to alternative state-of-the-art techniques~\cite[p. 5]{aubert2023b}, enabling us to analyze different questions about resource consumption.
+The implemented flow calculus can also be used in specification inference.
+There are potentially many other applications remaining to be discovered.
+However, our experience of developing the flow calculus strongly reinforced the symbiotic view of theory and application.
+In the process, we faced scientific and engineering challenges, but also identified compelling arguments to justify the investigation.
+At conclusion, we have strengthened the theory and clarified its relevance.
+% Compositional analysis of subprograms => ICC systems extend to analysis of general programs.
+
+\subsection{Thinking Outside the (Complexity) Box}
+\label{subsec:res-other-props}
+
+ICC can perform at any level, and may even be able to prove that some properties are maintained.
+Do we want to also give examples of properties that are *not* preserved by the chain;
+typically, constant-time properties may be broken by some optimizations.
+Through compositional analysis of subprograms, ICC systems extend to analysis of general programs.
+Besides complexity, ICC systems can be adjusted to track other semantic properties.
+%Research questions 4 and 5 are posed here with an air of obviousness.
+%However, arriving to those questions was not obvious.
+%A substantial challenge in the research plan involves identifying suitable research domains---like parallel programming or language-based security---
+%where ICC techniques could offer meaningful benefit.
+
+\subsection{The \emph{Implicit Costs} of Applied ICC}
+\label{subsec:res-meta}
+
+The dissertation manuscripts follow a pattern of pairing ICC with a secondary application domain.
+Although such intersectional strategy comes with rich potential, there are also substantial \enquote{costs}.
+
+One cost relates to a learning overhead.
+The overhead behind the dissertation manuscripts is reflected in \autoref{sec:pre}.
+Making a meaningful contribution requires first sufficient familiarity with secondary domain to identify research gaps.
+It also requires learning the terminology and implicit expectations of the secondary domain.
+For example, in presenting developments of the flow calculus, we learned through trial-and-error that experiments were an absolute prerequisite to support our findings.
+
+The second cost is about understanding different measures of significance.
+While we hold the theoretical origins in high esteem, it becomes minutiae when targeting applications in other domains.
+Using an ICC technique to solve a problem in ways that is comparable to existing techniques is not enough for a scientific contribution.
+The significance of the application must be standalone and independent of the theoretical origin.
+In other words, a technique becomes interesting only after we can show it can solve an interesting problem.
+
+The described research strategy has repeated a few times throughout the dissertation, multiplying these costs.
+In reflection, following the strategy requires persistence, and in general not ideal for dissertation research.
+
+\section{Open Problems and Future Opportunities}
+\label{sec:res-future}
+
+The ICC approach of guaranteeing program properties demonstrates great applied potential;
+for example, toward formal verification of non-functional properties.
+One investigative direction that deserves more attention is applying ICC to guarantee properties by construction.
+This would provide guarantees before any program exists and eliminates the need for \emph{aposteriori} analysis.
+Although the dissertation did not extend that far, exploring this direction is an intriguing future goal.
+Whether it is attainable depends crucially on a viewpoint shift.
+We should regard ICC in the broader context it offers and continue the exploration of its applied potential.
+
+%limitations/what is left open here/what do we now know
+%The ``correct-by-construction'' angle still remains unexplored
+%Though: Should explore synthesis over languages that guarantee properties.
+%This theme of thinking about complexity outside classical theory is not unique to this dissertation.
+%Explorations with a similar theme appears in other recent works in, \eg quantum computing~\cite{avanzini2024}.
+%The future of ICC => Quantum etc.
+%https://stackoverflow.com/questions/3492188/what-are-the-practical-limitations-of-a-non-turing-complete-language-like-coq
+%https://stackoverflow.com/questions/315340/practical-non-turing-complete-languages
+%``a general-purpose language that isn't turing complete is pretty impractical.'' or so they say.
+%Initial comment on <https://stackoverflow.com/q/315340>
+%Thought: (afterward) comment on <https://stackoverflow.com/q/315340>
+%Just having Turing-completeness is not super useful (we can show this)
+%As language designers we want to add restrinctions... maybe I can find this again to capture the precise comment.
+
+\section{Assessment of Research Goals and Conclusions}
+\label{sec:res-summary}
+
+%We have successfully gathered evidence of the application potential of ICC.
+%The evidence supports the main hypothesis, but is still too limited to draw any generalizing conclusions.
+We crafted four goals to define the dissertation expectations.
+The first was about extending the applied capabilities of ICC, which was met successfully.
+The second was about introducing ICC in development workflows.
+Although we have developed a static analyzer, it is a step in \enquote{isolation.}
+Integrating ICC analyses into other development tools (compilers, verifiers, \etc) remains as an outstanding task.
+Such integration is important to promote relevance and continue development of ICC {applications}
+in particular, since the analyses often produce orthogonal results.
+Our work in using the flow calculus to infer specification conditions~\cite{rusch2025} is a first step in that direction.
+The last two goals were social, and about disseminating ideas across research communities.
+Within the ICC community, our efforts included seminar talks.
+Although this record is suboptimal, our written ideas remain discoverable to others asynchronously and in perpetuity, like~\cite{moyen2017}.
+In regard to other communities, we were successful at presenting the work at verification, programming languages, formal methods, and security venues.
+Thus, the fourth goal was satisfactorily met.
+
+\autoref{fig:findings} summarized the key takeaways presented in long form throughout this discussion.
+First, Implicit computational complexity offers complementary techniques of automatic resource analysis.
+However, applications of ICC may require substantial adjustment to the theory.
+It is important to account for practical challenges in the design of ICC systems.
+Second, ICC systems can be adjusted to tracking \emph{other} program properties, beyond complexity theory.
+Such adjusted ICC systems can provide analysis techniques in cases that are outside the capabilities of the established techniques.
+Finally, attaining broader applied utility from ICC requires a viewpoint shift \wrt its capabilities---\ie fundamentally seeing it as more than tool for complexity-theoretic reasoning---and the continued exploration of its applied potential.
+
+\begin{figure}[h]
+\begin{mdframed} % TODO: mirror the hypothesis
+\paragraph*{Primary findings.}
+\begin{enumerate}[wide, labelwidth=!, labelindent=0pt]
+\item ICC offers complementary techniques of automatic resource analysis.
+\item ICC systems can be adjusted to tracking \emph{other} program properties, beyond complexity theory.
+\item Attaining rich intercommunal utility from ICC requires viewing it in broadly and continuing exploration of its applied potential.
+\end{enumerate}
+\end{mdframed}
+\caption[Primary research findings summarized]{Primary research findings.}
+\label{fig:findings}
+\end{figure}
