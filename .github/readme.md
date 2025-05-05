@@ -5,19 +5,18 @@
 
 Repository to host, compile, and share my dissertation.
 
-### Formatting references & resources
+### Formatting references 
 
 * [Augusta University ETD Guides](https://guides.augusta.edu/etd)
 * [AU Dissertation Guide Booklet v.2024](https://augustauniversity.app.box.com/s/vj0ygpy8tvyqmsbae8y0qp9767ta7jb9)
-* [LaTeX template link](https://github.com/aubertc/au_ccs_dissertation_template/)
+* [LaTeX Dissertation template](https://github.com/aubertc/au_ccs_dissertation_template/)
 * [Word template preview](https://augustauniversity.box.com/s/jcdajhkgoeedza3aabeb9x1fer8dv84t)
 
 ### 🐳 Docker environment for compilation
 
 The same environment as used by the actions.
 
-Pull latest [texlive-full image](https://github.com/xu-cheng/latex-docker/pkgs/container/texlive-full), 
-then launch the container.
+Pull latest [texlive-full image](https://github.com/xu-cheng/latex-docker/pkgs/container/texlive-full), then launch the container.
 Run the container from the root of this repository.
 
 ```
@@ -29,13 +28,3 @@ Inside the container:
 ```
 cd dissertation && make
 ```
-
-To install new packages inside the container:
-```
-apk update && apk add [whatever-package]
-```
-
-### Troubleshooting/notes
-
-* Issues with `\includepdf`: 
-  in `addtotoc={…}` using commands in the description breaks compilation on some machines (error: `Improper alphabetic constant`).
