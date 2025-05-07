@@ -93,10 +93,10 @@ If an action performed by \({A}\) is observable to \({B}\),
 then there exists an information flow from \({A}\) to \({B}\).
 The information flow is \emph{explicit}\index{information flow!explicit} 
 if it is directly observable from a single action.
-The insecure program in~\autoref{fig:bool-ops} shows an example of direct information flow between \pr|high| and \pr|ret|.
+The insecure program in~\autoref{lst:bool-ops} shows an example of direct information flow between \pr|high| and \pr|ret|.
 Information flow is \emph{implicit}\index{information flow!implicit} 
 when it is not directly observable, but the initial action can be deduced from the sequence of actions that follow.
-The insecure program in~\autoref{fig:hi-cond} shows an example of an implicit flow.
+The insecure program in~\autoref{lst:hi-cond} shows an example of an implicit flow.
 The initial value of variable \pr|h| is deducible from the returned value \pr|l|, even though there is no direct flow from \pr|h| to \pr|l|.
 
 \item[Information flow policy] (IFP)\index{information flow!policy}
@@ -135,7 +135,7 @@ In the context of integrity\index{integrity}, declassification is also called {e
 \end{description}
 
 \paragraph*{Secure and insecure information flows.}
-Figures~\ref{fig:bool-ops}--\ref{fig:hi-cond} show basic examples of insecure and secure information flows\index{information flow}.
+Figures~\ref{lst:bool-ops}--\ref{lst:hi-cond} show basic examples of insecure and secure information flows\index{information flow}.
 Variables \pr|high|, \pr|secret|, and \pr|h| are assumed to be secret and their values should not leak\index{leak} from executions.
 The programs are fragments from the {IFSPEC benchmark suite}~\cite{hamann2018}\index{IFSPEC} available at~\cite{ifspec}.
 The more advanced benchmarks involve, \eg aliasing, reflection, context sensitivity, and exception handling.
@@ -581,7 +581,7 @@ already inspired other mechanized proofs~\cite{barbosa2021,feree2018}.
 Reinforcing the existing connections,~\autoref{sec:anytime} presents a program logic for non-interference\index{non-interference} inspired by implicit computational complexity.
 The motivating idea was to explore utility and power of ICC techniques in language-based security\index{language-based security} analysis.
 The logic analyzes information flows\index{information flow} in imperative programs and abstracts the flow patterns into matrices.
-As a technique, it is a refinement of prior works (refer to~\autoref{app:sec:vmcai} and~\cite{moyen20172}) where it was used for compile-time program optimization.
+As a technique, it is a refinement of prior works (refer to~\autoref{sec:vmcai} and~\cite{moyen20172}) where it was used for compile-time program optimization.
 Although the logic no longer enforces complexity bounds, it demonstrates the utility of interchanging techniques between the ICC and security.
 Adjusting the logic to track {non-interference\index{non-interference}} revealed various mathematical insights;
 for example, that treatment of loops is more straightforward for {non-interference\index{non-interference}} than it is in {complexity analysis\index{complexity analysis}}.

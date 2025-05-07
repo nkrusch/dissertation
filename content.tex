@@ -107,7 +107,7 @@
     workshop on \href{https://plas24.github.io/}
     {Programming Languages and Analysis for Security (PLAS)}, in 2024.}
     \clearpage
-    {\input{latex/niprc}\input{text/pubs-ni}}
+    {\input{latex/fix-ni}\input{text/pubs-ni}}
     \clearpage
 
     \section{Certifying Complexity Analysis}\label{sec:mwp-calc-formal}
@@ -136,7 +136,8 @@
 %-------------------------------------------------------------------------------
 %	6. REFERENCES
 %-------------------------------------------------------------------------------
-\printbibliography[label=chap:references, title=References, heading=bibnumbered]
+\printbibliography[label=chap:references,
+    title=References, heading=bibnumbered, check=mynocite]
 
 %-------------------------------------------------------------------------------
 %	7--X. APPENDICES
@@ -170,21 +171,14 @@
 \clearpage
 
 \pagestyle{plain}
-\printglossary[title={Index of Acronyms},type=\acronymtype,nonumberlist,
-    style=longragged]
-\makeatletter
-\def\@currentlabelname{\@glotype@\acronymtype@title}
-\label{glo:acr}
-\makeatother
+\printglossary[
+    title={Index of Acronyms\label{glo:acr}},
+    type=\acronymtype,nonumberlist,style=longragged]
 \clearpage
 
 \pagestyle{plain}
-\printglossary[type=symbols]
-\def\@currentlabelname{\@glotype@symbols@title}
-\label{glo:symb}
-\makeatother
-\clearpage
-
+\printglossary[
+    title={Symbol Index\label{glo:symb}},type=symbols]
 \clearpage
 
 \printindex

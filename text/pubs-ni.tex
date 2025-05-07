@@ -102,7 +102,7 @@ Our work belongs to the domain of \emph{language-based
 security}~\cite{schneider2001,sabelfeld2003}, where programming languages
 principles (semantics, analysis, type systems, rewriting, \etc) are used to
 strengthen application security. The \lname logic draws rich inspiration from
-implicit computational complexity (refer to~\autoref{subsec:ni-related-works}), and
+implicit computational complexity (refer to~\autoref{sec:ni-related-works}), and
 has applications in static program analysis; thus our work intersects many
 related fields. Although we assume prior familiarity with logic and programming
 languages, we define the relevant security concepts in this section.
@@ -165,7 +165,7 @@ as follows:
 
 An \emph{information flow control}\index{{information flow!control}} (IFC) is a mechanism to enforce a
 policy~\cite{bishop2003}. Security type systems\index{security type system} (presented in
-\autoref{sec:related-works}) are an example of a programming languages based
+\autoref{sec:ni-related-works}) are an example of a programming languages based
 IFCs. They enforce a policy by annotating a program with security types\index{security type}. Then,
 to be secure, a program must pass a compile-time type check. A sound IFC
 guarantees to find all policy violations and a precise IFC avoids raising
@@ -369,7 +369,7 @@ dependencies between variables occurring in commands. In this section, we define
 the principles of this dependency analysis\index{dependence analysis}, founded on the theory of
 \emph{security-flow matrices}, and how it maps to the presented language. This
 dependency analysis is reminiscent of the one we developed to distribute
-loops~\cite{aubert202213}. We assume familiarity with monoids and matrices
+loops~\cite{aubert20232}. We assume familiarity with monoids and matrices
 addition.
 
 A security-flow matrix\index{security-flow matrix} $\sfm{\prc|C|}$ for a command \prc|C| is a hollow matrix
@@ -1431,7 +1431,7 @@ monolithic security strategy, but can have a finer-grained strategy based on its
 content. Due to paper scope, we reserve a detailed treatment for an extended
 version.
 
-\subsubsection{Overview of Alternative and Related Approaches}\label{sec:related-works}
+\subsubsection{Overview of Alternative and Related Approaches}\label{sec:ni-related-works}
 
 In language-based security\index{language-based security}, non-interference\index{non-interference} is commonly achieved through
 security types systems\index{security type system}.

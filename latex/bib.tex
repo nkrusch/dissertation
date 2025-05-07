@@ -1,0 +1,21 @@
+%! suppress = NonMatchingIf
+%-------------------------------------------------------------------------------
+% References included in manuscripts must be included in REFERENCES.
+% See: https://tex.stackexchange.com/a/170356/233737
+%-------------------------------------------------------------------------------
+\addbibresource{./references/manuscripts.bib}
+
+\DeclareSourcemap{
+    \maps[datatype=bibtex]{
+        \map{
+            \perdatasource{./references/manuscripts.bib}
+            \step[fieldset=keywords, fieldvalue={, nocitethis}, append]
+        }
+    }
+}
+
+\defbibcheck{mynocite}{%
+    \ifboolexpr{test {\ifciteseen} or test {\ifkeyword{nocitethis}}}
+    {}
+    {\skipentry}
+}\nocite{*}

@@ -1,6 +1,11 @@
+% Term Index
 \makeindex[title=Term Index]
+% Symbol Index
 \newglossary[slg]{symbols}{sym}{sbl}{Symbol Index}
+% Glossaries (symbols, acronyms)
 \makeglossaries
+% Load glossary terms
 \loadglsentries[\acronymtype]{references/acronyms.tex}
 \loadglsentries[symbols]{references/symbols.tex}
+% Add all acronyms
 \glsaddall[types={\acronymtype}]

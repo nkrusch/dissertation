@@ -4,7 +4,8 @@
 %the challenge to program the gadgets.
 %This challenge seems unique in the combination of the possibility for unmastered complexity
 %-- programs are among the most complex things ever conceived --
-%and the ultimate, but misleading, simplicity of a world of zeros and ones alone.''~\cite{dijkstra1979}
+%and the ultimate, but misleading, simplicity of a world of zeros and ones alone.''~\cite{dijkstra1979a}
+
 %These amazing advances in computer application can distract attention from the fact that Computer Science
 %also has a central core of fundamental discoveries which are particular to itself as an independent
 %intellectual discipline. Comput- ing Research is driven, like research in other mature branches of
@@ -82,7 +83,8 @@ The task of expanding ICC outside its traditional (theoretical) realm is difficu
 
 \begin{enumerate}
 
-\item Taking any pure theory and applying it reveals the shortcomings of the theory, and those issues must then be resolved.
+\item Taking any pure theory and applying it reveals the shortcomings of the theory;
+      and those issues must then be resolved.
 
 \item Broad insight is required to first identify suitable application domains and to convert theories to applications.
 Evidence supporting this statement can be found, \eg in automata theory\footnote{
@@ -104,29 +106,32 @@ as the manuscripts in this dissertation will demonstrate.
 This dissertation has four goals.
 
 \begin{enumerate}
-\item Extend {applied} capabilities of ICC in automatic program analysis and verification.
+\item Extend \emph{applied} capabilities of ICC in automatic program analysis and verification.
 \item Take ICC-bases analyses a few steps closer to becoming a standard in real world development workflows.
 \item Initiate discourse on relevance of applications within the ICC community.
 \item Expose ICC-based analyses to broader research communities.
 \end{enumerate}
 
-The first is to show that implicit computational complexity is useful in \emph{automated} complexity analysis.
-All too often practitioners regard theory as irrelevant, and theoreticians think of practice as trivial;
-but in reality, the two are symbiotic.
-This goal shows the bidirectional importance of theory and practice that concurrently requires resolving various unexpected challenges. 
-The findings are materialized in a series of manuscripts that extend the flow calculus of mwp-bounds (\autoref{flow-calculus}).
+The first is to demonstrate that implicit computational complexity is useful in \emph{automated} complexity analysis.
+Despite many compelling features, implicit computational complexity has remained primarily as a theoretical novelty.
+The purpose of the goal is to address this limitation.
+All too often practitioners regard theory as irrelevant, and theoreticians think of practice as trivial~\cite[pg. xxxv]{bishop2003}\footnote{
+For example, for papers with implementations, the inability to demonstrate a practically functional artifact is a not a disqualifying factor for a top-conference publication,
+\cf\eg~\url{https://artifact-eval.org/motivation.html}.}.
+The previous statement is loaded, but it needs to be states as a founding motivation of the dissertation.
+In our view~\cite[p. 75]{moyen2017}, theory and applications are symbiotic.
+Investigations of both are needed for scientific advancement.
+This goal corresponds to a series of manuscripts that extend the flow calculus of mwp-bounds (\autoref{flow-calculus}).
 
-The second is to show that the analytical techniques developed around implicit computational complexity can be adjusted to track \emph{other} semantic properties.
-This goal shows that ICC-based techniques are flexible enough to extend beyond their original design, and can accommodate numerous properties.
-By extension, it suggests that the view of ICC as a niche subfield of complexity theory does not adequately recognize its true analytical power;
-and that the extended applications should be explored more broadly.
-The manuscripts in this dissertation show two cases of applications, in program optimization and security analysis.
+The second goal is to show that the analytical techniques developed around implicit computational complexity extend to analyzing \emph{other} semantic program properties.
+This goal shows that ICC-based analyses are flexible enough to extend beyond their original design.
+Although the goal is phrases in terms of \emph{properties}, the emphasis is actually on the \emph{techniques} and understanding how they adjust to providing various guarantees.
+The boarded implications suggests that viewing ICC as a niche sub-field of complexity theory does not adequately recognize its true analytical power.
+The various ways in which ICC analyses can provide guarantees should be explored more broadly.
+The manuscripts in this dissertation demonstrate two use cases in program optimization and security analysis.
  
-The third goal is to strengthen the hypothesis that implicit computational complexity is naturally suited to formal reasoning.
-Classic complexity theory is predicated on machine models that are difficult to represent formally~\footnote{
-For example, a formal model of TMs in~\textcite{forster2020} took five years to complete.}.
-In contrast, the programming languages-based approach of implicit computational complexity makes formal reasoning more accessible.
-The findings of this dissertation are sufficient to motivate and justify the effort for undertaking rigorous formalization projects.
+The last two goals are social.
+% TODO: finish this thought
 
 \begin{figure}[t]
 \begin{mdframed}
@@ -138,6 +143,9 @@ Implicit computational complexity offers applied utilities when lifted outside t
 \label{fig:hypothesis}
 \end{figure}
 
+%A guiding intuition behind these goals is that, {if applied}, implicit computational complexity could provide new practical program analyses.
+%These include uses in formal verification and in specifying and ensuring \uline{many} non-functional properties.
+
 % \subsection{Significance}\label{subsec:significance}
 % This research proposal intersects computer science theory and application, with the intent of using those theoretical approaches to solve existing challenges in automatic program analysis.
 % In 2017, Jean-Yves Moyen---a notable researcher in the ICC community, whose career spans 3 decades of advancements---remarked enthusiastically, that after twenty years and many results, ICC was ready to move into real-world and to concrete applications~\cite[p.~7]{moyen2017}.
@@ -147,7 +155,6 @@ Implicit computational complexity offers applied utilities when lifted outside t
 % The next section will detail the specifics of the methodology, that consists of multiple projects.
 % Assuming the successful completion of each project, they would show that certifiably correct complexity analysis is achievable, and that ICC techniques can be used to obtain efficient and practical complexity analysis.
 % These results would extend current capabilities in automatic complexity analysis, and move those techniques closer to becoming a standard in real-world software verification.
-
 
 \subsection{Overview of the Dissertation Manuscripts}
 \label{subsec:conn-papers}
@@ -173,9 +180,9 @@ The manuscripts apply and demonstrate the utility of the calculus, first though 
 Thus, the manuscripts supports two of the three dissertation goals.
 One of the manuscripts is in the appendix due to the university policies, but the placement should not distract from its significance;
 several other manuscripts follow from it.
-%\item Can we develop an \emph{automatic} program analysis based on the theory?
-%\item Given its paper proofs, is the theory correct? Can we prove formally the soundness of the flow calculus?
-%\item Assuming the theory can be automated, what are the use cases of the analysis?
+%\item RQ1 Can we develop an \emph{automatic} program analysis based on the theory?
+%\item RQ2 Given its paper proofs, is the theory correct? Can we prove formally the soundness of the flow calculus?
+%\item RQ3 Assuming the theory can be automated, what are the use cases of the analysis?
 
 \item[Analyzing extended program properties via quasi invariants.]
 The second track is inspired by \enquote{Loop Quasi-Invariant Chunk Detection}~\cite{moyen20172}.
@@ -184,8 +191,8 @@ These quasi-invariant blocks can then be lifted from the loop to ideally improve
 The manuscripts in this track support the second dissertation goal,
 as they use the mathematical framework of LQICM to track other program properties.
 In particular, they show how to adjust the mathematics to obtain a program optimization to increase parallelism and detect the security property of non-interference.
-%\item How to develop a program transformation to increase parallelization potential?
-%\item How to use it to analyze security properties, specifically non-interference?
+%\item RQ4 How to develop a program transformation to increase parallelization potential?
+%\item RQ5 How to use it to analyze security properties, specifically non-interference?
 \end{description}
 
 \paragraph*{Related topics.}
@@ -203,13 +210,10 @@ The contributions of the co-authors are detailed in~\autoref{app:sec:coauth}.
 The entire Chapters~\ref{published-manuscripts},~\ref{ch:unpublished-research},~\ref{ch:summary}, and ~\ref{app:additional-manuscripts}
 has been previously peer-reviewed.
 The published works (Chapters~\ref{published-manuscripts} and~\ref{app:additional-manuscripts}) were inspected by 7--10 reviewers before acceptance.
-% pymwp: tacas (4) aplas (3) + (3) = 10 | fscd: aplas (3) fossacs (3) + (3) = 9 | vmcai: atva (4) + (3) = 7
 The unpublished works (\autoref{ch:unpublished-research}) have been reviewed, so far, by 3--6 reviewers.
 Preliminary versions of most unpublished works have been accepted for presentation at workshops (without proceedings).
-% ni: fscd (4) + plas (2) | pc: ecoop (3)| coqpl: 4
 \autoref{ch:summary} is an extended abstract about the whole dissertation.
 It has been peer-reviewed as a doctoral symposium submission.
-
 
 \subsection{Important Tips for Interacting With This Document}
 \label{subsec:tips}
@@ -225,7 +229,7 @@ Read the version that best fits your needs and available time.
 \end{enumerate}
 \end{mdframed}
 
-\subsubsection{Software Artifacts and Data Availability}\label{subsub:sw}
+\subsubsection{Software Artifacts and Data Availability}
 
 All software developed as part of this dissertation is publicly available.
 Each published and publication-ready manuscript---including the dissertation itself---comes with a software artifact, as specified in~\autoref{app:sec:artifacts}.
@@ -297,16 +301,12 @@ To improve long-term availability of such dynamic entries, a backup is deposited
 \item[Written documents.]
 Web pages and PDF files are archived at the Internet Archive.
 To recover a document, substitute \pr|<URL>| by the document's URL.
-\begin{center}
-\pr|https://web.archive.org/web/<URL>|
-\end{center}
+\begin{center}\pr|https://web.archive.org/web/<URL>|\end{center}
+
 \item[Software repositories.]
 Version-controlled third party software repositories are archived by \href{https://softwareheritage.org/}{Software Heritage}.
 For a repository at \pr|<URL>|, the recovery address is:%
-\begin{center}
-    \pr|https://archive.softwareheritage.org/browse/origin/directory/|
-    \mbox{\pr|?origin_url=<URL>|}
-\end{center}
+\begin{center}\pr|https://archive.softwareheritage.org/browse/origin/directory/|\mbox{\pr|?origin_url=<URL>|}\end{center}
 \end{description}
 
 Documents that were not readily available online even at the time of writing this dissertation, are archived in the dissertation companion artifact (\autoref{tab:pub-artifacts}).

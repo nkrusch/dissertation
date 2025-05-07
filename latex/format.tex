@@ -1,5 +1,4 @@
-%% Sections begin on a new page
-%% (but in some cases we need a toggle)
+%% Sections begin on a new page (but in some cases we need a toggle)
 % https://tex.stackexchange.com/a/629027/233737
 \AddToHook{cmd/section/before}[./section-new]{\clearpage}
 \AddToHook{cmd/section/before}[./section-flow]{}
@@ -21,7 +20,8 @@
 \newcommand{\algorithmautorefname}{Algorithm}
 \renewcommand{\notationautorefname}{Notation}
 }
-% Styles
+
+% Theorem styles
 %\theoremstyle{remark}
 \AtBeginEnvironment{theorem}{\pushQED{\qed}}
 \AtEndEnvironment{theorem}{\popQED\endexample}
@@ -41,7 +41,7 @@
 \cleaders \hbox to.44em{\hss.\hss}\hskip 1.32em plus 1fill
 \kern0pt }
 
-% Index
+% Term Index
 \makeatletter
 \renewenvironment{theindex}
 {{\chapter{\indexname}\label{sec:app:index}}\par%
@@ -106,7 +106,7 @@ delim_t "\\normalsize"
 \BeforeBeginEnvironment{pNiceMatrix}{\renewcommand{\arraystretch}{0.67}}
 \AfterEndEnvironment{pNiceMatrix}{\renewcommand{\arraystretch}{\doublespacing}}
 
-% framed images
+% framed environments
 \mdfsetup{
     skipabove=1em,
     skipbelow=1em,
