@@ -1,18 +1,11 @@
-%``As we all know, the programmable computer, with its current speed and storage, is a gadget without precedent.
-%It is a gadget that we may appreciate in many different ways:
-%in this series of lectures I would like to appreciate it as the embodiment of an intellectual challenge that is also without precedent, viz.
-%the challenge to program the gadgets.
-%This challenge seems unique in the combination of the possibility for unmastered complexity
-%-- programs are among the most complex things ever conceived --
-%and the ultimate, but misleading, simplicity of a world of zeros and ones alone.''~\cite{dijkstra1979a}
-
-%These amazing advances in computer application can distract attention from the fact that Computer Science
-%also has a central core of fundamental discoveries which are particular to itself as an independent
-%intellectual discipline. Comput- ing Research is driven, like research in other mature branches of
-%pure science, by natural curiosity, exploring the basic foundations and limitations of the pro- grammable computer,
-%independent of any particular area of application. Because of its effective combination of pure knowledge
-%and applied invention, Computer Science can reasonably be classified as a branch of Engineering Science.
-%\cite{hoare2006}
+%``As we all know, the programmable computer, with its current speed and storage,
+%is a gadget without precedent. It is a gadget that we may appreciate in many
+%different ways: in this series of lectures I would like to appreciate it as the
+%embodiment of an intellectual challenge that is also without precedent, viz. the
+%challenge to program the gadgets. This challenge seems unique in the combination
+%of the possibility for unmastered complexity -- programs are among the most
+%complex things ever conceived -- and the ultimate, but misleading, simplicity of
+%a world of zeros and ones alone.'' ~\cite{dijkstra1979a}
 
 There is a feature about programs that has always fascinated me immensely.
 It is that there are \emph{multiple different ways} to write a program to compute the \emph{same result}.
@@ -24,25 +17,19 @@ To demonstrate the idea, consider the two programs in~\autoref{lst:intro} where 
 It is clear the programs look different.
 Yet, I claim they compute equivalent results.
 
-\begin{minipage}{\textwidth}
 \begin{center}
 \captionsetup{type=lstlisting}
 \begin{minipage}{.3\textwidth}
-\begin{lstlisting}[nolol,label={p1},frame=none,numbers=none,aboveskip=0pt,belowskip=0pt]
-if (bit) { Z = X; }
-else     { Z = Y; }
-\end{lstlisting}
-\end{minipage}\hspace{3em}%
+\lstinputlisting[nolol,label={lst:p1},frame=none,numbers=none,aboveskip=0pt,belowskip=0pt]{equiv1.imp}
+\end{minipage}%
+\hspace{3em}%
 \begin{minipage}{.4\textwidth}
 \captionsetup{type=lstlisting}
-\begin{lstlisting}[nolol,label={p2},frame=none,numbers=none,aboveskip=0pt,belowskip=0pt]
-Z = X * bit + Y * (1 - bit);
-\end{lstlisting}
+\lstinputlisting[nolol,label={lst:p2},frame=none,numbers=none,aboveskip=0pt,belowskip=0pt]{equiv2.imp}
 \end{minipage}
 \captionof{lstlisting}[Equivalent programs]{Equivalent programs.}
 \label{lst:intro}
 \end{center}
-\end{minipage}
 
 It is natural to ask \enquote{which one is better?}
 The former is {easier} to understand {to a human};
@@ -59,6 +46,14 @@ The general term for such criterion is a \emph{property}.
 Formal methods complements the setting by adding the mathematical tools that we need to obtain rigorous guarantees.
 With formal methods it is possible to provide \emph{proofs} for the analysis conclusions. 
 Then, we can swap claims for confident assertions.
+
+%These amazing advances in computer application can distract attention from the fact that Computer Science
+%also has a central core of fundamental discoveries which are particular to itself as an independent
+%intellectual discipline. Computing Research is driven, like research in other mature branches of
+%pure science, by natural curiosity, exploring the basic foundations and limitations of the programmable computer,
+%independent of any particular area of application. Because of its effective combination of pure knowledge
+%and applied invention, Computer Science can reasonably be classified as a branch of Engineering Science.
+%\cite{hoare2006}
 
 However, to make the exploration more adventurous and worthy of a multiyear doctoral study, we bring in \emph{implicit computational complexity} (ICC).
 The topic is covered in detail in~\autoref{icc};
@@ -101,6 +96,15 @@ After many decades of theoretical development, the quest for applications is cri
 Through the effort, we gain insight of the technical power, limitations, and benefits of ICC systems as compared to alternative techniques;
 as the manuscripts in this dissertation will demonstrate.
 
+\begin{figure}[t]
+\begin{mdframed}
+\paragraph*{Main hypothesis.}
+Implicit computational complexity offers applied utilities when lifted outside the theoretical domain.
+\end{mdframed}
+\caption[Main hypothesis summarized]{Main hypothesis.}
+\label{fig:hypothesis}
+\end{figure}
+
 \subsection{Specific Aims}\label{subsec:specific-aims}
 
 This dissertation has four goals.
@@ -123,25 +127,8 @@ In our view~\cite[p. 75]{moyen2017}, theory and applications are symbiotic.
 Investigations of both are needed for scientific advancement.
 This goal corresponds to a series of manuscripts that extend the flow calculus of mwp-bounds (\autoref{flow-calculus}).
 
-The second goal is to show that the analytical techniques developed around implicit computational complexity extend to analyzing \emph{other} semantic program properties.
-This goal shows that ICC-based analyses are flexible enough to extend beyond their original design.
-Although the goal is phrases in terms of \emph{properties}, the emphasis is actually on the \emph{techniques} and understanding how they adjust to providing various guarantees.
-The boarded implications suggests that viewing ICC as a niche sub-field of complexity theory does not adequately recognize its true analytical power.
-The various ways in which ICC analyses can provide guarantees should be explored more broadly.
-The manuscripts in this dissertation demonstrate two use cases in program optimization and security analysis.
- 
 The last two goals are social.
 % TODO: finish this thought
-
-\begin{figure}[t]
-\begin{mdframed}
-\paragraph*{Main hypothesis.}
-Implicit computational complexity offers applied utilities when lifted outside the theoretical domain.
-\end{mdframed}
-\caption[Main hypothesis summarized]
-{Main hypothesis summarized.}
-\label{fig:hypothesis}
-\end{figure}
 
 %A guiding intuition behind these goals is that, {if applied}, implicit computational complexity could provide new practical program analyses.
 %These include uses in formal verification and in specifying and ensuring \uline{many} non-functional properties.
@@ -162,8 +149,7 @@ Implicit computational complexity offers applied utilities when lifted outside t
 \begin{figure}[p]
 \includegraphics[width=\linewidth,keepaspectratio]{fig_conn_papers}\vspace{1em}
 \caption[Dissertation manuscripts and their associations]
-{Dissertation manuscripts and their associations.
-The symbol $^*$ means the manuscript is in review or near submission.}
+{Dissertation manuscripts and their associations.}
 \label{fig:conn_papers}
 \end{figure}
 
@@ -193,6 +179,14 @@ as they use the mathematical framework of LQICM to track other program propertie
 In particular, they show how to adjust the mathematics to obtain a program optimization to increase parallelism and detect the security property of non-interference.
 %\item RQ4 How to develop a program transformation to increase parallelization potential?
 %\item RQ5 How to use it to analyze security properties, specifically non-interference?
+
+%The second goal is to show that the analytical techniques developed around implicit computational complexity extend to analyzing \emph{other} semantic program properties.
+%This goal shows that ICC-based analyses are flexible enough to extend beyond their original design.
+%Although the goal is phrases in terms of \emph{properties}, the emphasis is actually on the \emph{techniques} and understanding how they adjust to providing various guarantees.
+%The boarded implications suggests that viewing ICC as a niche sub-field of complexity theory does not adequately recognize its true analytical power.
+%The various ways in which ICC analyses can provide guarantees should be explored more broadly.
+%The manuscripts in this dissertation demonstrate two use cases in program optimization and security analysis.
+      
 \end{description}
 
 \paragraph*{Related topics.}

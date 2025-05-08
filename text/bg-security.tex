@@ -406,12 +406,13 @@ C \, ::={ }& \, \mathbf{skip} \mid
 \ottkw{if} \, \ottkw{e} \, \ottkw{then} \, \nonterm C_{{\mathrm{1}}} \, \ottkw{else} \, \nonterm C_{{\mathrm{2}}} \mid
 \ottkw{while} \, \ottkw{e} \, \ottkw{do} \, \nonterm C
 \end{align*}
-\caption{Grammar of the non-interference security type system.}\label{fig:ni-syntax}
+\caption[Grammar of the non-interference security type system]
+{Grammar of the non-interference security type system.}\label{fig:ni-syntax}
 \end{figure}
 \begin{figure}[t]
 \centering\drules[E]{$\vdash \prm{e} : \tau$}{expression typing}{High,Low}
 \centering\drules[C]{$\Gamma \vdash \text{\pr|C|}$}{command typing}{Skip,AssignOne,AssignTwo,Seq,While,If,Sub}
-\caption[Non-interference security type system.]{A non-interference security type system.}\label{fig:ni-types}
+\caption[Non-interference security type system]{A non-interference security type system.}\label{fig:ni-types}
 \end{figure}
 
 \paragraph*{Derivations.}

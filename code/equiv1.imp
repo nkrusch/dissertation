@@ -1,0 +1,2 @@
+if (bit) { Z = X; }
+else     { Z = Y; }

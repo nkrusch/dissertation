@@ -1,7 +1,7 @@
 # Dissertation
 
 [![Compile](https://github.com/nkrusch/thesis/actions/workflows/compile.yaml/badge.svg)](https://github.com/nkrusch/thesis/actions/workflows/compile.yaml)
-[![Status](https://img.shields.io/badge/draft-FF4081?style=flat-square&logo=%20&logoColor=ffffff&label=Status&labelColor=333333)](https://github.com/nkrusch/dissertation/releases)
+[![Status](https://img.shields.io/badge/review-FF5722?style=flat-square&logo=%20&logoColor=ffffff&label=Status&labelColor=333333)](https://github.com/nkrusch/dissertation/releases)
 
 Repository to host, compile, and share my dissertation.
 
