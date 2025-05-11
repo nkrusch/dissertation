@@ -200,7 +200,7 @@ for the rest of this dissertation.
 
 %! suppress = LineBreak
 %! suppress = NonBreakingSpace
-\begin{tabularx}{\textwidth}{@{}lclXr@{}}
+\begin{tabularx}{\textwidth}{@{}lclX@{}r@{}}
     \multicolumn{5}{@{}c@{}}{\resizebox{\textwidth}{!}{
         \textbf{Symbols.}
         \hspace{.6em}\logics{ }logics
@@ -210,9 +210,7 @@ for the rest of this dissertation.
         \hspace{.6em}\lalg{ }algebras
         \hspace{.6em}\recs{ }recursion}} \\*[1em]
     \toprule
-    \textbf{Year} & &
-    \textbf{Venue} &
-    \multicolumn{2}{l@{}}{\textbf{Description}\hfill\textbf{Complexity Classes}}
+    \textbf{Year} & & \textbf{Venue} & \textbf{Description} & \textbf{Classes}
     \\
     \midrule
     \endfirsthead
@@ -225,9 +223,7 @@ for the rest of this dissertation.
         \hspace{.6em}\lalg{ }algebras
         \hspace{.6em}\recs{ }recursion}} \\*[1em]
     \toprule
-    \textbf{Year} & &
-    \textbf{Venue} &
-    \multicolumn{2}{l@{}}{\textbf{Description}\hfill\textbf{Complexity Classes}}
+    \textbf{Year} & & \textbf{Venue} & \textbf{Description} & \textbf{Classes}
     \\
     \midrule\endhead
     \caption[]{(Cont.)}
@@ -251,8 +247,7 @@ for the rest of this dissertation.
     2001 & \syntax & J. Funct. & CONS-free programs\index{CONS-free programs} & \ccx{p}, \ccx{exp} \\*
     && Program. & \textcite{jones2001} & \\*
     \midrule
-    2001 & \dataflow & POPL & \multicolumn{2}{l@{}}{
-        Size-change termination principle\index{size-change termination principle} -- \autoref{resource-analysis}\hfill\ccx{pspace}} \\*
+    2001 & \dataflow & POPL & Size-change termination principle\index{size-change termination principle} -- \autoref{resource-analysis} & \ccx{pspace} \\*
     &&& \textcite{lee2001} \\*
     \midrule
     2005 & \lalg & Comput. & \textsc{loop}\(^{-}\) and \textsc{clip} programs & \ccx{l}, \ccx{linspace} \\*
@@ -291,9 +286,7 @@ for the rest of this dissertation.
     2023 & \types & POPL & Stratified (STR) programs\index{stratified programs} -- \autoref{icc-sec} & \ccx{p} \\*
     &&& \textcite{hainry2023} \\*
     \midrule
-    2024 & \types & POPL & \multicolumn{2}{l@{}}{
-        Quantitative type theory\index{quantitative type theory}
-        with dependent types\index{dependent types}\hfill\ccx{p}, \ccx{np}, \ccx{bpp}} \\*
+    2024 & \types & POPL & Quantitative type theory with dependent types\index{quantitative type theory}\index{dependent types} & \ccx{p}, \ccx{np}, \ccx{bpp} \\*
     &&& \textcite{atkey2024} \\*
     \midrule
     2024 & \types & LICS & Aperiodic programs\index{aperiodic programs} -- \autoref{icc-sec} & \ccx{p} \\*
