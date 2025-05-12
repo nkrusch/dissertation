@@ -1,3 +1,8 @@
+%! suppress = DiscouragedUseOfDef
+%-------------------------------------------------------------------------------
+% Draft options
+% Including this will add line numbers and compile timestamp on every page
+%-------------------------------------------------------------------------------
 \usepackage{everypage,pdfpages,eso-pic}
 \usepackage[yyyymmdd,24hr]{datetime}
 \renewcommand{\dateseparator}{-}
@@ -11,4 +16,3 @@
 \usepackage[pagewise]{lineno}
 \renewcommand{\linenumberfont}{\normalfont\sffamily\tiny\color{red}}
 \AtBeginDocument{\linenumbers}
-%\setcounter{tocdepth}{3}

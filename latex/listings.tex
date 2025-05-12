@@ -1,7 +1,15 @@
+%! suppress = DiscouragedUseOfDef
+%-------------------------------------------------------------------------------
+% Styling of listings
+% This style is inpired by and initially obtained from "Choral: Object-Oriented
+% Choreographic Programming" (DOI: 10.1145/3632398)
+%-------------------------------------------------------------------------------
+
 \makeatletter
 \let\commentfullflexible\lst@column@fullflexible
 \makeatother
 
+% Basic listings style
 \lstset{
     columns=fixed,
     basicstyle=\small\color{sbase03}\normalfont\ttfamily\linespread{4},
@@ -34,6 +42,7 @@
     upquote=true,
 }
 
+% Solarized light theme
 \lstdefinestyle{solarized-light}{
     frame=none,
     breaklines=true,
@@ -59,7 +68,9 @@
     captionpos=b,
 }
 
+% Language listings
 \NewDocumentCommand{\newlang}{o m m m m m}{%
+    % inline listings
     \IfNoValueTF{#1}{\def\n{#2}}{\def\n{#1}}
     \expandafter\NewDocumentCommand\csname \n listing\endcsname{s O{} O{}}{%
         \def\WithoutTitle{\tcblisting{
@@ -97,6 +108,8 @@
         \IfBooleanTF{##1}{\WithoutTitle}{\withTitle}}
     \expandafter\def\csname end\n listing\endcsname{\endtcblisting\noindent}
     \expandafter\def\csname\n\endcsname{\lstinline[language=#2,style=solarized-light]}
+
+    % input listings
     \expandafter\NewTCBInputListing\expandafter{\csname\n inputlisting\endcsname}{O{} O{} m}{%
         listing file={./code/##3},
         enhanced,%
@@ -117,6 +130,7 @@
     }
 }
 
+% Defined languages
 \newlang[out]{text}{output}{cout}{sbase3}{}
 \newlang[cmd]{text}{cmd}{ccmd}{consolebg}{numbers=none,prebreak={}}
 \newlang[c]{C}{C}{cc}{sbase3}{}

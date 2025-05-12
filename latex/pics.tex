@@ -1,3 +1,6 @@
+%-------------------------------------------------------------------------------
+% Shared setup for compiling TikZ drawings in pictures/
+%-------------------------------------------------------------------------------
 \usepackage{tikz}
 \usepackage{fontawesome5}
 \usepackage{fontspec}
@@ -21,9 +24,12 @@
     ItalicFont = *-Italic,
     BoldItalicFont = *-BoldItalic]
 
-% drawings
 \tikzstyle{thread} = [
-  thick,decorate,
+  thick, decorate,
   decoration={snake,amplitude=.5mm,segment length=3mm,post length=1.8mm},
+  arrows={-Latex[width=5pt, length=5pt]}
+]
+\tikzstyle{arrow}  = [
+  thick, line cap=round,
   arrows={-Latex[width=5pt, length=5pt]}
 ]

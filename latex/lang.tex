@@ -1,3 +1,24 @@
+\lstdefinelanguage{OpenMP}{
+    mathescape=true,
+    morekeywords={for,int},
+    moredirectives={pragma},
+    moredelim=*[directive]\#,%
+    morekeywords={omp,parallel,teams,schedule,%
+    single,for,distribute,barrier,critical,atomic,private,
+    shared,nowait,target,loop,order,unroll,full,partial
+    },
+    morecomment=[l]{//},
+    morecomment=[s]{/*}{*/},
+    morestring=[b]",%
+    breaklines=true,
+    tabsize=2,
+    sensitive=true,
+    breaklines=true,
+    columns=fullflexible,
+    prebreak={\space\textbackslash},
+    postbreak={},
+}[keywords,comments,strings,directives]
+
 \lstdefinelanguage{IMP}{
     mathescape=false,
     morekeywords={loop,while,if,else,do,then},

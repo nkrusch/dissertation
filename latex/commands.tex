@@ -1,19 +1,24 @@
 %! suppress = NonBreakingSpace
+%-------------------------------------------------------------------------------
+% Custom macros
+%-------------------------------------------------------------------------------
+
+% Manuscript headers
 \newcommand\CTNT{Clément Aubert, Thomas Rubiano, Neea Rusch, Thomas Seiller}
 \newcommand\ainfo[2]{\noindent{#1}\newline\noindent{#2}\newpage}
 \newcommand\ainfoX[3]{\noindent{#1}\newline\noindent{#2}\vspace{1em}\newline{#3}\newpage}
-\newcommand\abspage[1]{\noindent\textbf{Abstract.}{ }{#1}\newpage}
-\newcommand{\nocontentsline}[3]{}
-\newcommand{\tocless}[2]{\bgroup\let\addcontentsline=\nocontentsline#1{#2}\egroup}
-\newcommand{\aref}[1]{\hyperref[#1]{\ref*{#1}}} %Appendix~\ref*{#1}}}}
+
+% Document commands
+\newcommand{\aref}[1]{\hyperref[#1]{\ref*{#1}}}
 \newcommand{\swlink}[2]{\texttt{\footnotesize{\href{#1}{#2}}}}
-\newcommand{\ccxi}[1]{\index{complexity class!\textsc{#1}}}
-\newcommand{\ccx}[1]{\textsc{#1}\ccxi{#1}}
 \newcommand{\nonterm}[1]{#1} % ott
 \newcommand*\lstinputpath[1]{\lstset{inputpath=#1}}
 \newcommand{\smtabularnote}[1]{\tabularnote{\small{#1}}}
 \newcommand{\ompi}[1]{\index{OpenMP directives!{#1}}}
+\newcommand{\ccxi}[1]{\index{complexity class!\textsc{#1}}}
+\newcommand{\ccx}[1]{\textsc{#1}\ccxi{#1}}
 
+% Inline codes
 \newcommand{\pr}{\lstinline[mathescape,basicstyle=\normalfont\ttfamily,escapeinside={(*}{*)},prebreak={}]}
 \newcommand{\prm}[1]{\text{\pr|#1|}}
 \newcommand{\prc}{\lstinline[mathescape=true]}
@@ -24,9 +29,8 @@
 
 % continuous appendix
 \newcommand{\continousappendix}{
-    \renewcommand{\thechapter}{\arabic{chapter}}
-    \setcounter{chapter}{6} % chapters are fixed anyway
-}
+ \renewcommand{\thechapter}{\arabic{chapter}}
+ \setcounter{chapter}{6}} % chapters are fixed anyway
 
 % paper category icons
 \newcommand{\pageIcon}[2]{
@@ -38,48 +42,24 @@
 \newcommand{\pageIconOpt}{\pageIcon{\iconOPT}{program optimization}}
 \newcommand{\pageIconSecurity}{\pageIcon{\iconSEC}{security}}
 
+% boxed text
 \makeatletter
 \renewcommand{\boxed}[1]{\text{\fboxsep=.2em\fbox{\m@th$\displaystyle#1$}}}
 \makeatother
-
-% add index terms to \includepdf
-\makeatletter
-\newcommand\addtoindex[2]{%
-\ifnum\AM@page=#2\relax\index{#1}\fi
-}
-\makeatother
-
-% add symbols to \includepdf
-\makeatletter
-\newcommand\addtosymbols[2]{%
-\ifnum\AM@page=#2\relax\gls{symb:#1}\fi
-}
-\makeatother
-\newcommand\symbo[1]{\gls{symb:#1}}
-
-% multi index-add
-\setsepchar{,}
-\newcommand{\addtoindexm}[2]{
-\readlist\ipages{#2}
-\foreachitem\word\in\ipages{\addtoindex{#1}{\word}}}
-% multi symbols-add
-\newcommand{\addtosymbolsm}[2]{
-\readlist\ipages{#2}
-\foreachitem\word\in\ipages{\addtosymbols{#1}{\word}}}
 
 % Fix \sc undefined
 \providecommand{\sc}{}
 \renewcommand{\sc}[1]{#1}
 
-% tabularx centered maximally-wide column
+% tabularx custom maximally-wide column
 \newcolumntype{C}{>{\centering\arraybackslash}X}
 \newcolumntype{R}{>{\raggedleft\arraybackslash}X}
 
 % Math operators etc.
-%\newcommand\hypo{\Hypo}
-%\newcommand\infer{\Infer}
 \newcommand{\zmat}{\mathbf{0}}
 \newcommand{\umat}{\mathbf{1}}
+\newcommand\hypo{\Hypo}
+%\newcommand\infer{\Infer}
 \DeclareMathOperator{\In}{In}
 \DeclareMathOperator{\Out}{Out}
 \DeclareMathOperator{\PrD}{PrD}
@@ -137,8 +117,6 @@
 \newcommand{\sfm}[1]{\mathbb{M}(#1)}
 \newcommand{\sfmb}[1]{\ensuremath{\mathbb{M}^{\mathtt{e}}(#1)}}
 \renewcommand{\qedsymbol}{$\square$}
-\newcommand\hypo{\Hypo}
-%\newcommand\infer{\Infer}
 \newcommand{\replabel}{\label} % will be redefined in restatements
 \newcommand{\SC}{\mathrm{SC}}
 \newcommand{\SCset}{\mathit{SC}}
@@ -180,3 +158,18 @@
 {etc.\@\xspace}%
 }
 \makeatother
+
+% HELPERS FOR TERM AND SYMBOLS INDICES
+% shorthand for symbols
+\newcommand\symbo[1]{\gls{symb:#1}}
+\setsepchar{,}
+% Includepdf helpers : terms
+\makeatletter
+\newcommand\addtoindex[2]{\ifnum\AM@page=#2\relax\index{#1}\fi}
+\makeatother
+\newcommand{\addtoindexm}[2]{\readlist\ipages{#2}\foreachitem\word\in\ipages{\addtoindex{#1}{\word}}}
+% Includepdf helpers : symbols
+\makeatletter
+\newcommand\addtosymbols[2]{\ifnum\AM@page=#2\relax\gls{symb:#1}\fi}
+\makeatother
+\newcommand{\addtosymbolsm}[2]{\readlist\ipages{#2}\foreachitem\word\in\ipages{\addtosymbols{#1}{\word}}}

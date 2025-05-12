@@ -1,3 +1,7 @@
+%-------------------------------------------------------------------------------
+% Formatting options and style overrides
+%-------------------------------------------------------------------------------
+
 %% Sections begin on a new page (but in some cases we need a toggle)
 % https://tex.stackexchange.com/a/629027/233737
 \AddToHook{cmd/section/before}[./section-new]{\clearpage}
@@ -22,7 +26,6 @@
 }
 
 % Theorem styles
-%\theoremstyle{remark}
 \AtBeginEnvironment{theorem}{\pushQED{\qed}}
 \AtEndEnvironment{theorem}{\popQED\endexample}
 \AtBeginEnvironment{example}{\pushQED{\qed}}
@@ -66,7 +69,7 @@ delim_2 " \\mydotfill \\footnotesize~"
 delim_t "\\normalsize"
 \end{filecontents}
 
-% Glossaries
+%% Glossaries
 % custom glossary style, match index
 \renewcommand{\glsdescwidth}{11cm}
 \newglossarystyle{longraggeddots}{
@@ -78,7 +81,7 @@ delim_t "\\normalsize"
 }
 \setglossarystyle{longraggeddots}
 
-% patch glossary hyperref
+%% Patch glossary hyperref
 % https://tex.stackexchange.com/a/40121/233737
 \makeatletter
 \patchcmd{\@glossarysection}{%
@@ -89,6 +92,7 @@ delim_t "\\normalsize"
 }{}{}
 \makeatother
 
+%% Additional double spacing
 % double space various environments
 \mdfsetup{startinnercode={\doublespacing}}
 \AtBeginEnvironment{algorithmic}{\doublespacing}
@@ -106,7 +110,7 @@ delim_t "\\normalsize"
 \BeforeBeginEnvironment{pNiceMatrix}{\renewcommand{\arraystretch}{0.67}}
 \AfterEndEnvironment{pNiceMatrix}{\renewcommand{\arraystretch}{\doublespacing}}
 
-% framed environments
+% Framed environments setup
 \mdfsetup{
     skipabove=1em,
     skipbelow=1em,

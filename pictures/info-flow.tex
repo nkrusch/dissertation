@@ -1,6 +1,5 @@
 \documentclass[crop,border={25pt 3pt 0pt 2pt}]{standalone}
 \input{../latex/pics}
-\begin{document}
  
 \tikzstyle{triangle} = [
 	draw=black, 
@@ -16,6 +15,7 @@
 \tikzstyle{dn} = [label, below, yshift=-8pt]
 \tikzstyle{sep} = [black, densely dotted, line width=.25mm]
 
+\begin{document}
 \begin{tikzpicture}[align=center]
 \node[triangle] (T) at (0,0){};
 \draw[sep]  (T.35) -- (T.325) node[up] (TS) {top\\secret} node[dn] {secret};
