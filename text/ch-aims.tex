@@ -1,29 +1,30 @@
 A programmable computer is a gadget without precedent.
-It can be appreciated in many ways --
-through the constant stream of new flashy applications;
-as an engineering marvel by its continuous increase in performance and capacity;
-or in the scientific discipline that provides the core to these gadgets~\cite{dijkstra1979a,hoare2006}.
+It can be appreciated in many ways: %
+through the constant stream of new flashy applications,
+as an engineering marvel with continuous increase in performance and capacity,
+or in the independent scientific discipline that forms its core~\cite{dijkstra1979a,hoare2006}.
 For this dissertation, we focus on the intellectual challenge of \emph{programming} these gadgets.
 \begin{quotation}
 \noindent This challenge seems unique in the combination of the possibility for unmastered complexity -- programs are among the most
 complex things ever conceived -- and the ultimate, but misleading, simplicity of a world of zeros and ones alone~\cite{dijkstra1979a}.
 \end{quotation}
 
-Nowadays, high-level \emph{programming languages} provide us an interface where we no longer work \emph{directly} with zeros and ones.
-We work at an abstraction level where the programs are intended to be intelligible to humans.
-Then, we \enquote{translate} (compile) those programs into zeros and ones for processing by machines.
-This abstraction step does nothing to reduce the actual challenge of programming~\cite{dijkstra1979b}.
-If we write a faulty program, we are at the mercy of our own faulty creation (to be continued in~\autoref{verification}).
+{Programming languages} provide us an interface that enable crafting programs.
+The languages are an abstraction that relieve us from working directly with zeros and ones.
+We write programs that are intended to be intelligible to humans.
+Then, those programs are \enquote{translated} (compiled) into zeros and ones for processing by computers.
+However, this abstraction does nothing to reduce the intellectual challenge involved in programming~\cite{dijkstra1979b}.
+If we write a faulty program, we are at the mercy of our faulty creation (to be continued in~\autoref{verification}).
 
 There is one feature about programs that has always fascinated me immensely.
 It is that there are {multiple different ways} to write a program to compute the {same result}.
-Essentially, we fix the program input and output, but are free to change what happens in-between.
+Essentially, we fix the inputs and expected output, but are free to change what happens in-between.
 A scientifically inclined reader will recognize this concept as multiple algorithms computing the same function.
 A software engineer will recognize it in the art of refactoring.
 To demonstrate the idea, consider the two programs in~\autoref{lst:intro}.
 The variable \pr|bit| is either \(0\) or \(1\).
 It is clear the programs look different.
-Yet, for all values of \pr|X| and \pr|Y|, I claim they compute equivalent results, stored in \pr|Z|.
+Yet, for all values of \pr|X| and \pr|Y|, I claim they compute the same result, stored in \pr|Z|.
 
 \begin{center}
 \captionsetup{type=lstlisting}
@@ -39,46 +40,55 @@ Yet, for all values of \pr|X| and \pr|Y|, I claim they compute equivalent result
 \label{lst:intro}
 \end{center}
 
-After some visual inspection, it is natural to ask \emph{which one is better?}
-The behavior of the left-side program is {easier} to understand {to a human}.
-This is a useful criterion if the program is mainly intended for inspection by software engineers.
-The right-side program has the benefit that it eliminates the conditional branching and evaluates in {constant time}.
-These features are desirable for program security.
-Therefore, choosing the preferable program form depends on semantics: what do we mean by \emph{better}?
-Moreover, how could we locate such alternative-but-equivalent ways to write a program?
-We must also confirm that the programs \emph{actually} compute the same result, not just an informal claim!
-Thus, we need more than just abilities to write programs.
+It is natural to ask, \emph{which program is better?}
+The one on left reads more intuitively, making it easier to understand to a human.
+Clarity is a useful criterion if the program is intended for frequent inspection.
+The program on right has the advantage that it eliminates the conditional branching and evaluates in {constant time}.
+These features are desirable, \eg for program security.
+Choosing the preferable program form thus depends on semantics -- what do we mean by \emph{better}?
+
+The purpose of the example is to help recognize that we can study programs as mathematical objects;
+comparing their behaviors and quality attributes.
+We should also confirm that the programs {actually} compute the same result instead of trusting an informal claim!
+Thus, we need more than just abilities to \emph{write} programs.
 Studying and reasoning about their \emph{behaviors} is an independent scientific challenge.
 
 \subsection{Dissertation themes and topics}
 \label{subsec:dissertation-themes}
 
-Recognizing and embracing the ambiguity in programs brings us to the worlds of program analysis and formal methods.
-These are two foundational topics of this dissertation.
-Program analysis provides the techniques to inspect programs and determine whether they satisfy some desirable criterion.
-A technical term to describe such criterion is a \emph{property}.
-Broadly, we are interested in studying programs, in terms of properties, through various kind of syntactical program analyses.
-That is, we analyze how programs will behave at \emph{runtime} (when executed), based on the way programs are written, and without executing them.
+Once we embrace the natural ambiguity of programs, we arrive to program analysis and formal methods.
+These two are foundational topics of this dissertation.
 
+Program analysis provides us the motivations to inspect programs and verify whether they satisfy some desirable criterion.
+We call such criterion a \emph{property}.
+A property is \emph{functional} if it relates to computation of the expected output.
+Otherwise, a property is \emph{non-functional}.
+Non-functional properties include quality attributes like security and resource consumption.
+Broadly, the dissertation aims to analyze program properties through various \emph{syntactical} techniques.
+In other words, we analyze how programs will behave when they are executed, based on the way programs are written and without executing them.
 Formal methods complements the setting by adding the mathematical tools needed to obtain rigorous guarantees.
 With formal methods it is possible to provide \emph{proofs} about the conclusions of program analysis.
-This allows swapping informal claims to maximally strong assertions.
+This way, we can swap informal claims to maximally strong assertions.
 
-To make the dissertation exploration more adventurous, and worthy of a multiyear doctoral study, we add \emph{implicit computational complexity} (ICC).
-Briefly, ICC finds ways to characterize program (resource consumption) properties by introducing \emph{restrictions} at the level of a programming language.
-In other words, it restricts what programs can be written in exchange for behavioral guarantees.
-There are multiple compelling motivations for the implicit way of reasoning.
-ICC drives better understanding and yields natural definitions and proofs of central results~\cite{kristiansen2017}.
-It provides complementary and orthogonal techniques of program analysis and delivers different kinds of results.
+To make the dissertation exploration more adventurous, and worthy of a multiyear doctoral study, we add
+to the mix \emph{implicit computational complexity} (ICC).
+Within the dissertation scope, the role of ICC is to provide a \enquote{toolbox} for constructing program analyses.
+Briefly, ICC finds ways to characterize program properties (resource consumption) by introducing \emph{restrictions} at the level of programming languages.
+It restricts what programs can be written in exchange for behavioral guarantees.
+There are multiple compelling motivations for the ICC way of reasoning.
+It drives better understanding and yields natural definitions and proofs of central results~\cite{kristiansen2017}.
+It provides complementary and orthogonal techniques of program analysis, and delivers different kinds of results than alternatives.
 Importantly, ICC enables reasoning about properties \emph{before} any program exists.
-Through this temporal shift, ICC empowers us to think about properties as part of programming language \emph{design}.
-This removes the need for running \emph{aposteriori} analysis on programs.
+By this temporal shift, ICC empowers us to think about properties as part of programming language \emph{design}.
+This removes the need for \emph{aposteriori} analysis of programs.
 
-Combining the three topics gives the foundational setting of this dissertation.
-We aim to \emph{analyze} programs, ideally with \emph{formal guarantees}, and starting with a \emph{programming language} that provides those guarantees by design.
+Combining the three topics gives us the full settings.
+The dissertations is about \emph{analyzing} programs, ideally with \emph{formal guarantees}, and starting with a \emph{programming language}-based techniques that can provide guarantees by design.
 
 \subsection{Addressed Problem}
 \label{subsec:problem}
+
+
 
 When we restrict a language, we will not be able to write every program -- \ie we sacrifice Turing-completeness.
 This leads to the question, \emph{what can we do with such a language?}\footnote{

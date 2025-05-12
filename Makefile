@@ -40,7 +40,7 @@ update:
 	ott -i $< -o $@ -tex_wrap false
 
 loc:
-	cloc . --exclude-dir=tex_version,env,.github,.idea
+	cloc . --exclude-dir=env,.github,.idea
 
 clean:
 	@rm -rf *.pdf *.mst *.acn *.loa *.alg *glg *.glo *.gls *.ist *.slg \
