@@ -139,17 +139,17 @@ due to the possibility of having nested recursive definitions.
 As an example, one can define addition from the initial functions
 
 \begin{center}
-    \(\text{add}(0, x) = x\);
+\(\text{add}(0, x) = x\);
 
-    \(\text{add}(n + 1, x) = \text{add}(n, x) + 1\);
+\(\text{add}(n + 1, x) = \text{add}(n, x) + 1\);
 \end{center}
 
 and then define exponentiation \(n \mapsto 2^n\) from addition as follows:
 
 \begin{center}
-    \(\text{exp}(0) = 1\);
+\(\text{exp}(0) = 1\);
 
-    \(\text{exp}(n + 1) = \text{add}(\text{exp}(n), \text{exp}(n))\).
+\(\text{exp}(n + 1) = \text{add}(\text{exp}(n), \text{exp}(n))\).
 \end{center}
 
 \noindent Composing exp with itself allows us to form towers of exponentials of arbitrary size. %, thus saturating the Kalmar elementary functions.
