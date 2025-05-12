@@ -13,7 +13,7 @@ Repository to host, compile, and share my dissertation.
 * [Word template preview](https://augustauniversity.box.com/s/jcdajhkgoeedza3aabeb9x1fer8dv84t)
 * [Preparing Your Manuscript for Submission (ProQuest)](https://about.proquest.com/globalassets/proquest/files/pdf-files/preparing-your-manuscript.pdf)
 
-### Repository Organization
+### 📁 Repository Organization
 
 ```
   .
@@ -22,15 +22,15 @@ Repository to host, compile, and share my dissertation.
   ├─ 🗀 fonts/           : Custom fonts
   ├─ 🗀 latex/           : Custom LaTeX
   ├─ 🗀 pdf/             : Static resources (figures, manuscripts)
-  ├─ 🗀 pictures/        : TikZ drawings (to generate figures)
+  ├─ 🗀 pictures/        : TikZ drawings 
   ├─ 🗀 references/      : Bib and indices
   ├─ 🗀 text/            : Dissertation content
-  ├─ args.tex            : Meta data, template configuration
-  ├─ content.tex         : Dissertation sections configuration
+  ├─ args.tex            : Template configuration
+  ├─ content.tex         : Dissertation sections
   ├─ LICENSE             : CC Attribution 4.0 International 
   ├─ main.tex            : TGS ETD template 
   ├─ Makefile            : Build commands
-  └─ *                   : Other configuration files 
+  └─ *                   : Configuration files 
 ```
 
 
@@ -42,5 +42,6 @@ Run the container from the root of this repository.
 ```
 docker pull ghcr.io/xu-cheng/texlive-full:latest 
 docker run -v "$(pwd):/dissertation" -it --rm ghcr.io/xu-cheng/texlive-full
-cd dissertation && make
 ```
+
+Once insider the container, `cd dissertation && make` compiles the dissertation.
