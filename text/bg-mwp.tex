@@ -1032,3 +1032,58 @@ The derivation gives variable mwp-bounds\index{mwp-bound}
 \(x_2' \leq \prm{X0}+\prm{X2}+\prm{X1}\).
 The program has 81 admissible derivations in total.
 \end{example}
+
+\subsubsection{Analysis of the Equivalent Programs}
+
+Recall the equivalent programs of~\autoref{lst:intro}.
+For program analysis, they must first be transformed to the imperative language of the flow calculus.
+Importantly, the arithmetic operations must be rewritten to binary expressions.
+Listings~\ref{lst:equiv-imp1} and~\ref{lst:equiv-imp2} show the programs after transformation.
+
+\captionsetup{type=lstlisting}
+\impinputlisting[][numbers=none]{equiv3.imp}
+\captionof{lstlisting}[Program with control flow]{Program with control flow.}
+\label{lst:equiv-imp1}
+
+\captionsetup{type=lstlisting}
+\impinputlisting[][numbers=none]{equiv4.imp}
+\captionof{lstlisting}[Equivalent program using multiplication]{Equivalent program using multiplication.
+After transformation, the program contains 8 variables (\pr|X|, \pr|Y|, \pr|X|, \pr|bit|, \pr|c|, \pr|xb|, \pr|b|, \pr|yb|).
+The variable \pr|c| comes from lifting the constant \pr|1| an input.
+The other introduced variables hold intermediate values.}
+\label{lst:equiv-imp2}
+
+The program of \autoref{lst:equiv-imp1} is derivable by the following derivation.
+The (only) mwp-bound assigned to variable \pr|Z| is \(\max(\prm{X},\prm{Y})\).
+
+\begin{center}\begin{prooftree}
+\infer0[E1]{\vdashJK \text{\pr|X|} : \mat{m\\0\\0}}
+\infer1[A]{ \vdashJK \text{\pr|Z=X|} : \mat{m&0&m \\ 0&m&0 \\0&0&0}}
+\infer0[E1]{\vdashJK \text{\pr|Y|} : \mat{0\\m\\0}}
+\infer1[A]{ \vdashJK \text{\pr|Z=Y|} : \mat{m&0&0 \\ 0&m&m \\0&0&0}}
+\infer2[C]{\vdashJK \text{\pr|if (*) then Z=X else Z=Y|} :  \mat{m&0&m \\ 0&m&m \\0&0&0}}
+\end{prooftree}\end{center}
+
+
+The program in \autoref{lst:equiv-imp2}) is similarly derivable\footnote{
+    Trivially: all programs without loops are derivable.}, though the derivation is omitted for brevity.
+One mwp-matrix (of 81 in total) that is assigned to the program is
+\begin{center}
+\( %\vdashJK \prm{C}_0\prm{;}\prm{C}_1\prm{;}\prm{C}_2\prm{;}\prm{C}_3 :
+\begin{pNiceMatrix}[first-row,first-col]
+    & \prm{X} & \prm{Y} & \prm{Z} & \prm{bit} & \prm{c} & \prm{xb} &  \prm{b} & \prm{yb} \\
+    \prm{X}   &      m  &      0  &      w  &        0  &      0  &      w   &       0  &       0  \\
+    \prm{Y}   &      0  &      m  &      p  &        0  &      0  &      0   &       0  &       w  \\
+    \prm{Z}   &      0  &      0  &      0  &        0  &      0  &      0   &       0  &       0  \\
+    \prm{bit} &      0  &      0  &      p  &        m  &      0  &      w   &       0  &       p  \\
+    \prm{c}   &      0  &      0  &      p  &        0  &      m  &      0   &       m  &       w  \\
+    \prm{xb}  &      0  &      0  &      0  &        0  &      0  &      0   &       0  &       0  \\
+    \prm{b}   &      0  &      0  &      0  &        0  &      0  &      0   &       p  &       0  \\
+    \prm{yb}  &      0  &      0  &      0  &        0  &      0  &      0   &       0  &       0  \\
+\end{pNiceMatrix}\).
+\end{center}
+
+By this mwp-matrix, variable Z is assigned an mwp-bound \(\max(\prm{X}) + \prm{Y} \times \prm{bit} \times \prm{c}\).
+The mwp-bound simplifies to \(\prm{X} + \prm{Y} \times \prm{bit}\).
+This bound is less precise than \(\max(\prm{X},\prm{Y})\).
+Therefore, when we want to reason about variable value growth, the program in \autoref{lst:equiv-imp1} is preferable.
