@@ -245,36 +245,38 @@ It has been peer-reviewed as a submission at a doctoral symposium.
 \subsection{Important Tips for Interacting With This Document}
 \label{subsec:tips}
 
-This dissertation contains three different-length versions of its contents.
-Read the version that best fits your needs and available time.
+This dissertation contains three versions of its contents.
+The versions differ in length.
+Read the version that best matches your needs and time constraints.
 
 \begin{mdframed}[backgroundcolor=priorbase,linecolor=cc]
 \begin{enumerate}[wide, labelwidth=!, labelindent=0pt]
-\item The \hyperref[abs]{abstract} includes the highlights only.
-\item Chapters~\ref{introduction}--\ref{ch:discussion} and \ref{app:additional-manuscripts} contain the full length presentation.
-\item \autoref{ch:summary} summarizes the full-length presentation in a standalone way.
+\item The \hyperref[abs]{abstract}:covers the highlights only.
+\item Chapters~\ref{introduction}--\ref{ch:discussion} and \ref{app:additional-manuscripts}: the full length presentation.
+\item \autoref{ch:summary}: an extended, standalone abstract of the full presentation.
 \end{enumerate}
 \end{mdframed}
 
 \subsubsection{Software Artifacts and Data Availability}
 
+Each published and publication-ready manuscript---including the dissertation itself---comes with a software artifact.
+In other words, each manuscript consists of more than {just the text pages} of this dissertation.
 All software developed as part of this dissertation is publicly available.
-Each published and publication-ready manuscript---including the dissertation itself---comes with a software artifact, as specified in~\autoref{app:sec:artifacts}.
-The publication ready software is archived for long-term retention, according to the policies of the Association for Computing Machinery (ACM) artifact guidelines~\cite{acm_badging}.
-The software is achieved even if the venue of a manuscript did not have a formal artifact evaluation round.
-Thus, each manuscript consists of more than \enquote{just the text pages} of this dissertation.
+How to locate the associated software is explained in~\autoref{app:sec:artifacts}.
+The software is archived for long-term retention according to the policies of the Association for Computing Machinery~\cite{acm_badging}.
+The software is achieved even if the publication venue did not have an official artifact evaluation round.
 
 \subsubsection{Notational Conventions}
 
 \paragraph*{Code blocks and line numbers.}
-Syntactic constructs (variables, expressions, commands, \etc), that appear in textual paragraphs, are typeset in \texttt{teletype}.
-
-Larger code blocks are displayed in dedicated standalone listings.
-The listings will display, in bottom right corner, the associated programming language or context, according to~\autoref{tab:pls}.
-Version shows the programming language or specification release version assumed in the code blocks.
+Inlined syntactic constructs (variables, expressions, commands, \etc) are typeset in \texttt{teletype}.
+Larger code blocks are displayed in dedicated listings.
+The listings will display, in bottom right corner, the associated programming language (or context) according to~\autoref{tab:pls}.
+In the table, \emph{Version} is the release version assumed in the dissertation listings.
 Pseudo-languages have no version.
-Plain text command outputs are labelled as \enquote{output}.
-The Rocq theorem prover (formerly Coq) is undergoing a name change; whenever possible we refer to the new name.
+Plain text listings, that describe command outputs, are labelled \enquote{output}.
+The Rocq Prover (formerly Coq) is actively undergoing a name change.
+Whenever possible we refer to the new name.
 
 \begin{table}[h]
 \begin{center}
@@ -295,20 +297,21 @@ The Rocq theorem prover (formerly Coq) is undergoing a name change; whenever pos
 \langclr{cwhile}    & While & simple imperative while language & -- \\
 \bottomrule
 \end{tabular}\end{center}
-\caption[The programming languages of code listings]{The programming languages of code listings.}
+\caption[The programming languages of code listings]{The programming languages used in code listings.}
 \label{tab:pls}
 \end{table}
 
-When referring to a specific line of source code or an algorithm, we write L, for \underline{l}ine;
-followed by a number or a numeric range that specifies the rows of interest.
-For example, L3 means \enquote{line number 3}, and L10--12 means \enquote{lines 10 to 12}.
+References to specific line of source code, or an algorithm, begin with L, for \underline{l}ine.
+The L is followed by a number (or a numeric range) that specifies the rows of interest.
+For example, L3 means \enquote{line number 3}, and L10--12 means \enquote{lines 10 through 12}.
 
 \paragraph*{Distinguishing variable states.}
-When referring to the same variable in different states of computation, we use notation that identifies the \emph{new} (post) states,
-in the style of the Z specification language\index{Z specification language}~\cite{spivey1992}.
+We will often want to refer to the same variable in different states of computation.
+In the style of the Z specification language\index{Z specification language}~\cite{spivey1992},
+we use notation that identifies the \emph{new (post) states}.
 A plain variable refers to a state where the variable holds its \emph{initial} value.
-If the same variable has a postfix decoration \pr|'| then it refers to a state where the variable holds its \emph{final} value.
-For example, \pr|X| refers to the initial value and \pr|X'| to the final value.
+A variable with a postfix decoration \pr|'| refers to a state where the variable holds its \emph{final} value.
+For example, \pr|X| refers to the initial value, and \pr|X'| refers to the final value.
 
 \subsubsection{Term and Notational Indices}
 

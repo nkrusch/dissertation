@@ -33,7 +33,6 @@ Repository to host, compile, and share my dissertation.
   └─ *                   : Configuration files 
 ```
 
-
 ### 🐳 Docker environment for compilation
 
 Pull latest [texlive-full image](https://github.com/xu-cheng/latex-docker/pkgs/container/texlive-full), then launch the container.
