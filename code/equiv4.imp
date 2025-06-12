@@ -1,1 +1,4 @@
-xb = X * bit; b = c - bit; yb = Y * b; Z = xb + yb
+t = c - bit;    // 1 - bit
+t = Y * t;      // Y * (1 - bit)
+Z = X * bit;    // Z = X * bit
+Z = Z + t;      // Z = X * bit + Y * (1 - bit)

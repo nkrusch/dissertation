@@ -25,6 +25,7 @@ at a rate of few microseconds per input-pair, would require more than 10,000 yea
 Thus, among computer scientists, the skepticism around software correctness is a long-held position.
 It is also the core problem tackled by formal methods.
 
+\paragraph*{Motivations and challanges.}
 Formal methods aims to remove uncertainty by providing techniques that allow establishing strong behavioral guarantees.
 Formal methods is deeply rooted in mathematics and logic~\cite{shankar2023}.
 In this view, programs are defined as precise mathematical \emph{models} with {specifications}.
@@ -43,8 +44,9 @@ Those conditions are then formally verified using proofs.
 Despite the clear benefits, wider adoption of formal methods is impeded by challenges involving \eg resource investment (formal proofs are time-consuming), tooling, and education~\cite{beek2024}.
 A slightly different challenge concerns the \emph{methods} themselves.
 The Four Color theorem is the first famous result with a proof that requires large computer calculations.
-When the proof appeared in 2008, such proofs were still controversial on the basis that computer programs could not be reviewed with mathematical rigor~\cite{gonthier2008}.
-Thus, one factor in advancing formal methods concerns educating wider communities about the capabilities.
+When the proof appeared in 2008, such proofs were still controversial.
+The basis of the controversy was that computer programs could not be reviewed with mathematical rigor~\cite{gonthier2008}.
+Thus, a critical factor in advancing formal methods concerns educating wider communities about the capabilities.
 
 \begin{quotation}
 \noindent{}We can envision [\ldots] a world in which computer programs are always the most reliable components of any system or device~\cite{hoare2021}.
@@ -217,7 +219,7 @@ Among the tools, interactive theorem proving and verification-aware programming 
     \href{https://github.com/verifast/verifast}{VeriFast}\index{VeriFast} %(C, Rust, Java)
     \\
 \midrule
-\multicolumn{2}{@{}l}{\textbf{Linear programming/optimization}} \\
+\multicolumn{2}{@{}l}{\textbf{Linear programming \& optimization}} \\
 &
     \href{https://github.com/coin-or/Clp}{Clp}\index{Clp},
     \href{https://en.wikipedia.org/wiki/CPLEX}{CPLEX}\index{CPLEX},
@@ -474,14 +476,13 @@ For example, if we wanted to prove the lemma of~\autoref{lst:rocq-basic} in Dafn
 \begin{center}
 \includegraphics[width=\textwidth,keepaspectratio]{fig_vs1}
 \end{center}
-\caption[Dafny running in Visual Studio Code]
-{The Dafny verifier, checking Dafny code, running in Visual Studio Code.
-A green filled check {\color{dafnyok}{\scalebox{.8}{\faCheckCircle}}}
-means the verifier succeeds at the proof obligation of the corresponding line.
-A big green check{ }{ }\circled[dafnyok]{\faCheck}{ }indicates success with the full construct.
-The verification fails on the declarations that are marked with a red block and squiggly underline.
-A big red{ }{ }\circled[dafnyno]{\faTimes}{ }marks full constructs that fail to verify, even if some inner declarations succeed.}
-\label{fig:dafny-use}
+\caption[Dafny running in Visual Studio Code]{
+The Dafny verifier checking Dafny code (running in Visual Studio Code).
+A big green check{ }{ }\circledb[dafnyok]{\faCheck}{ }means the verifier succeeds at proving the corresponding program construct.
+A big red cross{ }{ }\circledb[dafnyno]{\scalebox{1.25}{\faTimes}}{ }identifies program constructs that fail to verify completely, even if some inner declarations succeed.
+A green filled check {\color{dafnyok}{\scalebox{.8}{\faCheckCircle}}} means the verifier succeeds at the proof obligation at the corresponding line.
+The verification fails at declarations marked with a red block \langclr{dafnyred} and\;\;\uwave{squiggly underline}{}.
+}\label{fig:dafny-use}
 \end{figure}
 
 A program accepted by the Dafny verifier is guaranteed to be totally correct, \ie it terminates and satisfies its specification.

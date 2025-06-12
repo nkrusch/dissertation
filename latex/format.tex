@@ -121,3 +121,9 @@ delim_t "\\normalsize"
     linewidth=1.5pt,   % same as listings
     linecolor=sbase01, % dark grey frames
 }
+
+% red squiggly underline
+\makeatletter
+\def\uwave{\bgroup \markoverwith{\lower3.5\p@\hbox{\sixly \textcolor{dafnyred}{\char58}}}\ULon}
+\font\sixly=lasyb10
+\makeatother
