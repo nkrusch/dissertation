@@ -1,93 +1,14 @@
+%! suppress = DocumentclassNotInRoot
 \documentclass[crop,border={0pt 10pt 0pt 0pt}]{standalone}
 \input{../latex/pics}
 
-\newcommand\authT[2]{\enquote{\textbf{#1}}\\{{#2}}}
-\newcommand\authA{Jones \& Kristiansen\@\xspace}    
-\newcommand\authB{Aubert, Rubiano, Rusch \& Seiller\@\xspace}    
-\newcommand\authC{Moyen, Rubiano \& Seiller\@\xspace}    
-\newcommand\authD{Aubert \& Rusch}
-\newcommand\authE{Rusch}
- 
- \tikzstyle{start} = [
+\tikzstyle{start} = [
 	rectangle, below,
 	rounded corners=0pt, 
 	line width=1.5pt, 
 	minimum height=2cm,
 	text width=7cm, 
 	line cap=round]
-	
-\tikzstyle{conce} = [draw=concept, fill=conceptbase, loosely dotted]
-\tikzstyle{prior} = [draw=prior, fill=priorbase, thick, double]
-\tikzstyle{paper} = [draw=paper, fill=paperbase, thick]
-\tikzstyle{bllet} = [circle, inner sep=2.5pt, line width=1pt, solid]
-\tikzstyle{label} = [text width=1.5cm, align=left]
-\tikzstyle{arrow} = [thick,arrows={-Latex[width=5pt, length=5pt]}]
-\tikzstyle{rconn} = [arrow,pos=0.5, to path={(\tikztostart) -- ++(#1,0pt) \tikztonodes |- (\tikztotarget)}]
-\tikzstyle{icon}  = [text width=.5cm, font={\selectfont\large}]
-\tikzstyle{topic} = [text width=4cm, align=left]
 
-\begin{document}
-\begin{tikzpicture}[align=center,
-	block/.style args={#1:#2:#3:#4}{
-	paper, start, name={#1}, draw, node contents={\authT{#3}{#4}},
-    append after command={
-    	node[circle, fill=white, draw=paper, solid, 
-		line width=1.5pt, inner sep=2pt, outer sep=0.4pt,
-        xshift=4mm, yshift=1mm, anchor=north west] 
-        at (#1.north west) {\large #2}}}]
+\input{_papers}
 
-\newcommand\sy{-3}    
-\newcommand\sx{-8}                
-\newcommand\yi{-.75}    
-\newcommand\xl{-2.75}        
-
-\path   (1,18) node[bllet, conce, densely dotted] {}
-	 ++(1.3,0) node[label] {Concept}
-	 ++(1.8,0) node[bllet, prior] {}
-     ++(2.3,0) node[label, text width=3.5cm] {Prior foundational work}	 
-	 ++(2.8,0) node[bllet, paper] {}	 
-	 ++(2.0,0) node[label, text width=3cm] {Dissertation work}
-	 ++(2.3,0) node[font={\selectfont\Large}] {$*$}	 
-	 ++(1.2,0) node[label] {preprint};
-
-\path     (8, 17) node[start, conce] (icc) {\textbf{Implicit Computational Complexity}}
-   ++( \sx/2,\sy) node[start, prior] (mwp) {\authT{A Flow Calculus of mwp-Bounds\\for Complexity Analysis}{\authA (2009)}}
-   ++(-1*\sx,  0) node[start, prior] (qsi) {\authT{Loop Quasi-Invariant Chunk Detection}{\authC (2017)}}
-   ++(   \sx,\sy) node[block=imp:\iconSPA:{mwp-Analysis Improvement and Implementation: Realizing\\Implicit Computational Complexity}:{\authB (2022)}]
-   ++(-1*\sx,  0) node[block=ncl:\iconOPT:{Distributing and Parallelizing\\Non-canonical Loops}:{\authB (2023)}]
-   ++(   \sx,\sy) node[block=pym:\iconSPA:{pymwp: A Static Analyzer\\Determining Polynomial Growth Bounds}:{\authB (2023)}]
-   ++(-1*\sx,  0) node[block=nil:\iconSEC:{A Logic for\\Anytime Non-Interference}:{\authD$^*$}]
-   ++(   \sx,\sy) node[block=pci:\iconFM:{Polynomial Postconditions\\via mwp-Bounds}:{\authE$^*$}]
-   ++(     0,\sy) node[block=cca:\iconFM:{Certifying Complexity Analysis}:{\authB (2023)\\\authE (2023 -- ?)}];
-
-\draw [arrow] (icc) -- (mwp);
-\draw [arrow] (mwp) -- (imp);
-\draw [arrow] (imp) -- (pym);
-\draw [arrow] (pym) -- (pci);
-\draw [arrow] (icc) -- (qsi); 
-\draw [arrow] (qsi) -- (ncl); 
-\draw [arrow] (ncl) -- (nil); 
-\draw [rconn=-4cm] (mwp) to (cca);
-
-\path (  12, 4.5) node[text width=7cm] {Related Topics}
- ++(-2.5,\yi*1.5) node[icon]  {\iconSPA}
-    ++(-1*\xl, 0) node[topic] {Static Program Analysis}
-    ++(\xl,  \yi) node[icon]  {\iconOPT}
-    ++(-1*\xl, 0) node[topic] {Program Optimization}
-    ++(\xl,  \yi) node[icon]  {\iconFM}
-    ++(-1*\xl, 0) node[topic] {Formal Methods}
-    ++(\xl,  \yi) node[icon]  {\iconSEC}
-    ++(-1*\xl, 0) node[topic] {Security};
-
-\end{tikzpicture}
-\end{document}
-
-
-%\path ([xshift=1cm,yshift=-5mm]current bounding box.north east)
-%node[matrix,anchor=north west,cells={nodes={font=\footnotesize,anchor=west}},
-%draw,thick,inner sep=1ex]{
-%    \draw[-latex,medge](0,0) -- ++ (0.6,0); & \node{maximally linear};\\
-%    \draw[-latex,wedge](0,0) -- ++ (0.6,0); & \node{weak polynomial};\\
-%    \draw[-latex,pedge](0,0) -- ++ (0.6,0); & \node{polynomial};\\
-%    \draw[-latex,iedge](0,0) -- ++ (0.6,0); & \node{failure};\\
-%};
