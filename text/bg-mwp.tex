@@ -233,7 +233,7 @@ The loop analysis variant is implemented in pymwp\index{pymwp} as a special mode
 \midrule
   & Motivation & complexity theory & toward static analysis & static analysis & verification \\
 \textsc{input}
-  & Language & \(\mathcal{L}\) (baseline)\smtabularnote{A language is similar to IMP in~\textcite{nielson2010,cpierce20221}.} & \(\mathcal{L} + f +\) recursion & \(\mathcal{L} \mapsto \) C99 & loops \(\subset \mathcal{L}\) \\
+  & Language & \(\mathcal{L}\) (baseline)\smtabularnote{The language is similar to IMP in~\textcite{winskel1993} and~\textcite{cpierce20221}.} & \(\mathcal{L} + f +\) recursion & \(\mathcal{L} \mapsto \) C99 & loops \(\subset \mathcal{L}\) \\
 \midrule
 \textsc{procedure}
   & Calculus variant & \textsc{mwp} & \textsc{mwp}\(^\infty\) & \textsc{mwp}\(^\infty\) & \textsc{mwp}\(^\infty\) \\
@@ -243,10 +243,10 @@ The loop analysis variant is implemented in pymwp\index{pymwp} as a special mode
   & Feedback on failure & none & none & failing variables & failing variables \\
 \midrule
 \textsc{output}
-    & Generated bound & arbitrary & exists (y/n)\smtabularnote{Analysis determines if a bound exists, but does not provide bound expressions reliably.} & arbitrary & optimal \\
-    & Bounds discovery & immediate & brute force & evaluation & evaluation \\
-    & Bounds granularity & whole-program & whole-program & whole-program & variables \\
-    & Implementation & none & pymwp 0.1.6 & pymwp 0.4.2 & mwp\(_\ell\) \\
+  & Generated bound & arbitrary & exists (y/n)\smtabularnote{Analysis determines if a bound exists, but does not provide bound expressions reliably.} & arbitrary & optimal \\
+  & Bounds discovery & immediate & brute force & evaluation & evaluation \\
+  & Bounds granularity & whole-program & whole-program & whole-program & variables \\
+  & Implementation & none & pymwp 0.1.6 & pymwp 0.4.2 & mwp\(_\ell\) \\
 \bottomrule
 \end{NiceTabularX}
 \caption[Technical developments of the flow calculus of mwp-bounds]

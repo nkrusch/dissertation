@@ -43,4 +43,4 @@ docker pull ghcr.io/xu-cheng/texlive-full:latest
 docker run -v "$(pwd):/dissertation" -it --rm ghcr.io/xu-cheng/texlive-full
 ```
 
-Once insider the container, `cd dissertation && make` compiles the dissertation.
+Insider the container run `cd dissertation && make` to compile the dissertation.
