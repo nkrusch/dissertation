@@ -1,16 +1,7 @@
 %! suppress = DocumentclassNotInRoot
-\documentclass[crop,border={0pt 5pt 0pt 0pt}]{standalone}
+\documentclass[crop,border={0pt}]{standalone}
 \input{../latex/pics}
-
-\tikzstyle{start} = [
-	rectangle, solid,
-	rounded corners=4pt,
-	line width=1.5pt,
-	minimum height=2cm,
-	text width=6.5cm,
-	text centered,
-	draw=concept,
-	fill=conceptbase,
-	line cap=round]
-
+\newcommand\startwidth{6.5cm}
+\newcommand\sx{-7.25}
+\newcommand\rounding{4pt}
 \input{_papers}
