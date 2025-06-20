@@ -14,7 +14,7 @@
 \begin{tikzpicture}[align=center]
 %\draw[gray!40,step=.25] (0,0) grid (4*\sx+1.25,3);
 
-\draw[box] (\sx-1, 0) rectangle node[above=.55cm, it] {pymwp static analyzer} ++(3*\sx-.75, 3);
+\draw[box] (\sx-1, -0.25) rectangle node[above=.85cm, it] {pymwp static analyzer} ++(3*\sx-.75, 3.5);
 
 \path (0,.25)       node[doc]   (0) {</>} 
 	++(0,0)         node[above=.2cm of 0] {program}
@@ -27,7 +27,7 @@
     ++(0,0)         node[below=.2 of 4, it] {output} ;	
 
 \draw [arrow, open] (0) -- (1) node[label, xshift=-7pt] {source\\code};
-\draw [arrow] (1) -- (2) node[label] {AST}; 
+\draw [arrow] (1) -- (2) node[label] {AST} node[label, below, text width=1cm, yshift=-5pt, it] {syntax check};
 \draw [arrow] (2) -- (3) node[label] {matrix}; 
 \draw [arrow] (3) -- (4) node[label, xshift=7pt] {object}; 
 
