@@ -25,6 +25,10 @@
 \renewcommand{\notationautorefname}{Notation}
 }
 
+\makeatletter
+\renewcommand*\l@subsection{\@dottedtocline{2}{3.8em}{2.5em}}
+\makeatother
+
 % Theorem styles
 \AtBeginEnvironment{theorem}{\pushQED{\qed}}
 \AtEndEnvironment{theorem}{\popQED\endexample}
