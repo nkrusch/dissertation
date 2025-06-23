@@ -228,7 +228,7 @@ By the fundamental theorem of dependence, a reordering transformation that prese
 How data is accessed during computations creates dependencies in terms of \emph{order} of shared memory operations.
 There is a \emph{data dependence}\index{data dependence} from statement \pr|S1| to \pr|S2|
 if and only if both statements access the same memory location, at least one statement writes to the location,
-and there is a runtime execution path from \pr|S1| to \pr|S2|~\cite[p. 59-60]{kennedy2001}.
+and there is a runtime execution path from \pr|S1| to \pr|S2|~\cite[p. 59--60]{kennedy2001}.
 Dependence is further complicated by the program's control flow.
 Conditional branching creates a \emph{control dependence} between the control statement
 and the statements whose execution depends on the control statement~\cite[p. 374]{kennedy2001}.

@@ -14,7 +14,7 @@ including detecting logical issues in the specification of the input program.
 Foundational techniques include, \eg
 type and effect systems;
 control- and data-flow analyses;
-abstract interpretation\index{abstract interpretation};
+abstract interpretation~\cite{cousot2021}\index{abstract interpretation};
 constraint-based, pointer, and inter-procedural analyses;
 and fixed point algorithms~\cite{nielson2010,moller2023}.
 Static program analysis is strongly practice-oriented and frequently materialized in automatic analyzers.
@@ -137,7 +137,7 @@ Numerous techniques can be used to reason about such properties.
 This dissertation is concerned with techniques of data-size analysis.
 Among the specific and well-established techniques are automatic amortized\index{amortization} resource analysis and cost equation systems, presented briefly next.
 
-\paragraph*{Automatic amortized resource analysis.}\index{AARA}
+\paragraph*{Automatic amortized resource analysis.}
 Amortized analysis\index{amortization} averages the time required to perform a sequence of operations over all the operations performed~\cite[p. 451]{cormen2009}.
 It enables to show that the average cost of an operation is small, even if a single operation might be expensive.
 Automatic amortized resource analysis (AARA)~\cite{hoffmann2022} builds on this idea to provide an automatic static technique for deriving arithmetic resource bounds.
