@@ -1,4 +1,4 @@
-SRC := $(wildcard *.tex)
+SRC := $(shell find *.tex ! -name "_*")
 PDF_IMG := ${SRC:%.tex=fig_%.pdf}
 
 all: $(PDF_IMG) mv_pdf_pics clean

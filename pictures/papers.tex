@@ -1,68 +1,7 @@
-\documentclass[crop,border={0pt 5pt 0pt 0pt}]{standalone}
+%! suppress = DocumentclassNotInRoot
+\documentclass[crop,border={0pt}]{standalone}
 \input{../latex/pics}
-
-\tikzset{font={\selectfont\normalsize}}
-
-\newcommand\authA{Jones \& Kristiansen\@\xspace}    
-\newcommand\authB{Aubert, Rubiano, Rusch \& Seiller\@\xspace}    
-\newcommand\authC{Moyen, Rubiano \& Seiller\@\xspace}    
-\newcommand\authD{Aubert \& Rusch}
-\newcommand\authE{Rusch}
-\newcommand\authT[2]{\enquote{\textbf{#1}}\\{{#2}}}
-
-\tikzstyle{start} = [
-	rectangle, rounded corners=4pt, line width=1.5pt, minimum height=2cm,
-	text width=6.5cm, text centered, draw=concept, solid, fill=conceptbase, line cap=round]
-	
-\tikzstyle{prior} = [start, draw=prior, fill=priorbase, double, line width=.7pt]
-\tikzstyle{node} =  [start, draw=paper, fill=paperbase]
-\tikzstyle{rectangle connector} = [arrow,pos=0.5, to path={(\tikztostart) -- ++(#1,0pt) \tikztonodes |- (\tikztotarget)}]
-\tikzstyle{topic icon} = [rectangle, text width=.5cm, yshift=2.3cm, font={\selectfont\large}]
-\tikzstyle{topic label} = [rectangle, text width=5cm, yshift=-.25mm, align=left]
-
-\begin{document}
-\begin{tikzpicture}[node distance=3cm,align=center,
-	block/.style args={#1:#2:#3:#4}{node, 
-	name={#1}, draw,
-    node contents={\authT{#3}{#4}},
-    append after command={
-    	node[circle, fill=white, draw=paper, solid, line width=1.5pt,
-		inner sep=2pt, outer sep=0.4pt,
-        xshift=3mm, yshift=1mm, anchor=north west] at (#1.north west) {\large #2}}}]
-   
-\node (icc) [start, loosely dotted] at (5,10) {\textbf{Implicit Computational Complexity}};
-\node (mwp) [prior, below of=icc, xshift=-3.5cm] {\authT{A Flow Calculus of mwp-Bounds\\for Complexity Analysis}{\authA (2009)}};
-\node (qsi) [prior, right of=mwp, xshift=4.3cm] {\authT{Loop Quasi-Invariant Chunk Detection}{\authC (2017)}};
-\node [below of=mwp, block=imp:\iconSPA:{mwp-Analysis Improvement and Implementation: Realizing\\Implicit Computational Complexity}:{\authB (2022)}];
-\node [below of=imp, block=pym:\iconSPA:{pymwp: A Static Analyzer\\Determining Polynomial Growth Bounds}:{\authB (2023)}];
-\node [below of=pym, block=pci:\iconFM:{Polynomial Postconditions\\via mwp-Bounds}:{\authE$^*$}];
-\node [below of=qsi, block=ncl:\iconOPT:{Distributing and Parallelizing\\Non-canonical Loops}:{\authB (2023)}];
-\node [below of=ncl, block=nil:\iconSEC:{A Logic for\\Anytime Non-Interference}:{\authD$^*$}];
-\node [below of=pci, block=cca:\iconFM:{Certifying Complexity Analysis}:{\authB (2023)\\\authE (2023 -- ?)}];
-
-\draw [arrow] (icc) -- (mwp);
-\draw [arrow] (mwp) -- (imp);
-\draw [arrow] (imp) -- (pym);
-\draw [arrow] (pym) -- (pci);
-\draw [arrow] (icc) -- (qsi); 
-\draw [arrow] (qsi) -- (ncl); 
-\draw [arrow] (ncl) -- (nil); 
-\draw [rectangle connector=-4cm] (mwp) to (cca);
-
-\node (topics)   [rectangle, below of=nil, text width=5cm,yshift=20pt] {Related Topics};
-\node (analysis) [topic icon, xshift=-2.2cm, yshift=-.2cm, below of=topics] {\large\iconSPA};
-\node            [topic label, right of=analysis] {Static Program Analysis};
-\node (optimize) [topic icon, below of=analysis] {\large\iconOPT};
-\node            [topic label, right of=optimize] {Program Optimization};
-\node (verify)   [topic icon, below of=optimize] {\large\iconFM};
-\node            [topic label, right of=verify] {Formal Methods};
-\node (security) [topic icon, below of=verify] {\large\iconSEC};
-\node (SL)       [topic label, right of=security] {Security};
-
-\fill[draw=concept, line width=1pt, fill=conceptbase, densely dotted] (-2, 12) circle (.75ex) node[right, xshift=3mm]{Concept};
-\fill[draw=prior, thick, fill=priorbase, double] (1, 12) circle (.75ex) node[right, xshift=3mm]{Prior foundational work};
-\fill[draw=paper, thick, fill=paperbase, solid] (6, 12) circle (.75ex) node[right, xshift=3mm]{Dissertation work};
-\node[topic label, text width=1.5cm] at (11, 12) {$\ast$ {preprint}};
-
-\end{tikzpicture}
-\end{document}
+\newcommand\startwidth{6.5cm}
+\newcommand\sx{-7.25}
+\newcommand\rounding{4pt}
+\input{_papers}

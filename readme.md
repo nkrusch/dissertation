@@ -9,8 +9,7 @@ Repository to host, compile, and share my dissertation.
 
 * [Augusta University ETD Guides](https://guides.augusta.edu/etd)
 * [AU Dissertation Guide Booklet v.2024](https://augustauniversity.app.box.com/s/vj0ygpy8tvyqmsbae8y0qp9767ta7jb9)
-* [LaTeX Dissertation template](https://github.com/aubertc/au_ccs_dissertation_template/)
-* [Word template preview](https://augustauniversity.box.com/s/jcdajhkgoeedza3aabeb9x1fer8dv84t)
+* [Dissertation template](https://github.com/aubertc/au_ccs_dissertation_template/) (LaTeX/markdown)
 * [Preparing Your Manuscript for Submission (ProQuest)](https://about.proquest.com/globalassets/proquest/files/pdf-files/preparing-your-manuscript.pdf)
 
 ### 📁 Repository Organization
@@ -43,4 +42,4 @@ docker pull ghcr.io/xu-cheng/texlive-full:latest
 docker run -v "$(pwd):/dissertation" -it --rm ghcr.io/xu-cheng/texlive-full
 ```
 
-Once insider the container, `cd dissertation && make` compiles the dissertation.
+Insider the container run `cd dissertation && make` to compile the dissertation.

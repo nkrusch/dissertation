@@ -25,6 +25,11 @@
 \renewcommand{\notationautorefname}{Notation}
 }
 
+\makeatletter
+\renewcommand*\l@section{\@dottedtocline{1}{1.5em}{1.6em}}
+\renewcommand*\l@subsection{\@dottedtocline{2}{3.1em}{2.7em}}
+\makeatother
+
 % Theorem styles
 \AtBeginEnvironment{theorem}{\pushQED{\qed}}
 \AtEndEnvironment{theorem}{\popQED\endexample}
@@ -39,9 +44,9 @@
 \algrenewcommand\alglinenumber[1]{\color{sviolet}\footnotesize #1\hspace{1em}}
 
 % set min-length for dot-fill
-\DeclareRobustCommand\mydotfill{%
+\newcommand\mydotfill{%
 \leavevmode
-\cleaders \hbox to.44em{\hss.\hss}\hskip 1.32em plus 1fill
+\mbox{}\cleaders\hbox to.44em{\hss.\hss}\hskip 1.42em plus 1fill
 \kern0pt }
 
 % Term Index
@@ -56,17 +61,17 @@
 \setlength{\parindent}{0em}
 \begin{multicols*}{2}\raggedcolumns}
 {\end{multicols*}}
-\renewcommand{\@idxitem}{\par\hangindent 21\p@}
+\renewcommand{\@idxitem}{\par\hangindent 15\p@}
 \makeatother
 
 \begin{filecontents}{\jobname.mst}
 headings_flag 1
 heading_prefix "\{\\normalsize\\textbf\{"
 heading_suffix "\}\}\\nopagebreak\n"
-delim_0 " \\mydotfill \\footnotesize~"
-delim_1 " \\mydotfill \\footnotesize~"
-delim_2 " \\mydotfill \\footnotesize~"
-delim_t "\\normalsize"
+delim_0 "\\mydotfill\{\\footnotesize"
+delim_1 "\\mydotfill\{\\footnotesize"
+delim_2 "\\mydotfill\{\\footnotesize"
+delim_t "\} "
 \end{filecontents}
 
 %% Glossaries
@@ -75,8 +80,8 @@ delim_t "\\normalsize"
 \newglossarystyle{longraggeddots}{
     \setglossarystyle{longragged}%
     \renewcommand*{\glossentry}[2]{%
-       \glstarget{##1}{\glossentryname{##1}} & \glossentrydesc{##1}
-       \space\mydotfill\space\footnotesize{##2}\tabularnewline
+       \glstarget{##1}{\glossentryname{##1}} &
+       \glossentrydesc{##1}\mydotfill\footnotesize{##2}\tabularnewline
    }
 }
 \setglossarystyle{longraggeddots}

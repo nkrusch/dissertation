@@ -153,6 +153,8 @@ Investigations of both are needed for scientific advancement.
 This goal corresponds to a series of manuscripts that extend the flow calculus of mwp-bounds (\autoref{flow-calculus}).
 
 The last two goals are social.
+Initiate discourse on relevance of applications within the ICC community.
+Expose ICC-based analyses to broader research communities.
 % TODO: finish this thought
 
 %A guiding intuition behind these goals is that, {if applied}, implicit computational complexity could provide new practical program analyses.
@@ -168,7 +170,7 @@ The last two goals are social.
 % Assuming the successful completion of each project, they would show that certifiably correct complexity analysis is achievable, and that ICC techniques can be used to obtain efficient and practical complexity analysis.
 % These results would extend current capabilities in automatic complexity analysis, and move those techniques closer to becoming a standard in real-world software verification.
 
-\subsection{Overview of Manuscripts and Research Questions}
+\subsection{Manuscripts and Research Questions}
 \label{subsec:conn-papers}
 
 \begin{figure}[p]
@@ -239,28 +241,28 @@ The unpublished works, in \autoref{ch:unpublished-research}, have been reviewed 
 However, the unpublished research requires a word of caution.
 By implication, they all have some limitation that prevents them from being in the {published} manuscripts-chapter.
 Preliminary versions of most unpublished works have been accepted and presented at respectable workshops.
-\autoref{ch:summary} is a stand-alone extended abstract about the entire dissertation.
-It has been peer-reviewed as a submission at a doctoral symposium.
+\autoref{ch:summary} is a stand-alone extended abstract.
+It has been peer-reviewed as a submission at the 2025 ECOOP doctoral symposium.
 
-\subsection{Important Tips for Interacting With This Document}
+\subsection{Important Tips for Interacting With This Dissertation}
 \label{subsec:tips}
 
-This dissertation contains three versions of its contents.
-The versions differ in length.
-Read the version that best matches your needs and time constraints.
+This dissertation contains three, varying-length versions of its contents.
 
-\begin{mdframed}[backgroundcolor=priorbase,linecolor=cc]
+\begin{mdframed}[backgroundcolor=paperbase,linecolor=paper]
 \begin{enumerate}[wide, labelwidth=!, labelindent=0pt]
-\item The \hyperref[abs]{abstract}:covers the highlights only.
-\item Chapters~\ref{introduction}--\ref{ch:discussion} and \ref{app:additional-manuscripts}: the full length presentation.
-\item \autoref{ch:summary}: an extended, standalone abstract of the full presentation.
+\item The \textbf{\hyperref[abs]{abstract}} contains the highlights only.
+\item \textbf{Chapters~\ref{introduction}--\ref{ch:discussion} and~\ref{app:additional-manuscripts}} is the full-length presentation.
+\item \textbf{\autoref{ch:summary}} is a standalone, extended summary of the full presentation.
 \end{enumerate}
 \end{mdframed}
 
+Choose the version that best matches your needs.
+
 \subsubsection{Software Artifacts and Data Availability}
 
-Each published and publication-ready manuscript---including the dissertation itself---comes with a software artifact.
-In other words, each manuscript consists of more than {just the text pages} of this dissertation.
+Each published and publication-ready manuscript---including the dissertation itself---has an associated software artifact.
+In other words, each manuscript consists of more than just the text pages of the dissertation.
 All software developed as part of this dissertation is publicly available.
 How to locate the associated software is explained in~\autoref{app:sec:artifacts}.
 The software is archived for long-term retention according to the policies of the Association for Computing Machinery~\cite{acm_badging}.
@@ -272,11 +274,11 @@ The software is achieved even if the publication venue did not have an official 
 Inlined syntactic constructs (variables, expressions, commands, \etc) are typeset in \texttt{teletype}.
 Larger code blocks are displayed in dedicated listings.
 The listings will display, in bottom right corner, the associated programming language (or context) according to~\autoref{tab:pls}.
-In the table, \emph{Version} is the release version assumed in the dissertation listings.
+In the table, \emph{version} is the release version assumed in the dissertation listings.
 Pseudo-languages have no version.
 Plain text listings, that describe command outputs, are labelled \enquote{output}.
-The Rocq Prover (formerly Coq) is actively undergoing a name change.
-Whenever possible we refer to the new name.
+The Rocq Prover (formerly Coq) is undergoing a name change.
+We will use the new name whenever possible.
 
 \begin{table}[h]
 \begin{center}
@@ -307,43 +309,45 @@ For example, L3 means \enquote{line number 3}, and L10--12 means \enquote{lines 
 
 \paragraph*{Distinguishing variable states.}
 We will often want to refer to the same variable in different states of computation.
-In the style of the Z specification language\index{Z specification language}~\cite{spivey1992},
+In the style of \ndx{Z specification language}~\cite{spivey1992},
 we use notation that identifies the \emph{new (post) states}.
-A plain variable refers to a state where the variable holds its \emph{initial} value.
-A variable with a postfix decoration \pr|'| refers to a state where the variable holds its \emph{final} value.
-For example, \pr|X| refers to the initial value, and \pr|X'| refers to the final value.
+A plain variable refers to a state where the variable holds its {initial} value.
+A variable with a postfix decoration \pr|'| refers to a state where the variable holds its {final} value.
+For example, \pr|X| refers to the initial value and \pr|X'| refers to the final value.
 
 \subsubsection{Term and Notational Indices}
 
-This dissertation includes three indices.
-The Term Index (\autoref{sec:app:index}) lists technical terms and their most relevant uses.
-Acronyms are generally defined at first-use.
-After that, it is always possible to locate the long form in the index of acronyms (\autoref{glo:acr}).
-A similar lookup reference is available for symbolic notations (\autoref{glo:symb}).
+The dissertation includes three indices.
+The Term Index (\autoref{sec:app:index}) lists technical terms and their most prevalent uses.
+The other two indices are for acronyms and symbolic notations.
+Acronyms are generally defined at first use.
+After that, the long form can be located in the Index of Acronyms (\autoref{glo:acr}).
+A similar reference is available for symbolic notations in the Symbol Index (\autoref{glo:symb}).
 
 \subsubsection{Dynamic Bibliographic Entries}
 
-Some bibliography entries refer to resources that are not traditional scientific papers --
+Some bibliography entries refer to resources that are not traditional scientific papers;
 like software, web pages, lecture notes, and technical reports.
-To improve long-term availability of such dynamic entries, a backup is deposited in well-established online archives.
+To improve the long-term availability of such dynamic bibliographic entries, they are pre-emptively deposited in online archives.
 
 \begin{description}
 \item[Written documents.]
-Web pages and PDF files are archived at the Internet Archive.
-To recover a document, substitute \pr|<URL>| by the document's URL.
+Web pages and PDF files are archived at the \ndx{Internet Archive}'s \ndx{Wayback Machine}.
+To recover a document from the Internet Archive, substitute \pr|<URL>| by the document's URL.
 \begin{center}\pr|https://web.archive.org/web/<URL>|\end{center}
+A few cited documents could not be archived in the Internet Archive.
+Those documents are archived with the dissertation companion artifact (\autoref{tab:pub-artifacts}).
 
 \item[Software repositories.]
-Version-controlled third party software repositories are archived by \href{https://softwareheritage.org/}{Software Heritage}.
-For a repository at \pr|<URL>|, the recovery address is:%
+Version-controlled third party software repositories are archived at
+\href{https://softwareheritage.org}{\ndx{Software Heritage}}.
+For a repository hosted at \pr|<URL>|, the recovery address is:%
 \begin{center}\pr|https://archive.softwareheritage.org/browse/origin/directory/|\mbox{\pr|?origin_url=<URL>|}\end{center}
 \end{description}
 
-Documents that were not readily available online even at the time of writing this dissertation, are archived in the dissertation companion artifact (\autoref{tab:pub-artifacts}).
+\paragraph*{Recovering archived documents (example).}\mbox{}
 
-\paragraph*{Recovering archived documents.}
-For example, the following \href{https://types22.inria.fr/files/2022/06/TYPES_2022_paper_14.pdf}{URL} is fragile and may disappear in the future.
-
+The following \href{https://types22.inria.fr/files/2022/06/TYPES_2022_paper_14.pdf}{URL} is fragile and may disappear in the future.
 \begin{center}
 \begin{minipage}{\textwidth}
 %! suppress = EscapeUnderscore
@@ -353,9 +357,9 @@ https://types22.inria.fr/files/2022/06/TYPES_2022_paper_14.pdf
 \end{minipage}
 \end{center}
 
-If a request of the original document fails, the \href{https://web.archive.org/web/https://types22.inria.fr/files/2022/06/TYPES_2022_paper_14.pdf}
-{corresponding Internet Archive address} produces the same document.
-
+If a request of the original document fails,
+the following \href{https://web.archive.org/web/https://types22.inria.fr/files/2022/06/TYPES_2022_paper_14.pdf}
+{Internet Archive address} produces the same document.
 \begin{center}
 \begin{minipage}{\textwidth}
 %! suppress = EscapeUnderscore

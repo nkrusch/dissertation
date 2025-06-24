@@ -4,15 +4,15 @@ if it is algorithmically solvable in principle~\cite[p. 234]{sipser2012}.
 However, computability is independent of the required computational resources, \ie \emph{cost} or \emph{resource usage}\index{resource usage} of computation.
 A computable function that requires an excessive amount of resources may not be solvable in practice.
 
-Computational complexity theory\index{complexity theory} enhances the study of computable functions\index{computable function} by classifying them into \emph{complexity classes}\index{complexity class}\footnote{
+Computational complexity theory\index{complexity theory} enhances the study of computable functions\index{computable function} by classifying them into \emph{complexity classes}\index{complexity classes}\footnote{
     For an archive and exploration of complexity classes, see \href{https://complexityzoo.net/Complexity_Zoo}{ComplexityZoo.net}.}
 based on resources requirements\index{resource usage}.
 Algorithms computing those functions are categorized by the amount of required \emph{resources}\index{resource usage} when executed on a specified \emph{machine model}, such as a Turing Machine (TM)\index{Turing Machine}.
 Which particular model of computation\index{machine model} is used does not matter, as long as one adheres to Slot and van Emde Boas Invariance Thesis\index{Invariance Thesis}~\cite{slot1984}\footnote{
     The Invariance Thesis\index{Invariance Thesis} asserts that a time (resp., space) cost model is reasonable for a computational model C\index{machine model} if there are mutual simulations between TMs and C such that the overhead is polynomial in time\ccxi{p} (resp., linear in space)~\cite{vanoni2022}.},
-and is concerned with complexity classes\index{complexity class}, \ie, order of magnitudes in the resources needed.
+and is concerned with complexity classes\index{complexity classes}, \ie, order of magnitudes in the resources needed.
 The resource cost\index{resource usage} is estimated relative to the input size.
-This way algorithms are allowed to consume more resources when the input size grows while maintaining membership in the same complexity class\index{complexity class}.
+This way algorithms are allowed to consume more resources when the input size grows while maintaining membership in the same complexity class\index{complexity classes}.
 The common resources of interest are time\index{time complexity} and space (memory)\index{space complexity}.
 Complexity measures\index{complexity measure} are defined explicitly relative to the machine model\index{machine model}.
 For example, time complexity\index{time complexity}
@@ -27,7 +27,7 @@ However, the bound may or may not be asymptotically tight\index{tight bound}.
 The \enquote{small-oh} \(o\)-notation\symbo{smallo} distinguishes an upper bound that is not asymptotically tight~\cite[p. 50]{cormen2009}.
 Other relevant notations are \(\Omega\)\symbo{bigomega} for an asymptotic lower bound\index{lower bound},
 and \(\Theta\)\symbo{bigtheta} for an asymptotic tight bound\index{tight bound}~\cite[Sect. 3.1]{cormen2009}.
-Among the benefits, complexity analysis\index{asymptotic analysis} develops insight of costs\index{resource usage} of computational patterns and identifies relationships between complexity classes\index{complexity class}.
+Among the benefits, complexity analysis\index{asymptotic analysis} develops insight of costs\index{resource usage} of computational patterns and identifies relationships between complexity classes\index{complexity classes}.
 For algorithms, it produces measures of efficiency, and allows comparing relative performance of alternative algorithms~\cite{cormen2009}.
 
 This overview of the classical complexity theory\index{complexity theory} should be familiar from textbooks.
@@ -37,30 +37,30 @@ Implicit complexity complements the classical complexity theory\index{complexity
 
 \subsubsection{Computational Complexity, \emph{Implicitly}}
 
-\emph{Implicit Computational Complexity} (ICC) is a subfield of computational complexity theory\index{complexity theory} that explores \emph{machine-free characterizations} of complexity classes\index{complexity class}.
+\emph{Implicit Computational Complexity} (ICC) is a subfield of computational complexity theory\index{complexity theory} that explores \emph{machine-free characterizations} of complexity classes\index{complexity classes}.
 It inherently shifts focus from computational models\index{machine model} to \emph{programs}.
 \begin{quotation}
     \noindent By implicit, we here mean that classes are not given by constraining the amount of resources\index{resource usage} a machine\index{machine model} is allowed to use, but rather by imposing linguistic constraints on the way algorithms are formulated~\cite[p. 90]{dallago2011}.
 \end{quotation}
-In other words, complexity classes\index{complexity class} are described independently of notions of time or space related to a machine's definition.
+In other words, complexity classes\index{complexity classes} are described independently of notions of time or space related to a machine's definition.
 For example, polynomial time complexity\ccxi{p} has been thoroughly examined under these terms.
 The Cobham–Edmonds's Thesis~\cite{cobham1965,edmonds1965}\index{Cobham–Edmonds's Thesis} relates polynomial time class with the class of feasible functions\index{}\footnote{
     The Cobham-Edmonds Thesis asserts that the time complexities in any two \enquote{reasonable and general} models of computation are polynomially related;
     that is, a problem has time complexity \(t\) in some reasonable and general model of computation
     if and only if it has time complexity poly(\(t\)) in the model of single-tape Turing machines~\cite[p. 33]{goldreich2008}.}.
-Multiple distinct implicit characterizations are known for many complexity classes\index{complexity class} -- \cf~\autoref{tab:icc-results}.
+Multiple distinct implicit characterizations are known for many complexity classes\index{complexity classes} -- \cf~\autoref{tab:icc-results}.
 
 Implicit computational complexity sees complexity bounds as consequences of restrictions on program structures.
 In this view, it studies the computational resources embedded in programming languages by \emph{construction}.
 Another common feature is that the characterizations may omit references to explicit resource bounds~\cite{moyen2017} -- refer to \eg~%! suppress = MathFunctionText
 \textcite{bellantoni1992} or~\textcite{kristiansen2005} for examples.
 Thus, the focus is on studying the quality, rather than quantity, of the resources needed.
-Since an implicit characterization, or an \emph{ICC system}, captures a specific complexity class\index{complexity class}, complexity analysis becomes a task of determining class membership, rather than classifying computations among many classes as in classical asymptotic analysis\index{asymptotic analysis}.
+Since an implicit characterization, or an \emph{ICC system}, captures a specific complexity class\index{complexity classes}, complexity analysis becomes a task of determining class membership, rather than classifying computations among many classes as in classical asymptotic analysis\index{asymptotic analysis}.
 
-There are several good motivations for researching implicit characterizations of complexity classes\index{complexity class}~\cite[p. 36]{kristiansen2017,jones1999}, including the following.
+There are several good motivations for researching implicit characterizations of complexity classes\index{complexity classes}~\cite[p. 36]{kristiansen2017,jones1999}, including the following.
 \begin{itemize}
 
-    \item Implicit complexity drive better understanding of complexity classes\index{complexity class} and sheds light on the notorious hard open problems of complexity theory\index{complexity theory}.
+    \item Implicit complexity drive better understanding of complexity classes\index{complexity classes} and sheds light on the notorious hard open problems of complexity theory\index{complexity theory}.
 
     \item From a programming language perspective, implicit complexity is motivating because it suggests ways to control complexity properties, and quantifies the computational power present in programming languages by construction.
 
@@ -94,7 +94,7 @@ With such rich versatility, it becomes challenging to identify ICC systems upon 
         \paragraph*{Implicit complexity in a nutshell.}
         The goal of implicit computational complexity can be summarized as follows.
         Let \(\mathcal{L}\)\symbo{lang} be a programming language,
-        \(\mathcal{C}\)\symbo{cclass} a complexity class\index{complexity class},
+        \(\mathcal{C}\)\symbo{cclass} a complexity class\index{complexity classes},
         and \(\sem{p}\)\symbo{funprog} the function computed by program \(p\)\symbo{prog}.
         Then, the task is to find a restriction \(\mathcal{R}\)\symbo{restriction} \(\subseteq \mathcal{L}\), such that the following equality holds:
         \begin{align*}\{ \sem{p} \mid p \in \mathcal{R} \} = \mathcal{C}.\end{align*}
@@ -109,9 +109,9 @@ With such rich versatility, it becomes challenging to identify ICC systems upon 
 
 Recent reflective works~\cite{pchoux2020,hoffmann2022} converge on descriptions centered on programming languages.
 \autoref{fig:icc_systems} summarizes the idea succinctly.
-In this view, the unifying factor of implicit complexity is to find natural characterizations of complexity classes\index{complexity class} through \emph{restrictions} embedded in \emph{programming languages}~\cite{hoffmann2022}.
+In this view, the unifying factor of implicit complexity is to find natural characterizations of \ndx{complexity classes} through \emph{restrictions} embedded in \emph{programming languages}~\cite{hoffmann2022}.
 It requires introducing a language-based \emph{syntactic} restriction that guarantees a \emph{semantic} property;
-typically, that a satisfactory program is a member of the characterized complexity class~\cite{moyen2017}\index{complexity class}.
+typically, that a satisfactory program is a member of the characterized complexity class~\cite{moyen2017}\index{complexity classes}.
 Then, if the restriction is maintained, the complexity bound will also be maintained.
 
 The programming language-based approach has minimally two significant effects compared to classical complexity theory\index{complexity theory}.
@@ -133,7 +133,7 @@ composition, primitive recursion\index{primitive recursion}, and minimization.
 %Dropping minimization makes this formalism strictly less expressive: the functions one represents (the so-called primitive recursive functions) are, at least, all total.
 Primitive recursive functions\index{recursive function} are
 %however
-well beyond any reasonable complexity class\index{complexity class}
+well beyond any reasonable complexity class\index{complexity classes}
 %They are after all the class of functions which can be computed in time and space bounded by primitive recursive functions, the latter being strictly larger than Kalmar's elementary functions. %Essentially, this is
 due to the possibility of having nested recursive definitions.
 As an example, one can define addition from the initial functions
@@ -188,10 +188,10 @@ The Bellantoni and Cook result was proved formally~\cite{bc_formal} by~\textcite
 \subsubsection{A Snapshot of Theoretical Results}
 \label{icc-theories}
 
-The breakthrough result of safe recursion\index{safe recursion} is regarded as the first implicit characterization of a complexity class\index{complexity class}~\cite{dallago2011,kristiansen2017,rubiano17}.
+The breakthrough result of safe recursion\index{safe recursion} is regarded as the first implicit characterization of a complexity class\index{complexity classes}~\cite{dallago2011,kristiansen2017,rubiano17}.
 However, the same result was independently discovered by~\textcite{leivant1993} in a slightly different setting of stratified recurrence\index{stratified recurrence}~\cite[p. 762]{dallago2022}.
 \autoref{tab:icc-results} shows a {very small} collection of additional impactful theoretical results.
-The inclusion criteria is varied and based on representing the rich variety of underlying techniques or complexity classes\index{complexity class};
+The inclusion criteria is varied and based on representing the rich variety of underlying techniques or complexity classes\index{complexity classes};
 or for presenting foundational techniques that have been extended later;
 or for reflecting shifts in theoretical developments and interests over time.
 The table also marks with hyperlinks works that are discussed elsewhere in this dissertation.

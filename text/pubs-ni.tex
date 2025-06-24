@@ -1,3 +1,5 @@
+%! suppress = MissingImport
+%! suppress = EscapeAmpersand
 \subsection*{Abstract}
 Non-interference\index{non-interference} is an information flow policy\index{information flow!policy}
 for guaranteeing confidentiality\index{confidentiality},
@@ -255,6 +257,7 @@ if \(\lvl{\prc|v$_{\text{out}}$|} < \lvl{\prc|v$_{\text{in}}$|}\) or
 
 The matrix of the expository program,
 \begin{center}
+%! suppress = EscapeAmpersand
 $\begin{pNiceMatrix}[first-row,first-col]
         & \prc|x|  & \prc|y|  & \prc|z|              \\
 \prc|x| & \nv      & \vi      & \nv                  \\
@@ -1433,28 +1436,14 @@ version.
 
 \subsubsection{Overview of Alternative and Related Approaches}\label{sec:ni-related-works}
 
-In language-based security\index{language-based security}, non-interference\index{non-interference} is commonly achieved through
-security types systems\index{security type system}.
-Type theoretic non-interference provides strong
-end-to-end confidentiality\index{confidentiality} guarantees in a static and scalable way. Initiating
-from the seminal work of Volpano et al.~\cite{volpanoI1996}, security type
-systems have been extended to consider non-interference under numerous
-paradigms, including concurrency~\cite{volpano1998,derakhshan2024,frumin2021},
-formal reasoning~\cite{nelson2020,frumin2021}, compilation~\cite{barthe2004},
-\etc. A major challenge among the security type systems\index{security type system} is
-\emph{declassification}\index{declassification}, a kind of security downgrading
-operation~\cite{cecchetti2017}. A \emph{downgrading} mechanisms permits
-elevating the security judgement around control-flow constructs then lowering it
-afterward. In other words, information is allowed to flow contrary to the
-policy~\cite{cecchetti2017}. The mechanism is necessary to increase the
-expressive power of security type systems; however, downgrading is generally not
-safe~\cite{derakhshan2024} and eliminates the strong compositional guarantees of
-non-interference~\cite{cecchetti2017}\index{non-interference}. In practice, security type systems\index{security type system} are
-challenging to use because they modify the programming language. A program must
-be annotated with security types and compiled with non-standard tools that can
-enforce the types~\cite{lamba2024}. There is also a stark contrast in
-expressiveness of theoretical and practical systems; \eg \cite{huang2014}
-categorically excludes implicit flows\index{information flow!implicit}.
+In language-based security\index{language-based security}, non-interference\index{non-interference} is commonly achieved through security types systems\index{security type system}.
+Type theoretic non-interference provides strong end-to-end confidentiality\index{confidentiality} guarantees in a static and scalable way.
+Initiating from the seminal work of Volpano et al.~\cite{volpanoI1996}, security type systems have been extended to consider non-interference under numerous paradigms, including concurrency~\cite{volpano1998,derakhshan2024,frumin2021}, formal reasoning~\cite{nelson2020,frumin2021}, compilation~\cite{barthe2004}, \etc.
+A major challenge among the security type systems\index{security type system} is \emph{declassification}\index{declassification}, a kind of security downgrading operation~\cite{cecchetti2017}. A \emph{downgrading} mechanisms permits elevating the security judgement around control-flow constructs then lowering it afterward.
+In other words, information is allowed to flow contrary to the policy~\cite{cecchetti2017}. The mechanism is necessary to increase the expressive power of security type systems; however, downgrading is generally not safe~\cite{derakhshan2024} and eliminates the strong compositional guarantees of non-interference~\cite{cecchetti2017}\index{non-interference}.
+In practice, security type systems\index{security type system} are challenging to use because they modify the programming language.
+A program must be annotated with security types and compiled with non-standard tools that can enforce the types~\cite{lamba2024}.
+There is also a stark contrast in expressiveness of theoretical and practical systems; \eg \cite{huang2014} categorically excludes implicit flows\index{information flow!implicit}.
 
 The Dependency Core Calculus (DCC)~\cite{abadi1999b}\index{Dependency Core Calculus} is conceptually related to
 \lname. The DCC is an extension of lambda calculus, framed around the notion of
