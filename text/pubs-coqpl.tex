@@ -4,7 +4,8 @@
 This work drafts a strategy that leverages the field of Implicit Computational Complexity to certify resource usage in imperative programs.
 This original approach sidesteps some of the most common--and difficult--obstacles \enquote{traditional} complexity theory face when implemented in Coq\index{Coq}.
 
-\subsection{Motivation}\label{coqpl-motivation}
+\subsection{Motivation}
+\label{subsec:coqpl-motivation}
 
 The ability to statically infer resource bounds of programs offers numerous benefits, \eg to insure safe memory usage.
 Even more preferable if those guarantees are established with the rigor of formal verification,
@@ -19,7 +20,7 @@ In the area of complexity theory, \textcquote[p.~114]{forster2020}{%
 For practical complexity analyses, many existing techniques present methodological challenges if they require
 \eg program termination or inlining functions~\cite{carbonneaux2015}.
 Therefore, a realistic pathway toward formal certification of a program's resource usage is narrow.
-A few encouraging early results exist, and we discuss some of those in \autoref{coqpl-related}.
+A few encouraging early results exist, and we discuss some of those in \autoref{subsec:coqpl-related}.
 In this proposal we will sketch how a different approach, founded on Implicit Computational Complexity,
 could sidestep some of the usual difficulties in implementing and verifying complexity analyses in Coq\index{Coq}.
 
@@ -30,14 +31,16 @@ The goal is to find a syntactical restriction or a type system such that a progr
 ICC-based systems are often compositional, and they offer more natural tools to write programs than theoretical models of computation used in complexity theory.
 We speculate these combined properties could make ICC-approaches a conceivable pathway toward certified complexity and sketch a more detailed plan below.
 
-\subsection{Preliminary Action Plan}\label{coqpl-preliminary-action-plan}
+\subsection{Preliminary Action Plan}
+\label{subsec:coqpl-preliminary-action-plan}
 
 We plan to formalize in Coq an ICC-based complexity analysis technique, the \emph{mwp-flow analysis}~\cite{jones2009}\footnote{%
     Where mwp stands for \emph{m}aximum, \emph{w}eak polynomial and \emph{p}olynomial, representing increasing growth rates of variables values.}.
 We chose this method because its internal mechanics has been recently studied~\cite{aubert20222}, and by our assessment, it seems suitable for formalization in Coq\index{Coq}.
-As for Coq, it seems like the ideal target language because of its existing libraries and preliminary work--some of which are discussed in \autoref{coqpl-related}--, most notably related to compilers~\cite{leroy2009}.
+As for Coq, it seems like the ideal target language because of its existing libraries and preliminary work--some of which are discussed in \autoref{subsec:coqpl-related}--, most notably related to compilers~\cite{leroy2009}.
 
-\subsubsection{Overview of \emph{mwp}-Flow Analysis}\label{coqpl-overview-of-mwp-flow-analysis}
+\subsubsection{Overview of \emph{mwp}-Flow Analysis}
+\label{subsubsec:coqpl-overview-of-mwp-flow-analysis}
 
 The \emph{mwp}-flow analysis certifies polynomial bounds on the size of the values manipulated by an imperative program.
 While it does not ensure (or require) program termination, it provides a certificate guaranteeing that the program uses throughout its execution at most a polynomial amount of space, and as a consequence that if it terminates, it will do so in polynomial time in the size of its inputs.
@@ -48,11 +51,12 @@ Those vectors are collected in a matrix\index{mwp-matrix}.
 A program is assigned a matrix\index{mwp-matrix} only if all the values in it are bounded by a polynomial in the inputs sizes.
 This technique is compositional, abstracts away \eg iteration bounds, and operates on a memory-less imperative language, reminiscent of the \texttt{Imp} language from Software Foundations~\cite{cpierce20221}\index{Software Foundations}.
 
-\subsubsection{The Coq Formalization}\label{coqpl-the-coq-formalization}
+\subsubsection{The Coq Formalization}
+\label{subsubsec:coqpl-the-coq-formalization}
 
 Our goal is to certify the analysis as presented in {the original paper}~\cite{jones2009}.
 Note that this does not mean that the bound is certified, but that \emph{the mechanism to compute those bounds} is certified.
-Of course, this implies the correctness of the bounds as a by-product but constitutes a major difference \wrt the results discussed in \autoref{coqpl-related}.
+Of course, this implies the correctness of the bounds as a by-product but constitutes a major difference \wrt the results discussed in \autoref{subsec:coqpl-related}.
 Preliminary explorations have led us to establish the following milestones.
 
 \begin{description}
@@ -87,7 +91,8 @@ Preliminary explorations have led us to establish the following milestones.
 
 We leave for future work the possibility of creating a formally verified, automatic static analyzer founded on the proof of correctness of this method: as we discussed in other works~\cite{aubert2023b,aubert20222}, care is required to implement a typing strategy that does not rapidly become intractable.
 
-\subsection{Related Work}\label{coqpl-related}
+\subsection{Related Work}
+\label{subsec:coqpl-related}
 
 A few prior results exist that combine formalization of complexity and Coq\index{Coq}.
 They range from practical analyses to proofs in computational complexity theory.
