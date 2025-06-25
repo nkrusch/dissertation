@@ -1,4 +1,11 @@
 # python:3.11.9-alpine3.20
+#
+# export DOCKER_DEFAULT_PLATFORM=linux/amd64
+# docker build -t rdiss .
+# docker run -v "$(pwd):/dissertation" -it --rm rdiss
+#
+# docker build --platform linux/amd64 . -t rdiss
+# docker run -it --rm rdiss
 FROM ghcr.io/xu-cheng/texlive-full:latest
 LABEL org.opencontainers.image.authors="Neea Rusch" \
       org.opencontainers.image.title="Dissertation Companion Artifact Image" \
@@ -38,8 +45,5 @@ RUN test -r /root/.opam/opam-init/init.sh && . /root/.opam/opam-init/init.sh > /
 RUN opam repo add coq-released https://coq.inria.fr/opam/released  \
 RUN opam update
 RUN opam install -y coq.8.20.1 coq-mathcomp-ssreflect.2.3.0
-
-# docker build --platform linux/amd64 . -t rdiss
-# docker run -it --rm rdiss
 
 ENTRYPOINT ["/bin/sh"]
