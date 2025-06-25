@@ -1,10 +1,11 @@
-FROM  python:3.11.9-alpine3.20
+# python:3.11.9-alpine3.20
+FROM ghcr.io/xu-cheng/texlive-full:latest
 LABEL org.opencontainers.image.authors="Neea Rusch" \
       org.opencontainers.image.title="Dissertation Companion Artifact Image" \
       org.opencontainers.image.source="https://github.com/nkrusch/dissertation" \
       org.opencontainers.image.licenses="Creative Commons Attribution 4.0 International"
 
-ARG HOME="/usr/dissertation"
+ARG HOME="/dissertation"
 ARG EX_DIR="$HOME/examples"
 ARG EXAMPLES="https://github.com/statycc/pymwp/releases/download/0.5.4/examples.zip"
 ARG DAFNY_URL="https://github.com/dafny-lang/dafny/releases/download/v4.10.0/dafny-4.10.0-x64-ubuntu-20.04.zip"
