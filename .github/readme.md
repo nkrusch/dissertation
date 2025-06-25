@@ -14,27 +14,27 @@ Repository to host, compile, and share my dissertation.
 
 ### 📁 Repository Organization
 
-```
-  .
-  ├─ 🗀 .github/         : Automated workflows and readmes
-  ├─ 🗀 code/            : All code listings 
-  ├─ 🗀 fonts/           : Custom fonts
-  ├─ 🗀 latex/           : Custom LaTeX
-  ├─ 🗀 pdf/             : Static resources (figures, manuscripts)
-  ├─ 🗀 pictures/        : TikZ drawings 
-  ├─ 🗀 references/      : Bib and indices
-  ├─ 🗀 text/            : Dissertation content
-  ├─ args.tex            : Template configuration
-  ├─ content.tex         : Dissertation sections
-  ├─ LICENSE             : CC Attribution 4.0 International 
-  ├─ main.tex            : TGS ETD template 
-  ├─ Makefile            : Build commands
-  └─ *                   : Configuration files 
-```
+    .
+    ├─ 🗀 .github/         : Automated workflows
+    ├─ 🗀 code/            : Code listings
+    ├─ 🗀 fonts/           : Custom fonts
+    ├─ 🗀 latex/           : Custom LaTeX
+    ├─ 🗀 pdf/             : Static resources (figures, manuscripts)
+    ├─ 🗀 pictures/        : TikZ drawings
+    ├─ 🗀 references/      : Bib and indices
+    ├─ 🗀 text/            : Dissertation content
+    ├─ args.tex            : Template configuration
+    ├─ content.tex         : Dissertation sections
+    ├─ Dockerfile          : Execution environment
+    ├─ LICENSE             : License text
+    ├─ main.tex            : The TGS ETD template
+    ├─ Makefile            : Build commands
+    └─ *                   : Configuration files
 
 ### 🐳 Docker environment for compilation
 
-Pull latest [texlive-full image](https://github.com/xu-cheng/latex-docker/pkgs/container/texlive-full), then launch the container.
+Pull latest [texlive-full image](https://github.com/xu-cheng/latex-docker/pkgs/container/texlive-full), 
+then launch the container.
 Run the container from the root of this repository.
 
 ```
