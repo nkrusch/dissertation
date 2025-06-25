@@ -1,31 +1,38 @@
+\subsection{On the wonders of programming}
+\label{subsec:programming-wonders}
+
 A programmable computer is a gadget without precedent.
-It can be appreciated in many ways: %
-through the constant stream of new flashy applications,
-as an engineering marvel with continuous increase in performance and capacity,
-or in the independent scientific discipline that forms its core~\cite{dijkstra1979a,hoare2006}.
-For this dissertation, we focus on the intellectual challenge of \emph{programming} these gadgets.
+It can be appreciated in many ways:
+as an engineering marvel of ever-increasing capacity;
+as a medium of new flashy applications;
+or in the machine-independent scientific discipline that forms its foundations~\cite{dijkstra1979a,hoare2006}.
+This dissertation focuses on the intellectual challenge that concerns the {programming} of these gadgets.
 
 \begin{quotation}
 \noindent This challenge seems unique in the combination of the possibility for unmastered complexity -- programs are among the most
 complex things ever conceived -- and the ultimate, but misleading, simplicity of a world of zeros and ones alone~\cite{dijkstra1979a}.
 \end{quotation}
 
-{Programming languages} provide us an interface that enable crafting programs.
-The languages are an abstraction that relieve us from working directly with zeros and ones.
-We write programs that are intended to be intelligible to humans.
-Then, those programs are \enquote{translated} (compiled) into zeros and ones for processing by computers.
-However, this abstraction does nothing to reduce the intellectual challenge involved in programming~\cite{dijkstra1979b}.
-If we write a faulty program, we are at the mercy of our faulty creation (to be continued in~\autoref{verification}).
+\emph{Programming languages} provide us a interface for crafting programs.
+The languages are a useful \emph{abstraction}.
+They relieve us from working directly with 0s and 1s.
+We write programs in {high-level} languages, that are (intended to be) intelligible to humans.
+The high-level programs are then \enquote{translated} (compiled) into 0s and 1s for processing by computers.
+However, the abstraction of programming languages does nothing to reduce the intellectual challenge of programming~\cite{dijkstra1979b}.
+If we write a faulty program, we are at the mercy of our faulty creation (\ldots to be continued in~\autoref{verification}).
 
-There is one feature about programs that has always fascinated me immensely.
-It is that there are {multiple different ways} to write a program to compute the {same result}.
-Essentially, we fix the inputs and expected output, but are free to change what happens in-between.
-A scientifically inclined reader will recognize this concept as multiple algorithms computing the same function.
-A software engineer will recognize it in the art of refactoring.
+\paragraph{Equivalence.}
+One fascinating feature about programs is that we can write multiple distinct programs to compute the same result.
+In other words, two programs $\sem{p_1}$ and $\sem{p_2}$ are functionally \emph{equivalent}\index{functional equivalence}, \ie \(\sem{p_1} \equiv \sem{p_2}\), iff for every possible input \(i\), \(\sem{p_1}(i) = \sem{p_2}(i)\).
+Under equivalence, we fix the program input and output, but can alter \emph{how} the result is computed.
+A scientifically inclined reader will recognize equivalence as multiple algorithms computing the same function.
+A software engineer will recognize it in the art of \ndx{refactoring}.
+
 To demonstrate the idea, consider the two programs in~\autoref{lst:intro}.
 The variable \pr|bit| is either \(0\) or \(1\).
-It is clear the programs look different.
-Yet, for all values of \pr|X| and \pr|Y|, I claim they compute the same result, stored in \pr|Z|.
+By visual inspection, it is obvious that the programs \enquote{look different}.
+Yet, for all values of variables \pr|X| and \pr|Y|, (I claim) they compute the same result.
+The result is stored in variable \pr|Z|.
 
 \begin{center}
 \captionsetup{type=lstlisting}
@@ -41,12 +48,13 @@ Yet, for all values of \pr|X| and \pr|Y|, I claim they compute the same result, 
 \label{lst:intro}
 \end{center}
 
-It is natural to ask, \emph{which program is better?}
-The one on left reads more intuitively, making it easier to understand to a human.
-Clarity is a useful criterion if the program is intended for frequent inspection.
-The program on right has the advantage that it eliminates the conditional branching and evaluates in {constant time}.
-These features are desirable, \eg for program security.
-Choosing the preferable program form thus depends on semantics -- what do we mean by \emph{better}?
+It is natural to ask, {\enquote{which program is better?}}
+For a human, the left one reads more intuitively, making it easier to understand.
+Such clarity is a useful criterion if the program is intended for frequent visual inspection.
+However, we may not care about readability.
+The program on right has an advantage in that it eliminates the conditional branch and evaluates in {constant time}.
+Such features are desirable, \eg for program security.
+Choosing the preferable program form thus depends on semantics -- what exactly do we mean by \enquote{better}?
 
 The purpose of the example is to help recognize that we can study programs as mathematical objects;
 comparing their behaviors and quality attributes.
@@ -230,20 +238,23 @@ Each dissertation manuscript is decorated with an icon that denotes the related 
 
 \paragraph*{On manuscript authorship.}
 The manuscript authors are listed in alphabetical order.
-The manuscripts in Chapters~\ref{published-manuscripts}--\ref{ch:unpublished-research} are \enquote{first author} works,
-and manuscripts in~\autoref{app:additional-manuscripts} are \enquote{non-first author} works.
+The manuscripts in Chapters~\ref{published-manuscripts}--\ref{ch:unpublished-research} are \enquote{first author} works.
+The manuscripts in~\autoref{app:additional-manuscripts} are \enquote{non-first author} works.
 The contributions of the co-authors are detailed in~\autoref{app:sec:coauth}.
 
 \paragraph*{On manuscript peer review.}
-The entire Chapters~\ref{published-manuscripts},~\ref{ch:unpublished-research},~\ref{ch:summary}, and ~\ref{app:additional-manuscripts}
-has been previously peer-reviewed.
-The published works, in Chapters~\ref{published-manuscripts} and~\ref{app:additional-manuscripts}, were inspected by 7--10 reviewers before acceptance.
-The unpublished works, in \autoref{ch:unpublished-research}, have been reviewed by 3--6 reviewers thus far.
-However, the unpublished research requires a word of caution.
-By implication, they all have some limitation that prevents them from being in the {published} manuscripts-chapter.
+The entire Chapters~\ref{published-manuscripts},~\ref{ch:unpublished-research},~\ref{ch:summary}, and ~\ref{app:additional-manuscripts} have been peer-reviewed.
+All publication and submission venues of research papers are ranked A or B in the CORE Conference Rankings Portal~\cite{core}.
+\begin{itemize}
+\item The published works, in Chapters~\ref{published-manuscripts} and~\ref{app:additional-manuscripts}, were inspected by 7--10 reviewers before acceptance.
+\item The unpublished works, in \autoref{ch:unpublished-research}, have been reviewed by 3--6 reviewers thus far.
 Preliminary versions of most unpublished works have been accepted and presented at respectable workshops.
-\autoref{ch:summary} is a stand-alone extended abstract.
-It has been peer-reviewed as a submission at the 2025 ECOOP doctoral symposium.
+However, the unpublished research must be viewed with some caution -- they all have some limitation that prevents their inclusion in the {published} manuscripts-chapter.
+\item \autoref{ch:summary} is an extended abstract about the full dissertation.
+It has been peer-reviewed and presented at \href{https://2025.ecoop.org/track/ecoop-2025-doctoral-symposium}{the doctoral symposium}
+of \href{https://2025.ecoop.org}{the European Conference on Object-Oriented Programming (ECOOP)} 2025.
+\end{itemize}
+
 
 \subsection{Important Tips for Interacting With This Dissertation}
 \label{subsec:tips}
@@ -331,20 +342,19 @@ Some bibliography entries refer to resources that are not traditional scientific
 like software, web pages, lecture notes, and technical reports.
 To improve the long-term availability of such dynamic bibliographic entries, they are pre-emptively deposited in online archives.
 
-\begin{description}
-\item[Written documents.]
+\paragraph*{Written documents.}
 Web pages and PDF files are archived at the \ndx{Internet Archive}'s \ndx{Wayback Machine}.
 To recover a document from the Internet Archive, substitute \pr|<URL>| by the document's URL.
 \begin{center}\pr|https://web.archive.org/web/<URL>|\end{center}
 A few cited documents could not be archived in the Internet Archive.
 Those documents are archived with the dissertation companion artifact (\autoref{tab:pub-artifacts}).
 
-\item[Software repositories.]
+\paragraph*{Software repositories.}
 Version-controlled third party software repositories are archived at
 \href{https://softwareheritage.org}{\ndx{Software Heritage}}.
 For a repository hosted at \pr|<URL>|, the recovery address is:%
 \begin{center}\pr|https://archive.softwareheritage.org/browse/origin/directory/|\mbox{\pr|?origin_url=<URL>|}\end{center}
-\end{description}
+
 
 \paragraph*{Recovering archived documents (example).}\mbox{}
 

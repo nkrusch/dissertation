@@ -318,15 +318,6 @@ It is the highest distinction awarded to research software.
 The successes of Rocq have also created abundant interest in dependent type theory;
 the core logic of Rocq~\cite{coquand1988}.
 
-%\paragraph*{Logical foundations.}
-%All Rocq expressions, including logical claims, have a type describing what it computes.
-%Calculus of inductive constructions
-%a version of dependent type theory with a countable hierarchy of non-cumulative universes and inductive types.
-%By the Curry-Howard correspondence, Rocq can be seen at the same time as a pure functional programming language and a rich proof system.
-%For all formula there exists a proof of this formula in natural deduction if and only if there exists a term that has this formula as type.
-%Theorem statement \(\leftrightarrow\) Type
-%Proof \(\leftrightarrow\) Program
-
 \paragraph*{Technical overview.}
 As a guiding example, consider simple proof in~\autoref{lst:rocq-basic}.
 The \pr|lemma| keywords starts a statement we wish to prove.
@@ -399,20 +390,50 @@ Conventional uses of Rocq include proving properties of programming languages, f
 \toprule
 \textbf{Formalization target} & \textbf{Authors} \\
 \midrule
-\href{https://users.dimi.uniud.it/~ivan.scagnetto/pi-calculus.html}{\(\pi\)-calculus in (Co)inductive-type theory} & \textcite{honsell2001} \\
-\href{https://github.com/rocq-community/goedel}{Gödel-Rosser 1st incompleteness theorem} & \textcite{oconnor2005} \\
-Modal model of impredicative semantics & \textcite{appel2007} \\
-\href{https://github.com/rocq-community/fourcolor}{Four Color theorem}\smtabularnote{based on~\cite{robertson1997} and~\cite{appel1989}} & \textcite{gonthier2008} \\
-\href{https://github.com/AbsInt/CompCert}{Verified Optimizing C Compiler, CompCert}\index{CompCert}\smtabularnote{A verifying compiler is one of the grand challenges for computing research posed in~\textcite{hoare2003}}\smtabularnote{CompCert received the ACM Software System Award in 2021.} & \textcite{leroy2009} \\
-\href{https://gitlab.inria.fr/flocq/flocq}{Flocq: floating-point numbers} & \textcite{boldo2011} \\
-\href{http://plv.csail.mit.edu/bedrock/}{Bedrock: low-level programming library} & \textcite{chlipala2011} \\
-\href{https://github.com/davidnowak/bellantonicook}{Safe Recursion} -- \autoref{safe-rec} & \textcite{heraud2011} \\
-\href{https://github.com/ProjectiveGeometry/ProjectiveGeometry}{Desargues's theorem in projective geometry} & \textcite{magaud2012} \\
-\href{https://github.com/math-comp/odd-order}{Feit-Thompson's Odd Order theorem} & \textcite{gonthier2013} \\
-\href{https://github.com/HoTT/Coq-HoTT}{Homotopy Type Theory} & \textcite{bauer2017} \\
-\href{https://github.com/rocq-community/reglang}{Regular Language representations} & \textcite{doczkal2018} \\
-\href{https://github.com/DeepSpec/InteractionTrees}{Recursive and impure programs} & \textcite{xia2019} \\
-\href{https://github.com/uds-psl/coq-library-undecidability}{Undecidable Problems} & \textcite{forster2020b} \\
+\href{https://users.dimi.uniud.it/~ivan.scagnetto/pi-calculus.html}%
+{\ndx{\(\pi\)-calculus} in (Co)inductive-type theory}\index{coinduction} & \textcite{honsell2001}
+\\
+\href{https://github.com/rocq-community/goedel}%
+{\ndx{Gödel-Rosser incompleteness theorem}} & \textcite{oconnor2005}
+\\
+Modal model of impredicative semantics & \textcite{appel2007}
+\\
+\href{https://github.com/rocq-community/fourcolor}%
+{\ndx{Four Color theorem}}\smtabularnote{based on~\cite{robertson1997} and~\cite{appel1989}} & \textcite{gonthier2008}
+\\
+\href{https://github.com/AbsInt/CompCert}%
+{Verified Optimizing C Compiler, \ndx{CompCert}}%
+\smtabularnote{A verifying compiler is one of the grand challenges for computing research posed in~\textcite{hoare2003}}%
+\smtabularnote{CompCert received the ACM Software System Award in 2021.} & \textcite{leroy2009}
+\\
+\href{https://gitlab.inria.fr/flocq/flocq}%
+{\ndx{Flocq}: floating-point numbers} & \textcite{boldo2011}
+\\
+\href{http://plv.csail.mit.edu/bedrock/}%
+{\ndx{Bedrock}: low-level programming library} & \textcite{chlipala2011}
+\\
+\href{https://github.com/davidnowak/bellantonicook}%
+{Safe Recursion\index{safe recursion}} -- \autoref{safe-rec} & \textcite{heraud2011} \\
+\href{https://github.com/ProjectiveGeometry/ProjectiveGeometry}
+{\ndx{Desargues's theorem} in projective geometry} & \textcite{magaud2012}
+\\
+\href{https://github.com/math-comp/odd-order}%
+{Feit-Thompson's \ndx{Odd Order theorem}} & \textcite{gonthier2013}
+\\
+\href{https://github.com/HoTT/Coq-HoTT}%
+{\ndx{Homotopy Type Theory}} & \textcite{bauer2017}
+\\
+\href{https://github.com/rocq-community/reglang}%
+{Regular Language representations} & \textcite{doczkal2018}
+\\
+\href{https://github.com/DeepSpec/InteractionTrees}%
+{Interaction Trees: Recursive and impure programs} & \textcite{xia2019}
+\\
+\href{https://github.com/uds-psl/coq-library-undecidability}%
+{Undecidable\index{undecidability} Problems} & \textcite{forster2020b}
+\\
+\href{https://github.com/SSProve/ssprove}%
+{\ndx{SSProve}: modular cryptographic proofs} & \textcite{haselwarter2023} \\
 \bottomrule
 \end{NiceTabularX}
 \caption[The Rocq prover formalization results]{A small sample of results formalized with the Rocq prover.}
@@ -449,18 +470,18 @@ A (simplified) overview of Dafny implementation and verification workflow.
 \end{figure}
 
 \paragraph*{Technical overview.}
-Dafny is a hybrid language, influenced by Java and C\#.
+Dafny is a hybrid language, influenced by \ndx{Java} and \ndx{C\#}.
 It has both functional and object-oriented features;
-including: curly-bracket block-style, (mathematical) functions, and inductive and co-inductive data types.
+including: curly-bracket block-style, (mathematical) functions, and inductive and co-inductive\index{coinduction} data types.
 The programming constructs include loops, \pr|if|-statements, arrays, classes and methods;
 variables, types, generics, lambdas, inheritance, \etc~\cite{dafnydoc}
-The real power of Dafny comes from the ability to annotate methods to specify their behavior.
-For verification tasks, the idea is to define specifications and write proofs aside the implementation, in deductive verification-style.
+The real power of \ndx{Dafny} comes from the ability to annotate methods to specify their behavior.
+For verification tasks, the idea is to define specifications and write proofs aside the implementation, in \ndx{deductive verification}-style.
 The built-in verification constructs include pre- and postconditions;
-loop invariants, termination metrics, lemmas, and ghost constructs\footnote{
+loop invariants, termination metrics, lemmas, and \ndx{ghost construct}s\footnote{
 A \emph{ghost} is any construct that is used for verification only; they are erased during compilation~\cite[p. 19]{leino2023}.}.
-This language design enables writing functionally-correct verified programs fully in Dafny~\cite{leino2023}.
-Dafny programs can be compiled to various target languages, like C\#, Java, and Go~\cite{dafnydoc}.
+This language design enables writing functionally-correct verified programs fully in \ndx{Dafny}~\cite{leino2023}.
+Dafny programs can be compiled to various target languages, like \ndx{C\#}, \ndx{Java}, and \ndx{Go}~\cite{dafnydoc}.
 
 Dafny has an associated static program verifier.
 The role of the verifier is to check a program's specification constructs\footnote{These are Eiffel-like contracts from~\cite{meyer1988}.}.
@@ -896,9 +917,3 @@ It is important to note the utility of implicit computational complexity is not 
 Another perspective is to use ICC systems in assisting formal methods tools in program verification efforts.
 This is the motivating idea in the manuscript of~\autoref{sec:postcond}.
 The central idea is that inferred mwp-bounds can be used as postconditions in Dafny-style deductive verification.
-
-%The third goal is to strengthen the hypothesis that implicit computational complexity is naturally suited to formal reasoning.
-%Classic complexity theory is predicated on machine models that are difficult to represent formally~\footnote{
-%For example, a formal model of TMs in~\textcite{forster2020} took five years to complete.}.
-%In contrast, the programming languages-based approach of implicit computational complexity makes formal reasoning more accessible.
-%The findings of this dissertation are sufficient to motivate and justify the effort for undertaking rigorous formalization projects.

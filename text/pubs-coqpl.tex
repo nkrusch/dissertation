@@ -2,7 +2,7 @@
 \subsection*{Abstract}
 
 This work drafts a strategy that leverages the field of Implicit Computational Complexity to certify resource usage in imperative programs.
-This original approach sidesteps some of the most common--and difficult--obstacles \enquote{traditional} complexity theory face when implemented in Coq\index{Coq}.
+This original approach sidesteps some of the most common--and difficult--obstacles \enquote{traditional} complexity theory face when implemented in Coq\index{Coq|seealso{Rocq}}.
 
 \subsection{Motivation}
 \label{subsec:coqpl-motivation}
@@ -51,7 +51,7 @@ Those vectors are collected in a matrix\index{mwp-matrix}.
 A program is assigned a matrix\index{mwp-matrix} only if all the values in it are bounded by a polynomial in the inputs sizes.
 This technique is compositional, abstracts away \eg iteration bounds, and operates on a memory-less imperative language, reminiscent of the \texttt{Imp} language from Software Foundations~\cite{cpierce20221}\index{Software Foundations}.
 
-\subsubsection{The Coq Formalization}
+\subsubsection{The \ndx{Coq} Formalization}
 \label{subsubsec:coqpl-the-coq-formalization}
 
 Our goal is to certify the analysis as presented in {the original paper}~\cite{jones2009}.
