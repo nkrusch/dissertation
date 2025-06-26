@@ -1,38 +1,47 @@
 \subsection{On the wonders of programming}
 \label{subsec:programming-wonders}
 
-A programmable computer is a gadget without precedent.
-It can be appreciated in many ways:
-as an engineering marvel of ever-increasing capacity;
-as a medium of new flashy applications;
-or in the machine-independent scientific discipline that forms its foundations~\cite{dijkstra1979a,hoare2006}.
-This dissertation focuses on the intellectual challenge that concerns the {programming} of these gadgets.
+A programmable computer is a gadget without precedent. It can be appreciated in
+many ways: as an engineering marvel of ever-increasing capacity; as a medium of
+new flashy applications; or in the machine-independent scientific discipline
+that forms its foundations~\cite{dijkstra1979a,hoare2006}. This dissertation
+focuses on the intellectual challenge that concerns the {programming} of these
+gadgets.
 
 \begin{quotation}
-\noindent This challenge seems unique in the combination of the possibility for unmastered complexity -- programs are among the most
-complex things ever conceived -- and the ultimate, but misleading, simplicity of a world of zeros and ones alone~\cite{dijkstra1979a}.
+\noindent This challenge seems unique in the combination of the possibility for
+unmastered complexity -- programs are among the most complex things ever
+conceived -- and the ultimate, but misleading, simplicity of a world of zeros
+and ones alone~\cite{dijkstra1979a}.
 \end{quotation}
 
-\emph{Programming languages} provide us a interface for crafting programs.
-The languages are a useful \emph{abstraction}.
-They relieve us from working directly with 0s and 1s.
-We write programs in {high-level} languages, that are (intended to be) intelligible to humans.
-The high-level programs are then \enquote{translated} (compiled) into 0s and 1s for processing by computers.
-However, the abstraction of programming languages does nothing to reduce the intellectual challenge of programming~\cite{dijkstra1979b}.
-If we write a faulty program, we are at the mercy of our faulty creation (\ldots to be continued in~\autoref{verification}).
+Programming languages provide us a interface for crafting programs. The
+languages are a useful \emph{abstraction}. They relieve us from working directly
+with 0s and 1s. We write programs in {high-level} languages, that are (intended
+to be) intelligible to humans. The high-level programs are then
+\enquote{translated} (compiled) into 0s and 1s for processing by computers.
+However, the abstraction of programming languages does nothing to reduce the
+intellectual challenge of programming~\cite{dijkstra1979b}. If we write a faulty
+program, we are at the mercy of our faulty creation (\ldots to be continued
+in~\autoref{verification}).
 
 \paragraph{Equivalence.}
-One fascinating feature about programs is that we can write multiple distinct programs to compute the same result.
-In other words, two programs $\sem{p_1}$ and $\sem{p_2}$ are functionally \emph{equivalent}\index{functional equivalence}, \ie \(\sem{p_1} \equiv \sem{p_2}\), iff for every possible input \(i\), \(\sem{p_1}(i) = \sem{p_2}(i)\).
-Under equivalence, we fix the program input and output, but can alter \emph{how} the result is computed.
-A scientifically inclined reader will recognize equivalence as multiple algorithms computing the same function.
-A software engineer will recognize it in the art of \ndx{refactoring}.
+One fascinating feature about programs is that we can write multiple distinct
+programs to compute the same result. In other words, two programs
+$\sem{p_1}$\symbo{funprog} and $\sem{p_2}$\symbo{funprog} are functionally
+\emph{equivalent}\index{functional equivalence}, \ie \(\sem{p_1} \equiv
+\sem{p_2}\)\symbo{equiv}, iff for every possible input \(i\), \(\sem{p_1}(i) =
+\sem{p_2}(i)\)\symbo{funprog}. Under equivalence, we fix the program input and
+output, but can alter \emph{how} the result is computed. A scientifically
+inclined reader will recognize equivalence as multiple algorithms computing the
+same function. A software engineer will recognize it in the art of
+\ndx{refactoring}.
 
-To demonstrate the idea, consider the two programs in~\autoref{lst:intro}.
-The variable \pr|bit| is either \(0\) or \(1\).
-By visual inspection, it is obvious that the programs \enquote{look different}.
-Yet, for all values of variables \pr|X| and \pr|Y|, (I claim) they compute the same result.
-The result is stored in variable \pr|Z|.
+To demonstrate the idea, consider the two programs in~\autoref{lst:intro}. The
+variable \pr|bit| is either \(0\) or \(1\). By visual inspection, it is obvious
+that the programs \enquote{look different}. Yet, for all values of variables
+\pr|X| and \pr|Y|, (I claim) they compute the same result. The result is stored
+in variable \pr|Z|.
 
 \begin{center}
 \captionsetup{type=lstlisting}
@@ -97,7 +106,7 @@ The dissertations is about \emph{analyzing} programs, ideally with \emph{formal 
 \subsection{Addressed Problem}
 \label{subsec:problem}
 
-When we restrict a language, we will not be able to write every program -- \ie we sacrifice Turing-completeness.
+When we restrict a language, we will not be able to write every program -- \ie we sacrifice \ndx{Turing-completeness}.
 This leads to the question, \emph{what can we do with such a language?}\footnote{
 See \url{https://stackoverflow.com/questions/315340} for an inspirational warm-up.}
 Every manuscript of this dissertation is an instance responding to this broader question.
@@ -232,27 +241,41 @@ In particular, they show how to adjust the mathematics to obtain a program optim
 \end{description}
 
 \paragraph*{Related topics.}
-Each manuscript connects implicit computational complexity with a related research topic.
-The topics include static program analysis, security, program optimization, and formal methods.
-Each dissertation manuscript is decorated with an icon that denotes the related topic.
+Each manuscript connects implicit computational complexity with a related
+research topic. The topics include static program analysis, security, program
+optimization, and formal methods. Each dissertation manuscript is decorated with
+an icon that denotes the related topic.
 
 \paragraph*{On manuscript authorship.}
-The manuscript authors are listed in alphabetical order.
-The manuscripts in Chapters~\ref{published-manuscripts}--\ref{ch:unpublished-research} are \enquote{first author} works.
-The manuscripts in~\autoref{app:additional-manuscripts} are \enquote{non-first author} works.
+The manuscript authors are listed in alphabetical order. The manuscripts in
+Chapters~\ref{published-manuscripts}--\ref{ch:unpublished-research} are
+\enquote{first author} works. The manuscripts
+in~\autoref{app:additional-manuscripts} are \enquote{non-first author} works.
 The contributions of the co-authors are detailed in~\autoref{app:sec:coauth}.
 
 \paragraph*{On manuscript peer review.}
-The entire Chapters~\ref{published-manuscripts},~\ref{ch:unpublished-research},~\ref{ch:summary}, and ~\ref{app:additional-manuscripts} have been peer-reviewed.
-All publication and submission venues of research papers are ranked A or B in the CORE Conference Rankings Portal~\cite{core}.
+The entire
+Chapters~\ref{published-manuscripts},~\ref{ch:unpublished-research},~\ref{ch:summary},
+and ~\ref{app:additional-manuscripts} have been peer-reviewed. All published
+manuscripts, and the research papers currently in review, were reviewed at
+conferences ranked A or B in
+the~\href{https://portal.core.edu.au/conf-ranks/}{Computing Research and
+Education (CORE) Conference Rankings Portal}~\cite{core}.
+
 \begin{itemize}
-\item The published works, in Chapters~\ref{published-manuscripts} and~\ref{app:additional-manuscripts}, were inspected by 7--10 reviewers before acceptance.
-\item The unpublished works, in \autoref{ch:unpublished-research}, have been reviewed by 3--6 reviewers thus far.
-Preliminary versions of most unpublished works have been accepted and presented at respectable workshops.
-However, the unpublished research must be viewed with some caution -- they all have some limitation that prevents their inclusion in the {published} manuscripts-chapter.
+\item The published works, in Chapters~\ref{published-manuscripts}
+and~\ref{app:additional-manuscripts}, were inspected by 7--10 reviewers before
+acceptance.
+\item The unpublished works, in \autoref{ch:unpublished-research}, have been
+reviewed by 3--6 reviewers thus far. Preliminary versions of most unpublished
+works have been accepted and presented at respectable workshops. However, the
+unpublished research must be viewed with some caution -- they all have some
+limitation that prevents their inclusion in the {published} manuscripts-chapter.
 \item \autoref{ch:summary} is an extended abstract about the full dissertation.
-It has been peer-reviewed and presented at \href{https://2025.ecoop.org/track/ecoop-2025-doctoral-symposium}{the doctoral symposium}
-of \href{https://2025.ecoop.org}{the European Conference on Object-Oriented Programming (ECOOP)} 2025.
+It has been peer-reviewed and presented at
+\href{https://2025.ecoop.org/track/ecoop-2025-doctoral-symposium}{the doctoral
+symposium} of \href{https://2025.ecoop.org}{the European Conference on
+Object-Oriented Programming (ECOOP)} 2025.
 \end{itemize}
 
 

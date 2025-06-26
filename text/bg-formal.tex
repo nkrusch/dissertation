@@ -1,90 +1,124 @@
-The size and complexity of modern software makes it almost impossible to avoid implementation errors.
-Asynchronous computation, the rich array of computing environments and their communication;
-and constant modifications are among the challenges that can lead to software \enquote{going wrong}.
-Prominent and costly examples include
-the Ariane 5 rocket failure an explosion on its maiden flight~\cite{ariane5},
-the Therac-25 radiation therapy machine with six instances of lethal overdoses~\cite{leveson1993};
-and the loss of NASA's Mars Climate Orbiter~\cite{mars1999}.
-In more recent memory, the CrowdStrike incident caused multiple days of system outages
- across critical infrastructure like airports, banks, and hospitals~\cite{crowdstrike}.
-In a case involving the~\textcite{usg2024},
-a software-related failure exposed sensitive personal information of USG employees with potential harm to the Augusta University community.
+The size and complexity of modern software makes it almost impossible to avoid
+implementation errors. Asynchronous computation, the rich array of computing
+environments and their communication, and continuous modifications of source
+code are among the challenges that can lead to software \enquote{going wrong}.
+
+Prominent and costly examples of failure include the \ndx{Ariane 5} rocket
+explosion on its maiden flight~\cite{ariane5}, the \ndx{Therac-25} radiation
+therapy machine with six instances of lethal overdoses~\cite{leveson1993}; and
+the loss of NASA's \ndx{Mars Climate Orbiter}~\cite{mars1999}.
+
+In more recent memory, the \ndx{CrowdStrike} incident caused multiple days of
+system outages across critical infrastructure like airports, banks, and
+hospitals~\cite{crowdstrike}. In a case involving the~\textcite{usg2024}, a
+software-related failure exposed sensitive personal information of USG employees
+with potential harm to the Augusta University community.
 
 Unreliability of software is not isolated to these few publicized instances.
 A pithy comment in~\textcite[p. 3]{dijkstra1970} captures a similar sentiment.
 
 \begin{quotation}
-\noindent{}Present-day computers are amazing pieces of equipment,
-but most amazing of all are the uncertain grounds on account of which we attach any validity to their output.
+\noindent{}Present-day computers are amazing pieces of equipment, but most
+amazing of all are the uncertain grounds on account of which we attach any
+validity to their output.
 \end{quotation}
 
-The context of Dijkstra's statement is modest compared to exploding rockets;
-it refers to a multiplication operation of two 27-bit integers.
-Checking that the machine actually performs the correct operation for all inputs---\ie meets its \emph{specification}---,
-at a rate of few microseconds per input-pair, would require more than 10,000 years.
-Thus, among computer scientists, the skepticism around software correctness is a long-held position.
-It is also the core problem tackled by formal methods.
+The context of Dijkstra's statement is modest compared to exploding rockets. It
+refers to the multiplication operation of two 27-bit integers. Checking that a
+calculator actually performs the correct operation for all inputs---\ie meets
+its \emph{specification\index{specifications}}---at a rate of few microseconds
+per input-pair, would require more than 10,000 years. Thus, skepticism around
+software correctness is a long-held position among some computer scientists. It
+is also the core issue tackled by formal methods.
 
-\paragraph*{Motivations and challanges.}
-Formal methods aims to remove uncertainty by providing techniques that allow establishing strong behavioral guarantees.
-Formal methods is deeply rooted in mathematics and logic~\cite{shankar2023}.
-In this view, programs are defined as precise mathematical \emph{models} with {specifications}.
-The specification defines what behavior is expected from the model under study.
-Formally \emph{verifying} a program involves constructing a \emph{proof} that the model satisfies its specification.
-In contrast to manual inspection and tests (like the one of inspecting every input-pair),
-a proof conclusively ensures correctness for all inputs at the model's level of abstraction.
-As noted later by~\textcite{dijkstra1972}, \enquote{{[t]he only effective way to raise the confidence level of a program significantly is to give a convincing proof of its correctness.}}
+\paragraph*{A formal methods primer -- motivations and challenges.}
+Formal methods aims to remove uncertainty by providing techniques that allow
+establishing strong behavioral guarantees. Formal methods is deeply rooted in
+mathematics and logic~\cite{shankar2023}. In this view, programs are defined as
+precise mathematical \emph{models} with \ndx{specifications}. The specification
+defines what behavior is expected from the model under study. Formally
+\emph{verifying}\index{formal verification} a program involves constructing a
+\emph{proof} that the model satisfies its specification. In contrast to manual
+inspection and tests (like a test of inspecting every input-pair), a proof
+conclusively ensures correctness for all inputs, at the model's level of
+abstraction. As noted later by~\textcite{dijkstra1972}, \enquote{{[t]he only
+effective way to raise the confidence level of a program significantly is to
+give a convincing proof of its correctness.}}
 
-The motivation for using formal methods is based on the strength of guarantees it provides.
-Being formal helps when you want to be precise~\cite{leino2023}.
-However, thinking formally requires a different engineering mindset.
-Instead of thinking of all possible scenarios and how they might go wrong, formal reasoning requires defining how a system is \emph{expected} to work, and identifying conditions that must be met to ensure the correct behavior~\cite{aws2024}.
-Those conditions are then formally verified using proofs.
+The motivation for using formal methods is based on the strength of guarantees
+it provides. Being formal helps when we want to be precise~\cite{leino2023}.
+However, thinking formally requires a different engineering mindset. Instead of
+thinking of all possible scenarios and how they might go wrong, formal reasoning
+requires defining how a system is \emph{expected} to work, and identifying
+conditions that must be met to ensure the correct behavior~\cite{aws2024}. Those
+conditions are then formally verified with proofs.
 
-Despite the clear benefits, wider adoption of formal methods is impeded by challenges involving \eg resource investment (formal proofs are time-consuming), tooling, and education~\cite{beek2024}.
-A slightly different challenge concerns the \emph{methods} themselves.
-The Four Color theorem is the first famous result with a proof that requires large computer calculations.
-When the proof appeared in 2008, such proofs were still controversial.
-The basis of the controversy was that computer programs could not be reviewed with mathematical rigor~\cite{gonthier2008}.
-Thus, a critical factor in advancing formal methods concerns educating wider communities about the capabilities.
+Despite the clear benefits, wider adoption of formal methods still faces many
+challenges. These include \eg resource investment (formal proofs are
+time-consuming), tooling and tool maintenance, and technical
+education~\cite{beek2024}. Another challenge concerns the \emph{methods}
+themselves. The \ndx{Four Color theorem} is the first famous result with a proof
+that requires large computer calculations. When the proof appeared in 2008, such
+proofs were still controversial. The source of the controversy was that computer
+programs could not be reviewed with mathematical rigor~\cite{gonthier2008}.
+Thus, advancing formal methods also concerns improving communication about the
+available capabilities.
 
 \begin{quotation}
-\noindent{}We can envision [\ldots] a world in which computer programs are always the most reliable components of any system or device~\cite{hoare2021}.
+\noindent{}We can envision [\ldots] a world in which computer programs are
+always the most reliable components of any system or device~\cite{hoare2021}.
 \end{quotation}
 
 \subsubsection{Foundational Concepts}
 \label{subsubsec:verification-concepts}
 
-\paragraph*{Models and specifications.}
-A formal \emph{model} is an abstract description of a computer system of interest, expressed in (some) formal modelling language,
-and used for reasoning about the system and consequences of design choices~\cite{zave2023,olveczky2017}.
-In this dissertation, we are interested in systems that are programs.
-In choosing a modeling formalism, it should enable expressing the model as naturally and intuitively as possible,
-while still generating mathematically precise structures~\cite{olveczky2017,beek2024}.
-In other words, the formalism should omit unnecessary technicalities;
-enable focusing on the problem of interest at an appropriate level of abstraction,
-and facilitate analysis and reasoning about the program~\cite{olveczky2017}.
+\paragraph*{Formal models.} A formal \emph{model} is an abstract description of
+a computer system of interest. The model is expressed in (some) formal modelling
+language. The model is used for reasoning about the system and consequences of
+design choices~\cite{zave2023,olveczky2017}. For the dissertation, the systems
+of interest are programs.
+In choosing a modeling formalism, it should enable expressing the model as
+naturally and intuitively as possible, while still generating mathematically
+precise structures~\cite{olveczky2017,beek2024}. In other words, the formalism
+should
+\begin{enumerate*}[label=(\roman*)]
+\item omit unnecessary technicalities,
+\item enable focusing on the problem of interest at an appropriate level of
+abstraction, and
+\item facilitate analysis and reasoning about the program~\cite{olveczky2017}.
+\end{enumerate*}
 
-The \emph{specification} is a part of the formal model that describes the \emph{behavior} of the program~\cite{zave2023b}.
-The specification should be simpler and easier to comprehend than an actual implementation~\cite{zave2023b}.
-Critically, we want the specification to be \emph{separate} from the implementation~\cite{furia2014b}.
-Such independence enables isolating the mathematical properties of interest and showing that the implementation is consistent with those properties\footnote{
-Otherwise, we run into the \emph{Assertion Inference Paradox}:
-\enquote{if the specification is inferred from the implementation, what do we prove?}~\cite{furia2014b}}.
-The specification should precede the implementation or minimally be developed concurrently~\cite{dijkstra1972}.
+\paragraph*{Specifications.} The \emph{specification}\index{specifications}
+is a part of the formal model that describes the \emph{behavior} of the
+program~\cite{zave2023b}. The specification should be simpler and easier to
+comprehend than the implementation~\cite{zave2023b}. The development of the
+specification should precede the implementation, or minimally be developed
+concurrently~\cite{dijkstra1972}. Critically, we want the specification to be
+{separate} from the implementation~\cite{furia2014b}. Independence isolates the
+mathematical properties of interest and enables showing that the implementation
+is consistent with those properties. Without independence, we encounter the
+\emph{\ndx{Assertion Inference Paradox}}~\cite{furia2014b}. Essentially, the
+paradox states: if we infer the specification from the implementation, what is
+it that we prove?
 
-One standard way to notate specifications is through Hoare triples~\cite{hoare1969}.
-In this view, we consider \(S\) to be some executable statement (a program).
-We then define a \emph{precondition} \(P\) that describes conditions that hold before execution,
-and a \emph{postcondition} \(Q\) that describes conditions that hold after execution.
-Then, a \emph{Hoare triple} is a predicate that connects the statement with the pre- and postconditions by \(\{P\} S \{Q\}\).
-Such expression essentially means, starting from \(P\), statement \(S\) will not crash and terminates in a state satisfying \(Q\).
-For example, \(\{ \prm{x}=0 \}\;\prm{x++}\;\{ \prm{x}=1\}\) is a valid Hoare triple, which is also provable (though \emph{how} to prove it is a topic for later).
+One standard way to express \ndx{specifications} is by \ndx{Hoare
+triple}s~\cite{hoare1969}. In this view, we consider \(S\) to be some executable
+statement (a program). We then define a \emph{\ndx{precondition}}
+\(P\)\symbo{pre} that describes conditions that hold before execution. A
+\emph{\ndx{postcondition}} \(Q\)\symbo{post} describes conditions that hold
+after execution. Then, a \emph{\ndx{Hoare triple}} is a predicate that connects
+the statement with the pre- and postconditions by \(\{P\} S
+\{Q\}\)\symbo{hoare}. The expression means, \enquote{starting from
+\(P\)\symbo{pre}, statement \(S\) will not crash and terminates in a state
+satisfying \(Q\)\symbo{post}}. For example, \(\{ \prm{x}=0 \}\;\prm{x++}\;\{
+\prm{x}=1\}\)\symbo{hoare} is a valid and provable\footnote{ Though, the
+mechanics of {how} to prove it is a topic
+for~\autoref{subsubsec:sm-tool-examples}} \ndx{Hoare triple}.
 
 \paragraph*{Invariants.}
 Proving that an implementation meets its specification requires more information than what is available in the program syntax~\cite{chang2005}.
-For example, to prove a Hoare triple of a loop command often requires establishing additional verification conditions called invariants.
-An \emph{invariant}, in programming terms, is an assertion that is preserved by the program execution~\cite{furia2014}.
+For example, to prove a Hoare triple of a loop command often requires establishing additional verification conditions.
+An \emph{\ndx{invariant}}, in programming terms, is an assertion that is preserved by the program execution~\cite{furia2014}.
 An invariant is \emph{inductive},
 if it holds the first time a program location is reached and is preserved in every cycle returning to that location~\cite{sankaranarayanan2004}.
 There are many kinds of invariants, \eg object, class, and loop invariants.
@@ -128,26 +162,26 @@ There are various different ways of categorizing classes of properties.
 \emph{Non-functional} properties are concerned with quality attributes like security, dependability, reliability, and resource requirements~\cite{terbeek2018}.
 Two other frequently-used categorizing terms are safety and liveness.
 They come from a paper by~\textcite{lamport1977}, where
-a \emph{safety property} is a guarantee that \enquote{something (bad) will not happen},
-and \emph{liveness property} ensures (good things) \enquote{must happen}, eventually.
+a \emph{\ndx{safety property}} is a guarantee that \enquote{something (bad) will not happen},
+and \emph{\ndx{liveness property}} ensures (good things) \enquote{must happen}, eventually.
 The proof techniques across these safety and liveness properties are different.
 Works in this dissertation are primarily concerned with non-functional safety properties.
 
 \paragraph*{Partial and total correctness.}
-Broadly, a program is correct if the implementation is consistent with the specification~\cite{furia2014b}.
-However, in making assertions about correctness, we need to be more specific.
-There are two common notions around correctness that provide more precision: partial and total correctness.
-\emph{Partial correctness} means that every terminating execution is correct, however it does not ensure every execution terminates~\cite[p. 64]{leino2023}.
-A stronger guarantee follows from total correctness.
+Broadly, a program is correct if the implementation is consistent with the specification\index{specifications}~\cite{furia2014b}.
+However, when making assertions about correctness, we need to be more precise.
+There are two common notions about correctness that provide added specificity: partial and total correctness.
+\emph{Partial correctness}\index{partial correctness} means that every terminating execution is correct, however it does not ensure every execution terminates~\cite[p. 64]{leino2023}.
+A stronger guarantee follows from \ndx{total correctness}.
 A program is \emph{totally correct} if it is partially correct and always terminates~\cite[p. 64]{leino2023}.
-Total correctness can be viewed as a combination of safety and liveness properties~\cite{lamport1977}.
+Total correctness can be viewed as a combination of safety\index{safety property} and liveness properties\index{liveness property}~\cite{lamport1977}.
 There are several strategies for proving termination in some cases, \cf~\autoref{resource-analysis}.
-However, a general method that proves termination of all programs cannot exist since termination is undecidable~\cite{turing1936}.
-This means it is impossible to show total correctness of all programs\footnote{
-Total correctness is not an absolute ideal.
-There are many applications where termination is undesirable, like a web server or cardiac pacemaker; but for which we still want formal guarantees.};
-but similar to~\autoref{static-analysis-basics},
-there is endless opportunity in building increasingly capable program verifiers.
+However, a general method that proves termination of all programs cannot exist since termination is undecidable~\cite{turing1936}\index{undecidability}.
+This means it is impossible to show \ndx{total correctness} of all programs.%
+\footnote{Total correctness is not always ideal.
+There are many applications where termination is undesirable, like a web server and cardiac pacemaker.
+We may still want formal guarantees for such software.};
+However, similar to~\autoref{static-analysis-basics}, there is endless opportunity in building increasingly capable program verifiers.
 
 \subsubsection{Tools for Formal Verification}
 
@@ -162,23 +196,23 @@ Among the tools, interactive theorem proving and verification-aware programming 
 \toprule
 \multicolumn{2}{@{}l}{\textbf{Automated theorem provers \& solvers}} \\
 &
-\href{https://alt-ergo.ocamlpro.com}{Alt-Ergo}\index{Alt-Ergo}%
-,{ }\href{https://github.com/bitwuzla/bitwuzla}{Bitwuzla}\index{Bitwuzla}%
-,{ }\href{https://cvc5.github.io}{cvc5}\index{cvc5}%
-,{ }\href{https://www.cyclist-prover.org}{Cyclist}\index{Cyclist}%
-,{ }\href{https://github.com/dreal/dreal4}{dReal}\index{dReal}%
-,{ }\href{https://wwwlehre.dhbw-stuttgart.de/~sschulz/E/E.html}{E}\index{E}%
-,{ }\href{https://gitlab.com/korovin/iprover}{iProver}\index{iProver}%
-,{ }\href{https://mathsat.fbk.eu}{MathSAT}\index{MathSAT}%
-,{ }\href{https://fmv.jku.at/picosat/}{PicoSAT}\index{PicoSAT}%
-,{ }\href{https://github.com/uuverifiers/princess}{Princess}\index{Princess}%
-,{ }\href{https://en.wikipedia.org/wiki/Prover9}{Prover9}\index{Prover9}%
-,{ }\href{https://satallaxprover.org}{\mbox{Satallax}}\index{Satallax}%
-,{ }\href{http://www.spass-prover.org}{SPASS}\index{SPASS}%
-,{ }\href{https://vprover.github.io}{Vampire}\index{Vampire}%
-,{ }\href{https://verit.loria.fr}{veriT}\index{veriT}%
-,{ }\href{https://yices.csl.sri.com}{Yices}\index{Yices}%
-,{ }\href{https://github.com/Z3Prover/z3}{Z3}\index{Z3}%
+\href{https://alt-ergo.ocamlpro.com}{\ndx{Alt-Ergo}}%
+,{ }\href{https://github.com/bitwuzla/bitwuzla}{\ndx{Bitwuzla}}%
+,{ }\href{https://cvc5.github.io}{\ndx{cvc5}}%
+,{ }\href{https://www.cyclist-prover.org}{\ndx{Cyclist}}%
+,{ }\href{https://github.com/dreal/dreal4}{\ndx{dReal}}%
+,{ }\href{https://wwwlehre.dhbw-stuttgart.de/~sschulz/E/E.html}{\ndx{E}}%
+,{ }\href{https://gitlab.com/korovin/iprover}{\ndx{iProver}}%
+,{ }\href{https://mathsat.fbk.eu}{\ndx{MathSAT}}%
+,{ }\href{https://fmv.jku.at/picosat/}{\ndx{PicoSAT}}%
+,{ }\href{https://github.com/uuverifiers/princess}{\ndx{Princess}}%
+,{ }\href{https://en.wikipedia.org/wiki/Prover9}{\ndx{Prover9}}%
+,{ }\href{https://satallaxprover.org}{\mbox{\ndx{Satallax}}}%
+,{ }\href{https://www.mpi-inf.mpg.de/departments/automation-of-logic/software/spass-workbench/}{\ndx{SPASS}}%
+,{ }\href{https://vprover.github.io}{\ndx{Vampire}}%
+,{ }\href{https://verit.loria.fr}{\ndx{veriT}}%
+,{ }\href{https://yices.csl.sri.com}{\ndx{Yices}}%
+,{ }\href{https://github.com/Z3Prover/z3}{\ndx{Z3}}%
 \\\midrule
 \multicolumn{2}{@{}l}{\textbf{Interactive theorem proving}} \\
 &
@@ -376,7 +410,7 @@ prime numbers and finite graphs, and advanced topics in algebra.
 The theories are organized into hierarchical levels where the design facilitates reuse.
 The proof style is based on Rocq, but Mathematical Components uses a specialized language extension called SSReflect (small-scale reflection).
 SSReflect significantly influences proof writing style and poses its own learning curve.
-To demonstrate the difference,~\autoref{sm-tool-examples} shows examples in \enquote{standard} Rocq and SSReflect.
+To demonstrate the difference,~\autoref{subsubsec:sm-tool-examples} shows examples in \enquote{standard} Rocq and SSReflect.
 The Mathematical Components library has an essential role in the Rocq community because several landmark results of finite group theory are based on it.
 For example, the mechanical proofs of the Four Colour theorem~\cite{gonthier2008} and the Odd Order theorem~\cite{gonthier2013} utilize the library extensively.
 
@@ -390,53 +424,76 @@ Conventional uses of Rocq include proving properties of programming languages, f
 \toprule
 \textbf{Formalization target} & \textbf{Authors} \\
 \midrule
-\href{https://users.dimi.uniud.it/~ivan.scagnetto/pi-calculus.html}%
-{\ndx{\(\pi\)-calculus} in (Co)inductive-type theory}\index{coinduction} & \textcite{honsell2001}
+   \href{https://users.dimi.uniud.it/~ivan.scagnetto/pi-calculus.html}%
+   {\ndx{\(\pi\)-calculus} in (Co)inductive-type theory}\index{coinduction}
+   & \textcite{honsell2001}
 \\
-\href{https://github.com/rocq-community/goedel}%
-{\ndx{Gödel-Rosser incompleteness theorem}} & \textcite{oconnor2005}
+   \href{https://github.com/rocq-community/goedel}%
+   {\ndx{Gödel-Rosser incompleteness theorem}}
+   & \textcite{oconnor2005}
 \\
-Modal model of impredicative semantics & \textcite{appel2007}
+   Modal model of impredicative semantics
+   & \textcite{appel2007}
 \\
-\href{https://github.com/rocq-community/fourcolor}%
-{\ndx{Four Color theorem}}\smtabularnote{based on~\cite{robertson1997} and~\cite{appel1989}} & \textcite{gonthier2008}
+   \href{https://github.com/rocq-community/fourcolor}%
+   {\ndx{Four Color theorem}}%
+   \smtabularnote{based on~\cite{robertson1997} and~\cite{appel1989}}
+   & \textcite{gonthier2008}
 \\
-\href{https://github.com/AbsInt/CompCert}%
-{Verified Optimizing C Compiler, \ndx{CompCert}}%
-\smtabularnote{A verifying compiler is one of the grand challenges for computing research posed in~\textcite{hoare2003}}%
-\smtabularnote{CompCert received the ACM Software System Award in 2021.} & \textcite{leroy2009}
+   \href{https://github.com/AbsInt/CompCert}%
+   {Verified Optimizing C Compiler, \ndx{CompCert}}%
+   \smtabularnote{A verifying compiler is one of the grand challenges for computing research posed in~\textcite{hoare2003}}%
+   \smtabularnote{CompCert received the ACM Software System Award in 2021.}
+   & \textcite{leroy2009}
 \\
-\href{https://gitlab.inria.fr/flocq/flocq}%
-{\ndx{Flocq}: floating-point numbers} & \textcite{boldo2011}
+   \href{https://gitlab.inria.fr/flocq/flocq}%
+   {\ndx{Flocq}: floating-point numbers}
+   & \textcite{boldo2011}
 \\
-\href{http://plv.csail.mit.edu/bedrock/}%
-{\ndx{Bedrock}: low-level programming library} & \textcite{chlipala2011}
+   \href{http://plv.csail.mit.edu/bedrock/}%
+   {\ndx{Bedrock}: low-level programming library}
+   & \textcite{chlipala2011}
 \\
-\href{https://github.com/davidnowak/bellantonicook}%
-{Safe Recursion\index{safe recursion}} -- \autoref{safe-rec} & \textcite{heraud2011} \\
-\href{https://github.com/ProjectiveGeometry/ProjectiveGeometry}
-{\ndx{Desargues's theorem} in projective geometry} & \textcite{magaud2012}
+   \href{https://github.com/davidnowak/bellantonicook}%
+   {Safe Recursion\index{safe recursion}} -- \autoref{safe-rec}
+   & \textcite{heraud2011}
 \\
-\href{https://github.com/math-comp/odd-order}%
-{Feit-Thompson's \ndx{Odd Order theorem}} & \textcite{gonthier2013}
+   \href{https://github.com/ProjectiveGeometry/ProjectiveGeometry}
+   {\ndx{Desargues's theorem} in projective geometry}
+   & \textcite{magaud2012}
 \\
-\href{https://github.com/HoTT/Coq-HoTT}%
-{\ndx{Homotopy Type Theory}} & \textcite{bauer2017}
+   \href{https://github.com/math-comp/odd-order}%
+   {Feit-Thompson's \ndx{Odd Order theorem}}
+   & \textcite{gonthier2013}
 \\
-\href{https://github.com/rocq-community/reglang}%
-{Regular Language representations} & \textcite{doczkal2018}
+   \href{https://gitlab.inria.fr/coquelicot/coquelicot/}%
+   {\ndx{Coquelicot}: Real Analysis}
+   & \textcite{boldo2014}
 \\
-\href{https://github.com/DeepSpec/InteractionTrees}%
-{Interaction Trees: Recursive and impure programs} & \textcite{xia2019}
+   \href{https://github.com/HoTT/Coq-HoTT}%
+   {\ndx{Homotopy Type Theory} (HoTT)}
+   & \textcite{bauer2017}
 \\
-\href{https://github.com/uds-psl/coq-library-undecidability}%
-{Undecidable\index{undecidability} Problems} & \textcite{forster2020b}
+   \href{https://github.com/rocq-community/reglang}%
+   {Regular Language representations}
+   & \textcite{doczkal2018}
 \\
-\href{https://github.com/SSProve/ssprove}%
-{\ndx{SSProve}: modular cryptographic proofs} & \textcite{haselwarter2023} \\
+   \href{https://github.com/DeepSpec/InteractionTrees}%
+   {Interaction Trees: Recursive and impure programs}
+   & \textcite{xia2019}
+\\
+   \href{https://github.com/uds-psl/coq-library-undecidability}%
+   {Undecidable\index{undecidability} Problems}
+   & \textcite{forster2020b}
+\\
+   \href{https://github.com/SSProve/ssprove}%
+   {\ndx{SSProve}: modular cryptographic proofs}
+   & \textcite{haselwarter2023}
+\\
 \bottomrule
 \end{NiceTabularX}
-\caption[The Rocq prover formalization results]{A small sample of results formalized with the Rocq prover.}
+\caption[The Rocq prover formalization results]
+{A small sample of results formalized with the Rocq prover.}
 \label{tab:rocq-results}
 \end{table}
 
@@ -539,7 +596,7 @@ It has been used in research projects, industrial applications, verification pro
 Among the hallmark results, the AWS authorization engine---that handles 1 billion API calls per second~\cite{wagner2024}---is verified in Dafny~\cite{chakarov2025}.
 
 \subsubsection{Tool Comparison by Light Examples}
-\label{sm-tool-examples}
+\label{subsubsec:sm-tool-examples}
 
 This section covers two verification tasks that are suitable for paper presentation while illustrating differences between the formal proof techniques.
 To match the dissertation theme, the examples are about program proofs.
@@ -831,8 +888,8 @@ because there exists an alternate (different) \pr|alloc2| that explains the obse
 \begin{minipage}{\textwidth}
 \captionsetup{type=lstlisting}
 \mathcompinputlisting{lemma2.v}
-\captionof{lstlisting}[Person A cannot recover the allocation]{
-Second requirement formally -- \(\mathsf{A}\) does not learn anything.}
+\captionof{lstlisting}[Person A cannot recover the allocation]
+{Second requirement formally -- \(\mathsf{A}\) does not learn anything.}
 \label{lst:lemma-2}
 \end{minipage}
 \end{center}
@@ -867,7 +924,7 @@ The presented moscow problem solution could be adjusted to a universe of \([0, 6
 However, solutions to other modifications---\eg larger set of numbers, different allocations, or more people---are unknown.
 
 \subsubsection{Connecting Formal Methods and ICC}
-\label{icc-formally}
+\label{subsubsec:icc-formally}
 
 There are several ways to relate complexity theory and formal methods.
 The features that distinguish implicit complexity from the classic complexity in theory, are the same features that make it a suitable target for formal reasoning.
@@ -880,9 +937,9 @@ In other words, the significance and potential are sufficient to justify the eff
 
 \paragraph*{Existing results in formally verified complexity.}
 There exists a (small) collection of result formalizing classic complexity theory (\cf~\autoref{subsec:coqpl-related}).
-For example, universal Turing Machines~\cite{forster2020}, the \(\mathcal{O}\)-notation~\cite{gueneau2018},
-and the Cook-Levin theorem~\cite{gaher2021}%! suppress = CollapseCite
-\footnote{The Cook-Levin theorem states that Boolean SAT is NP-Complete~\cite{cook1971, levin1973}.}
+For example, \ndx{Universal Turing Machine}s~\cite{forster2020}, the \(\mathcal{O}\)-notation\symbo{bigo}~\cite{gueneau2018},
+and the \ndx{Cook-Levin theorem}~\cite{gaher2021}%! suppress = CollapseCite
+\footnote{The Cook-Levin theorem states that Boolean SAT is NP\ccxi{np}-Complete~\cite{cook1971, levin1973}.}
 have already been formalized.
 
 Among works of implicit computational complexity, the hallmark result of Bellantoni and Cook was formalized by~\textcite{heraud2011}.

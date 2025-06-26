@@ -560,18 +560,25 @@ another mechanism adopted from the security domain.
 In the latter, the main result is a proof that SAFE and terminating aperiodic programs is the class of Basic Feasible Functionals\index{Basic Feasible Functionals}, \ie \(\sem{\text{SAFE}\;\cap\;\text{AP}\;\cap\;\text{terminating} = \text{BFF}}\)~\cite{hainry2020,hainry2024}.
 
 \paragraph*{From complexity to cryptography.}\index{cryptography}
-In opposite direction, a separate track of works uses implicit computation complexity for applications in the security domain.
-The formalization of safe recursion (\cf~\autoref{safe-rec}) was primarily motivated by its envisioned utility in cryptography~\cite{heraud2011}.
-The type system \ndx{d\(\ell\)T}~\cite{baillot2015,baillot2019} is simultaneously complexity-aware, and has capabilities to support cryptographic proofs.
-Among the applications, d\(\ell\)T allows proving that the constructed adversary for the Goldreich-Levin Theorem\index{Goldreich-Levin Theorem} is polynomial time\ccxi{p}.
-Such applications are interesting because they involve computations that are inherently non-polynomial in time complexity.
-Handing such sub-computations
-requires pushing ICC techniques beyond their standard capabilities.
-Although \ndx{d\(\ell\)T} has not been implemented, together with the formalization of safe recursion, it
-already inspired other mechanized proofs~\cite{barbosa2021,feree2018}.
+A separate series of works applies implicit computation complexity toward applications in the security domain.
+
+\begin{description}
+
+\item[formalized safe recursion.]
+The formalization of \ndx{safe recursion} (\cf~\autoref{safe-rec}) was primarily motivated by its envisioned usefulness in cryptography~\cite{heraud2011}.
+
+\item[Type system d\(\ell\)T.]
+The type system \ndx{d\(\ell\)T}~\cite{baillot2015,baillot2019} is simultaneously complexity-aware and has capabilities to support cryptographic proofs.
+Among its applications, d\(\ell\)T allows proving that the constructed adversary for the \ndx{Goldreich-Levin theorem} is polynomial time\ccxi{p}.
+Such applications are interesting because they involve computations that are inherently non-polynomial in \ndx{time complexity}.
+Thus, handling such sub-computations requires pushing ICC techniques beyond their usual capabilities.
+A limitation of the type system is that it has not been implemented.
+
+\end{description}
+Both \ndx{d\(\ell\)T} and the formalization of \ndx{safe recursion} have inspired other mechanized proofs~\cite{barbosa2021,feree2018}.
 
 \subsubsection{From Quasi-Invariant Chunks to Non-Interference}
-\label{quasi-ni}
+\label{subsubsec:quasi-ni}
 
 Reinforcing the existing connections,~\autoref{sec:anytime} presents a program logic for \ndx{non-interference}.
 The logic is inspired by implicit computational complexity.
