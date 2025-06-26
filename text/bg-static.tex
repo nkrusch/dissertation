@@ -23,7 +23,7 @@ A core challenges of static analysis concern precision and scalability of the te
 these topics are actively explored in research~\cite{schiebel2024}.
 
 As a consequence of Rice's theorem~\cite{rice1953}\footnote{
-Informally, Rice's theorem asserts that all interesting questions about the input/output behavior of programs written in a Turing-complete language are undecidable.}, it is impossible to construct a perfect program analyzer for a Turing-complete language.
+Informally, Rice's theorem asserts that all interesting questions about the input/output behavior of programs written in a Turing-complete\index{Turing-completeness} language are undecidable.}, it is impossible to construct a perfect program analyzer for a Turing-complete language.
 All approaches must sacrifice something among soundness, completeness and termination~\cite{moller2024}.
 Although seemingly discouraging, Rice's theorem should be viewed with optimism.
 Since static program analysis is inherently undecidable, there is infinite opportunity in building increasingly precise approximations --
@@ -105,7 +105,7 @@ A complete analyzer underestimates the program behaviors and thus errs on the ot
 
 \paragraph*{Soundiness.}
 While academic literature widely emphasizes sound analyses, according to~\textcite{livshits2015}, strict soundness is a myth among realistic whole-program analyzers.
-Practically-orientated static analyzers typically insist on Turing-completeness and termination,
+Practically-orientated static analyzers typically insist on \ndx{Turing-completeness} and termination,
 but trade between soundness and completeness~\cite{moller2023,steffen2020}.
 As an compromise, modern analyzers for real programming languages are often soundy.
 A \emph{soundy}\index{soundy} analysis is as sound as possible, without excessively compromising precision or scalability~\cite{livshits2015}.
@@ -292,7 +292,7 @@ Stated differently, implicit complexity can decide non-trivial semantics propert
 Extensional correspondence with complexity classes is usually not enough.
 A programming language offering safety guarantees is plausible only
 if it captures enough interesting and natural algorithms~\cite{baillot2012}.
-On the other hand, sacrificing Turing-completeness allows developing an analysis that is \enquote{completely correct} about membership in a particular complexity class.
+On the other hand, sacrificing \ndx{Turing-completeness} allows developing an analysis that is \enquote{completely correct} about membership in a particular complexity class.
 It requires defining a non-Turing-complete programming language and proving that it is sound and complete \wrt a particular complexity class.
 %i.e., that their programs compute functions in \(\mathbb{C}\),
 %and that for any problem in \(\mathbb{C}\), there is a program that solves it).
@@ -300,7 +300,7 @@ This sidesteps Rice's theorem, but cannot be \emph{intentionally} complete, sinc
 Correctly analysing a real world programming language is very difficult because of the large number of constructions allowed in it.
 
 \begin{quotation}
-\noindent We must understand all the diﬃculty because for a Turing-complete language for example the class of PTime programs is not recursively enumerable, and therefore an intentionally complete criterion would not be decidable~\cite[Sect. 4.1]{mogbil2012}.
+\noindent We must understand all the diﬃculty because for a Turing-complete\index{Turing-completeness} language for example the class of PTime programs is not recursively enumerable, and therefore an intentionally complete criterion would not be decidable~\cite[Sect. 4.1]{mogbil2012}.
 \end{quotation}
 
 \noindent For this reason, most research\footnote{

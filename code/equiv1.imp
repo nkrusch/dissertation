@@ -1,2 +1,2 @@
-if (bit) { Z = X; }
-else     { Z = Y; }
+if (bit) { Z = X }
+else     { Z = Y }

@@ -104,6 +104,9 @@ acs-*.bib
 *.glsdefs
 *.lzo
 *.lzs
+*.sbl
+*.slg
+*.sym
 
 # uncomment this for glossaries-extra (will ignore makeindex's style files!)
 # *.ist
@@ -128,7 +131,6 @@ acs-*.bib
 
 # knitr
 *-concordance.tex
-# TODO Comment the next line if you want to keep your tikz graphics files
 *.tikz
 *-tikzDictionary
 
@@ -270,15 +272,14 @@ TSWLatexianTemp*
 
 *.ist
 
-main.pdf
-pictures/*.pdf
-tex_version
-main.sbl
-main.slg
-main.sym
+# compiled code
 *.byte
 *.mli
 *.glob
 *.vo
 *.vok
 *.vos
+
+# exclude specific pdfs
+main.pdf
+pictures/*.pdf
