@@ -478,6 +478,10 @@ Conventional uses of Rocq include proving properties of programming languages, f
    {Regular Language representations}
    & \textcite{doczkal2018}
 \\
+   \href{https://github.com/runtimeverification/casper-proofs/tree/master}
+   {Caspar \ndx{blockchain} finality}
+   & \textcite{palmskog2018}
+\\
    \href{https://github.com/DeepSpec/InteractionTrees}%
    {Interaction Trees: Recursive and impure programs}
    & \textcite{xia2019}
@@ -926,51 +930,85 @@ However, solutions to other modifications---\eg larger set of numbers, different
 \subsubsection{Connecting Formal Methods and ICC}
 \label{subsubsec:icc-formally}
 
-There are several ways to relate complexity theory and formal methods.
-The features that distinguish implicit complexity from the classic complexity in theory, are the same features that make it a suitable target for formal reasoning.
-A particularly strong motivator is that the programming language-based approach yields more natural definitions and proofs of central results than the classical approach~\cite{kristiansen2017}.
+There are several ways to relate complexity theory and formal methods. Since
+they are founded on programming languages, ICC systems are potentially highly
+suitable for formal reasoning (\cf~\textcite{cpierce20222} for a starting
+point). A particularly strong motivator is that ICC systems yield more natural
+definitions and proofs of central results than classic \ndx{complexity
+theory}~\cite{kristiansen2017}.
 
 Formalization of a theory requires significant time and effort.
-However, based on to the continued and demonstrated relevance of ICC results (\cf~\autoref{tab:icc-results});
-the frequent absence of \emph{formal} proofs among those results, and the maturity of formalization techniques, the criteria for formalizing complexity is well-satisfied.
-In other words, the significance and potential are sufficient to justify the effort of seeking formal guarantees.
+However, the effort of formalizing ICC results is justified, based on the following factors.
+\begin{enumerate*}
+\item Continued demonstrated relevance of ICC results -- \cf~\autoref{tab:icc-results}.
+\item Absence of \emph{formal} proofs among those results.
+\item Maturity of formalization techniques and tools.
+\end{enumerate*}
 
 \paragraph*{Existing results in formally verified complexity.}
-There exists a (small) collection of result formalizing classic complexity theory (\cf~\autoref{subsec:coqpl-related}).
-For example, \ndx{Universal Turing Machine}s~\cite{forster2020}, the \(\mathcal{O}\)-notation\symbo{bigo}~\cite{gueneau2018},
+There exists a (small) collection of result formalizing classic complexity
+theory (\cf~\autoref{subsec:coqpl-related}). For example,
+\ndx{Universal Turing Machine}s~\cite{forster2020}, the
+\(\mathcal{O}\)-notation\symbo{bigo}~\cite{gueneau2018},
 and the \ndx{Cook-Levin theorem}~\cite{gaher2021}%! suppress = CollapseCite
-\footnote{The Cook-Levin theorem states that Boolean SAT is NP\ccxi{np}-Complete~\cite{cook1971, levin1973}.}
-have already been formalized.
+\footnote{The Cook-Levin theorem states that Boolean SAT is
+NP\ccxi{np}-Complete~\cite{cook1971, levin1973}.}
+have been formalized previously.
 
-Among works of implicit computational complexity, the hallmark result of Bellantoni and Cook was formalized by~\textcite{heraud2011}.
-The Rocq library Cecoa enables proving that a user-defined function is polytime computable.
-It is based on quasi-interpretations of~\textcite{marion2000} and extends the Bellantoni and Cook-formalization.
-The Cecoa library is in-between complexity theory and analysis.
-However, it is not an automatic program analyzer, since user-effort is needed to establish the complexity result.
+Among programming language-based approaches, the type system of~\cite{crary2000}
+is notable. The type system assigns to programs \enquote{virtual clocks}, and
+then checks that the clock does not expire. Although this provides an automatic
+method for certifying resource usage, the theory is not formalized mechanically.
+\ndx{Calf}~\cite{niu2022} (and its extension \ndx{Decalf}~\cite{grodin2024}) is
+similarly based on type systems. Calf embeds, through types, the amortized costs
+\index{amortization} of programs to record quantitative aspects of functional
+programs. Then, if a program can be typed, Calf enables proving that the program
+satisfies specified resource bounds. The type system definitions is
+\href{https://github.com/HarrisonGrodin/agda-calf}{formalized in
+\ndx{Agda}}~\cite{grodin2023}.
+
+Among works of implicit computational complexity, the hallmark result of
+Bellantoni and Cook (\ndx{safe recursion}~\cf{safe-rec}) was formalized
+in~\textcite{heraud2011}. The Rocq library
+\href{https://github.com/davidnowak/cecoa}{Cecoa}{\ndx{Cecoa}} enables proving
+that a user-defined function is polytime computable~\cite{feree2018}. It is
+based on \ndx{quasi-interpretation}s of~\textcite{marion2000} and extends the
+Bellantoni and Cook formalization. The \ndx{Cecoa} library is between complexity
+theory and program analysis. However, it is not an automatic program analyzer,
+since user effort is needed to establish the complexity result.
 
 To the best of our knowledge, no formalized automatic resource analyzer exists.
-The closest to the goal are the analyzers C4B and Pastis (\cf~\autoref{resource-analysis-tools}),
-that produce \emph{proof certificates} for the bounds they compute.
-The AARA-based analysis technique is founded on inference rules, then which enables the derivation trees to be translated to machine-checkable proofs.
-The certificates are produced via a support library that complements the core analysis.
-However, the analysis {technique} is not proven correct.
+The closest to the goal are the analyzers \ndx{C4B} and \ndx{Pastis}
+(\cf~\autoref{resource-analysis-tools}), that produce \emph{proof certificates}
+for the bounds they compute. The analysis technique--that is based on
+\ndx{automatic amortized resource analysis}
+(cf~\autoref{resource-analysis})---is founded on inference rules. After program
+analysis, the derivation trees are translated to machine-checkable proofs. The
+proof certificates are produced via a support library that complements the core
+analysis. However, the analysis {technique} is not proven correct.
 
 \paragraph*{From implicit complexity towards formal methods.}
-There is much room to improve the state-of-the-art in formal reasoning about complexity -- both in terms of theory and analysis.
-Implicit computational complexity presents a potential avenue toward advancement.
+There is much room to improve the state-of-the-art in formal reasoning about
+complexity -- both in terms of theory and analysis. Implicit computational
+complexity presents a potential avenue toward advancement.
 
-Motivated by the various demonstrated applications, the flow calculus of mwp-bounds is an appealing target for formalization.
-An important step is proving formally the mwp-calculus soundness theorem (\autoref{mwp-soundness}).
-Such pursuit benefits from the facts that
-(i) the paper proofs are available in~\cite{jones2009}, and
-(ii) our confidence in the theory being correct is high (\ie if a problem existed, it likely would have surfaced in the prior projects).
-However, converting the mwp-calculus to a formal proof---and in Rocq this means converting from set theory to type theory---poses various challenges.
-Further, such proof would not extend to enhanced \textsc{mwp}$^\infty$-calculus variant of the calculus that is used in program analysis.
-Yet, starting with the core mwp-calculus and paper proofs is a solid strategy toward formalizing complexity.
-The result would extend broadly to all programs that share the same imperative core.
-This project idea is discussed in~\autoref{sec:mwp-calc-formal}.
+Motivated by the various demonstrated applications, the flow calculus of
+mwp-bounds is an appealing target for formalization. An important step is
+proving formally the mwp-calculus soundness theorem (\autoref{mwp-soundness}).
+Such pursuit benefits from the facts that (i) the paper proofs are available
+in~\cite{jones2009}, and (ii) our confidence in the theory being correct is high
+(\ie if a problem existed, it likely would have surfaced in the prior projects).
+However, converting the mwp-calculus to a formal proof---and in Rocq this means
+converting from set theory to type theory---poses various challenges. Further,
+such proof would not extend to enhanced \textsc{mwp}$^\infty$-calculus variant
+of the calculus that is used in program analysis. Yet, starting with the core
+mwp-calculus and paper proofs is a solid strategy toward formalizing complexity.
+The result would extend broadly to all programs that share the same imperative
+core. This project idea is discussed in~\autoref{sec:mwp-calc-formal}.
 
-It is important to note the utility of implicit computational complexity is not limited to formalizing complexity results.
-Another perspective is to use ICC systems in assisting formal methods tools in program verification efforts.
-This is the motivating idea in the manuscript of~\autoref{sec:postcond}.
-The central idea is that inferred mwp-bounds can be used as postconditions in Dafny-style deductive verification.
+It is important to note the utility of implicit computational complexity is not
+limited to formalizing complexity results. Another perspective is to use ICC
+systems in assisting formal methods tools in program verification efforts. This
+is the motivating idea in the manuscript of~\autoref{sec:postcond}. The central
+idea is that inferred mwp-bounds can be used as postconditions in
+\ndx{Dafny}-style deductive verification.
