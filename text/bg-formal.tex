@@ -938,32 +938,30 @@ definitions and proofs of central results than classic \ndx{complexity
 theory}~\cite{kristiansen2017}.
 
 Formalization of a theory requires significant time and effort.
-However, the effort of formalizing ICC results is justified, based on the following factors.
-\begin{enumerate*}
-\item Continued demonstrated relevance of ICC results -- \cf~\autoref{tab:icc-results}.
-\item Absence of \emph{formal} proofs among those results.
-\item Maturity of formalization techniques and tools.
-\end{enumerate*}
+However, the effort of formalizing ICC results is justified, based on the
+continued demonstrated relevance of ICC results -- \cf~\autoref{tab:icc-results},
+absence of \emph{formal} proofs among those results, and
+maturity of formalization techniques and tools.
 
 \paragraph*{Existing results in formally verified complexity.}
-There exists a (small) collection of result formalizing classic complexity
-theory (\cf~\autoref{subsec:coqpl-related}). For example,
+There exists a (small) collection of result formalizing classic \ndx{complexity
+theory} (\cf~\autoref{subsec:coqpl-related}). For example,
 \ndx{Universal Turing Machine}s~\cite{forster2020}, the
 \(\mathcal{O}\)-notation\symbo{bigo}~\cite{gueneau2018},
-and the \ndx{Cook-Levin theorem}~\cite{gaher2021}%! suppress = CollapseCite
-\footnote{The Cook-Levin theorem states that Boolean SAT is
-NP\ccxi{np}-Complete~\cite{cook1971, levin1973}.}
+and the \ndx{Cook-Levin theorem}~\cite{gaher2021}\footnote{
+The Cook-Levin theorem states that Boolean SAT is NP-Complete\ccxi{np}~\cite{cook1971, levin1973}.}
 have been formalized previously.
 
 Among programming language-based approaches, the type system of~\cite{crary2000}
-is notable. The type system assigns to programs \enquote{virtual clocks}, and
-then checks that the clock does not expire. Although this provides an automatic
-method for certifying resource usage, the theory is not formalized mechanically.
-\ndx{Calf}~\cite{niu2022} (and its extension \ndx{Decalf}~\cite{grodin2024}) is
-similarly based on type systems. Calf embeds, through types, the amortized costs
-\index{amortization} of programs to record quantitative aspects of functional
-programs. Then, if a program can be typed, Calf enables proving that the program
-satisfies specified resource bounds. The type system definitions is
+is notable. The type system assigns a \enquote{virtual clock} to a program.
+Then, a compile-time check aims to verity that the clock does not expire.
+Although this provides an automatic method for certifying resource usage, the
+theory is not formalized mechanically. \ndx{Calf}~\cite{niu2022} (and its
+extension \ndx{Decalf}~\cite{grodin2024}) is similarly a type system-based
+approach. Calf embeds in types the amortized costs\index{amortization} of
+computation, to record quantitative aspects of functional programs. Then, if a
+program can be typed, the Calf system ensures that the program satisfies the
+specified resource bound. The type system definitions is
 \href{https://github.com/HarrisonGrodin/agda-calf}{formalized in
 \ndx{Agda}}~\cite{grodin2023}.
 
@@ -989,26 +987,31 @@ analysis. However, the analysis {technique} is not proven correct.
 
 \paragraph*{From implicit complexity towards formal methods.}
 There is much room to improve the state-of-the-art in formal reasoning about
-complexity -- both in terms of theory and analysis. Implicit computational
+complexity, both in terms of theory and analysis. Implicit computational
 complexity presents a potential avenue toward advancement.
 
-Motivated by the various demonstrated applications, the flow calculus of
-mwp-bounds is an appealing target for formalization. An important step is
-proving formally the mwp-calculus soundness theorem (\autoref{mwp-soundness}).
-Such pursuit benefits from the facts that (i) the paper proofs are available
-in~\cite{jones2009}, and (ii) our confidence in the theory being correct is high
-(\ie if a problem existed, it likely would have surfaced in the prior projects).
-However, converting the mwp-calculus to a formal proof---and in Rocq this means
-converting from set theory to type theory---poses various challenges. Further,
-such proof would not extend to enhanced \textsc{mwp}$^\infty$-calculus variant
-of the calculus that is used in program analysis. Yet, starting with the core
-mwp-calculus and paper proofs is a solid strategy toward formalizing complexity.
-The result would extend broadly to all programs that share the same imperative
-core. This project idea is discussed in~\autoref{sec:mwp-calc-formal}.
+Given the demonstrated applications and familiarity, the flow calculus of
+mwp-bounds\index{mwp-calculus} is an appealing target for formalization. An
+important step is proving formally the mwp-calculus soundness
+theorem\index{soundness of mwp-calculus} (\autoref{mwp-soundness}). The aim has
+multiple sources of support. First, the paper proofs are available
+in~\cite{jones2009}. Second, our confidence in the correctness of the theory is
+high. If a problem existed, it likely would have already surfaced in the prior
+projects.
+
+However, converting the mwp-calculus to a formal proof poses various technical
+challenges. For example, how to model the mathematical framework of the flow
+calculus, and converting the proofs between logical formalisms, from set theory
+to type theory. Moreover, a proof of the original flow calculus would not extend
+to the \textsc{mwp}$^\infty$\symbo{mwpi}-calculus variant, that is used in
+program analysis. Yet, starting with the core mwp-calculus and paper proofs is a
+solid strategy toward formalizing complexity. The result would extend broadly to
+all programs that share the same imperative core. This project idea is discussed
+in~\autoref{sec:mwp-calc-formal}.
 
 It is important to note the utility of implicit computational complexity is not
 limited to formalizing complexity results. Another perspective is to use ICC
 systems in assisting formal methods tools in program verification efforts. This
 is the motivating idea in the manuscript of~\autoref{sec:postcond}. The central
-idea is that inferred mwp-bounds can be used as postconditions in
-\ndx{Dafny}-style deductive verification.
+idea is that the inferred mwp-bounds can aid the discovery of verification
+conditions in \ndx{Dafny}-style deductive verification.

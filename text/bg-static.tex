@@ -1,42 +1,58 @@
 %! suppress = LabelConvention
-Asymptotic analysis, that classifies programs based on resource requirements, is the natural dual of studying complexity classes.
-Since implicit computational complexity focuses on language-based characterizations, it produces analysis techniques for free.
-It is a foundational hypothesis of this dissertation that theoretical ICC systems---with sufficient expressive power and an efficient evaluation strategy---enable concrete program analysis.
-An analysis designed to evaluate a program's resource usage is called resource analysis.
-Resource analysis is a subfield of static program analysis.
+Asymptotic analysis\index{asymptotic analysis}, that classifies programs based
+on resource requirements, is the natural dual to the study of complexity
+classes. Since implicit computational complexity focuses on language-based
+characterizations, it produces analysis techniques for free. It is a
+foundational hypothesis of this dissertation that theoretical ICC systems---with
+sufficient expressive power and an efficient evaluation strategy---enable
+concrete program analysis. An analysis that evaluates a program's resource usage
+is called resource analysis. Resource analysis is a subfield of static program
+analysis.
 
 \subsubsection{Foundations of Static Program Analysis}\label{static-analysis-basics}
 
-Static program analysis aims to answer questions about the runtime behaviors of programs.
-The term \emph{static} means the analysis is conducted at compile-time on the program syntax and without execution.
-The main motivations is to improve the performance characteristics of the generated executable~\cite{nielson2010,kennedy2001},
-including detecting logical issues in the specification of the input program.
-Foundational techniques include, \eg
-type and effect systems;
-control- and data-flow analyses;
-abstract interpretation~\cite{cousot2021}\index{abstract interpretation};
-constraint-based, pointer, and inter-procedural analyses;
-and fixed point algorithms~\cite{nielson2010,moller2023}.
-Static program analysis is strongly practice-oriented and frequently materialized in automatic analyzers.
-Real-world software development tools---like compilers, interactive development environments, and verifiers---rely on static analyses~\cite{livshits2015}.
-A core challenges of static analysis concern precision and scalability of the techniques;
-these topics are actively explored in research~\cite{schiebel2024}.
+Static program analysis aims to answer questions about the runtime behaviors of
+programs. The term \emph{static} means the analysis is conducted at compile-time
+on the program syntax and without execution. The main motivations is to improve
+the performance characteristics of the generated
+executable~\cite{nielson2010,kennedy2001}. Such improvements include detecting
+logical issues in the specification of the input program. Foundational
+techniques include, \eg type\index{type system} and \ndx{effect system}s;
+control\index{control flow analysis} and \ndx{data flow analysis}; \ndx{abstract
+interpretation} (AI)~\cite{cousot2021}; constraint-based\index{constraint
+analysis}, pointer\index{pointer analysis}, and \ndx{inter-procedural analysis};
+and \ndx{fixed point algorithm}s~\cite{nielson2010,moller2023}. Static program
+analysis is strongly practice-oriented and frequently materialized in automatic
+analyzers. Real-world software development tools---like compilers, interactive
+development environments, and verifiers---rely on static
+analyses~\cite{livshits2015}. A central challenges of static analysis concerns
+the precision and scalability of the techniques. These topics are actively
+explored in research~\cite{schiebel2024,dudina2025,arzt2014}.
 
-As a consequence of Rice's theorem~\cite{rice1953}\footnote{
-Informally, Rice's theorem asserts that all interesting questions about the input/output behavior of programs written in a Turing-complete\index{Turing-completeness} language are undecidable.}, it is impossible to construct a perfect program analyzer for a Turing-complete language.
-All approaches must sacrifice something among soundness, completeness and termination~\cite{moller2024}.
-Although seemingly discouraging, Rice's theorem should be viewed with optimism.
-Since static program analysis is inherently undecidable, there is infinite opportunity in building increasingly precise approximations --
-for inspiration see, \eg~\textcite{ding2023}.
-The challenge is then to design analysis techniques that produce \emph{useful} answers \emph{efficiently} and \emph{often enough}.
-This is colloquially called the \enquote{full employment theorem for static program analysis designers}~\cite[p. 4]{moller2023}.
+As a consequence of \ndx{Rice's theorem}~\cite{rice1953}\footnote{Informally,
+Rice's theorem asserts that all interesting questions about the input/output
+behavior of programs written in a Turing-complete\index{Turing-completeness}
+language are undecidable\index{undecidability}.}, it is impossible to construct
+a perfect program analyzer for a Turing-complete language. All approaches must
+sacrifice something among soundness, completeness and
+termination~\cite{moller2024}. Although seemingly discouraging, \ndx{Rice's
+theorem} should be viewed with optimism. Since static program analysis is
+inherently undecidable\index{undecidability}, there is infinite opportunity in
+building increasingly precise approximations.\footnote{For inspiration see,
+\eg~\textcite{ding2023}.} The challenge is then to design analysis techniques
+that produce \emph{useful} answers \emph{efficiently} and \emph{often enough}.
+This challenge is colloquially called the \enquote{full employment theorem for
+static program analysis designers}~\cite[p. 4]{moller2023}.
 
-Static analyzers typically evaluate programs against semantic properties\footnote{
-Properties are introduced in~\autoref{subsubsec:verification-concepts}, but previewed here briefly.}.
-More specifically, the focus is on \emph{safety properties}~\cite[p. 6]{moller2023},
-which assert that something bad will not happen~\cite{lamport1977}.
-Examples of safety properties include memory safety, absence of overflows, termination, and secure information flow (\cf~\autoref{if-elements}).
-Safety properties have many applications in bug finding, program optimization, verification, \etc
+Static analyzers are designed to evaluate programs against semantic properties.%
+\footnote{Properties are discussed in~\autoref{subsubsec:verification-concepts},
+but previewed here briefly.} More specifically, the focus is on \emph{safety
+properties}~\cite[p. 6]{moller2023}, which assert that \emph{something bad will
+not happen}~\cite{lamport1977}. Examples of safety properties are memory safety,
+absence of overflows, termination, and secure information flow
+(\cf~\autoref{if-elements}). Safety properties have many applications, for
+example, in bug finding~\cite{popeea2010}, program
+optimization~\cite{rinard1996}, and verification~\cite{falcone2009}.
 
 \subsubsection{The Challenge of Approximation}\label{static-approx}
 
