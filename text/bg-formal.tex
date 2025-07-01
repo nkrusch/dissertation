@@ -31,7 +31,7 @@ per input-pair, would require more than 10,000 years. Thus, skepticism around
 software correctness is a long-held position among some computer scientists. It
 is also the core issue tackled by formal methods.
 
-\paragraph*{A formal methods primer -- motivations and challenges.}
+\paragraph*{Formal methods motivations and challenges.}
 Formal methods aims to remove uncertainty by providing techniques that allow
 establishing strong behavioral guarantees. Formal methods is deeply rooted in
 mathematics and logic~\cite{shankar2023}. In this view, programs are defined as
@@ -186,10 +186,22 @@ However, similar to~\autoref{static-analysis-basics}, there is endless opportuni
 \subsubsection{Tools for Formal Verification}
 
 Formal methods is inherently concerned with \emph{computer-aided} reasoning.
-This means there is a strong emphasis on the software tools that support those motivations.
-The tools include solvers, theorem provers, model checkers, verifiers, \etc, with each tool category supporting different use cases.
-As a formal methods practitioner, it is helpful to maintain a mental map of available tools and their capabilities, like the one in~\autoref{tab:fm-tools}.
-Among the tools, interactive theorem proving and verification-aware programming languages are of special interest to this dissertation.
+Therefore, software tools are essential to formal methods. The tools include
+solvers, theorem provers, model checkers, verifiers, \etc. Each tool family has
+different use cases, degree of automation, and guarantees -- as illustrated
+in~\autoref{fig:verification-approaches}.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[]{fig_fm-tools}
+\caption[Formal verification approaches]{
+Formal verification approaches -- adapted from~\textcite{leroy2018}.}
+\label{fig:verification-approaches}
+\end{figure}
+
+\autoref{tab:fm-tools} provides a directory of specific formal methods tools.
+Interactive theorem provers and verification-aware programming languages are of
+special interest to this dissertation.
 
 \begin{table}[p!]
 \begin{tabularx}{\linewidth}{@{}lX@{}}
@@ -216,18 +228,19 @@ Among the tools, interactive theorem proving and verification-aware programming 
 \\\midrule
 \multicolumn{2}{@{}l}{\textbf{Interactive theorem proving}} \\
 &
-\href{https://github.com/agda/agda}{Agda}\index{Agda}%
-,{ }\href{https://github.com/EasyCrypt/easycrypt}{EasyCrypt}\index{EasyCrypt}%
-,{ }\href{https://fstar-lang.org}{F$^{*}$}\index{F$^{*}$}%
-,{ }\href{https://hol-light.github.io}{HOL Light}\index{HOL Light}%
-,{ }\href{https://iris-project.org}{Iris}\index{Iris}%
-,{ }\href{https://isabelle.in.tum.de}{Isabelle}\index{Isabelle}%
-,{ }\href{https://lean-lang.org}{Lean}\index{Lean}%
-,{ }\href{https://us.metamath.org}{Metamath}\index{Metamath}%
-,{ }\href{https://pvs.csl.sri.com}{PVS}\index{PVS}%
-,{ }\href{https://rocq-prover.org}{Rocq}\index{Rocq}%
-,{ }\href{https://github.com/boyland/sasylf}{SASyLF}\index{SASyLF}%
-,{ }\href{https://github.com/ggrov/tinker}{Tinker}\index{Tinker}%
+\href{https://github.com/agda/agda}{\ndx{Agda}}%
+,{ }\href{https://github.com/EasyCrypt/easycrypt}{\ndx{EasyCrypt}}%
+,{ }\href{https://fstar-lang.org}{\ndx{F$^{*}$}}%
+,{ }\href{https://hol-light.github.io}{\ndx{HOL Light}}%
+,{ }\href{https://iris-project.org}{\ndx{Iris}}%
+,{ }\href{https://isabelle.in.tum.de}{\ndx{Isabelle}}%
+,{ }\href{https://lean-lang.org}{\ndx{Lean}}%
+,{ }\href{https://us.metamath.org}{\ndx{Metamath}}%
+,{ }\href{https://en.wikipedia.org/wiki/Mizar_system}{\ndx{Mizar}}%
+,{ }\href{https://pvs.csl.sri.com}{\ndx{PVS}}%
+,{ }\href{https://rocq-prover.org}{\ndx{Rocq}}%
+,{ }\href{https://github.com/boyland/sasylf}{\ndx{SASyLF}}%
+,{ }\href{https://github.com/ggrov/tinker}{\ndx{Tinker}}%
 \\\midrule
 \multicolumn{2}{@{}l}{\textbf{Invariant synthesis}} \\
 &
@@ -311,6 +324,8 @@ Among the tools, interactive theorem proving and verification-aware programming 
 \end{tabularx}
 \end{table}
 
+\begin{description}
+\item[Mechanized proofs.]
 One of the main goals of formal methods is to produce mechanized, \ie machine-checked, proofs.
 A mechanized proof \enquote{detaches} proof-checking from the activity of crafting the proof.
 Only the interface of the program, \ie the statement of the theorem, needs to be reviewed.
@@ -319,7 +334,9 @@ This means everyone with sufficient technical abilities can check the proof once
 Mechanized proofs are sometimes compared to \emph{paper proofs}, \ie informal proofs written in natural language, whether actually on paper or written in a text editor.
 Since paper proof rely solely on the readers abilities to comprehend and confirm the detailed proof steps, mechanized proofs are functionally distinct and provide more rigorous correctness guarantees~\cite{gonthier2008}.
 
-Mechanized proofs are created with theorem provers, of which there are broadly two categories.
+\item[Theorem provers.]
+Mechanized proofs are created with theorem provers.
+There are broadly two categories.
 An \emph{automatic theorem prover} (ATP) aims to find proofs without assistance from a user.
 The proof \emph{search} problem is challenging in general\footnote{\Eg for first-order logic, the problem is NP-complete~\cite{cook1971, levin1973})}, while use cases expect practical efficiency from the solvers.
 Prominent ATPs complete bi-annually on solving \href{https://www.tptp.org}{\enquote{Thousands of Problems for Theorem Provers}} (TPTP problems)~\cite{sutcliffe2024} at the \href{https://tptp.org/CASC/}{CADE ATP System Competition} (CASC) --
@@ -331,6 +348,7 @@ As of April 2025, the top 3 proof assistants with highest coverage of the proble
 While automatic theorem provers search for proofs of isolated problems and frequently serve as building block of other verification tools,
 interactive theorem provers enable large and complex modular proof developments.
 
+\item[Verification-aware programming languages.]
 Verification-aware programming languages provide a conceptually different approach to machine-checked proofs.
 Such languages are particularly well-suited for reasoning about functional correctness of programs.
 Verification-aware programming languages have built-in capabilities to express specifications and proofs.
@@ -340,20 +358,25 @@ One prominent style among the verification-aware languages is \emph{deductive ve
 where the verification process is based on some form of logical inference, i.e., \enquote{deduction}.
 The properties to be proven are expressed in a formal specification language, as structured comments, next to the program constructs they relate to~\cite{hahnle2019}.
 A deductive verifier them aims at to prove that all possible behaviors of a program satisfy the specification using the available program annotations~\cite{cassez2022}.
+\end{description}
 
 The remainder of this section briefly introduces two tools for formal methods:
-the (interactive) Rocq theorem prover (\autoref{subsec:rocq}) and the verification-aware programming language Dafny (\autoref{subsec:dafny}).
-These tools are relevant for some of the dissertation manuscripts and assumed to be familiar to the reader.
+the (interactive) \ndx{Rocq} theorem prover (\autoref{subsec:rocq}) and the
+verification-aware programming language \ndx{Dafny} (\autoref{subsec:dafny}).
+These tools are relevant for some of the dissertation manuscripts and assumed to
+be familiar to the reader.
 
 \subsubsection{The Rocq Theorem Prover}
 \label{subsec:rocq}
 
-The Rocq theorem prover is an interactive proof assistant for machine-checked formal reasoning.
+The \ndx{Rocq} theorem prover is an interactive proof assistant for machine-checked formal reasoning.
 It provides a rich and flexible environment for various proof developments.
-Rocq is a widely-adopted tool in the programming languages research community with applications in formal assurance of mathematics, semantics, and program verification.
-It is the highest distinction awarded to research software.
-The successes of Rocq have also created abundant interest in dependent type theory;
-the core logic of Rocq~\cite{coquand1988}.
+\ndx{Rocq} is a widely-adopted tool in the programming languages research community, with applications in formal assurance of mathematics, semantics, and verification.
+In 2013, The ACM has recognized Rocq with the
+\href{https://awards.acm.org/software-system}{\ndx{Software System Award}} --
+the highest distinction awarded to research software~\cite{rocq-community}.
+The success of \ndx{Rocq} has also created abundant interest in \ndx{dependent type theory},
+which is the core logic of \ndx{Rocq}~\cite{coquand1988}.
 
 \paragraph*{Technical overview.}
 As a guiding example, consider simple proof in~\autoref{lst:rocq-basic}.
@@ -424,80 +447,80 @@ Conventional uses of Rocq include proving properties of programming languages, f
 \begin{table}
 %! suppress = EscapeAmpersand
 \begin{NiceTabularX}{\textwidth}{@{}l@{ }X@{}}
-\toprule
-\textbf{Formalization target} & \textbf{Authors} \\
-\midrule
+   \toprule
+   \textbf{Formalization target} & \textbf{Authors} \\
+   \midrule
    \href{https://users.dimi.uniud.it/~ivan.scagnetto/pi-calculus.html}%
    {\ndx{\(\pi\)-calculus} in (Co)inductive-type theory}\index{coinduction}
    & \textcite{honsell2001}
-\\
+   \\
    \href{https://github.com/rocq-community/goedel}%
    {\ndx{Gödel-Rosser incompleteness theorem}}
    & \textcite{oconnor2005}
-\\
+   \\
    Modal model of impredicative semantics
    & \textcite{appel2007}
-\\
+   \\
    \href{https://github.com/rocq-community/fourcolor}%
    {\ndx{Four Color theorem}}%
    \smtabularnote{based on~\cite{robertson1997} and~\cite{appel1989}}
    & \textcite{gonthier2008}
-\\
+   \\
    \href{https://github.com/AbsInt/CompCert}%
    {Verified Optimizing C Compiler, \ndx{CompCert}}%
    \smtabularnote{A verifying compiler is one of the grand challenges for computing research posed in~\textcite{hoare2003}}%
-   \smtabularnote{CompCert received the ACM Software System Award in 2021.}
+   \smtabularnote{CompCert received the ACM \ndx{Software System Award} in 2021.}
    & \textcite{leroy2009}
-\\
+   \\
    \href{https://gitlab.inria.fr/flocq/flocq}%
    {\ndx{Flocq}: floating-point numbers}
    & \textcite{boldo2011}
-\\
+   \\
    \href{http://plv.csail.mit.edu/bedrock/}%
    {\ndx{Bedrock}: low-level programming library}
    & \textcite{chlipala2011}
-\\
+   \\
    \href{https://github.com/davidnowak/bellantonicook}%
    {Safe Recursion\index{safe recursion}} -- \autoref{safe-rec}
    & \textcite{heraud2011}
-\\
+   \\
    \href{https://github.com/ProjectiveGeometry/ProjectiveGeometry}
    {\ndx{Desargues's theorem} in projective geometry}
    & \textcite{magaud2012}
-\\
+   \\
    \href{https://github.com/math-comp/odd-order}%
    {Feit-Thompson's \ndx{Odd Order theorem}}
    & \textcite{gonthier2013}
-\\
+   \\
    \href{https://gitlab.inria.fr/coquelicot/coquelicot/}%
    {\ndx{Coquelicot}: Real Analysis}
    & \textcite{boldo2014}
-\\
+   \\
    \href{https://github.com/HoTT/Coq-HoTT}%
    {\ndx{Homotopy Type Theory} (HoTT)}
    & \textcite{bauer2017}
-\\
+   \\
    \href{https://github.com/rocq-community/reglang}%
    {Regular Language representations}
    & \textcite{doczkal2018}
-\\
+   \\
    \href{https://github.com/runtimeverification/casper-proofs/tree/master}
    {Caspar \ndx{blockchain} finality}
    & \textcite{palmskog2018}
-\\
+   \\
    \href{https://github.com/DeepSpec/InteractionTrees}%
    {Interaction Trees: Recursive and impure programs}
    & \textcite{xia2019}
-\\
+   \\
    \href{https://github.com/uds-psl/coq-library-undecidability}%
    {Undecidable\index{undecidability} Problems}
    & \textcite{forster2020b}
-\\
+   \\
    \href{https://github.com/SSProve/ssprove}%
    {\ndx{SSProve}: modular cryptographic proofs}
    & \textcite{haselwarter2023}
-\\
-\bottomrule
+   \\
+   \bottomrule
 \end{NiceTabularX}
 \caption[The Rocq prover formalization results]
 {A small sample of results formalized with the Rocq prover.}

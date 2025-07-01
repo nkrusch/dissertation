@@ -21,7 +21,6 @@ update:
 	cp ../review/acks.txt text/ch-acks.tex
 	cp ../review/abstract.txt text/ch-abstract.tex
 	cp ../review/1-aims/text.tex text/ch-aims.tex
-	cat ../review/1-aims/tips.tex >> text/ch-aims.tex
 	cp ../review/1-bg-intro/text.tex text/bg-intro.tex
 	cp ../review/1-formal/text.tex text/bg-formal.tex
 	cp ../review/1-icc/text.tex text/bg-icc.tex

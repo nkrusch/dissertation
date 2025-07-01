@@ -1,0 +1,40 @@
+\documentclass[crop]{standalone}
+\input{../latex/pics}
+
+\tikzstyle{lbl} = [font=\color{sorange}]
+\tikzstyle{axlbl} = [font=\color{sbase03}]
+\tikzstyle{axname} = [font=\color{sbase03}]
+
+\begin{document}
+\begin{tikzpicture}[align=center]
+\newcommand{\sx}{9}
+\newcommand{\sy}{5}
+\newcommand{\bll}{\large\textbullet}
+
+%\draw[help lines, color=gray!30, dashed,step=.5] (-1,-.5) grid (\sx,\sy);
+\draw[arrow] (-.5,0)--(\sx,0);
+\draw[arrow] (0,-.5)--(0,\sy);
+\draw[arrowss] (\sx-.5,0.05)--(\sx-.5,\sy/2-.02) node[rotate=90,midway,below] {compositional};
+\draw[arrowss] (\sx-.5,\sy/2+.02)--(\sx-.5,\sy) node[rotate=90,midway,below] {whole program};
+
+\node[axlbl,above,rotate=90] at (0,\sy-1)   {automatic};
+\node[axlbl,above,rotate=90] at (0,1)       {interactive};
+\node[axlbl,below] at (1.2,0)      {robustness};
+\node[axlbl,below] at (\sx-1.8,0)  {total correctness};
+
+\node (0) at (\sx*.07,\sy*.96) {};
+\node (1) at (\sx*.9,\sy*.02)  {};
+\path[black!40,bend right,densely dashed,line width=0.7pt] (0) edge (1);
+
+\node        at (\sx*.10,\sy*.85) {\bll};
+\node[right,lbl] at (\sx*.12,\sy*.86) {static analysis};
+\node        at (\sx*.22,\sy*.55) {\bll};
+\node[right,lbl] at (\sx*.24,\sy*.57) {model checkers};
+\node        at (\sx*.375,\sy*.297) {\bll};
+\node[right,lbl] at (\sx*.395,\sy*.325) {deductive verifiers};
+\node        at (\sx*.7,\sy*.053)  {\bll};
+\node[above,lbl] at (\sx*.77,\sy*.10) {proof assistants};
+    
+
+\end{tikzpicture}
+\end{document}
