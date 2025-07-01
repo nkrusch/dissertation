@@ -21,7 +21,6 @@ update:
 	cp ../review/acks.txt text/ch-acks.tex
 	cp ../review/abstract.txt text/ch-abstract.tex
 	cp ../review/1-aims/text.tex text/ch-aims.tex
-	cat ../review/1-aims/tips.tex >> text/ch-aims.tex
 	cp ../review/1-bg-intro/text.tex text/bg-intro.tex
 	cp ../review/1-formal/text.tex text/bg-formal.tex
 	cp ../review/1-icc/text.tex text/bg-icc.tex
@@ -49,3 +48,21 @@ clean:
  	*.listing *.sym *.aux *.acr *.sbl *.idx *.ind *.ilg *.xdv *.bbl \
  	*.bcf *.blg *.out *.fdb_latexmk *.fls *.log *.run.xml *.tex.blg \
  	*.synctex.gz *.vtc *.lot *.lof *.lol *.toc *~ main.pdf $(ARC)
+
+#----------------
+#--- ARCHIVE ----
+#----------------
+ARC      := sources
+ARC_READ := ../review/readme.txt
+ARC_DIRS := $(shell find . -mindepth 1 -maxdepth 1 -type d ! -name '.*' ! -name 'env')
+ARC_FILE := $(wildcard *.tex) Makefile LICENSE # Dockerfile
+ARC_REM  := .DS_Store .*.aux
+
+%.zip:
+	@mkdir -p $(ARC)
+	@$(foreach d, $(ARC_DIRS), mkdir -p $(ARC)/$(d) && cp -R $(d) $(ARC) ;)
+	@$(foreach f, $(ARC_FILE), cp $(f) $(ARC)/$(f) ;)
+	@$(foreach pat, $(ARC_REM), find $(ARC) -name $(pat) -type f -delete ;)
+	@cp $(ARC_READ) $(ARC)/readme.txt
+	@zip -r $@ $(ARC)
+	@rm -rf $(ARC)

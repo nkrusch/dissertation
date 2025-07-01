@@ -57,11 +57,12 @@
 \parindent\z@
 \parskip\z@ \@plus .5\p@\relax
 \let\item\@idxitem
-\setlength{\columnsep}{20pt}
+\setlength{\columnsep}{30pt}
 \setlength{\parindent}{0em}
 \begin{multicols*}{2}\raggedcolumns}
 {\end{multicols*}}
 \renewcommand{\@idxitem}{\par\hangindent 15\p@}
+\renewcommand{\subitem}{\par\hangindent 30\p@\hspace*{15pt}}
 \makeatother
 
 \begin{filecontents}{\jobname.mst}

@@ -1,22 +1,20 @@
 Theoretical computer science studies the fundamental capabilities and limitations of computation.
-A function is \emph{computable}\index{computable function}
-if it is algorithmically solvable in principle~\cite[p. 234]{sipser2012}.
-However, computability is independent of the required computational resources, \ie \emph{cost} or \emph{resource usage}\index{resource usage} of computation.
+A function is \emph{computable}\index{computable function} if it is algorithmically solvable in principle~\cite[p. 234]{sipser2012}.
+However, computability is independent of the required computational resources, \ie \emph{cost} or \emph{\ndx{resource usage}} of computation.
 A computable function that requires an excessive amount of resources may not be solvable in practice.
 
-Computational complexity theory\index{complexity theory} enhances the study of computable functions\index{computable function} by classifying them into \emph{complexity classes}\index{complexity classes}\footnote{
-    For an archive and exploration of complexity classes, see \href{https://complexityzoo.net/Complexity_Zoo}{ComplexityZoo.net}.}
+Computational \ndx{complexity theory} enhances the study of \ndx{computable function}s by classifying them into \emph{\ndx{complexity classes}}\footnote{For a comprehensive exploration of complexity classes, see~\textcite{complexityzoo}.}
 based on resources requirements\index{resource usage}.
-Algorithms computing those functions are categorized by the amount of required \emph{resources}\index{resource usage} when executed on a specified \emph{machine model}, such as a Turing Machine (TM)\index{Turing Machine}.
+Algorithms computing those functions are categorized by the amount of required \emph{resources}\index{resource usage} when executed on a specified \emph{machine model}, such as a \ndx{Turing Machine} (TM).
 Which particular model of computation\index{machine model} is used does not matter, as long as one adheres to Slot and van Emde Boas Invariance Thesis\index{Invariance Thesis}~\cite{slot1984}\footnote{
-    The Invariance Thesis\index{Invariance Thesis} asserts that a time (resp., space) cost model is reasonable for a computational model C\index{machine model} if there are mutual simulations between TMs and C such that the overhead is polynomial in time\ccxi{p} (resp., linear in space)~\cite{vanoni2022}.},
-and is concerned with complexity classes\index{complexity classes}, \ie, order of magnitudes in the resources needed.
+    The \ndx{Invariance Thesis} asserts that a time (resp., space) cost model is reasonable for a computational model C\index{machine model} if there are mutual simulations between TMs and C such that the overhead is polynomial in time\ccxi{p} (resp., linear in space)~\cite{vanoni2022}.},
+and is concerned with \ndx{complexity classes}, \ie, order of magnitudes in the resources needed.
 The resource cost\index{resource usage} is estimated relative to the input size.
 This way algorithms are allowed to consume more resources when the input size grows while maintaining membership in the same complexity class\index{complexity classes}.
 The common resources of interest are time\index{time complexity} and space (memory)\index{space complexity}.
-Complexity measures\index{complexity measure} are defined explicitly relative to the machine model\index{machine model}.
-For example, time complexity\index{time complexity}
-refers to the maximum number of computation steps a machine\index{machine model} uses on any input~\cite[p. 276]{sipser2012}.
+Complexity measures\index{complexity measure} are defined explicitly relative to the \ndx{machine model}.
+For example, \ndx{time complexity} refers to the maximum number of computation steps a machine\index{machine model}
+uses on any input~\cite[p. 276]{sipser2012}.
 Besides (deterministic) time and space, various other resources can be viewed as complexity measures\index{complexity measure};
 for example, parallel time\index{parallel time} and circuit complexity\index{circuit complexity}~\cite[p. 428]{sipser2012}.
 
@@ -44,10 +42,10 @@ It inherently shifts focus from computational models\index{machine model} to \em
 \end{quotation}
 In other words, complexity classes\index{complexity classes} are described independently of notions of time or space related to a machine's definition.
 For example, polynomial time complexity\ccxi{p} has been thoroughly examined under these terms.
-The Cobham–Edmonds's Thesis~\cite{cobham1965,edmonds1965}\index{Cobham–Edmonds's Thesis} relates polynomial time class with the class of feasible functions\index{}\footnote{
+The \ndx{Cobham–Edmonds's Thesis}~\cite{cobham1965,edmonds1965} relates polynomial time class with the class of feasible functions\footnote{
     The Cobham-Edmonds Thesis asserts that the time complexities in any two \enquote{reasonable and general} models of computation are polynomially related;
     that is, a problem has time complexity \(t\) in some reasonable and general model of computation
-    if and only if it has time complexity poly(\(t\)) in the model of single-tape Turing machines~\cite[p. 33]{goldreich2008}.}.
+    if and only if it has time complexity poly(\(t\)) in the model of single-tape \ndx{Turing Machine}s~\cite[p. 33]{goldreich2008}.}.
 Multiple distinct implicit characterizations are known for many complexity classes\index{complexity classes} -- \cf~\autoref{tab:icc-results}.
 
 Implicit computational complexity sees complexity bounds as consequences of restrictions on program structures.
@@ -178,11 +176,12 @@ This makes exp not expressible anymore, giving rise to new function algebra call
 The class BC equals the class FP of polynomial time computable functions.
 \end{theorem}\ccxi{p}
 
-The Bellantoni and Cook result extends an earlier result by Cobham.
-Cobham's thesis asserts that being feasible is the same as being computable in polynomial time~\cite{cobham1965}.
-Although Cobham characterizes the polynomial time functions independently of any particular execution model, the characterization is not fully syntactic.
-This prevents an automatic procedure to check whether a program satisfies the criteria of Cobham's class~\cite{heraud2011}.
-In contrast, the Bellantoni and Cook characterization is a fully-syntactic mechanism and membership in BC can be checked automatically.
+The Bellantoni and Cook result extends an earlier result by Cobham~\cite{cobham1965}.
+The Cobham-Edmond's thesis asserts that being feasible is the same as being computable in polynomial time~\cite{cobham1965,edmonds1965}.
+Although the Cobham characterization is independent of any particular execution model, it is not fully syntactic.
+The limitations are that a size bound has to be proved on the semantics of recursion, and the proof uses a particular model of Turing machine.
+This prevents constructing an \emph{automatic procedure} to check whether a program satisfies Cobham's criteria~\cite{heraud2011}.
+In contrast, the Bellantoni and Cook characterization is a fully syntactic and membership in BC can be checked automatically.
 The Bellantoni and Cook result was proved formally~\cite{bc_formal} by~\textcite{heraud2011}.
 
 \subsubsection{A Snapshot of Theoretical Results}
@@ -268,7 +267,7 @@ for the rest of this dissertation.
     2013 & \types & FoSSaCS & SAFE processes\index{SAFE programs!process} -- \autoref{icc-sec} & \ccx{p} \\*
     &&& \textcite{hainry2013} \\*
     \midrule
-    2015 & \types & LPAR & d\(\ell\)T\index{d\(\ell\)T} programs\(^a\) -- \autoref{icc-sec} & \ccx{p} \\*
+    2015 & \types & LPAR & \ndx{d\(\ell\)T} programs\(^a\) -- \autoref{icc-sec} & \ccx{p} \\*
     &&& \textcite{baillot2015} \\*
     \midrule
     2016 & \logics & Inf. Comput. & Complexity with pointer machines & \ccx{l} \\*
