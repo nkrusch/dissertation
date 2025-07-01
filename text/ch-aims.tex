@@ -93,78 +93,103 @@ exploration worthy of a multi-year doctoral study, we add to the mix
 \paragraph{Static program analysis and formal methods.}
 Program analysis provides the techniques to inspect programs and check whether
 they satisfy some desirable behavioral criterion. The focus in this dissertation
-is to analyze programs statically, \ie by how the programs are written. In
-static program analysis we make judgements about how the program will behave
-when it is executed, but without executing the program. Formal methods
-complements program analysis by providing the mathematical techniques needed to
-obtain rigorous guarantees. With formal methods it is possible to provide
-\emph{proofs} about the conclusions of program analysis. This way, we can swap
-informal claims to maximally strong assertions.
+is to analyze programs statically, \ie by how the programs are written
+syntactically. In static program analysis we make judgements about how the
+program will behave when it is executed, but without executing the program.
+Formal methods complements program analysis by providing the mathematical
+techniques needed to obtain rigorous guarantees. With formal methods it is
+possible to provide \emph{proofs} about the conclusions of program analysis.
+This way, we can swap informal claims to maximally strong assertions.
 
-\paragraph*{Implicit computational complexity (ICC).}
-Although ICC can be viewed from many perspectives, in the scope of this
-dissertation, its role is to provide a conceptual \enquote{toolbox} for
-constructing techniques of program analysis. Very broadly, ICC finds ways to
-characterize program properties---typically resource consumption---by
-introducing a restriction at the level of a programming language. In this way,
-it uses programming languages as a \emph{mechanism} to guarantee certain program
-behaviors. There are multiple compelling motivations for this approach. For
-example, ICC drives better understanding of programs resource consumption and
-quantifies the power that is present in programming
-languages~\cite{kristiansen2017}. Because behavioral guarantees are part of the
-design, this temporal shift enables reasoning about properties \emph{before} any
-program exists. In principle, this removes the need for post-analysis of
-programs. However, whether this goal is achievable, requires deeper
-investigations of implicit computational complexity.
+\paragraph*{Implicit computational complexity.}
+The core idea of implicit computational complexity (ICC) is to quantify
+computational power through programming languages. Although ICC can be viewed
+from many perspectives, in the scope of this dissertation, its role is to
+provide a conceptual \enquote{toolbox} for constructing techniques of static
+program analysis. Very broadly, ICC finds ways to characterize program
+properties---mainly resource consumption---by introducing a restriction at the
+level of a programming language. The restriction is such that it gurantees the
+target property holds in every expressible program. Thus, programming languages
+become a \emph{mechanism} to guarantee ideal runtime behavior. There are
+multiple compelling motivations for this approach. For example, ICC drives
+better understanding of resource consumption and provides natural ways to
+express and control resources usage of programs~\cite{kristiansen2017}. Because
+behavioral guarantees are part of the language design, this creates a temporal
+shift that enables reasoning about properties \emph{before} any program exists.
+In principle, this removes the need for post-analysis of programs. However,
+materializing these ideas requires deeper investigations of implicit
+computational complexity.
 
-\vspace{1em}\noindent{}
+\begin{center}
 \begin{mdframed}[backgroundcolor=conceptbase,linecolor=concept,nobreak=true]
 The dissertations is about \textbf{static program analysis}, ideally with
 \textbf{formal guarantees}, and starting with \textbf{implicit computational
-complexity} -- a family of programming language-based techniques that can provide
-behavioral guarantees by construction.
+complexity} -- a family of programming language-based techniques that can
+provide behavioral guarantees by construction.
 \end{mdframed}
+\end{center}
 
 \subsection{Addressed Problem}
 \label{subsec:problem}
 
-When we restrict a language, we will not be able to write every program -- \ie we sacrifice \ndx{Turing-completeness}.
-This leads to the question, \emph{what can we do with such a language?}\footnote{
-See \url{https://stackoverflow.com/questions/315340} for an inspirational warm-up.}
-Every manuscript of this dissertation is an instance responding to this broader question.
-
-The existing works in implicit computational complexity focus primarily on \emph{defining} theoretical systems that ensure desirable runtime properties;
-typically, in terms of computational resource usage (\cf~\autoref{tab:icc-results}).
-What separates this dissertation from those works is that it never defines such systems;
-rather, it centers on \emph{applications}.
-In this view, we take the existing ICC systems as a baseline---a kind of metaphorical \enquote{toolbox}---and assess their utility.
-Each dissertation manuscripts approaches this task by combining implicit computational complexity with some other application domain.
-The task of expanding ICC outside its traditional (theoretical) realm is difficult for at least three reasons.
+Given the many compelling ideological perspectives, there exists a long series
+of theoretical results in implicit computational complexity, reviewed
+in~\autoref{icc-theories}. These works focus primarily on \emph{defining}
+theoretical systems. There are substantially fewer explorations of
+\emph{applications} of those theories -- see
+Sections~\ref{resource-analysis-tools} and~\ref{icc-sec} for related
+presentations.\footnote{An \emph{application} refers to any use case beyond
+complexity theory, including implementation.} The difference in the allocated
+efforts could be explained by many factors, including the following
+challenges.\footnote{These are opinions and arise from observations and
+conversations about the process of doing research; it is doubtful they are
+annotated in literature.}
 
 \begin{enumerate}
 
-\item Taking any pure theory and applying it reveals the shortcomings of the theory;
-      and those issues must then be resolved.
+\item Broad insight is required to identify suitable application domains -- as
+      evidenced by, \eg \ndx{Parikh's Theorem} in \ndx{automata theory}.%
+      \footnote{The classic formulation of Parikh's Theorem is about language
+      expressiveness. Its usefulness in applications was enabled \emph{only
+      decades later} by the development of efficient algorithms. Parikh's
+      Theorem has since then been exploited in a range of applications,
+      including SMT solvers, verification of cryptographic protocols and
+      concurrent programs; and query evaluation over graph databases, to name a
+      few~\cite[pg. 2]{hague2024}}
 
-\item Broad insight is required to first identify suitable application domains and to convert theories to applications.
-Evidence supporting this statement can be found, \eg in automata theory\footnote{
-The classic formulation of Parikh's Theorem concerns language expressiveness.
-However, its usefulness in applications was enabled {only decades later}, by the development of efficient algorithms.
-Parikh's Theorem has since then been exploited in a range of applications, including SMT solvers, verification of cryptographic protocols and concurrent programs, and query evaluation over graph databases, to name a few~\cite[pg. 2]{hague2024}}.
+\item Applying any pure theory reveals the shortcomings of the theory.
+      It is extremely difficult to design a useful theory without considering
+      its implementation (paraphrased).
 
-\item Presenting the applications requires communicating the findings to (new) audiences, who may be motivated differently to assess the {usefulness} of those findings.
+\item An application may alter the research domain; \eg from theoretical
+      computer science to verification, program analysis, formal methods, \etc
+      In other words, it requires communicating findings to (new) audiences, who
+      may be motivated differently to assess the usefulness of the findings.
+
 \end{enumerate}
 
-In other words, publishing findings involves a degree of technical evangelism.
-Promoting implicit computational complexity to audiences who may have not encountered it previously, or at least not in the presented way, and getting them excited about its \emph{application} potential.
-After many decades of theoretical development, the quest for applications is critical to move implicit computational complexity forward~\cite[p.~7]{moyen2017}.
-Through the effort, we gain insight of the technical power, limitations, and benefits of ICC systems as compared to alternative techniques;
-as the manuscripts in this dissertation will demonstrate.
+Certain application motivations are specific to ICC. Restricting a programming
+language sacrifices \ndx{Turing-completeness}. A non-Turing-complete programming
+language makes certain programs inexpressible. The task of writing (or finding)
+a satisfactory program is then delegated to the software engineer~\cite[p.
+14]{moyen2017}. If the ICC restriction is too strong, it is difficult, or
+perhaps impossible, to express natural algorithms. This leads to a tradeoff
+between theoretical soundness, \ie providing a guarantee, and
+expressiveness~\cite{feree2018}. It is justifiable to ask, \emph{what can we
+do with such restricted programming languages?}.\footnote{See
+\url{https://stackoverflow.com/questions/315340} for an inspirational warm-up.}
 
-\begin{figure}[t]
+Through applications, we can stress test and pinpoint the limitations and
+capabilities of ICC systems, and discover new use cases in other domains. The
+guiding hypothesis of the dissertation research is summarized
+in~\autoref{fig:hypothesis}). Every manuscript in this dissertation is an
+instantiation of this hypothesis.
+
+\begin{figure}[h]
 \begin{mdframed}
 \paragraph*{Main hypothesis.}
-Implicit computational complexity offers applied utilities when lifted from the theoretical domain.
+Implicit computational complexity offers applied utilities when lifted from the
+theoretical domain.
 \end{mdframed}
 \caption[Main hypothesis summarized]{Main hypothesis.}
 \label{fig:hypothesis}
@@ -172,46 +197,52 @@ Implicit computational complexity offers applied utilities when lifted from the 
 
 \subsection{Dissertation Goals}\label{subsec:specific-aims}
 
-This dissertation has four goals.
+In support of the main hypothesis, there are four research goals (G\#).
 
-\begin{enumerate}
-\item Extend \emph{applied} capabilities of ICC in automatic program analysis and verification.
-\item Take ICC-bases analyses a few steps closer to becoming a standard in real world development workflows.
-\item Initiate discourse on relevance of applications within the ICC community.
-\item Expose ICC-based analyses to broader research communities.
+\begin{enumerate}[label={\textbf{G\arabic*.}}]
+
+\item\textbf{Extend applied capabilities of ICC in automatic program analysis
+and verification.}
+The motivation is to show that ICC theories can provide new practical
+(orthogonal) techniques of automatic program analysis and help guarantee
+programs satisfy desirable properties.
+
+\item\textbf{Take ICC a few steps closer to integration into real-world software
+development workflows.}
+The integration would drive theoretical improvement, enhance relevance of ICC
+techniques, and motivate thinking about ICC from fresh perspectives.
+
+\item \textbf{Initiate conversations on the relevance of ICC applications.}
+Improvements in ICC are typically achieved by showing improvement in
+expressiveness. The common strategy---used \eg
+in~\cite[p.16--17]{hainry2023},~\cite[p. 17]{jones2009}, and~\cite[p.
+147]{feree2018}---is to show that the newly presented system gives a guarantee
+for some subset of programs that were not expressible previously. However, this
+strategy is limited in quantifying practical usefulness of the ICC systems.
+Particularly, it does not account for the \enquote{methodological cost} at which
+the improvement is achieved. Applications would provide complementary insight
+and metrics to assess the capabilities of ICC systems.
+
+\item \textbf{Expose ICC to broader research communities.}
+The expectation is that wider propagation of ideas leads to discovery of new use
+cases. Moreover, through wider familiarity, is eases communication about ICC
+results.
+
 \end{enumerate}
-
-The first is to demonstrate that implicit computational complexity is useful in \emph{automated} complexity analysis.
-Despite many compelling features, implicit computational complexity has remained primarily as a theoretical novelty.
-The purpose of the goal is to address this limitation.
-All too often practitioners regard theory as irrelevant, and theoreticians think of practice as trivial~\cite[pg. xxxv]{bishop2003}\footnote{
-For example, for papers with implementations, the inability to demonstrate a practically functional artifact is a not a disqualifying factor for a top-conference publication,
-\cf\eg~\url{https://artifact-eval.org/motivation.html}.}.
-The previous statement is loaded, but it needs to be states as a founding motivation of the dissertation.
-In our view~\cite[p. 75]{moyen2017}, theory and applications are symbiotic.
-Investigations of both are needed for scientific advancement.
-This goal corresponds to a series of manuscripts that extend the flow calculus of mwp-bounds (\autoref{flow-calculus}).
-
-The last two goals are social.
-Initiate discourse on relevance of applications within the ICC community.
-Expose ICC-based analyses to broader research communities.
-% TODO: finish this thought
-
-%A guiding intuition behind these goals is that, {if applied}, implicit computational complexity could provide new practical program analyses.
-%These include uses in formal verification and in specifying and ensuring \uline{many} non-functional properties.
-
-% \subsection{Significance}\label{subsec:significance}
-% This research proposal intersects computer science theory and application, with the intent of using those theoretical approaches to solve existing challenges in automatic program analysis.
-% In 2017, Jean-Yves Moyen---a notable researcher in the ICC community, whose career spans 3 decades of advancements---remarked enthusiastically, that after twenty years and many results, ICC was ready to move into real-world and to concrete applications~\cite[p.~7]{moyen2017}.
-% And although a few early results exist, as noted earlier in this section, progress in this direction is still at early stages.
-% With similar aspirations, this proposal hopes to move further in that direction.
-% It is conceivable that certified complexity would be of significant interest to multiple research communities.
-% The next section will detail the specifics of the methodology, that consists of multiple projects.
-% Assuming the successful completion of each project, they would show that certifiably correct complexity analysis is achievable, and that ICC techniques can be used to obtain efficient and practical complexity analysis.
-% These results would extend current capabilities in automatic complexity analysis, and move those techniques closer to becoming a standard in real-world software verification.
 
 \subsection{Manuscripts and Research Questions}
 \label{subsec:conn-papers}
+
+To make the abstract dissertation hypothesis and research goals more concrete,
+we define two research directions. Broadly, one focuses on automatic resource
+analysis, and the other investigates uses of ICC to ensure other program
+properties, beyond complexity. These directions are visualized
+in~\autoref{fig:conn_papers}. An alternative way to think about these directions
+is that
+\begin{enumerate*}
+\item we apply the systems in the originally designed ways (on left), and
+\item we aims to discover unexpected applications (on right).
+\end{enumerate*}
 
 \begin{figure}[p]
 \includegraphics[width=\linewidth,keepaspectratio]{fig_conn_papers}\vspace{1em}
@@ -220,47 +251,64 @@ Expose ICC-based analyses to broader research communities.
 \label{fig:conn_papers}
 \end{figure}
 
-All dissertation manuscripts are inspired by theoretical works in implicit computational complexity.
-Based on the foundation, the manuscripts are organized into two \enquote{paths}, as shown in~\autoref{fig:conn_papers}.
-The paths align with the dissertation goals (\autoref{subsec:specific-aims}) as follows.
+\paragraph*{Automatic resource analysis.}
+\index{mwp-calculus}
 
-\begin{description}
-\item[Automatic resource analysis with the flow calculus of mwp-bounds.]
-The first track extends the flow calculus of mwp-bounds of~\textcite{jones2009}.
-The technique is introduced detail in~\autoref{flow-calculus}.
-The flow calculus is a syntactical analysis for reasoning about variable value growth during computation.
-The manuscripts apply and demonstrate the utility of the calculus, first though static program analysis, then extending it to formal methods.
-Thus, the manuscripts supports two of the three dissertation goals.
-One of the manuscripts is in the appendix due to the university policies, but the placement should not distract from its significance;
-several other manuscripts follow from it.
+In the first direction, we focus on the flow calculus of mwp-bounds
+of~\textcite{jones2009}. It is a canonical example of an ICC system for
+analysing variable value growth (data size) in \ndx{imperative programs}. The
+flow calculus is introduced in detail in~\autoref{flow-calculus}.
 
+Relating to the flow calculus, we define three research questions.
 \begin{description}
-\item[RQ1] Can we develop an \emph{automatic} program analysis based on the theory?
-\item[RQ2] Given its paper proofs, is the theory correct? Can we prove formally the soundness of the flow calculus?
-\item[RQ3] Assuming the theory can be automated, what are the use cases of the analysis?
+\item[RQ1] Can we develop an \emph{automatic} program analysis based on the flow
+calculus?
+\item[RQ2] Given its paper proofs, is the theory correct, \ie can we prove
+formally the soundness of the flow calculus?\index{soundness of mwp-calculus}
+\item[RQ3] Assuming the theory can be automated, what are its use cases?
 \end{description}
 
-\item[Analyzing extended program properties via quasi invariants.]
-The second track is inspired by \enquote{Loop Quasi-Invariant Chunk Detection}~\cite{moyen20172}.
-The idea is to identify blocks of code in loops that become invariant after some finite number of loop iterations.
-These quasi-invariant blocks can then be lifted from the loop to ideally improve the loop's complexity profile.
-The manuscripts in this track support the second dissertation goal,
-as they use the mathematical framework of LQICM to track other program properties.
-In particular, they show how to adjust the mathematics to obtain a program optimization to increase parallelism and detect the security property of non-interference.
+The manuscripts demonstrate the utility of the calculus, first in static program
+analysis and then extending to formal methods.\footnote{ One of the manuscripts
+is in the appendix due to Augusta University policies. The placement of the work
+should not distract from its significance, as several other manuscripts follow
+from it.}
 
+The manuscripts supports all dissertation goals. The implementation of the
+calculus, RQ1, supports G1--G3. A proof of its soundness (RQ2), and its
+extension to formal methods that follows from RQ3, support G4.
+
+\paragraph*{Analyzing extended program properties.}
+
+The second direction is inspired by \enquote{Loop Quasi-Invariant Chunk
+Detection}~\cite{moyen20172}. In the original formulation, the idea is to
+identify fragments (blocks) of loops, whose variables become invariant after a
+finite number of iterations. Such loop \ndx{quasi-invariant} code blocks can
+then be lifted from the loop. The program transformation improves the loop's
+complexity profile if the lifted block is a nested loop. For convenience, we
+refer this technique as the \emph{QI framework}, after the quasi-invariants.
+
+This original QI framework is not presented in this dissertation. This is
+because each refinement changes the behavior of the system. It is therefore
+necessary to fully re-define the system each time. The manuscripts in
+Sections~\ref{sec:vmcai} and~\ref{sec:anytime} provide the technical details.
+
+Using the QI framework, we define two research questions.
 \begin{description}
-\item[RQ4] How to develop a program transformation to increase parallelization potential?
-\item[RQ5] How to use it to analyze security properties, specifically non-interference?
+\item[RQ4] How to develop a program transformation to increase parallelization
+potential?
+\item[RQ5] How to use it to analyze security properties, specifically
+non-interference?
 \end{description}
 
-%The second goal is to show that the analytical techniques developed around implicit computational complexity extend to analyzing \emph{other} semantic program properties.
-%This goal shows that ICC-based analyses are flexible enough to extend beyond their original design.
-%Although the goal is phrases in terms of \emph{properties}, the emphasis is actually on the \emph{techniques} and understanding how they adjust to providing various guarantees.
-%The boarded implications suggests that viewing ICC as a niche sub-field of complexity theory does not adequately recognize its true analytical power.
-%The various ways in which ICC analyses can provide guarantees should be explored more broadly.
-%The manuscripts in this dissertation demonstrate two use cases in program optimization and security analysis.
-      
-\end{description}
+The research questions change the orientation from complexity theory to other
+application domains. Critically, the original complexity result may be lost, but
+some other guarantee is gained instead. On the surface, the research questions
+appear to be about properties, but more deeply they are about understanding the
+underlying theory and its flexibility.
+
+Both goals are practically motivated. The expected deliverables support G1 and
+G2. Moreover, they are strongly oriented to support G4.
 
 \paragraph*{Related topics.}
 Each manuscript connects implicit computational complexity with a related
@@ -276,14 +324,10 @@ in~\autoref{app:additional-manuscripts} are \enquote{non-first author} works.
 The contributions of the co-authors are detailed in~\autoref{app:sec:coauth}.
 
 \paragraph*{On manuscript peer review.}
-The entire
-Chapters~\ref{published-manuscripts},~\ref{ch:unpublished-research},~\ref{ch:summary},
-and ~\ref{app:additional-manuscripts} have been peer-reviewed. In other words,
-the only new content sections are Chapters 1 and 4, Introduction and Discussion.
-All published manuscripts, and research papers currently in review, were
-reviewed at conferences that are ranked A or B in
-the~\href{https://portal.core.edu.au/conf-ranks/}{Computing Research and
-Education Conference Rankings Portal}~\cite{core}.
+The entire Chapters~\ref{published-manuscripts},~\ref{ch:unpublished-research},%
+~\ref{ch:summary}, and~\ref{app:additional-manuscripts} have been peer-reviewed.
+In other words, the only new content sections are Chapters 1 and 4, Introduction
+and Discussion.
 
 \begin{itemize}
 

@@ -317,8 +317,6 @@ A programming language offering safety guarantees is plausible only
 if it captures enough interesting and natural algorithms~\cite{baillot2012}.
 On the other hand, sacrificing \ndx{Turing-completeness} allows developing an analysis that is \enquote{completely correct} about membership in a particular complexity class.
 It requires defining a non-Turing-complete programming language and proving that it is sound and complete \wrt a particular complexity class.
-%i.e., that their programs compute functions in \(\mathbb{C}\),
-%and that for any problem in \(\mathbb{C}\), there is a program that solves it).
 This sidesteps Rice's theorem, but cannot be \emph{intentionally} complete, since it will always exclude programs that yet belong to the targeted complexity class.
 Correctly analysing a real world programming language is very difficult because of the large number of constructions allowed in it.
 
@@ -330,9 +328,7 @@ Correctly analysing a real world programming language is very difficult because 
 Among exceptions, quasi-interpretations~\cite{marion2000} considers a Turing-complete language.}
 in implicit complexity techniques focuses on \enquote{toy languages}~\cite{moyen2017,rubiano17};
 like term rewrite systems or the \textsc{Loop} language~\cite{kristiansen2005}.
-% functional, imperative (oop, loops), flowchart, term rewriting,...
 While such languages capture the core of mainstream programming languages, they are far from the rich constructs allowed in real languages.
-%That limits the spread of implicit complexity-based techniques beyond academic circles and complicates rigorously assessing their potential.
 
 \paragraph*{Analysis mechanics and obtained bounds.}
 That ICC systems are designed to characterize a specific complexity classes has implications on the results they produce.

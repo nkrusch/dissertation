@@ -560,12 +560,17 @@ another mechanism adopted from the security domain.
 In the latter, the main result is a proof that SAFE and terminating aperiodic programs is the class of Basic Feasible Functionals\index{Basic Feasible Functionals}, \ie \(\sem{\text{SAFE}\;\cap\;\text{AP}\;\cap\;\text{terminating} = \text{BFF}}\)~\cite{hainry2020,hainry2024}.
 
 \paragraph*{From complexity to cryptography.}\index{cryptography}
-A separate series of works applies implicit computation complexity toward applications in the security domain.
+A separate series of works applies implicit computation complexity toward applications in cryptography.
+The application is natural, because the security of cryptographic schemes is formulated as a mathematical problem, where the goal is to show the scheme is not to be solvable by a feasible adversary.
+The term feasible refers to computable in polynomial time~\cite{feree2018}.
+
+This application is naturally, because in showing that a cryptographic scheme is secure, adversarial capabilities must restrict available computational power~\cite{heraud2011}.
 
 \begin{description}
 
 \item[formalized safe recursion.]
-The formalization of \ndx{safe recursion} (\cf~\autoref{safe-rec}) was primarily motivated by its envisioned usefulness in cryptography~\cite{heraud2011}.
+The formalization of \ndx{safe recursion} (\cf~\autoref{safe-rec}) was primarily motivated by its envisioned usefulness in cryptography~\cite{heraud2011}. At the time, the method was integrated into \href{https://github.com/EasyCrypt/certicrypt}{CertiCrypt} framework (predecessor of \ndx{EasyCrypt}), to provide complexity guarantees.
+However, proofs of complexity bounds are
 
 \item[Type system d\(\ell\)T.]
 The type system \ndx{d\(\ell\)T}~\cite{baillot2015,baillot2019} is simultaneously complexity-aware and has capabilities to support cryptographic proofs.

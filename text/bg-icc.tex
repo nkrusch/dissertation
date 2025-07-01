@@ -42,7 +42,7 @@ It inherently shifts focus from computational models\index{machine model} to \em
 \end{quotation}
 In other words, complexity classes\index{complexity classes} are described independently of notions of time or space related to a machine's definition.
 For example, polynomial time complexity\ccxi{p} has been thoroughly examined under these terms.
-The Cobham–Edmonds's Thesis~\cite{cobham1965,edmonds1965}\index{Cobham–Edmonds's Thesis} relates polynomial time class with the class of feasible functions\index{}\footnote{
+The \ndx{Cobham–Edmonds's Thesis}~\cite{cobham1965,edmonds1965} relates polynomial time class with the class of feasible functions\footnote{
     The Cobham-Edmonds Thesis asserts that the time complexities in any two \enquote{reasonable and general} models of computation are polynomially related;
     that is, a problem has time complexity \(t\) in some reasonable and general model of computation
     if and only if it has time complexity poly(\(t\)) in the model of single-tape \ndx{Turing Machine}s~\cite[p. 33]{goldreich2008}.}.
@@ -176,11 +176,12 @@ This makes exp not expressible anymore, giving rise to new function algebra call
 The class BC equals the class FP of polynomial time computable functions.
 \end{theorem}\ccxi{p}
 
-The Bellantoni and Cook result extends an earlier result by Cobham.
-Cobham's thesis asserts that being feasible is the same as being computable in polynomial time~\cite{cobham1965}.
-Although Cobham characterizes the polynomial time functions independently of any particular execution model, the characterization is not fully syntactic.
-This prevents an automatic procedure to check whether a program satisfies the criteria of Cobham's class~\cite{heraud2011}.
-In contrast, the Bellantoni and Cook characterization is a fully-syntactic mechanism and membership in BC can be checked automatically.
+The Bellantoni and Cook result extends an earlier result by Cobham~\cite{cobham1965}.
+The Cobham-Edmond's thesis asserts that being feasible is the same as being computable in polynomial time~\cite{cobham1965,edmonds1965}.
+Although the Cobham characterization is independent of any particular execution model, it is not fully syntactic.
+The limitations are that a size bound has to be proved on the semantics of recursion, and the proof uses a particular model of Turing machine.
+This prevents constructing an \emph{automatic procedure} to check whether a program satisfies Cobham's criteria~\cite{heraud2011}.
+In contrast, the Bellantoni and Cook characterization is a fully syntactic and membership in BC can be checked automatically.
 The Bellantoni and Cook result was proved formally~\cite{bc_formal} by~\textcite{heraud2011}.
 
 \subsubsection{A Snapshot of Theoretical Results}
