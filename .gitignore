@@ -283,3 +283,4 @@ TSWLatexianTemp*
 # exclude specific pdfs
 main.pdf
 pictures/*.pdf
+venv
