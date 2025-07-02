@@ -1,0 +1,128 @@
+                                            ⣀⣤⣴⣶⣶⣦⣄⡀⠀⠀⠀⠀⠀⠀⢀⣤⣶⣶⣶⣦⣤⡀⠀⠀⠀
+                                          ⢀⣾⣿⣿⣿⣿⣿⣿⣿⣷⣄⠀⠀⠀⢀⣾⣿⣿⣿⣿⣿⣿⣿⣿⣦⡀ ⠀
+                                         ⠀⣾⣿⠟⠋⠉⠀⠀⠉⠙⠻⣿⣷⡀⣰⣿⣿⣿⠟⠉⠀⠀⠀⠈⠙⣿⣷⠀
+    ╔═╗┌─┐┌─┐┬  ┬┌─┐┌┬┐                  ⢸⣿⠏⠀⠀⠀⠀⠀⠀⠀⠀⠈⢻⣿⣿⣿⡿⠃⠀⠀⠀⠀⠀⠀⠀⠸⣿⡇
+    ╠═╣├─┘├─┘│  │├┤  ││                  ⢸⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣾⣿⣿⡿⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⡇
+    ╩ ╩┴  ┴  ┴─┘┴└─┘─┴┘                  ⢸⣿⡆⠀⠀⠀⠀⠀⠀⠀⢀⣾⣿⣿⣿⣧⡀⠀⠀⠀⠀⠀⠀⠀⠀⢰⣿⡇
+    ╦┌┬┐┌─┐┬  ┬┌─┐┬┌┬┐                   ⠀⢿⣿⣄⡀⠀⠀⠀⢀⣴⣿⣿⣿⠟⠘⢿⣿⣦⣀⡀⠀⠀⢀⣀⣴⣿⡿⠀
+    ║│││├─┘│  ││  │ │                    ⠀⠈⠻⣿⣿⣿⣿⣿⣿⣿⣿⡿⠁⠀⠀⠀⠙⣿⣿⣿⣿⣿⣿⣿⣿⡿⠁⠀
+    ╩┴ ┴┴  ┴─┘┴└─┘┴ ┴                    ⠀⠀⠀⠈⠛⠻⠿⠿⠿⠛⠁⠀⠀⠀⠀⠀⠀⠈⠙⠻⠿⠿⠿⠛⠉⠀⠀⠀
+    ╔═╗┌─┐┌┬┐┌─┐┬ ┬┌┬┐┌─┐┌┬┐┬┌─┐┌┐┌┌─┐┬
+    ║  │ ││││├─┘│ │ │ ├─┤ │ ││ ││││├─┤│
+    ╚═╝└─┘┴ ┴┴  └─┘ ┴ ┴ ┴ ┴ ┴└─┘┘└┘┴ ┴┴─┘
+    ╔═╗┌─┐┌┬┐┌─┐┬  ┌─┐─┐ ┬┬┌┬┐┬ ┬
+    ║  │ ││││├─┘│  ├┤ ┌┴┬┘│ │ └┬┘
+    ╚═╝└─┘┴ ┴┴  ┴─┘└─┘┴ └─┴ ┴  ┴⠀
+
+
+
+
+This is a companion artifact for a dissertation by the same name.
+The artifact allows re-compiling the dissertation from sources,
+inspecting the references that could not be archived elsewhere, and
+and running executable examples that appear in the dissertation.
+
+------------------------------------------------------------------------
+🐳 Start here: create a Docker environment
+------------------------------------------------------------------------
+
+Prerequisites: Docker - https://docs.docker.com/engine/install/
+
+At the unzipped sources root folder, run:
+
+    docker build --platform linux/amd64 . -t rdiss
+    docker run -v "$(pwd):/dissertation" -it --rm rdiss
+
+The commands will prepare and launch a virtual environment. All
+necessary software is pre-installed in the container.
+
+NOTE: the container is built for amd64 architecture. It can be used
+on other hosts, but will run much slower than matching architecture.
+
+------------------------------------------------------------------------
+📁 Source code organization
+------------------------------------------------------------------------
+    .
+    ├─ 🗀 code/            : Code listings
+    ├─ 🗀 fonts/           : Custom fonts
+    ├─ 🗀 latex/           : Custom LaTeX
+    ├─ 🗀 pdf/             : Static resources (figures, manuscripts)
+    ├─ 🗀 pictures/        : TikZ drawings
+    ├─ 🗀 references/      : Bib and indices
+    ├─ 🗀 text/            : Dissertation content
+    ├─ args.tex            : Template configuration
+    ├─ content.tex         : Dissertation sections
+    ├─ Dockerfile          : Execution environment
+    ├─ LICENSE             : License text
+    ├─ main.tex            : The TGS ETD template
+    ├─ Makefile            : Build commands
+    └─ readme.txt          : Copy of this readme
+
+------------------------------------------------------------------------
+🏗️ Compile Dissertation (optional)
+------------------------------------------------------------------------
+
+A compiled dissertation is available at following addresses.
+(1) ...(HAL)...
+(2) ...(ProQuest)...
+
+Alternatively, inside the Docker container, re-compile the dissertation
+by running:
+
+    make
+
+The command should produce a file named main.pdf at the sources root.
+
+------------------------------------------------------------------------
+⚗️ Executable examples
+------------------------------------------------------------------------
+### Leftpad
+
+Listings 46--48.
+Compile the examples:
+
+    (cd code \
+     && coqc leftpad.v \
+     && coqc "leftpad_ssrefl.v" \
+     && dafny verify leftpad.dfy)
+
+Compiling the Rocq proofs do not print any output.
+The dafny verification will print:
+
+    Dafny program verifier finished with 2 verified, 0 errors
+
+------------------------------------------------------------------------
+### Moscow Problem
+
+Section 1.2.6.6.
+Compile and execute the message exchange:
+
+    (cd code \
+     && time coqc moscow.v \
+     && ocamlbuild exchange.byte && ./exchange.byte)
+
+Expected output (the times are approximate):
+
+    real	0m28.778s
+    user	0m28.010s
+    sys	    0m0.763s
+    Finished, 8 targets (7 cached) in 00:00:00.
+    B sends 4 ==> C got A=2 and B=(5, 1, 4)
+    C sends 5 ==> B got A=2 and C=(7, 3, 6)
+
+------------------------------------------------------------------------
+### pymwp Tool User Guide
+
+Section 2.1.7.
+Step through the examples as described in the guide.
+
+    pymwp examples/basics/assign_expression.c --fin --info --no_time
+    pymwp examples/infinite/exponent_2.c --fin --info --no_time
+    pymwp examples/not_infinite/notinfinite_3.c --fin --info --no_time
+    pymwp examples/infinite/infinite_3.c --fin --info --no_time
+    pymwp examples/other/dense_loop.c --fin --info --no_time
+
+The output should match the tool guide.
+The pymwp version is more recent than in the guide.
+This affects some outputs, but not the analysis descriptions.
+

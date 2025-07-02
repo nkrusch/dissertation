@@ -21,6 +21,7 @@ ARG EXAMPLES="https://github.com/statycc/pymwp/releases/download/$VER_PYMWP/exam
 ARG DAFNY_URL="https://github.com/dafny-lang/dafny/releases/download/v$VER_DAFNY/dafny-$VER_DAFNY-x64-ubuntu-20.04.zip"
 ARG DAFNY_ARCH="dafny.zip"
 ARG MS_CERT="packages-microsoft-prod.deb"
+ARG README=".github/artifact.txt"
 ARG JOBS=4
 
 # ENV settings
@@ -48,6 +49,7 @@ RUN apt update  \
 
 RUN mkdir -p $HOME
 COPY . $HOME
+COPY $README $HOME/readme.txt
 WORKDIR $HOME
 
 # install pymwp and examples
