@@ -1,4 +1,5 @@
-From Stdlib Require Import Arith List. Import Nat.
+(* In Rocq: From Stdlib Require ... *)
+From Coq Require Import Arith List. Import Nat.
 
 Parameter char : Set.
 Implicit Type (s xs ys: list char).
