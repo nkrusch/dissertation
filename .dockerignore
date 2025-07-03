@@ -25,6 +25,10 @@ Dockerfile
 *.ind
 *.ist
 *.listing
+*.lof
+*.lot
+*.lol
+*.loa
 *.log
 *.mli
 *.out
