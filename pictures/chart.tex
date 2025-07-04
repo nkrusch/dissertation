@@ -1,32 +1,27 @@
 \documentclass[crop]{standalone}
 \input{../latex/pics}
 
-\tikzstyle{entry} = [font=\bfseries\color{sblue}]
-\tikzstyle{axlbl} = [font=\color{sbase03}]
-\tikzstyle{axname} = [font=\color{sbase03}]
+\tikzstyle{axname} = [font=\bfseries\color{sbase03}]
+\tikzstyle{entry}  = [font=\color{sorange}]
+\tikzstyle{label}  = [left,align=right]
+\tikzstyle{entryL} = [entry,right,align=left]
 
 \begin{document}
 \begin{tikzpicture}[align=center]
-\newcommand\sx{2.5}
-\newcommand\sy{1.5}
-\newcommand\dx{5.5}
+\newcommand\dx{5}
 \newcommand\dy{3.5}
 
-\draw[gray!35!white,step=.5] (\sx,\sy) grid ++(\dx,\dy);
+%\draw[gray!35!white,step=.5] (0,0) grid ++(\dx,\dy);
+\draw[arrow] (0,0)--(\dx,0) node[axname,right] {Automation};
+\draw[arrow] (0,0)--(0,\dy) node[axname,above] {Assurance};
 
-\draw[arrow] (\sx,\sy) -- ++(0, \dy)
-	node[axname,above,yshift=10pt] {Assurance}
-	node[axlbl,above,left,align=right,xshift=-10pt,yshift=-10pt] {functional\\correctness}
-	node[entry,above,right,align=center,xshift=10pt,yshift=-17pt] {manual\\verification};
-
-\draw[arrow] (\sx,\sy) -- ++(\dx, 0)
-	node[axname,right,xshift=10pt] {Automation}
-	node[axlbl,below,left,align=left,yshift=-20pt] {SMT solvers\\}
-	node[entry,above,left,align=center,yshift=20pt,xshift=-10pt] {static\\checking};
-
-\node[axlbl,below,left,align=right,xshift=-10pt,yshift=10pt] at (\sx,\sy) {limited\\verification};
-\node[axlbl,below,right,align=center,yshift=-15pt] at (\sx,\sy) {proof assistants};
-\node[entry,align=center] at (\sx+.81*\dx,\sy+.86*\dy) {Dafny};	
+\path   ( 0, \dy-.5) node[label]  (L1) {functional\\correctness}
+	   +( 0,      0) node[entryL] (A)  {manual\\verification}
+	  ++( 0,  1-\dy) node[label]  (L2) {limited\\verification}
+	  ++(1.2,   -.8) node[]       (L3) {proof assistants}
+	  ++(.3+\dx/2,0) node[]       (L4) {SMT solvers}
+	  ++(0,      .8) node[entry]  (B)  {static\\checking}
+	  ++(0,   \dy-1) node[entry]  (C)  {Dafny};
 
 \end{tikzpicture}
 \end{document}

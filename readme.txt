@@ -19,8 +19,8 @@
 
 This is a companion artifact for a dissertation by the same name.
 The artifact allows re-compiling the dissertation from sources,
-inspecting the references that could not be archived elsewhere, and
-and running executable examples that appear in the dissertation.
+running all executable examples that appear in the dissertation, and
+inspecting the references that could not be archived elsewhere.
 
 ------------------------------------------------------------------------
 🐳 Start here: create a Docker environment
@@ -76,7 +76,7 @@ The command should produce a file named main.pdf at the sources root.
 ⚗️ Executable examples
 ------------------------------------------------------------------------
 
-    Section
+    SECTION             DESCRIPTION
     1.2.3.4             Derivations I: Range of Analysis Outcomes
     1.2.3.5 and 2.1.7   Derivations II: Tool User Guide
     1.2.6.3             A simple proof in Rocq
@@ -86,6 +86,10 @@ The command should produce a file named main.pdf at the sources root.
 
 ------------------------------------------------------------------------
 ### Derivations I: Range of Analysis Outcomes
+
+Running the examples shows that the automated analysis ends with the
+same result as the manual derivation. The automatic analysis omits
+mwp-bounds if a variable's only dependency is its input, i.e. X ≤ X.
 
 Example 4: Polynomially bounded program is derivable.
 
@@ -165,9 +169,9 @@ Compile and execute the message exchange:
 
 Expected output (the times are approximate):
 
-    real	0m28.778s
-    user	0m28.010s
-    sys	    0m0.763s
+    real    0m28.778s
+    user    0m28.010s
+    sys     0m0.763s
     Finished, 8 targets (7 cached) in 00:00:00.
     B sends 4 ==> C got A=2 and B=(5, 1, 4)
     C sends 5 ==> B got A=2 and C=(7, 3, 6)

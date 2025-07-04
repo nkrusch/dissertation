@@ -573,14 +573,14 @@ Dafny programs can be compiled to various target languages, like \ndx{C\#}, \ndx
 
 Dafny has an associated static program verifier.
 The role of the verifier is to check a program's specification constructs\footnote{These are Eiffel-like contracts from~\cite{meyer1988}.}.
-As visualized by the chart in~\autoref{fig:dafny-auto},
-the built-in verifier in Dafny adds a high degree of automation, which resolves many low-level proof steps.
+As visualized by the chart in~\autoref{fig:dafny-auto} (inspired by~\cite{leino2010b}), the built-in verifier in Dafny adds a high degree of automation.
+The verifier resolves many low-level proof steps.
 For example, if we wanted to prove the lemma of~\autoref{lst:rocq-basic} in Dafny, the verifier succeeds at discharging the proof obligations automatically -- see \pr|Add0Left| in~\autoref{fig:dafny-use}.
 
 \begin{figure}[ht]
 \centering
 \includegraphics[width=.7\textwidth,keepaspectratio]{fig_chart}
-\caption[Automation degree chart]{Automation degree -- a chart inspired by~\cite{leino2010b}.}
+\caption[Automation degree chart]{Automation degree.}
 \label{fig:dafny-auto}
 \end{figure}
 
@@ -750,7 +750,7 @@ Each version includes an implementation and a proof to show that the implementat
 
 \begin{center}
 \captionsetup{type=lstlisting}
-\rocqinputlisting[breakable][]{leftpad.v}
+\rocqinputlisting[breakable][firstline=2]{leftpad.v}
 \captionof{lstlisting}[Leftpad in Rocq]{Leftpad in Rocq.}
 \label{lst:rocq-leftpad}
 \end{center}
@@ -784,7 +784,7 @@ otherwise, one must search the proofs database.
 \begin{center}
 \captionsetup{type=lstlisting}
 \begin{minipage}{\linewidth}
-\mathcompinputlisting[][]{leftpad_ssrefl.v}
+\mathcompinputlisting[][firstline=2]{leftpad_ssrefl.v}
 \captionof{lstlisting}[Leftpad in SSReflect proof language]{Leftpad in the SSReflect proof language of the Mathematical Components library.}
 \label{lst:mathcomp-leftpad}
 \end{minipage}
