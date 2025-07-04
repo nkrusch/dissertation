@@ -63,8 +63,7 @@ on other hosts, but will run much slower than matching architecture.
 ------------------------------------------------------------------------
 
 A compiled dissertation is available at following addresses.
-(1) ...(HAL)...
-(2) ...(ProQuest)...
+(1) TODO
 
 Alternatively, inside the Docker container, re-compile the dissertation
 by running:
@@ -76,9 +75,73 @@ The command should produce a file named main.pdf at the sources root.
 ------------------------------------------------------------------------
 ⚗️ Executable examples
 ------------------------------------------------------------------------
-### Leftpad
 
-Listings 46--48.
+    Section
+    1.2.3.4             Derivations I: Range of Analysis Outcomes
+    1.2.3.5 and 2.1.7   Derivations II: Tool User Guide
+    1.2.6.3             A simple proof in Rocq
+    1.2.6.5.1           Program Equivalence
+    1.2.6.5.2           Formally verified leftpad
+    1.2.6.6             The Moscow Problem
+
+------------------------------------------------------------------------
+### Derivations I: Range of Analysis Outcomes
+
+Example 4: Polynomially bounded program is derivable.
+
+    pymwp --info examples/original_paper/example3_1_b.c
+
+Example 5: Failing program admits no derivation.
+
+    pymwp --info examples/original_paper/example3_1_d.c
+
+Example 6: Derivability in presence of partial derivation failure.
+
+    pymwp --info examples/original_paper/example3_5.c
+
+------------------------------------------------------------------------
+### Derivations II: Tool User Guide
+
+Examples 7--11: Run examples as described in the tool guide.
+
+    pymwp examples/basics/assign_expression.c --fin --info --no_time
+    pymwp examples/infinite/exponent_2.c --fin --info --no_time
+    pymwp examples/not_infinite/notinfinite_3.c --fin --info --no_time
+    pymwp examples/infinite/infinite_3.c --fin --info --no_time
+    pymwp examples/other/dense_loop.c --fin --info --no_time
+
+The output should match the tool guide. The pymwp version is more recent
+than in the guide, which affects some outputs, but not the descriptions
+of the analysis.
+
+------------------------------------------------------------------------
+### A simple proof in Rocq
+
+Inspect the proof:
+
+    cat code/example.v
+
+Check the proof (with time details):
+
+    coqc code/example.v -time
+
+------------------------------------------------------------------------
+### Program Equivalence
+
+Compile the examples:
+
+    (cd code \
+     && coqc equiv.v \
+     && dafny verify equiv.dfy)
+
+Compiling the Rocq proofs do not print any output.
+The dafny verification will print:
+
+    Dafny program verifier finished with 3 verified, 0 errors
+
+------------------------------------------------------------------------
+### Formally verified leftpad
+
 Compile the examples:
 
     (cd code \
@@ -92,9 +155,8 @@ The dafny verification will print:
     Dafny program verifier finished with 2 verified, 0 errors
 
 ------------------------------------------------------------------------
-### Moscow Problem
+### The Moscow Problem
 
-Section 1.2.6.6.
 Compile and execute the message exchange:
 
     (cd code \
@@ -111,18 +173,5 @@ Expected output (the times are approximate):
     C sends 5 ==> B got A=2 and C=(7, 3, 6)
 
 ------------------------------------------------------------------------
-### pymwp Tool User Guide
-
-Section 2.1.7.
-Step through the examples as described in the guide.
-
-    pymwp examples/basics/assign_expression.c --fin --info --no_time
-    pymwp examples/infinite/exponent_2.c --fin --info --no_time
-    pymwp examples/not_infinite/notinfinite_3.c --fin --info --no_time
-    pymwp examples/infinite/infinite_3.c --fin --info --no_time
-    pymwp examples/other/dense_loop.c --fin --info --no_time
-
-The output should match the tool guide.
-The pymwp version is more recent than in the guide.
-This affects some outputs, but not the analysis descriptions.
-
+                           🏁 FINISH 🇫🇮
+------------------------------------------------------------------------

@@ -1,7 +1,8 @@
 Set Warnings "-notation-overridden,-parsing,-deprecated-hint-without-locality".
-From Stdlib Require Import Arith.Arith.
-From Stdlib Require Import Arith.EqNat. Import Nat.
-From Stdlib Require Import Strings.String.
+(* use Stdlib for Rocq 9+ *)
+From Coq Require Import Arith.Arith.
+From Coq Require Import Arith.EqNat. Import Nat.
+From Coq Require Import Strings.String.
 
 (* ################################################################# *)
 (** * Total Maps and States *)

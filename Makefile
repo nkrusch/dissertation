@@ -35,7 +35,7 @@ update:
 	cp ../review/5-summary/text.tex text/ch-summary.tex
 	cp ../review/bib.bib references/references.bib
 	cp ../review/bib2.bib references/manuscripts.bib
-	cp ../review/readme.txt .github/artifact.txt
+	cp ../review/readme.txt readme.txt
 	cp -R ../review/listings/. code
 
 %.tex: %.ott

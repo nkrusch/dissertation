@@ -11,7 +11,7 @@ ARG EX_DIR="$HOME/examples"
 ARG DAFNY_PATH="/usr/lib/"
 
 # versions
-ENV VER_PYMWP="0.5.4"
+ENV VER_PYMWP="0.5.5"
 ENV VER_DAFNY="4.10.0"
 ENV VER_COQ="8.20.1"
 ENV VER_MATHCOMP="2.4.0"
