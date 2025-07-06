@@ -1,17 +1,11 @@
 # Dissertation
 
 [![Compile](https://github.com/nkrusch/thesis/actions/workflows/compile.yaml/badge.svg)](https://github.com/nkrusch/thesis/actions/workflows/compile.yaml)
+[![Package](https://github.com/nkrusch/dissertation/actions/workflows/package.yaml/badge.svg)](https://github.com/nkrusch/dissertation/actions/workflows/package.yaml)
 
 Repository to host, compile, and share my dissertation.
 
-### Formatting guides 
-    
-* [Augusta University ETD Guides](https://guides.augusta.edu/etd)
-* [AU Dissertation Guide Booklet v.2024](https://augustauniversity.app.box.com/s/vj0ygpy8tvyqmsbae8y0qp9767ta7jb9)
-* [Dissertation template](https://github.com/aubertc/au_ccs_dissertation_template/) (LaTeX/markdown)
-* [Preparing Your Manuscript for Submission (ProQuest)](https://about.proquest.com/globalassets/proquest/files/pdf-files/preparing-your-manuscript.pdf)
-
-### Repository Organization
+## Repository Organization
 
     .
     ├─ 🗀 .github/         : Automated workflows
@@ -30,18 +24,36 @@ Repository to host, compile, and share my dissertation.
     ├─ Makefile            : Build commands
     └─ *                   : Configuration files
 
-### Compilation with Docker
+## Compilation with Docker
 
-From the repository root, pull the latest [texlive-full][texlive] image, then launch the container.
+Using [Docker](https://docs.docker.com/engine/install/),
+pull and launch the latest container image.
+ 
+    docker pull --platform=linux/amd64 ghcr.io/nkrusch/dissertation:main
+    docker run -it --rm ghcr.io/nkrusch/dissertation:main
 
-    export DOCKER_DEFAULT_PLATFORM=linux/amd64
-    docker pull ghcr.io/xu-cheng/texlive-full:latest 
-    docker run -v "$(pwd):/dissertation" -it --rm ghcr.io/xu-cheng/texlive-full
-
+**1️⃣ Compile.**
 Insider the container, compile the dissertation by running:
 
-    cd dissertation && make
+    make -j N
 
-The output should be a `main.pdf` at the repository root.
+where `N` is the number of available cores.
+The command generates a file `main.pdf` inside the container.
 
-[texlive]: https://github.com/xu-cheng/latex-docker/pkgs/container/texlive-full
+**2️⃣ View the document.**
+Run the following steps in a separate terminal, outside the container.
+
+1. Run `docker ps` to find the `container_id`.
+2. Replace `container_id` with the appropriate value. 
+
+
+    docker cp container_id:/usr/dissertation/main.pdf ~/Desktop/main.pdf
+
+The command to copies `main.pdf` to the Desktop of the host.
+
+## Formatting Guidelines
+
+* [Augusta University ETD Guides](https://guides.augusta.edu/etd)
+* [AU Dissertation Guide Booklet v.2024](https://augustauniversity.app.box.com/s/vj0ygpy8tvyqmsbae8y0qp9767ta7jb9)
+* [Dissertation template](https://github.com/aubertc/au_ccs_dissertation_template/) (LaTeX/markdown)
+* [Preparing Your Manuscript for Submission (ProQuest)](https://about.proquest.com/globalassets/proquest/files/pdf-files/preparing-your-manuscript.pdf)

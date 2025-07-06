@@ -22,35 +22,41 @@ running all executable examples that appear in the dissertation, and
 inspecting the references that could not be archived elsewhere.
 
 ------------------------------------------------------------------------
-🐳  Start here: create a Docker environment
+🐳  Getting Started — Create a Docker Environment
 ------------------------------------------------------------------------
 
 Prerequisites:
 * Docker - https://docs.docker.com/engine/install/
-  (not compatible with podman)
-* memory - container size will be approx. 8 GB
+* Operating system - in principle any Docker-compatible OS
+* memory - container size is be approx. 8 GB
+* Internet - Container build/pull requires the host to be online,
+             other steps can be executed offline.
 
-At the unzipped sources root directory, run:
+
+Prepare and launch a virtual execution environment.
+There are two options (the first one is faster).
+
+OPTION A) Use a pre-built container.
+
+    docker pull --platform=linux/amd64 ghcr.io/nkrusch/dissertation:main
+    docker run -v "$(pwd)/dissertation:/usr/dissertation" \
+        -it --rm ghcr.io/nkrusch/dissertation:main
+
+OPTION B) Build a new container. Run at the unzipped sources root:
 
     docker build --platform=linux/amd64 . -t dimage
     docker run -v "$(pwd):/usr/dissertation" -it --rm dimage
 
-* The build commands prepares and launches a virtual container,
-  with all necessary software is pre-installed in the container.
-* The docker run command mounts a shared volume. The outputs of
-  the commands run inside the container are visible on the host.
-
-The build takes ~10-30 min, depending on the host hardware.
-It may be possible to speed up the build by giving the additional
-build parameter NJOBS (where ? is the number of available cores):
-
-    docker build --build-arg NJOBS=? --platform=linux/amd64 . -t dimage
-
-The container expects amd64/x86 architecture. It can be used on other
-architectures, but it will run slower than on a compatible host.
+* All necessary software is pre-installed in the container.
+* The docker run command mounts a shared volume to share files between
+  the container and the host.
+* The container expects amd64/x86 architecture. It can be used on other
+  architectures, but it will run slower.
+* The container has been tested on macOS (amd and arm).
+* Not compatible with podman.
 
 ------------------------------------------------------------------------
-📁  Source code organization
+📁  Source Code Organization
 ------------------------------------------------------------------------
     .
     ├─ 🗀 code/            : Code listings
@@ -64,26 +70,28 @@ architectures, but it will run slower than on a compatible host.
     ├─ content.tex         : Dissertation sections
     ├─ Dockerfile          : Execution environment
     ├─ LICENSE             : License text
-    ├─ main.tex            : The TGS ETD template
+    ├─ main.tex            : The Augusta University TGS ETD template
     ├─ Makefile            : Build commands
     └─ readme.txt          : Copy of this readme
 
 ------------------------------------------------------------------------
-🏗️  Compile Dissertation (optional)
+🏗️  Compile the Dissertation (optional)
 ------------------------------------------------------------------------
 
 A pre-compiled dissertation is available at following addresses:
+
 (1) TODO
 
 Alternatively, compile the dissertation by running:
 
     make full -j ?
 
-where ? is the number of available cores.
-The command generates a file main.pdf at the sources root.
+where `?` is the number of available cores.
+
+The command generates a file `main.pdf` at the mounted volume root.
 
 ------------------------------------------------------------------------
-⚗️  Executable examples
+⚗️  Executable Examples
 ------------------------------------------------------------------------
 
     SECTION             DESCRIPTION
@@ -187,4 +195,10 @@ Expected output (the times are approximate):
     C sends 5 ==> B got A=2 and C=(7, 3, 6)
 
 ------------------------------------------------------------------------
+📜️  Archival
+------------------------------------------------------------------------
+
+This artifact is archived at https://doi.org/10.5281/zenodo.15288398.
+
+
 END.
