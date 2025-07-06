@@ -37,12 +37,13 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           tag: ${{ steps.meta.outputs.tag }}
+          draft: ${{ github.ref_name == "main" }}
+          prerelease: ${{ github.ref_name != "main" }}
+          artifactContentType: application/pdf
           artifacts: main.pdf
           allowUpdates: true
-          artifactContentType: application/pdf
           removeArtifacts: true
           replacesArtifacts: true
-          draft: true
 
   deploy:
     name: Share 

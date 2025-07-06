@@ -1,7 +1,7 @@
 # Dissertation
 
-[![Compile][compile]](https://github.com/nkrusch/thesis/actions/workflows/compile.yaml)
-[![Package][package]](https://github.com/nkrusch/dissertation/actions/workflows/package.yaml)
+[![Compile](https://github.com/nkrusch/thesis/actions/workflows/compile.yaml/badge.svg)](https://github.com/nkrusch/thesis/actions/workflows/compile.yaml)
+[![Package](https://github.com/nkrusch/dissertation/actions/workflows/package.yaml/badge.svg)](https://github.com/nkrusch/dissertation/actions/workflows/package.yaml)
 
 Repository to host, compile, and share my dissertation.
 
@@ -37,8 +37,7 @@ pull and launch the latest container image.
 
 ### Compile 
 
-![in container][in_container] 
-Compile the dissertation by running:
+(in container) Compile the dissertation by running:
 
     make full -j N
 
@@ -46,8 +45,7 @@ where `N` is the number of cores. The command generates a file `main.pdf`.
 
 ### View Document
 
-![on_host][on_host] 
-Run the following steps in a separate terminal.
+(on host) Run the following steps in a separate terminal.
 
 1. Run `docker ps` to find the `container_id`.
 2. Replace `container_id` with the appropriate value. 
@@ -68,10 +66,5 @@ The command to copies `main.pdf` to the host Desktop.
 List of doctoral dissertations from Augusta University
 
 * Go to: https://www.proquest.com
-* Enter query: `DG(Ph.D) AND SCH(1907)`
-
-
-[compile]: https://github.com/nkrusch/thesis/actions/workflows/compile.yaml/badge.svg
-[package]: https://github.com/nkrusch/dissertation/actions/workflows/package.yaml/badge.svg
-[in_container]: https://img.shields.io/badge/in_container-FFCA28?style=flat-square
-[on_host]: https://img.shields.io/badge/on_host-FFCA28?style=flat-square
+* Query: `DG(Ph.D) AND SCH(1907)`
+ 
