@@ -20,7 +20,7 @@ jobs:
         uses: actions/checkout@v4
       - name: 🔖 Set tag
         id: meta
-        run: echo "tag=${${{ github.ref_name }}:-latest}" >> $GITHUB_OUTPUT
+        run: echo "tag=${${{ github.ref_name }}/main/latest}" >> $GITHUB_OUTPUT
       - name: 🏗️ Compile
         uses: xu-cheng/latex-action@v3
         with:
