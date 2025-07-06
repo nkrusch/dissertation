@@ -16,31 +16,41 @@
 
 
 
-
 This is a companion artifact for a dissertation by the same name.
 The artifact allows re-compiling the dissertation from sources,
 running all executable examples that appear in the dissertation, and
 inspecting the references that could not be archived elsewhere.
 
 ------------------------------------------------------------------------
-🐳 Start here: create a Docker environment
+🐳  Start here: create a Docker environment
 ------------------------------------------------------------------------
 
-Prerequisites: Docker - https://docs.docker.com/engine/install/
+Prerequisites:
+* Docker - https://docs.docker.com/engine/install/
+  (not compatible with podman)
+* memory - container size will be approx. 8 GB
 
-At the unzipped sources root folder, run:
+At the unzipped sources root directory, run:
 
-    docker build --platform linux/amd64 . -t rdiss
-    docker run -v "$(pwd):/dissertation" -it --rm rdiss
+    docker build --platform=linux/amd64 . -t dimage
+    docker run -v "$(pwd):/usr/dissertation" -it --rm dimage
 
-The commands will prepare and launch a virtual environment. All
-necessary software is pre-installed in the container.
+* The build commands prepares and launches a virtual container,
+  with all necessary software is pre-installed in the container.
+* The docker run command mounts a shared volume. The outputs of
+  the commands run inside the container are visible on the host.
 
-NOTE: the container is built for amd64 architecture. It can be used
-on other hosts, but will run much slower than matching architecture.
+The build takes ~10-30 min, depending on the host hardware.
+It may be possible to speed up the build by giving the additional
+build parameter NJOBS (where ? is the number of available cores):
+
+    docker build --build-arg NJOBS=? --platform=linux/amd64 . -t dimage
+
+The container expects amd64/x86 architecture. It can be used on other
+architectures, but it will run slower than on a compatible host.
 
 ------------------------------------------------------------------------
-📁 Source code organization
+📁  Source code organization
 ------------------------------------------------------------------------
     .
     ├─ 🗀 code/            : Code listings
@@ -59,21 +69,21 @@ on other hosts, but will run much slower than matching architecture.
     └─ readme.txt          : Copy of this readme
 
 ------------------------------------------------------------------------
-🏗️ Compile Dissertation (optional)
+🏗️  Compile Dissertation (optional)
 ------------------------------------------------------------------------
 
-A compiled dissertation is available at following addresses.
+A pre-compiled dissertation is available at following addresses:
 (1) TODO
 
-Alternatively, inside the Docker container, re-compile the dissertation
-by running:
+Alternatively, compile the dissertation by running:
 
-    make
+    make full -j ?
 
-The command should produce a file named main.pdf at the sources root.
+where ? is the number of available cores.
+The command generates a file main.pdf at the sources root.
 
 ------------------------------------------------------------------------
-⚗️ Executable examples
+⚗️  Executable examples
 ------------------------------------------------------------------------
 
     SECTION             DESCRIPTION
@@ -85,11 +95,11 @@ The command should produce a file named main.pdf at the sources root.
     1.2.6.6             The Moscow Problem
 
 ------------------------------------------------------------------------
-### Derivations I: Range of Analysis Outcomes
+DERIVATIONS I: RANGE OF ANALYSIS OUTCOMES
 
 Running the examples shows that the automated analysis ends with the
 same result as the manual derivation. The automatic analysis omits
-mwp-bounds if a variable's only dependency is its input, i.e. X ≤ X.
+mwp-bounds if a variable's only dependency is its input, i.e. X' ≤ X.
 
 Example 4: Polynomially bounded program is derivable.
 
@@ -104,7 +114,7 @@ Example 6: Derivability in presence of partial derivation failure.
     pymwp --info examples/original_paper/example3_5.c
 
 ------------------------------------------------------------------------
-### Derivations II: Tool User Guide
+DERIVATIONS II: TOOL USER GUIDE
 
 Examples 7--11: Run examples as described in the tool guide.
 
@@ -119,7 +129,7 @@ than in the guide, which affects some outputs, but not the descriptions
 of the analysis.
 
 ------------------------------------------------------------------------
-### A simple proof in Rocq
+A SIMPLE PROOF IN ROCQ
 
 Inspect the proof:
 
@@ -130,7 +140,7 @@ Check the proof (with time details):
     coqc code/example.v -time
 
 ------------------------------------------------------------------------
-### Program Equivalence
+PROGRAM EQUIVALENCE
 
 Compile the examples:
 
@@ -144,7 +154,7 @@ The dafny verification will print:
     Dafny program verifier finished with 3 verified, 0 errors
 
 ------------------------------------------------------------------------
-### Formally verified leftpad
+FORMALLY VERIFIED LEFTPAD
 
 Compile the examples:
 
@@ -159,7 +169,7 @@ The dafny verification will print:
     Dafny program verifier finished with 2 verified, 0 errors
 
 ------------------------------------------------------------------------
-### The Moscow Problem
+THE MOSCOW PROBLEM
 
 Compile and execute the message exchange:
 
@@ -177,5 +187,4 @@ Expected output (the times are approximate):
     C sends 5 ==> B got A=2 and C=(7, 3, 6)
 
 ------------------------------------------------------------------------
-                           🏁 FINISH 🇫🇮
-------------------------------------------------------------------------
+END.

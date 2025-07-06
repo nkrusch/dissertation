@@ -1,14 +1,9 @@
-FROM ghcr.io/xu-cheng/texlive-debian:latest
+FROM ghcr.io/xu-cheng/texlive-historic-debian:2024
 
 LABEL org.opencontainers.image.authors="Neea Rusch" \
       org.opencontainers.image.title="Dissertation Companion Artifact Image" \
       org.opencontainers.image.source="https://github.com/nkrusch/dissertation" \
       org.opencontainers.image.licenses="Creative Commons Attribution 4.0 International"
-
-# paths
-ARG HOME="/usr/dissertation"
-ARG EX_DIR="$HOME/examples"
-ARG DAFNY_PATH="/usr/lib/"
 
 # versions
 ENV VER_PYMWP="0.5.5"
@@ -17,18 +12,24 @@ ENV VER_COQ="8.20.1"
 ENV VER_MATHCOMP="2.4.0"
 ENV VER_OCAML="5.1.0"
 
+# paths
+ARG HOME="/usr/dissertation"
+ARG EX_DIR="$HOME/examples"
+ARG DAFNY_PATH="/usr/lib/"
+ENV VENV=/venv
+ENV PATH=/root/.local/bin:$DAFNY_PATH/dafny:/$VENV/bin:$HOME/.opam/$VER_OCAML/bin/:$PATH
+ARG ZIP_EX="$HOME/examples.zip"
+ARG ZIP_DAFNY="$HOME/dafny.zip"
+ARG MS_CERT="packages-microsoft-prod.deb"
+
 # downloads
 ARG EXAMPLES="https://github.com/statycc/pymwp/releases/download/$VER_PYMWP/examples.zip"
 ARG DAFNY_URL="https://github.com/dafny-lang/dafny/releases/download/v$VER_DAFNY/dafny-$VER_DAFNY-x64-ubuntu-20.04.zip"
-ARG DAFNY_ARCH="dafny.zip"
-ARG MS_CERT="packages-microsoft-prod.deb"
-ARG JOBS=4
 
 # ENV settings
 ENV DEBIAN_FRONTEND=noninteractive
 ENV PIP_ROOT_USER_ACTION=ignore
-ENV VIRTUAL_ENV=/venv
-ENV PATH=/root/.local/bin:$DAFNY_PATH/dafny:/$VIRTUAL_ENV/bin:$PATH
+ARG NJOBS=4
 
 # Debian: need for Dafny
 RUN apt update \
@@ -40,10 +41,8 @@ RUN apt update \
 # necessary pre-packages
 RUN apt update  \
     && apt-get install -qqy \
-      bash make unzip nano python3-full python3-pip \
-      dotnet-host ocaml opam libgmp-dev pkg-config \
-    && apt-get install -qqy dotnet-sdk-8.0  \
-    && apt-get upgrade \
+      bash make unzip python3-full python3-pip ocaml opam \
+      dotnet-host dotnet-sdk-8.0 libgmp-dev pkg-config \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
@@ -52,24 +51,24 @@ COPY . $HOME
 WORKDIR $HOME
 
 # install pymwp and examples
-ADD --chmod=777 $EXAMPLES $HOME/examples.zip
-RUN rm -rf $EX_DIR  \
-    && unzip $HOME/examples.zip -d $EX_DIR  \
-    && rm -rf $HOME/examples.zip \
-    && python3 -m venv $VIRTUAL_ENV  \
-    && $VIRTUAL_ENV/bin/pip install pymwp==$VER_PYMWP
+ADD --chmod=777 $EXAMPLES $ZIP_EX
+RUN unzip $ZIP_EX -d $EX_DIR  \
+    && rm -rf $ZIP_EX \
+    && python3 -m venv $VENV  \
+    && $VENV/bin/pip install pymwp==$VER_PYMWP
 
 # Dafny
-ADD --chmod=777 $DAFNY_URL $HOME/$DAFNY_ARCH
-RUN unzip $HOME/$DAFNY_ARCH -d $DAFNY_PATH  \
-    && rm -rf $HOME/$DAFNY_ARCH
+ADD --chmod=777 $DAFNY_URL $ZIP_DAFNY
+RUN unzip $ZIP_DAFNY -d $DAFNY_PATH  \
+    && rm -rf $ZIP_DAFNY
 
 # Rocq & ssreflect
-RUN yes | opam init --disable-sandboxing --comp $VER_OCAML  \
+RUN yes | opam init -j "${NJOBS}" --disable-sandboxing --comp $VER_OCAML  \
     && eval $(opam config env) \
     && opam repo add --all-switches --set-default coq-released https://coq.inria.fr/opam/released \
     && opam pin add -n -k version coq $VER_COQ \
-    && opam install -y -v -j $JOBS coq coq-mathcomp-ssreflect.$VER_MATHCOMP ocamlbuild \
+    && opam pin add -n -k version coq-mathcomp-ssreflect $VER_MATHCOMP \
+    && opam install -y -v -j "${NJOBS}" coq coq-mathcomp-ssreflect ocamlbuild \
     && opam clean -a -c -s --logs
 
 RUN opam config env >> /root/.bashrc \

@@ -101,19 +101,14 @@ is consistent with those properties. Without independence, we encounter the
 paradox states: if we infer the specification from the implementation, what is
 it that we prove?
 
-One standard way to express \ndx{specifications} is by \ndx{Hoare
-triple}s~\cite{hoare1969}. In this view, we consider \(S\) to be some executable
-statement (a program). We then define a \emph{\ndx{precondition}}
-\(P\)\symbo{pre} that describes conditions that hold before execution. A
-\emph{\ndx{postcondition}} \(Q\)\symbo{post} describes conditions that hold
-after execution. Then, a \emph{\ndx{Hoare triple}} is a predicate that connects
-the statement with the pre- and postconditions by \(\{P\} S
-\{Q\}\)\symbo{hoare}. The expression means, \enquote{starting from
-\(P\)\symbo{pre}, statement \(S\) will not crash and terminates in a state
-satisfying \(Q\)\symbo{post}}. For example, \(\{ \prm{x}=0 \}\;\prm{x++}\;\{
-\prm{x}=1\}\)\symbo{hoare} is a valid and provable\footnote{ Though, the
-mechanics of {how} to prove it is a topic
-for~\autoref{subsubsec:sm-tool-examples}} \ndx{Hoare triple}.
+\ndx{Hoare triple}s~\cite{hoare1969} are a standard way to express \ndx{specifications}.
+In this view, we consider \(S\) to be some executable statement (a program).
+We then define a \emph{\ndx{precondition}} \(P\)\symbo{pre} that describes conditions that hold before execution.
+A \emph{\ndx{postcondition}} \(Q\)\symbo{post} describes conditions that hold after execution.
+Then, a \emph{\ndx{Hoare triple}} is a predicate that connects the statement with the pre- and postconditions by \(\{P\} S \{Q\}\)\symbo{hoare}.
+The expression means, \enquote{starting from \(P\)\symbo{pre}, statement \(S\) will not crash and terminates in a state satisfying \(Q\)\symbo{post}}.
+For example, \(\{ \prm{x}=0 \}\;\prm{x++}\;\{\prm{x}=1\}\)\symbo{hoare} is a valid and provable \ndx{Hoare triple}.%
+\footnote{The mechanics of how to prove it is a topic for~\autoref{subsubsec:sm-tool-examples}.}
 
 \paragraph*{Invariants.}
 Proving that an implementation meets its specification requires more information than what is available in the program syntax~\cite{chang2005}.
@@ -148,24 +143,22 @@ Finally, a brief note about invariants and complexity.
 It is possible to infer complexity bounds of numerical loops based on loop invariants as shown by~\textcite{nguyen2017}.
 However, the solution relies on dynamic techniques, that are beyond purely static capabilities.
 
-\paragraph*{Safety and liveness properties.}
+\paragraph*{Safety and \ndx{liveness properties}.}\index{safety properties}
 Formal verification aims to guarantee that certain behavioral attributes, \ie \emph{properties}, hold for a program.
-Memory safety\footnote{
-\Ie absence of errors related to memory accesses: null-pointer de-referencing, access to un-allocated memory, dangling pointers, out-of-bounds accesses, double free, \etc~\cite{muller2024}},
-absence of overflows, termination, data race and deadlock freedom;
-secure information flow (cf~\autoref{if-security}), staying within available resource bounds, and worst-case execution time are a few examples of properties.
-To show that a program is free of \eg overflows, we express {overflow-freedom} as a specification,
-then prove it against the implementation.
+A few examples of properties are memory safety\ndx{memory safety}%
+\footnote{\Ie absence of errors related to memory accesses: null-pointer de-referencing, access to un-allocated memory, dangling pointers, out-of-bounds accesses, double-free, \etc~\cite{muller2024}},
+absence of overflows, termination, data race and \ndx{deadlock freedom}, secure \ndx{information flow} (cf~\autoref{if-security}), staying within available resource bounds, and \ndx{worst-case execution time} (WCET).
+To show that a program is free of \eg overflows, we express {overflow-freedom} as a formal specification, then prove that the implementation satisfies the specification.
 
-There are various different ways of categorizing classes of properties.
-\emph{Functional} properties are technical characteristics that contribute to computation of the correct output.
-\emph{Non-functional} properties are concerned with quality attributes like security, dependability, reliability, and resource requirements~\cite{terbeek2018}.
+There are various different ways of categorizing classes of \ndx{properties}.
+\emph{Functional} properties\index{properties!functional} are technical characteristics that contribute to computation of the correct output.
+\emph{Non-functional} properties\index{properties!non-functional} are concerned with quality attributes like security, dependability, reliability, and resource requirements~\cite{terbeek2018}.
 Two other frequently-used categorizing terms are safety and liveness.
-They come from a paper by~\textcite{lamport1977}, where
-a \emph{\ndx{safety property}} is a guarantee that \enquote{something (bad) will not happen},
-and \emph{\ndx{liveness property}} ensures (good things) \enquote{must happen}, eventually.
+They come from a paper by~\textcite{lamport1977}, where they are formulated as follows.
+A \emph{\ndx{safety property}} is a guarantee that \enquote{something (bad) will not happen}.
+A \emph{\ndx{liveness property}} ensures \enquote{(good) things must happen}, eventually.
 The proof techniques across these safety and liveness properties are different.
-Works in this dissertation are primarily concerned with non-functional safety properties.
+The works in this dissertation are primarily concerned with non-functional safety properties.
 
 \paragraph*{Partial and total correctness.}
 Broadly, a program is correct if the implementation is consistent with the specification\index{specifications}~\cite{furia2014b}.
@@ -179,9 +172,8 @@ There are several strategies for proving termination in some cases, \cf~\autoref
 However, a general method that proves termination of all programs cannot exist since termination is undecidable~\cite{turing1936}\index{undecidability}.
 This means it is impossible to show \ndx{total correctness} of all programs.%
 \footnote{Total correctness is not always ideal.
-There are many applications where termination is undesirable, like a web server and cardiac pacemaker.
-We may still want formal guarantees for such software.};
-However, similar to~\autoref{static-analysis-basics}, there is endless opportunity in building increasingly capable program verifiers.
+There are many applications where termination is undesirable, like a web server and cardiac pacemaker, but where we still want formal guarantees.};
+However, similar to~\autoref{static-analysis-basics}, there is endless opportunity in building increasingly more capable program verifiers.
 
 \subsubsection{Tools for Formal Verification}
 
@@ -336,16 +328,23 @@ Mechanized proofs are sometimes compared to \emph{paper proofs}, \ie informal pr
 Since paper proof rely solely on the readers abilities to comprehend and confirm the detailed proof steps, mechanized proofs are functionally distinct and provide more rigorous correctness guarantees~\cite{gonthier2008}.
 
 \item[Theorem provers.]
-Mechanized proofs are created with theorem provers.
+
+Mechanized (formal) proofs are created with theorem provers.
 There are broadly two categories.
-An \emph{automatic theorem prover} (ATP) aims to find proofs without assistance from a user.
-The proof \emph{search} problem is challenging in general\footnote{\Eg for first-order logic, the problem is NP-complete~\cite{cook1971, levin1973})}, while use cases expect practical efficiency from the solvers.
-Prominent ATPs complete bi-annually on solving \href{https://www.tptp.org}{\enquote{Thousands of Problems for Theorem Provers}} (TPTP problems)~\cite{sutcliffe2024} at the \href{https://tptp.org/CASC/}{CADE ATP System Competition} (CASC) --
-the world championship for automated theorem proving~\cite{casc}.
-An \emph{interactive theorem prover} (ITP), \aka \emph{proof assistant}, is a programming environment that helps users write mechanized proofs.
-Proof assistants vary in underlying logics and proof style.
-To provide some metric of comparability, there is a ranking for tracking the formalization extent of 100 well-known mathematical theorems across proof assistants.
-As of April 2025, the top 3 proof assistants with highest coverage of the problems are Isabelle (92\%), HOL Light (89\%), and Rocq (79\%)~\cite{hundredtheorems}.
+
+   \begin{itemize}
+   \item An \emph{automatic theorem prover} (ATP) aims to find proofs without assistance from a user.
+   The proof \emph{search} problem is challenging.%
+   \footnote{\Eg for first-order logic, the problem is NP-complete~\cite{cook1971, levin1973})}%
+   However, the solvers must be practically efficient to support various applications of automated theorem proving.
+   Prominent ATPs complete bi-annually on solving \href{https://www.tptp.org}{\enquote{Thousands of Problems for Theorem Provers}} (TPTP problems)~\cite{sutcliffe2024} at the \href{https://tptp.org/CASC/}{CADE ATP System Competition} (CASC) -- the world championship for automated theorem proving~\cite{casc}.
+
+   \item An \emph{interactive theorem prover} (ITP), \aka \emph{proof assistant}, is a programming environment that helps users write mechanized proofs.
+   Proof assistants vary in underlying logics and proof style.
+   To provide some metric of comparability, there is a ranking for tracking the formalization extent of 100 well-known mathematical theorems across proof assistants.
+   As of April 2025, the top 3 proof assistants with highest coverage of the problems are Isabelle (92\%), HOL Light (89\%), and Rocq (79\%)~\cite{hundredtheorems}.
+   \end{itemize}
+
 While automatic theorem provers search for proofs of isolated problems and frequently serve as building block of other verification tools,
 interactive theorem provers enable large and complex modular proof developments.
 
@@ -643,13 +642,13 @@ However, such inspection provides only weak informal guarantees.
 We can do better -- we now have the tools to prove formally the claim about equivalence.
 
 \begin{center}
-\begin{minipage}{\textwidth}
+%\begin{minipage}{\textwidth}
 \captionsetup{type=lstlisting}
-\rocqinputlisting[][firstline=176]{equiv.v}
+\rocqinputlisting[breakable][firstline=176]{equiv.v}
 \captionof{lstlisting}[A Rocq proof of program equivalence]{A Rocq proof of program equivalence (theorem only).
 The full proof with the programming language syntax, semantics, and notations is about 200 LOC.}
 \label{lst:eq-proof}
-\end{minipage}
+%\end{minipage}
 \end{center}
 
 \subparagraph*{The Rocq proof explained.}

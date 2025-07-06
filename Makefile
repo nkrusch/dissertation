@@ -2,6 +2,8 @@ SHELL := /bin/bash
 
 all: compile
 
+full: compile terms compile
+
 compile:
 	latexmk -pdf -xelatex "main.tex"
 
@@ -17,27 +19,6 @@ terms:
 figures:
 	make -C pictures
 
-update:
-	cp ../review/acks.txt text/ch-acks.tex
-	cp ../review/abstract.txt text/ch-abstract.tex
-	cp ../review/1-aims/text.tex text/ch-aims.tex
-	cp ../review/1-bg-intro/text.tex text/bg-intro.tex
-	cp ../review/1-formal/text.tex text/bg-formal.tex
-	cp ../review/1-icc/text.tex text/bg-icc.tex
-	cp ../review/1-loops/text.tex text/bg-loops.tex
-	cp ../review/1-mwp/text.tex text/bg-mwp.tex
-	cp ../review/1-security/text.tex text/bg-security.tex
-	cp ../review/1-static/text.tex text/bg-static.tex
-	cp ../review/2-guide/text.tex text/pubs-pymwp-guide.tex
-	cp ../review/3-coqpl/text.tex text/pubs-coqpl.tex
-	cp ../review/3-ni/text.tex text/pubs-ni.tex
-	cp ../review/4-discussion/text.tex text/ch-discussion.tex
-	cp ../review/5-summary/text.tex text/ch-summary.tex
-	cp ../review/bib.bib references/references.bib
-	cp ../review/bib2.bib references/manuscripts.bib
-	cp ../review/readme.txt readme.txt
-	cp -R ../review/listings/. code
-
 %.tex: %.ott
 	ott -i $< -o $@ -tex_wrap false
 
@@ -49,21 +30,3 @@ clean:
  	*.listing *.sym *.aux *.acr *.sbl *.idx *.ind *.ilg *.xdv *.bbl \
  	*.bcf *.blg *.out *.fdb_latexmk *.fls *.log *.run.xml *.tex.blg \
  	*.synctex.gz *.vtc *.lot *.lof *.lol *.toc *~ main.pdf $(ARC)
-
-#----------------
-#--- ARCHIVE ----
-#----------------
-ARC      := sources
-ARC_READ := ../review/readme.txt
-ARC_DIRS := $(shell find . -mindepth 1 -maxdepth 1 -type d ! -name '.*' ! -name 'env')
-ARC_FILE := $(wildcard *.tex) Makefile LICENSE # Dockerfile
-ARC_REM  := .DS_Store .*.aux
-
-%.zip:
-	@mkdir -p $(ARC)
-	@$(foreach d, $(ARC_DIRS), mkdir -p $(ARC)/$(d) && cp -R $(d) $(ARC) ;)
-	@$(foreach f, $(ARC_FILE), cp $(f) $(ARC)/$(f) ;)
-	@$(foreach pat, $(ARC_REM), find $(ARC) -name $(pat) -type f -delete ;)
-	@cp $(ARC_READ) $(ARC)/readme.txt
-	@zip -r $@ $(ARC)
-	@rm -rf $(ARC)
