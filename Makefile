@@ -8,12 +8,6 @@ full: compile terms
 compile:
 	latexmk -pdf -xelatex "main.tex"
 
-action:  # action workflow runs this command
-	xelatex -no-pdf -file-line-error -halt-on-error -interaction=nonstopmode -recorder  "main.tex"
-
-watch:
-	ls *.tex */*.tex references/* latex/* | entr -n make compile
-
 terms:
 	makeglossaries main
 

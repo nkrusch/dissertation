@@ -16,12 +16,13 @@ Repository to host, compile, and share my dissertation.
     ├─ 🗀 pictures/        : TikZ drawings
     ├─ 🗀 references/      : Bib and indices
     ├─ 🗀 text/            : Dissertation content
-    ├─ args.tex            : Template configuration
-    ├─ content.tex         : Dissertation sections
     ├─ Dockerfile          : Execution environment
     ├─ LICENSE             : License text
-    ├─ main.tex            : The TGS ETD template
     ├─ Makefile            : Build commands
+    ├─ args.tex            : Template configuration
+    ├─ content.tex         : Dissertation sections
+    ├─ main.tex            : The TGS ETD template
+    ├─ readme.txt          : Artifact readme
     └─ *                   : Configuration files
 
 ## Compilation with Docker
@@ -32,24 +33,27 @@ pull and launch the latest container image.
     docker pull --platform=linux/amd64 ghcr.io/nkrusch/dissertation:main
     docker run -it --rm ghcr.io/nkrusch/dissertation:main
 
-**1️⃣ Compile.**
-Insider the container, compile the dissertation by running:
+### Compile 
 
-    make -j N
+**[Insider the container]** Compile the dissertation by running:
+
+    make full -j N
 
 where `N` is the number of available cores.
-The command generates a file `main.pdf` inside the container.
+The command generates a file `main.pdf`.
 
-**2️⃣ View the document.**
-Run the following steps in a separate terminal, outside the container.
+### View the compiled document
+
+**[Outside the container]** Run the following steps in a separate terminal.
 
 1. Run `docker ps` to find the `container_id`.
 2. Replace `container_id` with the appropriate value. 
 
+```
+docker cp container_id:/usr/dissertation/main.pdf ~/Desktop/main.pdf
+```
 
-    docker cp container_id:/usr/dissertation/main.pdf ~/Desktop/main.pdf
-
-The command to copies `main.pdf` to the Desktop of the host.
+The command to copies `main.pdf` to the host Desktop.
 
 ## Formatting Guidelines
 
