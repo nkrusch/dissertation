@@ -25,35 +25,31 @@ inspecting the references that could not be archived elsewhere.
 🐳  Getting Started — Create a Docker Environment
 ------------------------------------------------------------------------
 
-Prerequisites:
+PREREQUISITES
 * Docker - https://docs.docker.com/engine/install/
 * Operating system - in principle any Docker-compatible OS
 * memory - container size is be approx. 8 GB
-* Internet - Container build/pull requires the host to be online,
-             other steps can be executed offline.
+* Internet - Only container build/pull requires the host to be online.
 
+Prepare and launch a virtual execution environment. There are two
+options. The first one is faster. On some machines you may need sudo.
+All necessary software is pre-installed in the container.
 
-Prepare and launch a virtual execution environment.
-There are two options (the first one is faster).
-
-OPTION A) Use a pre-built container.
+[≤10 min] OPTION A) Use a pre-built container.
 
     docker pull --platform=linux/amd64 ghcr.io/nkrusch/dissertation:main
-    docker run -v "$(pwd)/dissertation:/usr/dissertation" \
-        -it --rm ghcr.io/nkrusch/dissertation:main
+    docker run --name dimage -it --rm ghcr.io/nkrusch/dissertation:main
 
-OPTION B) Build a new container. Run at the unzipped sources root:
+[~20 min] OPTION B) Build a container. Run at unzipped sources root:
 
     docker build --platform=linux/amd64 . -t dimage
-    docker run -v "$(pwd):/usr/dissertation" -it --rm dimage
+    docker run --name dimage -it --rm dimage
 
-* All necessary software is pre-installed in the container.
-* The docker run command mounts a shared volume to share files between
-  the container and the host.
-* The container expects amd64/x86 architecture. It can be used on other
-  architectures, but it will run slower.
-* The container has been tested on macOS (amd and arm).
-* Not compatible with podman.
+NOTES
+* The container expects amd64/x86 architecture.
+* It is runnable on other architectures, but will run slower.
+* The container has been tested on macOS (amd64-darwin, arm64-darwin).
+* The container is not compatible with podman.
 
 ------------------------------------------------------------------------
 📁  Source Code Organization
@@ -86,9 +82,11 @@ Alternatively, compile the dissertation by running:
 
     make full -j ?
 
-where `?` is the number of available cores.
+where ? is the number of available cores. The compilation takes about
+2--10 minutes, and generates a file main.pdf. To view the file, run the
+following command in a separate terminal (outside the container):
 
-The command generates a file `main.pdf` at the mounted volume root.
+    docker cp dimage:/usr/dissertation/main.pdf .
 
 ------------------------------------------------------------------------
 ⚗️  Executable Examples
@@ -199,6 +197,5 @@ Expected output (the times are approximate):
 ------------------------------------------------------------------------
 
 This artifact is archived at https://doi.org/10.5281/zenodo.15288398.
-
 
 END.
