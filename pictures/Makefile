@@ -1,9 +1,8 @@
-SRC := $(shell find *.tex ! -name "_*")
-PDF_IMG := ${SRC:%.tex=fig_%.pdf}
+IMAGES := $(patsubst %.tex,fig_%,$(shell find *.tex ! -name "_*"))
 
-all: $(PDF_IMG)
-	@mv $(PDF_IMG) ../pdf
+all: $(IMAGES)
+	@mv fig_*.pdf ../pdf
 	@rm -rf *.dvi *.aux *.fdb_latexmk *.fls *.log *.xdv *.gz *.pdf
 
-fig_%.pdf : %.tex
-	@latexmk -pdf -lualatex -jobname=$(subst .pdf,,$@) $<
+fig_% : %.tex
+	@latexmk -pdf -lualatex -jobname=$@ $<

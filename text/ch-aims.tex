@@ -1,6 +1,3 @@
-\subsection{On the wonders (and hardness) of programming}
-\label{subsec:programming-wonders}
-
 A programmable computer is a gadget without precedent.
 It can be appreciated from many perspectives.
 For example, it can be viewed as an engineering marvel of ever-increasing capacity;
@@ -64,58 +61,40 @@ Therefore, choosing the preferable program form depends on semantics.
 What exactly do we mean by \enquote{better} and how do we quantify measure such metrics?
 
 \paragraph{Non-functional properties.}
-The quality attributes of programs, \ie features that extend beyond functional
-behavior, are called \emph{\ndx{non-functional properties}}. Non-functional
-properties include attributes like program security and resource consumption.
-Throughout the dissertation, a major topic of interest is inspecting programs as
-mathematical objects \wrt non-functional properties. Among the direct goals are
-developing techniques that enable quantifying the properties. Furthermore,
-instead of trusting informal claims, like the one of equivalence, we want
-rigorous confirmation that the stated properties truly hold in the inspected
-program(s).
+The quality attributes of programs, \ie features that extend beyond functional behavior, are called \emph{\ndx{non-functional properties}}.
+Non-functional properties include attributes like program security and resource consumption.
+Throughout the dissertation, a major topic of interest is inspecting programs as mathematical objects \wrt non-functional properties.
+Among the direct goals are developing techniques that enable quantifying the properties.
+Furthermore, instead of trusting informal claims, like the one of equivalence, we want rigorous confirmation that the stated properties truly hold in the inspected program(s).
 
-\vspace{1em}\noindent{}Thus the challenge of programming involves more than the
-art of \emph{writing} programs. Reasoning about the program \emph{behaviors} is
-an independent scientific challenge.
+\vspace{1em}\noindent{}Thus the challenge of programming involves more than the art of \emph{writing} programs. Reasoning about the program \emph{behaviors} is an independent scientific challenge.
 
 \subsection{Dissertation core topics}
 \label{subsec:dissertation-themes}
 
-Embracing the natural ambiguity in programs brings us to the topics of static
-program analysis and formal methods. These two are foundational themes of this
-dissertation. For an enhanced sense of adventure, and to make the dissertation
-exploration worthy of a multi-year doctoral study, we add to the mix
-\emph{implicit computational complexity}.
+Embracing the natural ambiguity in programs brings us to the topics of static program analysis and formal methods.
+These two are foundational themes of this dissertation.
+For an enhanced sense of adventure, and to make the dissertation exploration worthy of a multi-year doctoral study, we add to the mix \emph{implicit computational complexity}.
 
 \paragraph{Static program analysis and formal methods.}
-Program analysis provides the techniques to inspect programs and check whether
-they satisfy some desirable behavioral criterion. The focus in this dissertation
-is to analyze programs statically, \ie by how the programs are written
-syntactically. In static program analysis we make judgements about how the
-program will behave when it is executed, but without executing the program.
-Formal methods complements program analysis by providing the mathematical
-techniques needed to obtain rigorous guarantees. With formal methods it is
-possible to provide \emph{proofs} about the conclusions of program analysis.
+Program analysis provides the techniques to inspect programs and check whether they satisfy some desirable behavioral criterion.
+The focus in this dissertation is to analyze programs statically, \ie by how the programs are written syntactically.
+In static program analysis we make judgements about how the program will behave when it is executed, but without executing the program.
+Formal methods complements program analysis by providing the mathematical techniques needed to obtain rigorous guarantees.
+With formal methods it is possible to provide \emph{proofs} about the conclusions of program analysis.
 This way, we can swap informal claims to maximally strong assertions.
 
 \paragraph*{Implicit computational complexity.}
-The core idea of implicit computational complexity (ICC) is to quantify
-computational power through programming languages. Although ICC can be viewed
-from many perspectives, in the scope of this dissertation, its role is to
-provide a conceptual \enquote{toolbox} for constructing techniques of static
-program analysis. Very broadly, ICC finds ways to characterize program
-properties---mainly resource consumption---by introducing a restriction at the
-level of a programming language. The restriction is such that it gurantees the
-target property holds in every expressible program. Thus, programming languages
-become a \emph{mechanism} to guarantee ideal runtime behavior. There are
-multiple compelling motivations for this approach. For example, ICC drives
-better understanding of resource consumption and provides natural ways to
-express and control resources usage of programs~\cite{kristiansen2017}. Because
-behavioral guarantees are part of the language design, this creates a temporal
-shift that enables reasoning about properties \emph{before} any program exists.
-In principle, this removes the need for post-analysis of programs. However,
-materializing these ideas requires deeper investigations of implicit
-computational complexity.
+The core idea of implicit computational complexity (ICC) is to quantify computational power through programming languages.
+Although ICC can be viewed from many perspectives, in the scope of this dissertation, its role is to provide a conceptual \enquote{toolbox} for constructing techniques of static program analysis.
+Very broadly, ICC finds ways to characterize program properties---mainly resource consumption---by introducing a restriction at the level of a programming language.
+The restriction is such that it gurantees the target property holds in every expressible program.
+Thus, programming languages become a \emph{mechanism} to guarantee ideal runtime behavior.
+There are multiple compelling motivations for this approach.
+For example, ICC drives better understanding of resource consumption and provides natural ways to express and control resources usage of programs~\cite{kristiansen2017}.
+Because behavioral guarantees are part of the language design, this creates a temporal shift that enables reasoning about properties \emph{before} any program exists.
+In principle, this removes the need for post-analysis of programs.
+However, materializing these ideas requires deeper investigations of implicit computational complexity.
 
 \begin{mdframed}[backgroundcolor=conceptbase,linecolor=concept,nobreak=true]
 The dissertations is about \textbf{static program analysis}, ideally with
@@ -131,11 +110,8 @@ Given the many compelling ideological perspectives, there exists a long series o
 These works focus primarily on \emph{defining} theoretical systems.
 There are substantially fewer explorations of \emph{applications} of those theories -- see Sections~\ref{resource-analysis-tools} and~\ref{icc-sec} for related presentations.%
 \footnote{An \emph{application} refers to any use case beyond complexity theory, including implementation.}
-The difference in the allocated efforts could be explained by many factors, including the following
-challenges.%
-\footnote{These are opinions and arise from observations and
-conversations about the process of doing research; it is doubtful they are
-annotated in literature.}
+The difference in the allocated efforts could be explained by many factors, including the following challenges.%
+\footnote{These are opinions and arise from observations and conversations about the process of doing research; it is doubtful they are annotated in literature.}
 
 \begin{enumerate}
 
@@ -162,11 +138,8 @@ This leads to a tradeoff between theoretical soundness, \ie providing a guarante
 It is justifiable to ask, \emph{what can we do with such restricted programming languages?}.%
 \footnote{See \url{https://stackoverflow.com/questions/315340} for an inspirational warm-up.}
 
-Through applications, we can stress test and pinpoint the limitations and
-capabilities of ICC systems, and discover new use cases in other domains. The
-guiding hypothesis of the dissertation research is summarized
-in~\autoref{fig:hypothesis}). Every manuscript in this dissertation is an
-instantiation of this hypothesis.
+Through applications, we can stress test and pinpoint the limitations and capabilities of ICC systems, and discover new use cases in other domains.
+The guiding hypothesis of the dissertation research is summarized in~\autoref{fig:hypothesis}). Every manuscript in this dissertation is an instantiation of this hypothesis.
 
 \begin{figure}[h]
 \begin{mdframed}
@@ -184,44 +157,31 @@ In support of the main hypothesis, there are four research goals (G\#).
 
 \begin{enumerate}[label={\textbf{G\arabic*.}}]
 
-\item\emph{Extend applied capabilities of ICC in automatic program analysis
-and verification.}
-The motivation is to show that ICC theories can provide new practical
-(orthogonal) techniques of automatic program analysis and help guarantee
-programs satisfy desirable properties.
+\item\emph{Extend applied capabilities of ICC in automatic program analysis and verification.}
+The motivation is to show that ICC theories can provide new practical (orthogonal) techniques of automatic program analysis and help guarantee programs satisfy desirable properties.
 
-\item\emph{Take ICC a few steps closer to integration into real-world software
-development workflows.}
-The integration would drive theoretical improvement, enhance relevance of ICC
-techniques, and motivate thinking about ICC from fresh perspectives.
+\item\emph{Take ICC a few steps closer to integration into real-world software development workflows.}
+The integration would drive theoretical improvement, enhance relevance of ICC techniques, and motivate thinking about ICC from fresh perspectives.
 
 \item \emph{Initiate conversations on the relevance of ICC applications.}
-Improvements in ICC are typically achieved by showing improvement in
-expressiveness. The common strategy---used \eg
-in~\cite[p.16--17]{hainry2023},~\cite[p. 17]{jones2009}, and~\cite[p.
-147]{feree2018}---is to show that the newly presented system gives a guarantee
-for some subset of programs that were not expressible previously. However, this
-strategy is limited in quantifying practical usefulness of the ICC systems.
-Particularly, it does not account for the \enquote{methodological cost} at which
-the improvement is achieved. Applications would provide complementary insight
-and metrics to assess the capabilities of ICC systems.
+Improvements in ICC are typically achieved by showing improvement in expressiveness.
+The common strategy---used \eg in~\cite[p.16--17]{hainry2023},~\cite[p. 17]{jones2009}, and~\cite[p. 147]{feree2018}---is to show that the newly presented system gives a guarantee for some subset of programs that were not expressible previously.
+However, this strategy is limited in quantifying practical usefulness of the ICC systems.
+Particularly, it does not account for the \enquote{methodological cost} at which the improvement is achieved.
+Applications would provide complementary insight and metrics to assess the capabilities of ICC systems.
 
 \item \emph{Expose ICC to broader research communities.}
-The expectation is that wider propagation of ideas leads to discovery of new use
-cases. Moreover, through wider familiarity, is eases communication about ICC
-results.
+The expectation is that wider propagation of ideas leads to discovery of new use cases.
+Moreover, through wider familiarity, is eases communication about ICC results.
 
 \end{enumerate}
 
 \subsection{Manuscripts and Research Questions}
 \label{subsec:conn-papers}
 
-To make the abstract dissertation hypothesis and research goals more concrete,
-we define two research directions. Broadly, one focuses on automatic resource
-analysis, and the other investigates uses of ICC to ensure other program
-properties, beyond complexity. These directions are visualized
-in~\autoref{fig:conn_papers}. An alternative way to think about these directions
-is that
+To make the abstract dissertation hypothesis and research goals more concrete, we define two research directions.
+Broadly, one focuses on automatic resource analysis, and the other investigates uses of ICC to ensure other program properties, beyond complexity.
+These directions are visualized in~\autoref{fig:conn_papers}. An alternative way to think about these directions is that
 \begin{enumerate*}
 \item we apply the systems in the originally designed ways (on left), and
 \item we aims to discover unexpected applications (on right).
@@ -237,22 +197,18 @@ is that
 \paragraph*{Automatic resource analysis.}
 \index{mwp-calculus}
 
-In the first direction, we focus on the flow calculus of mwp-bounds
-of~\textcite{jones2009}. It is a canonical example of an ICC system for
-analysing variable value growth (data size) in \ndx{imperative programs}. The
-flow calculus is introduced in detail in~\autoref{flow-calculus}.
+In the first direction, we focus on the flow calculus of mwp-bounds of~\textcite{jones2009}.
+It is a canonical example of an ICC system for analysing variable value growth (data size) in \ndx{imperative programs}.
+The flow calculus is introduced in detail in~\autoref{flow-calculus}.
 
 Relating to the flow calculus, we define three research questions.
 \begin{description}
-\item[RQ1] Can we develop an \emph{automatic} program analysis based on the flow
-calculus?
-\item[RQ2] Given its paper proofs, is the theory correct, \ie can we prove
-formally the soundness of the flow calculus?\index{soundness of mwp-calculus}
+\item[RQ1] Can we develop an \emph{automatic} program analysis based on the flow calculus?
+\item[RQ2] Given its paper proofs, is the theory correct, \ie can we prove formally the soundness of the flow calculus?\index{soundness of mwp-calculus}
 \item[RQ3] Assuming the theory can be automated, what are its use cases?
 \end{description}
 
-The manuscripts demonstrate the utility of the calculus, first in static program
-analysis and then extending to formal methods.%
+The manuscripts demonstrate the utility of the calculus, first in static program analysis and then extending to formal methods.%
 \footnote{Due to Augusta University policies, one manuscript is in the appendix.
 The placement should not distract from the significance of the work, as several other manuscripts follow from it.}
 The manuscripts supports all dissertation goals.
@@ -261,73 +217,55 @@ A proof of its soundness (RQ2), and its extension to formal methods that follows
 
 \paragraph*{Analyzing extended program properties.}
 
-The second direction is inspired by \enquote{Loop Quasi-Invariant Chunk
-Detection}~\cite{moyen20172}. In the original formulation, the idea is to
-identify fragments (blocks) of loops, whose variables become invariant after a
-finite number of iterations. Such loop \ndx{quasi-invariant} code blocks can
-then be lifted from the loop. The program transformation improves the loop's
-complexity profile if the lifted block is a nested loop. For convenience, we
-refer this technique as the \emph{QI framework}, after the quasi-invariants.
+The second direction is inspired by \enquote{Loop Quasi-Invariant Chunk Detection}~\cite{moyen20172}.
+In the original formulation, the idea is to identify fragments (blocks) of loops, whose variables become invariant after a finite number of iterations.
+Such loop \ndx{quasi-invariant} code blocks can then be lifted from the loop.
+The program transformation improves the loop's complexity profile if the lifted block is a nested loop.
+For convenience, we refer this technique as the \emph{QI framework}, after the quasi-invariants.
 
-This original QI framework is not presented in this dissertation. This is
-because each refinement changes the behavior of the system. It is therefore
-necessary to fully re-define the system each time. The manuscripts in
-Sections~\ref{sec:vmcai} and~\ref{sec:anytime} provide the technical details.
+This original QI framework is not presented in this dissertation.
+This is because each refinement changes the behavior of the system.
+It is therefore necessary to fully re-define the system each time.
+The manuscripts in Sections~\ref{sec:vmcai} and~\ref{sec:anytime} provide the technical details.
 
 Using the QI framework, we define two research questions.
 \begin{description}
-\item[RQ4] How to develop a program transformation to increase parallelization
-potential?
-\item[RQ5] How to use it to analyze security properties, specifically
-non-interference?
+\item[RQ4] How to develop a program transformation to increase parallelization potential?
+\item[RQ5] How to use it to analyze security properties, specifically non-interference?
 \end{description}
 
-The research questions change the orientation from complexity theory to other
-application domains. Critically, the original complexity result may be lost, but
-some other guarantee is gained instead. On the surface, the research questions
-appear to be about properties, but more deeply they are about understanding the
-underlying theory and its flexibility.
+The research questions change the orientation from complexity theory to other application domains.
+Critically, the original complexity result may be lost, but some other guarantee is gained instead.
+On the surface, the research questions appear to be about properties, but more deeply they are about understanding the underlying theory and its flexibility.
 
-Both goals are practically motivated. The expected deliverables support G1 and
-G2. Moreover, they are strongly oriented to support G4.
+Both goals are practically motivated. The expected deliverables support G1 and G2. Moreover, they are strongly oriented to support G4.
 
 \paragraph*{Related topics.}
-Each manuscript connects implicit computational complexity with a related
-research topic. The topics include static program analysis, security, program
-optimization, and formal methods. Each dissertation manuscript is decorated with
-an icon that denotes the related topic.
+Each manuscript connects implicit computational complexity with a related research topic.
+The topics include static program analysis, security, program optimization, and formal methods.
+Each dissertation manuscript is decorated with an icon that denotes the related topic.
 
 \paragraph*{On manuscript authorship.}
-The manuscript authors are listed in alphabetical order. The manuscripts in
-Chapters~\ref{published-manuscripts}--\ref{ch:unpublished-research} are
-\enquote{first author} works. The manuscripts
-in~\autoref{app:additional-manuscripts} are \enquote{non-first author} works.
+The manuscript authors are listed in alphabetical order.
+The manuscripts in Chapters~\ref{published-manuscripts}--\ref{ch:unpublished-research} are \enquote{first author} works.
+The manuscripts in~\autoref{app:additional-manuscripts} are \enquote{non-first author} works.
 The contributions of the co-authors are detailed in~\autoref{app:sec:coauth}.
 
 \paragraph*{On manuscript peer review.}
-The entire Chapters~\ref{published-manuscripts},~\ref{ch:unpublished-research},%
-~\ref{ch:summary}, and~\ref{app:additional-manuscripts} have been peer-reviewed.
-In other words, the only new content sections are Chapters 1 and 4, Introduction
-and Discussion.
+The entire Chapters~\ref{published-manuscripts},~\ref{ch:unpublished-research},~\ref{ch:summary}, and~\ref{app:additional-manuscripts} have been peer-reviewed.
+In other words, the only new content sections are Chapters 1 and 4, Introduction and Discussion.
 
 \begin{itemize}
 
-\item The published works, in Chapters~\ref{published-manuscripts}
-and~\ref{app:additional-manuscripts}, were inspected by 7--10 reviewers before
-acceptance.
+\item The published works, in Chapters~\ref{published-manuscripts} and~\ref{app:additional-manuscripts}, were inspected by 7--10 reviewers before acceptance.
 
-\item The unpublished works, in \autoref{ch:unpublished-research}, have been
-reviewed by 3--6 reviewers thus far. Preliminary versions of most unpublished
-works have been accepted and presented at respectable workshops. However, the
-unpublished research must be viewed with caution. By implication, they all have
-some limitation that prevents their inclusion in the chapter of {published}
-manuscripts.
+\item The unpublished works, in \autoref{ch:unpublished-research}, have been reviewed by 3--6 reviewers thus far.
+Preliminary versions of most unpublished works have been accepted and presented at respectable workshops.
+However, the unpublished research must be viewed with some caution.
+They all have some limitation that prevents their inclusion in the chapter of published manuscripts.
 
-\item \autoref{ch:summary} is a standalone extended abstract about the
-full-length dissertation. It has been peer-reviewed and presented at
-\href{https://2025.ecoop.org/track/ecoop-2025-doctoral-symposium}{the doctoral
-symposium} of \href{https://2025.ecoop.org}{the European Conference on
-Object-Oriented Programming (ECOOP)} 2025.
+\item \autoref{ch:summary} is a standalone extended abstract about the full-length dissertation.
+It has been peer-reviewed and presented at \href{https://2025.ecoop.org/track/ecoop-2025-doctoral-symposium}{the doctoral symposium} of \href{https://2025.ecoop.org}{the European Conference on Object-Oriented Programming (ECOOP)} 2025.
 
 \end{itemize}
 
@@ -339,10 +277,8 @@ This dissertation contains three, varying-length versions of its contents.
 \begin{mdframed}[backgroundcolor=paperbase,linecolor=paper,nobreak=true]
 \begin{enumerate}[wide, labelwidth=!, labelindent=0pt]
 \item The \textbf{\hyperref[abs]{abstract}} contains the highlights only.
-\item \textbf{Chapters~\ref{introduction}--\ref{ch:discussion}
-and~\ref{app:additional-manuscripts}} form the full-length presentation.
-\item \textbf{\autoref{ch:summary}} is a standalone, extended summary of the
-full presentation.
+\item \textbf{Chapters~\ref{introduction}--\ref{ch:discussion} and~\ref{app:additional-manuscripts}} form the full-length presentation.
+\item \textbf{\autoref{ch:summary}} is a standalone, extended summary of the full presentation.
 \end{enumerate}
 \end{mdframed}
 
@@ -361,7 +297,7 @@ The software is achieved even if the publication venue did not provide an artifa
 
 \subsubsection{Notational Conventions}
 
-\paragraph*{Code blocks and line numbers.}
+\paragraph*{Syntax and code blocks.}
 Inlined syntactic constructs (variables, expressions, commands, \etc) are typeset in \pr|teletype|.
 Larger code blocks are displayed in dedicated listings.
 The listings will display, in bottom right corner, the associated programming language, or context, according to~\autoref{tab:pls}.
@@ -369,7 +305,7 @@ In the table, \emph{version} is the release version assumed in the dissertation 
 Pseudo-languages have no version.
 Plain text listings describe command outputs.
 They are labelled \enquote{output}.
-The \ndx{Rocq} Prover is undergoing a name change from the former name \ndx{Coq}.
+The \ndx{Rocq} Prover is undergoing a name change from the former name Coq\index{Coq|seealso{Rocq}}.
 We will use the new name whenever possible.
 
 \begin{table}[h]
@@ -399,47 +335,41 @@ We will use the new name whenever possible.
 \label{tab:pls}
 \end{table}
 
+\paragraph*{Line numbers.}
 References to specific line of source code, or an algorithm, begin with L, for \underline{l}ine.
 The L is followed by a number, or a numeric range, that specifies the rows of interest.
 For example, L3 means \enquote{line number 3} and L10--12 means \enquote{lines 10 through 12}.
 
 \paragraph*{Distinguishing variable states.}
-We will often want to refer to the same variable in different states of
-computation. In the style of \ndx{Z specification language}~\cite{spivey1992},
-we use notation that identifies the \emph{new (post) states}. A plain variable
-refers to a state where the variable holds its {initial} value. A variable with
-a postfix decoration \pr|'| refers to a state where the variable holds its
-{final} value. For example, \pr|X| refers to the initial value and \pr|X'|
-refers to the final value.
+We will often want to refer to the same variable in different states of computation.
+In the style of \ndx{Z specification language}~\cite{spivey1992}, we use notation that identifies the \emph{new (post) states}.
+A plain variable refers to a state where the variable holds its {initial} value.
+A variable with a postfix decoration \pr|'| refers to a state where the variable holds its {final} value.
+For example, \pr|X| refers to the initial value and \pr|X'| refers to the final value.
 
 \subsubsection{Term and Notational Indices}
 
-The dissertation includes three indices. The Term Index
-(\autoref{sec:app:index}) lists technical terms and their most prevalent uses.
-The other two indices are for acronyms and symbolic notations. Acronyms are
-generally defined at first use. After that, the long form can be located in the
-Index of Acronyms (\autoref{glo:acr}). A similar reference is available for
-symbolic notations in the Symbol Index (\autoref{glo:symb}).
+The dissertation includes three indices.
+The Term Index (\autoref{sec:app:index}) lists technical terms and their most prevalent uses.
+The other two indices are for acronyms and symbolic notations.
+Acronyms are generally defined at first use.
+After that, the long form can be located in the Index of Acronyms (\autoref{glo:acr}).
+A similar reference is available for symbolic notations in the Symbol Index (\autoref{glo:symb}).
 
 \subsubsection{Dynamic Bibliographic Entries}
 
-Some bibliography entries refer to resources that are not traditional scientific
-papers; like software, web pages, lecture notes, and technical reports. To
-improve the long-term availability of such dynamic bibliographic entries, they
-are pre-emptively deposited in online archives.
+Some bibliography entries refer to resources that are not traditional scientific papers, like software, web pages, lecture notes, \etc.
+To improve the long-term availability of such dynamic bibliographic entries, they are pre-emptively deposited in online archives.
 
 \paragraph*{Written documents.}
-Web pages and PDF files are archived at the \ndx{Internet Archive}'s
-\ndx{Wayback Machine}. To recover a document from the Internet Archive,
-substitute \pr|<URL>| by the document's URL.
+Web pages and PDF files are archived at the \ndx{Internet Archive}'s \ndx{Wayback Machine}.
+To recover a document from the Internet Archive, substitute \pr|<URL>| by the document's URL\@.
 \begin{center}\pr|https://web.archive.org/web/<URL>|\end{center}
 A few cited documents could not be archived in the Internet Archive.
-Those documents are archived with the dissertation companion artifact
-(\autoref{tab:pub-artifacts}).
+Those documents are archived with the dissertation companion artifact (\autoref{tab:pub-artifacts}).
 
 \paragraph*{Software repositories.}
-Version-controlled third party software repositories are archived at
-\href{https://softwareheritage.org}{\ndx{Software Heritage}}.
+Version-controlled third party software repositories are archived at \href{https://softwareheritage.org}{\ndx{Software Heritage}}.
 For a repository hosted at \pr|<URL>|, the recovery address is:%
 \begin{center}\pr|https://archive.softwareheritage.org/browse/origin/directory/|\mbox{\pr|?origin_url=<URL>|}\end{center}
 
@@ -455,9 +385,7 @@ https://types22.inria.fr/files/2022/06/TYPES_2022_paper_14.pdf
 \end{minipage}
 \end{center}
 
-If a request of the original document fails,
-the following \href{https://web.archive.org/web/https://types22.inria.fr/files/2022/06/TYPES_2022_paper_14.pdf}
-{Internet Archive address} produces the same document.
+If a request of the original document fails, the following \href{https://web.archive.org/web/https://types22.inria.fr/files/2022/06/TYPES_2022_paper_14.pdf}{Internet Archive address} produces the same document.
 \begin{center}
 \begin{minipage}{\textwidth}
 %! suppress = EscapeUnderscore

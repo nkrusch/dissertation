@@ -29,27 +29,25 @@ PREREQUISITES
 * Docker - https://docs.docker.com/engine/install/
 * Operating system - in principle any Docker-compatible OS
 * memory - container size is be approx. 8 GB
-* Internet - Only container build/pull requires the host to be online.
+* Internet - Only container pull requires the host to be online.
 
-Prepare and launch a virtual execution environment. There are two
-options. The first one is faster. On some machines you may need sudo.
-All necessary software is pre-installed in the container.
-
-[≤10 min] OPTION A) Use a pre-built container.
+Launch a virtual execution environment. On some machines you may need
+sudo. All necessary software is pre-installed in the container.
 
     docker pull --platform=linux/amd64 ghcr.io/nkrusch/dissertation:main
     docker run --name dimage -it --rm ghcr.io/nkrusch/dissertation:main
 
-[~20 min] OPTION B) Build a container. Run at unzipped sources root:
+Notes:
+* The container expects an amd64/x86 architecture.
+* It can be run on other architectures (arm), but will run slower.
+* The container has been tested on macOS (amd64-darwin, arm64-darwin).
+* The container is not compatible with podman.
+
+If you prefer to build the container (instead of pull from ghcr.io),
+run at unzipped sources root:
 
     docker build --platform=linux/amd64 . -t dimage
     docker run --name dimage -it --rm dimage
-
-NOTES
-* The container expects amd64/x86 architecture.
-* It is runnable on other architectures, but will run slower.
-* The container has been tested on macOS (amd64-darwin, arm64-darwin).
-* The container is not compatible with podman.
 
 ------------------------------------------------------------------------
 📁  Source Code Organization
@@ -83,8 +81,8 @@ Alternatively, compile the dissertation by running:
     make full -j ?
 
 where ? is the number of available cores. The compilation takes about
-2--10 minutes, and generates a file main.pdf. To view the file, run the
-following command in a separate terminal (outside the container):
+2--10 minutes. It generates a file main.pdf. To view this file, run the
+following command in a separate terminal, outside the container:
 
     docker cp dimage:/usr/dissertation/main.pdf .
 

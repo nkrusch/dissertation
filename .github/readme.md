@@ -56,8 +56,9 @@ where `N` is the number of cores. The output is a file `main.pdf`.
 * [Dissertation template](https://github.com/aubertc/au_ccs_dissertation_template/) (LaTeX/markdown)
 * [Preparing Your Manuscript for Submission (ProQuest)](https://about.proquest.com/globalassets/proquest/files/pdf-files/preparing-your-manuscript.pdf)
 
-List of doctoral dissertations from Augusta University
+**Doctoral dissertations from Augusta University**
 
-* Go to: https://www.proquest.com
-* Query: `DG(Ph.D) AND SCH(1907)`
+Query on [proquest.com](https://www.proquest.com):
+
+    DG(Ph.D) AND SCH(1907)
  
