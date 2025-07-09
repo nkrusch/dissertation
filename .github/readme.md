@@ -3,29 +3,8 @@
 [![Compile](https://github.com/nkrusch/thesis/actions/workflows/compile.yaml/badge.svg)](https://github.com/nkrusch/thesis/actions/workflows/compile.yaml)
 [![Package](https://github.com/nkrusch/dissertation/actions/workflows/package.yaml/badge.svg)](https://github.com/nkrusch/dissertation/actions/workflows/package.yaml)
 
-Repository to host, compile, and share my dissertation.
+The source code repository of my doctoral dissertation.
 
-## Repository Organization
-
-<pre>
-    .
-    ├─ 🗀 .github/         : Automated workflows
-    ├─ 🗀 code/            : Code listings
-    ├─ 🗀 fonts/           : Custom fonts
-    ├─ 🗀 latex/           : Custom LaTeX
-    ├─ 🗀 pdf/             : Static resources (figures, manuscripts)
-    ├─ 🗀 pictures/        : TikZ drawings
-    ├─ 🗀 references/      : Bib and indices
-    ├─ 🗀 text/            : Dissertation content
-    ├─ Dockerfile          : Execution environment
-    ├─ LICENSE             : License text
-    ├─ Makefile            : Build commands
-    ├─ args.tex            : Template configuration
-    ├─ content.tex         : Dissertation sections
-    ├─ main.tex            : The TGS ETD template
-    ├─ readme.txt          : Artifact readme
-    └─ *                   : Configuration files
-</pre>
 
 ## Compilation with Docker
 
@@ -49,12 +28,36 @@ where `N` is the number of cores. The output is a file `main.pdf`.
 
     docker cp dimage:/usr/dissertation/main.pdf .
 
+
+## Repository Organization
+
+<pre>
+    .
+    ├─ 🗀 .github/         : Automated workflows
+    ├─ 🗀 code/            : Code listings
+    ├─ 🗀 fonts/           : Custom fonts
+    ├─ 🗀 latex/           : Custom LaTeX
+    ├─ 🗀 pdf/             : Static resources (figures, manuscripts)
+    ├─ 🗀 pictures/        : TikZ drawings
+    ├─ 🗀 references/      : Bib and indices
+    ├─ 🗀 text/            : Dissertation content
+    ├─ Dockerfile          : Execution environment
+    ├─ LICENSE             : License text
+    ├─ Makefile            : Build commands
+    ├─ args.tex            : Template configuration
+    ├─ content.tex         : Dissertation sections
+    ├─ main.tex            : The TGS ETD template
+    ├─ readme.txt          : Artifact readme
+    └─ *                   : Configuration files
+</pre>
+
+
 ## Dissertation Formatting Guidelines
 
-* [Augusta University ETD Guides](https://guides.augusta.edu/etd)
-* [AU Dissertation Guide Booklet v.2024](https://augustauniversity.app.box.com/s/vj0ygpy8tvyqmsbae8y0qp9767ta7jb9)
-* [Dissertation template](https://github.com/aubertc/au_ccs_dissertation_template/) (LaTeX/markdown)
-* [Preparing Your Manuscript for Submission (ProQuest)](https://about.proquest.com/globalassets/proquest/files/pdf-files/preparing-your-manuscript.pdf)
+* [Augusta University Electronic Theses and Dissertations (ETD)](https://guides.augusta.edu/etd) - by AU Libraries
+* [Thesis/Dissertation Preparation Booklet v.2024](https://augustauniversity.app.box.com/s/vj0ygpy8tvyqmsbae8y0qp9767ta7jb9) - AU formatting requirements
+* [Dissertation template](https://github.com/aubertc/au_ccs_dissertation_template/) - the standard and alternative template in LaTeX/markdown
+* [Preparing Your Manuscript for Submission](https://about.proquest.com/globalassets/proquest/files/pdf-files/preparing-your-manuscript.pdf) - by ProQuest
 
 **Doctoral dissertations from Augusta University**
 
