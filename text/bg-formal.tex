@@ -983,12 +983,14 @@ Among programming language-based approaches, the type system of~\cite{crary2000}
 is notable. The type system assigns a \enquote{virtual clock} to a program.
 Then, a compile-time check aims to verity that the clock does not expire.
 Although this provides an automatic method for certifying resource usage, the
-theory is not formalized mechanically. \ndx{Calf}~\cite{niu2022} (and its
-extension \ndx{Decalf}~\cite{grodin2024}) is similarly a type system-based
-approach. Calf embeds in types the amortized costs\index{amortization} of
-computation, to record quantitative aspects of functional programs. Then, if a
-program can be typed, the Calf system ensures that the program satisfies the
-specified resource bound. The type system definitions is
+theory is not formalized mechanically. The cost-aware logical framework
+\ndx{Calf}~\cite{niu2022}---and its extension
+\ndx{Decalf}~\cite{grodin2024}---is similarly a type system-based approach for
+functional programs. Calf embeds, thought types, the amortized
+costs\index{amortization} of computation. It also uses clocks, where the clocks
+record the recursion depth, to ensure termination of programs in total type
+theory. Then, if a program can be typed, the Calf system ensures that the
+program satisfies the specified resource bound. The type system definitions is
 \href{https://github.com/HarrisonGrodin/agda-calf}{formalized in
 \ndx{Agda}}~\cite{grodin2023}.
 

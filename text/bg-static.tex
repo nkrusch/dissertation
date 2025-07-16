@@ -150,17 +150,32 @@ Numerous techniques can be used to reason about such properties.
       In imperative programs, interesting data-size behaviors arise from counter increments and resets, particularly in loops~\cite{sinn2017,benamram2020}.
 \end{itemize}
 
-This dissertation is concerned with techniques of data-size analysis.
-Among the specific and well-established techniques are automatic amortized\index{amortization} resource analysis and cost equation systems, presented briefly next.
+This dissertation is mainly concerned with techniques of data-size analysis.
+Among the well-established techniques are automatic
+amortized\index{amortization} resource analysis (AARA) and \ndx{cost equation
+system}s (CES). These techniques are briefly introduced next.
 
-\paragraph*{Automatic amortized resource analysis.}\index{automatic amortized resource analysis}
-Amortized analysis\index{amortization} averages the time required to perform a sequence of operations over all the operations performed~\cite[p. 451]{cormen2009}.
-It enables to show that the average cost of an operation is small, even if a single operation might be expensive.
-Automatic amortized resource analysis (AARA)~\cite{hoffmann2022} builds on this idea to provide an automatic static technique for deriving arithmetic resource bounds.
-In AARA, programs are bounded by amortized analysis\index{amortization}, which has the ability to account for amortization effects across operation sequences.
-The analysis relies on inference rules, and derivation trees provide proofs of the resource bounds.
-AARA originated from works in implicit computation complexity, particular from the contributions of Martin Hofmann~\cite{hoffmann2022}.
-AARA-based techniques has been implemented on functional~\cite{hoffmann2017}, imperative~\cite{carbonneaux2015,carbonneaux2017}, and probabilistic~\cite{ngo2018} programming languages.
+\paragraph*{Automatic amortized resource analysis.}
+\index{automatic amortized resource analysis}
+Amortized analysis\index{amortization} averages the time required to perform a
+sequence of operations over all the operations performed~\cite[p.
+451]{cormen2009}. Amortization enables to show that the average cost of an
+operation is small, even if a single operation might be expensive.
+
+Automatic amortized resource analysis (AARA)~\cite{hoffmann2022} builds on this
+same idea, to provide an automatic static technique for deriving arithmetic
+resource bounds. In AARA, programs are bounded by amortized
+analysis\index{amortization}. This adds the ability to account for amortization
+effects across operation sequences. Internally, the analysis relies on inference
+rules, and derivation trees provide proofs of the resource bounds.
+
+AARA originated from works in implicit computation complexity, in particular
+from the contributions of Martin Hofmann~\cite{hoffmann2022}. The initial design
+was for tracking resource bounds in functional programs~\cite{hoffmann2012}. In
+later works, AARA-based techniques have been extended to
+imperative~\cite{carbonneaux2015,carbonneaux2017}, parallel~\cite{hoffmann2015},
+probabilistic~\cite{avanzini2020,ngo2018,wang2020}, and concurrent session-typed
+programs~\cite{das2018,das2021}.
 
 \paragraph*{Cost equation systems.}\index{cost equation system}
 A \emph{cost equation system} (CES) (alternatively: cost relation system) is an abstract representation format of a program's resource cost~\cite{floresmontoya2017,albert2019}.
