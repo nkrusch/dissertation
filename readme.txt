@@ -10,9 +10,9 @@
     ╔═╗┌─┐┌┬┐┌─┐┬ ┬┌┬┐┌─┐┌┬┐┬┌─┐┌┐┌┌─┐┬
     ║  │ ││││├─┘│ │ │ ├─┤ │ ││ ││││├─┤│
     ╚═╝└─┘┴ ┴┴  └─┘ ┴ ┴ ┴ ┴ ┴└─┘┘└┘┴ ┴┴─┘
-    ╔═╗┌─┐┌┬┐┌─┐┬  ┌─┐─┐ ┬┬┌┬┐┬ ┬
-    ║  │ ││││├─┘│  ├┤ ┌┴┬┘│ │ └┬┘
-    ╚═╝└─┘┴ ┴┴  ┴─┘└─┘┴ └─┴ ┴  ┴⠀
+    ╔═╗┌─┐┌┬┐┌─┐┬  ┌─┐─┐ ┬ ┬┌┬┐┬ ┬
+    ║  │ ││││├─┘│  ├┤ ┌┴┬┘ │ │ └┬┘
+    ╚═╝└─┘┴ ┴┴  ┴─┘└─┘┴ └─ ┴ ┴  ┴⠀
 
 
 
@@ -27,27 +27,32 @@ inspecting the references that could not be archived elsewhere.
 
 PREREQUISITES
 * Docker - https://docs.docker.com/engine/install/
-* Operating system - in principle any Docker-compatible OS
-* memory - container size is be approx. 8 GB
-* Internet - Only container pull requires the host to be online.
+* Operating system - any Docker-compatible OS
+* Internet - only container pull/build requires the host to be online.
+* Memory - container size is be approx. 8 GB
 
+STANDARD SETUP
 Launch a virtual execution environment. On some machines you may need
 sudo. All necessary software is pre-installed in the container.
 
     docker pull --platform=linux/amd64 ghcr.io/nkrusch/dissertation:main
     docker run --name dimage -it --rm ghcr.io/nkrusch/dissertation:main
 
-Notes:
+NOTES
 * The container expects an amd64/x86 architecture.
 * It can be run on other architectures (arm), but will run slower.
 * The container has been tested on macOS (amd64-darwin, arm64-darwin).
-* The container is not compatible with podman.
+* The container has been tested on Linux (amd64, Ubuntu 22.04).
+* The docker prerequisite cannot be substituted with podman.
 
-If you prefer to build the container (instead of pull from ghcr.io),
+ALTERNATIVE SETUP (optional)
+If you prefer to build the container, instead of pulling from ghcr.io,
 run at unzipped sources root:
 
     docker build --platform=linux/amd64 . -t dimage
     docker run --name dimage -it --rm dimage
+
+Building a new container takes ~10-20 minutes.
 
 ------------------------------------------------------------------------
 📁  Source Code Organization
@@ -66,7 +71,7 @@ run at unzipped sources root:
     ├─ LICENSE             : License text
     ├─ main.tex            : The Augusta University TGS ETD template
     ├─ Makefile            : Build commands
-    └─ readme.txt          : Copy of this readme
+    └─ readme.txt          : This readme
 
 ------------------------------------------------------------------------
 🏗️  Compile the Dissertation (optional)
@@ -103,7 +108,8 @@ DERIVATIONS I: RANGE OF ANALYSIS OUTCOMES
 
 Running the examples shows that the automated analysis ends with the
 same result as the manual derivation. The automatic analysis omits
-mwp-bounds if a variable's only dependency is its input, i.e. X' ≤ X.
+mwp-bounds if a variable's only dependency is its input, i.e., X' ≤ X
+results will not be displayed.
 
 Example 4: Polynomially bounded program is derivable.
 
