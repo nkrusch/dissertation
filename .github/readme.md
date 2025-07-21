@@ -61,7 +61,7 @@ Compile the dissertation by running, at the repository root:
         make full -j N
     
 where `N` is the number of cores.
-Depending on the machine, it takes ~5-10 minutes.
+Depending on the machine, it takes ~5-10 minutes to compile the document.
 The output is a file `main.pdf`.
 
 
