@@ -77,11 +77,7 @@ pull and launch the latest container image.
 
     [in container] Compile the dissertation by running:
     
-        make full -j N
-    
-    where `N` is the number of cores. 
-    Depending on the machine, it takes ~5-10 minutes.
-    The output is a file `main.pdf`.
+        make full
 
 2. **View Document**
 
