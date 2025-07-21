@@ -3,7 +3,7 @@
 [![Compile](https://github.com/nkrusch/thesis/actions/workflows/compile.yaml/badge.svg)](https://github.com/nkrusch/thesis/actions/workflows/compile.yaml)
 [![Package](https://github.com/nkrusch/dissertation/actions/workflows/package.yaml/badge.svg)](https://github.com/nkrusch/dissertation/actions/workflows/package.yaml)
 
-This is the source code repository of my doctoral dissertation,  which I will defend at Augusta University in August 2025.
+This is the source code of my doctoral dissertation,  which I will defend at Augusta University in August 2025.
 
 This readme describes only the technical details, like how to compile the document.
 For presentation of the content, see [this webpage](https://neea.pl/posts/dissertation).
