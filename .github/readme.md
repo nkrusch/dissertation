@@ -50,7 +50,22 @@ To limit to computer science:
 
     DG(Ph.D) AND SCH(1907) AND DEP(Computer and Cyber Sciences)
 
-## Compilation with Docker
+## Compilation
+
+### Compile natively on host
+
+Prerequisites: [LaTeX](https://www.latex-project.org/get/) 
+
+Compile the dissertation by running, at the repository root:
+    
+        make full -j N
+    
+where `N` is the number of cores.
+Depending on the machine, it takes ~5-10 minutes.
+The output is a file `main.pdf`.
+
+
+### Compile with Docker
 
 Using [Docker](https://docs.docker.com/engine/install/),
 pull and launch the latest container image.
@@ -58,19 +73,19 @@ pull and launch the latest container image.
     docker pull --platform=linux/amd64 ghcr.io/nkrusch/dissertation:main
     docker run --name dimage -it --rm ghcr.io/nkrusch/dissertation:main  
 
-### Compile 
+1. **Compile** 
 
-[in container] Compile the dissertation by running:
+    [in container] Compile the dissertation by running:
+    
+        make full -j N
+    
+    where `N` is the number of cores. 
+    Depending on the machine, it takes ~5-10 minutes.
+    The output is a file `main.pdf`.
 
-    make full -j N
+2. **View Document**
 
-where `N` is the number of cores. 
-Depending on the machine, it takes ~5-10 minutes to compile the document.
-The output is a file `main.pdf`.
-
-### View Document
-
-[on host] In a separate terminal, copy `main.pdf` to the host.
-
-    docker cp dimage:/usr/dissertation/main.pdf .
+    [on host] In a separate terminal, copy `main.pdf` to the host.
+    
+        docker cp dimage:/usr/dissertation/main.pdf .
 
