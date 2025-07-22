@@ -200,6 +200,6 @@ Expected output (the times are approximate):
 📜️  Archival
 ------------------------------------------------------------------------
 
-This artifact is archived at https://doi.org/10.5281/zenodo.15288398.
+This artifact is archived at: https://doi.org/10.5281/zenodo.15288398
 
 END.

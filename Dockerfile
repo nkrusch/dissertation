@@ -11,6 +11,7 @@ ENV VER_DAFNY="4.10.0"
 ENV VER_COQ="8.20.1"
 ENV VER_MATHCOMP="2.4.0"
 ENV VER_OCAML="5.1.0"
+ENV VER_ELPI="2.5.2"
 
 # paths
 ARG HOME="/usr/dissertation"
@@ -68,6 +69,7 @@ RUN yes | opam init -j "${NJOBS}" --disable-sandboxing --comp $VER_OCAML  \
     && opam repo add --all-switches --set-default coq-released https://coq.inria.fr/opam/released \
     && opam pin add -n -k version coq $VER_COQ \
     && opam pin add -n -k version coq-mathcomp-ssreflect $VER_MATHCOMP \
+    && opam pin add -n -k version coq-elpi $VER_ELPI \
     && opam install -y -v -j "${NJOBS}" coq coq-mathcomp-ssreflect ocamlbuild \
     && opam clean -a -c -s --logs
 
