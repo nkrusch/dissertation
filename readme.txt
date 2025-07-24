@@ -86,8 +86,10 @@ Alternatively, compile the dissertation by running:
     make full -j ?
 
 where ? is the number of available cores. The compilation takes about
-2--10 minutes. It generates a file main.pdf. To view this file, run the
-following command in a separate terminal, outside the container:
+5--10 minutes. The output is file main.pdf.
+
+To view main.pdf, run the following command in a separate terminal,
+outside the container:
 
     docker cp dimage:/usr/dissertation/main.pdf .
 
