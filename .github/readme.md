@@ -70,8 +70,8 @@ The output is a file `main.pdf`.
 Using [Docker](https://docs.docker.com/engine/install/),
 pull and launch the latest container image.
  
-    docker pull --platform=linux/amd64 ghcr.io/nkrusch/dissertation:main
-    docker run --name dimage -it --rm ghcr.io/nkrusch/dissertation:main  
+    docker pull --platform=linux/amd64 ghcr.io/nkrusch/dissertation:artifact
+    docker run --name dimage -it --rm ghcr.io/nkrusch/dissertation:artifact  
 
 1. **Compile** 
 

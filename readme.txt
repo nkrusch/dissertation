@@ -35,8 +35,8 @@ STANDARD SETUP
 Launch a virtual execution environment. On some machines you may need
 sudo. All necessary software is pre-installed in the container.
 
-    docker pull --platform=linux/amd64 ghcr.io/nkrusch/dissertation:main
-    docker run --name dimage -it --rm ghcr.io/nkrusch/dissertation:main
+    docker pull --platform=linux/amd64 ghcr.io/nkrusch/dissertation:artifact
+    docker run --name dimage -it --rm ghcr.io/nkrusch/dissertation:artifact
 
 NOTES
 * The container expects an amd64/x86 architecture.
