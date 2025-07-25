@@ -8,7 +8,9 @@ on:
 
 env:
   REGISTRY: ghcr.io
+  IMAGE_OWNER: ${{ github.repository_owner }}
   IMAGE_NAME: ${{ github.repository }}
+  TAG_LATEST: artifact
 
 jobs:
   package:
@@ -22,6 +24,10 @@ jobs:
     steps:
       - uses: pierreraffa/cancel-previous-runs-action@1.11
       - uses: actions/checkout@v4
+      - id: meta
+        run: | 
+          s="${{ github.sha }}"; rev="${s:0:8}"; x="${{ github.ref_name }}"; 
+          echo "tag=${x/main/${rev}}" >> $GITHUB_OUTPUT
       - uses: docker/login-action@v3
         with:
           registry: ${{ env.REGISTRY }}
@@ -34,6 +40,8 @@ jobs:
         with:
           context: .
           platforms: linux/amd64
-          tags: ghcr.io/nkrusch/dissertation:artifact
+          tags: | 
+            ghcr.io/${{ env.IMAGE_OWNER }}/${{ env.IMAGE_NAME }}:${{ env.TAG_LATEST }}
+            ghcr.io/${{ env.IMAGE_OWNER }}/${{ env.IMAGE_NAME }}:${{ steps.meta.outputs.tag }}
           provenance: false
           push: true
