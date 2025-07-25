@@ -15,11 +15,7 @@ jobs:
   package:
     if: ${{ github.event_name != 'push' || vars.PACKAGE == 1 }}
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write
-      attestations: write
-      id-token: write
+    permissions: write-all
     steps:
       - uses: pierreraffa/cancel-previous-runs-action@1.11
       - uses: actions/checkout@v4
