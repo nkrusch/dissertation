@@ -1,13 +1,12 @@
 SHELL := /bin/bash
 
-compile: main.pdf
-
 all: compile
-full: compile
-	make terms && make compile
 
-%.pdf: %.tex
-	latexmk -pdf -xelatex $<
+full: compile terms
+	make compile
+
+compile:
+	latexmk -pdf -xelatex "main.tex"
 
 terms:
 	makeglossaries main
