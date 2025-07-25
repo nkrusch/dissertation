@@ -53,7 +53,7 @@ jobs:
       - name: ✴️️ Checkout target
         uses: actions/checkout@v4
         with:
-          token:  ${{ secrets.GITHUB_TOKEN }}
+          token:  ${{ secrets.GH_PAT }}
           repository: ${{ vars.OUTPUT_REPO }}
           ref: ${{ vars.OUTPUT_BRANCH }}
       - name: 😺 Setup git config
