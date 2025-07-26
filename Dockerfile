@@ -2,7 +2,7 @@ FROM ghcr.io/xu-cheng/texlive-historic-debian:2024
 
 LABEL org.opencontainers.image.authors="Neea Rusch"
 LABEL org.opencontainers.image.title="Dissertation Artifact"
-LABEL org.opencontainers.image.description="Docker Image of Dissertation"
+LABEL org.opencontainers.image.description="Docker image of my dissertation"
 LABEL org.opencontainers.image.source="https://github.com/nkrusch/dissertation"
 LABEL org.opencontainers.image.licenses="Creative Commons Attribution 4.0 International"
 

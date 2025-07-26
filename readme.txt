@@ -32,8 +32,9 @@ PREREQUISITES
 * Memory - container size is be approx. 8 GB
 
 STANDARD SETUP
-Launch a virtual execution environment. On some machines you may need
-sudo. All necessary software is pre-installed in the container.
+Pull and launch a virtual execution environment. On some machines you
+may need sudo. All necessary software is pre-installed in the container.
+The setup should take at most 5 min, depending on Internet speed.
 
     docker pull --platform=linux/amd64 ghcr.io/nkrusch/dissertation:artifact
     docker run --name dimage -it --rm ghcr.io/nkrusch/dissertation:artifact
@@ -46,13 +47,11 @@ NOTES
 * The docker prerequisite cannot be substituted with podman.
 
 ALTERNATIVE SETUP (optional)
-If you prefer to build the container, instead of pulling from ghcr.io,
-run at unzipped sources root:
+By preference, it is possible to build the container locally. Building
+the container takes about 10-20 min. Run at the unzipped sources root:
 
     docker build --platform=linux/amd64 . -t dimage
     docker run --name dimage -it --rm dimage
-
-Building a new container takes ~10-20 minutes.
 
 ------------------------------------------------------------------------
 📁  Source Code Organization
@@ -69,7 +68,7 @@ Building a new container takes ~10-20 minutes.
     ├─ content.tex         : Dissertation sections
     ├─ Dockerfile          : Execution environment
     ├─ LICENSE             : License text
-    ├─ main.tex            : The Augusta University TGS ETD template
+    ├─ main.tex            : The base dissertation template
     ├─ Makefile            : Build commands
     └─ readme.txt          : This readme
 
@@ -79,14 +78,13 @@ Building a new container takes ~10-20 minutes.
 
 A pre-compiled dissertation is available at following addresses:
 
-(1) TODO
+* https://nkrusch.github.io/posts/dissertation
 
 Alternatively, compile the dissertation by running:
 
-    make full -j ?
+    make full
 
-where ? is the number of available cores. The compilation takes about
-5--10 minutes. The output is file main.pdf.
+Compilation takes about 5--10 minutes. The output is file main.pdf.
 
 To view main.pdf, run the following command in a separate terminal,
 outside the container:
@@ -104,6 +102,8 @@ outside the container:
     1.2.6.5.1           Program Equivalence
     1.2.6.5.2           Formally verified leftpad
     1.2.6.6             The Moscow Problem
+
+All examples take <1 min to run.
 
 ------------------------------------------------------------------------
 DERIVATIONS I: RANGE OF ANALYSIS OUTCOMES
@@ -199,9 +199,14 @@ Expected output (the times are approximate):
     C sends 5 ==> B got A=2 and C=(7, 3, 6)
 
 ------------------------------------------------------------------------
-📜️  Archival
+📜️  Additional References and Archival
 ------------------------------------------------------------------------
 
 This artifact is archived at: https://doi.org/10.5281/zenodo.15288398
+
+The artifact deposit includes a set of files (a ZIP-file, primarily of
+presentations slides) that are referenced in the dissertation. These
+files were not available at any URL at the time of dissertation writing.
+Therefore, for transparency, the files are included in the artifact.
 
 END.

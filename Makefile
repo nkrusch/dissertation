@@ -2,8 +2,8 @@ SHELL := /bin/bash
 
 all: compile
 
-full: compile terms
-	make compile
+full: compile
+	make terms && make compile
 
 compile:
 	latexmk -pdf -xelatex "main.tex"
