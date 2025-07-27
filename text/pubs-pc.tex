@@ -1,4 +1,4 @@
-\includepdf[pages={1-},
+\includepdf[pages={1-28},
     addtotoc={
         1,subsection,2,{Introduction},pc-intro,
         2,subsubsection,3,{Problem formulation and solution overview},pc-problem,
@@ -29,10 +29,10 @@
         23,subsection,2,{Experimental Evaluation},pc-expr,
         24,subsubsection,3,{Inference generalizability},pc-gen,
         24,subsubsection,3,{Impact of theoretical enhancements},pc-impact,
-        25,subsection,2,{Conclusions and Future Directions},pc-conclusion,
-        29,subsection,2,{Appendix A: Application to Program Verification},pc-app-a,
-        29,subsection,2,{Appendix B: Technical Details of Analyzer Comparison},pc-app-b,
-        32,subsection,2,{Appendix C: Details of Experimental Evaluation},pc-app-c
+        25,subsection,2,{Conclusions and Future Directions},pc-conclusion
+%        29,subsection,2,{Appendix A: Application to Program Verification},pc-app-a,
+%        29,subsection,2,{Appendix B: Technical Details of Analyzer Comparison},pc-app-b,
+%        32,subsection,2,{Appendix C: Details of Experimental Evaluation},pc-app-c
     }, addtolist={
         2,lstlisting,{Precise context},lst:pc-precise,
         2,lstlisting,{Imprecise context},lst:pc-imprecise,
@@ -43,17 +43,19 @@
         13,algorithm,{Evaluation procedure for complex mwp-matrices},alg:mwp-eval,
         15,figure,{The mwp-calculus rules for commands while and loop},fig:loop-rules,
         16,figure,{Improved failure handling},fig:fail-handling,
+        21,figure,{Loop cases for comparison},fig:loops,
         21,lstlisting,{LucidLoop},lst:pc-lucidloop,
         21,lstlisting,{Function condition},lst:pc-function,
         21,lstlisting,{Finite iteration},lst:pc-iteration,
         23,table,{Summary of analyzer capabilities},tab:analyzer-comparison,
-        24,table,{Experiment results for mwp$_f$ and mwp$_\ell$ with totals and (mean)},tab:pc-results,
-        29,lstlisting,{LucidLoop verified in Dafny},list:pc-dafny,
-        31,figure,{Postcondition analysis scopes.},fig:pc-scoping,
-        31,lstlisting,{Benchmark mwp/example 3.4},lst:pc-ex34,
-        31,lstlisting,{Benchmark mwp/not infinite \#4},lst:pc-notinfty4,
-        31,lstlisting,{Benchmark Linear \#02},lst:linear2,
-        32,table,{Summarized benchmark suite characteristics},tab:pc-bench-summary},
+        24,table,{Experiment results for mwp$_f$ and mwp$_\ell$ with totals and (mean)},tab:pc-results
+%        29,lstlisting,{LucidLoop verified in Dafny},list:pc-dafny,
+%        31,figure,{Postcondition analysis scopes.},fig:pc-scoping,
+%        31,lstlisting,{Benchmark mwp/example 3.4},lst:pc-ex34,
+%        31,lstlisting,{Benchmark mwp/not infinite \#4},lst:pc-notinfty4,
+%        31,lstlisting,{Benchmark Linear \#02},lst:linear2,
+%        32,table,{Summarized benchmark suite characteristics},tab:pc-bench-summary
+    },
     pagecommand={\thispagestyle{empty}%
     \addtoindexm{DIG}{20}
     \addtoindexm{Dafny}{29}
@@ -78,61 +80,4 @@
     \addtoindexm{quasi-invariant}{18}
     \addtoindexm{specifications}{1,2,5,6,20,21,22,25}
     \addtoindexm{state explosion}{11}
-%    \addtosymbols{cv}{10}
-%    \addtosymbols{cv}{13}
-%    \addtosymbols{cv}{9}
-%    \addtosymbols{hoare}{4}
-%    \addtosymbols{hp}{8}
-%    \addtosymbols{infty}{10}
-%    \addtosymbols{infty}{11}
-%    \addtosymbols{infty}{12}
-%    \addtosymbols{infty}{13}
-%    \addtosymbols{infty}{17}
-%    \addtosymbols{infty}{18}
-%    \addtosymbols{infty}{5}
-%    \addtosymbols{infty}{6}
-%    \addtosymbols{infty}{7}
-%    \addtosymbols{infty}{8}
-%    \addtosymbols{infty}{9}
-%    \addtosymbols{k}{10}
-%    \addtosymbols{k}{13}
-%    \addtosymbols{k}{7}
-%    \addtosymbols{k}{8}
-%    \addtosymbols{k}{9}
-%    \addtosymbols{mwpi}{6}
-%    \addtosymbols{mwpi}{7}
-%    \addtosymbols{m}{5}
-%    \addtosymbols{m}{6}
-%    \addtosymbols{m}{7}
-%    \addtosymbols{m}{8}
-%    \addtosymbols{m}{11}
-%    \addtosymbols{m}{12}
-%    \addtosymbols{m}{17}
-%    \addtosymbols{lnot}{4}
-%    \addtosymbols{post}{4}
-%    \addtosymbols{pre}{4}
-%    \addtosymbols{p}{5}
-%    \addtosymbols{p}{6}
-%    \addtosymbols{p}{7}
-%    \addtosymbols{p}{8}
-%    \addtosymbols{p}{11}
-%    \addtosymbols{p}{12}
-%    \addtosymbols{p}{17}
-%    \addtosymbols{ttrue}{4}
-%    \addtosymbols{vlist}{8}
-%    \addtosymbols{w}{5}
-%    \addtosymbols{w}{6}
-%    \addtosymbols{w}{7}
-%    \addtosymbols{w}{8}
-%    \addtosymbols{w}{11}
-%    \addtosymbols{w}{12}
-%    \addtosymbols{w}{17}
-%    \addtosymbols{vdash}{4}
-%    \addtosymbols{xprime2}{5}
-%    \addtosymbols{zero}{5}
-%    \addtosymbols{zero}{6}
-%    \addtosymbols{zero}{7}
-%    \addtosymbols{zero}{8}
-%    \addtosymbols{zero}{11}
-%    \addtosymbols{zero}{12}
     }]{pdf/pubs_pc.2025.pdf}

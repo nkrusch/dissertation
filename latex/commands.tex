@@ -48,6 +48,9 @@
 \renewcommand{\boxed}[1]{\text{\fboxsep=.2em\fbox{\m@th$\displaystyle#1$}}}
 \makeatother
 
+% text with background color
+\newcommand{\hilight}[2]{\makebox[5pt][l]{\color{#1!20!white}\rule[-4pt]{#2}{14pt}}}
+
 % Fix \sc undefined
 \providecommand{\sc}{}
 \renewcommand{\sc}[1]{#1}
@@ -55,6 +58,7 @@
 % tabularx custom maximally-wide column
 \newcolumntype{C}{>{\centering\arraybackslash}X}
 \newcolumntype{R}{>{\raggedleft\arraybackslash}X}
+\newcolumntype{Z}{>{\raggedleft\arraybackslash}X}
 
 % Math operators etc.
 \newcommand{\zmat}{\mathbf{0}}
@@ -112,6 +116,18 @@
 \newcommand{\lname}{\(\top^{\ast}_{\textsc{ni}}\)\@\xspace} % change it if you don't like it
 \newcommand{\tool}{\textsc{tyni}\@\xspace}
 \newcommand{\nupce}[1]{\buildrel #1 \over \nsim}% Not up to c equilavence
+
+\newcommand{\impl}{$\text{mwp}_\ell$\xspace}
+\newcommand{\impf}{$\text{mwp}_f$\xspace}
+\newcommand{\explain}{LucidLoop}
+\newcommand{\exname}{{\explain}\xspace}
+\newcommand{\sfull}{\scalebox{.75}{\faIcon{circle}}\xspace}
+\newcommand{\spart}{\scalebox{.75}{\faIcon{adjust}}\xspace}
+\newcommand{\snone}{\scalebox{.75}{\faIcon[regular]{circle}}\xspace}
+\newcommand{\qsymb}{\faQuestionCircle[regular]}
+\newcommand{\qtext}{\scriptsize\qsymb\normalsize}
+\newcommand{\myqm}{\scalebox{.75}{\qsymb}}
+\newcommand{\myok}{\scalebox{.8}{$\checkmark$}}
 
 \newcommand{\SFM}{{\sc sfm}\xspace}
 \newcommand{\SFMs}{{\sc sfm}s\xspace}

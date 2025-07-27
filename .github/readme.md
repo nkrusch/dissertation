@@ -40,7 +40,7 @@ The content and formatting requirements are documented in these resources.
     ├─ readme.txt          : Artifact readme
     └─ *                   : Other configuration files, license, etc.
 
-The document follows (roughly) this dependency schema.
+The document follows roughly this dependency schema.
  
                ┌──── args.tex ◂────── latex/*      
     main.tex ◂─┼──── content.tex ◂─┬─ text ◂───────┬─ pdf/*  ◂─── pictures/*      
@@ -51,19 +51,17 @@ The document follows (roughly) this dependency schema.
 
 ### 🖥️ Native Host
 
-Prerequisites: [LaTeX](https://www.latex-project.org/get/)    
-Time: 5 - 10 min
+Time: 5-10 min &bull; Prerequisites: [LaTeX](https://www.latex-project.org/get/) 
 
 [at repository root] Compile the dissertation by running:
     
     make full 
 
-The output is a file `main.pdf` at the repository root.
+The output is a file `main.pdf`.
 
 ### 🐳 With Docker
 
-Prerequisites: [Docker](https://docs.docker.com/engine/install/)    
-Time: 5 - 10 min
+Time: 10-15 min &bull; Prerequisites: [Docker](https://docs.docker.com/engine/install/)
 
 1. **Setup container**
  
@@ -89,7 +87,7 @@ Time: 5 - 10 min
 Dissertations completed at Augusta University are archived on [ProQuest](https://www.proquest.com).
 
 Accessing the full database requires authentication.
-Some dissertations are embargoed whereby the full text is not available.
+Some dissertations are embargoed, such that the full text is not available.
 The dissertation details specify the end date of the embargo.
 
 * Query to find all AU doctoral dissertations:

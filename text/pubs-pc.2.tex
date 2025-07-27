@@ -1,0 +1,231 @@
+%! suppress = LabelConvention
+
+\subsection{Appendix A: Application to Program Verification}
+\label{app:sec:verified}
+
+The following example shows how to complete an implementation with specification
+conditions, in the verification-aware \ndx{Dafny} programming language. The
+postconditions are those inferred by our analysis.
+
+\begin{center}
+    \begin{minipage}{\textwidth}
+        \captionsetup{type=lstlisting}
+        \dafnyinputlisting[][]{lucid.dfy}
+        \captionof{lstlisting}[\exname verified in Dafny]{\exname verified in Dafny.}
+        \label{lst:dafny-ex}
+    \end{minipage}
+\end{center}
+
+Concrete program verification requires two additional steps. First, recording
+the initial variable values (L4). This is simply a matter of creating copies of
+variables. Recording the initial values enables referring to them in the
+postconditions. Second, we add the constants (L14--16) omitted in the
+postconditions of our analysis. Although this step requires manual effort, is it
+significantly easier to \enquote{fill in} the constants, than to infer full
+assertion clauses. Maintaining human oversight in this step has an additional
+benefit. It forces to check that the assertions are sensible. If the
+implementation has a bug---\eg variable grows exponentially when it should
+not---the bug becomes detectable during this step. A fully automatic technique
+would not alert to the issue.
+
+After adding invariants, the \ndx{Dafny} verifier immediately constructs a proof,
+which confirms that the assertions always hold. Generating suitable inductive
+loop invariants is a challenge for the related works that specialize in
+inductive invariant inference.
+
+
+\subsection{Appendix B: Technical Details of Analyzer Comparison}
+\label{app:sec:comparison}
+
+\subsubsection{Executing the analyzers}\label{subsec:analyzers}
+
+We analyzed the programs in Listings~\ref{lst:ex34}--\ref{lst:l2} as follows.
+
+\paragraph*{$\text{mwp}_\ell$.}
+We run \ndx{pymwp} v0.6.0 in the loop analysis mode.
+\begin{center}
+\begin{minipage}{\textwidth}
+\captionsetup{type=lstlisting}
+\cmdinputlisting[][escapeinside=||,emph={pymwp},emphstyle={}]{mwpl.cmd}
+\captionof{lstlisting}[Running pymwp in loop analysis mode]{Running pymwp in loop analysis mode.}
+\label{lst:mwp-bash}
+\end{minipage}
+\end{center}
+
+\paragraph*{KoAT.}
+The \ndx{KoAT} web interface is sufficient to confirm our findings.
+We applied the following options:
+\myok{ }control-flow refinement
+\myok{ }size bounds
+\myok{ }unsolvable loops, and default timeout.
+The web interface address is:
+
+\begin{center}
+\href{https://aprove.informatik.rwth-aachen.de/interface/v-koat/c}%
+{\pr|https://aprove.informatik.rwth-aachen.de/interface/v-koat/c|}
+\end{center}
+
+\paragraph*{Duet.}
+We ran \ndx{Duet} from source, git revision \pr|1d36b05|, with following options.
+The compositional recurrence analysis generates invariants for sequential programs.
+Transition ideals is implemented as linear and quadratic simulation modes.
+\begin{center}
+\begin{minipage}{\textwidth}
+\captionsetup{type=lstlisting}
+\cmdinputlisting[][escapeinside=||,alsoletter={.},emph={duet\.exe},emphstyle={}]{duet.cmd}
+\captionof{lstlisting}[Program analysis with Duet]{Program analysis with Duet.}
+\label{lst:duet-bash}
+\end{minipage}
+\end{center}
+
+\paragraph*{Daikon.}
+\ndx{Daikon} requires multiple version of a program, then compiling and tracing them with Kvasir.
+The \pr|*| means we trace multiple versions of input.
+\newline
+
+Supply options to Kvasir before the program name argument.
+
+\begin{center}
+\begin{minipage}{\textwidth}
+\captionsetup{type=lstlisting}
+\cmdinputlisting[][escapeinside=||]{dk_trace.cmd}
+\captionof{lstlisting}[Creating a trace with Daikon]{Creating a trace with Daikon.}
+\label{lst:kvasir-bash}
+\end{minipage}
+\end{center}
+
+After tracing, we run Daikon with following options to infer postconditions.
+
+\begin{center}
+\begin{minipage}{\textwidth}
+\captionsetup{type=lstlisting}
+\cmdinputlisting[][escapeinside=||]{dk_infer.cmd}
+\captionof{lstlisting}[Infer invariants using Daikon]{Infer invariants using Daikon.}
+\label{lst:daikon-bash}
+\end{minipage}
+\end{center}
+
+After inference, the invariants can be printed to a suitable display format.
+
+\begin{center}
+\begin{minipage}{\textwidth}
+\captionsetup{type=lstlisting}
+\cmdinputlisting[][escapeinside=||]{dk_print.cmd}
+\captionof{lstlisting}[Displaying invariants inferred by Daikon]{Displaying invariants inferred by Daikon.}
+\label{lst:print-bash}
+\end{minipage}
+\end{center}
+
+\subsubsection{Analyzer scopes}\label{subsec:analyzer-scopes}
+
+\begin{figure}[H]
+\begin{center}
+\begin{outlisting}*[escapechar=!,numbers=left,lineskip=.8em]
+int main(int X, int Y, int Z) {
+    !\hilight{scyan}{6cm}!for(int i=0; i<Y; i++)              !\tikzmark{k1}!
+    !\hilight{sorange}{6cm}!   X = X + Z;                       !\tikzmark{k2}!
+    !\hilight{sviolet}{6cm}!assert(...);                        !\tikzmark{k3}!
+    !\hilight{sblue}{6cm}!return X;                           !\tikzmark{k4}!
+}
+\end{outlisting}
+\tikzstyle{label} = [black,right,xshift=0pt,yshift=3pt,align=left,text width=2.2cm,font=\itshape]
+\begin{tikzpicture}[thick, remember picture, overlay]
+    \node[label] at (pic cs:k1) {KoAT};
+    \node[label,yshift=-1pt] at (pic cs:k2) {$\text{mwp}_\ell$};
+    \node[label] at (pic cs:k3) {Duet};
+    \node[label] at (pic cs:k4) {Daikon};
+\end{tikzpicture}
+\end{center}
+\caption[Postcondition analysis scopes]{
+Postcondition analysis scopes.
+The analyzers focus on complementary program regions identified by the different colors.
+\ndx{KoAT} tracks variables that control loop iteration.
+\impl analyzes variables inside the loop body.
+\ndx{Duet} infers loop summaries based on available assertions.
+\ndx{Daikon} infers \ndx{likely invariant}s of the \pr|return| variable and abstracts function internals.
+}
+\label{fig:comp-scope}
+\end{figure}%
+
+\subsubsection{Comparison programs}
+\label{subsec:comparison-programs}
+
+\begin{center}
+\begin{minipage}[t]{.47\textwidth}
+\captionsetup{type=lstlisting}
+\cinputlisting[][]{mwp3_4.c}
+\captionof{lstlisting}[mwp/example 3.4]{mwp/example 3.4.}
+\label{lst:ex34}
+\end{minipage}\hfill
+\begin{minipage}[t]{.47\textwidth}
+\captionsetup{type=lstlisting}
+\cinputlisting[][]{notinfinite4.c}
+\captionof{lstlisting}[mwp/not infinite \texttt{\#}4]{mwp/not infinite \texttt{\#}4.}
+\label{lst:ni4}
+\end{minipage}
+\end{center}%
+\begin{center}
+\begin{minipage}[t]{.47\textwidth}
+\captionsetup{type=lstlisting}
+\cinputlisting[][]{linear02.c}
+\captionof{lstlisting}[Linear \texttt{\#}02]{Linear \texttt{\#}02.}
+\label{lst:l2}
+\end{minipage}
+\end{center}
+
+These are programs of~\autoref{fig:loops} expanded with headers and return statements.
+For Duet analysis, \pr|loop| must be renamed to \pr|main|.
+Having a \pr|main| function raises an error with KoAT\@.
+Daikon expects adding a separate \pr|main| method with calls to \pr|loop|.
+In ~\autoref{lst:l2}, the unsupported \pr|assume| should be omitted before analyzing it with KoAT\@.
+
+\subsection{Appendix C: Details of Experimental Evaluation}
+\label{app:subsec:bench}
+\begin{description}
+
+\item[The {complexity} suite] is the \enquote{Complexity C Integer} suite from the Termination Problem Database version 11.3~\cite{tpdb},
+This suite is used in the annual Termination and Complexity Competition.
+
+\item[The linear suite]~\cite{si2018} contains inference problems for linear loop invariants.
+The problems are pre-annotated with assertions (these have no impact on our analysis).
+We excluded 9 benchmarks that are known to be invalid~\cite[Appendix G]{ryan2020} as they violate the specified assertions.
+We also unified benchmarks that have the same precondition and loop, as they are identical for the purpose of \emph{postcondition} inference,
+ending with 49 benchmarks in total.
+
+\item[The nonlinear suite]~\cite{nguyen2017} (also referred to as NLA-suite in literature) is an extended formulation of the suite, with the additional problems coming from~\cite{yu2023}.
+
+\item[The {mwp} suite]~\cite{aubert2023b} is designed specifically to be challenging for the flow calculus of mwp-bounds, with complex data flows and arithmetic operations.
+To obtain strictly comparable results between \impl and \impf, as they scope variables differently, we exclude nested loops and loopless benchmarks.
+
+\end{description}
+
+The statistics of the suites are summarized in~\autoref{tab:suites}.
+A single benchmark can contain multiple functions, loops, and sequential and/or nested loops.
+Due to differences in the targeted program scopes between \impl and \impf, the variable counts are specified by scope.
+Loop-scoped variables include loop guards and variables in the loop body.
+Function-scoped variables contain all parameters and variables in the function body.
+We modified the benchmarks by expanding n-ary expressions to binary form to match the \href{https://statycc.github.io/pymwp/features/}{input language} of pymwp.
+Since the boundedness check is still rudimentary, some loop conditions were rewritten in detectable form.
+A more robust approach would use a specialized compiler.
+
+\begin{table}
+\caption{Benchmark suite characteristics by count and (mean).}\label{tab:suites}
+\begin{tabularx}{\textwidth}{@{}l@{}ZZZZ@{\hspace{1em}}r@{}}
+\toprule
+\textbf{Suite}
+& \multicolumn{1}{c}{\textbf{Linear}}
+& \multicolumn{1}{c}{\textbf{mwp}}
+& \multicolumn{1}{c}{\textbf{Complexity}}
+& \multicolumn{1}{c}{\textbf{Non-linear}}
+& \multicolumn{1}{c}{\textbf{Total}} \\
+\midrule
+Benchmarks           & 49          & 30         & 504             & 37           &   620 \\
+Lines of code        & 652 (13.31) & 270 (9.00) & 6,066 (12.04)   & 710 (19.19)  & 7,698 \\
+Loops                & 49   (1.00) & 30  (1.00) & 740 (1.47)      & 48  (1.30)   &   867 \\
+Variables \\
+-- loop              & 117  (2.39) & 105 (3.50) & 1,921 (3.81)    & 208 (5.62)   & 2,351 \\
+-- functions         & 131  (2.67) & 105 (3.50) & 1,519 (3.01)    & 208 (5.62)   & 1,963 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
