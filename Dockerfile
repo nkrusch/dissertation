@@ -13,6 +13,7 @@ ENV VER_COQ="8.20.1"
 ENV VER_MATHCOMP="2.4.0"
 ENV VER_OCAML="5.1.0"
 ENV VER_ELPI="2.5.2"
+ENV VER_BH="1.9.0"
 
 # paths
 ARG HOME="/usr/dissertation"
@@ -71,6 +72,7 @@ RUN yes | opam init -j "${NJOBS}" --disable-sandboxing --comp $VER_OCAML  \
     && opam pin add -n -k version coq $VER_COQ \
     && opam pin add -n -k version coq-mathcomp-ssreflect $VER_MATHCOMP \
     && opam pin add -n -k version coq-elpi $VER_ELPI \
+    && opam pin add -n -k version rocq-hierarchy-builder $VER_BH \
     && opam install -y -v -j "${NJOBS}" coq coq-mathcomp-ssreflect ocamlbuild \
     && opam clean -a -c -s --logs
 
