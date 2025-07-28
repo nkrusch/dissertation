@@ -32,11 +32,11 @@
 
 % Theorem styles
 \AtBeginEnvironment{theorem}{\pushQED{\qed}}
-\AtEndEnvironment{theorem}{\popQED\endexample}
+\AtEndEnvironment{theorem}{\hfill\popQED\endexample}
 \AtBeginEnvironment{example}{\pushQED{\qed}}
-\AtEndEnvironment{example}{\popQED\endexample}
+\AtEndEnvironment{example}{\hfill\popQED\endexample}
 \AtBeginEnvironment{definition}{\pushQED{\qed}}
-\AtEndEnvironment{definition}{\popQED\enddefinition}
+\AtEndEnvironment{definition}{\hfill\popQED\enddefinition}
 
 % Algorithms
 \algtext*{EndWhile} % Remove "end while" text
@@ -111,6 +111,7 @@ delim_t "\} "
 \AtBeginEnvironment{NiceTabular}{\doublespacing}
 \AtBeginEnvironment{NiceTabularX}{\doublespacing}
 \AtBeginEnvironment{figure}{\doublespacing}
+\AtBeginEnvironment{subfigure}{\doublespacing}
 \AtBeginEnvironment{align*}{\linespread{2}\selectfont}
 %... but NOT matrices
 \BeforeBeginEnvironment{pNiceMatrix}{\renewcommand{\arraystretch}{0.67}}

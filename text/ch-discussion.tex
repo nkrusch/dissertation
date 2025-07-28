@@ -31,7 +31,7 @@ The manuscript provides an \emph{evaluation procedure} that enables recovering t
 However, since the matrix contains information about all derivations, it is now possible to also obtain the \emph{optimal} mwp-bounds of each program variable.
 A critical step is to \emph{project} mwp-matrices on individual variables.
 The projection also enables bounding certain variables in presence of whole-program derivation failure.
-This leads to increased expressiveness in abilities to bound more variables than in the original system (\cf~\autoref{tab:pc-results}).
+This leads to increased expressiveness in abilities to bound more variables than in the original system (\cf~\autoref{sec:performance}).
 
 One fascinating side-effect of the enhanced calculus is that it enables extracting \emph{new information} about the analyzed program.
 A complex mwp-matrix encapsulates this information, but requires a clever strategy to extract it.
@@ -56,7 +56,7 @@ Although the original formulation of the flow calculus notes that the \(w\)-coef
 We now know that when a variable is characterized by at most \(w\)-coefficients, the variable is subject to a loop
 quasi-invariance property, and will (at some point) become unaffected by increase in loop iteration count (\cf~\autoref{pc-analysis}).
 Finally, we also know that focusing the analysis to loops (instead of functions as in the original design) is beneficial for practical analysis.
-The modification enables extracting results in some cases where function-based analysis fails (\cf~\autoref{tab:pc-results}).
+The modification enables extracting results in some cases where function-based analysis fails (\cf~\autoref{sec:performance}).
 This reinforces the view that it is justified to limit complexity analyses on loop constructs~\cite{benamram2020}.
 
 To summarize, the enhanced \textsc{mwp}\(^\infty\)-calculus makes the flow calculus automatable for static program analysis,
@@ -65,7 +65,7 @@ The enhanced technique is applicable in automatic analysis of complexity propert
 Another use case is providing assistance in formal specification conditions inference (\cf~\autoref{sec:postcond}).
 The latter is an unconventional application of complexity-based analyses, but one that \emph{should be} explored more --
 the pioneering results of~\autoref{sec:postcond} are encouraging.
-At current stage, the flow calculus can derive results efficiently, including for several natural algorithms (\cf~\autoref{tab:pc-results}).
+At current stage, the flow calculus can derive results efficiently, including for several natural algorithms (\cf~\autoref{sec:performance}).
 These results are significant to motivate the relevance of formally verifying the core calculus (\cf~\autoref{sec:mwp-calc-formal}).
 
 % TODO: did it cover these points?

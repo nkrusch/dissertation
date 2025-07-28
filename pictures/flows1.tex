@@ -1,13 +1,5 @@
 \documentclass[crop,border={0pt 0pt 0pt 0pt}]{standalone}
-\input{../latex/pics} 
-
-\usepackage{listings}
-\usepackage[theorems,breakable,hooks,most]{tcolorbox} 
-\input{../latex/rocq}
-\input{../latex/dafny}
-\input{../latex/lang}
-\input{../latex/listings}
-
+\input{../latex/pics}
 \tikzset{every edge/.style={edconn}}
 \tikzset{every loop/.style={edconn, distance=18pt}}
 
@@ -22,23 +14,6 @@
 \draw(X3.170) edge [pedge] node[flow, above] {p} (X1.10);
 \draw(X2) edge [loop above, medge] node[flow, right, xshift=2pt] {m} (X2);
 \draw(X3) edge [loop above, medge] node[flow, left, xshift=-2pt] {m} (X3);
-\end{tikzpicture} 
-
-%\begin{tikzpicture}[align=center]
-%\path  (0, 0)   node[vertex] (X2) {X2}
-%++(0,-1.2) node[vertex] (X1) {X1};
-%\draw(X2.279) edge [iedge] node[flow, right] {∞} (X1.90);
-%\draw(X2) edge [loop right, medge] node[flow, right] {m} (X2);
-%\draw(X1) edge [loop right, iedge] node[flow, right] {∞} (X1);
-%\end{tikzpicture}
-
-%\begin{tikzpicture}
-%\path ([yshift=-3mm]current bounding box.north east)
-%node[matrix,anchor=north west,cells={nodes={font=\footnotesize,anchor=west}},inner sep=1ex]{
-%\draw[->,edconn,medge](0,0) -- ++ (0.6,0); & \node{$m$ax. linear};     &[12pt]
-%\draw[->,edconn,wedge](0,0) -- ++ (0.6,0); & \node{$w$eak polynomial}; &[12pt]
-%\draw[->,edconn,pedge](0,0) -- ++ (0.6,0); & \node{$p$olynomial};      &[12pt]
-%\draw[->,edconn,iedge](0,0) -- ++ (0.6,0); & \node{∞ failure}; \\};
-%\end{tikzpicture}
+\end{tikzpicture}
 
 \end{document}

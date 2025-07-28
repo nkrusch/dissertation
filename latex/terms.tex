@@ -13,3 +13,24 @@
 \loadglsentries[symbols]{references/symbols.tex}
 % Add all acronyms
 \glsaddall[types={\acronymtype}]
+
+% shorthand for symbols
+\newcommand\symbo[1]{\gls{symb:#1}}
+\setsepchar{,}
+
+% includepdf helpers
+% Add a term in pdf to index
+\makeatletter
+\newcommand\addtoindex[2]{\ifnum\AM@page=#2\relax\index{#1}\fi}
+\makeatother
+% …add across many pages
+\newcommand{\addtoindexm}[2]{\readlist\ipages{#2}%
+\foreachitem\word\in\ipages{\addtoindex{#1}{\word}}}
+
+% Add symbol in pdf to glossaries
+\makeatletter
+\newcommand\addtosymbols[2]{\ifnum\AM@page=#2\relax\gls{symb:#1}\fi}
+\makeatother
+% …add across many pages
+\newcommand{\addtosymbolsm}[2]{\readlist\ipages{#2}%
+\foreachitem\word\in\ipages{\addtosymbols{#1}{\word}}}

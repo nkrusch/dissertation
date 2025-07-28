@@ -1492,6 +1492,7 @@ additional engineering steps. With the current syntax coverage, experimental
 comparisons are still out of scope. In the meantime, \lname provides an
 promising avenue for security analysis and future enhancements.
 
+\clearpage
 \subsection{Appendix A: Proof of \autoref{thm:corr}}\label{app:proof}
 
 A first useful observation is that if \(\prc|C|' \subseteq \prc|C|\), then
@@ -1575,7 +1576,7 @@ forms:
 \begin{whilelisting}*[mathescape,numbers=none]
 x$_i$ = $\cdots$ x$_j$ $\cdots$;
 \end{whilelisting}
-\captionof{lstlisting}[Assignment Case]{(A)ssignment Case}
+\captionof{lstlisting}[Assignment Case]{\mbox{(A)ssignment Case}}
 \label{listing-A}
 \end{minipage}\hfill%
 \begin{minipage}[t]{.3\linewidth}
@@ -1586,7 +1587,7 @@ while($\cdots$ x$_j$ $\cdots$){
   $\cdots$
 }
 \end{whilelisting}
-\captionof{lstlisting}[Loop Case]{(L)oop Case}
+\captionof{lstlisting}[Loop Case]{\\\mbox{(L)oop Case}}
 \label{listing-L}
 \end{minipage}\hfill%
 %
@@ -1598,7 +1599,7 @@ if($\cdots$ x$_j$ $\cdots$){
   $\cdots$
 }
 \end{whilelisting}
-\captionof{lstlisting}[Branching Case]{(B)ranching Case}
+\captionof{lstlisting}[Branching Case]{\mbox{(B)ranching Case}}
 \label{listing-I}
 \end{minipage}
 

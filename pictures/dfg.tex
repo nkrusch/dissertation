@@ -1,29 +1,29 @@
-\documentclass[crop,border={0pt 0pt 0pt -2pt}]{standalone}
+\documentclass[crop,border={0pt 0pt 8pt 0pt}]{standalone}
 \input{../latex/pics}
 
-\tikzstyle{base} = [rectangle,draw=black,fill=tgrey]
-\tikzstyle{barr} = [thick,line width=.5mm,line cap=round]
-\tikzstyle{sep}  = [black, thick, densely dotted]
+\tikzset{every edge/.style={edconn}}
+\tikzset{every loop/.style={edconn, distance=18pt}}
 
 \begin{document}
-\begin{tikzpicture}
-\newcommand\threads{4}
-\newcommand\oneless{3}
-\newcommand\sx{0}
-\newcommand\sy{0}
-\newcommand\pw{6}
-\newcommand\ph{2}
-\newcommand\pt{\pw/\threads} 
+\begin{tikzpicture}[align=center]
+\path   (0, 0) node[vertex] (X5) {X5}
+    ++(1.5, 0) node[vertex] (X4) {X4}
+    ++(0, 1.5) node[vertex] (X2) {X2}
+    ++(-1.5,0) node[vertex] (X3) {X3};
 
-\draw[base] (\sx,\sy) rectangle ++(\pw,\ph);
-\draw[barr] (\sx,\sy) -- (\pw,\sy) ;
-
-\foreach \i in {1,...,\oneless} { 
-	\draw[sep](\i*\pt,\sy) -- (\i*\pt,\ph); }
-	
-\foreach \i in {0,...,\oneless} { 
-    \draw[thread](\i*\pt+\pt/2,\ph) -- (\i*\pt+\pt/2,\sy); 
-	\node[above] at (\i*\pt+\pt/2, \ph) {\i}; }
-	
+\draw(X2.190) edge [wedge] (X3.350);
+\draw(X2.170) edge [iedge] (X3.10);
+\draw(X2.270) edge [iedge] (X4.90);
+\draw(X5.60)  edge [wedge] (X3.300);
+\draw(X5.90)  edge [medge] (X3.270);
+\draw(X5.120) edge [iedge] (X3.240);
+\draw(X3.335) edge [iedge] (X4.145);
+\draw(X4.165) edge [iedge] (X3.320);
+\draw(X5) edge [iedge] (X4);
+\draw(X5) edge [loop below, medge] (X5);
+\draw(X3) edge [loop above, medge] (X3);
+\draw(X3) edge [loop left , iedge] (X3);
+\draw(X2) edge [loop above, medge] (X2);
+\draw(X4) edge [loop below, iedge] (X4);
 \end{tikzpicture}
 \end{document}

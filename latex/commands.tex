@@ -78,8 +78,14 @@
 
 \DeclarePairedDelimiter{\sem}{\llbracket}{\rrbracket} % Semantics of program.
 \newcommand{\BNF}{\enspace \ensuremath{\Vert} \enspace} % BNF separator
+\newcommand\Hoare[3]{\{\,#1\,\}\mathrel{#2}\nolinebreak\{\,#3\,\}} % hoare triple
 \newcommand{\mat}[1]{\left(\begin{smallmatrix}#1\end{smallmatrix}\right)} % Shorthand for matrices
 \ebproofnewstyle{small}{separation = 1em, rule margin = .5ex}
+
+% Algorithms
+\algdef{SE}[DOWHILE]{Do}{doWhile}{\algorithmicdo}[1]{\algorithmicwhile\ #1}
+\algnewcommand{\LineComment}[1]{\State {\(\triangleright\) #1}}
+\algrenewcommand\alglinenumber[1]{\footnotesize #1}
 
 \newtheorem{thm}{Theorem}
 \newtheorem{corollary}[thm]{Corollary}
@@ -95,6 +101,7 @@
 \newtheorem{remarks}{Remarks}
 \newtheorem{facts}{Facts}
 \newtheorem{fact}{Fact}
+\newtheorem{note}{Note}
 
 % Custom terms
 \newcommand\mwp{{mwp}\xspace}
@@ -117,6 +124,7 @@
 \newcommand{\tool}{\textsc{tyni}\@\xspace}
 \newcommand{\nupce}[1]{\buildrel #1 \over \nsim}% Not up to c equilavence
 
+% postconditions
 \newcommand{\impl}{$\text{mwp}_\ell$\xspace}
 \newcommand{\impf}{$\text{mwp}_f$\xspace}
 \newcommand{\explain}{LucidLoop}
@@ -129,6 +137,7 @@
 \newcommand{\myqm}{\scalebox{.75}{\qsymb}}
 \newcommand{\myok}{\scalebox{.8}{$\checkmark$}}
 
+% noninterference
 \newcommand{\SFM}{{\sc sfm}\xspace}
 \newcommand{\SFMs}{{\sc sfm}s\xspace}
 \newcommand{\sfm}[1]{\mathbb{M}(#1)}
@@ -176,17 +185,3 @@
 }
 \makeatother
 
-% HELPERS FOR TERM AND SYMBOLS INDICES
-% shorthand for symbols
-\newcommand\symbo[1]{\gls{symb:#1}}
-\setsepchar{,}
-% Includepdf helpers : terms
-\makeatletter
-\newcommand\addtoindex[2]{\ifnum\AM@page=#2\relax\index{#1}\fi}
-\makeatother
-\newcommand{\addtoindexm}[2]{\readlist\ipages{#2}\foreachitem\word\in\ipages{\addtoindex{#1}{\word}}}
-% Includepdf helpers : symbols
-\makeatletter
-\newcommand\addtosymbols[2]{\ifnum\AM@page=#2\relax\gls{symb:#1}\fi}
-\makeatother
-\newcommand{\addtosymbolsm}[2]{\readlist\ipages{#2}\foreachitem\word\in\ipages{\addtosymbols{#1}{\word}}}

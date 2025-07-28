@@ -1,4 +1,4 @@
-\documentclass[crop,border={0pt 0pt 8pt 0pt}]{standalone}
+\documentclass[crop,border={0pt}]{standalone}
 \input{../latex/pics}
 
 \tikzset{every edge/.style={edconn}}
@@ -6,24 +6,17 @@
 
 \begin{document}
 \begin{tikzpicture}[align=center]
-\path   (0, 0) node[vertex] (X5) {X5}
-    ++(1.5, 0) node[vertex] (X4) {X4}
-    ++(0, 1.5) node[vertex] (X2) {X2}
-    ++(-1.5,0) node[vertex] (X3) {X3};
-
-\draw(X2.190) edge [wedge] (X3.350);
-\draw(X2.170) edge [iedge] (X3.10);
-\draw(X2.270) edge [iedge] (X4.90);
-\draw(X5.60)  edge [wedge] (X3.300);
-\draw(X5.90)  edge [medge] (X3.270);
-\draw(X5.120) edge [iedge] (X3.240);
-\draw(X3.335) edge [iedge] (X4.145);
-\draw(X4.165) edge [iedge] (X3.320);
-\draw(X5) edge [iedge] (X4);
-\draw(X5) edge [loop below, medge] (X5);
-\draw(X3) edge [loop above, medge] (X3);
-\draw(X3) edge [loop left , iedge] (X3);
-\draw(X2) edge [loop above, medge] (X2);
-\draw(X4) edge [loop below, iedge] (X4);
+    \node at (.8,1.9) {$\mathsf{A}$};
+    \node at (.8,-.5) {$\mathsf{B}$};
+    \path   (0, 0) node[vertex] (X5) {X5}
+    ++(0, 1.5) node[vertex] (X3) {X3}
+    ++(1.5, 0) node[vertex] (X2) {X2}
+    ++(0,-1.5) node[vertex,fill=contrast] (X4) {X4};
+    \draw(X2) edge [wedge] (X3);
+    \draw(X5) edge [wedge] (X3);
+    \draw(X5) edge [medge,loop below] (X5);
+    \draw(X3) edge [medge,loop above] (X3);
+    \draw(X2) edge [medge,loop above] (X2);
+    \draw[black, densely dashed, line width=.75pt] (0.2,-.7) -- node[rotate=45,yshift=5pt] {\scriptsize\faCut} (1.9,1.2);
 \end{tikzpicture}
 \end{document}

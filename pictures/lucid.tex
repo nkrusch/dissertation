@@ -1,4 +1,4 @@
-\documentclass[crop,border={0pt 0pt 8pt 0pt}]{standalone}
+\documentclass[crop,border={0pt 0pt 0pt 0pt}]{standalone}
 \input{../latex/pics}
 
 \tikzset{every edge/.style={edconn}}
@@ -6,24 +6,30 @@
 
 \begin{document}
 \begin{tikzpicture}[align=center]
-\path   (0, 0) node[vertex] (X5) {X5}
-    ++(1.5, 0) node[vertex] (X4) {X4}
-    ++(0, 1.5) node[vertex] (X2) {X2}
-    ++(-1.5,0) node[vertex] (X3) {X3};
-
-\draw(X2.190) edge [wedge] (X3.350);
-\draw(X2.170) edge [iedge] (X3.10);
-\draw(X2.270) edge [iedge] (X4.90);
-\draw(X5.60)  edge [wedge] (X3.300);
-\draw(X5.90)  edge [medge] (X3.270);
-\draw(X5.120) edge [iedge] (X3.240);
-\draw(X3.335) edge [iedge] (X4.145);
-\draw(X4.165) edge [iedge] (X3.320);
-\draw(X5) edge [iedge] (X4);
-\draw(X5) edge [loop below, medge] (X5);
-\draw(X3) edge [loop above, medge] (X3);
-\draw(X3) edge [loop left , iedge] (X3);
-\draw(X2) edge [loop above, medge] (X2);
-\draw(X4) edge [loop below, iedge] (X4);
+    \newcommand{\sx}{2.5}
+    \newcommand{\sy}{1.5}
+    \path   (0, 0) node[vertex] (X2) {X2}
+    ++(\sx, 0) node[vertex] (X1) {X1}
+    ++(0,-\sy) node[vertex] (X4) {X4}
+    ++(-\sx,0) node[vertex] (X3) {X3}
+    ++(\sx/2,-\sy) node[vertex] (X5) {X5};
+    \draw(X1) edge [pedge] (X3);
+    \draw(X1.250) edge [pedge] (X4.110);
+    \draw(X1.290) edge [iedge] (X4.70);
+    \draw(X2.250) edge [wedge] (X3.110);
+    \draw(X2.290) edge [pedge] (X3.70);
+    \draw(X2) edge [iedge] (X4);
+    \draw(X3) edge [iedge] (X4);
+    \draw(X5.190) edge [medge] (X3.230);
+    \draw(X5.160) edge [wedge] (X3.270);
+    \draw(X5.135) edge [pedge] (X3.310);
+    \draw(X5.45)  edge [pedge] (X4.225);
+    \draw(X5.20)  edge [iedge] (X4.265);
+    \draw(X1) edge [loop above, medge] (X1);
+    \draw(X2) edge [loop above, medge] (X2);
+    \draw(X3) edge [loop left , medge] (X3);
+    \draw(X4) edge [loop right, medge] (X4);
+    \draw(X4) edge [iedge,out=240,in=290,loop,distance=18pt] (X4);
+    \draw(X5) edge [loop below, medge] (X5);
 \end{tikzpicture}
 \end{document}

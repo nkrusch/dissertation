@@ -22,6 +22,11 @@
         circle,inner sep=1.5pt,outer sep=.4pt,fill=white,
         draw=#1,solid,line width=1.5pt]{\textbf{#2}};}}}}
 
+\newcommand{\circledc}[2][black]{\hspace{.1ex}\raisebox{-0.2\height}{\scalebox{.6}{%
+    \tikz{\node[font={\selectfont\color{#1}},
+        circle,inner sep=2pt,outer sep=.4pt,fill=white,
+        draw=#1,solid,thick]{\textbf{#2}};}}}}
+
 % small color square
 \newcommand{\langclr}[1]{%
     \tikz{\node[rectangle,minimum size=2mm,rounded corners=2pt,fill=#1]{};}}
