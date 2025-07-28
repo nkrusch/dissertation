@@ -1,8 +1,6 @@
-%! suppress = LabelConvention
 Computer security is a broad, interdisciplinary field with technical and non-technical challenges.
 An important subset of the technical aspects can be modeled and studied mathematically~\cite{piessens2024}.
-At its core, computer security is concerned with three properties:
-confidentiality\index{confidentiality}, integrity\index{integrity}, and availability\index{availability}~\cite{du2019}.
+At its core, computer security is concerned with three properties: \ndx{confidentiality}, \ndx{integrity}, and \ndx{availability}~\cite{du2019}.
 Although the precise meaning of these terms is situational, they are generally described as follows~\cite[p. 4--6]{bishop2003}.
 
 \begin{description}
@@ -10,7 +8,7 @@ Although the precise meaning of these terms is situational, they are generally d
 is about concealment of protected assets, like secret information and resources.
 The goal of confidentiality is to ensure protected assets are viewed by authorized users only.
 By extension, it includes concealing knowledge about the existence of protected assets.
-Confidentiality is compromised if secrets are exposed, or \enquote{leak}\index{leak}, to unauthorized users.
+Confidentiality is compromised if secrets are exposed, or \enquote{\ndx{leak}}, to unauthorized users.
 
 \item[Integrity]\index{integrity}
 is about trustworthiness of information and resources.
@@ -18,7 +16,7 @@ It aims to ensure protected assets are modified by authorized users only and tha
 For example, an update to a date field should yield a legitimate date.
 Integrity is difficult to guarantee because it concerns assets over mutations, transmissions, and time.
 Authentication\index{authentication} is a critical (though an insufficient) mechanism for enforcing integrity.
-Integrity is often considered the dual of {confidentiality\index{confidentiality}}~\cite{biba1977}.
+Integrity is often considered the dual of \ndx{confidentiality}~\cite{biba1977}.
 
 \item[Availability]\index{availability}
 refers to the ability to access and use authorized system and its assets.
@@ -29,20 +27,20 @@ to include unavailability due to excessive service latency.
 The challenge of computer security is to find the right balance between the three;
 preventing unauthorized views and modifications, while preserving access and supporting authorized use.
 Among the strategies are designing techniques to prevent improper use, detect issues, and recover from compromised scenarios.
-Although all three properties are important, the rest of this presentation focuses on confidentiality\index{confidentiality}.
+Although all three properties are important, the rest of this presentation focuses on \ndx{confidentiality}.
 
-Confidentiality\index{confidentiality} can be enforced with numerous mechanisms, \eg firewalls\index{firewall}, access control\index{access control}, and encryption\index{encryption}.
-A firewall\index{firewall} is a network-layer protection and an operating system implements and maintains access control\index{access control}.
-Encryption\index{encryption} protects secret information until decryption\index{decryption}, but its excessive use is problematic for availability\index{availability}.
+Confidentiality\index{confidentiality} can be enforced with numerous mechanisms, \eg \ndx{firewall}s, \ndx{access control}, and \ndx{encryption}.
+A \ndx{firewall} is a network-layer protection and an operating system implements and maintains \ndx{access control}.
+Encryption\index{encryption} protects secret information until \ndx{decryption}, but its excessive use is problematic for \ndx{availability}.
 In general, those mechanisms are insufficient to provide end-to-end guarantees through all layers of computation.
 One problem is that confidentiality\index{confidentiality} is not guaranteed after secret information is released as input to a program~\cite{zdancewic2004}.
-Information flow\index{information flow} security is concerned with achieving fine-grained confidentiality\index{confidentiality} (and integrity\index{integrity}) guarantees by tracking propagation of information including during program executions~\cite{hedin2012,eggert2014}.
+Information flow\index{information flow} security is concerned with achieving fine-grained confidentiality\index{confidentiality} (and \ndx{integrity}) guarantees by tracking propagation of information including during program executions~\cite{hedin2012,eggert2014}.
 
 \subsubsection{Information Flow Security}\label{if-security}
 
-Protected assets may require different levels of confidentiality\index{confidentiality}.
-Computer systems protecting such assets naturally need controlled information flow\index{information flow}.
-The capability to process assets at different security levels is called {\emph{multilevel security} (MLS)\index{multilevel security}}~\cite{bossi2005}.
+Protected assets may require different levels of \ndx{confidentiality}.
+Computer systems protecting such assets naturally need controlled \ndx{information flow}.
+The capability to process assets at different security levels is called {\emph{\ndx{multilevel security}} (MLS)}~\cite{bossi2005}.
 Illustrated in~\autoref{fig:us-docs}, the United States federal government document classification scheme~\cite{wiki_us_docs} is an example of a multilevel security system.
 The permissions cascade: having access to a specific level grants access to all the levels below it.
 For example, accessing documents marked \enquote{secret} requires secret or top secret level permission.

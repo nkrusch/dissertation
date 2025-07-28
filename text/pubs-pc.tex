@@ -1,9 +1,9 @@
 \subsection*{Abstract}
 
-Formal specifications are necessary to guarantee software meets critical safety
-properties, but retrofitting specifications to existing software requires
+Formal \ndx{specifications} are necessary to guarantee software meets critical safety
+properties, but retrofitting \ndx{specifications} to existing software requires
 considerable resources and expertise. Although inference eases discovery of
-specifications, existing inference techniques are limited in targeting different
+\ndx{specifications}, existing inference techniques are limited in targeting different
 specification conditions. Particularly, inference of postconditions has rarely
 been the targeted focus of prior investigations. This paper presents a static
 program analysis that automatically synthesizes postconditions from pure program
@@ -42,11 +42,11 @@ It is well-known that having postconditions supports discovery of inductive inva
 Moreover, as generalized assertions, postconditions assist in various software development activities~\cite{nguyen2022}, like testing~\cite{alagarsamy2024,zhang2015} and code maintenance~\cite{rosenblum1995}.
 However, dedicated studies of postcondition inference are a novelty in research literature~\cite{popeea2006,molina2021}.
 
-Specifications must be precise, consistent, and complete descriptions of program behavior.
-Making formal specifications mechanically verifiable requires they are expressed in a structured language.
-However, defining formal specifications is non-trivial and requires expertise.
+Specifications\index{specifications} must be precise, consistent, and complete descriptions of program behavior.
+Making formal \ndx{specifications} mechanically verifiable requires they are expressed in a structured language.
+However, defining formal \ndx{specifications} is non-trivial and requires expertise.
 In the meantime, various resource analyses~\cite{jones2009,brockschmidt2016} already compute varied notions of postconditions as means to arrive to their primary result.
-Thus, it seems natural that {resource analyses could be used to infer postconditions} for formal specifications.
+Thus, it seems natural that {resource analyses could be used to infer postconditions} for formal \ndx{specifications}.
 This is precisely the key intuition we exploit in the paper.
 We present a complexity\hyp{}theoretic flow calculus~\cite{jones2009,aubert20222} that we use to automatically infer variable postconditions.
 In this view, the program implements the intended behavior, but misses a formal proof.
@@ -65,9 +65,9 @@ The loop may represent a program {fragment} that is still under development. %, 
 Reducing contextual information this way is practically motivated because such information is commonly absent in realistic unverified programs.
 
 \autoref{lst:exA} shows a canonical verification problem.
-Given a specification with a precondition (\pr|assume|) and a loop command (\pr|for|), the goal of formal verification is to prove that the postcondition (\pr|assert|) is satisfiable.
+Given a specification with a \ndx{precondition} (\pr|assume|) and a loop command (\pr|for|), the goal of formal verification is to prove that the postcondition (\pr|assert|) is satisfiable.
 The program \emph{\explain}, in \autoref{lst:exB}, shows the problem variant we address in the paper.
-When precise variable values, precondition, and iteration count are unknown, what postconditions (\qtext) can we infer from the syntax?
+When precise variable values, \ndx{precondition}, and iteration count are unknown, what postconditions (\qtext) can we infer from the syntax?
 
 \begin{center}
 \begin{minipage}{.45\textwidth}
@@ -84,7 +84,7 @@ assert(X3|$\leq$|100+X5|$\,\land\,$|X4|$\geq$|42);
 \end{implisting}
 \end{minipage}
 \end{center}
-\captionof{lstlisting}[Precise context (ideal)]
+\captionof{lstlisting}[Precise context]
 {Precise context (ideal).}\label{lst:exA}
 \end{minipage}\hfill%
 \begin{minipage}{.52\textwidth}
@@ -107,7 +107,7 @@ assert(|\myqm|);
 
 Our analysis infers postconditions that express the {growth of variable values} in the loop.
 Adding postpositions supports discovery of other specification conditions, like invariants,
-that then permit formal verification (the Duet analyzer in \autoref{subsec:comparison} is an example).
+that then permit formal verification (the \ndx{Duet} analyzer in \autoref{subsec:comparison} is an example).
 The analysis is sound, guaranteeing that if a postcondition can be inferred, it is known to hold.
 
 As result, our analysis generates {mwp-bounds}.
@@ -153,7 +153,7 @@ locating optimal bounds and bounding variables in presence of whole-program deri
 This provides a {strictly more expressive system} than prior formulations of the flow calculus.
 
 \item To materialize our theory, we implement \impl for analyzing numerical loops in C (\autoref{subsec:implementation}).
-\impl is already integrated into a public static analyzer pymwp, extending the utility of our results beyond the paper presentation.
+\impl is already integrated into a public static analyzer \ndx{pymwp}, extending the utility of our results beyond the paper presentation.
 
 \item We demonstrate the relevance and effectiveness of the technique through
 analyzer comparisons (\autoref{sec:related-works}) and experiments (\autoref{sec:performance}).
@@ -175,7 +175,7 @@ can be beneficial, if we assume a {compositional} analysis that covers a suffici
 \label{subsec:flow-calc-intro}
 
 Our postcondition inference is based on the \emph{flow calculus of mwp-bounds}~\cite{jones2009,aubert20222}.
-It is a data flow analysis that tracks \emph{variable value growth} between commands in imperative programs.
+It is a data flow analysis that tracks \emph{variable value growth} between commands in \ndx{imperative programs}.
 The analysis aims to discover a polynomially bounded data-flow relation between the
 \emph{initial values} \(x_1,\ldots,x_n\), for natural-number variables \(\prm{X}_1,\ldots,\prm{X}_n\), and the
 \emph{final values} \(x'_i\) of \(\prm{X}_i\) (for \(i=1,\ldots,n\)).
@@ -206,7 +206,7 @@ The strongest permissible dependence is \emph{\underline{p}olynomial}.
 A \(p\) coefficient signals that a variable value grows at most polynomially throughout computation.
 Finally, other forms of dependence are either beyond polynomial or not expressible.
 The ∞ coefficient marks these cases as \emph{failure}.
-The flow calculus is nondeterministic, therefore multiple coefficients may characterize one pair of variables.
+The flow calculus is nondeterministic,\index{nondeterminism} therefore multiple coefficients may characterize one pair of variables.
 
 \begin{figure}[H]
 \centering
@@ -245,7 +245,7 @@ while(X2)
 \centering\includegraphics[width=\textwidth,keepaspectratio]{fig_flows3.pdf}
 \end{subfigure}
 \caption[Simple imperative programs and their corresponding data flow graphs]{
-Simple imperative programs and their corresponding data flow graphs.
+Simple \ndx{imperative programs} and their corresponding \ndx{data flow graph}s.
 Edges below ∞ represent acceptable value growth.
 In the left program, all variable values grow at most polynomially, \ie satisfactorily.
 In the right program, variable \pr|X1| grows exponentially.
@@ -269,14 +269,14 @@ Failure may also arise from inability to express satisfactory behavior.
 This is a built-in limitation of the flow calculus;
 and more broadly, a common limitation among related systems~\cite[p. 2]{baillot2015}.
 The flow calculus alleviates the issues with nondeterministic inference rules.
-The nondeterminism increases expressiveness, to capture a larger class of programs.
+The \ndx{nondeterminism} increases expressiveness, to capture a larger class of programs.
 But one program may admit multiple derivations, which in turn complicates the analysis procedure.
 A program is derivable if there exists a derivation without an ∞ coefficient.
 
-\subsubsection{Loop specifications for formal guarantees}
+\subsubsection{Loop \ndx{specifications} for formal guarantees}
 \label{subsec:specs}
 
-Formally verifiable programs are defined as precise mathematical models through specifications.
+Formally verifiable programs are defined as precise mathematical models through \ndx{specifications}.
 Verifying the program requires giving a proof that the program satisfies its specification.
 The motivation for using formal methods is the strength of guarantees it provides.
 In contrast to tests and inspection, a proof conclusively ensures behavioral correctness at the modeled level of abstraction.
@@ -284,20 +284,20 @@ In contrast to tests and inspection, a proof conclusively ensures behavioral cor
 \paragraph*{Specifications.}
 A {specification} is a formal contract with three components.
 \begin{enumerate*}
-    \item \emph{Precondition} \(P\), is the initial logic expressions assumed to hold before entering the loop.
+    \item \emph{Precondition}\index{precondition} \(P\), is the initial logic expressions assumed to hold before entering the loop.
     \item Program, \pr|loop b C|, performs command \pr|C| until the expression \pr|b| becomes false.
     \item \emph{Postcondition} \(Q\), is the final logic expressions asserted to hold after the loop terminates.
 \end{enumerate*}
-Using a {Hoare triple}~\cite{hoare1969}, we can express the specification as \(\Hoare{P}{\prm{loop b C}}{Q}\).
+Using a \ndx{Hoare triple}~\cite{hoare1969}, we can express the specification as \(\Hoare{P}{\prm{loop b C}}{Q}\).
 The implementation of the program is correct if we can construct a proof that shows the program satisfies its specification in all states.
-A correctness proof requires verifying that every computation terminates, every call to another procedure satisfies its preconditions, and the postcondition holds at program termination~\cite{furia2010}.
-For an example of specifications, refer to Appendix~\ref{app:sec:verified}.
+A correctness proof requires verifying that every computation terminates, every call to another procedure satisfies its \ndx{precondition}s, and the postcondition holds at program termination~\cite{furia2010}.
+For an example of \ndx{specifications}, refer to Appendix~\ref{app:sec:verified}.
 
 \paragraph*{Relating postconditions and loop invariants.}
 A postcondition is a higher-level view describing the program goal.
 In case of loops, a \emph{postcondition} is a conditions that must hold after the loop terminates.
 The postcondition inference problem can be expressed informally as follows.
-Given a precondition \(P\) (in our formulation a constant true, \(\top\)), and a program \pr|loop b C|,
+Given a \ndx{precondition} \(P\) (in our formulation a constant true, \(\top\)), and a program \pr|loop b C|,
 the inference problem involves finding a postcondition \(Q\) that satisfies the inference rule
 \begin{prooftree} %! suppress = EscapeAmpersand
 \hypo{P = \top,
@@ -313,13 +313,13 @@ An \emph{invariant} describes an assertion about a program location that must be
 A {loop invariant} is a weakened form of the postcondition~\cite{furia2010}.
 An invariant is {inductive} if it holds the first time the location is reached and is preserved in every cycle returning to the location~\cite{sankaranarayanan2004}.
 Verifying loops requires discovering {sufficiently strong} inductive loop invariants to prove the specification.
-For an invariant to be sufficient, it must be weak enough to be derived from the precondition and strong enough to conclude the postcondition.
+For an invariant to be sufficient, it must be weak enough to be derived from the \ndx{precondition} and strong enough to conclude the postcondition.
 
 Inductive loop invariants and postconditions are symbiotic: the discovery of one assists finding the other~\cite{furia2010}.
 Every invariant is necessarily a (weak) postcondition, as it must hold at termination, but a postcondition must not be invariant.
 For example, given natural numbers \pr|i| and \pr|n|, the loop \prc|for(i=0;i<n;i++) i++;| has an invariant \(0 \leq \prm{i} \leq \prm{n}\) and a postcondition \(\prm{i}=\prm{n}\).
-Invariant inference techniques may assume preconditions and postconditions are known.
-However, this assumption is impractical, since manually adding specifications to code fragments is non-trivial.
+Invariant inference techniques may assume \ndx{precondition}s and postconditions are known.
+However, this assumption is impractical, since manually adding \ndx{specifications} to code fragments is non-trivial.
 
 \subsection{Technical Preliminaries of the Flow Calculus}
 \label{sec:calc}
@@ -442,12 +442,12 @@ It contains all derivations of the input program in one (complex) data structure
         In rules E3 and E4, a vector of coefficients is denoted by \(V_n\).
         In other words, the rules assign vectors of coefficients to variables.
         Three rules can be used to analyze a single expression.
-        The nondeterminism of the flow calculus comes from these inference rules.
+        The \ndx{nondeterminism} of the flow calculus comes from these inference rules.
     }
     \label{fig:rules-expressions}
 \end{figure}
 
-Nondeterminism is necessary to improve the expressive power of the flow calculus, but complicates the analysis procedure.
+Nondeterminism\index{nondeterminism} is necessary to improve the expressive power of the flow calculus, but complicates the analysis procedure.
 There are the three rules (\autoref{fig:rules-expressions}) to analyze an expression of binary addition\footnote{
     Similar rules exist for subtraction, and multiplication is always handled by E2.}, like \pr|X1 + X2|.
 Informally, the rule E2 says \enquote{we can always assign a \(w\) coefficient to all variables in the expression}.
@@ -477,7 +477,7 @@ The degree is precisely equal to the count of binary arithmetic operations whose
 \begin{definition}[Derivation choice]
     Letting \( \mathcal{D} \) be a domain and \( k \in \mathbb{N} \) be the degree of choice,
     we define a derivation choice as \( \delta(i, j) \), where \( i \subseteq \mathcal{D} \) and \( j \leq k \).\end{definition}
-A derivation choice, denoted by \(\delta\), represents the nondeterminism of the flow calculus.
+A derivation choice, denoted by \(\delta\), represents the \ndx{nondeterminism} of the flow calculus.
 %It is another core building block of mwp-matrices.
 We call \(i\) the \emph{value} and \(j\) the \emph{index} of the derivation choice.
 Informally, it captures that an inference rule \(i\) is applied at program point \(j\).
@@ -497,16 +497,16 @@ Second, the sequence is sorted by the index in ascending order.
 These restrictions support efficient computation during matrix construction.
 Since we are only concerned with {interpreting} mwp-matrices, we assume every \(\Delta\) satisfies the uniqueness and order properties by construction.
 By \autoref{fig:rules-expressions}, it is evident that one variable can be assigned multiple coefficients.
-The fact that \(\Delta\) reduces to a particular coefficient is represented in a \emph{monomial}.
+The fact that \(\Delta\) reduces to a particular coefficient is represented in a \emph{\ndx{monomial}}.
 
 \begin{definition}[Monomial]\label{def:mono}
 Letting \(\alpha \in \text{\textsc{mwp}}^\infty\) be a coefficient and \(\Delta\) be a sequence of derivation choices,
-we define a monomial as \((\alpha, \Delta)\).
+we define a \ndx{monomial} as \((\alpha, \Delta)\).
 \end{definition}
 
 \noindent
-A monomial in the flow calculus is disjoint from the classic notion of monomials.
-For example, both \(m.(\delta(0,0),\delta(2,1))\) and \(0\) are valid monomials by definition.
+A \ndx{monomial} in the flow calculus is disjoint from the classic notion of \ndx{monomial}s.
+For example, both \(m.(\delta(0,0),\delta(2,1))\) and \(0\) are valid \ndx{monomial}s by definition.
 The former says \enquote{if we apply rule 0 then rule 2 (at indices 0 and 1, resp.) then we obtain an \(m\) coefficient}.
 The latter says \enquote{no matter the choice, we always obtain a \(0\) coefficient}.
 Finally, the fact that {different \(\Delta\)} reduce to {different coefficients} is represented by a \emph{polynomial structure}.
@@ -516,7 +516,7 @@ Finally, the fact that {different \(\Delta\)} reduce to {different coefficients}
     \(\big(0,(\alpha_1,\Delta_1)\), \((\alpha_2,\Delta_2)\), \(\dots\), \((\alpha_m, \Delta_m)\big)\) where \(m \geq 0\).
 \end{definition}
 
-\noindent The polynomial structure is prefixed by \(0\)-monomial to ensure it is always non-empty.
+\noindent The polynomial structure is prefixed by \(0\)-\ndx{monomial} to ensure it is always non-empty.
 \textbf{The elements of an mwp-matrix are polynomial structures.}
 
 \subsubsection{Decoding an mwp-matrix by example}
@@ -595,7 +595,7 @@ An mwp-bound is an expression of form $\max(\vec{x}, \poly_1(\vec{y})) + \poly_2
 Variables characterized by $m$-flow are listed in $\vec{x}$; $w$-flows in $\vec{y}$, and $p$-flows in $\vec{z}$.
 Variables characterized by $0$-flow do not occur in the expression.
 No bound exists if some variable is characterized by ∞.
-The $\poly_1$ and  are \emph{honest polynomials}, build up from constants and variables by applying $+$ and $\times$. % (\cf~\autoref{app:sec:hp} for details).
+The $\poly_1$ and  are \emph{\ndx{honest polynomial}s}, build up from constants and variables by applying $+$ and $\times$. % (\cf~\autoref{app:sec:hp} for details).
 The variables with \(w\)-flow occur in $\poly_1$ and variables with \(p\)-flow in $\poly_2$.
 Any of the three variable lists might be empty, and $\poly_1$ and $\poly_2$ may not be present.
 When characterizing value growth, an mwp-bound is approximative.
@@ -634,7 +634,7 @@ We introduce two solutions to address current limitations of the flow calculus. 
     \item Improved \emph{derivation failure handling}, to identify variables that maintain acceptable value growth in presence of whole-program derivation failure.
 \end{enumerate}
 
-\noindent The nondeterminism of the flow calculus permits capturing more programs, but creates a potential state explosion problem.
+\noindent The \ndx{nondeterminism} of the flow calculus permits capturing more programs, but creates a potential \ndx{state explosion} problem.
 Effectively handling this aspect becomes critical in the second analysis phase, where an mwp-matrix is \emph{evaluated} to find mwp-bounds of variables.
 The first challenge is finding the derivation choices that do not produce failure.
 The second challenge is determining the coefficients assigned to each variable.
@@ -652,14 +652,14 @@ The evaluation result the captures the \emph{permissible} choices.
 The term permissible is abstract -- the meaning depends on what is unwanted.
 For example, if the derivation choices of ∞ coefficients are unwanted,
 the permissible choices are those that avoid failure, \ie non-∞.
-The result of an evaluation is a \emph{disjunction of choice vectors} that compactly capture the permissible derivation choices.
+The result of an evaluation is a \emph{disjunction of \ndx{choice vector}s} that compactly capture the permissible derivation choices.
 
 \begin{definition}[Choice vector]
     Letting \( \mathcal{D} \) be a domain and \( k \in \mathbb{N} \) be a choice degree,
     we define a choice vector as \( \vec{C} = (c_1, c_2, \ldots, c_k) \),
     where \( c_i \subseteq \mathcal{D} \) and \( c_i \neq \emptyset \) for all \( i \in \{1, 2, \ldots, k\} \).
 \end{definition}
-We show choice vectors in Examples~\ref{ex:derivable},~\ref{ex:wbound}, and~\ref{ex:whl}.
+We show \ndx{choice vector}s in Examples~\ref{ex:derivable},~\ref{ex:wbound}, and~\ref{ex:whl}.
 
 \subsubsection{Evaluation for identifying derivable programs}
 \label{subsec:eval}
@@ -672,8 +672,8 @@ The evaluation is parametric on three inputs:
 \item a set of unwanted derivation choice-sequences, \(\mathcal{S} = \{\Delta_1,\ldots,\Delta_n\}\) where \(n \geq 0\).
 \end{enumerate*}
 Observe that all parameters are obtained from an mwp-matrix, but the mwp-matrix or its coefficients are \underline{not} used.
-The evaluation returns a list of choice vectors.
-In the maximally permissive case, the result is a single choice vector permitting everything.
+The evaluation returns a list of \ndx{choice vector}s.
+In the maximally permissive case, the result is a single \ndx{choice vector} permitting everything.
 If no result exists or no choice is necessary, the result is an empty list.
 These outcomes are handled as base cases (Lines~\ref{alg:step0}--\ref{alg:step0end}).
 All interesting evaluations fall between these extremes.
@@ -685,7 +685,7 @@ All interesting evaluations fall between these extremes.
     degree \(k\) (\(\mathbb{N}\)),
     domain \(\mathcal{D}\) (set),
     derivation choice-sequences \(\mathcal{S}\) (set)\\
-    \textbf{Output}: choice vectors \(\mathcal{C}\) (list)
+    \textbf{Output}: \ndx{choice vector}s \(\mathcal{C}\) (list)
     \begin{algorithmic}[1]
         \State \(\mathcal{C} \gets \varepsilon \)
         \LineComment{Handle base cases}
@@ -702,7 +702,7 @@ All interesting evaluations fall between these extremes.
         \Comment{\(\mathcal{O}(\mathcal{S}^3)\)}
         \State \(\mathcal{S} \gets \textsc{Simplify}(\mathcal{S})\)\label{alg:step1}
         \doWhile{\text{\textit{size}} \(\neq |\mathcal{S}|\)}
-        \LineComment{Step 2: Generate choice vectors}
+        \LineComment{Step 2: Generate \ndx{choice vector}s}
         \State Compute \(P \coloneqq\) the product of sequences in \(\mathcal{S}\)\label{alg:step2}
         \ForAll{paths \(p\) in P} \Comment{\(\mathcal{O}(\prod_{s \in \mathcal{S}} |s|)\)}
         \State Create \(\vec{c} \coloneqq\) ChoiceVector(\(k, \mathcal{D}\))
@@ -719,8 +719,8 @@ All interesting evaluations fall between these extremes.
 
 The evaluation operates in two steps.
 First it simplifies \(\mathcal{S}\) to the minimal length, non-empty sequences while preserving its effect.
-Then, it generates the choice vectors by negating the remaining unwanted choices.
-The procedure is practically efficient because simplification eliminates redundancy before the choice vector are generated.
+Then, it generates the \ndx{choice vector}s by negating the remaining unwanted choices.
+The procedure is practically efficient because simplification eliminates redundancy before the \ndx{choice vector} are generated.
 Internally, it benefits from the finiteness of the domain and from having advance complete knowledge of all derivation choices.
 
 The simplification step (Line~\ref{alg:step1}) is crucial.
@@ -741,28 +741,28 @@ Different simplifications are applied on \(\mathcal{S}\) iteratively until conve
 
 \end{description}
 
-The generation step (Lines~\ref{alg:step2}--\ref{alg:step2end}) produces the choice vectors.
+The generation step (Lines~\ref{alg:step2}--\ref{alg:step2end}) produces the \ndx{choice vector}s.
 They are constructed by computing the cross product of \(\mathcal{S}\).
 We take one derivation choice from each sequence, then eliminating those choices.
 This prevents choosing any unwanted sequence completely.
-If the choice vector elements are non-empty after elimination, we appended the choice vector to the result (Line~\ref{alg:add}).
+If the \ndx{choice vector} elements are non-empty after elimination, we appended the \ndx{choice vector} to the result (Line~\ref{alg:add}).
 We have annotated the computational costs of the iterative steps in~\autoref{alg:algo}.
 The algorithm obviously terminates.
 Since the generation step involves a product, it is a source of potential inefficiency.
 However, we have not encountered natural programs where the simplification does not reduce \(\mathcal{S}\) sufficiently to make the generation step problematic.
-A full implementation of the algorithm is included in our artifact, and described in the \href{https://statycc.github.io/pymwp/choice}{documentation} of pymwp.\footnote{See: \url{https://statycc.github.io/pymwp/choice}}
+A full implementation of the algorithm is included in our artifact, and described in the \href{https://statycc.github.io/pymwp/choice}{documentation} of \ndx{pymwp}.\footnote{See: \url{https://statycc.github.io/pymwp/choice}}
 
 \begin{example}[\exname is derivable]\label{ex:derivable}
-In \autoref{ex:mat}, the distinct monomials that cause failure are \(\infty.\delta(1,1)\) and  \(\infty.\delta(2,1)\).
+In \autoref{ex:mat}, the distinct \ndx{monomial}s that cause failure are \(\infty.\delta(1,1)\) and  \(\infty.\delta(2,1)\).
 The mwp-matrix degree is \(k=2\), the domain is \(\mathcal{D}=\{0,1,2\}\), and the unwanted derivation choice-sequences are \(\mathcal{S} = \{ ((1,1)), ((2,1)) \}\).
 The evaluation returns a choice vector \(\big(\{0,1,2\}, \{0\}\big)\) witnessing successful derivation choices.
 The choice vector communicates that we can select any derivation rule to analyze command \circledc{1}, but must apply \enquote{inference rule 0} (E4) at command \circledc{2}.
 \end{example}
 
-The application of a choice vector requires making a selection at each vector index, then applying the selections to the polynomial structures of the mwp-matrix.
-A monomial evaluates to \(\delta(i, j) = \alpha\) if the \(j\)th choice is \(i\), and \(0\) otherwise.
+The application of a \ndx{choice vector} requires making a selection at each vector index, then applying the selections to the polynomial structures of the mwp-matrix.
+A \ndx{monomial} evaluates to \(\delta(i, j) = \alpha\) if the \(j\)th choice is \(i\), and \(0\) otherwise.
 A polynomial structure evaluates to its maximal coefficient.
-Thus, the application produces the maximal coefficient among the monomials (\cf~\autoref{ex:whl}).
+Thus, the application produces the maximal coefficient among the \ndx{monomial}s (\cf~\autoref{ex:whl}).
 
 \subsubsection{Variable projection and querying mwp-bounds}
 \label{subsec:query}
@@ -774,16 +774,16 @@ Since~\autoref{alg:algo} does not require mwp-matrices or coefficients as input,
 Analyzing variable \(\prm{X}_j\) requires taking derivation choices only from column \(j\), instead of the entire mwp-matrix.
 To determine if a variable admits a particular form of mwp-bound, we issue \enquote{queries} against the evaluation procedure,
 altering the derivation choices provided as parameter \(\mathcal{S}\).
-For example, to find derivations with at most \(m\) coefficients (and whether they exist), we take the derivation choices from monomials whose coefficient are in \(\{w, p,\infty\}\).
-If the evaluation returns a choice vector, it specifies the derivations where the variable is assigned an mwp-bound of at most \(m\) coefficients.
+For example, to find derivations with at most \(m\) coefficients (and whether they exist), we take the derivation choices from \ndx{monomial}s whose coefficient are in \(\{w, p,\infty\}\).
+If the evaluation returns a \ndx{choice vector}, it specifies the derivations where the variable is assigned an mwp-bound of at most \(m\) coefficients.
 Bounds with at most \(w\) or \(p\) can be queried similarly, by adjusting \(\mathcal{S}\).
 
 \begin{example}[Variable \texttt{X3} is bounded by at most $w$ coefficients]\label{ex:wbound}
 In \autoref{ex:mat}, variable \pr|X3| does not have a derivation with at most \(m\) coefficients.
 This can be determined by evaluation of the distinct choices in column \pr|X3| with \(\{w, p, \infty\}\) coefficients,
 \ie \(\mathcal{S} = \{ ((0,0)),((1,0)),((2,0)) \}\).
-This evaluation does not return a choice vector.
-However, an mwp-bound of at most \(w\) exists, by the choice vector \(\big(\{2\}, \{0,1,2\}\big)\).
+This evaluation does not return a \ndx{choice vector}.
+However, an mwp-bound of at most \(w\) exists, by the \ndx{choice vector} \(\big(\{2\}, \{0,1,2\}\big)\).
 \end{example}
 
 \noindent Variable query is safe for derivable programs, because all variables are guaranteed to have an mwp-bound by the soundness theorem of the flow calculus~\cite[p. 11]{jones2009}.
@@ -905,7 +905,7 @@ The area of failure, that we want to isolate, is shaded in the mwp-matrix of~\au
 Not all variables are problematic.
 There is no dependency from \pr|X4| to variables \pr|X2| and \pr|X5| (row \pr|X4|).
 Variable \pr|X3| is more complicated due to the ∞ coefficients in column \pr|X3|.
-Since we want derivations where \pr|X3| is derivable, we compute its choice vector: \(\big(\{2\}, \{0,1,2\}\big)\).
+Since we want derivations where \pr|X3| is derivable, we compute its \ndx{choice vector}: \(\big(\{2\}, \{0,1,2\}\big)\).
 At index 0, variable \pr|X3| permits one derivation choice: 2.
 Applying \((2,0)\) to the mwp-matrix, at column \pr|X3|, yields coefficients:
 \(\text{\pr|X2|} \mapsto w\),
@@ -923,7 +923,7 @@ Crucially, a failing variable fails in {every derivation}.
 Therefore, it suffices to evaluate variables individually for at most \(p\) coefficients, by~\autoref{alg:algo}.
 We group variables into two sets.
 Set \(\mathsf{A}\) with variables that satisfy polynomial value growth, and set \(\mathsf{B}\) with variables that fail.
-Which set each variable belongs to is determined by the existence of a choice vector.
+Which set each variable belongs to is determined by the existence of a \ndx{choice vector}.
 
 \subparagraph*{Establishing independence from failure} (\autoref{fig:group-part}).
 Recall, the \(0\) coefficients track {absence} of data flows between variables.
@@ -984,19 +984,19 @@ the general procedure for deriving a variable's optimal postcondition is as foll
 
 \begin{enumerate}
     \item Run the mwp-matrix evaluation (\autoref{alg:algo}) iteratively.
-    Construct the set \(\mathcal{S}\) from monomials whose coefficient is greater than \(m\) (next \(w\), then \(p\)).
-    \item Stop at the first choice vector.
+    Construct the set \(\mathcal{S}\) from \ndx{monomial}s whose coefficient is greater than \(m\) (next \(w\), then \(p\)).
+    \item Stop at the first \ndx{choice vector}.
     This solution is optimal.
 \end{enumerate}
 
 \noindent
 Since the search focuses on individual variables, we may want to ask whether multiple postconditions can occur concurrently.
-To determine the answer, we take the intersection of their choice vectors (\autoref{def:intersect}).
+To determine the answer, we take the intersection of their \ndx{choice vector}s (\autoref{def:intersect}).
 A non-empty intersection specifies the derivations in which both postconditions hold.
 Related questions about postconditions can be formulated similarly, as operations on choice vectors.
 
-\begin{definition}[Choice vector intersection]\label{def:intersect}
-Letting \(\vec{C_a} = (a_1, a_2,\dots,a_k) \) and \(\vec{C_b} = (b_1\), \(b_2\), \(\dots\), \(b_k)\) be choice vectors of length \(k\),
+\begin{definition}[Choice vector intersection]\label{def:intersect}\index{choice vector!intersection}
+Letting \(\vec{C_a} = (a_1, a_2,\dots,a_k) \) and \(\vec{C_b} = (b_1\), \(b_2\), \(\dots\), \(b_k)\) be \ndx{choice vector}s of length \(k\),
 we define the intersection of \(\vec{C_a} \text{ and } \vec{C_b} \) as
 \[ \vec{C_a} \cap \vec{C_b} = \begin{cases}
 (a_1 \cap b_1, a_2 \cap b_2, \dots, a_k \cap b_k), & \text{ if } \not\exists i \text{ such that } a_i \cap b_i = \emptyset, \\
@@ -1005,7 +1005,7 @@ we define the intersection of \(\vec{C_a} \text{ and } \vec{C_b} \) as
 \end{definition}
 
 \begin{example}[Successful and optimal postcondition of \texttt{X3}]\label{ex:opt-derivation}
-By \autoref{ex:derivable}, \exname is derivable by choice vector \(\big(\{0, 1, 2\}, \{0\}\big)\).
+By \autoref{ex:derivable}, \exname is derivable by \ndx{choice vector} \(\big(\{0, 1, 2\}, \{0\}\big)\).
 By \autoref{ex:wbound}, variable \pr|X3| is assigned its optimal postcondition in derivations \(\big(\{2\}, \{0,1,2\}\big)\).
 The whole-program is derivable \emph{and} variable \pr|X3| is assigned its optimal postcondition in derivations defined by choices
 \( \big(\{0, 1, 2\}, \{0\}\big) \cap \big(\{2\}, \{0,1,2\}\big) = \big( \{2\}, \{0\}\big) \).
@@ -1053,7 +1053,7 @@ The inferred postconditions can be described by the following categories.
     \item[Iteration-independent.]
     A variable is iteration-independent if its final value depends on a fixed number of iterations (\eg the first or last one) or eventually reaches a fixed point.
     Iteration independence means that, beyond the fixed point, the variable is unaffected by an increase in loop iteration count.
-    Thus, iteration-independence is a quasi-invariance property.
+    Thus, iteration-independence is a quasi-invariance\index{quasi-invariant} property.
     In \exname, if the loop iterates at least once, the final value of \pr|X3| is determined by \pr|X2| and \pr|X5|.
 %This makes variable \pr|X3| iteration-independent.
 %   Increasing the iteration count has no impact.
@@ -1088,10 +1088,10 @@ These can evaluate to distinct numeric values, yet both are equally optimal by d
 \subsubsection{Implementing postcondition inference with \impl}
 \label{subsec:implementation}
 
-We implemented the analysis of~\autoref{subsec:inference} as an extension of the static analyzer pymwp.
-    {pymwp}~\cite{aubert2023b} is an open source implementation of the flow calculus of mwp-bounds on a subset of \pr|C|.
-pymwp takes as input a \pr|C| file and analyzes variable value growth in each of its functions.
-Our implementation adds to pymwp a new loop analysis mode, \impl.
+We implemented the analysis of~\autoref{subsec:inference} as an extension of the static analyzer \ndx{pymwp}.
+\ndx{pymwp}~\cite{aubert2023b} is an open source implementation of the flow calculus of mwp-bounds on a subset of \pr|C|.
+\ndx{pymwp} takes as input a \pr|C| file and analyzes variable value growth in each of its functions.
+Our implementation adds to \ndx{pymwp} a new loop analysis mode, \impl.
 The loop analysis is complementary to the default function analysis mode, which we name \impf for distinction.
 The primary differences are that \impl looks for {optimal} bounds by variable in a {loop},
 and \impf finds existence of {any} bound for all variables in a {function}.
@@ -1101,7 +1101,7 @@ During program analysis, the input file is mapped to the imperative language of~
 Only loops that are fully expressible in the imperative language are analyzed.
 Analyzing program fragments is possible due to compositionality of the flow calculus.
 Stated differently, we can apply the analysis early, even if some program parts are missing.
-pymwp supports all loop constructs of \pr|C|.
+\ndx{pymwp} supports all loop constructs of \pr|C|.
 The flow calculus treats the iteration space conservatively as an over-approximation.
 Keywords \pr|break| and \pr|continue| have no observable impact.
 Similarly, verification macros like \pr|assert| may be present, but do not impact the analysis.
@@ -1127,31 +1127,31 @@ However, filling in the expression is conceptually easier than starting with no 
 Our work relates primarily to approaches that aim to unify software verification and complexity.
 Whereas loop invariants are used in~\cite{nguyen2017} to obtain complexity results, we synthesize specification conditions starting from complexity analysis.
 The bidirectionality suggests that further investigations, connecting the two topics, is warranted.
-Narrowing down to specifications, automatic specification inference in general is a challenging problem~\cite{dillig2013,yu2023}.
-It is common to break down the problem into smaller parts: preconditions, postconditions, and (inductive) invariants.
+Narrowing down to \ndx{specifications}, automatic specification inference in general is a challenging problem~\cite{dillig2013,yu2023}.
+It is common to break down the problem into smaller parts: \ndx{precondition}s, postconditions, and (inductive) invariants.
 Inference of postconditions is the most relevant \wrt our analysis.
 Although invariants inference is studied extensively in literature~\cite{karr1976,cousot1978,colon2003,sankaranarayanan2004,dillig2013,si2018,ryan2020,yao2020,yu2023,nguyen2014,nguyen2017},
 existing works that intentionally target postconditions are rare~\cite{popeea2006,molina2021}.
 
 There are a few instances that infer postconditions statically.
-In~\cite{popeea2006}, show how abstract interpretation can be used to obtain a static technique for postposition analysis.
-Conceptually it is close to our goals, but abstract interpretation differs considerably from the flow calculus.
+In~\cite{popeea2006}, show how \ndx{abstract interpretation} can be used to obtain a static technique for postposition analysis.
+Conceptually it is close to our goals, but \ndx{abstract interpretation} differs considerably from the flow calculus.
 Moreover, no implementation is available for comparison.
-The complexity analyzer KoAT~\cite{giesl2022} is a static analyzer with an open source implementation.
+The complexity analyzer \ndx{KoAT}~\cite{giesl2022} is a static analyzer with an open source implementation.
 However, it targets complexity-theoretic program properties, like time and size bounds, and is not specialized for verification.
 
-Dynamic analyzers are complementary to static techniques.
-They inspect program traces to infer \emph{likely} invariants at the traced program points.
-EvoSpex~\cite{molina2021} is a dynamic postcondition analyzer.
+Dynamic analyzers are complementary to static techniques.\index{dynamic program analysis}
+They inspect \ndx{program trace}s to infer \emph{likely} invariants at the traced program points.
+\ndx{EvoSpex}~\cite{molina2021} is a dynamic postcondition analyzer.
 It is designed for Java methods for reasoning about postconditions in classes (accessors, mutators, heap structures, \etc);
 and thus distant from numerical loop analysis.
-The invariant detector Daikon~\cite{ernst2007} handles many program constructs, including numerical loops.
-Since Daikon is compatible with our problem formulation, we discuss it in~\autoref{subsec:comparison}).
-DIG~\cite{nguyen2014} is another numeric invariant generator.
-DIG can perform invariant inference at arbitrary program points, which makes it usable as a postcondition detector.
-Although it is similar to Daikon, DIG mixes static and dynamic techniques to obtain more informative results.
-In general, dynamic analyses differ notably from static analyses.
-Since their results are based on traces they are necessarily incomplete.
+The invariant detector \ndx{Daikon}~\cite{ernst2007} handles many program constructs, including numerical loops.
+Since \ndx{Daikon} is compatible with our problem formulation, we discuss it in~\autoref{subsec:comparison}).
+\ndx{DIG}~\cite{nguyen2014} is another numeric invariant generator.
+\ndx{DIG} can perform invariant inference at arbitrary program points, which makes it usable as a postcondition detector.
+Although it is similar to \ndx{Daikon}, \ndx{DIG} mixes static and dynamic techniques to obtain more informative results.
+In general, \ndx{dynamic program analysis} differ notably from static analysis.
+Since their results are based on traces\index{program trace} they are necessarily incomplete.
 The quality of inferred results is directly related to the available analysis inputs.
 Importantly, a dynamic analyzer requires executing the input program, which implies that the program must be runnable.
 The same is not necessary for our analysis that can work with program fragments.
@@ -1161,7 +1161,7 @@ The same is not necessary for our analysis that can work with program fragments.
 
 Since we aim to support concrete verification tasks, we must compare our analysis to available implementations that can address the same problem.
 In this section, we compare\footnote{Refer to \autoref{app:sec:comparison} for the technical details of this comparison.}
-\impl to three mature\footnote{Each analyzer is developmentally stable with 10+ years of history.} analyzers: KoAT, Duet, and Daikon.
+\impl to three mature\footnote{Each analyzer is developmentally stable with 10+ years of history.} analyzers: \ndx{KoAT}, \ndx{Duet}, and \ndx{Daikon}.
 These analyzers are designed for complexity analysis, verification, and invariant inference, \resp
 Each analyzer analyzes different program scopes (\cf~\autoref{tab:summary} and~\autoref{subsec:analyzer-scopes}) and has a different specification of output format.
 Therefore, a statistical comparison is insufficient for useful comparison.
@@ -1208,7 +1208,7 @@ while(y<1000)
 \captionof{figure}[Loop cases for analyzer comparison]{
 Loop cases for analyzer comparison.
 The loop in~\ref{lst:case-1} is known to terminate and its guard variable \pr|X1| does not occur in the body.
-In~\ref{lst:case-2}, the loop iteration and termination are unknown since they are controlled by a nondeterministic function.
+In~\ref{lst:case-2}, the loop iteration and termination are unknown since they are controlled by a nondeterministic function\index{nondeterminism}.
 The loop in~\ref{lst:case-3} has a fixed iteration space, but the postcondition of \pr|x| is difficult to infer.
 Assuming \(\prm{y}=0\), the precise formula is \(\prm{x'} = \prm{x} + (\prm{y'} \times \prm{y'} - \prm{y'}) \div 2\) where \pr|y'| is iteration count.}
 \label{fig:loops}
@@ -1235,15 +1235,15 @@ The postconditions are \(\prm{x'}\leq\prm{x}+\prm{c}_2\times(\prm{c}_1 + \prm{y}
 
 \paragraph{Complexity analyzer KoAT.}
 \ndx{KoAT}~\cite{koat} is a part of the automated termination and complexity prover AProVE~\cite{giesl2016}.
-KoAT infers complexity bounds: time, cost, size bounds, \etc
+\ndx{KoAT} infers complexity bounds: time, cost, size bounds, \etc
 The bound most relevant to our problem is the \emph{size bound},
 which indicate how large the absolute value of an integer variable may become~\cite{lommen2023}.
-Applying KoAT on C programs requires compiling the C code (through LLVM bytecode) into an integer program.
-The transformed program is then analyzed by KoAT~\cite{giesl2022}.
+Applying \ndx{KoAT} on \ndx{C} programs requires compiling the C code (through LLVM bytecode) into an integer program.
+The transformed program is then analyzed by \ndx{KoAT}~\cite{giesl2022}.
 The translation step renames the program variables.
 Variables that do not contribute to the complexity result are discarded during pre-processing.
 This treatment has the following effects:
-(i) KoAT can distinguish between loops that differ only on iteration counts, and
+(i) \ndx{KoAT} can distinguish between loops that differ only on iteration counts, and
 (ii) size bounds are inferred only for variables that impact the loop iteration.
 The latter is the complement of the flow calculus, where the iterator of bounded loops is not allowed to occur in the body.
 
@@ -1262,29 +1262,29 @@ In particular, the implementation of {transition ideals}~\cite{cyphert2024}
 computes {loop summaries} that produce over-approximations of a formula that describes the loop body.
 The summaries can capture non-linear invariants and generalize over arbitrary control flow.
 The theory of transition ideals is monotone.
-TIn other words, a program with more precise specifications yields a more informative loop summary.
-Then, Duet aims to prove program correctness using the invariants generated from transition ideals.
+TIn other words, a program with more precise \ndx{specifications} yields a more informative loop summary.
+Then, \ndx{Duet} aims to prove program correctness using the invariants generated from transition ideals.
 
 \begin{itemize}
 \item Listings~\ref{lst:case-1} --~\ref{lst:case-3}:
-    In absence of assertions, Duet produces a single response, \pr|no errors and no unsafe assertions|.
+    In absence of assertions, \ndx{Duet} produces a single response, \pr|no errors and no unsafe assertions|.
     This response is not meaningful for our use case.
-    After adding postconditions (assertions) manually, Duet verifies them successfully.
+    After adding postconditions (assertions) manually, \ndx{Duet} verifies them successfully.
     For example, if we add to~\autoref{lst:case-3} the assertions
     \(\prm{x'}=\prm{x}+(\prm{y'}\times\prm{y'}-\prm{y'}) \div 2 \) and \(\prm{y'}=1000 \),
-    Duet verifies the program with \pr|0 errors,| \pr|2 safe assertions|.
-    When assertions are not available, \impl could assist Duet toward obtaining the initial assertions.
+    \ndx{Duet} verifies the program with \pr|0 errors,| \pr|2 safe assertions|.
+    When assertions are not available, \impl could assist \ndx{Duet} toward obtaining the initial assertions.
 \end{itemize}
 
 \paragraph{Postconditions with Daikon.}
 \ndx{Daikon}~\cite{ernst2007,daikon} is a dynamic invariant detector with front-ends to support many programming languages.
-Daikon predicts {likely} invariants at function entry and exit points.
+\ndx{Daikon} predicts \ndx{likely invariant}s at function entry and exit points.
 Critically, the function internals are opaque during invariant detection.
-The inference relies on execution traces, templates, and configuration options.
-Daikon infers postconditions for a \pr|return| variable
+The inference relies on execution traces\index{program trace}, templates, and configuration options.
+\ndx{Daikon} infers postconditions for a \pr|return| variable
 and a single function may generate multiple postconditions.
-Since the Daikon invariants are likely, they must be checked for correctness, possibly manually.
-Daikon does not produce results for the displayed fragments, but after a modification to a whole-program,
+Since the invariants are likely, they must be checked for correctness, possibly manually.
+\ndx{Daikon} does not produce results for the displayed fragments, but after a modification to a whole-program,
 it infers the following.
 
 \begin{itemize}
@@ -1294,21 +1294,21 @@ These either do not generalize or require additional assumptions to prove.
 \item~\autoref{lst:case-2}: No result.
 
 \item~\autoref{lst:case-3}: Precise numeric values for  \pr|x| or \pr|y|, depending on which one is returned.
-Although the arithmetic formula is not recovered, Daikon is the only technique that can give a precise value for \pr|x|.
+Although the arithmetic formula is not recovered, \ndx{Daikon} is the only technique that can give a precise value for \pr|x|.
 \end{itemize}
 
 \begin{table}[h]
 \begin{tabularx}{\textwidth}{@{}X@{}cccc@{}}
 \toprule
 \textbf{Feature}         &
-\textbf{Daikon}          &
-\textbf{Duet}            &
-\textbf{KoAT}            &
-\textbf{\impl}           \\
+\textbf{\ndx{Daikon}}          &
+\textbf{\ndx{Duet}}            &
+\textbf{\ndx{KoAT}}            &
+\textbf{\ndx{\impl}}           \\
 \midrule
 Analysis scope                & function entry/exit   & invariants           & loop control         & loop body     \\
 (\autoref{subsec:analyzer-scopes}) \\
-Input format                  & execution traces      & program              & program              & program       \\
+Input format                  & execution traces\index{program trace}      & program              & program              & program       \\
 Output format                 & likely invariants     & SAT/error            & size bounds          & mwp-bounds    \\
 Numerical domain              & \(\mathbb{Z}\)        & \(\mathbb{Z}\)       & \(\mathbb{Z}\)       & \(\mathbb{N}\) \\
 Postcondition expressivity    & >+                    & >+                   & >+                   & +             \\
@@ -1350,10 +1350,10 @@ The {complexity} suite is mainly linear time complexity problems whose terminati
 The {linear}~\cite{si2018} and {non-linear}~\cite{nguyen2017,yu2023} suites come from loop invariant inference literature.
 The non-linear suite includes classic numerical algorithms like geometric series and divisor computations.
 The {mwp} suite~\cite{aubert2023b} problems are designed pose challenges to analyses based on the flow calculus of mwp-bounds.
-All suites include branching statements and nondeterministic control expressions that simulate external function calls.
+All suites include branching statements and nondeterministic\index{nondeterminism} control expressions that simulate external function calls.
 The complexity and non-linear suites have problems with sequential and nested loops.
 As evaluation metrics, we recorded the count and kind of obtained postconditions (\ie mwp-bounds).
-We also recorded all meta-data collected by pymwp like program statistics.
+We also recorded all meta-data collected by \ndx{pymwp} like program statistics.
 We set the timeout to 10 seconds.
 Without timeouts the metrics are deterministic.
 We ran all experiments on commodity hardware;
@@ -1471,7 +1471,7 @@ On the practical side, our analysis does not cover division operator and require
 These limitations can be resolved by refactoring the input program, but should be resolved at the theoretical level.
 
 We are encouraged by the continued enhancements of the flow calculus and discovering its potential uses.
-The analysis could already be implemented as a developer plug-in to assist in writing specifications.
+The analysis could already be implemented as a developer plug-in to assist in writing \ndx{specifications}.
 In future research, we will consider extending the capabilities of the flow calculus.
 We are generally curious about whether similar solver-free syntactic analyses could be designed to infer \emph{other} specification conditions. % more broadly.
 Another ongoing project is to formally verify the flow calculus theory.
@@ -1490,7 +1490,7 @@ postconditions are those inferred by our analysis.
 \begin{minipage}{\textwidth}
 \captionsetup{type=lstlisting}
 \dafnyinputlisting[][]{lucid.dfy}
-\captionof{lstlisting}[\exname verified in Dafny]{\exname verified in Dafny.}
+\captionof{lstlisting}[\exname verified in \ndx{Dafny}]{\exname verified in Dafny.}
 \label{lst:dafny-ex}
 \end{minipage}
 \end{center}
@@ -1525,7 +1525,7 @@ We run \ndx{pymwp} v0.6.0 in the loop analysis mode.
 \begin{minipage}{\textwidth}
 \captionsetup{type=lstlisting}
 \cmdinputlisting[][escapeinside=||,emph={pymwp},emphstyle={}]{mwpl.cmd}
-\captionof{lstlisting}[Running pymwp in loop analysis mode]{Running pymwp in loop analysis mode.}
+\captionof{lstlisting}[Running pymwp in loop analysis mode]{Running \ndx{pymwp} in loop analysis mode.}
 \label{lst:mwp-bash}
 \end{minipage}
 \end{center}
@@ -1551,14 +1551,14 @@ Transition ideals is implemented as linear and quadratic simulation modes.
 \begin{minipage}{\textwidth}
 \captionsetup{type=lstlisting}
 \cmdinputlisting[][escapeinside=||,alsoletter={.},emph={duet\.exe},emphstyle={}]{duet.cmd}
-\captionof{lstlisting}[Program analysis with Duet]{Program analysis with Duet.}
+\captionof{lstlisting}[Program analysis with Duet]{Program analysis with \ndx{Duet}.}
 \label{lst:duet-bash}
 \end{minipage}
 \end{center}
 
 \paragraph*{Daikon.}
 \ndx{Daikon} requires multiple version of a program, then compiling and tracing them with Kvasir.
-The \pr|*| means we trace multiple versions of input.
+The \pr|*| means we trace\index{program trace} multiple versions of input.
 \newline
 
 Supply options to Kvasir before the program name argument.
@@ -1567,18 +1567,18 @@ Supply options to Kvasir before the program name argument.
 \begin{minipage}{\textwidth}
 \captionsetup{type=lstlisting}
 \cmdinputlisting[][escapeinside=||]{dk_trace.cmd}
-\captionof{lstlisting}[Creating a trace with Daikon]{Creating a trace with Daikon.}
+\captionof{lstlisting}[Creating a trace with Daikon]{Creating a trace\index{program trace} with \ndx{Daikon}.}
 \label{lst:kvasir-bash}
 \end{minipage}
 \end{center}
 
-After tracing, we run Daikon with following options to infer postconditions.
+After tracing, we run \ndx{Daikon} with following options to infer postconditions.
 
 \begin{center}
 \begin{minipage}{\textwidth}
 \captionsetup{type=lstlisting}
 \cmdinputlisting[][escapeinside=||]{dk_infer.cmd}
-\captionof{lstlisting}[Infer invariants using Daikon]{Infer invariants using Daikon.}
+\captionof{lstlisting}[Infer invariants using Daikon]{Infer invariants using \ndx{Daikon}.}
 \label{lst:daikon-bash}
 \end{minipage}
 \end{center}
@@ -1589,7 +1589,7 @@ After inference, the invariants can be printed to a suitable display format.
 \begin{minipage}{\textwidth}
 \captionsetup{type=lstlisting}
 \cmdinputlisting[][escapeinside=||]{dk_print.cmd}
-\captionof{lstlisting}[Displaying invariants inferred by Daikon]{Displaying invariants inferred by Daikon.}
+\captionof{lstlisting}[Displaying invariants inferred by Daikon]{Displaying invariants inferred by \ndx{Daikon}.}
 \label{lst:print-bash}
 \end{minipage}
 \end{center}
@@ -1621,10 +1621,10 @@ After inference, the invariants can be printed to a suitable display format.
 \end{center}
 
 These are programs of~\autoref{fig:loops} expanded with headers and return statements.
-For Duet analysis, \pr|loop| must be renamed to \pr|main|.
-Having a \pr|main| function raises an error with KoAT\@.
-Daikon expects adding a separate \pr|main| method with calls to \pr|loop|.
-In ~\autoref{lst:l2}, the unsupported \pr|assume| should be omitted before analyzing it with KoAT\@.
+For \ndx{Duet} analysis, \pr|loop| must be renamed to \pr|main|.
+Having a \pr|main| function raises an error with \ndx{KoAT}\@.
+\ndx{Daikon} expects adding a separate \pr|main| method with calls to \pr|loop|.
+In ~\autoref{lst:l2}, the unsupported \pr|assume| should be omitted before analyzing it with \ndx{KoAT}\@.
 
 \subsubsection{Analyzer scopes}\label{subsec:analyzer-scopes}
 
@@ -1641,10 +1641,10 @@ int main(int X, int Y, int Z) {
 \end{outlisting}
 \tikzstyle{label} = [black,right,xshift=0pt,yshift=3pt,align=left,text width=2.2cm,font=\itshape]
 \begin{tikzpicture}[thick, remember picture, overlay]
-    \node[label] at (pic cs:k1) {KoAT};
-    \node[label] at (pic cs:k2) {$\text{mwp}_\ell$};
-    \node[label] at (pic cs:k3) {Duet};
-    \node[label] at (pic cs:k4) {Daikon};
+    \node[label] at (pic cs:k1) {\ndx{KoAT}};
+    \node[label] at (pic cs:k2) {\ndx{\impl}};
+    \node[label] at (pic cs:k3) {\ndx{Duet}};
+    \node[label] at (pic cs:k4) {\ndx{Daikon}};
 \end{tikzpicture}
 \end{minipage}
 \end{center}
@@ -1691,7 +1691,7 @@ This suite is used in the annual Termination and Complexity Competition.
 \item[The linear suite]~\cite{si2018} contains inference problems for linear loop invariants.
 The problems are pre-annotated with assertions (these have no impact on our analysis).
 We excluded 9 benchmarks that are known to be invalid~\cite[Appendix G]{ryan2020} as they violate the specified assertions.
-We also unified benchmarks that have the same precondition and loop, as they are identical for the purpose of \emph{postcondition} inference,
+We also unified benchmarks that have the same \ndx{precondition} and loop, as they are identical for the purpose of \emph{postcondition} inference,
 ending with 49 benchmarks in total.
 
 \item[The nonlinear suite]~\cite{nguyen2017} (also referred to as NLA-suite in literature) is an extended formulation of the suite, with the additional problems coming from~\cite{yu2023}.
@@ -1706,6 +1706,6 @@ A single benchmark can contain multiple functions, loops, and sequential and/or 
 Due to differences in the targeted program scopes between \impl and \impf, the variable counts are specified by scope.
 Loop-scoped variables include loop guards and variables in the loop body.
 Function-scoped variables contain all parameters and variables in the function body.
-We modified the benchmarks by expanding n-ary expressions to binary form to match the \href{https://statycc.github.io/pymwp/features/}{input language} of pymwp.
+We modified the benchmarks by expanding n-ary expressions to binary form to match the \href{https://statycc.github.io/pymwp/features/}{input language} of \ndx{pymwp}.
 Since the boundedness check is still rudimentary, some loop conditions were rewritten in detectable form.
 A more robust approach would use a specialized compiler.

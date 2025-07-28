@@ -160,19 +160,19 @@ A \emph{\ndx{liveness property}} ensures \enquote{(good) things must happen}, ev
 The proof techniques across these safety and liveness properties are different.
 The works in this dissertation are primarily concerned with non-functional safety properties.
 
-\paragraph*{Partial and total correctness.}
+\paragraph*{Partial and \ndx{total correctness}.}
 Broadly, a program is correct if the implementation is consistent with the specification\index{specifications}~\cite{furia2014b}.
 However, when making assertions about correctness, we need to be more precise.
-There are two common notions about correctness that provide added specificity: partial and total correctness.
+There are two common notions about correctness that provide added specificity: partial and \ndx{total correctness}.
 \emph{Partial correctness}\index{partial correctness} means that every terminating execution is correct, however it does not ensure every execution terminates~\cite[p. 64]{leino2023}.
 A stronger guarantee follows from \ndx{total correctness}.
 A program is \emph{totally correct} if it is partially correct and always terminates~\cite[p. 64]{leino2023}.
-Total correctness can be viewed as a combination of safety\index{safety property} and liveness properties\index{liveness property}~\cite{lamport1977}.
+\ndxl{Total correctness} can be viewed as a combination of safety\index{safety property} and liveness properties\index{liveness property}~\cite{lamport1977}.
 There are several strategies for proving termination in some cases, \cf~\autoref{resource-analysis}.
 However, a general method that proves termination of all programs cannot exist since termination is undecidable~\cite{turing1936}\index{undecidability}.
 This means it is impossible to show \ndx{total correctness} of all programs.%
-\footnote{Total correctness is not always ideal.
-There are many applications where termination is undesirable, like a web server and cardiac pacemaker, but where we still want formal guarantees.};
+\footnote{\ndxl{Total correctness} is not always ideal.
+There are many applications where termination is undesirable---like a web server and cardiac pacemaker---but where we still want formal guarantees.}
 However, similar to~\autoref{static-analysis-basics}, there is endless opportunity in building increasingly more capable program verifiers.
 
 \subsubsection{Tools for Formal Verification}
@@ -352,7 +352,7 @@ interactive theorem provers enable large and complex modular proof developments.
 \item[Verification-aware programming languages.]
 Verification-aware programming languages provide a conceptually different approach to machine-checked proofs.
 Such languages are particularly well-suited for reasoning about functional correctness of programs.
-Verification-aware programming languages have built-in capabilities to express specifications and proofs.
+Verification-aware programming languages have built-in capabilities to express \ndx{specifications} and proofs.
 Additionally, they have an associated verifier that checks the proofs during program development;
 typically, a background ATP that offers an interaction interface via a programming language~\cite{leino2023}.
 One prominent style among the verification-aware languages is \emph{deductive verification},
@@ -545,7 +545,7 @@ Finally, the Rocq prover has an active community, with discussion forums and a m
 \label{subsec:dafny}
 
 Dafny is an open source verification-aware programming language, and a verifier for functional correctness~\cite{leino2010,dafnylang}.
-Dafny was designed for reasoning, and it can automatically check programs against specifications during program development.
+Dafny was designed for reasoning, and it can automatically check programs against \ndx{specifications} during program development.
 \autoref{fig:dfy-flow} shows a visual overview of the verification workflow.
 
 \begin{figure}[ht]
@@ -564,7 +564,7 @@ including: curly-bracket block-style, (mathematical) functions, and inductive an
 The programming constructs include loops, \pr|if|-statements, arrays, classes and methods;
 variables, types, generics, lambdas, inheritance, \etc~\cite{dafnydoc}
 The real power of \ndx{Dafny} comes from the ability to annotate methods to specify their behavior.
-For verification tasks, the idea is to define specifications and write proofs aside the implementation, in \ndx{deductive verification}-style.
+For verification tasks, the idea is to define \ndx{specifications} and write proofs aside the implementation, in \ndx{deductive verification}-style.
 The built-in verification constructs include pre- and postconditions;
 loop invariants, termination metrics, lemmas, and \ndx{ghost construct}s\footnote{
 A \emph{ghost} is any construct that is used for verification only; they are erased during compilation~\cite[p. 19]{leino2023}.}.
@@ -693,7 +693,7 @@ To make life a bit more interesting, it defines a subtype of \pr|bit|.
 Alternatively, the restriction on the values of \pr|b| could be stated as a precondition.
 Next, the listing shows a \pr|function| and a \pr|method|.
 A \emph{method} in Dafny is a piece of imperative executable code, which can have all sorts of statements in its body.
-The term \emph{function} is reserved for constructs that can be used directly in specifications.
+The term \emph{function} is reserved for constructs that can be used directly in \ndx{specifications}.
 Unlike a method, a function body must consist of exactly one expression, and it returns a value.
 For the ways the two programs were originally written and for demonstration,
 it makes sense to define the programs as a function and a method\footnote{
@@ -800,14 +800,14 @@ otherwise, one must search the proofs database.
 \end{center}
 
 \subparagraph*{Leftpad in Dafny.}
-In Dafny, the specifications are \enquote{embedded} with the implementation.
+In Dafny, the \ndx{specifications} are \enquote{embedded} with the implementation.
 To make the \autoref{lst:leftdfy} standalone, the \pr|Max| function is defined inline.
 The three specification conditions correspond (in order) to the \pr|ensures| clauses.
 The same conditions re-appear as loop invariants at L14--16.
 The \pr|invariant| clauses are necessary to convince the verifier that the conditions are preserved over iteration of the loop.
 Enhancing the \pr|while| loop is sufficient for the verifier to succeed at proving the implementation meets the specification.
 There's one more proof obligation for loops, which is to show termination.
-The \pr|decreases| clause proves termination, which established total correctness of the \pr|LeftPad| method.
+The \pr|decreases| clause proves termination, which established \ndx{total correctness} of the \pr|LeftPad| method.
 
 \subparagraph*{Observable differences.}
 Although the leftpad behavior is consistently the same,

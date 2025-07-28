@@ -4,12 +4,12 @@
 \label{sec:aicc-intro}
 
 The gold standard in \ndx{formal verification} is showing that an implementation
-of a program is {totally correct}\index{total correctness}. Total correctness
+of a program is {totally correct}. \ndxl{Total correctness}
 requires proving two conditions about the program: that the program meets its
 specification\index{specifications}, and that the computation
 terminates~\cite{leino2023}. The former ensures the program computes the
 expected output for all inputs. The latter ensures that the computed result will
-become observable {eventually}. Thus, a proof of total correctness gives us
+become observable {eventually}. Thus, a proof of \ndx{total correctness} gives us
 strong assurance that the program behaves expectedly at runtime, \ie when the
 program is executed.
 
@@ -34,12 +34,12 @@ theory} because it uses programming languages as the {mechanism} to reason about
 runtime behaviors. Broadly, complexity theory is concerned with resource
 requirements of computations~\cite{goldreich2008}. Those requirements are
 organized in a hierarchy of \ndx{complexity classes}. The classes describe
-resource requirements \wrt an abstract (mathematical) machine model. The classes
-correspond roughly to resources like running time and memory consumption of
-programs that are executed on real-world computers. To streamline this
+resource requirements \wrt an abstract (mathematical) \ndx{machine model}. The
+classes correspond roughly to resources like running time and memory consumption
+of programs that are executed on real-world computers. To streamline this
 reasoning, \emph{implicit} computational complexity aims to discover
-\emph{machine-independent} characterizations of the complexity classes. ICC
-systems are designed by introducing a \emph{restriction}, at the level of a
+\emph{machine-independent} characterizations of the \ndx{complexity classes}.
+ICC systems are designed by introducing a \emph{restriction}, at the level of a
 programming language, that guarantees a complexity property. Then, every program
 satisfying the restriction is known to belong to a particular complexity class.
 This in turn provides a guarantee about the program's runtime resource

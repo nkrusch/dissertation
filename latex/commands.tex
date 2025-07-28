@@ -18,6 +18,7 @@
 \newcommand{\ccxi}[1]{\index{complexity classes!\textsc{#1}}}
 \newcommand{\ccx}[1]{\textsc{#1}\ccxi{#1}}
 \newcommand{\ndx}[1]{#1\index{#1}}
+\newcommand{\ndxl}[1]{\ndx{\MakeLowercase{#1}}}
 
 % Inline codes
 \newcommand{\pr}{\lstinline[mathescape,basicstyle=\normalfont\ttfamily,escapeinside={(*}{*)},prebreak={}]}
@@ -125,8 +126,8 @@
 \newcommand{\nupce}[1]{\buildrel #1 \over \nsim}% Not up to c equilavence
 
 % postconditions
-\newcommand{\impl}{$\text{mwp}_\ell$\xspace}
-\newcommand{\impf}{$\text{mwp}_f$\xspace}
+\newcommand{\impl}{mwp$_\ell$\xspace}
+\newcommand{\impf}{mwp$_f$\xspace}
 \newcommand{\explain}{LucidLoop}
 \newcommand{\exname}{{\explain}\xspace}
 \newcommand{\sfull}{\scalebox{.75}{\faIcon{circle}}\xspace}

@@ -6,8 +6,8 @@ characterizations, it produces analysis techniques for free. It is a
 foundational hypothesis of this dissertation that theoretical ICC systems---with
 sufficient expressive power and an efficient evaluation strategy---enable
 concrete program analysis. An analysis that evaluates a program's resource usage
-is called resource analysis. Resource analysis is a subfield of static program
-analysis.
+is called resource analysis. Resource analysis\index{resource analysis} is a
+subfield of \ndx{static program analysis}.
 
 \subsubsection{Foundations of Static Program Analysis}\label{static-analysis-basics}
 
@@ -151,45 +151,61 @@ Numerous techniques can be used to reason about such properties.
 \end{itemize}
 
 This dissertation is mainly concerned with techniques of data-size analysis.
-Among the well-established techniques are automatic
-amortized\index{amortization} resource analysis (AARA) and \ndx{cost equation
-system}s (CES). These techniques are briefly introduced next.
+Among the well-established techniques are \ndx{automatic amortized resource
+analysis} (AARA) and \ndx{cost equation system}s (CES). These techniques are
+briefly introduced next.
 
-\paragraph*{Automatic amortized resource analysis.}
-\index{automatic amortized resource analysis}
-Amortized analysis\index{amortization} averages the time required to perform a
-sequence of operations over all the operations performed~\cite[p.
-451]{cormen2009}. Amortization enables to show that the average cost of an
-operation is small, even if a single operation might be expensive.
+\paragraph*{Automatic amortized resource analysis.} \index{automatic amortized
+resource analysis} \emph{Amortized analysis}\index{amortized analysis} averages
+the time required to perform a sequence of operations over all the operations
+performed~\cite[p. 451]{cormen2009}. Amortization\index{amortization} enables to
+show that the average cost of an operation is small, even if a single operation
+might be expensive.
 
-Automatic amortized resource analysis (AARA)~\cite{hoffmann2022} builds on this
-same idea, to provide an automatic static technique for deriving arithmetic
-resource bounds. In AARA, programs are bounded by amortized
-analysis\index{amortization}. This adds the ability to account for amortization
-effects across operation sequences. Internally, the analysis relies on inference
-rules, and derivation trees provide proofs of the resource bounds.
+\emph{Automatic amortized resource analysis}
+(AARA)~\cite{hoffmann2022}\index{automatic amortized resource analysis} builds
+on the same idea: bounding programs by \ndx{amortization}. In AARA, the analysis
+can account for amortization effects across sequences of operations. Internally,
+the analysis relies on \ndx{inference rule}s and \ndx{derivation tree}s provide
+proofs of the \ndx{resource bounds}. Thus, AARA provides an automatic static
+technique for deriving arithmetic \ndx{resource bounds}.
 
-AARA originated from works in implicit computation complexity, in particular
+AARA originated from works in implicit computation complexity, and in particular
 from the contributions of Martin Hofmann~\cite{hoffmann2022}. The initial design
-was for tracking resource bounds in functional programs~\cite{hoffmann2012}. In
-later works, AARA-based techniques have been extended to
-imperative~\cite{carbonneaux2015,carbonneaux2017}, parallel~\cite{hoffmann2015},
-probabilistic~\cite{avanzini2020,ngo2018,wang2020}, and concurrent session-typed
-programs~\cite{das2018,das2021}.
+was for tracking \ndx{resource bounds} in \ndx{functional
+programs}~\cite{hoffmann2012}. In later works, techniques based on or influenced
+by AARA have been extended to imperative\index{imperative
+programs}~\cite{carbonneaux2015,carbonneaux2017}, parallel\index{parallel
+programs}~\cite{hoffmann2015}, probabilistic\index{probabilistic
+programs}~\cite{avanzini2020,ngo2018,wang2020}, and concurrent session-typed
+programs\index{session types}\index{concurrent programs}~\cite{das2018,das2021}.
 
-\paragraph*{Cost equation systems.}\index{cost equation system}
-A \emph{cost equation system} (CES) (alternatively: cost relation system) is an abstract representation format of a program's resource cost~\cite{floresmontoya2017,albert2019}.
-It consists of a set of cost equations, that are non-deterministic recurrence relations annotated with constraints, as shown in \autoref{lst:ces}~\cite{floresmontoya2014}.
-The analyzing technique of cost equations is based on the seminal work of~\textcite{wegbreit1975}.
-Such analysis operates in two phases.
-The first phase extracts a set of equations that capture the program cost \wrt data-size and a parametric cost measure.
-%\footnote{The generation phase converts the program's iteration constructs (loops and recursion) into recurrences,
-%then infers size relations that approximate how the program's argument sizes vary.}.
-This set can be regarded as recurrence relations, or as a kind of time-bound programs of~\textcite{rosendahl1989}.
-The second phase searches for a non-recursive representation of the equations known as \emph{closed form}.
-In most cases, it is not possible to find an exact solution, and the closed form provides an upper bound~\cite{albert2008}.
-Cost equations deal with loops and recursion in a uniform manner,
-but may have issues with multiphase loops and with programs with require complex termination proofs~\cite{floresmontoya2014}.
+\paragraph*{Cost equation systems.}
+A \emph{\ndx{cost equation system}} (CES)\footnote{Sometimes alternatively: cost
+\emph{relation} system.} is am abstract representation format to express a
+program's resource cost~\cite{floresmontoya2017,albert2019}. A CES consists of a
+set of cost equations. A \emph{\ndx{cost equation}} (CE) is a
+nondeterministic\index{nondeterminism} \ndx{recurrence relation} annotated with
+constraints, as shown in \autoref{lst:ces}~\cite{floresmontoya2014}.
+
+The analysis of \ndx{cost equation}s is based on the seminal work
+of~\textcite{wegbreit1975}. Such analysis operates in two phases.
+
+\begin{enumerate}
+\item The first phase extracts a set of equations that capture the program cost
+\wrt data-size and a parametric cost measure. This set can be regarded as
+\ndx{recurrence relation}s, or as time-bound programs à
+la~\textcite{rosendahl1989}.
+
+\item The second phase searches for a non-recursive representation of the
+equations known as \emph{closed form}. In most cases, it is not possible to find
+an exact solution, and the closed form provides an upper
+bound~\cite{albert2008}.
+\end{enumerate}
+
+Cost equations deal with loops and recursion in a uniform manner. However, they
+may have issues with multiphase loops and with programs that require complex
+termination proofs~\cite{floresmontoya2014}.
 
 \begin{center}
 \begin{minipage}{\textwidth}

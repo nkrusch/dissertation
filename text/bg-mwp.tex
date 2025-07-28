@@ -196,7 +196,7 @@ The workflow of pywmp is visualized in~\autoref{fig:pymwp}.
 Functionally, pymwp is a command-line tool that enables running mwp-analysis through a terminal.
 The analyzer takes as input a program written in (a subset) of the C programming language.
 The analyzer front-end is pycparser~\cite{pycparser}.
-pycparser converts the program source code into an abstract syntax tree\index{abstract syntax tree} (AST).
+pycparser converts the program source code into an \ndx{abstract syntax tree} (AST).
 Before the inference, the AST is checked for consistency with the imperative language.
 In strict mode, if the syntax is not fully expressible, the analysis terminates\footnote{
 Importantly, the strict mode is sound because it only accepts programs that are fully-expressible in the imperative language of the flow calculus.}.
@@ -502,7 +502,7 @@ Program analysis using the flow calculus\index{mwp-calculus} requires inspecting
 applying the inference rules\index{inference rule}, and composing the mwp-matrices of the commands.
 Each command is either derivable\index{derivability} or raises a derivation failure.
 
-In practice, the analysis is performed over the program's abstract syntax tree\index{abstract syntax tree}.
+In practice, the analysis is performed over the program's \ndx{abstract syntax tree}.
 Since a tree is a hierarchical structure, the analysis proceeds in depth-first order, like evaluation of a sequential program.
 The derivation examples in~\autoref{mwp-derivations} demonstrate the concept.
 For simplicity, in describing the analysis procedure we assume a flattened parse-tree of commands.
