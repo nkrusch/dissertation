@@ -42,9 +42,9 @@ The content and formatting requirements are documented in these resources.
 
 The document follows roughly this dependency schema.
  
-               ┌──── args.tex ◂────── latex/*      
-    main.tex ◂─┼──── content.tex ◂─┬─ text ◂───────┬─ pdf/*  ◂─── pictures/*      
-               └──── fonts/*       └─ references/* └─ code/*
+               ┌──── args.tex ◂──────── latex/*      
+    main.tex ◂─┼──── content.tex ◂──┬── text ◂────────┬── pdf/*  ◂─── pictures/*      
+               └──── fonts/*        └── references/*  └── code/*
                     
 
 ## Dissertation Compilation

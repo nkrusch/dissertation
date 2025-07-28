@@ -167,11 +167,11 @@ There are two common notions about correctness that provide added specificity: p
 \emph{Partial correctness}\index{partial correctness} means that every terminating execution is correct, however it does not ensure every execution terminates~\cite[p. 64]{leino2023}.
 A stronger guarantee follows from \ndx{total correctness}.
 A program is \emph{totally correct} if it is partially correct and always terminates~\cite[p. 64]{leino2023}.
-\ndxl{Total correctness} can be viewed as a combination of safety\index{safety property} and liveness properties\index{liveness property}~\cite{lamport1977}.
+Total correctness\index{total correctness} can be viewed as a combination of safety\index{safety property} and liveness properties\index{liveness property}~\cite{lamport1977}.
 There are several strategies for proving termination in some cases, \cf~\autoref{resource-analysis}.
 However, a general method that proves termination of all programs cannot exist since termination is undecidable~\cite{turing1936}\index{undecidability}.
 This means it is impossible to show \ndx{total correctness} of all programs.%
-\footnote{\ndxl{Total correctness} is not always ideal.
+\footnote{Total correctness\index{total correctness} is not always ideal.
 There are many applications where termination is undesirable---like a web server and cardiac pacemaker---but where we still want formal guarantees.}
 However, similar to~\autoref{static-analysis-basics}, there is endless opportunity in building increasingly more capable program verifiers.
 
@@ -518,7 +518,7 @@ Conventional uses of Rocq include proving properties of programming languages, f
    & \textcite{forster2020b}
    \\
    \href{https://github.com/SSProve/ssprove}%
-   {\ndx{SSProve}: modular cryptographic proofs}
+   {\ndx{SSProve}: modular cryptographic proofs\index{cryptography}}
    & \textcite{haselwarter2023}
    \\
    \bottomrule

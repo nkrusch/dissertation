@@ -1436,34 +1436,30 @@ version.
 
 \subsubsection{Overview of Alternative and Related Approaches}\label{sec:ni-related-works}
 
-In language-based security\index{language-based security}, non-interference\index{non-interference} is commonly achieved through security types systems\index{security type system}.
-Type theoretic non-interference provides strong end-to-end confidentiality\index{confidentiality} guarantees in a static and scalable way.
-Initiating from the seminal work of Volpano et al.~\cite{volpanoI1996}, security type systems have been extended to consider non-interference under numerous paradigms, including concurrency~\cite{volpano1998,derakhshan2024,frumin2021}, formal reasoning~\cite{nelson2020,frumin2021}, compilation~\cite{barthe2004}, \etc.
-A major challenge among the security type systems\index{security type system} is \emph{declassification}\index{declassification}, a kind of security downgrading operation~\cite{cecchetti2017}. A \emph{downgrading} mechanisms permits elevating the security judgement around control-flow constructs then lowering it afterward.
-In other words, information is allowed to flow contrary to the policy~\cite{cecchetti2017}. The mechanism is necessary to increase the expressive power of security type systems; however, downgrading is generally not safe~\cite{derakhshan2024} and eliminates the strong compositional guarantees of non-interference~\cite{cecchetti2017}\index{non-interference}.
-In practice, security type systems\index{security type system} are challenging to use because they modify the programming language.
+In \ndx{language-based security}, \ndx{non-interference} is commonly achieved through \ndx{security types system}s.
+Type theoretic \ndx{non-interference} provides strong end-to-end \ndx{confidentiality} guarantees in a static and scalable way.
+Initiating from the seminal work of Volpano et al.~\cite{volpanoI1996}, \ndx{security types system}s have been extended to consider \ndx{non-interference} under numerous paradigms,
+including concurrency~\cite{volpano1998,derakhshan2024,frumin2021}\index{concurrent programs}, formal reasoning~\cite{nelson2020,frumin2021}, compilation~\cite{barthe2004}, \etc.
+A major challenge among the \ndx{security types system}s is \emph{\ndx{declassification}}, a kind of security downgrading operation~\cite{cecchetti2017}. A \emph{downgrading} mechanisms permits elevating the security judgement around control-flow constructs then lowering it afterward.
+In other words, information is allowed to flow contrary to the policy~\cite{cecchetti2017}.
+The mechanism is necessary to increase the expressive power of \ndx{security types system}s.
+However, downgrading is generally not safe~\cite{derakhshan2024} and eliminates the strong compositional\index{compositionality} guarantees of \ndx{non-interference}~\cite{cecchetti2017}.
+In practice, \ndx{security types system}s are challenging to use because they modify the programming language.
 A program must be annotated with security types and compiled with non-standard tools that can enforce the types~\cite{lamba2024}.
-There is also a stark contrast in expressiveness of theoretical and practical systems; \eg \cite{huang2014} categorically excludes implicit flows\index{information flow!implicit}.
+There is also a stark contrast in expressiveness of theoretical and practical systems.
+\Eg \cite{huang2014} categorically excludes implicit flows\index{information flow!implicit}.
 
-The Dependency Core Calculus (DCC)~\cite{abadi1999b}\index{Dependency Core Calculus} is conceptually related to
-\lname. The DCC is an extension of \ndx{lambda-calculus}, framed around the notion of
-data dependency, of which non-interference\index{non-interference} is an instance. Though similarly
-rooted in dependency analysis, \lname originates from works of implicit
-computational complexity (ICC). It is a refinement
-of~\cite{moyen20172,aubert20232}, but \lname required significant adjustment,
-particularly around matrix composition and functions.
+The \ndx{Dependency Core Calculus} (DCC)~\cite{abadi1999b} is conceptually related to \lname.
+The DCC is an extension of \ndx{lambda-calculus}, framed around the notion of data dependency, of which \ndx{non-interference} is an instance.
+Though similarly rooted in dependency analysis,\index{dependence analysis} \lname originates from works of implicit computational complexity (ICC).
+It is a refinement of~\cite{moyen20172,aubert20232}, but \lname required significant adjustment, particularly around matrix composition and functions.
 
-ICC studies machine-free characterizations of complexity classes by introducing
-\emph{restrictions} in programming languages that in turn guarantee semantic
-properties~\cite{dallago2011}. A critical idea is that ICC techniques can
-benefit from, and offer support in, other analytic domains. The use of ICC
-techniques is such extended ways is an emerging research topic. Previously, a
-non-interference type system\index{security type system} provided a foundation for a series of
-complexity-theoretic results~\cite{marion2011,hainry2023}. In the opposite
-direction, an ICC system was applied to cryptographic proofs~\cite{baillot2019}.
-Although \lname has transformed from its origins to not enforce complexity
-bounds, it reinforces the bidirectional connection between ICC and
-language-based security\index{language-based security}.
+ICC studies machine-free characterizations of complexity classes by introducing \emph{restrictions} in programming languages that in turn guarantee semantic properties~\cite{dallago2011}.
+A critical idea is that ICC techniques can benefit from, and offer support in, other analytic domains.
+The use of ICC techniques is such extended ways is an emerging research topic.
+Previously, a \ndx{non-interference} \ndx{type system}\index{security type system} provided a foundation for a series of complexity-theoretic results~\cite{marion2011,hainry2023}.
+In the opposite direction, an ICC system was applied to cryptographic\index{cryptography} proofs~\cite{baillot2019}.
+Although \lname has transformed from its origins to not enforce complexity bounds, it reinforces the bidirectional connection between ICC and \ndx{language-based security}.
 
 \subsection{Conclusion: Strengths, Limitations and Future Directions}
 \label{sec:conclusion}
@@ -1803,8 +1799,8 @@ represented as a Hasse diagram\index{Hasse diagram}, is:
 \end{center}
  \end{example}
 
-\begin{example}[Incomparable security classes]\index{security class}\index{Polybench/C}
-The mvt--kernel, from the {PolyBench/C}~\cite{polybench} parallel programming
+\begin{example}[Incomparable \ndx{security class}es]
+The mvt--kernel, from the \ndx{PolyBench/C}~\cite{polybench} \ndx{parallel programming}
 benchmark suite, calculates a \underline{m}atrix \underline{v}ector product and
 \underline{t}ranspose.
 

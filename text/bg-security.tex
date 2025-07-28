@@ -274,7 +274,7 @@ identified four distinct characterizations of non-interference\index{non-interfe
 It therefore more accurate to consider non-interference\index{non-interference} as a family of 
 information flow\index{information flow} properties that share the above common core.
 Non-interference\index{non-interference} has been studied in in a variety of models, 
-\eg {trace-based models\index{trace-based model}},
+\eg \ndx{trace-based model}s,
 process calculi, programming languages, probabilistic models, timed models, and {cryptographic protocols\index{cryptography}}~\cite{bossi2005}.
 \autoref{sec-types} will present how to formulate non-interference in terms of programming languages.
 
@@ -351,7 +351,7 @@ Finally, {{non-influence}\index{non-influence}} is the combination of non-interf
 
 In the context of programming languages, a program is {non-interfering\index{non-interference}} if 
 {secret (high) inputs} do not affect the calculation of {public (low) outputs}~\cite{sabelfeld2003}.
-The idea to use programming languages to model {non-interference\index{non-interference}} was introduced by Volpano, Smith and Irvine~\cite{volpanoI1996}.
+The idea to use programming languages to model {non-interference\index{non-interference}} was introduced by~\textcite{volpanoI1996}.
 The paper shows that {non-interference\index{non-interference}} can be soundly approximated using a {security type system\index{security type system}}.
 The influential result has since then been followed by numerous works in language-based security.
 Among a few examples, {non-interference\index{non-interference}} has been studied in terms of
@@ -557,21 +557,21 @@ With the same end-goal, aperiodic programs (AP)~\cite{hainry2024}\index{aperiodi
 another mechanism adopted from the security domain.
 In the latter, the main result is a proof that SAFE and terminating aperiodic programs is the class of Basic Feasible Functionals\index{Basic Feasible Functionals}, \ie \(\sem{\text{SAFE}\;\cap\;\text{AP}\;\cap\;\text{terminating} = \text{BFF}}\)~\cite{hainry2020,hainry2024}.
 
-\paragraph*{From complexity to cryptography.}\index{cryptography}
-A separate series of works applies implicit computation complexity toward applications in cryptography.
-The application is natural, because the security of cryptographic schemes is formulated as a mathematical problem, where the goal is to show the scheme is not to be solvable by a feasible adversary.
+\paragraph*{From complexity to \ndx{cryptography}.}
+A separate series of works applies implicit computation complexity toward applications in \ndx{cryptography}.
+The application is natural, because the security of cryptographic\index{cryptography} schemes is formulated as a mathematical problem, where the goal is to show the scheme is not to be solvable by a feasible adversary.
 The term feasible refers to computable in polynomial time~\cite{feree2018}.
 
-This application is naturally, because in showing that a cryptographic scheme is secure, adversarial capabilities must restrict available computational power~\cite{heraud2011}.
+This application is naturally, because in showing that a cryptographic\index{cryptography} scheme is secure, adversarial capabilities must restrict available computational power~\cite{heraud2011}.
 
 \begin{description}
 
 \item[formalized safe recursion.]
-The formalization of \ndx{safe recursion} (\cf~\autoref{safe-rec}) was primarily motivated by its envisioned usefulness in cryptography~\cite{heraud2011}. At the time, the method was integrated into \href{https://github.com/EasyCrypt/certicrypt}{CertiCrypt} framework (predecessor of \ndx{EasyCrypt}), to provide complexity guarantees.
+The formalization of \ndx{safe recursion} (\cf~\autoref{safe-rec}) was primarily motivated by its envisioned usefulness in \ndx{cryptography}~\cite{heraud2011}. At the time, the method was integrated into \href{https://github.com/EasyCrypt/certicrypt}{CertiCrypt} framework (predecessor of \ndx{EasyCrypt}), to provide complexity guarantees.
 However, proofs of complexity bounds are
 
 \item[Type system d\(\ell\)T.]
-The type system \ndx{d\(\ell\)T}~\cite{baillot2015,baillot2019} is simultaneously complexity-aware and has capabilities to support cryptographic proofs.
+The type system \ndx{d\(\ell\)T}~\cite{baillot2015,baillot2019} is simultaneously complexity-aware and has capabilities to support cryptographic proofs\index{cryptography}.
 Among its applications, d\(\ell\)T allows proving that the constructed adversary for the \ndx{Goldreich-Levin theorem} is polynomial time\ccxi{p}.
 Such applications are interesting because they involve computations that are inherently non-polynomial in \ndx{time complexity}.
 Thus, handling such sub-computations requires pushing ICC techniques beyond their usual capabilities.
