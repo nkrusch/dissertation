@@ -1,26 +1,29 @@
 %! suppress = MissingImport
 %! suppress = EscapeAmpersand
 \subsection*{Abstract}
-Non-interference\index{non-interference} is an information flow policy\index{information flow!policy}
-for guaranteeing confidentiality\index{confidentiality},
+\label{subsec:ni-abs}
+
+Non-interference\index{non-interference} is an information flow
+policy\index{information flow!policy} for guaranteeing \ndx{confidentiality},
 \ie that effects of sensitive data are not exposed to lower-level users, even
 indirectly. When phrased in terms of programming languages, non-interference is
-studied by attaching security classes\index{security class} to variables, then analyzing the classes
-to determine if a violation, or a data \enquote{leak}, can occur. Security type
-systems\index{security type system} are common controls for analyzing and enforcing non-interference.
-Unfortunately, they require inference algorithms, program-level security
-\ndx{specifications}, non-standard compilers, and are generally too restrictive or
-complex for practical implementation. In this paper, we present a program logic
-\lname that guarantees the semantic security property of \emph{anytime
-non-interference}\index{non-interference!anytime}. By anytime, we mean a malicious actor with low-level access
-cannot infer anything about higher-level values at any point of the program
-execution. The logic links non-interference violations precisely to the faulty
-commands and violations cannot be erased by program composition. We draw rich
-inspiration from complexity-theoretic flow calculi, but obtaining a logic for
-security analysis required significant adjustments. Finally, we share a
-prototype to demonstrate \lname can be implemented as an automatic,
-annotation-free, static security analyzer to obtain confidentiality guarantees
-in practice.
+studied by attaching \ndx{security class}es to variables, then analyzing the
+classes to determine if a violation, or a data \enquote{\ndx{leak}}, can occur.
+Security type systems\index{security type system} are common controls for
+analyzing and enforcing \ndx{non-interference}. Unfortunately, they require
+inference algorithms, program-level security \ndx{specifications}, non-standard
+compilers, and are generally too restrictive or complex for practical
+implementation. In this paper, we present a program logic \lname that guarantees
+the semantic security property of \emph{anytime
+non-interference}\index{non-interference!anytime}. By anytime, we mean a
+malicious actor with low-level access cannot infer anything about higher-level
+values at any point of the program execution. The logic links
+\ndx{non-interference} violations precisely to the faulty commands and
+violations cannot be erased by program composition. We draw rich inspiration
+from complexity-theoretic flow calculi, but obtaining a logic for security
+analysis required significant adjustments. Finally, we share a prototype to
+demonstrate \lname can be implemented as an automatic, annotation-free, static
+security analyzer to obtain confidentiality guarantees in practice.
 
 \subsection{Introduction}
 \label{subsec:ni-introduction}
@@ -1450,7 +1453,7 @@ There is also a stark contrast in expressiveness of theoretical and practical sy
 \Eg \cite{huang2014} categorically excludes implicit flows\index{information flow!implicit}.
 
 The \ndx{Dependency Core Calculus} (DCC)~\cite{abadi1999b} is conceptually related to \lname.
-The DCC is an extension of \ndx{lambda-calculus}, framed around the notion of data dependency, of which \ndx{non-interference} is an instance.
+The DCC is an extension of lambda-calculus\index{\(\lambda\)-calculus}, framed around the notion of data dependency, of which \ndx{non-interference} is an instance.
 Though similarly rooted in dependency analysis,\index{dependence analysis} \lname originates from works of implicit computational complexity (ICC).
 It is a refinement of~\cite{moyen20172,aubert20232}, but \lname required significant adjustment, particularly around matrix composition and functions.
 

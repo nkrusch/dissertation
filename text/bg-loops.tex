@@ -92,7 +92,7 @@ via control-flow (and other) graphs.
 A \emph{control-flow graph}\index{control-flow graph} (CFG)~\cite{allen1970} is a directed graph for representing program's execution paths.
 In a CFG, the nodes are {basic blocks} and the edges are control flow paths.
 A \emph{basic block}\index{basic block} is a linear sequence of program instructions with one entry and one exit point.
-Control-flow graphs\index{control-flow graph}
+Control-flow graphs\index{control flow graph}
 are a common approach for compile-time program analyses and transformations\index{loop transformation}~\cite[p. 48]{moyen2017}
 and are adopted, \eg in the LLVM compiler\index{LLVM compiler}~\cite{llvm_loops}.
 Although making this note is important, the level of detail is unnecessary for this topic overview.
@@ -484,7 +484,7 @@ Synchronization constructs~\cite[p. 473--482]{openmp_api} enable controlling co-
 It ensures that possible simultaneous reads and writes by multiple threads\index{thread} do not result in indeterminate values.
 
 \item The \omp{barrier} construct specifies an explicit synchronization barrier\index{barrier}.
-It prevents any thread\index{thread} from continuing past the barrier until all threads of the sane team encounter the barrier.
+It prevents any thread\index{thread} from continuing past the barrier until all threads of the same team encounter the barrier.
 
 \item The \omp{critical} construct means execution of a structured block is restricted to a single thread\index{thread} at a time.
 

@@ -35,10 +35,10 @@ This paper aims to improve accessibility of formal methods.
 We do this by introducing a program analysis that synthesizes partial specification conditions.
 We develop an automatic inference of approximative postconditions in numerical loops.
 Postconditions are specialized assertions that must hold after the loop terminates.
-They are complementary to {inductive loop invariants}, \ie conditions that must hold pre-iteration and be preserved by the loop~\cite{sankaranarayanan2004}.
-Although postconditions may be derivable from invariants, loop invariant inference is one of the hardest problems in verification~\cite{dillig2013,si2018}.
+They are complementary to inductive\index{invariant!inductive} loop\index{loop invariant} \ndx{invariant}s, \ie conditions that must hold pre-iteration and be preserved by the loop~\cite{sankaranarayanan2004}.
+Although postconditions may be derivable from \ndx{invariant}s, loop\index{loop invariant} invariant inference\index{invariant inference} is one of the hardest problems in verification~\cite{dillig2013,si2018}.
 Therefore, we suggest the opposite approach: starting with postconditions.
-It is well-known that having postconditions supports discovery of inductive invariants~\cite{furia2010}.
+It is well-known that having postconditions supports discovery of inductive\index{invariant!inductive} \ndx{invariant}s~\cite{furia2010}\index{invariant!inductive}.
 Moreover, as generalized assertions, postconditions assist in various software development activities~\cite{nguyen2022}, like testing~\cite{alagarsamy2024,zhang2015} and code maintenance~\cite{rosenblum1995}.
 However, dedicated studies of postcondition inference are a novelty in research literature~\cite{popeea2006,molina2021}.
 
@@ -106,7 +106,7 @@ assert(|\myqm|);
 \end{center}
 
 Our analysis infers postconditions that express the {growth of variable values} in the loop.
-Adding postpositions supports discovery of other specification conditions, like invariants,
+Adding postpositions supports discovery of other specification conditions, like \ndx{invariant}s,
 that then permit formal verification (the \ndx{Duet} analyzer in \autoref{subsec:comparison} is an example).
 The analysis is sound, guaranteeing that if a postcondition can be inferred, it is known to hold.
 
@@ -152,8 +152,8 @@ The analysis is applicable in imprecise contexts and in absence of initial varia
 locating optimal bounds and bounding variables in presence of whole-program derivation failure (\autoref{sec:enhancements}).
 This provides a {strictly more expressive system} than prior formulations of the flow calculus.
 
-\item To materialize our theory, we implement \impl for analyzing numerical loops in C (\autoref{subsec:implementation}).
-\impl is already integrated into a public static analyzer \ndx{pymwp}, extending the utility of our results beyond the paper presentation.
+\item To materialize our theory, we implement \ndx{\impl} for analyzing numerical loops in C (\autoref{subsec:implementation}).
+\ndx{\impl} is already integrated into a public static analyzer \ndx{pymwp}, extending the utility of our results beyond the paper presentation.
 
 \item We demonstrate the relevance and effectiveness of the technique through
 analyzer comparisons (\autoref{sec:related-works}) and experiments (\autoref{sec:performance}).
@@ -293,7 +293,7 @@ The implementation of the program is correct if we can construct a proof that sh
 A correctness proof requires verifying that every computation terminates, every call to another procedure satisfies its \ndx{precondition}s, and the postcondition holds at program termination~\cite{furia2010}.
 For an example of \ndx{specifications}, refer to Appendix~\ref{app:sec:verified}.
 
-\paragraph*{Relating postconditions and loop invariants.}
+\paragraph*{Relating postconditions and loop \ndx{invariant}s.}
 A postcondition is a higher-level view describing the program goal.
 In case of loops, a \emph{postcondition} is a conditions that must hold after the loop terminates.
 The postcondition inference problem can be expressed informally as follows.
@@ -307,17 +307,17 @@ the inference problem involves finding a postcondition \(Q\) that satisfies the 
 \end{prooftree}.
 Postconditions inferred using the flow calculus are provable by the soundness theorem.
 However, pre- and postcondition alone are typically too weak to prove a program correct.
-Loop invariants are often necessary to make the specification provable.
+Loop \ndx{invariant}s are often necessary to make the specification provable.
 
-An \emph{invariant} describes an assertion about a program location that must be true for every program state reaching the location~\cite{furia2010,nguyen2022}.\footnote{A postcondition is also an invariant; for clarity, we always refer to a postcondition as such and use `invariant` to refer to an inductive loop invariant.}
-A {loop invariant} is a weakened form of the postcondition~\cite{furia2010}.
-An invariant is {inductive} if it holds the first time the location is reached and is preserved in every cycle returning to the location~\cite{sankaranarayanan2004}.
-Verifying loops requires discovering {sufficiently strong} inductive loop invariants to prove the specification.
-For an invariant to be sufficient, it must be weak enough to be derived from the \ndx{precondition} and strong enough to conclude the postcondition.
+An \emph{\ndx{invariant}} describes an assertion about a program location that must be true for every program state reaching the location~\cite{furia2010,nguyen2022}.\footnote{A postcondition is also an \ndx{invariant}; for clarity, we always refer to a postcondition as such and use `\ndx{invariant}` to refer to an inductive\index{invariant!inductive} loop\index{loop invariant} \ndx{invariant}.}
+A {loop invariant}\index{loop invariant} is a weakened form of the postcondition~\cite{furia2010}.
+An \ndx{invariant} is {inductive} if it holds the first time the location is reached and is preserved in every cycle returning to the location~\cite{sankaranarayanan2004}.
+Verifying loops requires discovering {sufficiently strong} inductive loop invariants\index{loop invariant} to prove the specification.
+For an \ndx{invariant} to be sufficient, it must be weak enough to be derived from the \ndx{precondition} and strong enough to conclude the postcondition.
 
-Inductive loop invariants and postconditions are symbiotic: the discovery of one assists finding the other~\cite{furia2010}.
-Every invariant is necessarily a (weak) postcondition, as it must hold at termination, but a postcondition must not be invariant.
-For example, given natural numbers \pr|i| and \pr|n|, the loop \prc|for(i=0;i<n;i++) i++;| has an invariant \(0 \leq \prm{i} \leq \prm{n}\) and a postcondition \(\prm{i}=\prm{n}\).
+Inductive\index{invariant!inductive} loop\index{loop invariant} \ndx{invariant}s and postconditions are symbiotic: the discovery of one assists finding the other~\cite{furia2010}.
+Every \ndx{invariant} is necessarily a (weak) postcondition, as it must hold at termination, but a postcondition must not be \ndx{invariant}.
+For example, given natural numbers \pr|i| and \pr|n|, the loop \prc|for(i=0;i<n;i++) i++;| has an \ndx{invariant} \(0 \leq \prm{i} \leq \prm{n}\) and a postcondition \(\prm{i}=\prm{n}\).
 Invariant inference techniques may assume \ndx{precondition}s and postconditions are known.
 However, this assumption is impractical, since manually adding \ndx{specifications} to code fragments is non-trivial.
 
@@ -1055,9 +1055,6 @@ The inferred postconditions can be described by the following categories.
     Iteration independence means that, beyond the fixed point, the variable is unaffected by an increase in loop iteration count.
     Thus, iteration-independence is a quasi-invariance\index{quasi-invariant} property.
     In \exname, if the loop iterates at least once, the final value of \pr|X3| is determined by \pr|X2| and \pr|X5|.
-%This makes variable \pr|X3| iteration-independent.
-%   Increasing the iteration count has no impact.
-% The flow calculus distinguished this fact with the \(w\) coefficient.
 
     \item[Iteration-dependent.]
     Arithmetic computations involving multiple changing variables lead to iteration-dependent value growth.
@@ -1091,11 +1088,11 @@ These can evaluate to distinct numeric values, yet both are equally optimal by d
 We implemented the analysis of~\autoref{subsec:inference} as an extension of the static analyzer \ndx{pymwp}.
 \ndx{pymwp}~\cite{aubert2023b} is an open source implementation of the flow calculus of mwp-bounds on a subset of \pr|C|.
 \ndx{pymwp} takes as input a \pr|C| file and analyzes variable value growth in each of its functions.
-Our implementation adds to \ndx{pymwp} a new loop analysis mode, \impl.
-The loop analysis is complementary to the default function analysis mode, which we name \impf for distinction.
-The primary differences are that \impl looks for {optimal} bounds by variable in a {loop},
-and \impf finds existence of {any} bound for all variables in a {function}.
-Though applicable to both, the paper enhancements are implemented only in \impl to enable evaluation.
+Our implementation adds to \ndx{pymwp} a new loop analysis mode, \ndx{\impl}.
+The loop analysis is complementary to the default function analysis mode, which we name \ndx{\impf} for distinction.
+The primary differences are that \ndx{\impl} looks for {optimal} bounds by variable in a {loop},
+and \ndx{\impf} finds existence of {any} bound for all variables in a {function}.
+Though applicable to both, the paper enhancements are implemented only in \ndx{\impl} to enable evaluation.
 
 During program analysis, the input file is mapped to the imperative language of~\autoref{def:lang}.
 Only loops that are fully expressible in the imperative language are analyzed.
@@ -1119,18 +1116,19 @@ Next, we must complete the parts that are left implicit in mwp-bounds, like cons
 In general, the postpositions provide bounding expressions \wrt input variables, with some possible omissions.
 However, filling in the expression is conceptually easier than starting with no expression at all.
 
-\subsection{Comparing Related Techniques}\label{sec:related-works}
+\subsection{Comparing Related Techniques}
+\label{sec:related-works}
 
 \subsubsection{Automatic inference of specification conditions}
 \label{subsec:automatic-inference}
 
 Our work relates primarily to approaches that aim to unify software verification and complexity.
-Whereas loop invariants are used in~\cite{nguyen2017} to obtain complexity results, we synthesize specification conditions starting from complexity analysis.
+Whereas loop invariants\index{loop invariant} are used in~\cite{nguyen2017} to obtain complexity results, we synthesize specification conditions starting from complexity analysis.
 The bidirectionality suggests that further investigations, connecting the two topics, is warranted.
 Narrowing down to \ndx{specifications}, automatic specification inference in general is a challenging problem~\cite{dillig2013,yu2023}.
-It is common to break down the problem into smaller parts: \ndx{precondition}s, postconditions, and (inductive) invariants.
+It is common to break down the problem into smaller parts: \ndx{precondition}s, postconditions, and (inductive)\index{invariant!inductive} \ndx{invariant}s.
 Inference of postconditions is the most relevant \wrt our analysis.
-Although invariants inference is studied extensively in literature~\cite{karr1976,cousot1978,colon2003,sankaranarayanan2004,dillig2013,si2018,ryan2020,yao2020,yu2023,nguyen2014,nguyen2017},
+Although invariant inference\index{invariant inference} is studied extensively in literature~\cite{karr1976,cousot1978,colon2003,sankaranarayanan2004,dillig2013,si2018,ryan2020,yao2020,yu2023,nguyen2014,nguyen2017},
 existing works that intentionally target postconditions are rare~\cite{popeea2006,molina2021}.
 
 There are a few instances that infer postconditions statically.
@@ -1141,14 +1139,14 @@ The complexity analyzer \ndx{KoAT}~\cite{giesl2022} is a static analyzer with an
 However, it targets complexity-theoretic program properties, like time and size bounds, and is not specialized for verification.
 
 Dynamic analyzers are complementary to static techniques.\index{dynamic program analysis}
-They inspect \ndx{program trace}s to infer \emph{likely} invariants at the traced program points.
+They inspect \ndx{program trace}s to infer \emph{likely} invariants\index{likely invariant} at the traced program points.
 \ndx{EvoSpex}~\cite{molina2021} is a dynamic postcondition analyzer.
 It is designed for Java methods for reasoning about postconditions in classes (accessors, mutators, heap structures, \etc);
 and thus distant from numerical loop analysis.
-The invariant detector \ndx{Daikon}~\cite{ernst2007} handles many program constructs, including numerical loops.
+The \ndx{invariant} detector \ndx{Daikon}~\cite{ernst2007} handles many program constructs, including numerical loops.
 Since \ndx{Daikon} is compatible with our problem formulation, we discuss it in~\autoref{subsec:comparison}).
-\ndx{DIG}~\cite{nguyen2014} is another numeric invariant generator.
-\ndx{DIG} can perform invariant inference at arbitrary program points, which makes it usable as a postcondition detector.
+\ndx{DIG}~\cite{nguyen2014} is another numeric \ndx{invariant} generator.
+\ndx{DIG} can perform invariant inference\index{invariant inference} at arbitrary program points, which makes it usable as a postcondition detector.
 Although it is similar to \ndx{Daikon}, \ndx{DIG} mixes static and dynamic techniques to obtain more informative results.
 In general, \ndx{dynamic program analysis} differ notably from static analysis.
 Since their results are based on traces\index{program trace} they are necessarily incomplete.
@@ -1161,15 +1159,15 @@ The same is not necessary for our analysis that can work with program fragments.
 
 Since we aim to support concrete verification tasks, we must compare our analysis to available implementations that can address the same problem.
 In this section, we compare\footnote{Refer to \autoref{app:sec:comparison} for the technical details of this comparison.}
-\impl to three mature\footnote{Each analyzer is developmentally stable with 10+ years of history.} analyzers: \ndx{KoAT}, \ndx{Duet}, and \ndx{Daikon}.
-These analyzers are designed for complexity analysis, verification, and invariant inference, \resp
+\ndx{\impl} to three mature\footnote{Each analyzer is developmentally stable with 10+ years of history.} analyzers: \ndx{KoAT}, \ndx{Duet}, and \ndx{Daikon}.
+These analyzers are designed for complexity analysis, verification, and invariant inference\index{invariant inference}, \resp
 Each analyzer analyzes different program scopes (\cf~\autoref{tab:summary} and~\autoref{subsec:analyzer-scopes}) and has a different specification of output format.
 Therefore, a statistical comparison is insufficient for useful comparison.
 A better way is to present canonical cases that the analyzers handle differently.
 As the comparison workload we consider the loops of~\autoref{fig:loops}.
 They are instances from the benchmarks we will re-encounter in~\autoref{sec:performance}.
 To give a preview of our findings---which we summarize in~\autoref{tab:summary}---the alternative analyzers are {orthogonal}.
-The comparison shows \impl is useful in cases the other tools ignore, and vice versa.
+The comparison shows \ndx{\impl} is useful in cases the other tools ignore, and vice versa.
 
 \begin{center}
 \captionsetup{type=figure}
@@ -1215,7 +1213,7 @@ Assuming \(\prm{y}=0\), the precise formula is \(\prm{x'} = \prm{x} + (\prm{y'} 
 \end{center}
 
 \paragraph{Inference with \impl.}
-The results of \impl give a baseline for comparison.
+The results of \ndx{\impl} give a baseline for comparison.
 
 \begin{itemize}
 
@@ -1260,10 +1258,10 @@ The latter is the complement of the flow calculus, where the iterator of bounded
 We include it in this comparison because it contains analysis techniques that relate to our problem.
 In particular, the implementation of {transition ideals}~\cite{cyphert2024}
 computes {loop summaries} that produce over-approximations of a formula that describes the loop body.
-The summaries can capture non-linear invariants and generalize over arbitrary control flow.
+The summaries can capture non-linear invariants\index{invariant!non-linear} and generalize over arbitrary control flow.
 The theory of transition ideals is monotone.
 TIn other words, a program with more precise \ndx{specifications} yields a more informative loop summary.
-Then, \ndx{Duet} aims to prove program correctness using the invariants generated from transition ideals.
+Then, \ndx{Duet} aims to prove program correctness using the \ndx{invariant}s generated from transition ideals.
 
 \begin{itemize}
 \item Listings~\ref{lst:case-1} --~\ref{lst:case-3}:
@@ -1273,17 +1271,17 @@ Then, \ndx{Duet} aims to prove program correctness using the invariants generate
     For example, if we add to~\autoref{lst:case-3} the assertions
     \(\prm{x'}=\prm{x}+(\prm{y'}\times\prm{y'}-\prm{y'}) \div 2 \) and \(\prm{y'}=1000 \),
     \ndx{Duet} verifies the program with \pr|0 errors,| \pr|2 safe assertions|.
-    When assertions are not available, \impl could assist \ndx{Duet} toward obtaining the initial assertions.
+    When assertions are not available, \ndx{\impl} could assist \ndx{Duet} toward obtaining the initial assertions.
 \end{itemize}
 
 \paragraph{Postconditions with Daikon.}
-\ndx{Daikon}~\cite{ernst2007,daikon} is a dynamic invariant detector with front-ends to support many programming languages.
+\ndx{Daikon}~\cite{ernst2007,daikon} is a dynamic \ndx{invariant} detector with front-ends to support many programming languages.
 \ndx{Daikon} predicts \ndx{likely invariant}s at function entry and exit points.
-Critically, the function internals are opaque during invariant detection.
+Critically, the function internals are opaque during \ndx{invariant} detection.
 The inference relies on execution traces\index{program trace}, templates, and configuration options.
 \ndx{Daikon} infers postconditions for a \pr|return| variable
 and a single function may generate multiple postconditions.
-Since the invariants are likely, they must be checked for correctness, possibly manually.
+Since the \ndx{invariant}s are likely, they must be checked for correctness, possibly manually.
 \ndx{Daikon} does not produce results for the displayed fragments, but after a modification to a whole-program,
 it infers the following.
 
@@ -1306,10 +1304,10 @@ Although the arithmetic formula is not recovered, \ndx{Daikon} is the only techn
 \textbf{\ndx{KoAT}}            &
 \textbf{\ndx{\impl}}           \\
 \midrule
-Analysis scope                & function entry/exit   & invariants           & loop control         & loop body     \\
+Analysis scope                & function entry/exit   & \ndx{invariant}s           & loop control         & loop body     \\
 (\autoref{subsec:analyzer-scopes}) \\
 Input format                  & execution traces\index{program trace}      & program              & program              & program       \\
-Output format                 & likely invariants     & SAT/error            & size bounds          & mwp-bounds    \\
+Output format                 & \ndx{likely invariant}s     & SAT/error            & size bounds          & mwp-bounds    \\
 Numerical domain              & \(\mathbb{Z}\)        & \(\mathbb{Z}\)       & \(\mathbb{Z}\)       & \(\mathbb{N}\) \\
 Postcondition expressivity    & >+                    & >+                   & >+                   & +             \\
 Program fragment analysis     & \snone                & \spart               & \sfull               & \sfull        \\
@@ -1334,20 +1332,20 @@ A positive response is phrased as favorable: \mbox{\sfull = yes}, \mbox{\spart =
 We examine two questions about the implementation of our technique.
 \begin{enumerate}
 
-    \item \textbf{How effective is \impl at discovering postconditions in general?}
-    We execute \impl against four benchmark suites that include a rich set of benchmarks from complexity theory to loop invariant inference.
+    \item \textbf{How effective is \ndx{\impl} at discovering postconditions in general?}
+    We execute \ndx{\impl} against four benchmark suites that include a rich set of benchmarks from complexity theory to loop\index{loop invariant} invariant inference\index{invariant inference}.
     Three of the suites are design-independent of the applied analysis technique.
 
     \item \textbf{What is the concrete impact of the new theoretical enhancements?}
     We hypothesize that the introduced enhancements are critical for extending the utility of the flow calculus.
-    To quantify this improvement, we compare performance of \impl and \impf across the four benchmark suites.
+    To quantify this improvement, we compare performance of \ndx{\impl} and \ndx{\impf} across the four benchmark suites.
 
 \end{enumerate}
 
 \paragraph*{Setup: benchmarks, metrics, and environment.}\label{subsec:exp-setup}
 We consider four benchmark suites, of numerical C loops, and 620 total problem (detailed in~\autoref{app:subsec:bench}).
 The {complexity} suite is mainly linear time complexity problems whose termination behavior is unknown.
-The {linear}~\cite{si2018} and {non-linear}~\cite{nguyen2017,yu2023} suites come from loop invariant inference literature.
+The {linear}~\cite{si2018}\index{invariant!linear} and {non-linear}~\cite{nguyen2017,yu2023}\index{invariant!non-linear} suites come from loop\index{loop invariant} invariant inference\index{invariant inference} literature.
 The non-linear suite includes classic numerical algorithms like geometric series and divisor computations.
 The {mwp} suite~\cite{aubert2023b} problems are designed pose challenges to analyses based on the flow calculus of mwp-bounds.
 All suites include branching statements and nondeterministic\index{nondeterminism} control expressions that simulate external function calls.
@@ -1389,14 +1387,14 @@ All experiment results are in \autoref{tab:results}.
 & \multicolumn{1}{c}{{\({\infty}\)}}
 \\
 \midrule
-\impf    & Complexity  & 399 (.79)   &  1153  & 616 (.53)  & 330 &  6 & 280 & 537 (.47) \\ %&   18674 & (37.05) \\
+\ndx{\impf}    & Complexity  & 399 (.79)   &  1153  & 616 (.53)  & 330 &  6 & 280 & 537 (.47) \\ %&   18674 & (37.05) \\
 (prior)  & Linear      &  49 (1.0)   &   131   & 95 (.73)  &  38 &  1 &  57 &  36 (.27) \\ %&     117 &  (2.39) \\
 & Non-linear  &  29 (.78)   &   159   & 60 (.38)  &  14 &  3 &  43 &  99 (.62) \\ %&     744 & (20.11) \\
 & mwp 	      &  30 (1.0)   &   105   & 66 (.63)  &  28 & 22 &  16 &  39 (.37) \\ %&    1878 & (62.60) \\
 \bottomrule
 \end{tabularx}
 \caption[Experiment results for \impf and \impl]{
-Experiment results for \impf and \impl with totals and (mean).
+Experiment results for \ndx{\impf} and \ndx{\impl} with totals and (mean).
 \emph{Loops}/\emph{functions} shows the number of analyzed instances and suite coverage (\%).
 \emph{Bounds} is the number of inferred postconditions, with the mean is relative to analyzed \emph{variables}.
 The \emph{mwp}-columns show a breakdown of postconditions by bound form.
@@ -1407,16 +1405,16 @@ The number of unbounded variables is shown in column \(\infty\).
 \subsubsection{Inference generalizability}
 \label{subsec:rq1-res}
 
-Across the four suites, \impl succeeds at analyzing 84\%-100\% of the loops.
+Across the four suites, \ndx{\impl} succeeds at analyzing 84\%-100\% of the loops.
 It finds postconditions for 62\%-78\% of variables occurring in those loops.
 The postconditions are different in form from most complexity analyzers (refer to~\cite{lommen2023,aubert2023b}).
 Most complexity analyzers are essentially restricted to linear arithmetic~\cite{lommen2023}.
-Encouragingly, \impl shows success also on the non-linear suite.
+Encouragingly, \ndx{\impl} shows success also on the non-linear suite.
 The results are positive because the suite contains complex arithmetic and natural algorithms.
-The linear suite expectedly provides more postconditions, since the suite is easier.
-On the complexity problems, that dominate in problem quantity, \impl already bounds 70\% of variables.
+The linear suite expectedly yields more postconditions, since the suite is easier.
+On the complexity problems, that dominate in problem quantity, \ndx{\impl} already bounds 70\% of variables.
 The number depends largely on how loop boundedness is decided.
-We expect that, after improving the current mechanism, \impl could produce even more postconditions.
+We expect that, after improving the current mechanism, \ndx{\impl} could produce even more postconditions.
 
 We observe some limitations \wrt expressivity.
 First, loops with unsupported syntax are not analyzed.
@@ -1425,19 +1423,19 @@ Such operations are inherently outside the guarantees that can be provided by th
 When the growth rate of some variables is truly beyond polynomial, it is not expressible as mwp-bounds.
 Finally, sometimes the polynomial describing the variable value growth may be too complicated to express.
 Based on the findings, further increase in expressivity should be one of the main directions of future research.
-In summary, \impl succeeds at analyzing most loops, and it generates postconditions for most variables in those loops.
+In summary, \ndx{\impl} succeeds at analyzing most loops, and it generates postconditions for most variables in those loops.
 
 \subsubsection{Impact of theoretical enhancements}\label{subsec:rq2-res}
 
-We compare \impl and \impf to quantify the impact of the enhancements introduced in this paper.
-As practical implementations of the flow calculus, \impf represents the state-of-the-art in the analysis capabilities.
+We compare \ndx{\impl} and \ndx{\impf} to quantify the impact of the enhancements introduced in this paper.
+As practical implementations of the flow calculus, \ndx{\impf} represents the state-of-the-art in the analysis capabilities.
 Since the two analysis modes differ on program scopes, not all results are comparable.
 However, we pre-processed the mwp-suite such that it is fully comparable.
 The mwp-suite results confirm that the paper enhancements improve abilities to infer postconditions.
-On the mwp suite, \impl bounds 73\% of variables compared to 63\% by \impf.
-Further, \impl finds optimal bounds, which is reflected in the distribution of bound forms.
+On the mwp suite, \ndx{\impl} bounds 73\% of variables compared to 63\% by \ndx{\impf}.
+Further, \ndx{\impl} finds optimal bounds, which is reflected in the distribution of bound forms.
 The other suites are comparable through the statistical means.
-Particularly on the non-linear suite, \impf bounds only 38\% of variables.
+Particularly on the non-linear suite, \ndx{\impf} bounds only 38\% of variables.
 This is because one failing variable causes failure of all variables.
 On the same suite, \impl bounds 62\% variables due to its enhanced failure handling.
 
@@ -1456,7 +1454,7 @@ This required four new enhancements:
 \end{enumerate}
 
 A comparison study shows our technique offers complementary strengths among the related inference approaches.
-The theory is materialized in an implementation, \impl.
+The theory is materialized in an implementation, \ndx{\impl}.
 Our experiments show that the paper enhancements improve the flow calculus and make it applicable toward uses in formal verification.
 
 \paragraph*{Future directions.}
@@ -1507,10 +1505,10 @@ implementation has a bug---\eg variable grows exponentially when it should
 not---the bug becomes detectable during this step. A fully automatic technique
 would not alert to the issue.
 
-After adding invariants, the \ndx{Dafny} verifier immediately constructs a proof,
-which confirms that the assertions always hold. Generating suitable inductive
-loop invariants is a challenge for the related works that specialize in
-inductive invariant inference.
+After adding \ndx{invariant}s, the \ndx{Dafny} verifier immediately constructs a proof,
+which confirms that the assertions always hold. Generating suitable inductive\index{invariant!inductive}
+loop \ndx{invariant}s\index{loop invariant} is a challenge for the related works that specialize in
+invariant inference\index{invariant inference}.
 
 \subsection{Appendix B: Technical Details of Analyzer Comparison}
 \label{app:sec:comparison}
@@ -1545,7 +1543,7 @@ The web interface address is:
 
 \paragraph*{Duet.}
 We ran \ndx{Duet} from source, git revision \pr|1d36b05|, with following options.
-The compositional recurrence analysis generates invariants for sequential programs.
+The compositional recurrence analysis generates \ndx{invariant}s for sequential programs.
 Transition ideals is implemented as linear and quadratic simulation modes.
 \begin{center}
 \begin{minipage}{\textwidth}
@@ -1578,18 +1576,18 @@ After tracing, we run \ndx{Daikon} with following options to infer postcondition
 \begin{minipage}{\textwidth}
 \captionsetup{type=lstlisting}
 \cmdinputlisting[][escapeinside=||]{dk_infer.cmd}
-\captionof{lstlisting}[Infer invariants using Daikon]{Infer invariants using \ndx{Daikon}.}
+\captionof{lstlisting}[Infer invariants using Daikon]{Infer invariants using \ndx{Daikon}.\index{invariant inference}}
 \label{lst:daikon-bash}
 \end{minipage}
 \end{center}
 
-After inference, the invariants can be printed to a suitable display format.
+After inference, the \ndx{invariant}s can be printed to a suitable display format.
 
 \begin{center}
 \begin{minipage}{\textwidth}
 \captionsetup{type=lstlisting}
 \cmdinputlisting[][escapeinside=||]{dk_print.cmd}
-\captionof{lstlisting}[Displaying invariants inferred by Daikon]{Displaying invariants inferred by \ndx{Daikon}.}
+\captionof{lstlisting}[Displaying invariants inferred by Daikon]{Displaying \ndx{invariant}s inferred by \ndx{Daikon}.}
 \label{lst:print-bash}
 \end{minipage}
 \end{center}
@@ -1652,7 +1650,7 @@ int main(int X, int Y, int Z) {
     Postcondition analysis scopes.
     The analyzers focus on complementary program regions identified by the different colors.
     \ndx{KoAT} tracks variables that control loop iteration.
-    \impl analyzes variables inside the loop body.
+    \ndx{\impl} analyzes variables inside the loop body.
     \ndx{Duet} infers loop summaries based on available assertions.
     \ndx{Daikon} infers \ndx{likely invariant}s of the \pr|return| variable and abstracts function internals.
 }
@@ -1688,22 +1686,23 @@ Variables \\
 \item[The {complexity} suite] is the \enquote{Complexity C Integer} suite from the Termination Problem Database version 11.3~\cite{tpdb},
 This suite is used in the annual Termination and Complexity Competition.
 
-\item[The linear suite]~\cite{si2018} contains inference problems for linear loop invariants.
+\item[The linear suite]~\cite{si2018} contains inference problems for linear loop invariants.\index{loop invariant}\index{invariant!linear}
 The problems are pre-annotated with assertions (these have no impact on our analysis).
 We excluded 9 benchmarks that are known to be invalid~\cite[Appendix G]{ryan2020} as they violate the specified assertions.
 We also unified benchmarks that have the same \ndx{precondition} and loop, as they are identical for the purpose of \emph{postcondition} inference,
 ending with 49 benchmarks in total.
 
-\item[The nonlinear suite]~\cite{nguyen2017} (also referred to as NLA-suite in literature) is an extended formulation of the suite, with the additional problems coming from~\cite{yu2023}.
+\item[The nonlinear suite]~\cite{nguyen2017}\index{invariant!non-linear}
+(also referred to as NLA-suite in literature) is an extended formulation of the suite, with the additional problems coming from~\cite{yu2023}.
 
 \item[The {mwp} suite]~\cite{aubert2023b} is designed specifically to be challenging for the flow calculus of mwp-bounds, with complex data flows and arithmetic operations.
-To obtain strictly comparable results between \impl and \impf, as they scope variables differently, we exclude nested loops and loopless benchmarks.
+To obtain strictly comparable results between \ndx{\impl} and \ndx{\impf}, as they scope variables differently, we exclude nested loops and loopless benchmarks.
 
 \end{description}
 
 The statistics of the suites are summarized in~\autoref{tab:suites}.
 A single benchmark can contain multiple functions, loops, and sequential and/or nested loops.
-Due to differences in the targeted program scopes between \impl and \impf, the variable counts are specified by scope.
+Due to differences in the targeted program scopes between \ndx{\impl} and \ndx{\impf}, the variable counts are specified by scope.
 Loop-scoped variables include loop guards and variables in the loop body.
 Function-scoped variables contain all parameters and variables in the function body.
 We modified the benchmarks by expanding n-ary expressions to binary form to match the \href{https://statycc.github.io/pymwp/features/}{input language} of \ndx{pymwp}.
