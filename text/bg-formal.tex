@@ -144,7 +144,7 @@ It is possible to infer complexity bounds of numerical loops based on loop invar
 However, the solution relies on dynamic techniques, that are beyond purely static capabilities.
 
 \paragraph*{Safety and \ndx{liveness properties}.}\index{safety properties}
-Formal verification aims to guarantee that certain behavioral attributes, \ie \emph{properties}, hold for a program.
+Formal verification\index{formal verification} aims to guarantee that certain behavioral attributes, \ie \emph{properties}, hold for a program.
 A few examples of properties are memory safety\ndx{memory safety}%
 \footnote{\Ie absence of errors related to memory accesses: null-pointer de-referencing, access to un-allocated memory, dangling pointers, out-of-bounds accesses, double-free, \etc~\cite{muller2024}},
 absence of overflows, termination, data race and \ndx{deadlock freedom}, secure \ndx{information flow} (cf~\autoref{if-security}), staying within available resource bounds, and \ndx{worst-case execution time} (WCET).
@@ -177,28 +177,31 @@ However, similar to~\autoref{static-analysis-basics}, there is endless opportuni
 
 \subsubsection{Tools for Formal Verification}
 
-Formal methods is inherently concerned with \emph{computer-aided} reasoning.
-Therefore, software tools are essential to formal methods. The tools include
-solvers, theorem provers, model checkers, verifiers, \etc. Each tool family has
-different use cases, degree of automation, and guarantees -- as illustrated
-in~\autoref{fig:verification-approaches}, adapted from~\textcite{leroy2018}.
+Formal verification\index{formal verification} is inherently concerned with
+\emph{computer-aided} reasoning. Software tools are essential in this pursuit.
+The tools include solvers, theorem provers, model checkers, verifiers, \etc.
+Each tool family has different use cases, degree of automation, and guarantees
+-- as illustrated in~\autoref{fig:verification-approaches}, adapted
+from~\textcite{leroy2018}.
 
 \begin{figure}[ht]
 \centering
 \includegraphics[]{fig_fm-tools}
 \caption[Formal verification approaches]{
-Formal verification approaches.}
+Formal verification approaches.\index{formal verification}}
 \label{fig:verification-approaches}
 \end{figure}
 
-\autoref{tab:fm-tools} provides a directory of specific formal methods tools.
-Interactive theorem provers and verification-aware programming languages are of
-special interest to this dissertation.
+\autoref{tab:fm-tools} shows a collection of formal methods tools.
+Interactive theorem provers\index{interactive proof assistant} and
+verification-aware programming languages are of special interest to this
+dissertation.
 
 \begin{table}[p!]
 \begin{tabularx}{\linewidth}{@{}lX@{}}
 \toprule
-\multicolumn{2}{@{}l}{\textbf{Automated theorem provers \& solvers}} \\
+\multicolumn{2}{@{}l}{\textbf{Automated theorem provers \& solvers}}
+\index{automated theorem proving} \\
 &
 \href{https://alt-ergo.ocamlpro.com}{\ndx{Alt-Ergo}}%
 ,{ }\href{https://github.com/bitwuzla/bitwuzla}{\ndx{Bitwuzla}}%
@@ -243,7 +246,7 @@ special interest to this dissertation.
 \\\midrule
 \multicolumn{2}{@{}l}{\textbf{Language-based verification \& modelling languages}} \\
 &
-\href{https://github.com/boogie-org/boogie}{Boogie}\index{Boogie}%
+\href{https://github.com/boogie-org/boogie}{\ndx{Boogie}}%
 .{ }\href{https://github.com/moves-rwth/caesar}{Caesar}\index{Caesar}%
 ,{ }\href{https://dafny.org}{Dafny}\index{Dafny}%
 ,{ }\href{https://www.eiffel.org}{Eiffel}\index{Eiffel}%
@@ -304,7 +307,8 @@ special interest to this dissertation.
 \\\midrule
 \multicolumn{2}{@{}l}{\textbf{Symbolic execution}} \\
 &
-\href{https://github.com/jburnim/crest}{\ndx{CREST}}%
+\href{https://vsl.cis.udel.edu/trac/civl/wiki}{\ndx{CIVL}}%
+,{ }\href{https://github.com/jburnim/crest}{\ndx{CREST}}%
 ,{ }\href{https://github.com/pschanely/CrossHair}{\ndx{CrossHair}}%
 ,{ }\href{https://github.com/GillianPlatform/Gillian}{\ndx{Gillian}}%
 ,{ }\href{https://klee-se.org}{\ndx{KLEE}}%
@@ -313,139 +317,178 @@ special interest to this dissertation.
 ,{ }\href{https://github.com/SymbolicPathFinder/jpf-symbc}{\ndx{Symbolic JPF}}
 \\
 \bottomrule
-\caption[Tools for formal methods]{A categorized collection of formal methods tools.}
+\caption[Tools for formal methods]{A collection of formal methods tools.}
 \label{tab:fm-tools}
 \end{tabularx}
 \end{table}
 
 \begin{description}
 \item[Mechanized proofs.]
-One of the main goals of formal methods is to produce mechanized, \ie machine-checked, proofs.
-A mechanized proof \enquote{detaches} proof-checking from the activity of crafting the proof.
-Only the interface of the program, \ie the statement of the theorem, needs to be reviewed.
-The rest is self-checking and deferred to a theorem prover.
-This means everyone with sufficient technical abilities can check the proof once a proof exists (provided they trust the theorem prover).
-Mechanized proofs are sometimes compared to \emph{paper proofs}, \ie informal proofs written in natural language, whether actually on paper or written in a text editor.
-Since paper proof rely solely on the readers abilities to comprehend and confirm the detailed proof steps, mechanized proofs are functionally distinct and provide more rigorous correctness guarantees~\cite{gonthier2008}.
+One of the main goals of formal methods is to produce mechanized, \ie
+machine-checked, proofs. A \ndx{mechanized proof} \enquote{detaches}
+proof-checking from the activity of crafting the proof. Checking a mechanized
+proof requires reviewing only the interface of the program, \ie the statement of
+the theorem. The rest is self-checking and deferred to a theorem prover. This
+means everyone with sufficient technical abilities can check the proof once a
+proof exists (provided they trust the theorem prover). Mechanized
+proofs\index{mechanized proof} are sometimes compared to \emph{paper proofs},
+\ie informal proofs written in natural language (whether actually on paper or
+written in a text editor). Since paper proof rely solely on the readers
+abilities to comprehend and confirm the detailed proof steps, \ndx{mechanized
+proof} are functionally distinct and provide more rigorous correctness
+guarantees~\cite{gonthier2008}.
 
 \item[Theorem provers.]
+Mechanized (formal) proofs\index{mechanized proof} are created with theorem
+provers. There are broadly two categories of provers.
 
-Mechanized (formal) proofs are created with theorem provers.
-There are broadly two categories.
+\begin{itemize}
+\item An \emph{automatic theorem prover}\index{automated theorem proving} (ATP)
+aims to find proofs without assistance from a user. The proof \emph{search}
+problem is challenging. For example, for first-order logic, the problem is
+\textsc{np}-complete~\cite{cook1971,
+levin1973}).\index{\textsc{np}-completeness} However, the solvers must be
+practically efficient to support various applications of automated theorem
+proving. Prominent ATPs complete bi-annually on solving the
+\href{https://www.tptp.org}{\enquote{Thousands of Problems for Theorem Provers}}
+(TPTP problems)~\cite{sutcliffe2024} at the
+\href{https://tptp.org/CASC/}{\ndx{CADE ATP System Competition}} (CASC) -- the
+world championship for automated theorem proving~\cite{casc}.
 
-   \begin{itemize}
-   \item An \emph{automatic theorem prover} (ATP) aims to find proofs without assistance from a user.
-   The proof \emph{search} problem is challenging.%
-   \footnote{\Eg for first-order logic, the problem is NP-complete~\cite{cook1971, levin1973})}%
-   However, the solvers must be practically efficient to support various applications of automated theorem proving.
-   Prominent ATPs complete bi-annually on solving \href{https://www.tptp.org}{\enquote{Thousands of Problems for Theorem Provers}} (TPTP problems)~\cite{sutcliffe2024} at the \href{https://tptp.org/CASC/}{CADE ATP System Competition} (CASC) -- the world championship for automated theorem proving~\cite{casc}.
+\item An \emph{interactive theorem prover}\index{interactive proof assistant}
+(ITP), \aka \emph{interactive proof assistant}, is a programming environment
+that helps users write \ndx{mechanized proof}s. Proof assistants vary in
+underlying logics and proof style. To provide some metric of comparability,
+there is a ranking for tracking the formalization extent of 100 well-known
+mathematical theorems across proof assistants. As of April 2025, the top 3 proof
+assistants with highest coverage of the problems are \ndx{Isabelle} (92\%),
+\ndx{HOL Light} (89\%), and \ndx{Rocq} (79\%)~\cite{hundredtheorems}.
+\end{itemize}
 
-   \item An \emph{interactive theorem prover} (ITP), \aka \emph{proof assistant}, is a programming environment that helps users write mechanized proofs.
-   Proof assistants vary in underlying logics and proof style.
-   To provide some metric of comparability, there is a ranking for tracking the formalization extent of 100 well-known mathematical theorems across proof assistants.
-   As of April 2025, the top 3 proof assistants with highest coverage of the problems are Isabelle (92\%), HOL Light (89\%), and Rocq (79\%)~\cite{hundredtheorems}.
-   \end{itemize}
-
-While automatic theorem provers search for proofs of isolated problems and frequently serve as building block of other verification tools,
-interactive theorem provers enable large and complex modular proof developments.
+Automatic theorem provers\index{automated theorem proving} search for proofs of
+isolated problems and frequently serve as building block of other verification
+tools. Interactive theorem provers\index{interactive proof assistant} enable
+large and complex modular proof developments.
 
 \item[Verification-aware programming languages.]
-Verification-aware programming languages provide a conceptually different approach to machine-checked proofs.
-Such languages are particularly well-suited for reasoning about functional correctness of programs.
-Verification-aware programming languages have built-in capabilities to express \ndx{specifications} and proofs.
-Additionally, they have an associated verifier that checks the proofs during program development;
-typically, a background ATP that offers an interaction interface via a programming language~\cite{leino2023}.
-One prominent style among the verification-aware languages is \emph{deductive verification},
-where the verification process is based on some form of logical inference, i.e., \enquote{deduction}.
-The properties to be proven are expressed in a formal specification language, as structured comments, next to the program constructs they relate to~\cite{hahnle2019}.
-A deductive verifier them aims at to prove that all possible behaviors of a program satisfy the specification using the available program annotations~\cite{cassez2022}.
+Verification-aware programming languages provide a conceptually different
+approach to \ndx{mechanized proof}s. Such languages are particularly well-suited
+for reasoning about \ndx{functional correctness} of programs. Verification-aware
+programming languages have built-in capabilities to express \ndx{specifications}
+and proofs. Additionally, they have an associated verifier, that checks the
+proofs during program development. The verifier is typically a background ATP,
+that offers an interaction interface via a programming
+language~\cite{leino2023}. One prominent style among the verification-aware
+languages is \emph{\ndx{deductive verification}}, where the verification process
+is based on some form of logical inference, i.e., deduction. The properties to
+be proven are expressed in a formal specification language, as structured
+comments, next to the program constructs they relate to~\cite{hahnle2019}. A
+deductive verifier them aims at to prove that all possible behaviors of a
+program satisfy the specification using the available program
+annotations~\cite{cassez2022}.
 \end{description}
 
 The remainder of this section briefly introduces two tools for formal methods:
 the (interactive) \ndx{Rocq} theorem prover (\autoref{subsec:rocq}) and the
-verification-aware programming language \ndx{Dafny} (\autoref{subsec:dafny}).
+verification-aware programming language \ndx{Dafny} (\autoref{subsubsec:dafny}).
 These tools are relevant for some of the dissertation manuscripts and assumed to
 be familiar to the reader.
 
 \subsubsection{The Rocq Theorem Prover}
 \label{subsec:rocq}
 
-The \ndx{Rocq} theorem prover is an interactive proof assistant for machine-checked formal reasoning.
-It provides a rich and flexible environment for various proof developments.
-\ndx{Rocq} is a widely-adopted tool in the programming languages research community, with applications in formal assurance of mathematics, semantics, and verification.
-In 2013, The ACM has recognized Rocq with the
+The \ndx{Rocq} theorem prover is an \ndx{interactive proof assistant} for
+machine-checked formal reasoning. It provides a rich and flexible environment
+for various proof developments. \ndx{Rocq} is a widely-adopted tool in the
+programming languages research community. Among its applications are formal
+assurance of mathematics, semantics, and verification. In 2013, The ACM has
+recognized \ndx{Rocq} with the
 \href{https://awards.acm.org/software-system}{\ndx{Software System Award}} --
-the highest distinction awarded to research software~\cite{rocq-community}.
-The success of \ndx{Rocq} has also created abundant interest in \ndx{dependent type theory},
-which is the core logic of \ndx{Rocq}~\cite{coquand1988}.
+the highest distinction awarded to research software~\cite{rocq-community}. The
+success of \ndx{Rocq} has also created abundant interest in \ndx{dependent type
+theory}~\cite{coquand1988}, \ie the core logic of \ndx{Rocq}.
 
 \paragraph*{Technical overview.}
-As a guiding example, consider simple proof in~\autoref{lst:rocq-basic}.
-The \pr|lemma| keywords starts a statement we wish to prove.
-The specification language for stating theorems is called Gallina.
-The code between \pr|Proof| and \pr|Qed| is a \emph{proof script}.
-Proof scripts consists of \emph{tactics}.
-Tactics perform operations on the proof state and make explicit the steps needed to prove the associate lemma.
-The Rocq prover comes with dozens of built-in tactics.
-In the example, \pr|intros|, \pr|simpl| and \pr|reflexivity| are tactics.
-The tactic language is called Ltac.
+As a guiding example, consider simple proof in~\autoref{lst:rocq-basic}. The
+\pr|lemma| keywords starts a statement that we wish to prove. The specification
+language for stating theorems is called \ndx{Gallina}. The code between
+\pr|Proof| and \pr|Qed| is a \emph{\ndx{proof script}}. Proof scripts consists
+of \emph{tactics}\index{Rocq tactics}. Tactics perform operations on the
+\emph{\ndx{proof state}} and make explicit the steps needed to prove the
+associate lemma. The \ndx{Rocq} prover comes with dozens of built-in
+tactics\index{Rocq tactics}. In the example, \ltac{intros}, \ltac{simpl} and
+\ltac{reflexivity} are tactics. The tactic\index{Rocq tactics} language is
+called \ndx{Ltac}.
 
 \begin{center}
 \begin{minipage}{\textwidth}
 \captionsetup{type=lstlisting}
 \rocqinputlisting{example.v}
-\captionof{lstlisting}[A simple proof in Rocq]{A simple proof in Rocq.}
+\captionof{lstlisting}[A simple proof in Rocq]{
+   A simple proof in \ndx{Rocq}.}
 \label{lst:rocq-basic}
 \end{minipage}
 \end{center}
 
-Proof engineers write proof scripts incrementally.
-At each step, marked with a period, it is possible to evaluate the proof and see what goal should be proved next.
-Refer to \autoref{fig:rocq-use} for a visual.
-In the editor, the goal appears visually as a \emph{proof state}.
+Proof engineers write proof scripts incrementally. At each step (marked with a
+period) it is possible to evaluate the proof and see what goal should be proved
+next. Refer to \autoref{fig:rocq-use} for a visual example. In the editor, the
+goal (on top right) shows the current \ndx{proof state}.
 
-A full-fledged proof development consists roughly of definitions, lemmas, and proofs.
-Definitions describe all the abstract structures we want to reason about in the mechanization,
-and lemmas\footnote{The distinction between a lemma, theorem, corollary, \etc, is just syntactic sugar.}
-prove facts about the structures.
-Definitions and lemmas provide the specification of a proof development.
-Formal verification then reduces to discovering the proofs that show that the specification is satisfied.
-A finished proof is machine-checkable to everyone familiar with these technical basics.
-Programs proved in Rocq can be extracted to other target languages.
-The functional languages currently available as output languages are
-OCaml, Haskell and Scheme~\cite{rocqdoc}.
+A full-fledged proof development consists roughly of definitions, lemmas, and
+proofs. Definitions describe the abstract structures we want to reason about in
+the mechanization. Lemmas prove facts about the structures.\footnote{In
+\ndx{Rocq} tThe distinction between a lemma, theorem, corollary, \etc, is just
+syntactic sugar.} Definitions and lemmas provide the
+specification\index{specifications} of a proof development. Formal
+verification\index{formal verification} then reduces to discovering the proofs
+that show that the specification is satisfied. A finished proof is
+machine-checkable to everyone familiar with these technical basics. A program
+proved in \ndx{Rocq} can be extracted to other target languages. The functional
+languages currently available as output targets are \ndx{OCaml}, \ndx{Haskell}
+and \ndx{Scheme}~\cite{rocqdoc}.
 
 \begin{figure}[ht]
 \begin{center}
 \includegraphics[width=.9\textwidth]{fig_ide}
 \end{center}
-\caption[Development view of the simple Rocq proof]
-{A development view of the simple Rocq proof.
-The Emacs editor is enhanced with the \href{https://proofgeneral.github.io/}{Proof General} interface
-and the \href{https://github.com/cpitclaudel/company-coq}{Company-coq} plug-in.
-The left view contains the proof code under development.
-Focusing between \pr|Proof| and \pr|Qed| activates the {proof mode}.
-While in proof mode, the {proof state} is visible in the top-right view.
-The bottom-right view shows search results that appear after a database lookup for existing related lemmas.}
+\caption[Development view of the simple Rocq proof]{
+A development view of the simple \ndx{Rocq} proof. The \ndx{Emacs} editor is
+enhanced with the \href{https://proofgeneral.github.io/}{\ndx{Proof General}}
+interface and the
+\href{https://github.com/cpitclaudel/company-coq}{\ndx{Company-coq}} plug-in.
+The left view contains the proof code under development. Focusing between
+\pr|Proof| and \pr|Qed| activates the {proof mode}. While in proof mode, the
+proof state is visible in the top-right view. The bottom-right view shows the
+search results, of a database lookup, for existing lemmas that are similar
+in form to the current goal.}
 \label{fig:rocq-use}
 \end{figure}
 
 \paragraph*{Mathematical Components.}
-The Mathematical Components library---colloquially mathcomp---extends the Rocq ecosystem with an extensive and coherent collection of formalized mathematical theories.
-The library covers a wide spectrum of topics, including formal theory of general purpose data structures like lists;
-prime numbers and finite graphs, and advanced topics in algebra.
-The theories are organized into hierarchical levels where the design facilitates reuse.
-The proof style is based on Rocq, but Mathematical Components uses a specialized language extension called SSReflect (small-scale reflection).
-SSReflect significantly influences proof writing style and poses its own learning curve.
-To demonstrate the difference,~\autoref{subsubsec:sm-tool-examples} shows examples in \enquote{standard} Rocq and SSReflect.
-The Mathematical Components library has an essential role in the Rocq community because several landmark results of finite group theory are based on it.
-For example, the mechanical proofs of the Four Colour theorem~\cite{gonthier2008} and the Odd Order theorem~\cite{gonthier2013} utilize the library extensively.
+The \ndx{Mathematical Components} library---colloquially mathcomp---extends the
+\ndx{Rocq} ecosystem with an extensive collection of formalized mathematical
+theories. The library covers a wide spectrum of topics, including formal theory
+of general purpose data structures---like lists, prime numbers, and finite
+graphs---and advanced topics in algebra. The theories are organized into
+hierarchical levels where the design facilitates reuse. The proof style is based
+on \ndx{Rocq}, but \ndx{Mathematical Components} uses a specialized language
+extension called \ndx{SSReflect} (small-scale reflection). \ndx{SSReflect}
+significantly influences proof writing style and poses its own learning curve.
+To demonstrate the difference,~\autoref{subsubsec:sm-tool-examples} shows
+examples in \enquote{standard} \ndx{Rocq} and \ndx{SSReflect}. The
+\ndx{Mathematical Components} library has an essential role in the \ndx{Rocq}
+community because several landmark results of \ndx{finite group theory} are
+based on it. For example, the mechanical proofs of the \ndx{Four Colour
+theorem}~\cite{gonthier2008} and the \ndx{Odd Order theorem}~\cite{gonthier2013}
+utilize the library extensively.
 
 \paragraph*{Demonstrated applications.}
-Conventional uses of Rocq include proving properties of programming languages, formalizing mathematics, and teaching.
-\autoref{tab:rocq-results} contains representative examples across the first two categories.
+Conventional uses of \ndx{Rocq} include proving properties of programming
+languages, formalizing mathematics, and teaching. \autoref{tab:rocq-results}
+contains representative examples in the first two categories.
 
-\begin{table}
+\begin{table}[p]
 %! suppress = EscapeAmpersand
 \begin{NiceTabularX}{\textwidth}{@{}l@{ }X@{}}
    \toprule
@@ -469,8 +512,11 @@ Conventional uses of Rocq include proving properties of programming languages, f
    \\
    \href{https://github.com/AbsInt/CompCert}%
    {Verified Optimizing C Compiler, \ndx{CompCert}}%
-   \smtabularnote{A verifying compiler is one of the grand challenges for computing research posed in~\textcite{hoare2003}}%
-   \smtabularnote{CompCert received the ACM \ndx{Software System Award} in 2021.}
+   \smtabularnote{
+      A verifying compiler is one of the grand challenges for computing research
+      posed in~\textcite{hoare2003}}%
+   \smtabularnote{
+      CompCert received the ACM \ndx{Software System Award} in 2021.}
    & \textcite{leroy2009}
    \\
    \href{https://gitlab.inria.fr/flocq/flocq}%
@@ -529,53 +575,68 @@ Conventional uses of Rocq include proving properties of programming languages, f
 \end{table}
 
 \paragraph*{Additional resources.}
-There are multiple literature sources for learning more about Rocq.
-Coq'Art~\cite{bertot2004} is the first book dedicated to the proof assistant and its theory.
-The \href{https://softwarefoundations.cis.upenn.edu}{Software Foundations}~\cite{cpierce20221}
-book series is a hands-on, active learning experience.
-The books themselves are implemented in Rocq and updated regularly.
-The Mathematical Components book~\cite{mahboubi2022} provides a guide to using the library and the SSReflect proof language.
-Karate Coq of~\textcite{affeldt2023} is an additional resource about Mathematical Components.
-There are multiple books about engineering Rocq proofs with dependent types and type systems~\cite{chlipala2022,chlipala2013,sergey2014,smolka2021}.
-For a curated list of awesome Coq libraries, plugins, tools, and resources see the
-\emph{Awesome Coq} list~\cite{awesome-coq}.
-Finally, the Rocq prover has an active community, with discussion forums and a mailing list~\cite{rocq-community}.
+There are multiple literature sources for learning more about \ndx{Rocq}.
+Coq'Art~\cite{bertot2004} is the first book dedicated to the proof assistant and
+its theory. The \href{https://softwarefoundations.cis.upenn.edu}{Software
+Foundations}~\cite{cpierce20221} book series is a hands-on, active learning
+experience. The books are implemented in \ndx{Rocq} and updated regularly. The
+\ndx{Mathematical Components} book~\cite{mahboubi2022} provides a guide to using
+the library and the \ndx{SSReflect} proof language. Karate Coq
+of~\textcite{affeldt2023} is an additional resource about \ndx{Mathematical
+Components}. There are multiple books about engineering \ndx{Rocq} proofs with
+dependent types\index{dependent type theory} and \ndx{type
+system}s~\cite{chlipala2022,chlipala2013,sergey2014,smolka2021}. For a curated
+list of awesome Coq libraries, plugins, tools, and resources see the
+\emph{Awesome Coq} list~\cite{awesome-coq}. Finally, the \ndx{Rocq} prover has
+an active community, with discussion forums and a mailing
+list~\cite{rocq-community}.
 
 \subsubsection{Dafny: The Verification Aware Programming Language}
-\label{subsec:dafny}
+\label{subsubsec:dafny}
 
-Dafny is an open source verification-aware programming language, and a verifier for functional correctness~\cite{leino2010,dafnylang}.
-Dafny was designed for reasoning, and it can automatically check programs against \ndx{specifications} during program development.
-\autoref{fig:dfy-flow} shows a visual overview of the verification workflow.
+\ndx{Dafny} is an open source verification-aware programming language, and a
+verifier for \ndx{functional correctness}~\cite{leino2010,dafnylang}.
+\ndx{Dafny} was designed for reasoning, and it can automatically check programs
+against \ndx{specifications} during program development. \autoref{fig:dfy-flow}
+shows a visual overview of the verification workflow.
 
 \begin{figure}[ht]
 \centering
 \includegraphics[width=\textwidth,keepaspectratio]{fig_dafny}
 \caption[Overview of Dafny implementation and verification workflow]{
-A (simplified) overview of Dafny implementation and verification workflow.
-\enquote{A well-designed language and verifier, plus a great SMT solver, go a long way.} -- \textcite{leino2010b}.}
+A (simplified) overview of \ndx{Dafny} implementation and verification workflow.
+\enquote{A well-designed language and verifier, plus a great SMT solver, go a
+long way.} -- \textcite{leino2010b}.}
 \label{fig:dfy-flow}
 \end{figure}
 
 \paragraph*{Technical overview.}
-Dafny is a hybrid language, influenced by \ndx{Java} and \ndx{C\#}.
-It has both functional and object-oriented features;
-including: curly-bracket block-style, (mathematical) functions, and inductive and co-inductive\index{coinduction} data types.
-The programming constructs include loops, \pr|if|-statements, arrays, classes and methods;
-variables, types, generics, lambdas, inheritance, \etc~\cite{dafnydoc}
-The real power of \ndx{Dafny} comes from the ability to annotate methods to specify their behavior.
-For verification tasks, the idea is to define \ndx{specifications} and write proofs aside the implementation, in \ndx{deductive verification}-style.
-The built-in verification constructs include pre- and postconditions;
-loop invariants, termination metrics, lemmas, and \ndx{ghost construct}s\footnote{
-A \emph{ghost} is any construct that is used for verification only; they are erased during compilation~\cite[p. 19]{leino2023}.}.
-This language design enables writing functionally-correct verified programs fully in \ndx{Dafny}~\cite{leino2023}.
-Dafny programs can be compiled to various target languages, like \ndx{C\#}, \ndx{Java}, and \ndx{Go}~\cite{dafnydoc}.
+\ndx{Dafny} is a hybrid language, influenced by \ndx{Java} and \ndx{C\#}. It has
+both functional and object-oriented features. They include curly-bracket
+block-style, (mathematical) functions, and inductive and
+co-inductive\index{coinduction} data types. The programming constructs include
+loops, \pr|if|-statements, arrays, classes and methods; variables, types,
+generics, lambdas, inheritance, \etc~\cite{dafnydoc} The real power of
+\ndx{Dafny} comes from the ability to annotate methods to specify their
+behavior. For verification tasks, the idea is to define \ndx{specifications} and
+write proofs aside the implementation, in \ndx{deductive verification}-style.
+The built-in verification constructs include pre-\index{precondition} and
+\ndx{postcondition}s; \ndx{loop invariant}s, termination metrics, lemmas, and
+\ndx{ghost construct}s.\footnote{A \emph{ghost} is any construct that is used
+for verification only; they are erased during compilation~\cite[p.
+19]{leino2023}.} This language design enables writing functionally-correct
+verified programs fully in \ndx{Dafny}~\cite{leino2023}. \ndx{Dafny} programs
+can be compiled to various target languages, like \ndx{C\#}, \ndx{Java}, and
+\ndx{Go}~\cite{dafnydoc}.
 
-Dafny has an associated static program verifier.
-The role of the verifier is to check a program's specification constructs\footnote{These are Eiffel-like contracts from~\cite{meyer1988}.}.
-As visualized by the chart in~\autoref{fig:dafny-auto} (inspired by~\cite{leino2010b}), the built-in verifier in Dafny adds a high degree of automation.
-The verifier resolves many low-level proof steps.
-For example, if we wanted to prove the lemma of~\autoref{lst:rocq-basic} in Dafny, the verifier succeeds at discharging the proof obligations automatically -- see \pr|Add0Left| in~\autoref{fig:dafny-use}.
+\ndx{Dafny} has an associated static program verifier. The role of the verifier
+is to check a program's specification constructs.\footnote{These are
+\ndx{Eiffel}-like contracts from~\cite{meyer1988}.} As visualized by the chart
+in~\autoref{fig:dafny-auto} (inspired by~\cite{leino2010b}), the built-in
+verifier in Dafny adds a high degree of automation. The verifier resolves many
+low-level proof steps. For example, if we wanted to prove the lemma
+of~\autoref{lst:rocq-basic} in Dafny, the verifier succeeds at discharging the
+proof obligations automatically -- see \pr|Add0Left| in~\autoref{fig:dafny-use}.
 
 \begin{figure}[ht]
 \centering
@@ -589,121 +650,158 @@ For example, if we wanted to prove the lemma of~\autoref{lst:rocq-basic} in Dafn
 \includegraphics[width=\textwidth,keepaspectratio]{fig_vs1}
 \end{center}
 \caption[Dafny running in Visual Studio Code]{
-The Dafny verifier checking Dafny code (running in Visual Studio Code).
-A big green check{ }{ }\circledb[dafnyok]{\faCheck}{ }means the verifier succeeds at proving the corresponding program construct.
-A big red cross{ }{ }\circledb[dafnyno]{\scalebox{1.25}{\faTimes}}{ }identifies program constructs that fail to verify completely, even if some inner declarations succeed.
-A green filled check {\color{dafnyok}{\scalebox{.8}{\faCheckCircle}}} means the verifier succeeds at the proof obligation at the corresponding line.
-The verification fails at declarations marked with a red block \langclr{dafnyred} and\;\;\uwave{squiggly underline}{}.
+The \ndx{Dafny} verifier checking \ndx{Dafny} code (running in \ndx{Visual
+Studio Code}). A big green check{ }{ }\circledb[dafnyok]{\faCheck}{ }means the
+verifier succeeds at proving the corresponding program construct. A big red
+cross{ }{ }\circledb[dafnyno]{\scalebox{1.25}{\faTimes}}{ }identifies program
+constructs that fail to verify completely, even if some inner declarations
+succeed. A green filled check {\color{dafnyok}{\scalebox{.8}{\faCheckCircle}}}
+means the verifier succeeds at the proof obligation at the corresponding line.
+The verification fails at declarations marked with a red block
+\langclr{dafnyred} and\;\uwave{squiggly underline}{}.
 }\label{fig:dafny-use}
 \end{figure}
 
-A program accepted by the Dafny verifier is guaranteed to be totally correct, \ie it terminates and satisfies its specification.
-During program development and when given a candidate specification, the verifier runs automatically on code edits, as shown in~\autoref{fig:dafny-use}.
-The engineer receives immediate feedback on their verification efforts.
-When Dafny verifier fails, the user must annotate the program with additional guidance---assertions, pre-conditions, lemmas, \etc---to assist the verifier, until the verification succeeds.
-Logical contradictions, like the ones raised in~\autoref{fig:dafny-use}, will obviously never succeed.
-The verifier helps to catch such errors early in the program development phase.
+A program accepted by the \ndx{Dafny} verifier is guaranteed to be totally
+correct,\index{total correctness} \ie it terminates and satisfies its
+specification\index{specifications}. During program development and when given a
+candidate specification, the verifier runs automatically on code edits, as shown
+in~\autoref{fig:dafny-use}. The engineer receives immediate feedback on the
+verification efforts. When \ndx{Dafny} verifier fails, the engineer must
+annotate the program with additional guidance---assertions, \ndx{precondition}s,
+lemmas, \etc---to assist the verifier, until the verification succeeds. Logical
+contradictions, like the ones raised in~\autoref{fig:dafny-use}, will obviously
+never succeed. The verifier helps to catch such errors early, during program
+development.
 
 \paragraph*{Proof style.}
-In Dafny, proofs are developed in \enquote{top-down} style.
-This allows the developer to focus on the proof architecture before the detailed proof steps.
-To this end, Dafny provides the constructs of \pr|assume| statements, \ie assertions without a proof;
-and ghost methods, \ie lemmas that are not yet proven.
-Obviously, the proof is not complete until these temporary constructs have been replaced with concrete proofs.
-However, they are useful for facilitating the proof development.
+In \ndx{Dafny}, proofs are developed in \enquote{top-down} style. This allows
+the developer to focus on the proof architecture before the detailed proof
+steps. To this end, Dafny provides \pr|assume| statements, \ie assertions
+without a proof; and \ndx{ghost method}s, \ie lemmas that are not yet proven.
+Obviously, the proof is not complete until these temporary constructs have been
+replaced with concrete proofs. However, they are useful for facilitating the
+proof development.
 
 \paragraph*{Boogie.}
-{Boogie}~\cite{leino2008}\index{Boogie} is an intermediate verification language, used in the verification workflow of Dafny programs (\cf~\autoref{fig:dfy-flow}).
-More generally, Boogie is an open source modeling language and a verification tool for sequential and concurrent programs, and distributed systems~\cite{boogie}.
-It provides a layer on which to build program verifiers\footnote{
-Several program verifies are built on Boogie, for example Dafny, Chalice, Spec\#, and Move~\cite{boogie}.}.
-When viewed as a verification tool, Boogie takes as input a program written in the Boogie language.
-Then, the tool infers invariants, generates verification conditions, and passes them to an SMT solver.
-The default SMT solver is Z3~\cite{demoura2008}.
+\ndx{Boogie}~\cite{leino2008} is an \ndx{intermediate verification language},
+used in the verification workflow of \ndx{Dafny} programs
+(\cf~\autoref{fig:dfy-flow}). More generally, \ndx{Boogie} is an open source
+\ndx{modeling language} and a verification tool for sequential and
+\ndx{concurrent programs}, and \ndx{distributed systems}~\cite{boogie}. It
+provides a layer on which to build program verifiers.\footnote{Several program
+verifies are built on \ndx{Boogie}, for example \ndx{Dafny}, \ndx{Chalice},
+\ndx{Spec\#}, and \ndx{Move}~\cite{boogie}.} When viewed as a verification
+tool, \ndx{Boogie} takes as input a program written in the \ndx{Boogie}
+language. Then, the tool infers \ndx{invariant}s, generates verification
+conditions, and passes them to an SMT solver. The default SMT solver is
+\ndx{Z3}~\cite{demoura2008}.
 
 \paragraph*{Applications of Dafny.}
-Dafny is a mature, industry-grade tool for program verification.
-It has been used in research projects, industrial applications, verification projects, and in teaching formal methods.
-Among the hallmark results, the AWS authorization engine---that handles 1 billion API calls per second~\cite{wagner2024}---is verified in Dafny~\cite{chakarov2025}.
+\ndx{Dafny} is a mature, industry-grade tool for program verification. It has
+been used in research projects, industrial applications, verification projects,
+and in teaching formal methods. Among the hallmark results, the \ndx{AWS
+authorization engine}---that handles 1 billion API calls per
+second~\cite{wagner2024}---is verified in \ndx{Dafny}~\cite{chakarov2025}.
 
 \subsubsection{Tool Comparison by Light Examples}
 \label{subsubsec:sm-tool-examples}
 
-This section covers two verification tasks that are suitable for paper presentation while illustrating differences between the formal proof techniques.
-To match the dissertation theme, the examples are about program proofs.
-However, proving programs is only a subset of the general utility of these tools;
-refer to \autoref{tab:rocq-results} for more cases.
+This section covers three verification tasks that are suitable for paper
+presentation while illustrating differences between the formal proof techniques.
+To match the dissertation theme, the examples are about program proofs. However,
+proving programs is only a subset of the general utility of these tools. Refer
+to \autoref{tab:rocq-results} for more cases.
 
 \paragraph{Program Equivalence}
 
-\autoref{lst:intro} in the introduction showed two programs with a claim that the programs are equivalent.
-Equivalence means that, for all inputs, they compute the same result.
-With manual inspection, one can become reasonably convinced that the claim is true.
-However, such inspection provides only weak informal guarantees.
-We can do better -- we now have the tools to prove formally the claim about equivalence.
+\autoref{lst:intro}, in the Introduction Chapter, showed two programs with a
+claim that the programs are equivalent. Equivalence means that, for all inputs,
+the programs compute the same result. With manual inspection, one can become
+reasonably convinced that the claim is true. However, such inspection provides
+only weak informal guarantees. We can do better -- we now have the tools to
+prove formally the claim about equivalence.
 
 \begin{center}
-%\begin{minipage}{\textwidth}
 \captionsetup{type=lstlisting}
 \rocqinputlisting[breakable][firstline=176]{equiv.v}
-\captionof{lstlisting}[A Rocq proof of program equivalence]{A Rocq proof of program equivalence (theorem only).
-The full proof with the programming language syntax, semantics, and notations is about 200 LOC.}
+\captionof{lstlisting}[A Rocq proof of program equivalence]{
+A \ndx{Rocq} proof of program equivalence (theorem only).
+The full proof with the programming language syntax, semantics, and notations is
+about 200 LoC.\footnotemark}
 \label{lst:eq-proof}
-%\end{minipage}
-\end{center}
+\end{center}%
+\footnotetext{The proof has some duplication at L15-16 and L21-22. It is
+possible to remove it for a shorter proof; however, the longer for is preferable
+for this presentation.}
 
 \subparagraph*{The Rocq proof explained.}
-The Rocq theorem (L5--8) makes explicit that the equivalence holds when
-\pr|X| and \pr|Y| are arithmetic expressions that evaluate to a \(\mathbb{N}\); \pr|Z| is a variable, and \pr|b| has value \(0\) or \(1\).
-The precise programming language semantics are defined as part of the full proof.
+The \ndx{Rocq} theorem (L5--8) makes explicit that the equivalence holds (at
+least) when \pr|X| and \pr|Y| are arithmetic expressions that evaluate to a
+\(\mathbb{N}\); \pr|Z| is a variable, and \pr|b| is a bit with value \(0\) or
+\(1\). The precise programming language semantics are defined as part of the
+full \ndx{Rocq} proof.
+
 The property of \emph{equivalence} is defined as a proposition (L1--3).
-Informally, two programs (commands, \pr|c1| and \pr|c2|) are equivalent
-iff they start execution in the same state (\pr|st|) and reach the same final state (\pr|st'|), for all states.
-Although program termination is not guaranteed by this specification,
-the state-based definition requires that equivalent programs must agree on divergence.
-That is, if one program diverges, the other must diverge also.
-The actual proof steps, in L9--23, show how to establish equivalence of the programs in~\autoref{lst:intro}.
-At a high level, the proof proceeds as follows.
-First, we split the bijection (\( \leftrightarrow \)) to inspect both directions of the equivalence.
-Next, we substitute \pr|b| with concrete values, which creates additional subcases.
-Some of these cases are contradictory and resolved easily by the \pr|discriminate| tactic (L13).
-The proof concludes by applying algebra on the multiplication operations;
-that is then sufficient to prove equivalence (L16, L22).
-Without technical familiarity, the steps may not be easily readable from the tactics.
-Yet, as for all mechanized proofs, it is possible for everyone to check the proof by compiling it.
-Further, it is possible to inspect the proof steps in an editor or IDE\footnote{
-Since the proof includes much symmetry and automation,
-the proof needs some editing to reduce the automation before inspecting the intermediate steps.}.
-Thus, a mechanized proof lifts the observer's need to understand the details of the proof to \enquote{just} understanding the stated theorem, and trusting the proof assistant with checking it.
+Informally, two programs (commands, \pr|c1| and \pr|c2|) are equivalent iff they
+start execution in the same state (\pr|st|) and reach the same final state
+(\pr|st'|), for all states. Although program \ndx{termination} is not guaranteed
+by this specification, the state-based definition requires that equivalent
+programs must agree on divergence. That is, if one program diverges, the other
+must diverge also.
+
+The actual proof steps (L9--23) show how to establish equivalence of the
+programs in~\autoref{lst:intro}. The proof proceeds as follows. First, split the
+bijection \(\leftrightarrow\) in two directions, using the \ltac{split} tactic
+(L10). Next, substitute \pr|b| with concrete values, which creates additional
+subcases. Some of the cases are contradictory and resolved easily by the
+\ltac{discriminate} tactic (L13). Using \ltac{rewrite}, the multiplication
+operation is rewritten to simpler form, by algebra. After this, it becomes
+possible to finish the proof automatically with \ltac{auto} (L16, L22).
+
+In absence of technical familiarity, the proof steps may not be easy to
+comprehend from the \ndx{tactics}. Yet, as a \ndx{mechanized proof}, by
+compilation, it is possible for everyone to confirm the correctness of the
+proof. Moreover, it is possible to inspect the different states of the
+\ndx{proof script} in an IDE.\footnote{The proof needs light editing, to reduce
+automation, to make the intermediate states inspectable.} Thus, a
+\ndx{mechanized proof} lifts the observer's need to understand the details of
+the proof script. The observer must instead \enquote{just} understand the
+stated theorem and trust the proof assistant in checking its correctness.
 
 \begin{center}
 \begin{minipage}{\textwidth}
 \captionsetup{type=lstlisting}
 \dafnyinputlisting[][]{equiv.dfy}
 \captionof{lstlisting}[Proof of program equivalence in Dafny]{
-Program equivalence verified in Dafny (complete).
-The listing includes a subtype definition of \pr|bit| that does not occur in the Rocq version.}
+Program equivalence verified in \ndx{Dafny} (complete). The listing includes a
+\ndx{subtype} definition of \pr|bit| that does not occur in the \ndx{Rocq}
+version.}
 \label{lst:eq-dafny}
 \end{minipage}
 \end{center}
 
 \subparagraph*{The Dafny verification explained.}
-The Dafny version in~\autoref{lst:eq-dafny} contains the full details of the proof.
-To make life a bit more interesting, it defines a subtype of \pr|bit|.
-Alternatively, the restriction on the values of \pr|b| could be stated as a precondition.
-Next, the listing shows a \pr|function| and a \pr|method|.
-A \emph{method} in Dafny is a piece of imperative executable code, which can have all sorts of statements in its body.
-The term \emph{function} is reserved for constructs that can be used directly in \ndx{specifications}.
-Unlike a method, a function body must consist of exactly one expression, and it returns a value.
-For the ways the two programs were originally written and for demonstration,
-it makes sense to define the programs as a function and a method\footnote{
-Specifying two methods is also possible, the proof will just look different.}.
-Because \pr|Program2| is a function, it can be used in the specification condition of \pr|Program1|.
-The \pr|ensures| clause says the value computed by \pr|Program1| is exactly equal to that
-computed by \pr|Program2|, for all arguments.
-The equivalence holds in both directions.
-Because the equivalence is generally easy to show, the verifier succeed without additional lemmas,
-which proves the equivalence claim.
+The Dafny version in~\autoref{lst:eq-dafny} contains the full details of the
+proof. To make life \textit{a bit more} interesting, it defines a \ndx{subtype}
+of \pr|bit|. Alternatively, the restriction on the values of \pr|b| could be
+stated as a precondition.
+
+Next, the listing shows a \pr|function| and a \pr|method|. A \emph{method} in
+\ndx{Dafny} is a piece of imperative executable code, which can have all sorts
+of statements in its body. The term \emph{function} is reserved for constructs
+that can be used directly in \ndx{specifications}. Unlike a method, a function
+body must consist of exactly one expression, and it returns a value. For the
+ways the two programs were originally written and for demonstration, it makes
+sense to define the programs as a function and a method.\footnote{Specifying
+two methods is also possible, the proof will just look different.}
+
+Since \pr|Program2| is a function, it can be used in the specification condition
+of \pr|Program1|. The \pr|ensures| clause says the value computed by
+\pr|Program1| is exactly equal to that computed by \pr|Program2|, for all
+arguments. The equivalence holds in both directions. Because the equivalence is
+generally easy to show, the verifier succeed without additional lemmas. This
+proves the equivalence claim for the two programs.
 
 \paragraph{Formally verified leftpad.}
 Leftpad is a string manipulation function.
@@ -745,7 +843,7 @@ The proofs come from the \enquote{Let's Prove Leftpad} project repository~\cite{
 They were originally crafted by Ezra Cooper (Rocq), Anton Trunov (SSReflect), and Hillel Wayne (Dafny).
 The proofs are modified for paper presentation and to resolve language updates, with the Rocq proof modified heavily from its original form.
 The padding character is represented as \pr|c|, the pad length is \pr|n|, and the input \enquote{string}\footnote{
-    None of the proofs actually refer to \emph{string} type, though one uses a sequence of characters.} is \pr|s|.
+None of the proofs actually refer to \emph{string} type, though one uses a sequence of characters.} is \pr|s|.
 Each version includes an implementation and a proof to show that the implementation satisfies the specification.
 
 \begin{center}
@@ -973,12 +1071,13 @@ maturity of formalization techniques and tools.
 
 \paragraph*{Existing results in formally verified complexity.}
 There exists a (small) collection of result formalizing classic \ndx{complexity
-theory} (\cf~\autoref{subsec:coqpl-related}). For example,
-\ndx{Universal Turing Machine}s~\cite{forster2020}, the
-\(\mathcal{O}\)-notation\symbo{bigo}~\cite{gueneau2018},
-and the \ndx{Cook-Levin theorem}~\cite{gaher2021}\footnote{
-The Cook-Levin theorem states that Boolean SAT is NP-Complete\ccxi{np}~\cite{cook1971, levin1973}.}
-have been formalized previously.
+theory} (\cf~\autoref{subsec:coqpl-related}). For example, \ndx{Universal Turing
+Machine}s~\cite{forster2020}, the
+\(\mathcal{O}\)-notation\symbo{bigo}~\cite{gueneau2018}, and the \ndx{Cook-Levin
+theorem}~\cite{gaher2021}\index{\textsc{np}-completeness}\footnote{The
+Cook-Levin theorem states that Boolean SAT is
+\textsc{np}-Complete~\cite{cook1971, levin1973}.} have been formalized
+previously.
 
 Among programming language-based approaches, the type system of~\cite{crary2000}
 is notable. The type system assigns a \enquote{virtual clock} to a program.
