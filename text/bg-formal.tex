@@ -3,13 +3,12 @@ implementation errors. Asynchronous computation, the rich array of computing
 environments and their communication, and continuous modifications of source
 code are among the challenges that can lead to software \enquote{going wrong}.
 
-Prominent and costly examples of failure include the \ndx{Ariane 5} rocket
+Prominent and costly examples of failures include the \ndx{Ariane 5} rocket
 explosion on its maiden flight~\cite{ariane5}, the \ndx{Therac-25} radiation
 therapy machine with six instances of lethal overdoses~\cite{leveson1993}; and
-the loss of NASA's \ndx{Mars Climate Orbiter}~\cite{mars1999}.
-
-In more recent memory, the \ndx{CrowdStrike} incident caused multiple days of
-system outages across critical infrastructure like airports, banks, and
+the loss of NASA's \ndx{Mars Climate Orbiter}~\cite{mars1999}. In more recent
+memory, the \ndx{CrowdStrike} incident caused multiple days of system outages
+across critical infrastructure like airports, banks, and
 hospitals~\cite{crowdstrike}. In a case involving the~\textcite{usg2024}, a
 software-related failure exposed sensitive personal information of USG employees
 with potential harm to the Augusta University community.
@@ -24,45 +23,48 @@ validity to their output.
 \end{quotation}
 
 The context of Dijkstra's statement is modest compared to exploding rockets. It
-refers to the multiplication operation of two 27-bit integers. Checking that a
+refers to the operation of multiplying two 27-bit integers. Checking that a
 calculator actually performs the correct operation for all inputs---\ie meets
 its \emph{specification\index{specifications}}---at a rate of few microseconds
 per input-pair, would require more than 10,000 years. Thus, skepticism around
 software correctness is a long-held position among some computer scientists. It
-is also the core issue tackled by formal methods.
+is also the core issue tackled by \ndx{formal methods}.
 
 \paragraph*{Formal methods motivations and challenges.}
-Formal methods aims to remove uncertainty by providing techniques that allow
-establishing strong behavioral guarantees. Formal methods is deeply rooted in
-mathematics and logic~\cite{shankar2023}. In this view, programs are defined as
-precise mathematical \emph{models} with \ndx{specifications}. The specification
-defines what behavior is expected from the model under study. Formally
+Formal methods\index{formal methods} aims to remove uncertainty by providing
+techniques that allow establishing strong behavioral guarantees. Formal
+methods\index{formal methods} is deeply rooted in mathematics and
+logic~\cite{shankar2023}. In this view, programs are defined as precise
+mathematical \emph{models} with \ndx{specifications}. The specification defines
+what behavior is expected from the model under study. Formally
 \emph{verifying}\index{formal verification} a program involves constructing a
-\emph{proof} that the model satisfies its specification. In contrast to manual
-inspection and tests (like a test of inspecting every input-pair), a proof
-conclusively ensures correctness for all inputs, at the model's level of
+\emph{proof} that the model satisfies its specification\index{specifications}.
+In contrast to manual inspection and tests\index{software testing}---like a test
+of inspecting the multiplication result of \emph{some} input-pairs---a proof
+conclusively ensures correctness for \emph{all} inputs, at the model's level of
 abstraction. As noted later by~\textcite{dijkstra1972}, \enquote{{[t]he only
 effective way to raise the confidence level of a program significantly is to
 give a convincing proof of its correctness.}}
 
-The motivation for using formal methods is based on the strength of guarantees
-it provides. Being formal helps when we want to be precise~\cite{leino2023}.
-However, thinking formally requires a different engineering mindset. Instead of
-thinking of all possible scenarios and how they might go wrong, formal reasoning
-requires defining how a system is \emph{expected} to work, and identifying
-conditions that must be met to ensure the correct behavior~\cite{aws2024}. Those
-conditions are then formally verified with proofs.
+The motivation for using \ndx{formal methods} is based on the strength of
+guarantees it provides. Being formal helps when the goal is to be
+precise~\cite{leino2023}. However, thinking formally requires a different
+engineering mindset. Instead of thinking of all possible scenarios and how they
+might go wrong, formal reasoning requires defining how a system is
+\emph{expected} to work, and identifying conditions that must be met to ensure
+the correct behavior~\cite{aws2024}. Those conditions are then formally
+verified\index{formal verification} with proofs.
 
-Despite the clear benefits, wider adoption of formal methods still faces many
-challenges. These include \eg resource investment (formal proofs are
-time-consuming), tooling and tool maintenance, and technical
-education~\cite{beek2024}. Another challenge concerns the \emph{methods}
-themselves. The \ndx{Four Color theorem} is the first famous result with a proof
-that requires large computer calculations. When the proof appeared in 2008, such
-proofs were still controversial. The source of the controversy was that computer
-programs could not be reviewed with mathematical rigor~\cite{gonthier2008}.
-Thus, advancing formal methods also concerns improving communication about the
-available capabilities.
+Despite the clear benefits, wider adoption of \ndx{formal methods} continues to
+face many challenges. These include \eg resource investment (crafting and
+maintaining formal proofs is time-consuming), tooling and tool maintenance, and
+technical education~\cite{beek2024}. Another challenge concerns the
+\emph{methods} themselves. The \ndx{Four Color theorem} is the first famous
+result with a proof that requires large computer calculations. When the proof
+appeared in 2008, such proofs were still controversial. The source of the
+controversy was that computer programs could not be reviewed with mathematical
+rigor~\cite{gonthier2008}. Thus, advancing \ndx{formal methods} also concerns
+improving communication about the available capabilities and offered guarantees.
 
 \begin{quotation}
 \noindent{}We can envision [\ldots] a world in which computer programs are
@@ -72,108 +74,145 @@ always the most reliable components of any system or device~\cite{hoare2021}.
 \subsubsection{Foundational Concepts}
 \label{subsubsec:verification-concepts}
 
-\paragraph*{Formal models.} A formal \emph{model} is an abstract description of
-a computer system of interest. The model is expressed in (some) formal modelling
-language. The model is used for reasoning about the system and consequences of
-design choices~\cite{zave2023,olveczky2017}. For the dissertation, the systems
-of interest are programs.
-In choosing a modeling formalism, it should enable expressing the model as
-naturally and intuitively as possible, while still generating mathematically
-precise structures~\cite{olveczky2017,beek2024}. In other words, the formalism
-should
+\paragraph*{Formal models.}
+A \ndx{formal model} is an abstract description of a computer system of
+interest. In the context of this dissertation, the systems of interest are
+programs. Then, a \ndx{formal model} is used to reason about the program and the
+consequences of design choices relating to the
+program~\cite{zave2023,olveczky2017}. The \ndx{formal model} is expressed in
+(some) \ndx{modeling language} (refer to~\autoref{tab:fm-tools} for examples of
+\ndx{modeling language}s). The choice modeling formalism should enable
+expressing the model as naturally and intuitively as possible, while still
+generating mathematically precise structures~\cite{olveczky2017,beek2024}. The
+formalism should
 \begin{enumerate*}[label=(\roman*)]
 \item omit unnecessary technicalities,
-\item enable focusing on the problem of interest at an appropriate level of
+\item enable focusing on the problem of interest, at an appropriate level of
 abstraction, and
 \item facilitate analysis and reasoning about the program~\cite{olveczky2017}.
 \end{enumerate*}
 
-\paragraph*{Specifications.} The \emph{specification}\index{specifications}
-is a part of the formal model that describes the \emph{behavior} of the
-program~\cite{zave2023b}. The specification should be simpler and easier to
-comprehend than the implementation~\cite{zave2023b}. The development of the
-specification should precede the implementation, or minimally be developed
-concurrently~\cite{dijkstra1972}. Critically, we want the specification to be
-{separate} from the implementation~\cite{furia2014b}. Independence isolates the
-mathematical properties of interest and enables showing that the implementation
-is consistent with those properties. Without independence, we encounter the
-\emph{\ndx{Assertion Inference Paradox}}~\cite{furia2014b}. Essentially, the
-paradox states: if we infer the specification from the implementation, what is
-it that we prove?
+\paragraph*{Specifications.}\index{specifications}
+A \emph{specification} is a part of the \ndx{formal model} that describes the
+\emph{behavior} of the program~\cite{zave2023b}. The specification should be
+simpler and easier to comprehend than the implementation~\cite{zave2023b}.
+Temporally, the development of the specification should precede the
+implementation, or minimally be developed concurrently~\cite{dijkstra1972}.
+Critically, we want the specification\index{specifications} to be
+\emph{independent} from the implementation~\cite{furia2014b}. Independence
+isolates the mathematical properties of interest and enables showing that the
+implementation is consistent with those properties. In absence of independence,
+a formal correctness claim is compromised by the \emph{\ndx{Assertion Inference
+Paradox}}~\cite{furia2014b}. The paradox is essentially, \enquote{if the
+specification is inferred from the implementation, what do we prove?}
 
-\ndx{Hoare triple}s~\cite{hoare1969} are a standard way to express \ndx{specifications}.
-In this view, we consider \(S\) to be some executable statement (a program).
-We then define a \emph{\ndx{precondition}} \(P\)\symbo{pre} that describes conditions that hold before execution.
-A \emph{\ndx{postcondition}} \(Q\)\symbo{post} describes conditions that hold after execution.
-Then, a \emph{\ndx{Hoare triple}} is a predicate that connects the statement with the pre- and postconditions by \(\{P\} S \{Q\}\)\symbo{hoare}.
-The expression means, \enquote{starting from \(P\)\symbo{pre}, statement \(S\) will not crash and terminates in a state satisfying \(Q\)\symbo{post}}.
-For example, \(\{ \prm{x}=0 \}\;\prm{x++}\;\{\prm{x}=1\}\)\symbo{hoare} is a valid and provable \ndx{Hoare triple}.%
-\footnote{The mechanics of how to prove it is a topic for~\autoref{subsubsec:sm-tool-examples}.}
+\ndx{Hoare triple}s~\cite{hoare1969} are one standard way to express
+\ndx{specifications}. In this view, we consider \(S\) to be some executable
+statement (a program). We then define a \emph{\ndx{precondition}}
+\(P\)\symbo{pre} that describes conditions that hold before execution. A
+\emph{\ndx{postcondition}} \(Q\)\symbo{post} describes conditions that hold
+after execution. Then, a \emph{\ndx{Hoare triple}} is a predicate that connects
+the statement with the pre- and postconditions by \(\{P\} S
+\{Q\}\)\symbo{hoare}. The expression means, \enquote{starting from
+\(P\)\symbo{pre}, statement \(S\) will not crash and terminates in a state
+satisfying \(Q\)\symbo{post}}. For example, \(\{ \prm{x}=0
+\}\;\prm{x++}\;\{\prm{x}=1\}\)\symbo{hoare} is a valid and provable \ndx{Hoare
+triple}.\footnote{The mechanics of \emph{how to prove it} is a topic
+for~\autoref{subsubsec:sm-tool-examples}.}
 
 \paragraph*{Invariants.}
-Proving that an implementation meets its specification requires more information than what is available in the program syntax~\cite{chang2005}.
-For example, to prove a Hoare triple of a loop command often requires establishing additional verification conditions.
-An \emph{\ndx{invariant}}, in programming terms, is an assertion that is preserved by the program execution~\cite{furia2014}.
-An invariant is \emph{inductive},
-if it holds the first time a program location is reached and is preserved in every cycle returning to that location~\cite{sankaranarayanan2004}.
-There are many kinds of invariants, \eg object, class, and loop invariants.
-Although having invariants is useful for proving programs, discovering them is among the most difficult problems in verification~\cite{dillig2013,yu2023}.
+Proving that an implementation meets its specification requires more information
+than what is readily available in the program syntax~\cite{chang2005}. For
+example, proving a \ndx{Hoare triple} of a loop command often requires
+establishing additional verification conditions. An \emph{\ndx{invariant}} is an
+assertion that is preserved by the program execution~\cite{furia2014}. An
+\ndx{invariant} is \emph{inductive}\index{invariant!inductive}, if it holds the
+first time a program location is reached and is preserved in every cycle
+returning to that location~\cite{sankaranarayanan2004}. There are many kinds of
+invariants, \eg object\index{object invariant}, class\index{class invariant},
+and \ndx{loop invariant}s (refer to \autoref{ex:loopinv}). Although
+\ndx{invariant}s are useful for \ndx{formal verification} of programs, the
+process of discovering them is among the most difficult problems in
+verification~\cite{dillig2013,yu2023}.
 
-To provide a concrete example, a \emph{loop invariant} is an expression that holds on loop entry and after every loop iteration.
-The program of~\autoref{lst:invariant} has two variables, \pr|i| and \pr|n|.
+\begin{example}[Loop invariant]\label{ex:loopinv}
+A \emph{loop invariant} is an expression that holds on loop entry and after
+every loop iteration. The program in~\autoref{lst:invariant} has two variables,
+\pr|i| and \pr|n|.
 
 \begin{center}
 \begin{minipage}{\textwidth}
 \captionsetup{type=lstlisting}
 \cstarinputlisting{invariant.c}
-\captionof{lstlisting}[Loop inspection for loop invariants]{Loop inspection for loop invariants.}
+\captionof{lstlisting}[Uncovering loop invariants]{Uncovering loop invariants.}
 \label{lst:invariant}
 \end{minipage}
 \end{center}
 
-At loop entry, the value of \pr|i| is 0.
-If the value of \pr|n| is negative, the loop never iterates.
-Otherwise, \pr|i| will hold a value between 0 and \pr|n|.
-Based on this analysis, the loop invariant is \(0 \leq \prm{i} \leq \prm{n} \vee \prm{n} < 0\).
-A postcondition of \pr|i| is \(\prm{i}=0 \vee \prm{i}=\prm{n}\).
-A loop invariant is a {weakened} form of its postcondition~\cite{furia2010}.
-Therefore, techniques that aim to infer invariants benefit from the availability of postconditions, as investigated in~\autoref{sec:postcond}.
+At loop entry, the value of \pr|i| is 0. If the value of \pr|n| is negative, the
+loop never iterates. Otherwise, \pr|i| will hold a value between 0 and \pr|n|.
+Based on this analysis, the \ndx{loop invariant} is \(0 \leq \prm{i} \leq
+\prm{n} \vee \prm{n} < 0\). A \ndx{postcondition} of \pr|i| is \(\prm{i}=0 \vee
+\prm{i}=\prm{n}\). A loop invariant is a {weakened} form of its
+\ndx{postcondition}~\cite{furia2010}.
+\end{example}
 
-Finally, a brief note about invariants and complexity.
-It is possible to infer complexity bounds of numerical loops based on loop invariants as shown by~\textcite{nguyen2017}.
-However, the solution relies on dynamic techniques, that are beyond purely static capabilities.
+Finally, a brief note about \ndx{invariants} and \ndx{resource analysis}. It is
+possible to infer \ndx{resource bounds}, of numerical loops, based on \ndx{loop
+invariants}~\cite{nguyen2017}. However, the solution relies on dynamic
+techniques, that are beyond the capabilities of pure \ndx{static program
+analysis}.
 
-\paragraph*{Safety and \ndx{liveness properties}.}\index{safety properties}
-Formal verification\index{formal verification} aims to guarantee that certain behavioral attributes, \ie \emph{properties}, hold for a program.
-A few examples of properties are memory safety\ndx{memory safety}%
-\footnote{\Ie absence of errors related to memory accesses: null-pointer de-referencing, access to un-allocated memory, dangling pointers, out-of-bounds accesses, double-free, \etc~\cite{muller2024}},
-absence of overflows, termination, data race and \ndx{deadlock freedom}, secure \ndx{information flow} (cf~\autoref{if-security}), staying within available resource bounds, and \ndx{worst-case execution time} (WCET).
-To show that a program is free of \eg overflows, we express {overflow-freedom} as a formal specification, then prove that the implementation satisfies the specification.
+\paragraph*{Properties.}
+Formal verification\index{formal verification} aims to guarantee that certain
+behavioral attributes, \ie \emph{properties}, hold for a program. A few examples
+of such properties are: \ndx{memory safety}\footnote{\Ie absence of errors
+related to memory accesses: null-pointer dereferencing, access to unallocated
+memory, dangling pointers, out-of-bounds accesses, double-free,
+\etc~\cite{muller2024}}, absence of overflows, \ndx{termination}, \ndx{data race
+freedom}~\cite{georges2025}, \ndx{deadlock freedom}~\cite{roscoe1987}, secure
+\ndx{information flow} (cf~\autoref{if-security}), staying within available
+\ndx{resource bounds}, and \ndx{worst-case execution time} (WCET). For example,
+showing that a program is free of overflows requires expressing overflow-freedom
+as a formal specification, then proving that the implementation satisfies the
+specification\index{specifications}.
 
-There are various different ways of categorizing classes of \ndx{properties}.
-\emph{Functional} properties\index{properties!functional} are technical characteristics that contribute to computation of the correct output.
-\emph{Non-functional} properties\index{properties!non-functional} are concerned with quality attributes like security, dependability, reliability, and resource requirements~\cite{terbeek2018}.
-Two other frequently-used categorizing terms are safety and liveness.
-They come from a paper by~\textcite{lamport1977}, where they are formulated as follows.
-A \emph{\ndx{safety property}} is a guarantee that \enquote{something (bad) will not happen}.
-A \emph{\ndx{liveness property}} ensures \enquote{(good) things must happen}, eventually.
-The proof techniques across these safety and liveness properties are different.
-The works in this dissertation are primarily concerned with non-functional safety properties.
+There are various different ways to categorize families of \ndx{properties}.
+\emph{Functional} properties\index{properties!functional} are technical
+characteristics that contribute to computation of the correct output.
+\emph{Non-functional} properties\index{properties!non-functional} are concerned
+with quality attributes like security, dependability, reliability, and resource
+requirements~\cite{terbeek2018}. Two other common terms are \enquote{safety
+and liveness}. They come from a paper by~\textcite{lamport1977} where they are
+formulated as follows. A \emph{\ndx{safety property}} is a guarantee that
+\enquote{something (bad) will not happen}. A \emph{\ndx{liveness property}}
+ensures \enquote{(good) things must happen}, eventually. The proof techniques
+across these safety and liveness properties are different. The works in this
+dissertation are primarily concerned with non-functional safety properties.
 
 \paragraph*{Partial and \ndx{total correctness}.}
-Broadly, a program is correct if the implementation is consistent with the specification\index{specifications}~\cite{furia2014b}.
-However, when making assertions about correctness, we need to be more precise.
-There are two common notions about correctness that provide added specificity: partial and \ndx{total correctness}.
-\emph{Partial correctness}\index{partial correctness} means that every terminating execution is correct, however it does not ensure every execution terminates~\cite[p. 64]{leino2023}.
-A stronger guarantee follows from \ndx{total correctness}.
-A program is \emph{totally correct} if it is partially correct and always terminates~\cite[p. 64]{leino2023}.
-Total correctness\index{total correctness} can be viewed as a combination of safety\index{safety property} and liveness properties\index{liveness property}~\cite{lamport1977}.
-There are several strategies for proving termination in some cases, \cf~\autoref{resource-analysis}.
-However, a general method that proves termination of all programs cannot exist since termination is undecidable~\cite{turing1936}\index{undecidability}.
-This means it is impossible to show \ndx{total correctness} of all programs.%
-\footnote{Total correctness\index{total correctness} is not always ideal.
-There are many applications where termination is undesirable---like a web server and cardiac pacemaker---but where we still want formal guarantees.}
-However, similar to~\autoref{static-analysis-basics}, there is endless opportunity in building increasingly more capable program verifiers.
+Broadly, a program is correct if the implementation is consistent with the
+specification\index{specifications}~\cite{furia2014b}. However, when making
+assertions about correctness, we need to be more precise. There are two common
+notions that provide added specificity: partial\index{partial correctness} and
+\ndx{total correctness}. \emph{Partial correctness}\index{partial correctness}
+means that every terminating execution is correct, however it does not ensure
+every execution terminates~\cite[p. 64]{leino2023}. It is possible to obtain a
+stronger guarantee by proving \ndx{total correctness}. A program is
+\emph{totally correct} if it is partially correct and always terminates~\cite[p.
+64]{leino2023}. Total correctness\index{total correctness} can be viewed as a
+combination of safety\index{safety property} and liveness
+properties\index{liveness property}~\cite{lamport1977}. There are several
+strategies for proving termination in some cases,
+(\cf~\autoref{resource-analysis}). However, a general method that proves
+termination of all programs cannot exist since termination is
+undecidable~\cite{turing1936}\index{undecidability}. This means it is impossible
+to show \ndx{total correctness} of all programs. \footnote{Total
+correctness\index{total correctness} is not always ideal. There are many
+applications where termination is undesirable---like a web server and cardiac
+pacemaker---but where we still want formal guarantees.} However, similar
+to~\autoref{static-analysis-basics}, there is endless opportunity in building
+increasingly more capable program verifiers.
 
 \subsubsection{Tools for Formal Verification}
 
@@ -221,7 +260,8 @@ dissertation.
 ,{ }\href{https://yices.csl.sri.com}{\ndx{Yices}}%
 ,{ }\href{https://github.com/Z3Prover/z3}{\ndx{Z3}}%
 \\\midrule
-\multicolumn{2}{@{}l}{\textbf{Interactive theorem proving}} \\
+\multicolumn{2}{@{}l}{\textbf{Interactive theorem proving}}
+\index{interactive proof assistant}\\
 &
 \href{https://github.com/agda/agda}{\ndx{Agda}}%
 ,{ }\href{https://github.com/EasyCrypt/easycrypt}{\ndx{EasyCrypt}}%
@@ -244,7 +284,7 @@ dissertation.
 ,{ }\href{https://github.com/dynaroars/dig/tree/dev}{DIG}\index{DIG}%
 ,{ }\href{https://github.com/freqhorn/freqhorn}{FreqHorn}\index{FreqHorn}%
 \\\midrule
-\multicolumn{2}{@{}l}{\textbf{Language-based verification \& modelling languages}} \\
+\multicolumn{2}{@{}l}{\textbf{Language-based verification \& \ndx{modeling language}s}} \\
 &
 \href{https://github.com/boogie-org/boogie}{\ndx{Boogie}}%
 .{ }\href{https://github.com/moves-rwth/caesar}{Caesar}\index{Caesar}%
@@ -804,10 +844,10 @@ generally easy to show, the verifier succeed without additional lemmas. This
 proves the equivalence claim for the two programs.
 
 \paragraph{Formally verified leftpad.}
-Leftpad is a string manipulation function.
-It pads a string, using a specified character, up to a specified length.
-The padding character is applied to the left side of the string, as a prefix, hence the name.
-\autoref{lst:leftpad} shows examples of leftpad behavior.
+Leftpad is a string manipulation function. It pads a string, using a specified
+character, up to a specified length. The padding character is applied to the
+left side of the string, as a prefix, hence the name. \autoref{lst:leftpad}
+shows examples of leftpad behavior.
 
 \begin{center}
 \captionsetup{type=lstlisting}
@@ -824,27 +864,38 @@ The padding character is applied to the left side of the string, as a prefix, he
 \label{lst:leftpad}
 \end{center}
 
-The \href{https://github.com/hwayne/lets-prove-leftpad}{\enquote{Let's Prove Leftpad}}~\cite{leftpad} is public challenge project initiated by Hillel Wayne.
-The idea is to put different verification tools and proof techniques to test by using them to prove leftpad.
-At the time of writing this (April 2025), the repository contains 29 variants of leftpad proofs.
-The challenge is interesting, because a leftpad proof is small enough to be accessible without formal methods background, yet complex enough to differentiate the proof techniques.
-The leftpad implementation is simple, but the formal specification is surprisingly tricky.
-A formal proof requires showing that the following three specification conditions hold.
+The \href{https://github.com/hwayne/lets-prove-leftpad}{\enquote{Let's Prove
+Leftpad}}~\cite{leftpad} is public challenge project initiated by Hillel Wayne.
+The idea is to put different verification tools and proof techniques to test by
+using them to prove leftpad. At the time of writing this (April 2025), the
+repository contained 29 variants of leftpad proofs. The challenge is
+interesting, because a leftpad proof is small enough to be accessible without
+\ndx{formal methods} background, yet complex enough to differentiate the proof
+techniques. The leftpad implementation is simple, but the formal
+specification\index{specifications} is surprisingly tricky. A formal proof
+requires showing that the following three specification conditions hold.
 
 \begin{enumerate}
-\item Given pad length \(n\) and a string \pr|str|, the output length is \(\max(n, \text{len}(\prm{str}))\).
-\item The output prefix is padding characters and nothing but padding characters.
+\item Given pad length \(n\) and a string \pr|str|, the output length is
+\(\max(n, \text{len}(\prm{str}))\).
+\item The output prefix is padding characters and nothing but padding
+characters.
 \item The suffix of the output is the original string \pr|str|.
 \end{enumerate}
 
-Listings~\autoref{lst:rocq-leftpad}--\ref{lst:leftdfy} show the complete implementations and proofs of leftpad in Rocq;
-the SSReflect of the Mathematical Components library, and Dafny.
-The proofs come from the \enquote{Let's Prove Leftpad} project repository~\cite{leftpad}.
-They were originally crafted by Ezra Cooper (Rocq), Anton Trunov (SSReflect), and Hillel Wayne (Dafny).
-The proofs are modified for paper presentation and to resolve language updates, with the Rocq proof modified heavily from its original form.
-The padding character is represented as \pr|c|, the pad length is \pr|n|, and the input \enquote{string}\footnote{
-None of the proofs actually refer to \emph{string} type, though one uses a sequence of characters.} is \pr|s|.
-Each version includes an implementation and a proof to show that the implementation satisfies the specification.
+Listings~\autoref{lst:rocq-leftpad}--\ref{lst:leftdfy} show the complete
+implementations and proofs of leftpad in \ndx{Rocq}; the \ndx{SSReflect} style
+of the \ndx{Mathematical Components} library, and \ndx{Dafny}. The proofs come
+from the \enquote{Let's Prove Leftpad} project repository~\cite{leftpad}. The
+original versions were crafted by Ezra Cooper (\ndx{Rocq}), Anton Trunov
+(\ndx{SSReflect}), and Hillel Wayne (\ndx{Dafny}). The proofs are modified here
+for paper presentation and to resolve language updates. The \ndx{Rocq} proof is
+especially heavily modified from its original form.
+
+The padding character is represented as \pr|c|, the pad length is \pr|n|, and
+the input \enquote{string}\footnote{ None of the proofs actually refer to
+\emph{string} type, though one uses a sequence of characters.} is \pr|s|. Each
+version includes an implementation and a proof to show correctness.
 
 \begin{center}
 \captionsetup{type=lstlisting}
@@ -854,36 +905,42 @@ Each version includes an implementation and a proof to show that the implementat
 \end{center}
 
 \subparagraph*{Leftpad in Rocq.}
-The Rocq proof of leftpad is shown in~\autoref{lst:rocq-leftpad}.
-The leftpad implementation (at L27--28) is intuitive --
-it works by concatenating \(n - \text{length}(\prm{s})\) count of  symbols \pr|c| with \pr|s|.
-Since the proof compiles successfully, we also know the leftpad implementation is guaranteed to terminate.
-In the proof, the key idea is that it is possible to cut the concatenated string to a prefix and suffix, at index \(m\).
-The specification is then proved \wrt the prefix and suffix, and the concatenated length.
-Proving the theorem requires introducing the supporting definitions and lemmas of L6--25.
+The \ndx{Rocq} proof of leftpad is shown in~\autoref{lst:rocq-leftpad}. The
+leftpad implementation (at L27--28) works by concatenating \(n -
+\text{length}(\prm{s})\) count of  symbols \pr|c| with \pr|s|. Since the proof
+compiles successfully, we also know the implementation is guaranteed to
+terminate\index{termination}. In the proof, the key idea is that it is possible
+to cut the concatenated string to a prefix and suffix, at index \(m\). The
+specification\index{specifications} is then proved \wrt the prefix and suffix,
+and the concatenated length. Proving the theorem requires introducing the
+supporting definitions and the lemmas of L6--25.
 
 \subparagraph*{Leftpad in SSReflect.}
-The Mathematical Components library does not contain definitions of string or character types,
-which is why~\autoref{lst:mathcomp-leftpad} is generalized to a parametric type \pr|T|.
-The leftpad implementation, at L8--9, is functionally the same as in~\autoref{lst:rocq-leftpad},
-only expressed in the style of mathcomp.
-The three lemmas that follow prove the specification.
-The first lemma \pr|length_max_spec| matches the Rocq version in~\autoref{lst:rocq-leftpad},
-but the prefix and suffix proofs are achieved differently.
-The latter rely on a random access function \pr|nth| that returns the \(i\)-th element in a sequence
-(numbered from 0), or the \pr|def| element, if the sequence contains fewer than \(i+1\) elements.
-In the proofs, the imported libraries provide much assistance.
-In SSReflect, it is common for simple proofs to require only rewrites, while \enquote{interesting proofs} appear visually longer.
-The leftpad proof is simple since it requires only rewrites, and those rewrites are defined by the library.
-The tactics naming convention is a design feature of the Mathematical Components library.
-The naming eases locating proofs;
-otherwise, one must search the proofs database.
+The \ndx{Mathematical Components} library does not contain definitions of string
+or character types. Therefore,~\autoref{lst:mathcomp-leftpad} is generalized to
+a parametric type \pr|T|. The leftpad implementation, at L8--9, is functionally
+the same as in~\autoref{lst:rocq-leftpad}, only expressed in the style of
+\ndx{SSReflect}. The three lemmas that follow prove the specification. The first
+lemma \pr|length_max_spec| matches the \ndx{Rocq} version
+in~\autoref{lst:rocq-leftpad}, but the prefix and suffix proofs are achieved
+differently. The latter rely on a random access function \pr|nth| that returns
+the \(i\)-th element in a sequence (numbered from 0), or the \pr|def| element,
+if the sequence contains fewer than \(i+1\) elements. The imported libraries
+provide much assistance in completing the proof. In \ndx{SSReflect}, it is
+common for simple proofs to rely on \ltac{rewrite} tactic, and the
+\enquote{interesting proofs} to appear visually longer. The leftpad proof is
+simple since it requires only rewrites, and those rewrites are defined in the
+library. The tactics naming convention is a special design feature of the
+\ndx{Mathematical Components} library. The naming eases locating existing
+theorems, to avoid searching the proofs database.
 
 \begin{center}
 \captionsetup{type=lstlisting}
 \begin{minipage}{\linewidth}
 \mathcompinputlisting[][firstline=2]{leftpad_ssrefl.v}
-\captionof{lstlisting}[Leftpad in SSReflect proof language]{Leftpad in the SSReflect proof language of the Mathematical Components library.}
+\captionof{lstlisting}[Leftpad in SSReflect proof language]{
+   Leftpad in the \ndx{SSReflect} proof language of the \ndx{Mathematical
+   Components} library.}
 \label{lst:mathcomp-leftpad}
 \end{minipage}
 \end{center}
@@ -892,87 +949,102 @@ otherwise, one must search the proofs database.
 \begin{minipage}{\linewidth}
 \captionsetup{type=lstlisting}
 \dafnyinputlisting[][]{leftpad.dfy}
-\captionof{lstlisting}[Leftpad formally verified in Dafny]{Formally verified leftpad in Dafny.}
+\captionof{lstlisting}[Leftpad formally verified in Dafny]
+{Formally verified leftpad in \ndx{Dafny}.}
 \label{lst:leftdfy}
 \end{minipage}
 \end{center}
 
 \subparagraph*{Leftpad in Dafny.}
-In Dafny, the \ndx{specifications} are \enquote{embedded} with the implementation.
-To make the \autoref{lst:leftdfy} standalone, the \pr|Max| function is defined inline.
-The three specification conditions correspond (in order) to the \pr|ensures| clauses.
-The same conditions re-appear as loop invariants at L14--16.
-The \pr|invariant| clauses are necessary to convince the verifier that the conditions are preserved over iteration of the loop.
-Enhancing the \pr|while| loop is sufficient for the verifier to succeed at proving the implementation meets the specification.
-There's one more proof obligation for loops, which is to show termination.
-The \pr|decreases| clause proves termination, which established \ndx{total correctness} of the \pr|LeftPad| method.
+In \ndx{Dafny}, the \ndx{specifications} are \enquote{embedded} next to the
+implementation. To make the \autoref{lst:leftdfy} free of imports, the \pr|Max|
+function is defined inline. The three specification conditions of Leftpad
+correspond (in order) to the \pr|ensures| clauses. The same conditions re-appear
+as \ndx{loop invariant}s (at L14--16). The \pr|invariant| clauses are necessary
+to convince the verifier that the conditions are preserved over by the loop
+during iteration. Adding the \ndx{invariant}s to the \pr|while| loop is
+sufficient for the verifier to succeed at proving the implementation's
+functional correctness. The final proof obligation is to show loop
+\ndx{termination}. The \pr|decreases| clause serves this purpose. Thus, the
+\pr|LeftPad| method is totally correct.\index{total correctness}
 
 \subparagraph*{Observable differences.}
-Although the leftpad behavior is consistently the same,
-the examples show different styles of implementation and varying approaches to proving that the implementation is \emph{totally correct}.
-The Rocq prover is very flexible in supporting various kinds of proofs and enables fine-grained control over the specification.
-The \enquote{built-in} specification style of Dafny -- with pre-and postconditions, invariants, and termination -- is natural and powerful for proving programs.
-Much of the power comes from automatic decision procedures, but can be challenging to debug if the verification fails.
-In general, it is important to understand the mechanics of the selected tool, since a tool choice greatly influences the proof style and built-in capabilities.
+Although the leftpad behavior is consistently the same, the examples show
+different styles of implementation and varying proof strategies. The \ndx{Rocq}
+prover is very flexible in supporting various kinds of proofs and provides
+fine-grained control over the specification\index{specifications}. The
+\ndx{deductive verification} style of \ndx{Dafny} is natural and powerful for
+proving programs. Much of the power comes from automatic decision procedures. As
+a disadvantage, the implementation can be challenging to debug if the
+verification fails. In general, it is important to understand the mechanics of
+the selected tool, since a tool choice greatly influences the proof style and
+available capabilities.
 
 \subsubsection{The Moscow Problem}
 \label{subsec:moscow}
 
-The next problem is a more involved and interesting for formal techniques and logic.
-The problem was presented to me by Natarajan Shankar under the name \enquote{the Moscow problem}.
-Although it is too simple for research, it is also too fascinating to be left in obscurity.
-Therefore, it appears here, in my dissertation.
+The next problem is a more involved and interesting for formal techniques and
+logic. The problem was presented to me by Natarajan Shankar under the name
+\enquote{the Moscow problem}. Although it is too simple for research, it is also
+too fascinating to be left in obscurity. Therefore, it appears here, in my
+dissertation.
 
 \paragraph*{Problem Description.}
-Assume there are three people, \(\mathsf{A}\), \(\mathsf{B}\), and \(\mathsf{C}\)\@.
-Seven natural numbers in 1--7 are distributed randomly among the people.
-\(\mathsf{A}\) gets 1 number, and \(\mathsf{B}\) and \(\mathsf{C}\) get 3 numbers each.
-The numbers are distinct, \ie no two people hold the same number;
-and the distribution is secret, \ie it is unknown who holds what numbers.
-The challenge is to design a message exchange that meets the following requirements.
+Assume there are three people, \(\mathsf{A}\), \(\mathsf{B}\), and
+\(\mathsf{C}\)\@. Seven natural numbers in 1--7 are distributed randomly among
+the people. \(\mathsf{A}\) gets 1 number, and \(\mathsf{B}\) and \(\mathsf{C}\)
+get 3 numbers each. The numbers are distinct, \ie no two people hold the same
+number; and the distribution is secret, \ie it is unknown who holds what
+numbers. The challenge is to design a message exchange that meets the following
+requirements.
 
 \begin{enumerate}
-\item \(\mathsf{B}\) sends one message to \(\mathsf{C}\) and from that message, \(\mathsf{C}\) knows what numbers everyone holds.
-      (And similarly in reverse: \(\mathsf{C}\) sends one message to \(\mathsf{B}\)\ldots).
-\item \(\mathsf{A}\) observes the messages but \(\mathsf{A}\) \enquote{does not learning anything}.
-      In other words, \(\mathsf{A}\) cannot determine who holds what numbers based on the observed messages.
+
+\item \(\mathsf{B}\) sends one message to \(\mathsf{C}\) and from that message,
+\(\mathsf{C}\) knows what numbers everyone holds. (And similarly in reverse:
+\(\mathsf{C}\) sends one message to \(\mathsf{B}\)\ldots).
+
+\item \(\mathsf{A}\) observes the messages but \(\mathsf{A}\) \enquote{does not
+learning anything}. In other words, \(\mathsf{A}\) cannot determine who holds
+what numbers based on the observed messages.
+
 \end{enumerate}
 
-Messages are exchanged in plain text and \(\mathsf{A}\) is aware of the mechanics of the exchange protocol.
-The Moscow problem is to design a technique that meets the requirements.
-The following solution is what I have developed in response to the problem.
+Messages are exchanged in plain text and \(\mathsf{A}\) is aware of the
+mechanics of the exchange protocol. The Moscow problem is to design a technique
+that meets the requirements. The following solution is what I have developed in
+response to the problem.
 
 \paragraph*{Informal Solution.}
-Starting with a claim: it is sufficient to achieve the desired system with a message exchange where the message value is a single digit in 1--7.
+Starting with a claim: it is sufficient to achieve the desired system with a
+message exchange where the message value is a single digit in 1--7.
 
-The exchange is symmetric.
-Therefore, instead of referring to \(\mathsf{B}\) and \(\mathsf{C}\), we say \emph{sender} and \emph{receiver}.
-The sender calculates the exchanged value (the single digit) using only the numbers they hold.
-The receiver calculates---using the single digit and number they holds---the number \emph{held by \(\mathsf{A}\)}.
-Finally, the receiver deduces the numbers held by the sender.
-There are three important functions.
+The exchange is symmetric. Therefore, instead of referring to \(\mathsf{B}\) and
+\(\mathsf{C}\), we say \emph{sender} and \emph{receiver}. The sender calculates
+the exchanged value (the single digit) using only the numbers they hold. The
+receiver calculates---using the single digit and number they holds---the number
+\emph{held by \(\mathsf{A}\)}. Finally, the receiver deduces the numbers held by
+the sender. There are three important functions.
 \begin{enumerate}
 \item \emph{Send} function that calculates the exchanged digit.
 \item \emph{Receive} function that calculates number held by \(\mathsf{A}\).
 \item \emph{Recover} function that deduces values held by the sender.
 \end{enumerate}
 
-The functions are defined as follows.
-The universe is \(U = \{ x \mid 1 \leq x \leq 7 \}\).
-Letting \(X\) be a set of numbers in \(U\), the numbers \enquote{outside} \(X\) are defined by
-the set complement \(\overline{X} = U - X\).
-Letting \(y\) be a number in \(U\), we \emph{encode} a value by
-\[\text{E}(X, y) =
-\begin{cases}
-7, & \text{if } \Sigma\,\overline{X} + y\pmod{7} = 0 \\
-\Sigma\,\overline{X} + y\pmod{7}, & \text{otherwise}
-\end{cases}\]
-Letting the set of numbers held by the \emph{sender} (\resp \emph{receiver}) be \(X_s\) (\resp \(X_r\)),
-we define the function \emph{send} as \(\text{S}(X_s) = \text{E}(X_s, 7)\).
-The send function produces the exchanged message value \(m\) that is observable to everyone.
-The function \emph{receive} is \(\text{R}(X_r,m) = \text{E}(X_r, m)\),
-and it produces the number held by \(\mathsf{A}\), denoted as \(a\).
-The receiver calculates numbers held by the sender using the \emph{recover} function \(\text{Rec}(X_r, a) = U - X_r - a\).
+The functions are defined as follows. The universe is \(U = \{ x \mid 1 \leq x
+\leq 7 \}\). Letting \(X\) be a set of numbers in \(U\), the numbers
+\enquote{outside} \(X\) are defined by the set complement \(\overline{X} = U -
+X\). Letting \(y\) be a number in \(U\), we \emph{encode} a value by
+\[\text{E}(X, y) = \begin{cases} 7, & \text{if } \Sigma\,\overline{X} +
+y\pmod{7} = 0 \\ \Sigma\,\overline{X} + y\pmod{7}, & \text{otherwise}
+\end{cases}\] Letting the set of numbers held by the \emph{sender} (\resp
+\emph{receiver}) be \(X_s\) (\resp \(X_r\)), we define the function \emph{send}
+as \(\text{S}(X_s) = \text{E}(X_s, 7)\). The send function produces the
+exchanged message value \(m\) that is observable to everyone. The function
+\emph{receive} is \(\text{R}(X_r,m) = \text{E}(X_r, m)\), and it produces the
+number held by \(\mathsf{A}\), denoted as \(a\). The receiver calculates numbers
+held by the sender using the \emph{recover} function \(\text{Rec}(X_r, a) = U -
+X_r - a\).
 
 \paragraph{Formal proof.}
 The interesting bit is showing that the solution meets the specification.
@@ -983,35 +1055,41 @@ We define first the messaging functions as shown in~\autoref{lst:moscow-fun}.
 \begin{minipage}{\textwidth}
 \captionsetup{type=lstlisting}
 \mathcompinputlisting[][firstline=28,lastline=37]{moscow.v}
-\captionof{lstlisting}[Moscow messaging functions]{Implementation of the messaging functions. The \pr|t| is a triple of natural numbers and
-\pr|T3| converts an arbitrary-length sequence (back) to a triple.}
+\captionof{lstlisting}[Moscow messaging functions]{
+   Implementation of the messaging functions. The \pr|t| is a triple of natural
+   numbers and \pr|T3| converts an arbitrary-length sequence (back) to a
+   triple.}
 \label{lst:moscow-fun}
 \end{minipage}
 \end{center}
 
-The message exchange requirements are defined by two lemmas.
-First, \enquote{\(\mathsf{C}\) (\resp \(\mathsf{B}\)) learns everything from one message} is stated formally as shown in~\autoref{lst:lemma-1}.
-The lemmas essentially says the receiver (\pr|R|) recovers (some permutation) of numbers that match exactly those held by the sender (\pr|S|).
-The \pr|send S| is the value of the exchanged message.
+The message exchange requirements are defined by two lemmas. First,
+\enquote{\(\mathsf{C}\) (\resp \(\mathsf{B}\)) learns everything from one
+message} is stated formally as shown in~\autoref{lst:lemma-1}. The lemmas
+essentially says the receiver (\pr|R|) recovers (some permutation) of numbers
+that match exactly those held by the sender (\pr|S|). The \pr|send S| is the
+value of the exchanged message.
 
 \begin{center}
 \begin{minipage}{\textwidth}
 \captionsetup{type=lstlisting}
 \mathcompinputlisting[][]{lemma1.v}
-\captionof{lstlisting}[Receiver knows sender]{First requirement formally -- receiver learns the numbers held by sender.}
+\captionof{lstlisting}[Receiver knows sender]{
+   First requirement formally -- receiver learns the numbers held by sender.}
 \label{lst:lemma-1}
 \end{minipage}
 \end{center}
 
-An \emph{allocation} (type \pr|alloc|) represents a distribution of numbers in \(U\)
-between \(\mathsf{A}\), \(\mathsf{B}\), and \(\mathsf{C}\).
-The second criterion is that \enquote{\(\mathsf{A}\) does not learn anything}.
-We formalize this in~\autoref{lst:lemma-2}.
-The lemma says, for every allocation of numbers and after observing both message exchanges between \(\mathsf{B}\) and \(\mathsf{C}\),
-\(\mathsf{A}\) has \emph{insufficient information}
-to determine with certainty what numbers everyone is holding.
-In other words, any observed exchanges can be explained by at least two different allocations,
-because there exists an alternate (different) \pr|alloc2| that explains the observations of \(\mathsf{A}\).
+An \emph{allocation} (type \pr|alloc|) represents a distribution of numbers in
+\(U\) between \(\mathsf{A}\), \(\mathsf{B}\), and \(\mathsf{C}\). The second
+criterion is that \enquote{\(\mathsf{A}\) does not learn anything}. We formalize
+this in~\autoref{lst:lemma-2}. The lemma says, for every allocation of numbers
+and after observing both message exchanges between \(\mathsf{B}\) and
+\(\mathsf{C}\), \(\mathsf{A}\) has \emph{insufficient information} to determine
+with certainty what numbers everyone is holding. In other words, any observed
+exchanges can be explained by at least two different allocations, because there
+exists an alternate (different) \pr|alloc2| that explains the observations of
+\(\mathsf{A}\).
 
 \begin{center}
 \begin{minipage}{\textwidth}
@@ -1023,15 +1101,19 @@ because there exists an alternate (different) \pr|alloc2| that explains the obse
 \end{minipage}
 \end{center}
 
-A complete machine-checkable implementation and a proof is available in the dissertation artifact
-(\cf~\aref{app:sec:artifacts} in \pr|code/moscow.v|).
-To machine-check the proof, we compile the file in a terminal following the instructions of the artifact readme.
-The expectation is that the proof should compile without errors (it does not print any terminal output).
+A complete machine-checkable implementation and a proof is available in the
+dissertation artifact (\cf~\aref{app:sec:artifacts} in \pr|code/moscow.v|). To
+machine-check the proof, we compile the file in a terminal following the
+instructions of the artifact readme. The expectation is that the proof compiles
+without errors (the compilation does not produce any terminal output).
 
-Compilation of the proof also runs an extraction routine.
-The extraction generates a certified \ndx{OCaml} program (\pr|message.ml|) from the messaging functions implemented in \ndx{SSReflect}.
-Another program---\pr|exchange.ml|, also in the dissertation artifact (\cf~\autoref{tab:pub-artifacts})---is a {driver} for running the certified program.
-The driver uses the certified program to perform a message exchange when run as shown in~\autoref{lst:run-exchange}.
+Compilation of the proof also runs an extraction routine. The extraction
+generates a certified \ndx{OCaml} program (\pr|message.ml|) from the messaging
+functions implemented in \ndx{SSReflect}. Another program---\pr|exchange.ml|,
+also in the dissertation artifact (\cf~\autoref{tab:pub-artifacts})---is a
+{driver} for running the certified program. The driver uses the certified
+program to perform a message exchange when run as shown
+in~\autoref{lst:run-exchange}.
 
 \begin{center}
 \captionsetup{type=lstlisting}
@@ -1039,19 +1121,19 @@ The driver uses the certified program to perform a message exchange when run as 
 \cmdinputlisting{exchange.cmd}
 \outinputlisting[][firstline=2,lastline=3]{exchange.output}
 \end{minipage}
-\captionof{lstlisting}[Running a certified message exchange]
-{Running a certified message exchange. In this scenario, \(\mathsf{A}\) holds
-the number 2, and everyone observes the messages \enquote{4} and \enquote{5}.
-This information is not enough for \(\mathsf{A}\) to learn what numbers
-\(\mathsf{B}\) (\resp \(\mathsf{C}\)) is holding. However, by the end of the
-exchange, \(\mathsf{B}\) and \(\mathsf{C}\) are fully informed.}
-\label{lst:run-exchange}
+\captionof{lstlisting}[Running a certified message exchange]{
+   Running a certified message exchange. In this scenario, \(\mathsf{A}\) holds
+   the number 2, and everyone observes the messages \enquote{4} and \enquote{5}.
+   This information is not enough for \(\mathsf{A}\) to learn what numbers
+   \(\mathsf{B}\) (\resp \(\mathsf{C}\)) is holding. However, by the end of the
+   exchange, \(\mathsf{B}\) and \(\mathsf{C}\) are fully informed.
+}\label{lst:run-exchange}
 \end{center}
 
 The presented moscow problem solution could be adjusted to a universe of \([0,
-6]\) with a small change.
-However, it is unknown whether other modifications---\eg larger set of numbers,
-different allocations, or more people---could be added.
+6]\) with a small change. However, it is unknown whether other
+modifications---\eg larger set of numbers, different allocations, or more
+people---could be added.
 
 \subsubsection{Connecting Formal Methods and ICC}
 \label{subsubsec:icc-formally}
