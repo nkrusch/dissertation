@@ -1,23 +1,32 @@
-%! suppress = LabelConvention
-%! suppress = FileNotFound, EscapeUnderscore
 \subsubsection{Introduction}
 \label{guide-introduction}
 
-pymwp\index{pymwp} (\enquote{pai m-w-p}) is a tool for automatically performing static analysis on programs written in a subset of the C language\index{C}.
-It analyzes resource usage and determines if program variables' growth rates are no more than polynomially related to their inputs sizes.
+\ndx{pymwp} (\enquote{pai m-w-p}) is a tool for automatically performing static
+analysis on programs written in a subset of the \ndx{C} language. It analyzes
+resource usage and determines if program variables' growth rates are no more
+than polynomially related to their inputs sizes.
 
-The theoretical foundations are described in paper the \hyperref[sec:fscd]{\enquote{mwp-Analysis Improvement and Implementation: Realizing Implicit Computational Complexity}} (\cf \hyperref[guide-learn-more]{\enquote{Learn More}} for additional references and links).
-The technique is generic and applicable to any imperative language\index{imperative programs}.
-pymwp\index{pymwp} is an implementation demonstrating this technique concretely on C programs\index{C}.
-The technique is originally inspired by \enquote{A Flow Calculus of mwp-Bounds for Complexity Analysis}\index{mwp-calculus}.
+The theoretical foundations are described in paper the
+\hyperref[sec:fscd]{\enquote{mwp-Analysis Improvement and Implementation:
+Realizing Implicit Computational Complexity}} (\cf
+\hyperref[guide-learn-more]{\enquote{Learn More}} for additional references and
+links). The technique is generic and applicable to any imperative
+language\index{imperative programs}. \ndx{pymwp} is an implementation
+demonstrating this technique concretely on \ndx{C} programs. The technique is
+originally inspired by \enquote{A Flow Calculus of mwp-Bounds for Complexity
+Analysis}\index{mwp-calculus}.
 
-This guide explains pymwp\index{pymwp} usage and behavior through several examples.
+This guide explains \ndx{pymwp} usage and behavior through several examples.
 
 \paragraph*{Property of Interest}
 
-For an imperative program, the goal is to discover a polynomially bounded data-flow relation\index{data flow relation}, between the \emph{initial values} of the variables (denoted \pr|X1|,\ldots{},\pr|Xn|) and its \emph{final values} (denoted \pr|X1'|,\ldots{},\pr|Xn'|)\symbo{Xprime}.
+For an imperative program, the goal is to discover a polynomially bounded
+data-flow relation\index{data flow relation}, between the \emph{initial values}
+of the variables (denoted \pr|X1|,\ldots{},\pr|Xn|) and its \emph{final values}
+(denoted \pr|X1'|,\ldots{},\pr|Xn'|)\symbo{Xprime}.
 
-For a program written in C language\index{C}, this property can be presented as follows.
+For a program written in \ndx{C} language, this property can be presented as
+follows.
 
 \begin{center}
 \begin{minipage}{\textwidth}
@@ -31,78 +40,98 @@ For a program written in C language\index{C}, this property can be presented as 
 
 Question: \(\forall n\), is \(\prm{X}_n \rightsquigarrow \prm{X'}_n\) polynomially bounded in inputs?
 
-We answer this question using the mwp-flow analysis\index{mwp-calculus}, implemented in the pymwp\index{pymwp} static analyzer.
+We answer this question using the mwp-flow analysis\index{mwp-calculus},
+implemented in the \ndx{pymwp} static analyzer.
 
 \paragraph*{What mwp-Flow Analysis Computes}
 
-The mwp-flow analysis\index{mwp-calculus} works to establish a polynomial growth bound for input variables by applying inference rules\index{inference rule} to program's commands.
+The mwp-flow analysis\index{mwp-calculus} works to establish a polynomial growth
+bound for input variables by applying \ndx{inference rule}s to program's
+commands.
 
-Internally, the analysis tracks \emph{coefficients}\index{flow coefficient} representing \emph{dependencies} between program's variables.
-These coefficients (or \enquote{flows})\index{flow coefficient} are \(0, m, w, p\)\symbo{zero}\symbo{m}\symbo{w}\symbo{p} and \(\infty\)\symbo{infty}.
-They characterize how data flows between variables.
+Internally, the analysis tracks \emph{coefficients}\index{flow coefficient}
+representing \emph{dependencies} between program's variables. These coefficients
+(or \enquote{flows})\index{flow coefficient} are \(0, m, w,
+p\)\symbo{zero}\symbo{m}\symbo{w}\symbo{p} and ∞\symbo{infty}. They characterize
+how data flows between variables.
 
 \begin{itemize}
 \item \(0\) --- no dependency\symbo{zero}
 \item \(m\) --- maximal (of linear)\symbo{m}\index{maximally linear flow}
 \item \(w\) --- weak polynomial\symbo{w}\index{weak polynomial flow}
 \item \(p\) --- polynomial\symbo{p}\index{polynomial flow}
-\item \(\infty\) --- infinite\symbo{infty}
+\item ∞ --- infinite\symbo{infty}
 \end{itemize}
 
-with ordering: \(0 < m < w < p < \infty\)\symbo{zero}\symbo{m}\symbo{w}\symbo{p}\symbo{infty}.
+with ordering: \(0 < m < w < p < \infty\).
+\symbo{zero}\symbo{m}\symbo{w}\symbo{p}\symbo{infty}
 The analysis name also comes from these coefficients\index{flow coefficient}.
 
-After analysis, two outcomes are possible.
-(A) The program's variables values can be bounded by a polynomial in the input's values, or (B) the analysis determines it is impossible to establish such a bound.
-Due to non-determinism\index{nondeterminism}, many derivation paths need to be explored to determine this result.
+After analysis, two outcomes are possible. (A) The program's variables values
+can be bounded by a polynomial in the input's values, or (B) the analysis
+determines it is impossible to establish such a bound. Due to
+non-determinism\index{nondeterminism}, many derivation paths need to be explored
+to determine this result.
 
-The analysis succeeds if -- for some derivation -- no pair of variables is characterized by \(\infty\)\symbo{infty}-flow.
-That is, obtaining an \(\infty\)\symbo{infty}-free derivation implies existence of a polynomial growth bound;
-\ie, the program has the property of interest, or we can say that the program is \emph{derivable}\index{derivability}.
-The soundness theorem of the mwp-calculus guarantees that if such derivation exists, the program variables' value growth is polynomially bounded in inputs.
+The analysis succeeds if -- for some derivation -- no pair of variables is
+characterized by ∞\symbo{infty}-flow. That is, obtaining an ∞\symbo{infty}-free
+derivation implies existence of a polynomial growth bound; \ie, the program has
+the property of interest, or we can say that the program is
+\emph{derivable}\index{derivability}. The soundness theorem of the mwp-calculus
+guarantees that if such derivation exists, the program variables' value growth
+is polynomially bounded in inputs.
 
-Program fails the analysis if every derivation contains an \(\infty\)\symbo{infty} coefficient.
-Then it is not possible to establish polynomial growth bound.
-For these programs, pymwp\index{pymwp} reports an \(\infty\)\symbo{infty}-result.
+Program fails the analysis if every derivation contains an ∞\symbo{infty}
+coefficient. Then it is not possible to establish polynomial growth bound. For
+these programs, \ndx{pymwp} reports an ∞\symbo{infty}-result.
 
 \paragraph*{Interpreting mwp-Bounds}
 
-If the analysis is successful, i.e., polynomial growth bound exists, it is represented using \emph{mwp-bounds}\index{mwp-bound}.
+If the analysis is successful, i.e., polynomial growth bound exists, it is
+represented using \emph{\ndx{mwp-bound}s}.
 
-An mwp-bound\index{mwp-bound} is a number theoretic expression of form: \(\max(\vec x, poly_1(\vec y)) + poly_2(\vec z)\)\symbo{hp}.
+An \ndx{mwp-bound} is a number theoretic expression of form: \(\max(\vec x,
+poly_1(\vec y)) + poly_2(\vec z)\)\symbo{hp}.
 
-Disjoint variable lists \(\vec x\), \(\vec y\) and \(\vec z\) capture dependencies of an input variable.
-Dependencies characterized by \(m\)-flow\symbo{m} are in \(\vec x\), \(w\)-flow\symbo{w} in \(\vec y\), and \(p\)-flow\symbo{p} in \(\vec z\).
-The polynomials \(poly_1\)\symbo{hp} and \(poly_2\)\symbo{hp} are built up from constants, variables, and operators \(+\) and \(\times\).
-Each variable list may be empty and \(poly_1\)\symbo{hp} and \(poly_2\)\symbo{hp} may not be present.
+Disjoint variable lists \(\vec x\), \(\vec y\) and \(\vec z\) capture
+dependencies of an input variable. Dependencies characterized by
+\(m\)-flow\symbo{m} are in \(\vec x\), \(w\)-flow\symbo{w} in \(\vec y\), and
+\(p\)-flow\symbo{p} in \(\vec z\). The polynomials \(poly_1\)\symbo{hp} and
+\(poly_2\)\symbo{hp} are built up from constants, variables, and operators \(+\)
+and \(\times\). Each variable list may be empty and \(poly_1\)\symbo{hp} and
+\(poly_2\)\symbo{hp} may not be present.
 
-For multiple input variables, the result is a conjunction of mwp-bounds\index{mwp-bound}, one for each input variable.
+For multiple input variables, the result is a conjunction of \ndx{mwp-bound}s,
+one for each input variable.
 
 \begin{example}
-    Assume program has one input variable named \pr|X|, and we have obtained a bound: \(\prm{X'} \leq \prm{X}\)\symbo{Xprime}.
-    The bound expression means the final value \pr|X'|\symbo{Xprime} depends only on its own initial value \pr|X|.
+Assume program has one input variable named \pr|X|, and we have obtained a
+bound: \(\prm{X'} \leq \prm{X}\)\symbo{Xprime}. The bound expression means
+the final value \pr|X'|\symbo{Xprime} depends only on its own initial value
+\pr|X|.
 \end{example}
 
 \begin{example}
-    Assume program has two inputs, \pr|X| and \pr|Y|, and we obtained a bound:
-    \(\prm{X'} \leq \prm{X} \land \prm{Y'} \leq \max(\prm{X}, 0) + \prm{Y}\).
+Assume program has two inputs, \pr|X| and \pr|Y|, and we obtained a bound:
+\(\prm{X'} \leq \prm{X} \land \prm{Y'} \leq \max(\prm{X}, 0) + \prm{Y}\).
 \end{example}
 
 \begin{itemize}
-    \item Final value \pr|X'|\symbo{Xprime} depends on its own initial value \pr|X|.
-    \item Final value \pr|Y'|\symbo{Xprime} depends on initial values of inputs \pr|X| and \pr|Y|.
-    \item The bound expression can be simplified to
-          \(\prm{X'} \leq \prm{X} \land \prm{Y'} \leq \prm{X} + \prm{Y}\).
+\item Final value \pr|X'|\symbo{Xprime} depends on its own initial value \pr|X|.
+\item Final value \pr|Y'|\symbo{Xprime} depends on initial values of inputs
+\pr|X| and \pr|Y|.
+\item The bound expression can be simplified to \(\prm{X'} \leq \prm{X} \land
+\prm{Y'} \leq \prm{X} + \prm{Y}\).
 \end{itemize}
 
 \subsubsection{Installation}\label{guide-install}
 
-This section explains how to get started using pymwp\index{pymwp}.
-We recommend installing pymwp\index{pymwp} locally for an interactive tutorial experience.
+This section explains how to get started using \ndx{pymwp}. We recommend
+installing \ndx{pymwp} locally for an interactive tutorial experience.
 
 \paragraph*{1. Check environment requirements}
 
-pymwp\index{pymwp} requires Python runtime 3.7 -- 3.11 (current latest).
+\ndx{pymwp} requires \ndx{Python} runtime 3.7 -- 3.11 (current latest).
 To check currently installed version, run:
 
 \begin{center}
@@ -113,11 +142,12 @@ python3 --version
 \end{minipage}
 \end{center}
 
-On systems that default to Python 3 runtime, use \texttt{python} instead of \texttt{python3}.
-Instructions for installing Python for different operating systems can be found at \href{https://python.org}{python.org} ↗.
+On systems that default to \ndx{Python} 3 runtime, use \texttt{python} instead
+of \texttt{python3}. Instructions for installing \ndx{Python} for different
+operating systems can be found at \href{https://python.org}{python.org} ↗.
 
 \paragraph*{2. Install pymwp}
-Install pymwp\index{pymwp} from Python Package Index:
+Install \ndx{pymwp} from Python Package Index:
 
 \begin{center}
 \begin{minipage}{\textwidth}
@@ -149,8 +179,8 @@ This completes the setup.
 
 \subsubsection{Examples}\label{guide-examples}
 
-We now demonstrate use of pymwp\index{pymwp} on several examples.
-To ease the presentation, we will use multiple command line arguments.
+We now demonstrate use of \ndx{pymwp} on several examples. To ease the
+presentation, we will use multiple command line arguments.
 
 \begin{itemize}
 \item \pr|--fin| --- always run analysis to completion (even on failure)
@@ -169,7 +199,8 @@ pymwp --help
 \end{center}
 
 \paragraph{Binary Assignment}\label{binary-assignment}
-This example shows that assigning a compounded expression to a variable results in correct analysis.
+This example shows that assigning a compounded expression to a variable results
+in correct analysis.
 
 \subparagraph*{Analyzed Program}
 
@@ -182,11 +213,13 @@ This example shows that assigning a compounded expression to a variable results 
 \end{minipage}
 \end{center}
 
-It is straightforward to observe that this program has a polynomial growth bound.
-The precise value of that bound is \(\prm{y1'} = \prm{y1} \land \prm{y2'} \leq 2 \times \prm{y1}\)\symbo{Xprime}.
-Although the program is simple, it is interesting because binary operations introduce complexity in program analysis.
+It is straightforward to observe that this program has a polynomial growth
+bound. The precise value of that bound is \(\prm{y1'} = \prm{y1} \land \prm{y2'}
+\leq 2 \times \prm{y1}\)\symbo{Xprime}. Although the program is simple, it is
+interesting because binary operations introduce complexity in program analysis.
 
-The current working directory should be the location of unzipped examples from \hyperref[guide-install]{Installation} Step 4.
+The current working directory should be the location of unzipped examples from
+\hyperref[guide-install]{Installation} Step 4.
 
 \begin{center}
 \begin{minipage}{\textwidth}
@@ -198,22 +231,22 @@ pymwp basics/assign_expression.c --fin --info --no_time
 
 \begin{center}
 \begin{minipage}{\textwidth}
-\begin{outlisting}[label={lst:ex-output}]
-INFO (result): Bound: y1' ≤ y1 ∧ y2' ≤ y1
-INFO (result): Bounds: 3
-INFO (result): Total time: 0.0 s (0 ms)
-INFO (file_io): saved result in output/assign_expression.json
-\end{outlisting}
+\outinputlisting{guide1.output}
 \end{minipage}
+\label{lst:ex-output}
 \end{center}
 
 \subparagraph*{Discussion}
-The analysis correctly assigns a polynomial bound to the program.
-The bound obtained by the analyzer is \pr|y1'|\symbo{Xprime} ≤ \pr|y1| ∧ \pr|y2'|\symbo{Xprime} ≤ \pr|y1|.
-Comparing to the precise value determined earlier, this bound is correct, because we omit constants in the analysis results.
+The analysis correctly assigns a polynomial bound to the program. The bound
+obtained by the analyzer is \pr|y1'|\symbo{Xprime} ≤ \pr|y1| ∧
+\pr|y2'|\symbo{Xprime} ≤ \pr|y1|. Comparing to the precise value determined
+earlier, this bound is correct, because we omit constants in the analysis
+results.
 
-Due to non-determinism\index{nondeterminism}, the analyzer finds three different derivations that yield a bound.
-From the \texttt{.json} file, that captures the analysis result in more technical detail, it is possible to determine these three bounds are:
+Due to non-determinism\index{nondeterminism}, the analyzer finds three different
+derivations that yield a bound. From the \texttt{.json} file, that captures the
+analysis result in more technical detail, it is possible to determine these
+three bounds are:
 \begin{itemize}
 \item \pr|y1'|\symbo{Xprime} ≤ \pr|y1| ∧ \pr|y2'| ≤ \(\max(0,0) + \prm{y1}\)
 \item \pr|y1'|\symbo{Xprime} ≤ \pr|y1| ∧ \pr|y2'| ≤ \(\max(0,0) + \prm{y1}\)
@@ -223,7 +256,8 @@ They all simplify to \pr|y1'| ≤ \pr|y1| ∧ \pr|y2'| ≤ \pr|y1|\symbo{Xprime}
 This concludes the obtained result matches the expected result.
 
 \paragraph{Exponential Program}\label{exponential-program}
-A program computing the exponentiation returns an infinite coefficient, no matter the derivation strategy chosen.
+A program computing the exponentiation returns an infinite coefficient, no
+matter the derivation strategy chosen.
 
 \subparagraph*{Analyzed Program}
 
@@ -236,9 +270,10 @@ A program computing the exponentiation returns an infinite coefficient, no matte
 \end{minipage}
 \end{center}
 
-This program's variable \(\texttt{result}\) grows exponentially.
-It is impossible to find a polynomial growth bound, and the analysis is expected to report \(\infty\)\symbo{infty}-result.
-This example demonstrates how pymwp\index{pymwp} arrives to that conclusion.
+This program's variable \(\texttt{result}\) grows exponentially. It is
+impossible to find a polynomial growth bound, and the analysis is expected to
+report ∞\symbo{infty}-result. This example demonstrates how \ndx{pymwp} arrives
+to that conclusion.
 
 \begin{center}
 \begin{minipage}{\textwidth}
@@ -250,26 +285,20 @@ pymwp infinite/exponent_2.c --fin --info --no_time
 
 \begin{center}
 \begin{minipage}{\textwidth}
-\begin{outlisting}[label={lst:ex2-output}]
-INFO (result): foo is infinite
-INFO (result): Possibly problematic flows:
-INFO (result): base → result ‖ exp → result ‖ i → result ‖ result → result
-INFO (result): Total time: 0.0 s (2 ms)
-INFO (file_io): saved result in output/exponent_2.json
-\end{outlisting}
+\outinputlisting{guide2.output}
 \end{minipage}
+\label{lst:ex2-output}
 \end{center}
 
-
 \subparagraph*{Discussion}
-The output shows that the analyzer correctly detects that no bound can
-be established, and we obtain \(\infty\)\symbo{infty}-result.
-The output also gives a list of problematic flows.
-This list indicates all variable pairs, that along some derivation paths, cause \(\infty\)\symbo{infty} coefficients to occur.
-The arrow direction means data flows from \pr|source| → \pr|target|.
-We can see the problem with this program is the data flowing to \pr|result| variable.
-This clearly indicates the origin of the problem, and allows programmer to determine if the issue can be
-repaired, to improve program's complexity properties.
+The output shows that the analyzer correctly detects that no bound can be
+established, and we obtain ∞\symbo{infty}-result. The output also gives a list
+of problematic flows. This list indicates all variable pairs, that along some
+derivation paths, cause ∞\symbo{infty} coefficients to occur. The arrow
+direction means data flows from \pr|source| → \pr|target|. We can see the
+problem with this program is the data flowing to \pr|result| variable. This
+clearly indicates the origin of the problem, and allows programmer to determine
+if the issue can be repaired, to improve program's complexity properties.
 
 \paragraph{While Analysis}\label{while-analysis}
 A program that shows infinite coefficients for some derivations.
@@ -287,7 +316,7 @@ A program that shows infinite coefficients for some derivations.
 
 This program contains decision logic, iteration, and multiple variables.
 Determining if a polynomial growth bound exists is not immediate by inspection.
-It is therefore an interesting candidate for analysis with pymwp\index{pymwp}!
+It is therefore an interesting candidate for analysis with \ndx{pymwp}!
 
 \begin{center}
 \begin{minipage}{\textwidth}
@@ -300,31 +329,30 @@ pymwp not_infinite/notinfinite_3.c --fin --info --no_time
 
 \begin{center}
 \begin{minipage}{\textwidth}
-\begin{outlisting}[label={lst:ex3-output}]
-INFO (result): Bound: X0' ≤ max(X0,X1)+X2*X3 ∧ X1' ≤ X1+X2 ∧ X2' ≤ X2+X3 ∧ X3' ≤ X3
-INFO (result): Bounds: 9
-INFO (result): Total time: 0.0 s (3 ms)
-INFO (file_io): saved result in output/notinfinite_3.json
-\end{outlisting}
+\outinputlisting{guide3.output}
 \end{minipage}
+\label{lst:ex3-output}
 \end{center}
 
 \subparagraph*{Discussion}\label{discussion}
 
-Compared to previous examples, the analysis is now getting more complicated.
-We can observe this in the number of discovered bounds and the form of the bound expression.
-The number of times the loop iterates, or which branch of the \texttt{if} statement is taken, is not a barrier to determining the result.
+Compared to previous examples, the analysis is now getting more complicated. We
+can observe this in the number of discovered bounds and the form of the bound
+expression. The number of times the loop iterates, or which branch of the
+\texttt{if} statement is taken, is not a barrier to determining the result.
 
 From the bound expression, we can determine the following.
 
 \begin{itemize}
-\item \pr|X0| has the most complicated dependency relation.
-Its mwp-bound\index{mwp-bound} combines the impact of the \texttt{if} statement, the \pr|while| loop, and the chance that the loop may not execute.
+\item \pr|X0| has the most complicated dependency relation. Its
+mwp-bound\index{mwp-bound} combines the impact of the \texttt{if} statement, the
+\pr|while| loop, and the chance that the loop may not execute.
 
-\item \pr|X1| and \pr|X2| have fairly simple growth dependencies, originating from the \texttt{if} statement.
+\item \pr|X1| and \pr|X2| have fairly simple growth dependencies, originating
+from the \texttt{if} statement.
 
-\item \(\texttt{X3}\) is the simplest case -- it never changes.
-Therefore, it only depends on itself.
+\item \(\texttt{X3}\) is the simplest case -- it never changes. Therefore, it
+only depends on itself.
 \end{itemize}
 
 Overall, the analysis concludes the program has a polynomial growth bound.
@@ -343,9 +371,10 @@ A program that shows infinite coefficients for all choices.
 \end{minipage}
 \end{center}
 
-If you studied the previous example carefully, you might notice that this example is \emph{very similar}.
-There is a subtle differences: variable \pr|X0| has been removed and its usages changed to \pr|X1|.
-This example demonstrates how this seemingly small change impacts the analysis result.
+If you studied the previous example carefully, you might notice that this
+example is \emph{very similar}. There is a subtle differences: variable \pr|X0|
+has been removed and its usages changed to \pr|X1|. This example demonstrates
+how this seemingly small change impacts the analysis result.
 
 \begin{center}
 \begin{minipage}{\textwidth}
@@ -357,30 +386,30 @@ pymwp infinite/infinite_3.c --fin --info --no_time
 
 \begin{center}
 \begin{minipage}{\textwidth}
-\begin{outlisting}[label={lst:ex4-output}]
-INFO (result): foo is infinite
-INFO (result): Possibly problematic flows:
-INFO (result): X1 → X1 ‖ X2 → X1 ‖ X3 → X1
-INFO (result): Total time: 0.0 s (2 ms)
-INFO (file_io): saved result in output/infinite_3.json
-\end{outlisting}
+\outinputlisting{guide4.output}
 \end{minipage}
+\label{lst:ex4-output}
 \end{center}
 
 \subparagraph*{Discussion}
 
-We can observe the result is \(\infty\)\symbo{infty}.
-Thus, even a small change can change the analysis result entirely.
+We can observe the result is ∞\symbo{infty}. Thus, even a small change can
+change the analysis result entirely.
 
-The output reveals the problem arises from how data flows from source variables \pr|X1|, \pr|X2|, and \(\texttt{X3}\), to target variable \pr|X1|.
-Observe that even though there is no direct assignment from \(\texttt{X3}\) to \pr|X1|, the analysis correctly identifies this dependency relation, that occurs through \pr|X2|.
+The output reveals the problem arises from how data flows from source variables
+\pr|X1|, \pr|X2|, and \(\texttt{X3}\), to target variable \pr|X1|. Observe that
+even though there is no direct assignment from \(\texttt{X3}\) to \pr|X1|, the
+analysis correctly identifies this dependency relation, that occurs through
+\pr|X2|.
 
-From the output, we have identified the point and source of failure.
-Conversely, we know other variable pairs are not problematic.
-By focusing on how to avoid \enquote{too strong} dependencies targeting variable \pr|X1|, programmer may be able to refactor and improve the program's complexity properties.
+From the output, we have identified the point and source of failure. Conversely,
+we know other variable pairs are not problematic. By focusing on how to avoid
+\enquote{too strong} dependencies targeting variable \pr|X1|, programmer may be
+able to refactor and improve the program's complexity properties.
 
 \paragraph{Challenge Example}\label{challenge-example}
-Try to guess the analysis outcome before determining the result with pymwp\index{pymwp}.
+Try to guess the analysis outcome before determining the result with
+\ndx{pymwp}.
 
 \subparagraph*{Analyzed Program}
 
@@ -388,15 +417,19 @@ Try to guess the analysis outcome before determining the result with pymwp\index
 \begin{minipage}{\textwidth}
 \captionsetup{type=lstlisting}
 \cinputlisting{dense_loop.imp}
-\captionof{lstlisting}[Challenge program dense\_loop]{A challenge program dense\_loop.c.}
+\captionof{lstlisting}[Challenge program dense\_loop]
+    {A challenge program dense\_loop.c.}
 \label{lst:challange}
 \end{minipage}
 \end{center}
 
-After seeing the various preceding examples -- with and without polynomial bounds -- we present the following challenge.
-By inspection, try to determine if this program is polynomially bounded \wrt its input values.
+After seeing the various preceding examples -- with and without polynomial
+bounds -- we present the following challenge. By inspection, try to determine if
+this program is polynomially bounded \wrt its input values.
 
-It is unknown which \texttt{if} branch will be taken, and whether the \pr|while| loop will terminate\index{termination}, but this is not a problem for determining the result.
+It is unknown which \texttt{if} branch will be taken, and whether the \pr|while|
+loop will terminate\index{termination}, but this is not a problem for
+determining the result.
 
 \begin{center}
 \begin{minipage}{\textwidth}
@@ -408,66 +441,74 @@ pymwp other/dense_loop.c --fin --info --no_time
 
 \begin{center}
 \begin{minipage}{\textwidth}
-\begin{outlisting}[label={lst:ex5-output}]
-INFO (result): Bound: X0' ≤ max(X0,X2)+X1 ∧ X1' ≤ X0*X1*X2 ∧ X2' ≤ max(X0,X2)+X1
-INFO (result): Bounds: 81
-INFO (result): Total time: 0.0 s (29 ms)
-INFO (file_io): saved result in output/dense_loop.json
-\end{outlisting}
+\outinputlisting{guide5.output}
 \end{minipage}
+\label{lst:ex5-output}
 \end{center}
 
 \subparagraph*{Discussion}
-Even with just 3 variables we can see---in the obtained bound expression and the number of bounds---that this is a complicated derivation problem.
-The analyzer determines the program has a polynomial growth bound.
-Let us reason informally and intuitively why this obtained result is correct.
+Even with just 3 variables we can see---in the obtained bound expression and the
+number of bounds---that this is a complicated derivation problem. The analyzer
+determines the program has a polynomial growth bound. Let us reason informally
+and intuitively why this obtained result is correct.
 
-We can observe in the bound expression, that all three variables have complicated dependencies on one another;
-this corresponds to what is also observable in the input program.
+We can observe in the bound expression, that all three variables have
+complicated dependencies on one another; this corresponds to what is also
+observable in the input program.
 
-Regarding variables \pr|X0| and \pr|X1|, observe there is no command, with either as a target variable, that would give rise to exponential value growth (need iteration).
-Therefore, they must have polynomial growth bounds.
+Regarding variables \pr|X0| and \pr|X1|, observe there is no command, with
+either as a target variable, that would give rise to exponential value growth
+(need iteration). Therefore, they must have polynomial growth bounds.
 
-Variable \pr|X2| is more complicated.
-The program has a \pr|while| loop performing assignments to \pr|X2| (potentially problematic), and the \pr|while| loop may or may not execute.
+Variable \pr|X2| is more complicated. The program has a \pr|while| loop
+performing assignments to \pr|X2| (potentially problematic), and the \pr|while|
+loop may or may not execute.
 
 \begin{itemize}
 
-\item Case 1: loop condition is initially false.
-Then, final value of \pr|X2| depends on the \texttt{if} statement, and in either branch, it will have polynomially bounded growth.
+\item Case 1: loop condition is initially false. Then, final value of \pr|X2|
+depends on the \texttt{if} statement, and in either branch, it will have
+polynomially bounded growth.
 
-\item Case 2: loop condition true -- at least one iteration will occur.
-The program iteratively assigns values to \pr|X2| inside the \pr|while| loop.
-However, notice the command is loop invariant\index{invariant}.
-No matter how many times the loop iterates, the final value of \pr|X2| is \(\prm{X1} + \prm{X0}\).
-We already know those two variables have polynomial growth bounds.
+\item Case 2: loop condition true -- at least one iteration will occur. The
+program iteratively assigns values to \pr|X2| inside the \pr|while| loop.
+However, notice the command is loop invariant\index{invariant}. No matter how
+many times the loop iterates, the final value of \pr|X2| is \(\prm{X1} +
+\prm{X0}\). We already know those two variables have polynomial growth bounds.
 Therefore, \pr|X2| also grows polynomially \wrt its input values.
 
 \end{itemize}
 
-This reasoning concurs with the result determined by pymwp\index{pymwp}.
+This reasoning concurs with the result determined by \ndx{pymwp}.
 
-\subsubsection{Learn More}\label{guide-learn-more}
+\subsubsection{Learn More}
+\label{guide-learn-more}
 
-This guide has offered only a \emph{very short} introduction to mwp-analysis and pymwp\index{pymwp}.
-If you wish to explore more, have a look at:
+This guide has offered only a \emph{very short} introduction to mwp-analysis and
+\ndx{pymwp}. If you wish to explore more, have a look at:
 
 \begin{itemize}
 
-\item \href{https://doi.org/10.4230/LIPIcs.FSCD.2022.26}
-{\enquote{mwp-Analysis Improvement and Implementation: Realizing Implicit Computational Complexity}}\\
-Describes theoretical foundations behind pymwp\index{pymwp}.
+\item \href{https://doi.org/10.4230/LIPIcs.FSCD.2022.26}%
+{\enquote{mwp-Analysis Improvement and Implementation: Realizing Implicit
+Computational Complexity}}\\
+Describes theoretical foundations behind \ndx{pymwp}.
 
-\item \href{https://doi.org/10.1145/1555746.1555752}
-{\enquote{A Flow Calculus of mwp-Bounds for Complexity Analysis}}\index{mwp-calculus}\\
+\item \href{https://doi.org/10.1145/1555746.1555752}%
+{\enquote{A Flow Calculus of mwp-Bounds for Complexity
+Analysis}}\index{mwp-calculus}\\
 Original mwp-flow analysis technique.
 
-\item \href{https://statycc.github.io/pymwp}{Documentation} -- Includes information about supported C language\index{C} features, \etc
+\item \href{https://statycc.github.io/pymwp}{Documentation} --
+Includes information about supported \ndx{C} language features, \etc
 
-\item \href{https://statycc.github.io/pymwp/demo/}{Online demo} -- Run pymwp\index{pymwp} online on more than 40 examples.
+\item \href{https://statycc.github.io/pymwp/demo/}{Online demo} --
+Run \ndx{pymwp} online on more than 40 examples.
 
-\item \href{https://github.com/statycc/pymwp}{Source code} -- pymwp\index{pymwp} is open source.
+\item \href{https://github.com/statycc/pymwp}{Source code} --
+\ndx{pymwp} is open source.
 
-\item \href{https://github.com/statycc/pymwp/blob/main/LICENSE}{License} -- pymwp\index{pymwp} is licensed under GPLv3.
+\item \href{https://github.com/statycc/pymwp/blob/main/LICENSE}{License} --
+\ndx{pymwp} is licensed under GPLv3.
 
 \end{itemize}

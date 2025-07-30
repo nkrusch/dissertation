@@ -1,0 +1,5 @@
+INFO (result): foo is infinite
+INFO (result): Possibly problematic flows:
+INFO (result): X1 → X1 ‖ X2 → X1 ‖ X3 → X1
+INFO (result): Total time: 0.0 s (2 ms)
+INFO (file_io): saved result in output/infinite_3.json
