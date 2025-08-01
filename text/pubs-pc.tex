@@ -145,7 +145,7 @@ For variable \pr|X4|, the precise postcondition is \(\prm{X4}+\prm{X1}\times\prm
 
 \begin{enumerate}
 
-\item Our main result is an automatic analysis for postcondition inference in numerical loops (\autoref{sec:analysis}).
+\item Our main result is an automatic analysis for postcondition inference in numerical loops (\autoref{sec:pc-analysis}).
 The analysis is applicable in imprecise contexts and in absence of initial variable values and program annotations.
 
 \item To obtain the analysis, we extend the flow calculus of mwp-bounds with two new capabilities:
@@ -332,10 +332,10 @@ label/.style={midway,fill=white}]
 \newcommand\lbl[2]{\textit{#1} (\autoref{#2})}
 \newcommand\vtx[2]{\textbf{#1} (\autoref{#2})}
 
-\path (0, 0) node (A) {\vtx{loop}{subsec:language}}
+\path (0, 0) node (A) {\vtx{loop}{subsec:imp-language}}
 ++(0,-2.0) node[text width=10cm] (B) {\vtx{program analysis with flow calculus}{subsec:matrices}}
 ++(0,-3.7) node (C) {\vtx{evaluation}{sec:enhancements}}
-++(0,-3.0) node (D) {\vtx{postconditions}{sec:analysis}};
+++(0,-3.0) node (D) {\vtx{postconditions}{sec:pc-analysis}};
 
 \draw[cdafny,line width=5pt,solid]($(C.north west)+(-1.5,0.4)$)  rectangle ($(D.south east)+(1.5,-0.4)$);
 \draw[black,thick,densely dashed,line cap=round]($(C.north west)+(-1.5,0.4)$)  rectangle ($(D.south east)+(1.5,-0.4)$);
@@ -353,7 +353,7 @@ The \autoref{fig:pc-workflow} illustrates the complete analysis workflow.
 The boxed region highlights the steps and enhancements introduced in this paper.
 The region outside the box refers to the existing techniques we build on.
 
-The analysis takes as input an imperative loop (\autoref{subsec:language}).
+The analysis takes as input an imperative loop (\autoref{subsec:imp-language}).
 We analyze the loop using the inference rules of the flow calculus (\autoref{subsec:matrices}).
 As output, the analysis produces an \emph{mwp-matrix} (\autoref{subsec:mat-decode}).
 Our enhancements involve {evaluating} these mwp-matrices.
@@ -362,7 +362,7 @@ and in more cases than previously (\autoref{subsec:bounds-at-failure}).
 This provides the postconditions that address the problem formulation of~\autoref{subsec:overview}.
 
 \subsubsection{Imperative language of input programs}
-\label{subsec:language}
+\label{subsec:imp-language}
 
 \begin{definition}[Imperative language]\label{def:lang}
 Letting natural number variables range over \pr|X| and \pr|Y| and boolean expressions over \pr{b},
@@ -941,7 +941,7 @@ Variables in set \(\mathsf{A}\) are analyzed by the standard rules of the flow c
 \emph{Derivability of this sub-program is the source of increase in the flow calculus expressivity.}
 
 \subsection{mwp-bounds as Postconditions}
-\label{sec:analysis}
+\label{sec:pc-analysis}
 
 \subsubsection{Optimal mwp-bounds by form}
 \label{subsec:categories}
@@ -1014,7 +1014,7 @@ The whole-program is derivable \emph{and} variable \pr|X3| is assigned its optim
 \subsubsection{Program analysis for postcondition inference}
 \label{subsec:inference}
 
-Postcondition inference requires adjusting the imperative language (\autoref{subsec:language}) to a language of loops.
+Postcondition inference requires adjusting the imperative language (\autoref{subsec:imp-language}) to a language of loops.
 A \emph{loop program} starts with a looping command (\pr|while| or \pr|loop|) whose body is any command in the imperative language.
 Using the mwp-matrix evaluation procedure, we compute postconditions for all variables that have expressible mwp-bounds.
 To avoid repeated analysis, we proceed from loop nests to parent and compose mwp-matrices in a bottom-up manner. % and omit repeated analysis.
