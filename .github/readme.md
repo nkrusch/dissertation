@@ -7,9 +7,6 @@
 
 This is the source code of my [doctoral dissertation](https://neea.pl/dissertation).
 
-This readme describes only the technical details, like how to compile the document.
-See [this webpage](https://neea.pl/posts/dissertation) for presentation of the content.
-
 I am not aware of any other open source doctoral dissertations from Augusta University.
 I am hopeful that making this resource public will be useful to future students, especially those who want to write a dissertation in LaTeX.
 Here is the [starter template](https://github.com/aubertc/au_ccs_dissertation_template/) that I have been extending.
