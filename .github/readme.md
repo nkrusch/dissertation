@@ -5,7 +5,7 @@
 
 [//]: # ([![DOI]&#40;https://zenodo.org/badge/DOI/10.5281/zenodo.15288398.svg&#41;]&#40;https://doi.org/10.5281/zenodo.15288398&#41;)
 
-This is the source code of my doctoral dissertation,  which I will defend at Augusta University in August 2025.
+This is the source code of my [doctoral dissertation](https://neea.pl/dissertation).
 
 This readme describes only the technical details, like how to compile the document.
 See [this webpage](https://neea.pl/posts/dissertation) for presentation of the content.
@@ -88,8 +88,6 @@ Time: 10-15 min &bull; Prerequisites: [Docker](https://docs.docker.com/engine/in
 Dissertations completed at Augusta University are archived on [ProQuest](https://www.proquest.com).
 
 Accessing the full database requires authentication.
-Some dissertations are embargoed, such that the full text is not available.
-The dissertation details specify the end date of the embargo.
 
 * Query to find all AU doctoral dissertations:
 
