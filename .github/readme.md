@@ -7,10 +7,10 @@
 
 This is the source code of my [doctoral dissertation](https://neea.pl/dissertation).
 
-I am not aware of any other open source doctoral dissertations from Augusta University.
-I am hopeful that making this resource public will be useful to future students, especially those who want to write a dissertation in LaTeX.
-Here is the [starter template](https://github.com/aubertc/au_ccs_dissertation_template/) that I have been extending.
-This repository is also set up with automated workflows that may be of interest to technically advanced users.
+I am not aware of any other _open source doctoral dissertation_ from Augusta University.
+I hope that making this resource public will be useful to future candidates.
+Here is the [starter LaTeX template](https://github.com/aubertc/au_ccs_dissertation_template/) that I have been extending.
+This repository is also set up with automated workflows that may be of interest to the technically advanced candidates.
 
 ## Formatting Guidelines
 
