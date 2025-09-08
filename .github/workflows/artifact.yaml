@@ -1,8 +1,15 @@
-name: Package
+name: Artifact
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 on:
   push:
     branches: [ main ]
+    paths-ignore:
+      - '**.md'
+      - '**.txt'
   workflow_dispatch:
     branches: [ main ]
 
@@ -17,7 +24,6 @@ jobs:
     runs-on: ubuntu-latest
     permissions: write-all
     steps:
-      - uses: pierreraffa/cancel-previous-runs-action@1.11
       - uses: actions/checkout@v4
       - id: meta
         run: | 

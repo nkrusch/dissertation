@@ -29,41 +29,37 @@ PREREQUISITES
 * Docker - https://docs.docker.com/engine/install/
 * Operating system - any Docker-compatible OS
 * Internet - only container pull/build requires the host to be online.
-* Memory - container size is be approx. 8 GB
+* Memory - container size is approx. 8 GB
 
 STANDARD SETUP
-Pull and launch a virtual execution environment. On some machines you
-may need sudo. All necessary software is pre-installed in the container.
-The setup should take at most 5 min, depending on Internet speed.
+Pull and launch a virtual execution environment. All necessary software
+is pre-installed in the container. On some machines you may need sudo.
 
     docker pull --platform=linux/amd64 ghcr.io/nkrusch/dissertation:artifact
     docker run --name dimage -it --rm ghcr.io/nkrusch/dissertation:artifact
 
-NOTES
-* The container expects an amd64/x86 architecture.
-* It can be run on other architectures (arm), but will run slower.
-* The container has been tested on macOS (amd64-darwin, arm64-darwin).
-* The container has been tested on Linux (amd64, Ubuntu 22.04).
-* The docker prerequisite cannot be substituted with podman.
+The pre-built container expects an amd64/x86 architecture; it can be
+run on arm architectures, it will just run (much) slower. The setup has
+been tested on macOS (amd64, arm64) and Linux Ubuntu 22.04 (amd64).
 
-ALTERNATIVE SETUP (optional)
-By preference, it is possible to build the container locally. Building
-the container takes about 10-20 min. Run at the unzipped sources root:
+ALTERNATIVE SETUP
+It is possible to build the container locally. Building the container
+takes about 10-20 min. Run at the unzipped sources root:
 
-    docker build --platform=linux/amd64 . -t dimage
+    docker build . -t dimage
     docker run --name dimage -it --rm dimage
 
 ------------------------------------------------------------------------
 📁  Source Code Organization
 ------------------------------------------------------------------------
     .
-    ├─ 🗀 code/            : Code listings
-    ├─ 🗀 fonts/           : Custom fonts
-    ├─ 🗀 latex/           : Custom LaTeX
-    ├─ 🗀 pdf/             : Static resources (figures, manuscripts)
-    ├─ 🗀 pictures/        : TikZ drawings
-    ├─ 🗀 references/      : Bib and indices
-    ├─ 🗀 text/            : Dissertation content
+    ├─ 📁 code             : Code listings
+    ├─ 📁 fonts            : Custom fonts
+    ├─ 📁 latex            : Custom LaTeX
+    ├─ 📁 pdf              : Static resources (figures, manuscripts)
+    ├─ 📁 pictures         : TikZ drawings
+    ├─ 📁 references       : Bib and indices
+    ├─ 📁 text             : Dissertation content
     ├─ args.tex            : Template configuration
     ├─ content.tex         : Dissertation sections
     ├─ Dockerfile          : Execution environment

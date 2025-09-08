@@ -7,63 +7,63 @@ LABEL org.opencontainers.image.source="https://github.com/nkrusch/dissertation"
 LABEL org.opencontainers.image.licenses="Creative Commons Attribution 4.0 International"
 
 # versions
-ENV VER_PYMWP="0.5.5"
-ENV VER_DAFNY="4.10.0"
-ENV VER_COQ="8.20.1"
-ENV VER_MATHCOMP="2.4.0"
-ENV VER_OCAML="5.1.0"
-ENV VER_ELPI="2.5.2"
-ENV VER_BH="1.9.0"
+ARG VER_PYMWP="0.5.5"
+ARG VER_DAFNY="4.10.0"
+ARG VER_COQ="8.20.1"
+ARG VER_MATHCOMP="2.4.0"
+ARG VER_OCAML="5.1.0"
+ARG VER_ELPI="2.5.2"
+ARG VER_BH="1.9.0"
+ARG VER_DAFNY="4.10.0"
 
 # paths
-ARG HOME="/usr/dissertation"
-ARG EX_DIR="$HOME/examples"
-ARG DAFNY_PATH="/usr/lib/"
-ENV VENV=/venv
-ENV PATH=/root/.local/bin:$DAFNY_PATH/dafny:/$VENV/bin:$HOME/.opam/$VER_OCAML/bin/:$PATH
-ARG ZIP_EX="$HOME/examples.zip"
-ARG ZIP_DAFNY="$HOME/dafny.zip"
-ARG MS_CERT="packages-microsoft-prod.deb"
-
-# downloads
 ARG EXAMPLES="https://github.com/statycc/pymwp/releases/download/$VER_PYMWP/examples.zip"
-ARG DAFNY_URL="https://github.com/dafny-lang/dafny/releases/download/v$VER_DAFNY/dafny-$VER_DAFNY-x64-ubuntu-20.04.zip"
-
-# ENV settings
+ARG PROJ="/usr/dissertation"
+ARG EX_DIR="$PROJ/examples"
+ARG ZIP_EX="$PROJ/examples.zip"
+ENV PATH=/root/.dotnet/tools:/$VENV/bin:$PROJ/.opam/$VER_OCAML/bin/:$PATH
+ENV DOTNET_ROOT=/root/.dotnet
+ENV VENV=/venv
 ENV DEBIAN_FRONTEND=noninteractive
 ENV PIP_ROOT_USER_ACTION=ignore
 ARG NJOBS=4
 
-# Debian: need for Dafny
-RUN apt update \
-    && apt-get install -y wget \
-    && wget https://packages.microsoft.com/config/debian/12/$MS_CERT -O $MS_CERT \
-    && dpkg -i $MS_CERT \
-    && rm $MS_CERT
-
-# necessary pre-packages
+# system packages
 RUN apt update  \
     && apt-get install -qqy \
-      bash make unzip python3-full python3-pip ocaml opam \
-      dotnet-host dotnet-sdk-8.0 libgmp-dev pkg-config \
+      bash  \
+      make  \
+      unzip  \
+      python3-full  \
+      python3-pip  \
+      ocaml  \
+      opam \
+      libicu-dev  \
+      libgmp-dev  \
+      pkg-config \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-RUN mkdir -p $HOME
-COPY . $HOME
-WORKDIR $HOME
+RUN mkdir -p $PROJ
+COPY . $PROJ
+WORKDIR $PROJ
 
-# install pymwp and examples
+# install pymwp + examples
 ADD --chmod=777 $EXAMPLES $ZIP_EX
 RUN unzip $ZIP_EX -d $EX_DIR  \
     && rm -rf $ZIP_EX \
     && python3 -m venv $VENV  \
-    && $VENV/bin/pip install pymwp==$VER_PYMWP
+    && $VENV/bin/pip install --no-cache-dir pymwp==$VER_PYMWP
 
-# Dafny
-ADD --chmod=777 $DAFNY_URL $ZIP_DAFNY
-RUN unzip $ZIP_DAFNY -d $DAFNY_PATH  \
-    && rm -rf $ZIP_DAFNY
+# install Dafny
+RUN apt-get update -y \
+    && apt-get install -y apt-transport-https ca-certificates gnupg \
+    && wget https://dot.net/v1/dotnet-install.sh -O dotnet-install.sh \
+    &&  chmod +x ./dotnet-install.sh \
+    && ./dotnet-install.sh --version latest --runtime aspnetcore \
+    && ./dotnet-install.sh --channel 8.0 \
+    && export PATH="root/.dotnet/:$PATH" \
+    && dotnet tool install --global dafny --version $VER_DAFNY
 
 # Rocq & ssreflect
 RUN yes | opam init -j "${NJOBS}" --disable-sandboxing --comp $VER_OCAML  \

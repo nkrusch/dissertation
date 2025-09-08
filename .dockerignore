@@ -4,6 +4,7 @@
 *.pdf
 !pdf/*.pdf
 Dockerfile
+.dockerignore
 *.acn
 *.acr
 *.alg
