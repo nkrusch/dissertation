@@ -21,26 +21,19 @@ ARG EXAMPLES="https://github.com/statycc/pymwp/releases/download/$VER_PYMWP/exam
 ARG PROJ="/usr/dissertation"
 ARG EX_DIR="$PROJ/examples"
 ARG ZIP_EX="$PROJ/examples.zip"
-ENV PATH=/root/.dotnet/tools:/$VENV/bin:$PROJ/.opam/$VER_OCAML/bin/:$PATH
+ENV PATH="${PATH}:/root/.dotnet/tools:/venv/bin:$PROJ/.opam/$VER_OCAML/bin/"
 ENV DOTNET_ROOT=/root/.dotnet
-ENV VENV=/venv
 ENV DEBIAN_FRONTEND=noninteractive
 ENV PIP_ROOT_USER_ACTION=ignore
 ARG NJOBS=4
 
 # system packages
-RUN apt update  \
+RUN apt-get update  \
     && apt-get install -qqy \
-      bash  \
-      make  \
-      unzip  \
-      python3-full  \
-      python3-pip  \
-      ocaml  \
-      opam \
-      libicu-dev  \
-      libgmp-dev  \
-      pkg-config \
+      bash make unzip wget nano \
+      python3-full python3-pip ocaml opam \
+      z3 libz3-dev python3-z3 \
+      libicu-dev libgmp-dev pkg-config \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
@@ -52,8 +45,7 @@ WORKDIR $PROJ
 ADD --chmod=777 $EXAMPLES $ZIP_EX
 RUN unzip $ZIP_EX -d $EX_DIR  \
     && rm -rf $ZIP_EX \
-    && python3 -m venv $VENV  \
-    && $VENV/bin/pip install --no-cache-dir pymwp==$VER_PYMWP
+    && pip3 install pymwp==$VER_PYMWP --break-system-packages
 
 # install Dafny
 RUN apt-get update -y \
@@ -62,7 +54,7 @@ RUN apt-get update -y \
     &&  chmod +x ./dotnet-install.sh \
     && ./dotnet-install.sh --version latest --runtime aspnetcore \
     && ./dotnet-install.sh --channel 8.0 \
-    && export PATH="root/.dotnet/:$PATH" \
+    && export PATH="/root/.dotnet/:$PATH" \
     && dotnet tool install --global dafny --version $VER_DAFNY
 
 # Rocq & ssreflect

@@ -2,10 +2,9 @@
 
 [![Compile](https://github.com/nkrusch/thesis/actions/workflows/compile.yaml/badge.svg)](https://github.com/nkrusch/thesis/actions/workflows/compile.yaml)
 [![Package](https://github.com/nkrusch/dissertation/actions/workflows/artifact.yaml/badge.svg)](https://github.com/nkrusch/dissertation/actions/workflows/artifact.yaml)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15288398.svg)](https://doi.org/10.5281/zenodo.15288398)
 
-[//]: # ([![DOI]&#40;https://zenodo.org/badge/DOI/10.5281/zenodo.15288398.svg&#41;]&#40;https://doi.org/10.5281/zenodo.15288398&#41;)
-
-This is the source code of my [doctoral dissertation](https://neea.pl/dissertation).
+This is the source code of my doctoral dissertation, _["Applied Implicit Computational Complexity"](https://neea.pl/dissertation) (Rusch, 2025)_.
 
 I am not aware of any other _open source doctoral dissertation_ from Augusta University.
 I hope that making this resource public will be useful to future candidates.
@@ -38,12 +37,11 @@ The content and formatting requirements of doctoral dissertations.
     ├─ readme.txt          : Artifact readme
     └─ *                   : Other configuration files, license, etc.
 
-The document follows roughly this dependency schema.
+The compilation follows roughly this dependency schema.
  
                ┌──── args.tex ◂──────── latex/*      
     main.tex ◂─┼──── content.tex ◂──┬── text ◂────────┬── pdf/*  ◂─── pictures/*      
                └──── fonts/*        └── references/*  └── code/*
-                    
 
 ## Dissertation Compilation
 
