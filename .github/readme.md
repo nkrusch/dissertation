@@ -1,7 +1,7 @@
 # Dissertation
 
 [![Compile](https://github.com/nkrusch/thesis/actions/workflows/compile.yaml/badge.svg)](https://github.com/nkrusch/thesis/actions/workflows/compile.yaml)
-[![Package](https://github.com/nkrusch/dissertation/actions/workflows/package.yaml/badge.svg)](https://github.com/nkrusch/dissertation/actions/workflows/package.yaml)
+[![Package](https://github.com/nkrusch/dissertation/actions/workflows/artifact.yaml/badge.svg)](https://github.com/nkrusch/dissertation/actions/workflows/artifact.yaml)
 
 [//]: # ([![DOI]&#40;https://zenodo.org/badge/DOI/10.5281/zenodo.15288398.svg&#41;]&#40;https://doi.org/10.5281/zenodo.15288398&#41;)
 
