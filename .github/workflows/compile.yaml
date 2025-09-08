@@ -7,6 +7,10 @@ concurrency:
 on:
   push:
     branches: [ main ]
+    paths-ignore:
+      - '.github/*'
+      - '.gitignore'
+      - 'Dockerfile'
   workflow_dispatch:
     branches: [ main ]
 
