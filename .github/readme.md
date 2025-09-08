@@ -9,12 +9,12 @@ This is the source code of my [doctoral dissertation](https://neea.pl/dissertati
 
 I am not aware of any other _open source doctoral dissertation_ from Augusta University.
 I hope that making this resource public will be useful to future candidates.
-Here is the [starter LaTeX template](https://github.com/aubertc/au_ccs_dissertation_template/) that I have been extending.
-This repository is also set up with automated workflows that may be of interest to the technically advanced candidates.
+The [starter LaTeX template](https://github.com/aubertc/au_ccs_dissertation_template/) is also open source.
+This repository uses automated workflows that may be of interest to the technically advanced candidates.
 
 ## Formatting Guidelines
 
-The content and formatting requirements are documented in these resources.
+The content and formatting requirements of doctoral dissertations.
 
 * [Augusta University Electronic Theses and Dissertations (ETD)](https://guides.augusta.edu/etd) — guide by AU Libraries
 * [Thesis/Dissertation Preparation Booklet v.2024](https://augustauniversity.app.box.com/s/vj0ygpy8tvyqmsbae8y0qp9767ta7jb9) — AU formatting requirements
@@ -24,14 +24,14 @@ The content and formatting requirements are documented in these resources.
 ## Repository Organization
  
     .
-    ├─ 🗀 .github/         : Automated workflows
-    ├─ 🗀 code/            : Code listings
-    ├─ 🗀 fonts/           : Custom fonts
-    ├─ 🗀 latex/           : LaTeX commands
-    ├─ 🗀 pdf/             : Static files
-    ├─ 🗀 pictures/        : TikZ drawings
-    ├─ 🗀 references/      : Bibs and indices
-    ├─ 🗀 text/            : Dissertation text content
+    ├─ 📁 .github/         : Automated workflows
+    ├─ 📁 code/            : Code listings
+    ├─ 📁 fonts/           : Custom fonts
+    ├─ 📁 latex/           : LaTeX commands
+    ├─ 📁 pdf/             : Static files
+    ├─ 📁 pictures/        : TikZ drawings
+    ├─ 📁 references/      : Bibs and indices
+    ├─ 📁 text/            : Dissertation text content
     ├─ args.tex            : Template configuration
     ├─ content.tex         : Chapter organization
     ├─ main.tex            : The base template
