@@ -14,6 +14,9 @@
 % Add all acronyms
 \glsaddall[types={\acronymtype}]
 
+\setglossarypreamble[symbols]{
+    Some symbols are overloaded and occur twice.}
+
 % shorthand for symbols
 \newcommand\symbo[1]{\gls{symb:#1}}
 \setsepchar{,}
