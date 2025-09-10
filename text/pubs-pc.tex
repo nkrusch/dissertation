@@ -345,22 +345,33 @@ if there exists a derivation without an ∞\symbo{infty} coefficient.
 \subsubsection{Loop \ndx{specifications} for formal guarantees}
 \label{subsec:specs}
 
-Formally verifiable programs are defined as precise mathematical models through \ndx{specifications}.
-Verifying the program requires giving a proof that the program satisfies its specification.
-The motivation for using formal methods is the strength of guarantees it provides.
-In contrast to tests and inspection, a proof conclusively ensures behavioral correctness at the modeled level of abstraction.
+Formally verifiable\index{formal verification} programs are defined as precise
+mathematical models through \ndx{specifications}. Verifying the program requires
+giving a proof that the program satisfies its specification. The motivation for
+using formal methods is the strength of guarantees it provides. In contrast to
+tests and inspection, a proof conclusively ensures behavioral correctness at the
+modeled level of abstraction.
 
 \paragraph*{Specifications.}
-A {specification} is a formal contract with three components.
+A {specification}\index{specifications} is a formal contract with three
+components.
 \begin{enumerate*}
-    \item \emph{Precondition}\index{precondition} \(P\), is the initial logic expressions assumed to hold before entering the loop.
-    \item Program, \pr|loop b C|, performs command \pr|C| until the expression \pr|b| becomes false.
-    \item \emph{Postcondition} \(Q\), is the final logic expressions asserted to hold after the loop terminates.
+    \item \emph{Precondition}\index{precondition} \(P\), is the initial logic
+    expressions assumed to hold before entering the loop.
+    \item Program, \pr|loop b C|, performs command \pr|C| until the expression
+    \pr|b| becomes false.
+    \item \emph{Postcondition}\index{postcondition} \(Q\), is the final logic
+    expressions asserted to hold after the loop terminates.
 \end{enumerate*}
-Using a \ndx{Hoare triple}~\cite{hoare1969}, we can express the specification as \(\Hoare{P}{\prm{loop b C}}{Q}\).
-The implementation of the program is correct if we can construct a proof that shows the program satisfies its specification in all states.
-A correctness proof requires verifying that every computation terminates, every call to another procedure satisfies its \ndx{precondition}s, and the postcondition holds at program termination~\cite{furia2010}.
-For an example of \ndx{specifications}, refer to Appendix~\ref{app:sec:verified}.
+
+Using a \ndx{Hoare triple}~\cite{hoare1969}, we can express the specification as
+\(\Hoare{P}{\prm{loop b C}}{Q}\). The implementation of the program is correct
+if we can construct a proof that shows the program satisfies its specification
+in all states. A correctness proof requires verifying that every computation
+terminates\index{termination}, every call to another procedure satisfies its
+\ndx{precondition}s, and the \ndx{postcondition} holds at program
+\ndx{termination}~\cite{furia2010}. For an example of \ndx{specifications},
+refer to Appendix~\ref{app:sec:verified}.
 
 \paragraph*{Relating postconditions and loop \ndx{invariant}s.}
 A postcondition is a higher-level view describing the program goal.

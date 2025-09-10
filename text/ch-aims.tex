@@ -96,12 +96,12 @@ Because behavioral guarantees are part of the language design, this creates a te
 In principle, this removes the need for post-analysis of programs.
 However, materializing these ideas requires deeper investigations of implicit computational complexity.
 
-\begin{mdframed}[backgroundcolor=conceptbase,linecolor=concept,nobreak=true]
+\begin{infobox}
 The dissertations is about \textbf{static program analysis}, ideally with
 \textbf{formal guarantees}, and starting with \textbf{implicit computational
 complexity} -- a family of programming language-based techniques that can
 provide behavioral guarantees by construction.
-\end{mdframed}
+\end{infobox}
 
 \subsection{Addressed Problem}
 \label{subsec:problem}
@@ -138,18 +138,20 @@ This leads to a tradeoff between theoretical soundness, \ie providing a guarante
 It is justifiable to ask, \emph{what can we do with such restricted programming languages?}.%
 \footnote{See \url{https://stackoverflow.com/questions/315340} for an inspirational warm-up.}
 
-Through applications, we can stress test and pinpoint the limitations and capabilities of ICC systems, and discover new use cases in other domains.
-The guiding hypothesis of the dissertation research is summarized in~\autoref{fig:hypothesis}). Every manuscript in this dissertation is an instantiation of this hypothesis.
-
-\begin{figure}[h]
-\begin{mdframed}
-\paragraph*{Main hypothesis.}
+%\begin{figure}[h]
+\begin{infobox}
+\textbf{Main hypothesis.}
 Implicit computational complexity offers applied utilities when lifted from the
 theoretical domain.
-\end{mdframed}
-\caption[Main hypothesis summarized]{Main hypothesis.}
-\label{fig:hypothesis}
-\end{figure}
+\end{infobox}
+%\caption[Main hypothesis summarized]{Main hypothesis.}
+%\label{fig:hypothesis}
+%\end{figure}
+
+Through applications, we can stress test and pinpoint the limitations and capabilities of ICC systems, and discover new use cases in other domains.
+%The guiding hypothesis of the dissertation research is summarized in~\autoref{fig:hypothesis}).
+Every manuscript in this dissertation is an instantiation of this hypothesis.
+
 
 \subsection{Dissertation Goals}\label{subsec:specific-aims}
 
@@ -274,13 +276,13 @@ It has been peer-reviewed and presented at \href{https://2025.ecoop.org/track/ec
 
 This dissertation contains three, varying-length versions of its contents.
 
-\begin{mdframed}[backgroundcolor=paperbase,linecolor=paper,nobreak=true]
+\begin{infobox}
 \begin{enumerate}[wide, labelwidth=!, labelindent=0pt]
 \item The \textbf{\hyperref[abs]{abstract}} contains the highlights only.
 \item \textbf{Chapters~\ref{introduction}--\ref{ch:discussion} and~\ref{app:additional-manuscripts}} form the full-length presentation.
 \item \textbf{\autoref{ch:summary}} is a standalone, extended summary of the full presentation.
 \end{enumerate}
-\end{mdframed}
+\end{infobox}
 
 Choose the version that best matches your needs.
 
@@ -320,7 +322,7 @@ We will use the new name whenever possible.
 \langclr{cc}        & C           & the \ndx{C} programming language & C99 \\
 \langclr{ccstar}    & C*          & imperative C-like pseudo-language & -- \\
 \langclr{cces}      & CES         & \ndx{cost equation system} &  -- \\
-\langclr{ccmd}      & cmd         & executable shell (terminal) command & --  \\
+\langclr{ccmd}      & cmd         & executable shell/terminal command & --  \\
 \langclr{cdafny}    & Dafny       & the \ndx{Dafny} programming language & 4.10.0 \\
 \langclr{cimp}      & Imp         & imperative language of \ndx{mwp-calculus} & -- \\
 \langclr{cjava}     & Java        & the \ndx{Java} programming language & SE 24 \\
@@ -334,6 +336,8 @@ We will use the new name whenever possible.
 {The programming languages used in code listings.}
 \label{tab:pls}
 \end{table}
+
+Web addresses are denoted by \enquote{browser}.
 
 \paragraph*{Line numbers.}
 References to specific line of source code, or an algorithm, begin with L, for \underline{l}ine.
@@ -379,9 +383,9 @@ The following \href{https://types22.inria.fr/files/2022/06/TYPES_2022_paper_14.p
 \begin{center}
 \begin{minipage}{\textwidth}
 %! suppress = EscapeUnderscore
-\begin{cmdlisting}*[nolol]
+\begin{browserlisting}[nolol]
 https://types22.inria.fr/files/2022/06/TYPES_2022_paper_14.pdf
-\end{cmdlisting}
+\end{browserlisting}
 \end{minipage}
 \end{center}
 
@@ -389,8 +393,8 @@ If a request of the original document fails, the following \href{https://web.arc
 \begin{center}
 \begin{minipage}{\textwidth}
 %! suppress = EscapeUnderscore
-\begin{cmdlisting}*[nolol]
+\begin{browserlisting}[nolol]
 https://web.archive.org/web/https://types22.inria.fr/files/2022/06/TYPES_2022_paper_14.pdf
-\end{cmdlisting}
+\end{browserlisting}
 \end{minipage}
 \end{center}

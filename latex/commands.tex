@@ -186,3 +186,22 @@
 }
 \makeatother
 
+\newtcolorbox{infobox}[1][]{
+    enhanced,
+    before skip=2em,
+    after skip=2em,
+    boxrule=1.5pt,
+    boxsep=.7em,
+    left=1.2em,
+    colback=paperbase,
+    colframe=paper,
+    title={},
+    detach title,
+    sharp corners=all,
+    finish={
+        \node[rectangle, fill=white, draw=paper, solid, align=center,
+        line width=1.5pt, text width=8pt, inner sep=4pt, outer sep=0.4pt,
+        xshift=-2mm, yshift=-3mm, anchor=north west]
+        at (frame.north west) {\textnormal{\scalebox{.65}{\faExclamation}}};
+    },#1
+}

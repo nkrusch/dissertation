@@ -366,33 +366,33 @@ Effectively, they provide the mechanics for connecting the mwp-matrix\index{mwp-
 \begin{figure}[p!]
     \begin{subfigure}{\textwidth}
         \begin{center}
-            \begin{tabular}{l}
-                \begin{prooftree}[small]
+            \begin{tabularx}{.7\textwidth}{CC}
+                \begin{prooftree}[small,center=false]
                     \infer0[E1]{ \vdashJK \text{\pr|Xi|} : \{_{\text{\,\pr|i|}}^{m}\}}
                 \end{prooftree}
                 \hspace{2em}
-                \begin{prooftree}[small]
+                \begin{prooftree}[small,center=false]
                     \infer0[E2]{ \vdashJK \text{\pr|e|} : \{_{\text{\,\pr|i|}}^{w} \mid \text{\pr|Xi|} \in \var(\text{\pr|e|}) \}}
                 \end{prooftree}
-            \end{tabular}
+            \end{tabularx}
         \end{center}
     \end{subfigure}
     \\[1.2em]
     \begin{subfigure}{\textwidth}
         \begin{center}
-            \begin{tabular}{l}
-                \begin{prooftree}[small]
+            \begin{tabularx}{\textwidth}{Xl}
+                \begin{prooftree}[small,center=false]
                     \hypo{\vdashJK \text{\pr{Xi}} : V_1}
                     \hypo{\vdashJK \text{\pr{Xj}} : V_2}
                     \infer[left label={\(\star\in\{+, -\}\)}]2[E3]{\vdashJK \text{\pr|Xi $\star$ Xj|} : pV_1 \oplus V_2}
                 \end{prooftree}
-                \hspace{1em}
-                \begin{prooftree}[small]
+                &
+                \begin{prooftree}[small,center=false]
                     \hypo{\vdashJK \text{\pr{Xi}} : V_1}
                     \hypo{\vdashJK \text{\pr{Xj}} : V_2}
                     \infer[left label={\(\star\in\{+, -\}\)}]2[E4]{\vdashJK \text{\pr|Xi $\star$ Xj|} : V_1 \oplus pV_2}
                 \end{prooftree}
-            \end{tabular}
+            \end{tabularx}
         \end{center}
         \caption{Rules for assigning vectors to expressions}
         \label{fig:mwp-rules-expressions}
@@ -400,33 +400,38 @@ Effectively, they provide the mechanics for connecting the mwp-matrix\index{mwp-
     \\[3em]
     \begin{subfigure}{\textwidth}
         \begin{centering}
-            \begin{prooftree}[small]
+            \begin{tabularx}{\textwidth}{lCR}
+            \begin{prooftree}[small,center=false]
                 \infer0[S]{ \vdashJK \text{\pr|skip|} : \mathbf{1} }
             \end{prooftree}
-            \hspace{3em}
-            \begin{prooftree}[small]
-                \hypo{ \vdashJK \text{\pr{e}} : V}
-                \infer1[A]{\vdashJK \text{\pr|Xj = e|} : \mathbf{1} \xleftarrow{\text{\pr|j|}} V}
-            \end{prooftree}
-            \hspace{3em}
-            \begin{prooftree}[small]
+            &
+            \raisebox{-.1\height}{
+            \begin{prooftree}[small,center=false,rule margin=0ex]
+            \hypo{\vdashJK \text{\pr{e}} : V_{1}}
+                \infer1[A]{\vdashJK\text{\pr|Xj = e|} : \mathbf{1}\xleftarrow{\scalebox{.6}{\pr|j|}} V
+            }
+            \end{prooftree}}
+            &
+            \begin{prooftree}[small,center=false]
                 \hypo{ \vdashJK \text{\pr{C1}} : M_1}
                 \hypo{ \vdashJK \text{\pr{C2}} : M_2}
                 \infer2[C]{\vdashJK \text{\pr{C1;C2}} : M_1 \otimes M_2}
             \end{prooftree}
-            \\[1.2em]
-            \begin{prooftree}[small]
+            \end{tabularx}
+
+            \vspace{1.2em}
+            \begin{prooftree}[small,center=false]
                 \hypo{ \vdashJK \text{\pr{C1}} : M_1}
                 \hypo{ \vdashJK \text{\pr{C2}} : M_2}
                 \infer2[I]{\vdashJK \text{\pr|if b then C1 $\text{\hspace{.3em}}$ else C2|} : M_1 \oplus M_2}
             \end{prooftree}
             \\[1.2em]
-            \begin{prooftree}[small]
+            \begin{prooftree}[small,center=false]
                 \hypo{\vdashJK \text{\pr|C|} : M}
                 \infer[left label={\(\forall i, M_{ii}^* = m\)}]1[L]{\vdashJK \text{\pr|loop Xl \{C\}|} : M^* \oplus \{_{\text{\pr|l|}}^{p}\rightarrow j \mid \exists i, M_{ij}^* = p\}}
             \end{prooftree}
             \\[1.2em]
-            \begin{prooftree}[small]
+            \begin{prooftree}[small,center=false]
                 \hypo{\vdashJK \text{\pr|C|} : M}
                 \infer[left label={\(\forall i, M_{ii}^* = m\) and \(\forall i, j, M^*_{ij} \neq p\)}]1[W]{\vdashJK \text{\pr|while b do  \{C\}|} : M^*}
             \end{prooftree}
@@ -435,7 +440,7 @@ Effectively, they provide the mechanics for connecting the mwp-matrix\index{mwp-
         \end{centering}
     \end{subfigure}
     \caption[The inference rules of the original mwp-calculus]
-    {The nondeterministic\index{nondeterminism} inference rules of the original \ndx{mwp-calculus}.}
+    {The nondeterministic\index{nondeterminism} inference rules of the original \ndx{mwp-calculus} by Jones and Kristiansen.}
     \label{fig:jkrules}\index{inference rule}\index{nondeterminism}
 \end{figure}
 
