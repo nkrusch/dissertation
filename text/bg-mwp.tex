@@ -92,7 +92,7 @@ A program always fails if a variable value grows \enquote{too fast}, for example
 A single variable can be the source of whole-program derivation failure.
 Alternatively, failure may occur from inability to express satisfiable behavior.
 The latter is a built-in limitation of the flow calculus\index{mwp-calculus}.
-To increase expressiveness and capture a larger class of derivable\index{derivability} programs,
+To increase \ndx{expressiveness} and capture a larger class of derivable\index{derivability} programs,
 the mwp-calculus\index{mwp-calculus} includes nondeterminism\index{nondeterminism} in its inference rules\index{inference rule}.
 Consequently, a single program may admit multiple derivations with distinct matrices, which in turn complicates determining the result of the analysis.
 However, a program is derivable\index{derivability} if there exists a derivation without an \(\infty\)-coefficient.
@@ -135,12 +135,17 @@ Furthermore, mwp-bounds\index{mwp-bound} can be incomparable.
 For example, between \(W \equiv \max(\prm{X1},\prm{X2})+\prm{X3}\) and \(V \equiv \prm{X1}+\prm{X2}\times\prm{X4}\), it is impossible to determine which mwp-bound\index{mwp-bound} evaluates to a lower value numerically.
 This means mwp-bounds\index{mwp-bound} cannot be totally ordered.
 
-\subsubsection{Developments of the Flow Calculus}
+\subsubsection{Advancements of the Flow Calculus, Chronologically}
 
-A central theme of this dissertation is the gradual technical advancement of the flow calculus of mwp-bounds\index{mwp-calculus}, as those developments are a prerequisite for its different applications.
-However, details of these developments are not totally obvious from the publications.
-This section presents the technical developments, summarized in~\autoref{tab:evo}.
-They correspond to the four publications discussed here in chronological order.
+The incremental technical advancement of the flow calculus of
+\ndx{mwp-bound}s\index{mwp-calculus} is an important theme of this dissertation.
+The developments are a necessary prerequisite for enabling different
+\emph{applications} of the flow calculus.
+
+It may be challenging to extract the \enquote{big picture of developments} by
+reading the manuscripts alone. Therefore, this section aims discuss the topic in
+an accessible manner, with a summary in~\autoref{tab:evo}).
+The table corresponds to the following four publications.
 
 \paragraph*{The original flow calculus.}
 The flow calculus of mwp-bounds\index{mwp-calculus}~\cite{jones2009} was designed to characterize sequential imperative polytime programs\index{imperative programs},

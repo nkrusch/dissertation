@@ -1,4 +1,5 @@
-\includepdf[pages={1-},addtotoc={
+\includepdf[pages={1-},width={\textwidth},frame,offset=0.25in 0in,%
+addtotoc={
     2,subsection,2,{Introduction: Letting ICC Drive the Development of Static \mbox{Analyzers}},sec:fscd-intro,
     3,subsection,2,{Background: The Original Flow Analysis},sec:fscd-background,
     3,subsubsection,3,{Language Analyzed: Fragments of Imperative Language},sssec:fscd-lang,
@@ -27,7 +28,7 @@
     4,figure,{Original non-deterministic flow analysis rules},fig-jkrules,
     6,figure,{Deterministic improved flow analysis rules},fig-det-rules,
     23,table,{Benchmark results produced by pymwp on C programs},table:fscd-bench},
-    pagecommand={\thispagestyle{empty}%
+    pagecommand={\thispagestyle{plain}%
     \addtoindexm{AProVE}{17}
     \addtoindexm{COSTA}{15}
     \addtoindexm{Cerco}{15}

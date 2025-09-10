@@ -1,23 +1,24 @@
 \subsection*{Abstract}
 
-Formal \ndx{specifications} are necessary to guarantee software meets critical safety
-properties, but retrofitting \ndx{specifications} to existing software requires
-considerable resources and expertise. Although inference eases discovery of
-\ndx{specifications}, existing inference techniques are limited in targeting different
-specification conditions. Particularly, inference of postconditions has rarely
-been the targeted focus of prior investigations. This paper presents a static
-program analysis that automatically synthesizes postconditions from pure program
-syntax. These postconditions represent final values of variables in numerical
-loops. For each variable, the analysis finds one approximative postcondition, of
-at most polynomial form, if it is expressible in the underlying theory. This
-theory is a sound and compositional flow calculus with complexity-theoretic
-origins. However, applying the flow calculus to postcondition inference required
-several enhancements. As technical contributions, we resolve multiple open
-problems about the flow calculus and increase its expressive power. Experiments
-and comparison study show the postcondition analysis is orthogonal to
-alternative techniques and generalizes to classic algorithms. These findings
-suggest the postcondition analysis can offer support in specification tasks even
-if full implementation details are still in flux.
+Formal \ndx{specifications} are necessary to guarantee software meets critical
+safety properties, but retrofitting \ndx{specifications} to existing software
+requires considerable resources and expertise. Although inference eases
+discovery of \ndx{specifications}, existing inference techniques are limited in
+targeting different specification conditions. Particularly, inference of
+\ndx{postcondition}s has rarely been the targeted focus of prior investigations.
+This paper presents a static program analysis that automatically synthesizes
+postconditions from pure program syntax. These postconditions represent final
+values of variables in \ndx{numerical loops}. For each variable, the analysis
+finds one approximative postcondition, of at most polynomial form, if it is
+expressible in the underlying theory. This theory is a sound and compositional
+flow calculus with complexity-theoretic origins. However, applying the flow
+calculus to postcondition inference required several enhancements. As technical
+contributions, we resolve multiple open problems about the flow calculus and
+increase its expressive power. Experiments and comparison study show the
+postcondition analysis is orthogonal to alternative techniques and generalizes
+to classic algorithms. These findings suggest the \ndx{postcondition} analysis
+can offer support in specification tasks even if full implementation details are
+still in flux.
 
 \subsection{Introduction}
 \label{sec:pc-intro}
@@ -31,43 +32,61 @@ challenging due to, \eg lack of training and tool-specific
 issues~\cite{beek2024}. Continued research effort must be dedicated to reducing
 the entry barriers.
 
-This paper aims to improve accessibility of formal methods.
-We do this by introducing a program analysis that synthesizes partial specification conditions.
-We develop an automatic inference of approximative postconditions in numerical loops.
-Postconditions are specialized assertions that must hold after the loop terminates.
-They are complementary to inductive\index{invariant!inductive} loop\index{loop invariant} \ndx{invariant}s, \ie conditions that must hold pre-iteration and be preserved by the loop~\cite{sankaranarayanan2004}.
-Although postconditions may be derivable from \ndx{invariant}s, loop\index{loop invariant} invariant inference\index{invariant inference} is one of the hardest problems in verification~\cite{dillig2013,si2018}.
-Therefore, we suggest the opposite approach: starting with postconditions.
-It is well-known that having postconditions supports discovery of inductive\index{invariant!inductive} \ndx{invariant}s~\cite{furia2010}\index{invariant!inductive}.
-Moreover, as generalized assertions, postconditions assist in various software development activities~\cite{nguyen2022}, like testing~\cite{alagarsamy2024,zhang2015} and code maintenance~\cite{rosenblum1995}.
-However, dedicated studies of postcondition inference are a novelty in research literature~\cite{popeea2006,molina2021}.
+This paper aims to improve accessibility of formal methods. We do this by
+introducing a program analysis that synthesizes partial specification
+conditions. We develop an automatic inference of approximative
+\ndx{postcondition}s in \ndx{numerical loops}. Postconditions are specialized
+assertions that must hold after the loop terminates. They are complementary to
+inductive\index{invariant!inductive} loop\index{loop invariant}
+\ndx{invariant}s, \ie conditions that must hold pre-iteration and be preserved
+by the loop~\cite{sankaranarayanan2004}. Although postconditions may be
+derivable from \ndx{invariant}s, loop\index{loop invariant} invariant
+inference\index{invariant inference} is one of the hardest problems in
+verification~\cite{dillig2013,si2018}. Therefore, we suggest the opposite
+approach: starting with \ndx{postcondition}s. It is well-known that having
+postconditions supports discovery of inductive\index{invariant!inductive}
+\ndx{invariant}s~\cite{furia2010}\index{invariant!inductive}. Moreover, as
+generalized assertions, postconditions assist in various software development
+activities~\cite{nguyen2022}, like testing~\cite{alagarsamy2024,zhang2015} and
+code maintenance~\cite{rosenblum1995}. However, dedicated studies of
+postcondition inference are a novelty in research
+literature~\cite{popeea2006,molina2021}.
 
-Specifications\index{specifications} must be precise, consistent, and complete descriptions of program behavior.
-Making formal \ndx{specifications} mechanically verifiable requires they are expressed in a structured language.
-However, defining formal \ndx{specifications} is non-trivial and requires expertise.
-In the meantime, various resource analyses~\cite{jones2009,brockschmidt2016} already compute varied notions of postconditions as means to arrive to their primary result.
-Thus, it seems natural that {resource analyses could be used to infer postconditions} for formal \ndx{specifications}.
-This is precisely the key intuition we exploit in the paper.
-We present a complexity\hyp{}theoretic flow calculus~\cite{jones2009,aubert20222} that we use to automatically infer variable postconditions.
-In this view, the program implements the intended behavior, but misses a formal proof.
-Our goal is to assist software engineers in completing this missing step.
+Specifications\index{specifications} must be precise, consistent, and complete
+descriptions of program behavior. Making formal \ndx{specifications}
+mechanically verifiable requires they are expressed in a structured language.
+However, defining formal \ndx{specifications} is non-trivial and requires
+expertise. In the meantime, various resource
+analyses~\cite{jones2009,brockschmidt2016}\index{resource analysis} already
+compute varied notions of \ndx{postcondition}s as means to arrive to their
+primary result. Thus, it seems natural that {resource analyses could be used to
+infer postconditions} for formal \ndx{specifications}. This is precisely the key
+intuition we exploit in the paper. We present a complexity\hyp{}theoretic flow
+calculus~\cite{jones2009,aubert20222}\index{mwp-calculus} that we use to
+automatically infer variable \ndx{postcondition}s. In this view, the program
+implements the intended behavior, but misses a formal proof. Our goal is to
+assist software engineers in completing this missing step.
 
 \subsubsection{Problem formulation and solution overview}
 \label{subsec:overview}
 
-We analyze deterministic imperative numerical loops.
-The loop may be bounded or unbounded, with unknown termination behavior.
-The loop manipulates a fixed number of natural number variables.
-Beyond type, we make no assumptions about initial variable values.
-Our goal is to automatically infer postconditions of the variables occurring in the loop.
-A postcondition is an assertion about a variable's value that holds after iteration, if the loop terminates.
-The loop may represent a program {fragment} that is still under development. %, and need not be an executable whole-program.
-Reducing contextual information this way is practically motivated because such information is commonly absent in realistic unverified programs.
+We analyze deterministic imperative \ndx{numerical loops}. The loop may be
+bounded or unbounded, with unknown \ndx{termination} behavior. The loop
+manipulates a fixed number of natural number variables. Beyond type, we make no
+assumptions about initial variable values. Our goal is to automatically infer
+\ndx{postcondition}s of the variables occurring in the loop. A postcondition is
+an assertion about a variable's value that holds after iteration, if the loop
+terminates. The loop may represent a program {fragment} that is still under
+development. Reducing contextual information this way is practically motivated
+because such information is commonly absent in realistic unverified programs.
 
 \autoref{lst:exA} shows a canonical verification problem.
-Given a specification with a \ndx{precondition} (\pr|assume|) and a loop command (\pr|for|), the goal of formal verification is to prove that the postcondition (\pr|assert|) is satisfiable.
-The program \emph{\explain}, in \autoref{lst:exB}, shows the problem variant we address in the paper.
-When precise variable values, \ndx{precondition}, and iteration count are unknown, what postconditions (\qtext) can we infer from the syntax?
+Given a specification with a \ndx{precondition} (\pr|assume|) and a loop command
+(\pr|for|), the goal of formal verification is to prove that the
+\ndx{postcondition} (\pr|assert|) is satisfiable. The program \emph{\explain},
+in \autoref{lst:exB}, shows the problem variant we address in the paper. When
+precise variable values, \ndx{precondition}, and iteration count are unknown,
+what postconditions (\qtext) can we infer from the syntax?
 
 \begin{center}
 \begin{minipage}{.45\textwidth}
@@ -105,68 +124,95 @@ assert(|\myqm|);
 \end{minipage}
 \end{center}
 
-Our analysis infers postconditions that express the {growth of variable values} in the loop.
-Adding postpositions supports discovery of other specification conditions, like \ndx{invariant}s,
-that then permit formal verification (the \ndx{Duet} analyzer in \autoref{subsec:comparison} is an example).
-The analysis is sound, guaranteeing that if a postcondition can be inferred, it is known to hold.
+Our analysis infers \ndx{postcondition}s that express the {growth of variable
+values} in the loop. Adding \ndx{postcondition}s supports discovery of other
+specification conditions, like \ndx{invariant}s, that then permit formal
+verification (the \ndx{Duet} analyzer in \autoref{subsec:comparison} is an
+example). The analysis is sound\index{soundness}, guaranteeing that if a
+\ndx{postcondition} can be inferred, it is known to hold.
 
-As result, our analysis generates {mwp-bounds}.
-These are symbolic expressions describing the value growth of the program variables.
-An \emph{mwp-bound}~\cite{jones2009} represent a variable's \emph{final value} in terms of the \emph{initial values} and omitting constants.
-An mwp-bound is an approximation of the {upper bound} of the final value.
-A critical idea is that the \textbf{mwp-bounds are postconditions}.
-Since the problem formulation assumes no pre-conditions, a function in terms of the inputs is the most precise achievable postcondition in most cases.
-An mwp-bound is maximally polynomial in form.
-A variable value growth that is beyond a polynomial is not expressible as an mwp-bound.
-However, our experiments (\autoref{sec:performance}) suggest that this is not a prohibitive limitation.
-The analysis successfully assigns postconditions to most variables in a set of diverse benchmarks.
+As result, our analysis generates {\ndx{mwp-bound}s}. These are symbolic
+expressions describing the value growth of the program variables. An
+\emph{\ndx{mwp-bound}}~\cite{jones2009} represent a variable's \emph{final
+value} in terms of the \emph{initial values} and omitting constants. An
+\ndx{mwp-bound} is an approximation of the {upper bound} of the final value. A
+critical idea is that the \textbf{\ndx{mwp-bound}s are \ndx{postcondition}s}.
+Since the problem formulation assumes no \ndx{precondition}s, a function in
+terms of the inputs is the most precise achievable \ndx{postcondition} in most
+cases. An \ndx{mwp-bound} is maximally polynomial in form. A variable value
+growth that is beyond a polynomial is not expressible as an \ndx{mwp-bound}.
+However, our experiments (\autoref{sec:performance}) suggest that this is not a
+prohibitive limitation. The analysis successfully assigns \ndx{postcondition}s
+to most variables in a set of diverse benchmarks.
 
-Based on the mwp-bound form, we categorize the variables as linear, iteration-independent, iteration-dependent, or inconclusive (in increasing order).
-We discuss the semantics of the categories in~\autoref{subsec:disclaimer};
-but briefly, they are behavioral descriptors.
-For example, a linear variable has only a light dependency on the containing loop because its value is updated by at most a constant.
-While our analysis is not complete for arbitrary programs, we can guarantee that the inferred mwp-bounds are {optimal} (\autoref{subsec:categories}) \wrt in the expressiveness of the flow calculus.
-In other words, we find the least upper bound that describes variable value growth.
+Based on the \ndx{mwp-bound} form, we categorize the variables as
+linear\index{mwp-bound!linear},
+iteration-independent\index{mwp-bound!iteration-independent},
+iteration-dependent\index{mwp-bound!iteration-dependent}, or inconclusive (in
+increasing order). We discuss the semantics of the categories
+in~\autoref{subsec:disclaimer}; but briefly, they are behavioral descriptors.
+For example, a linear variable has only a light dependency on the containing
+loop because its value is updated by at most a constant. While our analysis is
+not complete for arbitrary programs, we can guarantee that the inferred
+\ndx{mwp-bound}s are {optimal}\index{mwp-bound!optimal}
+(\autoref{subsec:categories}) \wrt in the \ndx{expressiveness} of the flow
+calculus. In other words, we find the least upper bound that describes variable
+value growth.
 
 At program point \qtext, our analysis gives the following result.
 \begin{itemize}
-\item Variables \pr|X1|, \pr|X2|, and \pr|X5| values have grown at most linearly from the initials
-\item Variable  \pr|X3| value is iteration-independent and bounded by \(\max(\prm{X3},\prm{X2}+\prm{X5})\)
-\item Variable  \pr|X4| value is iteration-dependent and bounded by \(\prm{X4}+\prm{X1}\times\prm{X5}\)
+\item Variables \pr|X1|, \pr|X2|, and \pr|X5| values have grown at most
+linearly\index{mwp-bound!linear} from the initials
+\item Variable  \pr|X3| value is
+iteration-independent\index{mwp-bound!iteration-independent} and bounded by
+\(\max(\prm{X3},\prm{X2}+\prm{X5})\)
+\item Variable  \pr|X4| value is
+iteration-dependent\index{mwp-bound!iteration-dependent} and bounded by
+\(\prm{X4}+\prm{X1}\times\prm{X5}\)
 \end{itemize}
 
-We can determine manually the precise postconditions for comparison.
-The linear variables never change from their initial values.
-The final value of \pr|X3| is its initial value \pr|X3| or \(\prm{X2}^2+\prm{X5}\), depending on if the loop iterates.
-For variable \pr|X4|, the precise postcondition is \(\prm{X4}+\prm{X1}\times\prm{X5}\).
+We can determine manually the precise \ndx{postcondition}s for comparison. The
+linear variables never change from their initial values. The final value of
+\pr|X3| is its initial value \pr|X3| or \(\prm{X2}^2+\prm{X5}\), depending on if
+the loop iterates. For variable \pr|X4|, the precise postcondition is
+\(\prm{X4}+\prm{X1}\times\prm{X5}\).
 
 \subsubsection{Contributions}
 \label{subsec:contributions}
 
 \begin{enumerate}
 
-\item Our main result is an automatic analysis for postcondition inference in numerical loops (\autoref{sec:pc-analysis}).
-The analysis is applicable in imprecise contexts and in absence of initial variable values and program annotations.
+\item Our main result is an automatic analysis for \ndx{postcondition} inference
+in \ndx{numerical loops} (\autoref{sec:pc-analysis}). The analysis is applicable
+in imprecise contexts and in absence of initial variable values and program
+annotations.
 
-\item To obtain the analysis, we extend the flow calculus of mwp-bounds with two new capabilities:
-locating optimal bounds and bounding variables in presence of whole-program derivation failure (\autoref{sec:enhancements}).
-This provides a {strictly more expressive system} than prior formulations of the flow calculus.
+\item To obtain the analysis, we extend the flow calculus of \ndx{mwp-bound}s
+with two new capabilities: locating optimal bounds and bounding variables in
+presence of whole-program derivation failure (\autoref{sec:enhancements}). This
+provides a {strictly more expressive system} than prior formulations of the flow
+calculus.
 
-\item To materialize our theory, we implement \ndx{\impl} for analyzing numerical loops in C (\autoref{subsec:implementation}).
-\ndx{\impl} is already integrated into a public static analyzer \ndx{pymwp}, extending the utility of our results beyond the paper presentation.
+\item To materialize our theory, we implement \ndx{\impl} for analyzing
+\ndx{numerical loops} in \ndx{C} (\autoref{subsec:implementation}). \ndx{\impl}
+is already integrated into a public static analyzer \ndx{pymwp}, extending the
+utility of our results beyond the paper presentation.
 
 \item We demonstrate the relevance and effectiveness of the technique through
-analyzer comparisons (\autoref{sec:related-works}) and experiments (\autoref{sec:performance}).
-The findings show our technique is orthogonal to alternatives,
-generalizes to natural algorithms, and infers postconditions for most variables in the evaluated benchmarks.
+analyzer comparisons (\autoref{sec:related-works}) and experiments
+(\autoref{sec:performance}). The findings show our technique is orthogonal to
+alternatives, generalizes to natural algorithms, and infers postconditions for
+most variables in the evaluated benchmarks.
 
 \end{enumerate}
 
-More broadly, our contributions are refreshing in three ways.
-They strengthen the existing connections~\cite{nguyen2017,nguyen2014} {between} complexity theory and formal verification.
-We show how to transform a technique from complexity theory to a practical application, which is non-trivial and rarely done~\cite{moyen2017,aubert20222}.
-Finally, we show that constructing static analyses around small core languages %\footnote{Rather than Turing-complete languages, which is standard~\cite{moller2023}}
-can be beneficial, if we assume a {compositional} analysis that covers a sufficiently large class of programs.
+More broadly, our contributions are refreshing in three ways. They strengthen
+the existing connections~\cite{nguyen2017,nguyen2014} {between} \ndx{complexity
+theory} and \ndx{formal verification}. We show how to transform a technique from
+\ndx{complexity theory} to a practical application, which is non-trivial and
+rarely done~\cite{moyen2017,aubert20222}. Finally, we show that constructing
+static analyses around small core languages can be beneficial, if we assume a
+{compositional} analysis that covers a sufficiently large class of programs.
 
 \subsection{A High-Level Picture}
 \label{sec:prelim}
@@ -174,39 +220,55 @@ can be beneficial, if we assume a {compositional} analysis that covers a suffici
 \subsubsection{Conceptual primer of the flow calculus}
 \label{subsec:flow-calc-intro}
 
-Our postcondition inference is based on the \emph{flow calculus of mwp-bounds}~\cite{jones2009,aubert20222}.
-It is a data flow analysis that tracks \emph{variable value growth} between commands in \ndx{imperative programs}.
-The analysis aims to discover a polynomially bounded data-flow relation between the
-\emph{initial values} \(x_1,\ldots,x_n\), for natural-number variables \(\prm{X}_1,\ldots,\prm{X}_n\), and the
-\emph{final values} \(x'_i\) of \(\prm{X}_i\) (for \(i=1,\ldots,n\)).
-More precisely, the flow calculus aims to guarantee variables are always polynomially bounded, including in every intermediate program state.
-For example, the program \pr|X1=X2+X3;|\pr|X1=X1+X1| is satisfactory, because the final value of each variable grows at most polynomially \wrt inputs.
-Variables \pr|X2| and \pr|X3| do not change and final value of \pr|X1| is \(2 \times (\prm{X2} + \prm{X3})\).
-In contrast, the program \pr|X1=1;while(X2){X1=X1+X1}| is unsatisfactory, because variable \pr|X1| grows exponentially in \(2^{\prm{X2}}\).
-When satisfactory value growth can be confirmed for all variables, the analysis assigns the program a \emph{bound} that characterizes the value growth.
-The analysis result is derived statically, by applying inference rules to the commands of the program, in a compositional bottom-up manner.
+Our \ndx{postcondition} inference is based on the \emph{flow calculus of
+mwp-bounds}~\cite{jones2009,aubert20222}.\index{mwp-calculus} It is a data flow
+analysis that tracks \emph{variable value growth} between commands in
+\ndx{imperative programs}. The analysis aims to discover a polynomially bounded
+data-flow relation between the \emph{initial values}
+\(x_1,\ldots,x_n\)\symbo{xpre}, for natural-number variables
+\(\prm{X}_1,\ldots,\prm{X}_n\)\symbo{xvar}, and the \emph{final values}
+\(x'_i\)\symbo{xprime2} of \(\prm{X}_i\) (for \(i=1,\ldots,n\)). More precisely,
+the flow calculus aims to guarantee variables are always polynomially bounded,
+including in every intermediate program state. For example, the program
+\pr|X1=X2+X3;|\pr|X1=X1+X1| is satisfactory, because the final value of each
+variable grows at most polynomially \wrt inputs. Variables \pr|X2| and \pr|X3|
+do not change and final value of \pr|X1| is \(2 \times (\prm{X2} + \prm{X3})\).
+In contrast, the program \pr|X1=1;while(X2){X1=X1+X1}| is unsatisfactory,
+because variable \pr|X1| grows exponentially in \(2^{\prm{X2}}\). When
+satisfactory value growth can be confirmed for all variables, the analysis
+assigns the program a \emph{bound} that characterizes the value growth. The
+analysis result is derived statically, by applying \ndx{inference rule}s to the
+commands of the program, in a compositional\index{compositionality} bottom-up
+manner.
 
 \paragraph*{Value growth as data flow graphs.}
-As an internal bookkeeping procedure, the flow calculus collects information in matrices (\autoref{sec:calc}).
-For enhance intuition, we represent these matrices also as data flow graphs (\autoref{fig:dfg-ex}).
-A \emph{data flow graph} (\textsc{dfg}) of program \(\mathcal{C}\) is a multigraph of \(n\) vertices where \(n\) is the number of variables
-involved in \(\mathcal{C}\).
-The vertices are the variables of \(\mathcal{C}\) and the edges denote {dependence} between variables.
+As an internal bookkeeping procedure, the flow calculus collects information in
+matrices (\autoref{sec:calc}). For enhance intuition, we represent these
+matrices also as data flow graphs (\autoref{fig:dfg-ex}). A \emph{\ndx{data flow
+graph}} (\textsc{dfg}) of program \(\mathcal{C}\)\symbo{prog2} is a
+\ndx{multigraph} of \(n\) vertices where \(n\) is the number of variables
+involved in \(\mathcal{C}\)\symbo{prog2}. The vertices are the variables of
+\(\mathcal{C}\)\symbo{prog2} and the edges denote \ndx{dependence} between
+variables.
 
 \paragraph*{Flow coefficients.}
-The edges of a \textsc{dfg} are quantified by {flow coefficients}.
-The coefficients characterize the weight of the dependence between variables.
-When no dependence exists, the coefficient is \(0\) (we omit \(0\)-edges in \textsc{dfg}s).
-An \(m\) denotes a \underline{m}aximally \emph{linear} dependence.
-Inside loops, a linear dependence permits direct data flows between variables, but prohibits arithmetic operations.
-The next stronger dependence, \(w\), stands for \emph{\underline{w}eak polynomial}.
-The \(w\) coefficient permits some arithmetic operations, but with restriction.
-Inside loops, the value growth must be eventually unaffected by changes in the loop iteration count.
-The strongest permissible dependence is \emph{\underline{p}olynomial}.
-A \(p\) coefficient signals that a variable value grows at most polynomially throughout computation.
-Finally, other forms of dependence are either beyond polynomial or not expressible.
-The ∞ coefficient marks these cases as \emph{failure}.
-The flow calculus is nondeterministic,\index{nondeterminism} therefore multiple coefficients may characterize one pair of variables.
+The edges of a \textsc{dfg} are quantified by {\ndx{flow coefficient}s}. The
+coefficients characterize the weight of the dependence between variables. When
+no dependence exists, the coefficient is \(0\)\symbo{zero} (we omit \(0\)-edges
+in \textsc{dfg}s\index{data flow graph}). An \(m\)\symbo{m} denotes a
+\underline{m}aximally \emph{linear} dependence. Inside loops, a linear
+dependence permits direct data flows between variables, but prohibits arithmetic
+operations. The next stronger dependence, \(w\)\symbo{w}, stands for
+\emph{\underline{w}eak polynomial}. The \(w\)\symbo{w} coefficient permits some
+arithmetic operations, but with restriction. Inside loops, the value growth must
+be eventually unaffected by changes in the loop iteration count. The strongest
+permissible dependence is \emph{\underline{p}olynomial}. A \(p\)\symbo{p}
+coefficient signals that a variable value grows at most polynomially throughout
+computation. Finally, other forms of \ndx{dependence} are either beyond
+polynomial or not expressible. The ∞\symbo{infty} coefficient marks these cases
+as \emph{failure}\index{derivation failure}. The flow calculus is
+nondeterministic,\index{nondeterminism} therefore multiple coefficients may
+characterize one pair of variables.
 
 \begin{figure}[H]
 \centering
@@ -223,7 +285,8 @@ X1=X1+X1;
 \begin{center}
 \includegraphics[width=5.5cm,keepaspectratio]{fig_flows1.pdf}
 \end{center}
-\caption{The data flows of program~\ref{lst:simple-dfg-1}.}\label{fig:simple-dfg-1}
+\caption{The data flows of program~\ref{lst:simple-dfg-1}.}%
+\label{fig:simple-dfg-1}
 \end{subfigure}\\[1em]
 \begin{subfigure}{.45\textwidth}
 \centering\begin{minipage}{.7\textwidth}
@@ -239,39 +302,45 @@ while(X2)
 \begin{center}
 \includegraphics[width=2cm,keepaspectratio]{fig_flows2.pdf}
 \end{center}
-\caption{The data flows of program~\ref{lst:simple-dfg-2}.}\label{fig:simple-dfg-2}
+\caption{The data flows of program~\ref{lst:simple-dfg-2}.}%
+\label{fig:simple-dfg-2}
 \end{subfigure}\\[1em]
 \begin{subfigure}{\textwidth}
 \centering\includegraphics[width=\textwidth,keepaspectratio]{fig_flows3.pdf}
 \end{subfigure}
 \caption[Simple imperative programs and their corresponding data flow graphs]{
 Simple \ndx{imperative programs} and their corresponding \ndx{data flow graph}s.
-Edges below ∞ represent acceptable value growth.
-In the left program, all variable values grow at most polynomially, \ie satisfactorily.
-In the right program, variable \pr|X1| grows exponentially.
-This is \enquote{too fast} for a polynomial bound.}
-\label{fig:dfg-ex}
+Edges below ∞\symbo{infty} represent acceptable value growth. In the left
+program, all variable values grow at most polynomially, \ie satisfactorily. In
+the right program, variable \pr|X1| grows exponentially. This is \enquote{too
+fast} for a polynomial bound.
+}\label{fig:dfg-ex}
 \end{figure}
 
-\paragraph*{Analysis result and derivability.}
-If all final values can be bounded by polynomial, then the input program is \emph{derivable}.
-The flow calculus assigns an \emph{mwp-bound} to every variable of a derivable program.
-An mwp-bound is an expression, in terms of the inputs, that characterizes the value growth of a single variable.
-If a derivable program terminates, the soundness theorem of the flow calculus~\cite[p. 11]{jones2009} guarantees that the variable value growth is polynomially-bounded.
-The result is sound but not complete---
-not all satisfactory programs can be captured, but on success we can prove the result with a derivation.
-Since the analysis omits termination, this is a partial correctness guarantee.
+\paragraph*{Analysis result and \ndx{derivability}.}
+If all final values can be bounded by polynomials, then the input program is
+\emph{derivable}. The flow calculus assigns an \emph{\ndx{mwp-bound}} to every
+variable of a derivable program. An \ndx{mwp-bound} is an expression, in terms
+of the inputs, that characterizes the value growth of a single variable. If a
+derivable program terminates, the soundness theorem of the flow
+calculus~\cite[p. 11]{jones2009}\index{soundness of mwp-calculus} guarantees
+that the variable value growth is polynomially-bounded. The result is sound but
+not complete, \ie not all satisfactory programs can be captured, but on success
+we can prove the result with a derivation. Since the analysis omits
+\ndx{termination}, this is a \ndx{partial correctness} guarantee.
 
-The flow calculus offers no guarantee to programs that are not derivable;
-their variable value growth is \emph{unknown}.
-A program always fails if some variable value grows \enquote{too fast}, \eg exponentially.
-Failure may also arise from inability to express satisfactory behavior.
-This is a built-in limitation of the flow calculus;
-and more broadly, a common limitation among related systems~\cite[p. 2]{baillot2015}.
-The flow calculus alleviates the issues with nondeterministic inference rules.
-The \ndx{nondeterminism} increases expressiveness, to capture a larger class of programs.
-But one program may admit multiple derivations, which in turn complicates the analysis procedure.
-A program is derivable if there exists a derivation without an ∞ coefficient.
+The flow calculus\index{mwp-calculus} offers no guarantee to programs that are
+not derivable;\index{derivation failure} their variable value growth is
+\emph{unknown}. A program always fails if some variable value grows \enquote{too
+fast}, \eg exponentially. Failure may also arise from inability to express
+satisfactory behavior. This is a built-in limitation of the flow calculus; and
+more broadly, a common limitation among related systems~\cite[p.
+2]{baillot2015}. The flow calculus alleviates the issues with
+nondeterministic\index{nondeterminism} \ndx{inference rule}s. The
+\ndx{nondeterminism} increases \ndx{expressiveness}, to capture a larger class
+of programs. But one program may admit multiple derivations, which in turn
+complicates the analysis procedure. A program is derivable\index{derivability}
+if there exists a derivation without an ∞\symbo{infty} coefficient.
 
 \subsubsection{Loop \ndx{specifications} for formal guarantees}
 \label{subsec:specs}
@@ -1142,8 +1211,8 @@ Dynamic analyzers are complementary to static techniques.\index{dynamic program 
 They inspect \ndx{program trace}s to infer \emph{likely} invariants\index{likely invariant} at the traced program points.
 \ndx{EvoSpex}~\cite{molina2021} is a dynamic postcondition analyzer.
 It is designed for Java methods for reasoning about postconditions in classes (accessors, mutators, heap structures, \etc);
-and thus distant from numerical loop analysis.
-The \ndx{invariant} detector \ndx{Daikon}~\cite{ernst2007} handles many program constructs, including numerical loops.
+and thus distant from \ndx{numerical loop} analysis.
+The \ndx{invariant} detector \ndx{Daikon}~\cite{ernst2007} handles many program constructs, including \ndx{numerical loops}.
 Since \ndx{Daikon} is compatible with our problem formulation, we discuss it in~\autoref{subsec:comparison}).
 \ndx{DIG}~\cite{nguyen2014} is another numeric \ndx{invariant} generator.
 \ndx{DIG} can perform invariant inference\index{invariant inference} at arbitrary program points, which makes it usable as a postcondition detector.
@@ -1343,7 +1412,7 @@ We examine two questions about the implementation of our technique.
 \end{enumerate}
 
 \paragraph*{Setup: benchmarks, metrics, and environment.}\label{subsec:exp-setup}
-We consider four benchmark suites, of numerical C loops, and 620 total problem (detailed in~\autoref{app:subsec:bench}).
+We consider four benchmark suites, of numerical \ndx{C} loops\index{numerical loops}, and 620 total problem (detailed in~\autoref{app:subsec:bench}).
 The {complexity} suite is mainly linear time complexity problems whose termination behavior is unknown.
 The {linear}~\cite{si2018}\index{invariant!linear} and {non-linear}~\cite{nguyen2017,yu2023}\index{invariant!non-linear} suites come from loop\index{loop invariant} invariant inference\index{invariant inference} literature.
 The non-linear suite includes classic numerical algorithms like geometric series and divisor computations.
@@ -1449,7 +1518,7 @@ This required four new enhancements:
 \begin{enumerate}[label=(\roman*)]
 \item projecting the analysis on individual variables,
 \item introducing an evaluation strategy to obtain optimal mwp-bounds,
-\item improving derivation failure-handling to increase analysis expressiveness,
+\item improving derivation failure-handling to increase analysis \ndx{expressiveness},
 \item and adopting the analysis to a new use case, \ie formal verification.
 \end{enumerate}
 
@@ -1459,10 +1528,10 @@ Our experiments show that the paper enhancements improve the flow calculus and m
 
 \paragraph*{Future directions.}
 Although we have extended the flow calculus capabilities, multiple directions for future work remain, and many emerge from this work.
-The two main directions concern enriching the analysis expressiveness and precision.
+The two main directions concern enriching the analysis \ndx{expressiveness} and precision.
 \Eg, leveraging assumptions (if available), tracking variable immutability, and accounting for control expression would generate more precise specification conditions.
 Currently, polynomial \(p\)-flows are not allowed inside unbounded loops.
-Discovering ways to relax this restriction would improve expressiveness and yield more postconditions.
+Discovering ways to relax this restriction would improve \ndx{expressiveness} and yield more postconditions.
 Due to the complexity-theoretic origins, the flow calculus targets polynomial \emph{upper} bounds.
 For verification, it would be useful to extend the technique to also cover lower bounds, and assign bounds on exponential growth.
 On the practical side, our analysis does not cover division operator and requires expanding operations to binary form.

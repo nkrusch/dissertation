@@ -19,6 +19,7 @@ The content and formatting requirements of doctoral dissertations.
 * [Thesis/Dissertation Preparation Booklet v.2024](https://augustauniversity.app.box.com/s/vj0ygpy8tvyqmsbae8y0qp9767ta7jb9) — AU formatting requirements
 * [Dissertation template](https://github.com/aubertc/au_ccs_dissertation_template/) — LaTeX/markdown template for AU TGS dissertations
 * [Preparing Your Manuscript for Submission](https://about.proquest.com/globalassets/proquest/files/pdf-files/preparing-your-manuscript.pdf) — guide by ProQuest
+  <br/> _But this guide is inaccurate on e.g., margins so proceed with caution!_
 
 ## Repository Organization
  

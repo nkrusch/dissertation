@@ -1,7 +1,10 @@
-\section{Published Artifacts}
-\label{sec:published-artifacts}
+%\section{Published Artifacts}
+%\label{sec:published-artifacts}
 
-Software artifacts corresponding to the published manuscripts in this dissertation.
+\paragraph*{Published artifacts.}
+The artifacts in~\autoref{tab:pub-artifacts} correspond to the published
+manuscripts (in Sections~\ref{published-manuscripts}
+and~\ref{app:additional-manuscripts}) of this dissertation.
 
 \begin{table}[h!]
 \begin{NiceTabularX}{\linewidth}{@{}llXc@{}}
@@ -32,33 +35,17 @@ Software artifacts corresponding to the published manuscripts in this dissertati
 \caption[Published and archived artifacts]{Published and archived artifacts.}
 \label{tab:pub-artifacts}
 \end{table}
-\clearpage
 
-\section{Artifacts in Progress}
-\label{sec:in-progress-artifacts}
 
-Software artifacts corresponding to the unpublished works of~\autoref{ch:unpublished-research}.
-A repository address is not included if the development is still private.
+\paragraph*{Artifacts in development.}
+Some software artifacts remain under development.
+They correspond to the unpublished works of~\autoref{ch:unpublished-research}.
 
-\begin{table}[h]
-\begin{NiceTabularX}{\linewidth}{lX}
-\toprule
-& \textbf{Description}  \\
-\midrule
-1.  & \textbf{Postconditions inference evaluation} \\
-    & \textit{Companion artifact for \autoref{sec:postcond}.} \\
-    & The artifact includes the analysis implementation and supports the experimental evaluation claims. \\
-\midrule
-2.  & \textbf{\textsc{tyni} security analyzer}  \\
-    & \textit{Companion artifact for \autoref{sec:anytime}.} \\
-    & The artifact is an implementation of the described program analysis technique. \\
-    & Repository: \swlink{https://github.com/statycc/tyni}{statycc/tyni} \\
-\midrule
-3.  & \textbf{Formalization of the flow calculus of mwp-bounds} \\
-    & \textit{Companion artifact for \autoref{sec:mwp-calc-formal}.} \\
-    & The artifact aims to formalizes the paper proofs from~\textcite{jones2009}, to prove the soundness theorem (\autoref{mwp-soundness}) of the mwp-calculus. \\
-\midrule
-\end{NiceTabularX}
-\caption[Software artifacts under development]{Software artifacts that are under development.}
-\label{tab:draft-artifacts}
-\end{table}
+\begin{enumerate}
+\item \textbf{Postconditions inference evaluation} (\textit{companion for~\autoref{sec:postcond}}).
+    The artifact includes the analysis implementation and supports the experimental evaluation claims.
+\item \textbf{\textsc{tyni} security analyzer} (\textit{companion for~\autoref{sec:anytime}}).
+    The artifact is an implementation of the described program analysis technique.
+\item  \textbf{Formalization of the flow calculus of mwp-bounds} (\textit{companion for~\autoref{sec:mwp-calc-formal}}).
+    The artifact aims to formalizes the paper proofs from~\textcite{jones2009}, to prove the soundness theorem (\autoref{mwp-soundness}) of the \ndx{mwp-calculus}.\index{soundness of mwp-calculus}
+\end{enumerate}

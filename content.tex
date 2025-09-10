@@ -172,18 +172,15 @@
 \clearpage
 
 \pagestyle{plain}
-\printglossary[
+{ \singlespacing\printglossary[
     title={Index of Acronyms\label{glo:acr}},
     type=\acronymtype,nonumberlist,style=longragged]
-\clearpage
+\clearpage }
 
 \pagestyle{plain}
-\printglossary[
+{ \singlespacing\printglossary[
     title={Symbol Index\label{glo:symb}},
     type=symbols]
-\clearpage
+\clearpage }
 
-{
-\RaggedRight
-\printindex
-}
+{ \singlespacing\RaggedRight\printindex }

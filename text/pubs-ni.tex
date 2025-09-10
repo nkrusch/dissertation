@@ -1439,17 +1439,17 @@ version.
 
 \subsubsection{Overview of Alternative and Related Approaches}\label{sec:ni-related-works}
 
-In \ndx{language-based security}, \ndx{non-interference} is commonly achieved through \ndx{security types system}s.
+In \ndx{language-based security}, \ndx{non-interference} is commonly achieved through \ndx{security type system}s.
 Type theoretic \ndx{non-interference} provides strong end-to-end \ndx{confidentiality} guarantees in a static and scalable way.
-Initiating from the seminal work of Volpano et al.~\cite{volpanoI1996}, \ndx{security types system}s have been extended to consider \ndx{non-interference} under numerous paradigms,
+Initiating from the seminal work of Volpano et al.~\cite{volpanoI1996}, \ndx{security type system}s have been extended to consider \ndx{non-interference} under numerous paradigms,
 including concurrency~\cite{volpano1998,derakhshan2024,frumin2021}\index{concurrent programs}, formal reasoning~\cite{nelson2020,frumin2021}, compilation~\cite{barthe2004}, \etc.
-A major challenge among the \ndx{security types system}s is \emph{\ndx{declassification}}, a kind of security downgrading operation~\cite{cecchetti2017}. A \emph{downgrading} mechanisms permits elevating the security judgement around control-flow constructs then lowering it afterward.
+A major challenge among the \ndx{security type system}s is \emph{\ndx{declassification}}, a kind of security downgrading operation~\cite{cecchetti2017}. A \emph{downgrading} mechanisms permits elevating the security judgement around control-flow constructs then lowering it afterward.
 In other words, information is allowed to flow contrary to the policy~\cite{cecchetti2017}.
-The mechanism is necessary to increase the expressive power of \ndx{security types system}s.
+The mechanism is necessary to increase the expressive power of \ndx{security type system}s.
 However, downgrading is generally not safe~\cite{derakhshan2024} and eliminates the strong compositional\index{compositionality} guarantees of \ndx{non-interference}~\cite{cecchetti2017}.
-In practice, \ndx{security types system}s are challenging to use because they modify the programming language.
+In practice, \ndx{security type system}s are challenging to use because they modify the programming language.
 A program must be annotated with security types and compiled with non-standard tools that can enforce the types~\cite{lamba2024}.
-There is also a stark contrast in expressiveness of theoretical and practical systems.
+There is also a stark contrast in \ndx{expressiveness} of theoretical and practical systems.
 \Eg \cite{huang2014} categorically excludes implicit flows\index{information flow!implicit}.
 
 The \ndx{Dependency Core Calculus} (DCC)~\cite{abadi1999b} is conceptually related to \lname.

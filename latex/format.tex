@@ -10,6 +10,10 @@
 \newcommand\newsectoff{\DeclareHookRule{cmd/section/before}{./section-flow}{voids}{./section-new}}
 \newsect % initially on
 
+%% Boolean flag to detect placement in appendix
+\newbool{inappendix}
+\appto{\appendix}{\booltrue{inappendix}}
+
 % autorefs
 \AtBeginDocument{%
 \renewcommand{\chapterautorefname}{Chap.}
@@ -59,8 +63,12 @@
 \let\item\@idxitem
 \setlength{\columnsep}{30pt}
 \setlength{\parindent}{0em}
-\begin{multicols*}{2}\raggedcolumns}
-{\end{multicols*}}
+%\begin{multicols*}{2}\raggedcolumns}
+%\begin{onecolumn}
+\let\item\@idxitem}
+%{\end{multicols*}}
+%{\end{onecolumn}\clearpage}
+{\clearpage}
 \renewcommand{\@idxitem}{\par\hangindent 15\p@}
 \renewcommand{\subitem}{\par\hangindent 30\p@\hspace*{15pt}}
 \makeatother
@@ -77,9 +85,14 @@ delim_t "\} "
 
 %% Glossaries
 % custom glossary style, match index
-\renewcommand{\glsdescwidth}{11cm}
+\renewcommand{\glsdescwidth}{12cm}
 \newglossarystyle{longraggeddots}{
     \setglossarystyle{longragged}%
+    \renewcommand{\glsentryname}{% for 1st child entry
+        \parindent-5pt% left margin to child name
+        \par% newline
+        \hangindent0pt% left margin to paragraph margin
+        \everypar{\parindent55pt\hangindent45pt}}
     \renewcommand*{\glossentry}[2]{%
        \glstarget{##1}{\glossentryname{##1}} &
        \glossentrydesc{##1}\mydotfill\footnotesize{##2}\tabularnewline
@@ -98,24 +111,32 @@ delim_t "\} "
 }{}{}
 \makeatother
 
-%% Additional double spacing
-% double space various environments
+
+%% Controls for additional double spacing
+% Double-space: abstract, dedication, acknowledgements, table of contents, and
+% body of the manuscript; except for quotations as paragraphs, captions, items in
+% tables, lists, graphs, charts.
+% Single-space: footnotes/endnotes, bibliographic entries, lists in appendices.
+% ---
+% double space various environments:
 \mdfsetup{startinnercode={\doublespacing}}
 \AtBeginEnvironment{algorithmic}{\doublespacing}
-\DeclareCaptionJustification{double}{\doublespacing}
-\captionsetup{justification=double}
-\renewcommand{\footnotelayout}{\doublespacing}
-\setlength{\footnotesep}{\baselineskip}
-\AtBeginEnvironment{tabular}{\doublespacing}
-\AtBeginEnvironment{tabularx}{\doublespacing}
-\AtBeginEnvironment{NiceTabular}{\doublespacing}
-\AtBeginEnvironment{NiceTabularX}{\doublespacing}
+\DeclareCaptionJustification{capspacing}{\singlespacing}
+\captionsetup{justification=capspacing}
+\AtBeginEnvironment{tabular}{\ifbool{inappendix}{\doublespacing}{\doublespacing}}
+\AtBeginEnvironment{tabularx}{\ifbool{inappendix}{\doublespacing}{\doublespacing}}
+\AtBeginEnvironment{NiceTabular}{\ifbool{inappendix}{\doublespacing}{\doublespacing}}
+\AtBeginEnvironment{NiceTabularX}{\ifbool{inappendix}{\doublespacing}{\doublespacing}}
 \AtBeginEnvironment{figure}{\doublespacing}
 \AtBeginEnvironment{subfigure}{\doublespacing}
 \AtBeginEnvironment{align*}{\linespread{2}\selectfont}
-%... but NOT matrices
+%… but NOT matrices
 \BeforeBeginEnvironment{pNiceMatrix}{\renewcommand{\arraystretch}{0.67}}
 \AfterEndEnvironment{pNiceMatrix}{\renewcommand{\arraystretch}{\doublespacing}}
+%… and NOT footnotes
+\renewcommand{\footnotelayout}{\setstretch{1}}
+\setlength{\footnotemargin}{2mm}
+\setlength{\footnotesep}{\baselineskip}
 
 % Framed environments setup
 \mdfsetup{

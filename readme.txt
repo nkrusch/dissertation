@@ -32,19 +32,20 @@ PREREQUISITES
 * Memory - container size is approx. 8 GB
 
 STANDARD SETUP
-Pull and launch a virtual execution environment. All necessary software
-is pre-installed in the container. On some machines you may need sudo.
+Pull and launch a container. All necessary software is pre-installed
+in the container. On some machines you may need sudo.
 
     docker pull --platform=linux/amd64 ghcr.io/nkrusch/dissertation:artifact
     docker run --name dimage -it --rm ghcr.io/nkrusch/dissertation:artifact
 
-The pre-built container expects an amd64/x86 architecture; it can be
-run on arm architectures, it will just run (much) slower. The setup has
-been tested on macOS (amd64, arm64) and Linux Ubuntu 22.04 (amd64).
+The pre-built container assumes an amd64/x86 architecture. It can be
+run on arm architectures, it will just run slower. The setup has been 
+tested on macOS (amd64, arm64) and Linux Ubuntu 22.04 (amd64).
 
 ALTERNATIVE SETUP
-It is possible to build the container locally. Building the container
-takes about 10-20 min. Run at the unzipped sources root:
+Build the container from scratch. Building takes about 10-15 min, and
+does not assume a specific architecture (tested on amd and arm).
+Run at the unzipped sources root:
 
     docker build . -t dimage
     docker run --name dimage -it --rm dimage
@@ -74,7 +75,7 @@ takes about 10-20 min. Run at the unzipped sources root:
 
 A pre-compiled dissertation is available at following addresses:
 
-* https://nkrusch.github.io/posts/dissertation
+ * https://nkrusch.github.io/posts/dissertation
 
 Alternatively, compile the dissertation by running:
 
