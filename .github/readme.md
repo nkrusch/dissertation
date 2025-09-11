@@ -9,9 +9,7 @@ This is the source code of my doctoral dissertation, _["Applied Implicit Computa
 I am not aware of any other _open source doctoral dissertation_ from Augusta University.
 I hope that making this resource public will be useful to future candidates.
 The [LaTeX template](https://github.com/aubertc/au_ccs_dissertation_template/) is also open source.
-This repository uses automated workflows that may be of interest to the technically advanced candidates.
-For example, the dissertation compilation and publishing is automated.
-The dissertation also has an artifact — see the artifact readme (`readme.txt`) for details.
+This repository uses automated workflows (e.g. to compile and build an artifact container) that may be of interest to the technically advanced candidates.
 
 ## Formatting Guidelines
 
