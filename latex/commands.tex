@@ -186,7 +186,7 @@
 }
 \makeatother
 
-    \newtcolorbox{infobox}[2][]{
+\newtcolorbox{infobox}[2][]{
     enhanced,
     before skip=2em,
     after skip=2em,
@@ -203,8 +203,8 @@
     before upper={\textbf{#2.}{ }},
     finish={
     \node[circle, fill=white, draw=important, solid, align=center,
-        line width=1pt, inner sep=2pt, outer sep=0.4pt, rounded corners=2pt,
-        xshift=-8mm, yshift=2mm, anchor=north west]
+        line width=1pt, inner sep=1.5pt, outer sep=0.4pt, rounded corners=2pt,
+        xshift=-3mm, yshift=1.5mm, anchor=north west]
         at (frame.north east) { \iconIMP };
     },#1
 }

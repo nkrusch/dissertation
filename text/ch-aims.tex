@@ -1,9 +1,9 @@
-A programmable computer is a gadget without precedent.
-It can be appreciated from many perspectives.
-For example, it can be viewed as an engineering marvel of ever-increasing capacity;
-as a medium for new flashy applications;
-or as the machine-independent scientific discipline that forms its foundations~\cite{dijkstra1979a,hoare2006}.
-This dissertation focuses on the intellectual challenge of {programming} these gadgets.
+A programmable computer is a gadget without precedent and it can be appreciated
+from many perspectives. For example, it can be viewed as an engineering marvel
+of ever-increasing capacity; as a medium for new flashy applications; or as the
+machine-independent scientific discipline that forms its
+foundations~\cite{dijkstra1979a,hoare2006}. This dissertation focuses on the
+intellectual challenge of programming these gadgets.
 
 \begin{quotation}
 \noindent This challenge seems unique in the combination of the possibility for
@@ -30,7 +30,7 @@ To demonstrate the idea, consider the two programs in~\autoref{lst:intro}.
 The variable \pr|bit| is either \(0\) or \(1\).
 By visual inspection, it is obvious that the programs look different.
 Yet, for all values of variables \pr|X| and \pr|Y|, they compute the same result.%
-\footnote{This is an informal claim. It will be revisited in~\autoref{subsubsec:sm-tool-examples}.}
+\footnote{This is an informal claim and it will be revisited in~\autoref{subsubsec:sm-tool-examples}.}
 The result is stored in variable \pr|Z|.
 Thus, the programs are functionally equivalent.
 
@@ -88,7 +88,7 @@ This way, we can swap informal claims to maximally strong assertions.
 The core idea of implicit computational complexity (ICC) is to quantify computational power through programming languages.
 Although ICC can be viewed from many perspectives, in the scope of this dissertation, its role is to provide a conceptual \enquote{toolbox} for constructing techniques of static program analysis.
 Very broadly, ICC finds ways to characterize program properties---mainly resource consumption---by introducing a restriction at the level of a programming language.
-The restriction is such that it gurantees the target property holds in every expressible program.
+The restriction is such that it guarantees the target property holds in every expressible program.
 Thus, programming languages become a \emph{mechanism} to guarantee ideal runtime behavior.
 There are multiple compelling motivations for this approach.
 For example, ICC drives better understanding of resource consumption and provides natural ways to express and control resources usage of programs~\cite{kristiansen2017}.
@@ -136,24 +136,20 @@ A non-Turing-complete programming language makes certain programs inexpressible.
 The task of writing (or finding) a satisfactory program is then delegated to the software engineer~\cite[p. 14]{moyen2017}.
 If the ICC restriction is too strong, it is difficult, or perhaps impossible, to express natural algorithms.
 This leads to a tradeoff between theoretical soundness, \ie providing a guarantee, and \ndx{expressiveness}~\cite{feree2018}.
-It is justifiable to ask, \emph{what can we do with such restricted programming languages?}.%
+It is justifiable to ask, \enquote{\emph{what can we do with such restricted programming languages?}}%
 \footnote{See \url{https://stackoverflow.com/questions/315340} for an inspirational warm-up.}
 
-The guiding hypothesis of the dissertation concerns the \emph{application potential}.
-%\begin{figure}[h]
+The guiding hypothesis of the dissertation concerns the \emph{application
+potential} of implicit computational complexity.
 \begin{infobox}[]{Main hypothesis}
 Implicit computational complexity offers applied utilities when lifted from the
 theoretical domain.
 \end{infobox}
-%\caption[Main hypothesis summarized]{Main hypothesis.}
-%\label{fig:hypothesis}
-%\end{figure}
 
 \noindent
 Every manuscript in this dissertation is an instantiation of this hypothesis.
-Through applications, we can stress test and pinpoint the limitations and capabilities of ICC systems, and discover new use cases in other domains.
-%The guiding hypothesis of the dissertation is summarized in~\autoref{fig:hypothesis}).
-
+Through applications, we can stress test and pinpoint the limitations and
+capabilities of ICC systems and discover new use cases in other domains.
 
 \subsection{Dissertation Goals}\label{subsec:specific-aims}
 
@@ -183,9 +179,12 @@ Moreover, through wider familiarity, is eases communication about ICC results.
 \subsection{Manuscripts and Research Questions}
 \label{subsec:conn-papers}
 
-To make the abstract dissertation hypothesis and research goals more concrete, we define two research directions.
-Broadly, one focuses on automatic resource analysis, and the other investigates uses of ICC to ensure other program properties, beyond complexity.
-These directions are visualized in~\autoref{fig:conn_papers}. An alternative way to think about these directions is that
+To make the abstract dissertation hypothesis and research goals more concrete,
+we define two research directions. Broadly, one focuses on automatic resource
+analysis, and the other investigates uses of ICC to ensure other program
+properties, beyond complexity. These directions are visualized
+in~\autoref{fig:conn_papers}. An alternative way to think about these directions
+is that
 \begin{enumerate*}
 \item we apply the systems in the originally designed ways (on left), and
 \item we aims to discover unexpected applications (on right).
@@ -201,9 +200,10 @@ These directions are visualized in~\autoref{fig:conn_papers}. An alternative way
 \paragraph*{Automatic resource analysis.}
 \index{mwp-calculus}
 
-In the first direction, we focus on the flow calculus of mwp-bounds of~\textcite{jones2009}.
-It is a canonical example of an ICC system for analysing variable value growth (data size) in \ndx{imperative programs}.
-The flow calculus is introduced in detail in~\autoref{flow-calculus}.
+In the first direction, we focus on the flow calculus of mwp-bounds
+of~\textcite{jones2009}. It is a canonical example of an ICC system for
+analyzing variable value growth (data size) in \ndx{imperative programs}. The
+flow calculus is introduced in detail in~\autoref{flow-calculus}.
 
 Relating to the flow calculus, we define three research questions.
 \begin{description}
@@ -212,37 +212,46 @@ Relating to the flow calculus, we define three research questions.
 \item[RQ3] Assuming the theory can be automated, what are its use cases?
 \end{description}
 
-The manuscripts demonstrate the utility of the calculus, first in static program analysis and then extending to formal methods.%
-\footnote{Due to Augusta University policies, one manuscript is in the appendix.
-The placement should not distract from the significance of the work, as several other manuscripts follow from it.}
-The manuscripts supports all dissertation goals.
-The implementation of the calculus, RQ1, supports G1--G3.
-A proof of its soundness (RQ2), and its extension to formal methods that follows from RQ3, support G4.
+The manuscripts demonstrate the utility of the calculus, first in static program
+analysis and then extending to formal methods.%
+\footnote{One manuscript is in the appendix due to Augusta University policies.
+The placement should not distract from the significance of the work, as several
+other manuscripts follow from it.} The manuscripts supports all dissertation
+goals. The implementation of the calculus, RQ1, supports G1--G3. A proof of its
+soundness (RQ2), and its extension to formal methods that follows from RQ3,
+support G4.
 
 \paragraph*{Analyzing extended program properties.}
 
-The second direction is inspired by \enquote{Loop Quasi-Invariant Chunk Detection}~\cite{moyen20172}.
-In the original formulation, the idea is to identify fragments (blocks) of loops, whose variables become invariant after a finite number of iterations.
-Such loop \ndx{quasi-invariant} code blocks can then be lifted from the loop.
-The program transformation improves the loop's complexity profile if the lifted block is a nested loop.
-For convenience, we refer this technique as the \emph{QI framework}, after the quasi-invariants.
+The second direction is inspired by \enquote{Loop Quasi-Invariant Chunk
+Detection}~\cite{moyen20172}. In the original formulation, the idea is to
+identify fragments (blocks) of loops, whose variables become invariant after a
+finite number of iterations. Such loop \ndx{quasi-invariant} code blocks can
+then be lifted from the loop. The program transformation improves the loop's
+complexity profile if the lifted block is a nested loop. For convenience, we
+refer this technique as the \emph{QI framework}, after the quasi-invariants.
 
-This original QI framework is not presented in this dissertation.
-This is because each refinement changes the behavior of the system.
-It is therefore necessary to fully re-define the system each time.
-The manuscripts in Sections~\ref{sec:vmcai} and~\ref{sec:anytime} provide the technical details.
+This original QI framework is not presented in this dissertation. This is
+because each refinement changes the behavior of the system. It is therefore
+necessary to fully re-define the system each time. The manuscripts in
+Sections~\ref{sec:vmcai} and~\ref{sec:anytime} provide the technical details.
 
 Using the QI framework, we define two research questions.
 \begin{description}
-\item[RQ4] How to develop a program transformation to increase parallelization potential?
-\item[RQ5] How to use it to analyze security properties, specifically non-interference?
+\item[RQ4] How to develop a program transformation to increase parallelization
+potential?
+\item[RQ5] How to use it to analyze security properties, specifically
+non-interference?
 \end{description}
 
-The research questions change the orientation from complexity theory to other application domains.
-Critically, the original complexity result may be lost, but some other guarantee is gained instead.
-On the surface, the research questions appear to be about properties, but more deeply they are about understanding the underlying theory and its flexibility.
+The research questions change the orientation from complexity theory to other
+application domains. Critically, the original complexity result may be lost, but
+some other guarantee is gained instead. On the surface, the research questions
+appear to be about properties, but more deeply they are about understanding the
+underlying theory and its flexibility.
 
-Both goals are practically motivated. The expected deliverables support G1 and G2. Moreover, they are strongly oriented to support G4.
+Both goals are practically motivated. The expected deliverables support G1 and
+G2. Moreover, they are strongly oriented to support G4.
 
 \paragraph*{Related topics.}
 Each manuscript connects implicit computational complexity with a related research topic.
@@ -251,12 +260,12 @@ Each dissertation manuscript is decorated with an icon that denotes the related 
 
 \paragraph*{On manuscript authorship.}
 The manuscript authors are listed in alphabetical order.
-The manuscripts in Chapters~\ref{published-manuscripts}--\ref{ch:unpublished-research} are \enquote{first author} works.
+The manuscripts in Chapters~\autoref{published-manuscripts}--\autoref{ch:unpublished-research} are \enquote{first author} works.
 The manuscripts in~\autoref{app:additional-manuscripts} are \enquote{non-first author} works.
 The contributions of the co-authors are detailed in~\autoref{app:sec:coauth}.
 
 \paragraph*{On manuscript peer review.}
-The entire Chapters~\ref{published-manuscripts},~\ref{ch:unpublished-research},~\ref{ch:summary}, and~\ref{app:additional-manuscripts} have been peer-reviewed.
+The entire Chapters~\ref{published-manuscripts},~\ref{ch:unpublished-research},~\ref{ch:summary}, and~\ref{app:additional-manuscripts} have been peer reviewed.
 In other words, the only new content sections are Chapters 1 and 4, Introduction and Discussion.
 
 \begin{itemize}
@@ -281,36 +290,56 @@ This dissertation contains three varying-length versions of its contents.
 \begin{infobox}[]{Content presentations}
 \begin{enumerate}[wide, labelwidth=!, labelindent=0pt]
 \item The \emph{\hyperref[abs]{abstract}} contains the highlights only.
-\item \emph{Chapters~\ref{introduction}--\ref{ch:discussion} and~\ref{app:additional-manuscripts}} form the full-length presentation.
-\item \emph{\autoref{ch:summary}} is a standalone extended summary of the full presentation.
+\item \emph{Chapters~\ref{introduction}--\ref{ch:discussion}
+and~\ref{app:additional-manuscripts}} form the full-length presentation.
+\item \emph{Chapter~\ref{ch:summary}} is a standalone extended summary of the
+full presentation.
 \end{enumerate}
 \end{infobox}
 
-I recommend reading the version that best matches your needs.
+This way, the reader may access the presentation at different levels of detail.
 
 \subsubsection{Software Artifacts and Data Availability}
 
-Each published manuscript included in the dissertation has an associated software artifact.
-Similarly, the dissertation has a companion artifact that allows, \eg executing included code fragments.
-How to locate the artifacts is explained in~\autoref{app:sec:artifacts}.
-Therefore, each manuscript consists of more than just the text pages of the dissertation.
+All software developed as part of this dissertation is publicly available. Each
+published manuscript in the dissertation has an associated software artifact.
+The artifacts are archived, according to the policies of the Association for
+Computing Machinery~\cite{acm_badging}, for long-term retention. The artifact
+are achieved even if the publication venue did not provide an official artifact
+evaluation round. Therefore, each manuscript consists of more than just the text
+pages of the dissertation. The instructions for locating the artifacts are
+in~\autoref{app:sec:artifacts}.
 
-All software developed as part of this dissertation is publicly available.
-The software is archived, according to the policies of the Association for Computing Machinery~\cite{acm_badging}, for long-term retention.
-The software is achieved even if the publication venue did not provide an artifact evaluation round.
+The dissertation itself also has an artifact. The dissertation artifact allows
+executing code fragments appearing in the dissertation and includes additional
+resources.
+
+The source code of the dissertation is publicly available at:
+
+\begin{center}
+\begin{minipage}{\textwidth}
+%! suppress = EscapeUnderscore
+\begin{browserlisting}[nolol,escapeinside=!!]
+!\href{https://github.com/nkrusch/dissertation}{\texttt{https://github.com/nkrusch/dissertation}}!
+\end{browserlisting}
+\end{minipage}
+\end{center}
+
+and archived according to~\autoref{sssec:dyn-bib}.
 
 \subsubsection{Notational Conventions}
 
-\paragraph*{Syntax and code blocks.}
-Inlined syntactic constructs (variables, expressions, commands, \etc) are typeset in \pr|teletype|.
-Larger code blocks are displayed in dedicated listings.
-The listings will display, in bottom right corner, the associated programming language, or context, according to~\autoref{tab:pls}.
-In the table, \emph{version} is the release version assumed in the dissertation listings.
-Pseudo-languages have no version.
-Plain text listings, that describe command outputs, are labelled \enquote{output.}
-Internet addresses are denoted by \langclr{cweb} \enquote{www.}
-The \ndx{Rocq} Prover is undergoing a name change from the former name Coq\index{Coq|seealso{Rocq}}.
-We will use the new name whenever possible.
+\paragraph*{Programming languages, syntax, and code blocks.}
+Syntactic constructs (variables, expressions, commands, \etc) that are inline
+with text are typeset in \pr|teletype|. Larger or more significant code blocks
+are displayed in dedicated code listings. The listings will display, in the
+bottom right corner, the associated programming language or context, according
+to~\autoref{tab:pls}. In the table, \emph{version} is the language release
+version assumed in the listings, when applicable (pseudo-languages do not have a
+version). Plain text listings, that describe command outputs, are labelled
+\enquote{output.} Internet addresses are marked by \langclr{cweb} \enquote{www.}
+The \ndx{Rocq} Prover is undergoing a name change from its former name
+Coq\index{Coq|seealso{Rocq}}. We will use the new name whenever possible.
 
 \begin{table}[h]
 \begin{center}
@@ -339,63 +368,106 @@ We will use the new name whenever possible.
 \label{tab:pls}
 \end{table}
 
-
 \paragraph*{Line numbers.}
-References to specific line of source code, or an algorithm, begin with L, for \underline{l}ine.
-The L is followed by a number, or a numeric range, that specifies the rows of interest.
-For example, L3 means \enquote{line number 3} and L10--12 means \enquote{lines 10 through 12}.
+References to a line of source code (or an algorithm) begin with an L, for
+\underline{l}ine. The L is followed by a number (or a numeric range) that
+specifies the row(s) of interest. For example, L3 means \emph{line number 3},
+and L10--12 means \emph{lines 10 to 12}.
 
 \paragraph*{Distinguishing variable states.}
-We will often want to refer to the same variable in different states of computation.
-In the style of \ndx{Z specification language}~\cite{spivey1992}, we use notation that identifies the \emph{new (post) states}.
-A plain variable refers to a state where the variable holds its {initial} value.
-A variable with a postfix decoration \pr|'| refers to a state where the variable holds its {final} value.
-For example, \pr|X| refers to the initial value and \pr|X'| refers to the final value.
+We will often want to refer to the same variable in different states of
+computation. In the style of \emph{\ndx{Z specification
+language}}~\cite{spivey1992}, we use notation that identifies the \emph{new}
+(post) states. A plain variable refers to a state where the variable holds its
+{initial} value. A variable with a postfix decoration \pr|'| refers to a state
+where the variable holds its {final} value. For example, \pr|X| refers to the
+initial value and \pr|X'| refers to the final value.
 
 \subsubsection{Term and Notational Indices}
 
-The dissertation includes three indices.
-The Term Index (\autoref{sec:app:index}) lists technical terms and their most prevalent uses.
-The other two indices are for acronyms and symbolic notations.
-Acronyms are generally defined at first use.
-After that, the long form can be located in the Index of Acronyms (\autoref{glo:acr}).
-A similar reference is available for symbolic notations in the Symbol Index (\autoref{glo:symb}).
+The dissertation includes three indices. The Term Index
+(\autoref{sec:app:index}) lists technical terms and their uses. The other two
+indices contain acronyms and symbolic notations. Acronyms are generally defined
+at first use. The Index of Acronyms (\autoref{glo:acr}) lists the long form. A
+similar reference is available for symbolic notations in the Symbol Index
+(\autoref{glo:symb}).
 
 \subsubsection{Dynamic Bibliographic Entries}
+\label{sssec:dyn-bib}
 
-Some bibliography entries refer to resources that are not traditional scientific papers, like software, web pages, lecture notes, \etc.
-To improve the long-term availability of such dynamic bibliographic entries, they are pre-emptively deposited in online archives.
-
-\paragraph*{Written documents.}
-Web pages and PDF files are archived at the \ndx{Internet Archive}'s \ndx{Wayback Machine}.
-To recover a document from the Internet Archive, substitute \pr|<URL>| by the document's URL\@.
-\begin{center}\pr|https://web.archive.org/web/<URL>|\end{center}
-A few cited documents could not be archived in the Internet Archive.
-Those documents are archived with the dissertation companion artifact (\autoref{tab:pub-artifacts}).
+Some bibliography entries refer to brittle dynamic resources like software, web
+pages, lecture notes, \etc. To improve the long-term availability and
+recoverability of such bibliographic entries, they are pre-emptively preserved
+in suitable online archives.
 
 \paragraph*{Software repositories.}
-Version-controlled third party software repositories are archived at \href{https://softwareheritage.org}{\ndx{Software Heritage}}.
-For a repository hosted at \pr|<URL>|, the recovery address is:%
-\begin{center}\pr|https://archive.softwareheritage.org/browse/origin/directory/|\mbox{\pr|?origin_url=<URL>|}\end{center}
+Version-controlled third party software repositories are archived at
+\href{https://softwareheritage.org}{\ndx{Software Heritage}}. For a repository
+hosted at \pr|<URL>|, the recovery address pattern is:
 
-\paragraph*{Example: recovering archived documents.}\mbox{}
-
-The following \href{https://types22.inria.fr/files/2022/06/TYPES_2022_paper_14.pdf}{URL} is fragile and may disappear in the future.
 \begin{center}
 \begin{minipage}{\textwidth}
 %! suppress = EscapeUnderscore
-\begin{browserlisting}[nolol]
-https://types22.inria.fr/files/2022/06/TYPES_2022_paper_14.pdf
+\begin{browserlisting}
+!\texttt{https://archive.softwareheritage.org/browse/origin/directory/}\\
+\mbox{\texttt{?origin\_url=<URL>}}!
 \end{browserlisting}
 \end{minipage}
 \end{center}
 
-If a request of the original document fails, the following \href{https://web.archive.org/web/https://types22.inria.fr/files/2022/06/TYPES_2022_paper_14.pdf}{Internet Archive address} produces the same document.
+For example, the recovery address of the dissertation source code is
+
 \begin{center}
 \begin{minipage}{\textwidth}
 %! suppress = EscapeUnderscore
-\begin{browserlisting}[nolol]
-https://web.archive.org/web/https://types22.inria.fr/files/2022/06/TYPES_2022_paper_14.pdf
+\begin{browserlisting}
+!\texttt{\href{https://archive.softwareheritage.org/browse/origin/directory/?origin_url=https://github.com/nkrusch/dissertation}{
+https://archive.softwareheritage.org/browse/origin/directory/\\?origin\_url=https://github.com/nkrusch/dissertation}}!
 \end{browserlisting}
 \end{minipage}
 \end{center}
+
+\paragraph*{Written documents.}
+Web pages and PDF files are archived in the \ndx{Wayback Machine} of the
+\ndx{Internet Archive}. Use the following pattern to recover a document from the
+Internet Archive, substituting \pr|<URL>| by the document's URL\@.
+
+\begin{center}
+\begin{minipage}{\textwidth}
+%! suppress = EscapeUnderscore
+\begin{browserlisting}
+!\texttt{https://web.archive.org/web/<URL>}!
+\end{browserlisting}
+\end{minipage}
+\end{center}
+
+Some cited documents could not be archived in the Internet Archive; for example,
+because the documents were not hosted publicly or the hosting server was
+blocking automatic clients. Such documents are archived in the dissertation
+companion artifact~\cite{aicc}.
+
+\begin{example}[Recovering archived documents]
+
+The following URL is fragile and may disappear in the future.
+
+\begin{center}
+\begin{minipage}{\textwidth}
+%! suppress = EscapeUnderscore
+\begin{browserlisting}
+!\texttt{\url{https://types22.inria.fr/files/2022/06/TYPES_2022_paper_14.pdf}}!
+\end{browserlisting}
+\end{minipage}
+\end{center}
+
+If a request of the original document fails, the following Internet Archive
+address produces the same document.
+
+\begin{center}
+\begin{minipage}{\textwidth}
+%! suppress = EscapeUnderscore
+\begin{browserlisting}
+!\texttt{\url{https://web.archive.org/web/https://types22.inria.fr/files/2022/06/TYPES_2022_paper_14.pdf}}!
+\end{browserlisting}
+\end{minipage}
+\end{center}
+\end{example}

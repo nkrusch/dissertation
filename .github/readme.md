@@ -8,19 +8,21 @@ This is the source code of my doctoral dissertation, _["Applied Implicit Computa
 
 I am not aware of any other _open source doctoral dissertation_ from Augusta University.
 I hope that making this resource public will be useful to future candidates.
-The [starter LaTeX template](https://github.com/aubertc/au_ccs_dissertation_template/) is also open source.
+The [LaTeX template](https://github.com/aubertc/au_ccs_dissertation_template/) is also open source.
 This repository uses automated workflows that may be of interest to the technically advanced candidates.
+For example, the dissertation compilation and publishing is automated.
+The dissertation also has an artifact — see the artifact readme (`readme.txt`) for details.
 
 ## Formatting Guidelines
 
 The content and formatting requirements of doctoral dissertations.
 
+* [Dissertation template](https://github.com/aubertc/au_ccs_dissertation_template/) — LaTeX/markdown template for AU TGS dissertations
 * [Augusta University Electronic Theses and Dissertations (ETD)](https://guides.augusta.edu/etd) — guide by AU Libraries
 * [Thesis/Dissertation Preparation Booklet v.2024](https://augustauniversity.app.box.com/s/vj0ygpy8tvyqmsbae8y0qp9767ta7jb9) — AU formatting requirements
-* [Dissertation template](https://github.com/aubertc/au_ccs_dissertation_template/) — LaTeX/markdown template for AU TGS dissertations
 * [Preparing Your Manuscript for Submission](https://about.proquest.com/globalassets/proquest/files/pdf-files/preparing-your-manuscript.pdf) — guide by ProQuest[^1]
   
-[^1]: The ProQuest guide is sometimes different from AU guide (e.g., margins). In such case, the AU guidelines override ProQuest.
+[^1]: The ProQuest guide is sometimes different from AU guide (e.g., for margins); then AU guidelines override ProQuest.
 
 ## Repository Organization
  
