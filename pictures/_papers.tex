@@ -46,7 +46,7 @@
 	 ++(2.8,0) node[bllet, paper] {}
 	 ++(2.0,0) node[label, text width=3cm] {Dissertation work}
 	 ++(2.0,0) node[font={\selectfont\Large}] {$*$}
-	 ++(1.0,0) node[label,text width=1cm] {preprint};
+	 ++(1.0,0) node[label,text width=1cm] {Draft};
 
 \path     (8, 17) node[start, conce] (icc) {\textbf{Implicit Computational Complexity}}
    ++( \sx/2,\sy) node[start, prior] (mwp) {\authT{A Flow Calculus of mwp-Bounds\\for Complexity Analysis}{\authA (2009)}}
@@ -54,9 +54,9 @@
    ++(   \sx,\sy) node[block=imp:\iconSPA:{mwp-Analysis Improvement and Implementation: Realizing\\Implicit Computational Complexity}:{\authB (2022)}]
    ++(-1*\sx,  0) node[block=ncl:\iconOPT:{Distributing and Parallelizing\\Non-canonical Loops}:{\authB (2023)}]
    ++(   \sx,\sy) node[block=pym:\iconSPA:{pymwp: A Static Analyzer\\Determining Polynomial Growth Bounds}:{\authB (2023)}]
-   ++(-1*\sx,  0) node[block=nil:\iconSEC:{A Logic for\\Anytime Non-Interference}:{\authD$^*$}]
-   ++(   \sx,\sy) node[block=pci:\iconFM:{Polynomial Postconditions\\via mwp-Bounds}:{\authE$^*$}]
-   ++(     0,\sy) node[block=cca:\iconFM:{Certifying Complexity Analysis}:{\authB (2023)\\\authE{ }(2023 -- ?)}];
+   ++(-1*\sx,  0) node[block=nil:\iconSEC:{A Logic for\\Anytime Non-Interference$^*$}:{\authD}]
+   ++(   \sx,\sy) node[block=pci:\iconFM:{Polynomial Postconditions\\via mwp-Bounds$^*$}:{\authE}]
+   ++(     0,\sy) node[block=cca:\iconFM:{Certifying Complexity Analysis$^*$}:{\authB (2023)\\\authE{ }(2023 -- ?)}];
 
 \draw [arrow] (icc) -- (mwp);
 \draw [arrow] (mwp) -- (imp);

@@ -96,10 +96,11 @@ Because behavioral guarantees are part of the language design, this creates a te
 In principle, this removes the need for post-analysis of programs.
 However, materializing these ideas requires deeper investigations of implicit computational complexity.
 
-\begin{infobox}
-The dissertations is about \textbf{static program analysis}, ideally with
-\textbf{formal guarantees}, and starting with \textbf{implicit computational
-complexity} -- a family of programming language-based techniques that can
+\begin{infobox}[]{Primary topics}
+The dissertations is about \emph{static program analysis},
+ideally with \emph{formally verified guarantees},
+and from the starting point of \emph{implicit computational
+complexity}, a family of programming language-based techniques that can
 provide behavioral guarantees by construction.
 \end{infobox}
 
@@ -138,9 +139,9 @@ This leads to a tradeoff between theoretical soundness, \ie providing a guarante
 It is justifiable to ask, \emph{what can we do with such restricted programming languages?}.%
 \footnote{See \url{https://stackoverflow.com/questions/315340} for an inspirational warm-up.}
 
+The guiding hypothesis of the dissertation concerns the \emph{application potential}.
 %\begin{figure}[h]
-\begin{infobox}
-\textbf{Main hypothesis.}
+\begin{infobox}[]{Main hypothesis}
 Implicit computational complexity offers applied utilities when lifted from the
 theoretical domain.
 \end{infobox}
@@ -148,9 +149,10 @@ theoretical domain.
 %\label{fig:hypothesis}
 %\end{figure}
 
-Through applications, we can stress test and pinpoint the limitations and capabilities of ICC systems, and discover new use cases in other domains.
-%The guiding hypothesis of the dissertation research is summarized in~\autoref{fig:hypothesis}).
+\noindent
 Every manuscript in this dissertation is an instantiation of this hypothesis.
+Through applications, we can stress test and pinpoint the limitations and capabilities of ICC systems, and discover new use cases in other domains.
+%The guiding hypothesis of the dissertation is summarized in~\autoref{fig:hypothesis}).
 
 
 \subsection{Dissertation Goals}\label{subsec:specific-aims}
@@ -274,17 +276,17 @@ It has been peer-reviewed and presented at \href{https://2025.ecoop.org/track/ec
 \subsection{Important Tips for Interacting With This Dissertation}
 \label{subsec:tips}
 
-This dissertation contains three, varying-length versions of its contents.
+This dissertation contains three varying-length versions of its contents.
 
-\begin{infobox}
+\begin{infobox}[]{Content presentations}
 \begin{enumerate}[wide, labelwidth=!, labelindent=0pt]
-\item The \textbf{\hyperref[abs]{abstract}} contains the highlights only.
-\item \textbf{Chapters~\ref{introduction}--\ref{ch:discussion} and~\ref{app:additional-manuscripts}} form the full-length presentation.
-\item \textbf{\autoref{ch:summary}} is a standalone, extended summary of the full presentation.
+\item The \emph{\hyperref[abs]{abstract}} contains the highlights only.
+\item \emph{Chapters~\ref{introduction}--\ref{ch:discussion} and~\ref{app:additional-manuscripts}} form the full-length presentation.
+\item \emph{\autoref{ch:summary}} is a standalone extended summary of the full presentation.
 \end{enumerate}
 \end{infobox}
 
-Choose the version that best matches your needs.
+I recommend reading the version that best matches your needs.
 
 \subsubsection{Software Artifacts and Data Availability}
 
@@ -305,8 +307,8 @@ Larger code blocks are displayed in dedicated listings.
 The listings will display, in bottom right corner, the associated programming language, or context, according to~\autoref{tab:pls}.
 In the table, \emph{version} is the release version assumed in the dissertation listings.
 Pseudo-languages have no version.
-Plain text listings describe command outputs.
-They are labelled \enquote{output}.
+Plain text listings, that describe command outputs, are labelled \enquote{output.}
+Internet addresses are denoted by \langclr{cweb} \enquote{www.}
 The \ndx{Rocq} Prover is undergoing a name change from the former name Coq\index{Coq|seealso{Rocq}}.
 We will use the new name whenever possible.
 
@@ -337,7 +339,6 @@ We will use the new name whenever possible.
 \label{tab:pls}
 \end{table}
 
-Web addresses are denoted by \enquote{browser}.
 
 \paragraph*{Line numbers.}
 References to specific line of source code, or an algorithm, begin with L, for \underline{l}ine.

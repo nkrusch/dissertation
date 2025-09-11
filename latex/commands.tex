@@ -9,7 +9,7 @@
 \newcommand\ainfoX[3]{\noindent{#1}\newline\noindent{#2}\vspace{1em}\newline{#3}\newpage}
 
 % Document commands
-\newcommand{\aref}[1]{\hyperref[#1]{\ref*{#1}}}
+\newcommand{\aref}[1]{\hyperref[#1]{\autoref*{#1}}}
 \newcommand{\swlink}[2]{\texttt{\footnotesize{\href{#1}{#2}}}}
 \newcommand{\nonterm}[1]{#1} % ott
 \newcommand*\lstinputpath[1]{\lstset{inputpath=#1}}
@@ -186,22 +186,25 @@
 }
 \makeatother
 
-\newtcolorbox{infobox}[1][]{
+    \newtcolorbox{infobox}[2][]{
     enhanced,
     before skip=2em,
     after skip=2em,
-    boxrule=1.5pt,
+    boxrule=1pt,
     boxsep=.7em,
-    left=1.2em,
-    colback=paperbase,
-    colframe=paper,
+    left=1em,
+    right=1em,
+    colframe=important,
+    colback=importantbg,
     title={},
     detach title,
-    sharp corners=all,
+    % sharp corners=all,
+    rounded corners=all,
+    before upper={\textbf{#2.}{ }},
     finish={
-        \node[rectangle, fill=white, draw=paper, solid, align=center,
-        line width=1.5pt, text width=8pt, inner sep=4pt, outer sep=0.4pt,
-        xshift=-2mm, yshift=-3mm, anchor=north west]
-        at (frame.north west) {\textnormal{\scalebox{.65}{\faExclamation}}};
+    \node[circle, fill=white, draw=important, solid, align=center,
+        line width=1pt, inner sep=2pt, outer sep=0.4pt, rounded corners=2pt,
+        xshift=-8mm, yshift=2mm, anchor=north west]
+        at (frame.north east) { \iconIMP };
     },#1
 }
