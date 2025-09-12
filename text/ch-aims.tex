@@ -1,9 +1,9 @@
-A programmable computer is a gadget without precedent and it can be appreciated
+A programmable computer is a gadget without precedent that can be appreciated
 from many perspectives. For example, it can be viewed as an engineering marvel
-of ever-increasing capacity; as a medium for new flashy applications; or as the
+of ever-increasing capacity, as a medium for new flashy applications, or as the
 machine-independent scientific discipline that forms its
 foundations~\cite{dijkstra1979a,hoare2006}. This dissertation focuses on the
-intellectual challenge of programming these gadgets.
+intellectual challenge of \emph{programming} these gadgets.
 
 \begin{quotation}
 \noindent This challenge seems unique in the combination of the possibility for
@@ -12,27 +12,35 @@ conceived -- and the ultimate, but misleading, simplicity of a world of zeros
 and ones alone~\cite{dijkstra1979a}.
 \end{quotation}
 
-Programming languages provide us an interface for crafting programs.
-The languages are a useful \emph{abstraction layer}, because they relieve us from working directly with 0s and 1s.
-A program is written in {high-level} language that is (intended to be) intelligible to humans.
-The program is then \enquote{translated} (compiled), from the high-level language to 0s and 1s, for processing by computers.
-However, the abstraction provided by programming languages does nothing to reduce the intellectual challenge involved in programming~\cite{dijkstra1979b}.
-If we write a (syntactically legal) faulty program, we are at the mercy of our faulty creation.
+Programming languages provide us a convenient interface for crafting programs. A
+programming language is an {abstraction layer}, because it relieves us from
+working with 0s and 1s directly. We can write programs in a human-intelligence
+form, and then \enquote{translate} (compile) it to 0s and 1s for processing by
+computers. However, the abstraction provided by programming languages does
+nothing to reduce the intellectual challenge involved in
+programming~\cite{dijkstra1979b}. If we write a syntactically legal but faulty
+program, we are at the mercy of our faulty creation when the program executes.
 
 \paragraph{Equivalence.}
-One fascinating feature about programs is that we can write multiple distinct programs that compute the same result.
-Two programs $\sem{p_1}$\symbo{funprog} and $\sem{p_2}$\symbo{funprog} are functionally \emph{equivalent}\index{functional equivalence}, \ie \(\sem{p_1} \equiv \sem{p_2}\)\symbo{equiv}, iff for every possible input \(i\), \(\sem{p_1}(i) = \sem{p_2}(i)\)\symbo{funprog}.
-When we want functional equivalence, we must fix the program input and output, but can alter \emph{how} the result is computed.
-A scientifically inclined reader will recognize functional equivalence as multiple algorithms computing the same function.
-A software engineer will recognize it in the art of \ndx{refactoring}.
+One fascinating feature about programs is that we can write multiple distinct
+programs that, for the same input, compute the same result. Two programs
+$\sem{p_1}$\symbo{funprog} and $\sem{p_2}$\symbo{funprog} are functionally
+\emph{equivalent}\index{functional equivalence}, \ie \(\sem{p_1} \equiv
+\sem{p_2}\)\symbo{equiv}, iff for every possible input \(i\), \(\sem{p_1}(i) =
+\sem{p_2}(i)\)\symbo{funprog}. In other words, the criteria is to maintain the
+input/output behavior, but we are allowed to change \emph{how} the result is
+computed. A scientifically inclined reader will recognize \ndx{functional
+equivalence} as multiple algorithms computing the same function. A software
+engineer will recognize it as the art of \ndx{refactoring}.
 
-To demonstrate the idea, consider the two programs in~\autoref{lst:intro}.
-The variable \pr|bit| is either \(0\) or \(1\).
-By visual inspection, it is obvious that the programs look different.
-Yet, for all values of variables \pr|X| and \pr|Y|, they compute the same result.%
-\footnote{This is an informal claim and it will be revisited in~\autoref{subsubsec:sm-tool-examples}.}
-The result is stored in variable \pr|Z|.
-Thus, the programs are functionally equivalent.
+To demonstrate the idea, consider the two programs in~\autoref{lst:intro}. The
+programs consider two \enquote{input variables}, \pr|X| and \pr|Y|, and store
+the result in variable \pr|Z|. The variable \pr|bit| is either \(0\) or \(1\).
+By visual inspection, it is obvious that the programs look different. Yet, for
+all values of \pr|X| and \pr|Y|, they compute the same result.\footnote{This is
+an informal claim, and it will be revisited
+in~\autoref{subsubsec:sm-tool-examples}.} The programs are thus functionally
+equivalent\index{functional equivalence}.
 
 \begin{center}
 \captionsetup{type=lstlisting}
@@ -50,58 +58,83 @@ Thus, the programs are functionally equivalent.
 \label{lst:intro}
 \end{center}
 
-It is natural to ask, \enquote{which program is better?}
-The left is free of arithmetic and, for a human, reads more intuitively and is easier to understand.
-Such clarity is a useful criterion if the program is intended for frequent visual inspection.
-However, we may not care about readability.
-Many programs, like the ones generated by a compiler, are never read by humans.
-The program on right has the advantage that it eliminates the conditional branch and always evaluates the full arithmetic expression.
-Such features are desirable for software security.
-Therefore, choosing the preferable program form depends on semantics.
-What exactly do we mean by \enquote{better} and how do we quantify measure such metrics?
+It is natural to ask, \enquote{which program is better?} The program on left
+contains no arithmetic operations. Its behavior is easy to read and understand
+from how the program is written. The clarity is a useful if the program is
+intended for frequent visual inspection. However, we may not care about
+readability. Many programs, like the ones generated by a compiler, are never
+read by humans. The program on right has the advantages that it does not involve
+conditional branching and always evaluates the full arithmetic expression. Such
+features may be beneficial in certain application domains, like information
+security (discussed in~\autoref{pl-sec}). Therefore, choosing the preferable
+program form depends on what is meant by \enquote{better}. Moreover, how can we
+quantify and measure such aspects of programs?
 
 \paragraph{Non-functional properties.}
-The quality attributes of programs, \ie features that extend beyond functional behavior, are called \emph{\ndx{non-functional properties}}.
-Non-functional properties include attributes like program security and resource consumption.
-Throughout the dissertation, a major topic of interest is inspecting programs as mathematical objects \wrt non-functional properties.
-Among the direct goals are developing techniques that enable quantifying the properties.
-Furthermore, instead of trusting informal claims, like the one of equivalence, we want rigorous confirmation that the stated properties truly hold in the inspected program(s).
+Extending beyond functional behavior, we evaluate programs based on their
+quality attributes, \ie \emph{\ndx{non-functional properties}}. Non-functional
+properties include aspects like program security and resource consumption. For
+example, between two functionally equivalent programs, we may want to identify
+the program that computes the result faster or using less memory. A main theme
+of this dissertation is to treat \emph{programs as mathematical objects} to
+\emph{analyze their non-functional properties}. Among the goals are developing
+techniques that enable quantifying such properties. Furthermore, instead of
+trusting informal claims---like the earlier one about program equivalence---we
+seek rigorous guarantees that the stated properties truly hold in the inspected
+program(s).
 
-\vspace{1em}\noindent{}Thus the challenge of programming involves more than the art of \emph{writing} programs. Reasoning about the program \emph{behaviors} is an independent scientific challenge.
+\paragraph{Scientific challenges.}
+The challenge of programming thus involves much more than \enquote{just} the act
+of writing functionally correct programs. How to achieve desirable behaviors and
+exclude bad ones, and how to detect desirable non-functional properties in
+programs are scientifically independent and compelling questions.
 
-\subsection{Dissertation core topics}
+\subsection{Dissertation Core Topics}
 \label{subsec:dissertation-themes}
 
-Embracing the natural ambiguity in programs brings us to the topics of static program analysis and formal methods.
-These two are foundational themes of this dissertation.
-For an enhanced sense of adventure, and to make the dissertation exploration worthy of a multi-year doctoral study, we add to the mix \emph{implicit computational complexity}.
+The quest to analyze non-functional properties in programs brings us to the
+topic of static program analysis. In addition, obtaining strong guarantees
+requires formal methods. These are the two core topics of this
+dissertation. For a higher sense of adventure, and to make the dissertation
+exploration worthy of a multi-year doctoral study, we add \emph{implicit
+computational complexity} to the list of topics.
 
 \paragraph{Static program analysis and formal methods.}
-Program analysis provides the techniques to inspect programs and check whether they satisfy some desirable behavioral criterion.
-The focus in this dissertation is to analyze programs statically, \ie by how the programs are written syntactically.
-In static program analysis we make judgements about how the program will behave when it is executed, but without executing the program.
-Formal methods complements program analysis by providing the mathematical techniques needed to obtain rigorous guarantees.
-With formal methods it is possible to provide \emph{proofs} about the conclusions of program analysis.
-This way, we can swap informal claims to maximally strong assertions.
+The goal in program analysis is to inspect programs and check whether they
+satisfy some desirable behavioral criterion. While many families of techniques
+exist, this dissertation focuses on analyzing programs statically, \ie by how
+programs are written. Static analysis techniques study program syntax. They aim
+to make judgements about how the program will behave when it is executed, but
+without ever executing the program. Formal methods complement the setting by
+providing the mathematical techniques and tools to obtain rigorous guarantees.
+Formal methods enable providing \emph{proofs} about the conclusions of
+(informal) program analysis. This way, we can substitute informal claims with
+maximally strong assertions.
 
 \paragraph*{Implicit computational complexity.}
-The core idea of implicit computational complexity (ICC) is to quantify computational power through programming languages.
-Although ICC can be viewed from many perspectives, in the scope of this dissertation, its role is to provide a conceptual \enquote{toolbox} for constructing techniques of static program analysis.
-Very broadly, ICC finds ways to characterize program properties---mainly resource consumption---by introducing a restriction at the level of a programming language.
-The restriction is such that it guarantees the target property holds in every expressible program.
-Thus, programming languages become a \emph{mechanism} to guarantee ideal runtime behavior.
-There are multiple compelling motivations for this approach.
-For example, ICC drives better understanding of resource consumption and provides natural ways to express and control resources usage of programs~\cite{kristiansen2017}.
-Because behavioral guarantees are part of the language design, this creates a temporal shift that enables reasoning about properties \emph{before} any program exists.
-In principle, this removes the need for post-analysis of programs.
-However, materializing these ideas requires deeper investigations of implicit computational complexity.
+The core idea of implicit computational complexity (ICC) is to quantify
+computational power through programming languages. Although ICC can be viewed
+from many perspectives, in the scope of this dissertation, its role is to
+provide a conceptual \enquote{toolbox} for constructing techniques of static
+program analysis. Considered broadly, ICC finds ways to characterize program
+properties---mainly resource consumption---by introducing a restriction at the
+level of a programming language. The restriction is such that it guarantees the
+target property holds in every expressible program. Programming languages thus
+become a \emph{mechanism} to guarantee ideal runtime behavior. There are
+multiple compelling motivations for this approach. For example, ICC drives
+better understanding of resource consumption and provides natural ways to
+express and control resources usage of programs~\cite{kristiansen2017}. Because
+behavioral guarantees are part of the language design, this creates a
+\emph{temporal shift} that enables reasoning about properties \emph{before} any
+program exists. If we can identify the construction principles of satisfactory
+programs, this would remove the need to analyze programs after they are written.
+However, materializing such ideas in practice requires deeper investigations of
+implicit computational complexity.
 
 \begin{infobox}[]{Primary topics}
-The dissertations is about \emph{static program analysis},
-ideally with \emph{formally verified guarantees},
-and from the starting point of \emph{implicit computational
-complexity}, a family of programming language-based techniques that can
-provide behavioral guarantees by construction.
+The dissertation investigates problems in {static program analysis}, ideally
+with {formally verifiable guarantees}, and from the starting point of {implicit
+computational complexity}.
 \end{infobox}
 
 \subsection{Addressed Problem}
@@ -125,7 +158,7 @@ The difference in the allocated efforts could be explained by many factors, incl
 \item Applying any pure theory reveals the shortcomings of the theory.
       It is extremely difficult to design a useful theory without considering its implementation.
 
-\item An application may alter the research domain; \eg from theoretical computer science to verification, program analysis, formal methods, \etc
+\item An application may alter the research domain, \eg from theoretical computer science to verification, program analysis, formal methods, \etc
       In other words, it requires communicating findings to (new) audiences, who may be motivated differently to assess the usefulness of the findings.
 
 \end{enumerate}
@@ -147,7 +180,7 @@ theoretical domain.
 \end{infobox}
 
 \noindent
-Every manuscript in this dissertation is an instantiation of this hypothesis.
+Every manuscript in this dissertation is an instantiation of this main hypothesis.
 Through applications, we can stress test and pinpoint the limitations and
 capabilities of ICC systems and discover new use cases in other domains.
 
@@ -193,9 +226,12 @@ is that
 \begin{figure}[p]
 \includegraphics[width=\linewidth,keepaspectratio]{fig_conn_papers}\vspace{1em}
 \caption[Dissertation manuscripts and their associations]
-{Dissertation manuscripts and their associations.}
+{Dissertation manuscripts and their dependency associations.}
 \label{fig:conn_papers}
 \end{figure}
+
+\subsubsection{Research Directions}
+\label{sssec:directions}
 
 \paragraph*{Automatic resource analysis.}
 \index{mwp-calculus}
@@ -216,7 +252,7 @@ The manuscripts demonstrate the utility of the calculus, first in static program
 analysis and then extending to formal methods.%
 \footnote{One manuscript is in the appendix due to Augusta University policies.
 The placement should not distract from the significance of the work, as several
-other manuscripts follow from it.} The manuscripts supports all dissertation
+other manuscripts follow from it.} The manuscripts support all dissertation
 goals. The implementation of the calculus, RQ1, supports G1--G3. A proof of its
 soundness (RQ2), and its extension to formal methods that follows from RQ3,
 support G4.
@@ -253,6 +289,9 @@ underlying theory and its flexibility.
 Both goals are practically motivated. The expected deliverables support G1 and
 G2. Moreover, they are strongly oriented to support G4.
 
+\subsubsection{On Manuscripts Topics and Authorship}
+
+
 \paragraph*{Related topics.}
 Each manuscript connects implicit computational complexity with a related research topic.
 The topics include static program analysis, security, program optimization, and formal methods.
@@ -260,7 +299,7 @@ Each dissertation manuscript is decorated with an icon that denotes the related 
 
 \paragraph*{On manuscript authorship.}
 The manuscript authors are listed in alphabetical order.
-The manuscripts in Chapters~\autoref{published-manuscripts}--\autoref{ch:unpublished-research} are \enquote{first author} works.
+The manuscripts in Chapters~\ref{published-manuscripts}--\ref{ch:unpublished-research} are \enquote{first author} works.
 The manuscripts in~\autoref{app:additional-manuscripts} are \enquote{non-first author} works.
 The contributions of the co-authors are detailed in~\autoref{app:sec:coauth}.
 
@@ -272,7 +311,7 @@ In other words, the only new content sections are Chapters 1 and 4, Introduction
 
 \item The published works, in Chapters~\ref{published-manuscripts} and~\ref{app:additional-manuscripts}, were inspected by 7--10 reviewers before acceptance.
 
-\item The unpublished works, in \autoref{ch:unpublished-research}, have been reviewed by 3--6 reviewers thus far.
+\item The unpublished works, in Chapter \ref{ch:unpublished-research}, have been reviewed by 3--6 reviewers thus far.
 Preliminary versions of most unpublished works have been accepted and presented at respectable workshops.
 However, the unpublished research must be viewed with some caution.
 They all have some limitation that prevents their inclusion in the chapter of published manuscripts.
@@ -282,10 +321,11 @@ It has been peer-reviewed and presented at \href{https://2025.ecoop.org/track/ec
 
 \end{itemize}
 
-\subsection{Important Tips for Interacting With This Dissertation}
+\subsection{Important Tips for the Reader}
 \label{subsec:tips}
 
 This dissertation contains three varying-length versions of its contents.
+This way, the reader may access the presentation at different levels of detail by need.
 
 \begin{infobox}[]{Content presentations}
 \begin{enumerate}[wide, labelwidth=!, labelindent=0pt]
@@ -297,14 +337,12 @@ full presentation.
 \end{enumerate}
 \end{infobox}
 
-This way, the reader may access the presentation at different levels of detail.
-
 \subsubsection{Software Artifacts and Data Availability}
 
 All software developed as part of this dissertation is publicly available. Each
 published manuscript in the dissertation has an associated software artifact.
 The artifacts are archived, according to the policies of the Association for
-Computing Machinery~\cite{acm_badging}, for long-term retention. The artifact
+Computing Machinery~\cite{acm_badging}, for long-term retention. The artifacts
 are achieved even if the publication venue did not provide an official artifact
 evaluation round. Therefore, each manuscript consists of more than just the text
 pages of the dissertation. The instructions for locating the artifacts are
@@ -330,9 +368,9 @@ and archived according to~\autoref{sssec:dyn-bib}.
 \subsubsection{Notational Conventions}
 
 \paragraph*{Programming languages, syntax, and code blocks.}
-Syntactic constructs (variables, expressions, commands, \etc) that are inline
-with text are typeset in \pr|teletype|. Larger or more significant code blocks
-are displayed in dedicated code listings. The listings will display, in the
+Syntactic constructs (variables, expressions, commands, \etc) that are embedded
+in text are typeset in \pr|teletype|. Larger or more significant code blocks
+are displayed as dedicated code listings. The listings will display, in the
 bottom right corner, the associated programming language or context, according
 to~\autoref{tab:pls}. In the table, \emph{version} is the language release
 version assumed in the listings, when applicable (pseudo-languages do not have a
@@ -401,7 +439,7 @@ recoverability of such bibliographic entries, they are pre-emptively preserved
 in suitable online archives.
 
 \paragraph*{Software repositories.}
-Version-controlled third party software repositories are archived at
+Version-controlled third-party software repositories are archived at
 \href{https://softwareheritage.org}{\ndx{Software Heritage}}. For a repository
 hosted at \pr|<URL>|, the recovery address pattern is:
 
@@ -409,8 +447,8 @@ hosted at \pr|<URL>|, the recovery address pattern is:
 \begin{minipage}{\textwidth}
 %! suppress = EscapeUnderscore
 \begin{browserlisting}
-!\texttt{https://archive.softwareheritage.org/browse/origin/directory/}\\
-\mbox{\texttt{?origin\_url=<URL>}}!
+!\texttt{https://archive.softwareheritage.org/browse/origin/directory/}!
+!\hspace{2em}\texttt{?origin\_url=<URL>}!
 \end{browserlisting}
 \end{minipage}
 \end{center}
@@ -421,8 +459,8 @@ For example, the recovery address of the dissertation source code is
 \begin{minipage}{\textwidth}
 %! suppress = EscapeUnderscore
 \begin{browserlisting}
-!\texttt{\href{https://archive.softwareheritage.org/browse/origin/directory/?origin_url=https://github.com/nkrusch/dissertation}{
-https://archive.softwareheritage.org/browse/origin/directory/\\?origin\_url=https://github.com/nkrusch/dissertation}}!
+!\texttt{\href{https://archive.softwareheritage.org/browse/origin/directory/?origin_url=https://github.com/nkrusch/dissertation}{https://archive.softwareheritage.org/browse/origin/directory/}}!
+!\hspace{2em}\texttt{\href{https://archive.softwareheritage.org/browse/origin/directory/?origin_url=https://github.com/nkrusch/dissertation}{?origin\_url=https://github.com/nkrusch/dissertation}}!
 \end{browserlisting}
 \end{minipage}
 \end{center}
@@ -466,7 +504,9 @@ address produces the same document.
 \begin{minipage}{\textwidth}
 %! suppress = EscapeUnderscore
 \begin{browserlisting}
-!\texttt{\url{https://web.archive.org/web/https://types22.inria.fr/files/2022/06/TYPES_2022_paper_14.pdf}}!
+!\texttt{\href{https://web.archive.org/web/https://types22.inria.fr/files/2022/06/}{https://web.archive.org/web/https://types22.inria.fr/files/2022/06/}}!
+!\hspace{2em}\texttt{\href{https://web.archive.org/web/https://types22.inria.fr/files/2022/06/TYPES_2022_paper_14.pdf}{TYPES\_2022\_paper\_14.pdf}}!
+
 \end{browserlisting}
 \end{minipage}
 \end{center}

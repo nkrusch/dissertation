@@ -125,7 +125,7 @@ Proving that an implementation meets its specification requires more information
 than what is readily available in the program syntax~\cite{chang2005}. For
 example, proving a \ndx{Hoare triple} of a loop command often requires
 establishing additional verification conditions. An \emph{\ndx{invariant}} is an
-assertion that is preserved by the program execution~\cite{furia2014}. An
+\ndx{assertion} that is preserved by the program execution~\cite{furia2014}. An
 \ndx{invariant} is \emph{inductive}\index{invariant!inductive}, if it holds the
 first time a program location is reached and is preserved in every cycle
 returning to that location~\cite{sankaranarayanan2004}. There are many kinds of
@@ -159,7 +159,7 @@ Based on this analysis, the \ndx{loop invariant} is \(0 \leq \prm{i} \leq
 
 Finally, a brief note about \ndx{invariants} and \ndx{resource analysis}. It is
 possible to infer \ndx{resource bounds}, of numerical loops, based on \ndx{loop
-invariants}~\cite{nguyen2017}. However, the solution relies on dynamic
+invariant}s~\cite{nguyen2017}. However, the solution relies on dynamic
 techniques, that are beyond the capabilities of pure \ndx{static program
 analysis}.
 
@@ -193,7 +193,7 @@ dissertation are primarily concerned with non-functional safety properties.
 \paragraph*{Partial and \ndx{total correctness}.}
 Broadly, a program is correct if the implementation is consistent with the
 specification\index{specifications}~\cite{furia2014b}. However, when making
-assertions about correctness, we need to be more precise. There are two common
+\ndx{assertion}s about correctness, we need to be more precise. There are two common
 notions that provide added specificity: partial\index{partial correctness} and
 \ndx{total correctness}. \emph{Partial correctness}\index{partial correctness}
 means that every terminating execution is correct, however it does not ensure
@@ -521,7 +521,7 @@ To demonstrate the difference,~\autoref{subsubsec:sm-tool-examples} shows
 examples in \enquote{standard} \ndx{Rocq} and \ndx{SSReflect}. The
 \ndx{Mathematical Components} library has an essential role in the \ndx{Rocq}
 community because several landmark results of \ndx{finite group theory} are
-based on it. For example, the mechanical proofs of the \ndx{Four Colour
+based on it. For example, the mechanical proofs of the \ndx{Four Color
 theorem}~\cite{gonthier2008} and the \ndx{Odd Order theorem}~\cite{gonthier2013}
 utilize the library extensively.
 
@@ -710,7 +710,7 @@ specification\index{specifications}. During program development and when given a
 candidate specification, the verifier runs automatically on code edits, as shown
 in~\autoref{fig:dafny-use}. The engineer receives immediate feedback on the
 verification efforts. When \ndx{Dafny} verifier fails, the engineer must
-annotate the program with additional guidance---assertions, \ndx{precondition}s,
+annotate the program with additional guidance---\ndx{assertion}s, \ndx{precondition}s,
 lemmas, \etc---to assist the verifier, until the verification succeeds. Logical
 contradictions, like the ones raised in~\autoref{fig:dafny-use}, will obviously
 never succeed. The verifier helps to catch such errors early, during program
@@ -719,7 +719,7 @@ development.
 \paragraph*{Proof style.}
 In \ndx{Dafny}, proofs are developed in \enquote{top-down} style. This allows
 the developer to focus on the proof architecture before the detailed proof
-steps. To this end, Dafny provides \pr|assume| statements, \ie assertions
+steps. To this end, Dafny provides \pr|assume| statements, \ie \ndx{assertion}s
 without a proof; and \ndx{ghost method}s, \ie lemmas that are not yet proven.
 Obviously, the proof is not complete until these temporary constructs have been
 replaced with concrete proofs. However, they are useful for facilitating the
