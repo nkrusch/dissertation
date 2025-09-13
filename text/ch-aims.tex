@@ -197,10 +197,15 @@ With these considerations in mind, the \emph{main hypothesis} of this
 dissertation pushes to investigate the application potential of implicit
 computational complexity.
 
+%\begin{figure}[h]
 \begin{infobox}[]{Main hypothesis}
 Implicit computational complexity offers applied utilities when lifted from the
 theoretical domain.
 \end{infobox}
+%\caption[Main hypothesis]
+%{Main hypothesis.}
+%\label{fig:hypo}
+%\end{figure}
 
 \noindent
 Every manuscript in this dissertation is an instantiation of this main
@@ -290,11 +295,18 @@ formally the soundness of the flow calculus?\index{soundness of mwp-calculus}
 
 \end{description}
 
-The manuscripts demonstrate the uses of the flow calculus in static program
-analysis and in formal verification toward specification inference. The
-manuscripts support all dissertation goals. The objective to implement the flow
-calculus (RQ1) supports Goals \#1--3. A formally verified soundness proof (RQ2),
-and an extension to formal verification (RQ3), support Goal \#4.
+The manuscripts building on the flow calculus demonstrate its uses in static
+program analysis and in formal verification for specification inference. The
+manuscripts support all dissertation goals. The manuscripts concerned with the
+implementation of the flow calculus (RQ1) support Goals \#1--3. A formally
+verified soundness proof (RQ2), and an application to formal verification (RQ3)
+support Goal \#4.
+
+One manuscript, \emph{\enquote{mwp-Analysis Improvement and Implementation:
+Realizing Implicit Computational Complexity}} is in the appendix
+(\autoref{app:additional-manuscripts}) due to Augusta University policy. The
+placement should not distract from the significance of the work, as several
+other manuscripts follow from it.
 
 \paragraph*{Analyzing extended non-functional properties}
 
@@ -306,8 +318,7 @@ fragments of loops (called \enquote{blocks}), whose variables become invariant
 after a finite number of iterations. Such loop \ndx{quasi-invariant} code blocks
 can then be lifted from the loop. The program transformation improves the loop's
 complexity profile if the lifted block is a \ndx{nested loop}. For convenience,
-we refer to this technique as the \emph{QI framework} (after the
-quasi-invariants).
+we refer to this technique as the \emph{QI framework}, after quasi-invariants.
 
 This original QI framework is not presented in this dissertation. This is
 because each refinement changes the behavior of the system and requires fully
@@ -342,40 +353,37 @@ related research topics. Each manuscript is decorated with an icon that denotes
 the secondary topic. The topics include static program analysis \iconSPA,
 security \iconSEC, program optimization \iconOPT, and formal methods \iconFM.
 
-The manuscript, \emph{\enquote{mwp-Analysis Improvement and Implementation:
-Realizing Implicit Computational Complexity}} is in the appendix
-(\autoref{app:additional-manuscripts}), due to Augusta University policy. The
-placement should not distract from the significance of the work, as several
-other manuscripts follow from it.
 
 \paragraph*{Author contributions}
 The authors are always listed in alphabetical order. The manuscripts in
-Chapters~\ref{published-manuscripts}--\ref{ch:unpublished-research} are
-\enquote{first author} works. The manuscripts
-in~\autoref{app:additional-manuscripts} are \enquote{non-first author} works.
-The co-authors contributions are detailed in~\autoref{app:sec:coauth}.
+Chapters~\autoref{published-manuscripts}--\autoref{ch:unpublished-research} are
+\enquote{first author} works. The manuscripts in
+Chapter~\autoref{app:additional-manuscripts} are \enquote{non-first author}
+works. The co-authors contributions are detailed in
+Chapter~\autoref{app:sec:coauth}.
 
-\paragraph*{Prior peer review}
-The entire Chapters~\ref{published-manuscripts}, ~\ref{ch:unpublished-research},
-~\ref{ch:summary}, and~\ref{app:additional-manuscripts} have been peer reviewed.
-In other words, the only new content is Chapters~\ref{introduction}
-and~\ref{ch:discussion}, \ie Introduction and Discussion.
+\paragraph*{Peer review}
+The entire Chapters~\autoref{published-manuscripts},
+~\autoref{ch:unpublished-research}, ~\autoref{ch:summary},
+and~\autoref{app:additional-manuscripts} have been peer reviewed. In other
+words, the only new content is Chapters~\autoref{introduction}
+and~\autoref{ch:discussion}, \ie Introduction and Discussion.
 
 \begin{itemize}
 
-\item The published works in Chapters~\ref{published-manuscripts}
-and~\ref{app:additional-manuscripts}, were inspected by 7--10 reviewers before
-acceptance.
+\item The published works in Chapters~\autoref{published-manuscripts}
+and~\autoref{app:additional-manuscripts}, were inspected by 7--10 reviewers
+before acceptance.
 
-\item The unpublished works, in Chapter~\ref{ch:unpublished-research}, have been
-reviewed by at least 4 reviewers thus far. Preliminary versions have been
+\item The unpublished works, in Chapter~\autoref{ch:unpublished-research}, have
+been reviewed by at least 4 reviewers thus far. Preliminary versions have been
 accepted and presented at respectable workshops. Be advised that the unpublished
 works must be viewed with caution, as they are works in progress. All works have
 some limitations that prevent their inclusion among the published manuscripts.
 
-\item Chapter~\ref{ch:summary} is an extended abstract. It describes about the
-full-length dissertation in a standalone manner. It has been peer-reviewed and
-presented at
+\item Chapter~\autoref{ch:summary} is an extended abstract. It describes about
+the full-length dissertation in a standalone manner. It has been peer-reviewed
+and presented at
 \href{https://2025.ecoop.org/track/ecoop-2025-doctoral-symposium}{the Doctoral
 Symposium} of \href{https://2025.ecoop.org}{the European Conference on
 Object-Oriented Programming (ECOOP)} 2025.
@@ -388,13 +396,16 @@ Object-Oriented Programming (ECOOP)} 2025.
 This dissertation contains three varying-length versions of its content.
 This allows accessing the presentation at different levels of detail, by need.
 
-\begin{infobox}[]{Content presentations}
+\begin{infobox}[]{Content organization}
 \begin{enumerate}[wide, labelwidth=!, labelindent=0pt]
+
 \item The \emph{\hyperref[abs]{abstract}} contains the highlights only.
-\item \emph{Chapters~\ref{introduction}--\ref{ch:discussion}
-and~\ref{app:additional-manuscripts}} form the full-length presentation.
-\item \emph{Chapter~\ref{ch:summary}} is a standalone extended summary of the
-full presentation.
+
+\item \emph{Chapters~\autoref{introduction}--\autoref{ch:discussion}
+and~\autoref{app:additional-manuscripts}} form the full-length presentation.
+
+\item \emph{Chapter~\autoref{ch:summary}} is a standalone extended summary of
+the full presentation.
 \end{enumerate}
 \end{infobox}
 
@@ -407,7 +418,7 @@ Computing Machinery~\cite{acm_badging}, for long-term retention. The artifacts
 are archived even if the publication venue did not provide an official artifact
 evaluation round. Therefore, each manuscript consists of more than just the text
 pages of the dissertation. How to locate the artifacts is explained
-in~\autoref{app:sec:artifacts}.
+in Chapter~\autoref{app:sec:artifacts}.
 
 The dissertation itself also has an artifact. The dissertation artifact allows
 executing code fragments appearing in the dissertation and includes additional
@@ -504,7 +515,6 @@ Version-controlled third party software repositories are archived at
 \href{https://softwareheritage.org}{\ndx{Software Heritage}}. For a repository
 hosted at \pr|<URL>|, the recovery address pattern is:
 
-\begin{center}
 \begin{minipage}{\textwidth}
 %! suppress = EscapeUnderscore
 \begin{browserlisting}
@@ -512,11 +522,10 @@ hosted at \pr|<URL>|, the recovery address pattern is:
 !\hspace{2em}\texttt{?origin\_url=<URL>}!
 \end{browserlisting}
 \end{minipage}
-\end{center}
 
-For example, the recovery address of the dissertation source code is
+\begin{example}[Recovering a software repository]
+The dissertation source code archival recovery address is\mbox{}
 
-\begin{center}
 \begin{minipage}{\textwidth}
 %! suppress = EscapeUnderscore
 \begin{browserlisting}
@@ -524,50 +533,42 @@ For example, the recovery address of the dissertation source code is
 !\hspace{2em}\texttt{\href{https://archive.softwareheritage.org/browse/origin/directory/?origin_url=https://github.com/nkrusch/dissertation}{?origin\_url=https://github.com/nkrusch/dissertation}}!
 \end{browserlisting}
 \end{minipage}
-\end{center}
+\end{example}
 
 \paragraph*{Written documents}
 Web pages and PDF files are archived in the \ndx{Wayback Machine} of the
 \ndx{Internet Archive}. Use the following pattern to recover a document from the
-Internet Archive, substituting \pr|<URL>| by the document's URL\@.
+Internet Archive -- substitute \pr|<URL>| by the document's URL\@:
 
-\begin{center}
 \begin{minipage}{\textwidth}
 %! suppress = EscapeUnderscore
 \begin{browserlisting}
 !\texttt{https://web.archive.org/web/<URL>}!
 \end{browserlisting}
 \end{minipage}
-\end{center}
 
-A few cited documents could not be archived by the Internet Archive (because the
-hosting server was blocking automatic clients, or other reasons). A copy of these
+A few cited documents could not be archived by the Internet Archive; for example
+because the hosting server was blocking automatic clients. A copy of these
 documents is in the dissertation companion artifact~\cite{aicc}.
 
 \begin{example}[Recovering archived documents]
 
-The following URL is fragile and may disappear in the future.
+The following URL is fragile and it may disappear in the future.
 
-\begin{center}
 \begin{minipage}{\textwidth}
 %! suppress = EscapeUnderscore
 \begin{browserlisting}
 !\texttt{\url{https://types22.inria.fr/files/2022/06/TYPES_2022_paper_14.pdf}}!
 \end{browserlisting}
 \end{minipage}
-\end{center}
 
-If a request of the original document fails, the following Internet Archive
-address produces the same document.
+As a backup, the following Internet Archive address produces the same document.
 
-\begin{center}
 \begin{minipage}{\textwidth}
 %! suppress = EscapeUnderscore
 \begin{browserlisting}
 !\texttt{\href{https://web.archive.org/web/https://types22.inria.fr/files/2022/06/}{https://web.archive.org/web/https://types22.inria.fr/files/2022/06/}}!
 !\hspace{2em}\texttt{\href{https://web.archive.org/web/https://types22.inria.fr/files/2022/06/TYPES_2022_paper_14.pdf}{TYPES\_2022\_paper\_14.pdf}}!
-
 \end{browserlisting}
 \end{minipage}
-\end{center}
 \end{example}
