@@ -56,7 +56,7 @@ Then, the inner loop is called a \emph{nested loop}\index{nested loop}.
 In~\autoref{lst:loop-ex}, the header\index{header} of the nested loop is at L\ref{line:header-2} and body\index{loop body} at L\ref{line:body}.
 Since there is no intervening code between the two loops, the loop of~\autoref{lst:loop-ex} defines a \emph{perfectly nested loop}\index{perfectly nested loop}~\cite[p. 84]{openmp_api}.
 
-\paragraph*{Canonical loop.}
+\paragraph*{Canonical loop}
 The canonical loop form simplifies several program analyses and makes transformations more effective~\cite{llvm_loops}.
 A \emph{canonical loop}~\cite[p. 196--202]{openmp_api}\index{canonical loop}\footnote{
 The definition is specific to the programming model of~\autoref{openmp} and~\autoref{sec:vmcai}.} has form,
@@ -79,10 +79,10 @@ The operation must be in unary (\pr|++|, \pr|--|), compound assignment (\pr|+=|,
 binary (\pr|var=var+incr|, \pr|var=incr+var|, \pr|var=var-incr|) form.
 \end{enumerate}
 
-\paragraph*{Non-canonical loop.}
+\paragraph*{Non-canonical loop}
 If a loop that does not satisfy the criteria of a canonical loop, in~\autoref{sec:vmcai}, it is referred to a \emph{non-canonical loop}\index{non-canonical loop}.
 
-\paragraph*{A note on loop representations.}
+\paragraph*{A note on loop representations}
 This representation is simplified, at least in two ways, for accessibility.
 Real compile-time code optimizations are performed
 on an \emph{intermediate representation}\index{intermediate representation} (IR) of the source program.
@@ -105,7 +105,7 @@ A loop transformation replaces the \emph{original} loop(s) with one or more sema
 We consider next a few common loop transformations to demonstrate the idea.
 Assuming a sequential source program, these transformations are straightforward for a compiler to apply automatically~\cite{bertolacci2018}.
 
-\paragraph*{Distributing and combining loops.}
+\paragraph*{Distributing and combining loops}
 Loop \emph{fusion}\index{loop transformation!fusion}, in~\autoref{lst:fusion}, merges multiple loops by replacing them with a single loop.
 In each iteration, the generated loop executes an iteration of each original loop.
 Loop \emph{fission}\index{loop transformation!fission}, in~\autoref{lst:fission}, operates in the reverse direction.
@@ -129,7 +129,7 @@ In both transformations, the loop header and iteration space remain unchanged.
 \end{minipage}
 \end{center}
 
-\paragraph*{Iteration range-based transformations.}
+\paragraph*{Iteration range-based transformations}
 The \emph{split} transformation\index{loop transformation!split},
 in~\autoref{lst:split}, breaks the original loop into multiple generated loops.
 Each generated loop has the same body as the original, but iterates over a different contiguous subset of the original range.
@@ -175,14 +175,14 @@ The loop iteration space is adjusted accordingly.
 \end{minipage}
 \end{center}
 
-\paragraph*{Modifications of the loop body.}
+\paragraph*{Modifications of the loop body}
 Loop \emph{unrolling}\index{loop transformation!unroll} expands and duplicates the body commands into similar independent commands.
 The update condition is adjusted by an \emph{unroll factor}.
 In~\autoref{lst:unroll} the loop body is unrolled twice, therefore the unroll factor is 2\footnote{
 The simplified example assumes the transformation does not exceed the array bounds.}.
 Unrolling aims to reduce or eliminate evaluations of the loop condition.
 
-\paragraph*{Transforming nested iterations.}
+\paragraph*{Transforming nested iterations}
 
 Loop \emph{interchange}\index{loop transformation!interchange} is a transformation on a nested loop.
 It changes the loop nesting order by exchanging two iteration variables referenced by a nested loop,
@@ -224,7 +224,7 @@ Further, by parametrizing computation over iterations, loops introduce additiona
 A \emph{reordering transformation} is any transformation that changes the code execution order, but does not add or delete statements.
 By the fundamental theorem of dependence, a reordering transformation that preserves every dependence in a program preserves the meaning of that program~\cite[p. 66]{kennedy2001}.
 
-\paragraph*{Data and control dependence.}
+\paragraph*{Data and control dependence}
 How data is accessed during computations creates dependencies in terms of \emph{order} of shared memory operations.
 There is a \emph{data dependence}\index{data dependence} from statement \pr|S1| to \pr|S2|
 if and only if both statements access the same memory location, at least one statement writes to the location,
@@ -280,7 +280,7 @@ It forbids reordering the writes to prevent an interchange that would cause a su
 based on evaluation of the control statement (\pr|S1|).
 \end{itemize}
 
-\paragraph*{Dependence in loops.}
+\paragraph*{Dependence in loops}
 Data and control dependence are applicable to loops;
 however, loops introduce additional dependence.
 Dependence in loops arises from statements being \emph{parameterized by iterations} in which they execute.
@@ -321,7 +321,7 @@ and there is a control flow path from \pr|S1| to \pr|S2|.
 Comparing the two loop dependencies, a loop-carried dependence determines the iteration order and whether that order can be transformed safely.
 A loop-independent dependence determines the statement execution order within a nest of loops.
 
-\paragraph*{Dependence analysis.}
+\paragraph*{Dependence analysis}
 Detecting dependencies is the focus of dependence analysis\index{dependence analysis}.
 \emph{Dependence analysis} (or a \emph{dependence test})
 is a technique for identifying or characterizing program dependencies and dependence-preserving reorderings;
@@ -357,7 +357,7 @@ and the degree to which we can extract parallelism from a sequential program and
 No parallelization strategy fits all cases and it is important to facilitate the discovery of new strategies and parallel algorithms as complementary to existing techniques.
 For example, running automatic analysis on a large application can distinguish regions that can be parallelized automatically from those that need manual changes.
 
-\paragraph*{From dependence to independence.}
+\paragraph*{From dependence to independence}
 Since dependence determines how program executions may be reordered, it provides a strong foundation for developing techniques to increase the parallelism available in programs.
 Parallelism inherently requires \emph{independence} between statements;
 in other words, we are interested in absence of dependence.
@@ -366,7 +366,7 @@ One focus area in parallelization concerns \emph{loop-level parallelism} that ai
 For example, by the Loop Parallelization Theorem, it is permissible to convert a sequential loop to a parallel one if the loop carries no dependence~\cite[p. 82]{kennedy2001}.
 The remainder of this section focuses precisely on the terms and techniques of parallelizing loops.
 
-\paragraph*{Parallel programming models.}
+\paragraph*{Parallel programming models}
 Multiple sophisticated programming models exist to simplify the task of writing parallel programs.
 These models raise the abstraction level between the application code and the operating system-level parallelization mechanism of threading.
 The OpenMP\index{OpenMP}\index{parallel programming model!OpenMP}
@@ -415,7 +415,7 @@ Other compilers a free to ignore the directives.
 OpenMP\index{OpenMP} applications are suitable for running on multicore chips, GPUs\index{GPU}, and various other devices attached to a CPU\index{CPU}.
 OpenMP is developed and maintained by the OpenMP Architecture Review Board (ARB).
 
-\paragraph*{Foundational terms.}
+\paragraph*{Foundational terms}
 The following are basic parallel programming terms needed to discuss OpenMP directives~\cite{openmp_api};
 refer to \autoref{lst:parallel} for a visual.
 A \emph{thread}\index{thread} is a logical {execution entity}, equipped with a stack and associated thread-specific memory.
@@ -434,7 +434,7 @@ the worksharing loop property\index{worksharing loop property}.
 The \emph{worksharing loop property}\index{worksharing loop property} requires that a construct
 distributes the iterations of the associated loops among the threads\index{thread} of the team that encounters the loop~\cite[p. 113]{openmp_api}.
 
-\paragraph*{Essential parallel directives.}
+\paragraph*{Essential parallel directives}
 {Parallelization directives}~\index{parallelization directive} are at the core of OpenMP\index{OpenMP}.
 This section introduces a few important ones, including the directives that appear elsewhere in this dissertation.
 Because OpenMP is a powerful and rich programming model, it is possible to present only a light introduction.
@@ -475,7 +475,7 @@ The OpenMP \pr|parallel| construct and parallel execution with \(j\) threads.%
 }\label{lst:parallel}
 \end{center}
 
-\paragraph*{Synchronization constructs.}
+\paragraph*{Synchronization constructs}
 Synchronization constructs~\cite[p. 473--482]{openmp_api} enable controlling co-operation of threads\index{thread} over parallel executions.
 
 \begin{itemize}
@@ -537,7 +537,7 @@ Assuming a thread\index{thread} count of 4, the threads distribute the loop iter
 \end{minipage}
 \end{center}
 
-\paragraph*{Work distribution and tasking constructs.}
+\paragraph*{Work distribution and tasking constructs}
 Parallel executions of structured blocks are controllable by work distribution and tasking directives.
 Looping operations on arrays and matrices, like images and tabular data, are often prime candidates for parallelization.
 OpenMP has specialized directives to support parallelization of loops.
@@ -566,7 +566,7 @@ An implicit barrier\index{barrier} concludes a \omp{single} region.
 
 \end{itemize}
 
-\paragraph*{Shared vs. private data.}
+\paragraph*{Shared vs. private data}
 In a multi-threaded shared memory environment, it is necessary to specify how variables are accessed by the executing threads\index{thread}.
 This behavior can be controlled with the data-sharing attribute clauses~\cite[p. 224--225]{openmp_api} that are a kind of data environment modifiers.
 Both clauses presented here take as a parameter a list of variables names or procedure pointers.
@@ -632,7 +632,7 @@ tile\index{loop transformation!tile}, and
 unroll\index{loop transformation!unroll}.
 As an example, we consider the unrolling transformation.
 
-\paragraph*{Loop unrolling.}\index{loop transformation!unroll}
+\paragraph*{Loop unrolling}\index{loop transformation!unroll}
 The \omp{unroll} clause~\cite[p. 381--382]{openmp_api}
 transforms the associated loop based on the specification provided in the parallelization directive\index{parallelization directive}.
 The \omp{unroll} clause is followed by either \omp{full} or \omp{partial} clause.

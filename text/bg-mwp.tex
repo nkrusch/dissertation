@@ -63,7 +63,7 @@ The mwp-matrices are assigned to program commands by the inference rules\index{i
 This dissertation will revisit the topic of mwp-matrices\index{mwp-matrix} several times, presenting them at different levels of detail.
 For this introduction, it suffices to consider an mwp-matrix\index{mwp-matrix} as an \emph{array of coefficients}\index{flow coefficient} for simplicity.
 
-\paragraph*{A sound calculus of value growth.}
+\paragraph*{A sound calculus of value growth}
 The analysis result is binary and indicates whether all final values can be bounded by polynomials in inputs.
 When affirmative, we call the analyzed program \emph{derivable}\index{derivability}.
 For a program \pr|C|\symbo{p2} and an mwp-matrix \(M\)\symbo{matrix},
@@ -97,7 +97,7 @@ the mwp-calculus\index{mwp-calculus} includes nondeterminism\index{nondeterminis
 Consequently, a single program may admit multiple derivations with distinct matrices, which in turn complicates determining the result of the analysis.
 However, a program is derivable\index{derivability} if there exists a derivation without an \(\infty\)-coefficient.
 
-\paragraph*{The mwp-bounds characterize value growth.}\label{interpreting-bounds}
+\paragraph*{The mwp-bounds characterize value growth}\label{interpreting-bounds}
 The column vectors of an mwp-matrix\index{mwp-matrix} encode variable value growth bounds.
 An mwp-bound\index{mwp-bound} (denoted \(W,V,U,\ldots\)) characterizes the value growth of a single variable \wrt program inputs.
 An mwp-bound\index{mwp-bound} is an expression of form $\max(\vec{x}, \poly_1(\vec{y})) + \poly_2(\vec{z})$.
@@ -147,7 +147,7 @@ reading the manuscripts alone. Therefore, this section aims discuss the topic in
 an accessible manner, with a summary in~\autoref{tab:evo}).
 The table corresponds to the following four publications.
 
-\paragraph*{The original flow calculus.}
+\paragraph*{The original flow calculus}
 The flow calculus of mwp-bounds\index{mwp-calculus}~\cite{jones2009} was designed to characterize sequential imperative polytime programs\index{imperative programs},
 with an underlying ambition to study the boundary of decidability~\cite{kristiansen2017}.
 The complexity-theoretic\index{complexity theory} result is obtained by bounding the growth of variable values by polynomials in inputs.
@@ -189,7 +189,7 @@ The technique permits efficient construction of complex mwp-matrices, but only a
 At the time, the analyzer could answer a question of whether all variables could be bounded (yes/no).
 However, in absence of an efficient evaluation strategy, it could not provide concrete bounds (\cf Table 1 in~\aref{sec:fscd}).
 
-\paragraph*{The pymwp static analyzer.}
+\paragraph*{The pymwp static analyzer}
 After continued development, the pymwp\index{pymwp} static analyzer~\cite{pymwp} was enhanced in two ways~\cite{aubert2023b}.
 The first introduced an efficient mwp-matrix\index{mwp-matrix} evaluation strategy.
 It enabled representing all permissible derivations in a compact form and producing an arbitrary instance of a program bound, if at least one bound exists.
@@ -220,7 +220,7 @@ Otherwise, the result identifies the variables with problematic data flows that 
 }\label{fig:pymwp}
 \end{figure}
 
-\paragraph*{Postconditions via mwp-bounds.}\index{mwp-bound}
+\paragraph*{Postconditions via mwp-bounds}\index{mwp-bound}
 The most recent development applies the flow calculus\index{mwp-calculus} to specification inference, namely postconditions~\autoref{sec:postcond}.
 This ia new use-case, shifting the focus form static analysis toward formal verification.
 Technically it introduces three flow calculus\index{mwp-calculus} enhancements:
@@ -268,7 +268,7 @@ The loop analysis variant is implemented in pymwp\index{pymwp} as a special mode
 \end{table}
 \end{landscape}}
 
-\paragraph*{Open problems for future developments.}
+\paragraph*{Open problems for future developments}
 Throughout the technical progression, the class of programs covered by the analysis has remained similar;
 with small adjustments.
 The semantic property of interest, variable value growth \wrt inputs, is never lost nor altered.
@@ -299,7 +299,7 @@ In contrast, the \textsc{mwp}\(^\infty\) calculus\index{mwp-calculus} generates 
 For the best exposition of how to construct complex mwp-matrices see~\aref{sec:fscd}.
 The evaluation procedure that extracts mwp-bounds\index{mwp-bound} from complex mwp-matrices is best described in~\autoref{sec:postcond}.
 
-\paragraph*{An imperative programming language.}
+\paragraph*{An imperative programming language}
 The inputs of the analysis are specified in a simple imperative language (referred to as \pr|Imp| in code listings).
 Because the language and semantics are defined in~\autoref{sec:postcond} and~\aref{sec:fscd}, they are not repeated here.
 A \emph{program} is a sequence of commands.
@@ -312,7 +312,7 @@ like C\index{C}
 and  Java\index{Java};
 and makes all languages that share the same core analyzable.
 
-\paragraph*{The mwp-matrix algebra.}\index{mwp-matrix}
+\paragraph*{The \ndx{mwp-matrix} algebra}\index{mwp-matrix}
 We use the definitions from the original flow calculus\index{mwp-calculus}~\cite{jones2009}.
 The mwp-matrix algebra provides a mathematical framework for tracking variable value growth.
 
@@ -356,7 +356,7 @@ The closure (fixed point) of the matrix \(M\) is denoted by \(M^*\) and
 defined as an infinite sum \[M^* = 1 \oplus M \otimes M^2 \oplus M^3 \oplus \ldots \]
 \end{description}
 
-\paragraph*{The inference rules of the mwp-calculus.}
+\paragraph*{The inference rules of the mwp-calculus}
 \index{inference rule}
 \index{mwp-calculus}
 
@@ -505,7 +505,7 @@ but that occur in realistic programming languages, \eg \ndx{assertion|seealso{pr
     \end{algorithmic}
 \end{algorithm}
 
-\paragraph*{The analysis procedure.}
+\paragraph*{The analysis procedure}
 Recall, a program is a sequence of commands.
 Program analysis using the flow calculus\index{mwp-calculus} requires inspecting the sequence of commands,
 applying the inference rules\index{inference rule}, and composing the mwp-matrices of the commands.
@@ -714,7 +714,7 @@ The input program is in~\autoref{lst:ex-exponent2}.
 \end{minipage}
 \end{center}
 
-\paragraph*{Step 1.} Analyze the command \pr|result = result * base| (simplified to \pr|r=r*b| in the following).
+\paragraph*{Step 1} Analyze the command \pr|result = result * base| (simplified to \pr|r=r*b| in the following).
 It admits three derivations (\(\pi_0\), \(\pi_1\) and \(\pi_2\)).
 
 \begin{center}
@@ -741,7 +741,7 @@ It admits three derivations (\(\pi_0\), \(\pi_1\) and \(\pi_2\)).
 \end{prooftree}}
 \end{center}
 
-\paragraph*{Step 2.} Analyze command \pr|i=i+1|.
+\paragraph*{Step 2} Analyze command \pr|i=i+1|.
 Similarly, it admits three derivations (\(\pi_3\), \(\pi_4\) and \(\pi_5\)).
 
 \begin{center}
@@ -768,7 +768,7 @@ Similarly, it admits three derivations (\(\pi_3\), \(\pi_4\) and \(\pi_5\)).
 \end{prooftree}}
 \end{center}
 
-\paragraph*{Step 3.} Compose the body commands, \pr|r=r*b; i=i+1|.
+\paragraph*{Step 3} Compose the body commands, \pr|r=r*b; i=i+1|.
 There are 9 different combinations, by the derivation choices made in the previous steps.
 
 \begin{center}
@@ -818,7 +818,7 @@ There are 9 different combinations, by the derivation choices made in the previo
 \end{prooftree}
 \end{center}
 
-\paragraph*{Step 4.}
+\paragraph*{Step 4}
 Apply rule W to account for the enclosing \pr|while| loop.
 It requires first computing mwp-matrix\index{mwp-matrix}  closure \(M^{*}\) for the body command.
 The side conditions is \(\forall i, M_{ii}^* = m\) and \(\forall i, j, M^*_{ij} \neq p\).
@@ -864,7 +864,7 @@ In every derivation, the mwp-matrix\index{mwp-matrix}  violates the side conditi
 \end{prooftree}
 \end{center}
 
-\paragraph*{Step 5.} We conclude the input program is not derivable\index{derivability}.
+\paragraph*{Step 5} We conclude the input program is not derivable\index{derivability}.
 \end{example}
 
 \begin{example}[While analysis]\label{ex:while1}
@@ -884,7 +884,7 @@ Compared to derivation failure that requires exploring all derivation choices,
 a derivable\index{derivability} program simply requires showing one successful derivation.
 For presentation reasons, we show the two branches of the derivation tree individually.
 
-\paragraph*{Step 1.} The derivation of the \pr|if| command (\(\pi_0\)){ }is straightforward.
+\paragraph*{Step 1} The derivation of the \pr|if| command (\(\pi_0\)){ }is straightforward.
 Observe that the control expression of the \pr|if| statement has no impact on the constructed mwp-matrix\index{mwp-matrix}.
 
 \begin{center}
@@ -901,7 +901,7 @@ Observe that the control expression of the \pr|if| statement has no impact on th
 \end{prooftree}
 \end{center}
 
-\paragraph*{Step 2.} The derivation of the \pr|while| loop (\(\pi_1\)){ }is now permitted,
+\paragraph*{Step 2} The derivation of the \pr|while| loop (\(\pi_1\)){ }is now permitted,
 because the rule W side condition is not violated by any coefficient\index{flow coefficient}.
 
 \begin{center}
@@ -914,7 +914,7 @@ because the rule W side condition is not violated by any coefficient\index{flow 
 \end{prooftree}
 \end{center}
 
-\paragraph*{Step 3.} Composing the mwp-matrices of the two commands
+\paragraph*{Step 3} Composing the mwp-matrices of the two commands
 gives an mwp-matrix\index{mwp-matrix} for the complete input program \(P\).
 We conclude the syntactic data-flow relation\index{data flow relation} \(\vdash P : M \) holds.
 
@@ -985,7 +985,7 @@ We will refer to these commands as \(\prm{C}_0\)--\(\prm{C}_3\) and their deriva
 The program analysis proceeds in corresponding steps.
 To ease presentation, we will analyze command composition after each individual command.
 
-\paragraph*{Step 1.} Analyze command \(\prm{C}_0\) \ie the \pr|if-else| statement.
+\paragraph*{Step 1} Analyze command \(\prm{C}_0\) \ie the \pr|if-else| statement.
 
 \begin{center}\begin{prooftree}
 \infer0[E1]{\vdashJK \text{\pr|X0|} : \mat{m\\0\\0}}
@@ -999,7 +999,7 @@ To ease presentation, we will analyze command composition after each individual 
 \infer2[I]{ \vdashJK \text{\pr|if(X0) X2=X0+X1; else X2=X2+X1|} : \mat{m&0&m\\0&m&p\\0&0&m}}
 \end{prooftree}\end{center}
 
-\paragraph*{Steps 2--3.} Analyze commands \(\prm{C}_1\) and \(\prm{C}_2\), \ie \pr|X0=X2+X1| and \pr|X1=X0+X2|.
+\paragraph*{Steps 2--3} Analyze commands \(\prm{C}_1\) and \(\prm{C}_2\), \ie \pr|X0=X2+X1| and \pr|X1=X0+X2|.
 
 \begin{center}
 \begin{prooftree}
@@ -1015,7 +1015,7 @@ To ease presentation, we will analyze command composition after each individual 
 \end{prooftree}
 \end{center}
 
-\paragraph*{Steps 4.} Analyze command \(\prm{C}_3\) \ie the \pr|while| loop.
+\paragraph*{Steps 4} Analyze command \(\prm{C}_3\) \ie the \pr|while| loop.
 
 \begin{center}
 \begin{prooftree}
@@ -1025,7 +1025,7 @@ To ease presentation, we will analyze command composition after each individual 
 \end{prooftree}
 \end{center}
 
-\paragraph*{Steps 5.} Compose the mwp-matrices of derivations \(\pi_0 \ldots \pi_3\).
+\paragraph*{Steps 5} Compose the mwp-matrices of derivations \(\pi_0 \ldots \pi_3\).
 
 \noindent\resizebox{\textwidth}{!}{\begin{prooftree}
 \hypo{}\ellipsis{\(\pi_0\)}{\vdashJK \prm{C}_0 : \mat{m&0&m\\0&m&p\\0&0&m}}
@@ -1052,7 +1052,7 @@ Recall the equivalent programs of~\autoref{lst:intro}.
 For program analysis, the programs must be first transformed to the imperative language of the flow calculus.
 Listings~\ref{lst:equiv-imp1} and~\ref{lst:equiv-imp2} show the programs after the transformation.
 
-\paragraph*{Program with control flow.}
+\paragraph*{Program with control flow}
 Consider the input program in~\autoref{lst:equiv-imp1}.
 
 \begin{center}
@@ -1079,7 +1079,7 @@ The mwp-bound assigned to variable \pr|Z| is \(\max(\prm{X},\prm{Y})\).
 Because it is not possible to know which branch of the program will execute,
 this is the most precise upper bound to characterize the final value of variable \pr|Z|.
 
-\paragraph*{Program with arithmetic.}
+\paragraph*{Program with arithmetic}
 The initial program is \pr|Z=X*bit+Y*(1-bit)|.
 Transforming the program to the imperative language requires rewriting the arithmetic operations to binary form, and lifting constants to input variables.
 From these changes, we obtain the program in~\autoref{lst:equiv-imp2}.
@@ -1115,7 +1115,7 @@ One of them produces the following mwp-matrix
 In this mwp-matrix, variable \pr|Z| is assigned an mwp-bound \(\max(\prm{X}) + \prm{Y} \times \prm{bit} \times \prm{c}\).\footnote{This mwp-bound may be sub-optimal.}
 The mwp-bound simplifies to \(\prm{X} + \prm{Y} \times \prm{bit}\).
 
-\paragraph*{Assessment and comparison.}
+\paragraph*{Assessment and comparison}
 The derivation of program \(\mathsf{P_C}\) is more straightforward than of \(\mathsf{P_A}\).
 The former involves fewer variables, deterministic inference rules, and fewer derivation steps.
 There is precisely one derivation to characterize \(\mathsf{P_C}\).

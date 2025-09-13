@@ -88,7 +88,7 @@ interpreting its results is problematic because errors are not conservative.
 }\label{fig:approx}
 \end{figure}
 
-\paragraph*{Soundness and completeness.}
+\paragraph*{Soundness and completeness}
 A terminating static analyzer can either be sound or complete, but not both.
 Soundness and completeness are terms from logic and not exclusive to static program analysis.
 In logic, they carry the following meaning.
@@ -119,7 +119,7 @@ Soundness is challenging because it can render the analysis unscalable or imprec
 To maintain semantics, an optimizing analysis typically requires soundness~\cite[p. 5]{moller2023}.
 A complete analyzer underestimates the program behaviors and thus errs on the other side.
 
-\paragraph*{Soundiness.}
+\paragraph*{Soundiness}
 While academic literature widely emphasizes sound analyses, according to~\textcite{livshits2015}, strict soundness is a myth among realistic whole-program analyzers.
 Practically-orientated static analyzers typically insist on \ndx{Turing-completeness} and termination,
 but trade between soundness and completeness~\cite{moller2023,steffen2020}.
@@ -155,7 +155,7 @@ Among the well-established techniques are \ndx{automatic amortized resource
 analysis} (AARA) and \ndx{cost equation system}s (CES). These techniques are
 briefly introduced next.
 
-\paragraph*{Automatic amortized resource analysis.} \index{automatic amortized
+\paragraph*{Automatic amortized resource analysis} \index{automatic amortized
 resource analysis} \emph{Amortized analysis}\index{amortized analysis} averages
 the time required to perform a sequence of operations over all the operations
 performed~\cite[p. 451]{cormen2009}. Amortization\index{amortization} enables to
@@ -180,7 +180,7 @@ programs}~\cite{hoffmann2015}, probabilistic\index{probabilistic
 programs}~\cite{avanzini2020,ngo2018,wang2020}, and concurrent session-typed
 programs\index{session types}\index{concurrent programs}~\cite{das2018,das2021}.
 
-\paragraph*{Cost equation systems.}
+\paragraph*{Cost equation systems}
 A \emph{\ndx{cost equation system}} (CES)\footnote{Sometimes alternatively: cost
 \emph{relation} system.} is am abstract representation format to express a
 program's resource cost~\cite{floresmontoya2017,albert2019}. A CES consists of a
@@ -325,7 +325,7 @@ A comprehensive comparison of resource bounds computed by various tools is avail
 
 \subsubsection{Feature Considerations of ICC Techniques}\label{icc-feat}
 
-\paragraph*{Soundness and completeness.}
+\paragraph*{Soundness and completeness}
 In characterizing a complexity class,
 a \emph{soundness} statement says that all programs of a given language, or those satisfying a restriction \(\mathcal{R}\), admit a certain complexity property, \ie compute functions in the target class.
 A \emph{completeness} statement says that all functions of the corresponding functional complexity class can be programmed in this language~\cite{baillot2012}.
@@ -342,7 +342,7 @@ Fixing the issue requires rewriting the program to satisfy the class membership 
 Due to undecidability, it is impossible to completely avoid false negatives.
 Stated differently, implicit complexity can decide non-trivial semantics properties of programs, but it will always exclude some programs that possess the property of interest.
 
-\paragraph*{Input languages and expressive power.}
+\paragraph*{Input languages and expressive power}
 Extensional correspondence with complexity classes is usually not enough.
 A programming language offering safety guarantees is plausible only
 if it captures enough interesting and natural algorithms~\cite{baillot2012}.
@@ -361,7 +361,7 @@ in implicit complexity techniques focuses on \enquote{toy languages}~\cite{moyen
 like term rewrite systems or the \textsc{Loop} language~\cite{kristiansen2005}.
 While such languages capture the core of mainstream programming languages, they are far from the rich constructs allowed in real languages.
 
-\paragraph*{Analysis mechanics and obtained bounds.}
+\paragraph*{Analysis mechanics and obtained bounds}
 That ICC systems are designed to characterize a specific complexity classes has implications on the results they produce.
 If they generate bounds, they are asymptotic (symbolic) bounds, rather than concrete bounds~\cite{baillot2019}.
 An existing research direction in ICC concerns improving precision of obtained resource bounds~\cite{benamram2020}.

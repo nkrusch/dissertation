@@ -198,13 +198,8 @@
     colback=importantbg,
     title={},
     detach title,
-    % sharp corners=all,
     rounded corners=all,
-    before upper={\textbf{#2.}{ }},
-    finish={
-    \node[circle, fill=white, draw=important, solid, align=center,
-        line width=1pt, inner sep=1.5pt, outer sep=0.4pt, rounded corners=2pt,
-        xshift=-3mm, yshift=1.5mm, anchor=north west]
-        at (frame.north east) { \iconIMP };
-    },#1
+    before upper={\iconIMP{ }\textbf{#2.}\hspace{.75em}},
+    finish={ }, #1
 }
+\newcommand{\goal}[1]{\iconBOX{ }\textbf{G#1.}}

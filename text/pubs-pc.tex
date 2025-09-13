@@ -243,7 +243,7 @@ analysis result is derived statically, by applying \ndx{inference rule}s to the
 commands of the program, in a compositional\index{compositionality} bottom-up
 manner.
 
-\paragraph*{Value growth as data flow graphs.}
+\paragraph*{Value growth as data flow graphs}
 As an internal bookkeeping procedure, the flow calculus collects information in
 matrices (\autoref{sec:calc}). For enhance intuition, we represent these
 matrices also as data flow graphs (\autoref{fig:dfg-ex}). A \emph{\ndx{data flow
@@ -253,7 +253,7 @@ involved in \(\mathcal{C}\)\symbo{prog2}. The vertices are the variables of
 \(\mathcal{C}\)\symbo{prog2} and the edges denote \ndx{dependence} between
 variables.
 
-\paragraph*{Flow coefficients.}
+\paragraph*{Flow coefficients}
 The edges of a \textsc{dfg} are quantified by {\ndx{flow coefficient}s}. The
 coefficients characterize the weight of the dependence between variables. When
 no dependence exists, the coefficient is \(0\)\symbo{zero} (we omit \(0\)-edges
@@ -319,7 +319,7 @@ fast} for a polynomial bound.
 }\label{fig:dfg-ex}
 \end{figure}
 
-\paragraph*{Analysis result and \ndx{derivability}.}
+\paragraph*{Analysis result and \ndx{derivability}}
 If all final values can be bounded by polynomials, then the input program is
 \emph{derivable}. The flow calculus assigns an \emph{\ndx{mwp-bound}} to every
 variable of a derivable program. An \ndx{mwp-bound} is an expression, in terms
@@ -354,7 +354,7 @@ using formal methods is the strength of guarantees it provides. In contrast to
 tests and inspection, a proof conclusively ensures behavioral correctness at the
 modeled level of abstraction.
 
-\paragraph*{Specifications.}
+\paragraph*{Specifications}
 A {specification}\index{specifications} is a formal contract with three
 components.
 \begin{enumerate*}
@@ -379,7 +379,7 @@ terminates\index{termination}, every call to another procedure satisfies its
 \ndx{termination}~\cite{furia2010}. For an example of \ndx{specifications},
 refer to Appendix~\ref{app:sec:verified}.
 
-\paragraph*{Relating postconditions and loop \ndx{invariant}s.}
+\paragraph*{Relating postconditions and loop \ndx{invariant}s}
 A \ndx{postcondition} is a higher-level view describing the program goal. In
 case of loops, a \emph{postcondition} is a conditions that must hold after the
 loop terminates.\index{termination} The \ndx{postcondition} inference problem
@@ -596,7 +596,7 @@ Going forward, we omit the details of these rules and instead refer to them by a
 An \ndx{mwp-matrix} represents the derivations of an analyzed program. Before
 diving into full mwp-matrices, this section describes its \emph{elements}.
 
-\paragraph*{Basic terms.}
+\paragraph*{Basic terms}
 Flow coefficients---described in \autoref{subsec:flow-calc-intro}---are the core building blocks of mwp-matrices.
 The flow coefficients are elements of the finite set \(\text{\textsc{mwp}}^\infty \triangleq \{0, m, w, p,\infty\}\).\symbo{trieq}
 A \emph{domain} \(\mathcal{D} \triangleq \{0, 1, 2 \}\)\symbo{domain} is a bidirectional map of the flow calculus \ndx{inference rule}s.
@@ -961,7 +961,7 @@ A single rogue variable can cause a whole-program derivation failure.
 This treatment of failure limits the utility of the analysis.
 Since our goal is to infer postconditions of loops, this restriction excludes many programs we want to analyze.
 
-\paragraph*{Improving the failure handling.}
+\paragraph*{Improving the failure handling}
 Our intuition is that the mwp-matrices accumulate information that permits reasoning about {certain variables} in presence of failure.
 The main new idea is to \emph{isolate the failing variables} from those with acceptable behavior.
 If such isolation is possible, then the remaining variables can be analyzed.
@@ -1232,7 +1232,7 @@ The inferred \ndx{postconditions} can be described by the following categories.
 
 \end{description}
 
-\paragraph*{A note on numerical minimality.}
+\paragraph*{A note on numerical minimality}
 One variable may be assigned multiple incomparable \ndx{mwp-bounds}. The
 definition of optimality\index{mwp-bounds!optimal} does not guarantee the
 selected \ndx{postcondition} is the numerical minimum by evaluation. For
@@ -1416,7 +1416,7 @@ precise formula is \(\prm{x'} = \prm{x} + (\prm{y'} \times \prm{y'} - \prm{y'})
 }\label{fig:loops}
 \end{center}
 
-\paragraph{Inference with \impl.}
+\paragraph*{Inference with \impl}
 The results of \ndx{\impl} give a baseline for comparison.
 
 \begin{itemize}
@@ -1437,7 +1437,7 @@ constants \pr|1| and \pr|1000| are lifted to inputs \(\prm{c}_1\) and
 
 \end{itemize}
 
-\paragraph{Complexity analyzer KoAT.}
+\paragraph*{Complexity analyzer KoAT}
 \ndx{KoAT}~\cite{koat} is a part of the automated \ndx{termination} and
 complexity prover \ndx{AProVE}~\cite{giesl2016}. \ndx{KoAT} infers complexity
 bounds:\index{asymptotic bounds} time, cost, \ndx{size bound}s, \etc The bound
@@ -1465,7 +1465,7 @@ allowed to occur in the body.\index{loop body}
 \(\prm{y}: 1000\). Variable \pr|x| is discarded.
 \end{itemize}
 
-\paragraph{Duet -- the analyzer of unbounded concurrency.}
+\paragraph*{Duet -- the analyzer of unbounded concurrency}
 \ndx{Duet} is a static verifier for \ndx{concurrent programs} whose \ndx{thread}
 count cannot be statically bounded~\cite{duet}. We include it in this comparison
 because it contains analysis techniques that relate to our problem. In
@@ -1493,7 +1493,7 @@ generated from \ndx{transition ideal}s.
     assertions.
 \end{itemize}
 
-\paragraph{Postconditions with Daikon.}
+\paragraph*{Postconditions with Daikon}
 \ndx{Daikon}~\cite{ernst2007,daikon} is a dynamic\index{dynamic program analysis}
 \ndx{invariant} detector with front-ends to support many programming languages.
 \ndx{Daikon} predicts \ndx{likely invariant}s at function entry and exit points.
@@ -1576,7 +1576,7 @@ We examine two questions about the implementation of our technique.
 
 \end{enumerate}
 
-\paragraph*{Setup: benchmarks, metrics, and environment.}
+\paragraph*{Setup: benchmarks, metrics, and environment}
 \label{subsec:exp-setup}
 We consider four benchmark suites, of numerical \ndx{C} loops\index{numerical
 loops}, and 620 total problem (detailed in~\autoref{app:subsec:bench}). The
@@ -1713,7 +1713,7 @@ materialized in an implementation, \ndx{\impl}. Our experiments show that the
 paper enhancements improve the flow calculus\index{mwp-calculus} and make it
 applicable toward uses in \ndx{formal verification}.
 
-\paragraph*{Future directions.}
+\paragraph*{Future directions}
 Although we have extended the flow calculus\index{mwp-calculus} capabilities,
 multiple directions for future work remain, and many emerge from this work. The
 two main directions concern enriching the analysis \ndx{expressiveness} and
@@ -1786,7 +1786,7 @@ inference\index{invariant inference}.
 
 We analyzed the programs in Listings~\ref{lst:ex34}--\ref{lst:l2} as follows.
 
-\paragraph*{$\text{mwp}_\ell$.}
+\paragraph*{$\text{mwp}_\ell$}
 We run \ndx{pymwp} v0.6.0 in the loop analysis mode.
 \begin{center}
 \begin{minipage}{\textwidth}
@@ -1800,7 +1800,7 @@ We run \ndx{pymwp} v0.6.0 in the loop analysis mode.
 \end{minipage}
 \end{center}
 
-\paragraph*{KoAT.}
+\paragraph*{KoAT}
 The \ndx{KoAT} web interface is sufficient to confirm our findings.
 We applied the following options:
 \myok{ }control-flow refinement
@@ -1813,7 +1813,7 @@ The web interface address is:
 {\pr|https://aprove.informatik.rwth-aachen.de/interface/v-koat/c|}
 \end{center}
 
-\paragraph*{Duet.}
+\paragraph*{Duet}
 We ran \ndx{Duet} from source, git revision \pr|1d36b05|, with following
 options. The compositional recurrence analysis generates \ndx{invariant}s for
 sequential programs. Transition ideals\index{transition ideal} is implemented as
@@ -1830,7 +1830,7 @@ linear and quadratic simulation modes.
 \end{minipage}
 \end{center}
 
-\paragraph*{Daikon.}
+\paragraph*{Daikon}
 \ndx{Daikon} requires multiple version of a program, then compiling and tracing
 them with \ndx{Kvasir}. The \pr|*| means we trace\index{program trace} multiple
 versions of input. \newline

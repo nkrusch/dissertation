@@ -16,7 +16,7 @@
 
 % autorefs
 \AtBeginDocument{%
-\renewcommand{\chapterautorefname}{\S\kern-3pt}
+\renewcommand{\chapterautorefname}{Chapter}
 \renewcommand{\appendixautorefname}{\S\kern-3pt}
 \renewcommand{\sectionautorefname}{\S\kern-3pt}
 \renewcommand{\subsectionautorefname}{\S\kern-3pt}
@@ -156,4 +156,20 @@ delim_t "\} "
 \makeatletter
 \def\uwave{\bgroup \markoverwith{\lower3.5\p@\hbox{\sixly \textcolor{dafnyred}{\char58}}}\ULon}
 \font\sixly=lasyb10
+\makeatother
+
+% dot after paragraphs
+\makeatletter
+%! suppress = MightBreakTexify
+\renewcommand\paragraph{%
+    \@startsection{paragraph}
+    {4}
+    {\z@}
+    {3.25ex \@plus1ex \@minus.2ex}
+    {-1em}
+    {\normalfont\normalsize\bfseries\maybe@addperiod}%
+}
+\newcommand{\maybe@addperiod}[1]{%
+    #1\@addpunct{.}%
+}
 \makeatother

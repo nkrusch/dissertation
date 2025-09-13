@@ -183,6 +183,7 @@ This completes the setup.
 We now demonstrate use of \ndx{pymwp} on several examples. To ease the
 presentation, we will use multiple command line arguments.
 
+%! suppress = EscapeUnderscore
 \begin{itemize}
 \item \pr|--fin| --- always run analysis to completion (even on failure)
 \item \pr|--info| --- reduces amount of terminal output to info level
@@ -208,6 +209,7 @@ in correct analysis.
 \begin{center}
 \begin{minipage}{\textwidth}
 \captionsetup{type=lstlisting}
+%! suppress = EscapeUnderscore
 \cinputlisting{assign_expression.c}
 \captionof{lstlisting}[Program assign\_expression]{\pr|assign\_expression.c|.}
 \label{lst:assgn_exp}
@@ -224,6 +226,7 @@ The current working directory should be the location of unzipped examples from
 
 \begin{center}
 \begin{minipage}{\textwidth}
+%! suppress = EscapeUnderscore
 \begin{cmdlisting}[label={lst:ex1-run}]
 pymwp basics/assign_expression.c --fin --info --no_time
 \end{cmdlisting}
@@ -278,6 +281,7 @@ to that conclusion.
 
 \begin{center}
 \begin{minipage}{\textwidth}
+%! suppress = EscapeUnderscore
 \begin{cmdlisting}[label={lst:ex2-run-cmd}]
 pymwp infinite/exponent_2.c --fin --info --no_time
 \end{cmdlisting}
@@ -322,6 +326,7 @@ It is therefore an interesting candidate for analysis with \ndx{pymwp}!
 \begin{center}
 \begin{minipage}{\textwidth}
 \captionsetup{type=lstlisting}
+%! suppress = EscapeUnderscore
 \begin{cmdlisting}[label={lst:ex3-run-cmd}]
 pymwp not_infinite/notinfinite_3.c --fin --info --no_time
 \end{cmdlisting}
@@ -379,6 +384,7 @@ how this seemingly small change impacts the analysis result.
 
 \begin{center}
 \begin{minipage}{\textwidth}
+%! suppress = EscapeUnderscore
 \begin{cmdlisting}[label={lst:ex4-run-cmd}]
 pymwp infinite/infinite_3.c --fin --info --no_time
 \end{cmdlisting}
@@ -434,6 +440,7 @@ determining the result.
 
 \begin{center}
 \begin{minipage}{\textwidth}
+%! suppress = EscapeUnderscore
 \begin{cmdlisting}[label={lst:ex5-run-cmd}]
 pymwp other/dense_loop.c --fin --info --no_time
 \end{cmdlisting}

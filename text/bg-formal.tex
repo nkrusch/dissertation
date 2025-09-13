@@ -30,7 +30,7 @@ per input-pair, would require more than 10,000 years. Thus, skepticism around
 software correctness is a long-held position among some computer scientists. It
 is also the core issue tackled by \ndx{formal methods}.
 
-\paragraph*{Formal methods motivations and challenges.}
+\paragraph*{Formal methods motivations and challenges}
 Formal methods\index{formal methods} aims to remove uncertainty by providing
 techniques that allow establishing strong behavioral guarantees. Formal
 methods\index{formal methods} is deeply rooted in mathematics and
@@ -74,7 +74,7 @@ always the most reliable components of any system or device~\cite{hoare2021}.
 \subsubsection{Foundational Concepts}
 \label{subsubsec:verification-concepts}
 
-\paragraph*{Formal models.}
+\paragraph*{Formal models}
 A \ndx{formal model} is an abstract description of a computer system of
 interest. In the context of this dissertation, the systems of interest are
 programs. Then, a \ndx{formal model} is used to reason about the program and the
@@ -92,7 +92,7 @@ abstraction, and
 \item facilitate analysis and reasoning about the program~\cite{olveczky2017}.
 \end{enumerate*}
 
-\paragraph*{Specifications.}\index{specifications}
+\paragraph*{Specifications}\index{specifications}
 A \emph{specification} is a part of the \ndx{formal model} that describes the
 \emph{behavior} of the program~\cite{zave2023b}. The specification should be
 simpler and easier to comprehend than the implementation~\cite{zave2023b}.
@@ -120,7 +120,7 @@ satisfying \(Q\)\symbo{post}}. For example, \(\{ \prm{x}=0
 triple}.\footnote{The mechanics of \emph{how to prove it} is a topic
 for~\autoref{subsubsec:sm-tool-examples}.}
 
-\paragraph*{Invariants.}
+\paragraph*{Invariants}
 Proving that an implementation meets its specification requires more information
 than what is readily available in the program syntax~\cite{chang2005}. For
 example, proving a \ndx{Hoare triple} of a loop command often requires
@@ -163,7 +163,7 @@ invariant}s~\cite{nguyen2017}. However, the solution relies on dynamic
 techniques, that are beyond the capabilities of pure \ndx{static program
 analysis}.
 
-\paragraph*{Properties.}
+\paragraph*{Properties}
 Formal verification\index{formal verification} aims to guarantee that certain
 behavioral attributes, \ie \emph{properties}, hold for a program. A few examples
 of such properties are: \ndx{memory safety}\footnote{\Ie absence of errors
@@ -190,7 +190,7 @@ ensures \enquote{(good) things must happen}, eventually. The proof techniques
 across these safety and liveness properties are different. The works in this
 dissertation are primarily concerned with non-functional safety properties.
 
-\paragraph*{Partial and \ndx{total correctness}.}
+\paragraph*{Partial and \ndx{total correctness}}
 Broadly, a program is correct if the implementation is consistent with the
 specification\index{specifications}~\cite{furia2014b}. However, when making
 \ndx{assertion}s about correctness, we need to be more precise. There are two common
@@ -450,7 +450,7 @@ the highest distinction awarded to research software~\cite{rocq-community}. The
 success of \ndx{Rocq} has also created abundant interest in \ndx{dependent type
 theory}~\cite{coquand1988}, \ie the core logic of \ndx{Rocq}.
 
-\paragraph*{Technical overview.}
+\paragraph*{Technical overview}
 As a guiding example, consider simple proof in~\autoref{lst:rocq-basic}. The
 \pr|lemma| keywords starts a statement that we wish to prove. The specification
 language for stating theorems is called \ndx{Gallina}. The code between
@@ -507,7 +507,7 @@ in form to the current goal.}
 \label{fig:rocq-use}
 \end{figure}
 
-\paragraph*{Mathematical Components.}
+\paragraph*{Mathematical Components}
 The \ndx{Mathematical Components} library---colloquially mathcomp---extends the
 \ndx{Rocq} ecosystem with an extensive collection of formalized mathematical
 theories. The library covers a wide spectrum of topics, including formal theory
@@ -525,7 +525,7 @@ based on it. For example, the mechanical proofs of the \ndx{Four Color
 theorem}~\cite{gonthier2008} and the \ndx{Odd Order theorem}~\cite{gonthier2013}
 utilize the library extensively.
 
-\paragraph*{Demonstrated applications.}
+\paragraph*{Demonstrated applications}
 Conventional uses of \ndx{Rocq} include proving properties of programming
 languages, formalizing mathematics, and teaching. \autoref{tab:rocq-results}
 contains representative examples in the first two categories.
@@ -616,7 +616,7 @@ contains representative examples in the first two categories.
 \label{tab:rocq-results}
 \end{table}
 
-\paragraph*{Additional resources.}
+\paragraph*{Additional resources}
 There are multiple literature sources for learning more about \ndx{Rocq}.
 Coq'Art~\cite{bertot2004} is the first book dedicated to the proof assistant and
 its theory. The \href{https://softwarefoundations.cis.upenn.edu}{Software
@@ -652,7 +652,7 @@ long way.} -- \textcite{leino2010b}.}
 \label{fig:dfy-flow}
 \end{figure}
 
-\paragraph*{Technical overview.}
+\paragraph*{Technical overview}
 \ndx{Dafny} is a hybrid language, influenced by \ndx{Java} and \ndx{C\#}. It has
 both functional and object-oriented features. They include curly-bracket
 block-style, (mathematical) functions, and inductive and
@@ -716,7 +716,7 @@ contradictions, like the ones raised in~\autoref{fig:dafny-use}, will obviously
 never succeed. The verifier helps to catch such errors early, during program
 development.
 
-\paragraph*{Proof style.}
+\paragraph*{Proof style}
 In \ndx{Dafny}, proofs are developed in \enquote{top-down} style. This allows
 the developer to focus on the proof architecture before the detailed proof
 steps. To this end, Dafny provides \pr|assume| statements, \ie \ndx{assertion}s
@@ -725,7 +725,7 @@ Obviously, the proof is not complete until these temporary constructs have been
 replaced with concrete proofs. However, they are useful for facilitating the
 proof development.
 
-\paragraph*{Boogie.}
+\paragraph*{Boogie}
 \ndx{Boogie}~\cite{leino2008} is an \ndx{intermediate verification language},
 used in the verification workflow of \ndx{Dafny} programs
 (\cf~\autoref{fig:dfy-flow}). More generally, \ndx{Boogie} is an open source
@@ -739,7 +739,7 @@ language. Then, the tool infers \ndx{invariant}s, generates verification
 conditions, and passes them to an SMT solver. The default SMT solver is
 \ndx{Z3}~\cite{demoura2008}.
 
-\paragraph*{Applications of Dafny.}
+\paragraph*{Applications of Dafny}
 \ndx{Dafny} is a mature, industry-grade tool for program verification. It has
 been used in research projects, industrial applications, verification projects,
 and in teaching formal methods. Among the hallmark results, the \ndx{AWS
@@ -755,7 +755,7 @@ To match the dissertation theme, the examples are about program proofs. However,
 proving programs is only a subset of the general utility of these tools. Refer
 to \autoref{tab:rocq-results} for more cases.
 
-\paragraph{Program Equivalence}
+\paragraph*{Program Equivalence}
 
 \autoref{lst:intro}, in the Introduction Chapter, showed two programs with a
 claim that the programs are equivalent. Equivalence means that, for all inputs,
@@ -845,7 +845,7 @@ arguments. The equivalence holds in both directions. Because the equivalence is
 generally easy to show, the verifier succeed without additional lemmas. This
 proves the equivalence claim for the two programs.
 
-\paragraph{Formally verified leftpad.}
+\paragraph*{Formally verified leftpad}
 Leftpad is a string manipulation function. It pads a string, using a specified
 character, up to a specified length. The padding character is applied to the
 left side of the string, as a prefix, hence the name. \autoref{lst:leftpad}
@@ -991,7 +991,7 @@ logic. The problem was presented to me by Natarajan Shankar under the name
 too fascinating to be left in obscurity. Therefore, it appears here, in my
 dissertation.
 
-\paragraph*{Problem Description.}
+\paragraph*{Problem Description}
 Assume there are three people, \(\mathsf{A}\), \(\mathsf{B}\), and
 \(\mathsf{C}\)\@. Seven natural numbers in 1--7 are distributed randomly among
 the people. \(\mathsf{A}\) gets 1 number, and \(\mathsf{B}\) and \(\mathsf{C}\)
@@ -1017,7 +1017,7 @@ mechanics of the exchange protocol. The Moscow problem is to design a technique
 that meets the requirements. The following solution is what I have developed in
 response to the problem.
 
-\paragraph*{Informal Solution.}
+\paragraph*{Informal Solution}
 Starting with a claim: it is sufficient to achieve the desired system with a
 message exchange where the message value is a single digit in 1--7.
 
@@ -1048,7 +1048,7 @@ number held by \(\mathsf{A}\), denoted as \(a\). The receiver calculates numbers
 held by the sender using the \emph{recover} function \(\text{Rec}(X_r, a) = U -
 X_r - a\).
 
-\paragraph{Formal proof.}
+\paragraph*{Formal proof}
 The interesting bit is showing that the solution meets the specification.
 The solution is provable in the Rocq prover.
 We define first the messaging functions as shown in~\autoref{lst:moscow-fun}.
@@ -1153,7 +1153,7 @@ continued demonstrated relevance of ICC results -- \cf~\autoref{tab:icc-results}
 absence of \emph{formal} proofs among those results, and
 maturity of formalization techniques and tools.
 
-\paragraph*{Existing results in formally verified complexity.}
+\paragraph*{Existing results in formally verified complexity}
 There exists a (small) collection of result formalizing classic \ndx{complexity
 theory} (\cf~\autoref{subsec:coqpl-related}). For example, \ndx{Universal Turing
 Machine}s~\cite{forster2020}, the
@@ -1198,7 +1198,7 @@ analysis, the derivation trees are translated to machine-checkable proofs. The
 proof certificates are produced via a support library that complements the core
 analysis. However, the analysis {technique} is not proven correct.
 
-\paragraph*{From implicit complexity towards formal methods.}
+\paragraph*{From implicit complexity towards formal methods}
 There is much room to improve the state-of-the-art in formal reasoning about
 complexity, both in terms of theory and analysis. Implicit computational
 complexity presents a potential avenue toward advancement.
