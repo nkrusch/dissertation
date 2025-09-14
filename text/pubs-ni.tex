@@ -741,7 +741,7 @@ $\begin{pNiceMatrix}[first-row,first-col,left-margin=-2pt,right-margin=-2pt]
 \end{tabular}
 \end{center}
 \caption[Security-Flow Matrix of compositions]
-{Security-Flow Matrix of compositions.}
+{Security-Flow Matrix of compositions.}\index{violation}
 \label{fig:composition}
 \index{security-flow matrix}
 \end{figure}
@@ -819,7 +819,7 @@ and their execution depend on it, giving:
 \prc|x| & \vi     & \nv     & \nv     & \vi \\
 \prc|y| & \nv     & \nv     & \nv     & \nv \\
 \prc|z| & \nv     & \nv     & \nv     & \nv
-\end{pNiceMatrix}.\]\symbo{nv}\symbo{vi}
+\end{pNiceMatrix}.\]\symbo{nv}\symbo{vi}\index{violation}
 
 Observe also that in \(\corr{\prc|t[i] != x|}_{\prc|C|}\)\symbo{corr} the
 variables \prc|t|, \prc|i| and \prc|x| would be marked as controlling the
@@ -1911,7 +1911,8 @@ The derivation (\(\pi_1\)\symbo{smpi}) of command{ }{ }\circled{C1}  is
   \mat{\nv & \vi & \nv \\ \nv & \nv & \nv \\ \nv & \nv & \nv}}
 \end{prooftree}\symbo{vi}\symbo{nv}
 \end{center}
-and the derivation (\(\pi_2\)\symbo{smpi}) of command{ }{ }\circled{C2} is
+and the derivation (\(\pi_2\)\symbo{smpi}) of command{ }{ }\circled{C2}
+is\index{violation}
 \begin{center}
 %! suppress = EscapeAmpersand
 \begin{prooftree}[small]

@@ -25,10 +25,10 @@ still in flux.
 
 Software engineers have an aphorism that warns against publishing releases on
 Fridays. It is shared lightheartedly, but embeds serious commentary about the
-normalcy of software instability. Formal methods provides the techniques to
-improve and achieve rigorous software quality guarantees. Unfortunately,
-integrating formal methods to mainstream software development workflows remains
-challenging due to, \eg lack of training and tool-specific
+normalcy of software instability. Formal methods\index{formal methods} provides
+the techniques to improve and achieve rigorous software quality guarantees.
+Unfortunately, integrating formal methods to mainstream software development
+workflows remains challenging due to, \eg lack of training and tool-specific
 issues~\cite{beek2024}. Continued research effort must be dedicated to reducing
 the entry barriers.
 
@@ -229,19 +229,19 @@ analysis that tracks \emph{variable value growth} between commands in
 data-flow relation between the \emph{initial values}
 \(x_1,\ldots,x_n\)\symbo{xpre}, for natural-number variables
 \(\prm{X}_1,\ldots,\prm{X}_n\)\symbo{xvar}, and the \emph{final values}
-\(x'_i\)\symbo{xprime2} of \(\prm{X}_i\) (for \(i=1,\ldots,n\)). More precisely,
-the flow calculus aims to guarantee variables are always polynomially bounded,
-including in every intermediate program state. For example, the program
-\pr|X1=X2+X3;|\pr|X1=X1+X1| is satisfactory, because the final value of each
-variable grows at most polynomially \wrt inputs. Variables \pr|X2| and \pr|X3|
-do not change and final value of \pr|X1| is \(2 \times (\prm{X2} + \prm{X3})\).
-In contrast, the program \pr|X1=1;while(X2){X1=X1+X1}| is unsatisfactory,
-because variable \pr|X1| grows exponentially in \(2^{\prm{X2}}\). When
-satisfactory value growth can be confirmed for all variables, the analysis
-assigns the program a \emph{bound} that characterizes the value growth. The
-analysis result is derived statically, by applying \ndx{inference rule}s to the
-commands of the program, in a compositional\index{compositionality} bottom-up
-manner.
+\(x'_i\)\symbo{xprime2} of \(\prm{X}_i\)\symbo{xvar} (for \(i=1,\ldots,n\)).
+More precisely, the flow calculus aims to guarantee variables are always
+polynomially bounded, including in every intermediate program state. For
+example, the program \pr|X1=X2+X3;|\pr|X1=X1+X1| is satisfactory, because the
+final value of each variable grows at most polynomially \wrt inputs. Variables
+\pr|X2| and \pr|X3| do not change and final value of \pr|X1| is \(2 \times
+(\prm{X2} + \prm{X3})\). In contrast, the program \pr|X1=1;while(X2){X1=X1+X1}|
+is unsatisfactory, because variable \pr|X1| grows exponentially in
+\(2^{\prm{X2}}\). When satisfactory value growth can be confirmed for all
+variables, the analysis assigns the program a \emph{bound} that characterizes
+the value growth. The analysis result is derived statically, by applying
+\ndx{inference rule}s to the commands of the program, in a
+compositional\index{compositionality} bottom-up manner.
 
 \paragraph*{Value growth as data flow graphs}
 As an internal bookkeeping procedure, the flow calculus collects information in
@@ -285,7 +285,7 @@ X1=X1+X1;
 \end{subfigure}\hfill
 \begin{subfigure}{.45\textwidth}
 \begin{center}
-\includegraphics[width=5.5cm,keepaspectratio]{fig_flows1.pdf}
+\includegraphics[width=5.5cm,keepaspectratio]{fig_flows1}
 \end{center}
 \caption{The data flows of program~\ref{lst:simple-dfg-1}.}%
 \label{fig:simple-dfg-1}
@@ -302,13 +302,13 @@ while(X2)
 \end{subfigure}\hfill
 \begin{subfigure}{.45\textwidth}
 \begin{center}
-\includegraphics[width=2cm,keepaspectratio]{fig_flows2.pdf}
+\includegraphics[width=2cm,keepaspectratio]{fig_flows2}
 \end{center}
 \caption{The data flows of program~\ref{lst:simple-dfg-2}.}%
 \label{fig:simple-dfg-2}
 \end{subfigure}\\[1em]
 \begin{subfigure}{\textwidth}
-\centering\includegraphics[width=\textwidth,keepaspectratio]{fig_flows3.pdf}
+\centering\includegraphics[width=\textwidth,keepaspectratio]{fig_flows3}
 \end{subfigure}
 \caption[Simple imperative programs and their corresponding data flow graphs]{
 Simple \ndx{imperative programs} and their corresponding \ndx{data flow graph}s.
@@ -351,34 +351,34 @@ if there exists a derivation without an ∞\symbo{infty} coefficient.
 Formally verifiable\index{formal verification} programs are defined as precise
 mathematical models through \ndx{specifications}. Verifying the program requires
 giving a proof that the program satisfies its specification. The motivation for
-using formal methods is the strength of guarantees it provides. In contrast to
-tests and inspection, a proof conclusively ensures behavioral correctness at the
-modeled level of abstraction.
+using \ndx{formal methods} is the strength of guarantees it provides. In
+contrast to tests and inspection, a proof conclusively ensures behavioral
+correctness at the modeled level of abstraction.
 
 \paragraph*{Specifications}
 A {specification}\index{specifications} is a formal contract with three
 components.
 \begin{enumerate*}
 
-    \item \emph{Precondition}\index{precondition} \(P\), is the initial logic
-expressions assumed to hold before entering the loop.
+\item \emph{Precondition}\index{precondition} \(P\)\symbo{pre}, is the initial
+logic expressions assumed to hold before entering the loop.
 
-\item Program, \pr|loop b C|, performs command \pr|C| until the expression
-\pr|b| becomes false.
+\item Program, \pr|loop b C|, performs command \pr|C|\symbo{p2} until the
+expression \pr|b| becomes false.
 
-\item \emph{Postcondition}\index{postcondition} \(Q\), is the final logic
-expressions asserted to hold after the loop terminates.
+\item \emph{Postcondition}\index{postcondition} \(Q\)\symbo{post}, is the final
+logic expressions asserted to hold after the loop terminates.
 
 \end{enumerate*}
 
 Using a \ndx{Hoare triple}~\cite{hoare1969}, we can express the specification as
-\(\Hoare{P}{\prm{loop b C}}{Q}\). The implementation of the program is correct
-if we can construct a proof that shows the program satisfies its specification
-in all states. A correctness proof requires verifying that every computation
-terminates\index{termination}, every call to another procedure satisfies its
-\ndx{precondition}s, and the \ndx{postcondition} holds at program
-\ndx{termination}~\cite{furia2010}. For an example of \ndx{specifications},
-refer to Appendix~\ref{app:sec:verified}.
+\(\Hoare{P}{\prm{loop b C}}{Q}\)\symbo{hoare}. The implementation of the program
+is correct if we can construct a proof that shows the program satisfies its
+specification\index{specifications} in all states. A correctness proof requires
+verifying that every computation terminates\index{termination}, every call to
+another procedure satisfies its \ndx{precondition}s, and the \ndx{postcondition}
+holds at program \ndx{termination}~\cite{furia2010}. For an example of
+\ndx{specifications}, refer to Appendix~\ref{app:sec:verified}.
 
 \paragraph*{Relating postconditions and loop \ndx{invariant}s}
 A \ndx{postcondition} is a higher-level view describing the program goal. In
@@ -400,8 +400,8 @@ by the soundness theorem.\index{soundness of mwp-calculus} However, pre- and
 Loop \ndx{invariant}s are needed to make the specification
 provable.\index{specifications}
 
-An \emph{\ndx{invariant}} describes an \ndx{assertion} about a program location that
-must be true for every program state reaching the
+An \emph{\ndx{invariant}} describes an \ndx{assertion} about a program location
+that must be true for every program state reaching the
 location~\cite{furia2010,nguyen2022}.\footnote{A \ndx{postcondition} is also an
 \ndx{invariant}; for clarity, we always refer to a \ndx{postcondition} as such
 and use `\ndx{invariant}` to refer to an inductive\index{invariant!inductive}
@@ -421,7 +421,7 @@ other~\cite{furia2010}. Every \ndx{invariant} is necessarily a (weak)
 \ndx{postcondition}, as it must hold at \ndx{termination}, but a
 \ndx{postcondition} must not be \ndx{invariant}. For example, given natural
 numbers \pr|i| and \pr|n|, the loop \prc|for(i=0;i<n;i++) i++;| has an
-\ndx{invariant} \(0 \leq \prm{i} \leq \prm{n}\) and a postcondition
+\ndx{invariant} \(0 \leq \prm{i} \leq \prm{n}\) and a \ndx{postcondition}
 \(\prm{i}=\prm{n}\). Invariant inference techniques may assume
 \ndx{precondition}s and \ndx{postcondition}s are known. However, this assumption
 is impractical, since manually adding \ndx{specifications} to code fragments is
@@ -432,11 +432,14 @@ non-trivial.
 
 \begin{figure}[H]
 \centering
-\scalebox{.88}{\begin{tikzpicture}[align=center,
+\scalebox{.88}{%! suppress = EscapeHashOutsideCommand
+\begin{tikzpicture}[align=center,
 arrow/.style={thick,arrows={-Latex[width=6pt, length=4pt]}},
 label/.style={midway,fill=white}]
-\newcommand\lbl[2]{\textit{#1} (\autoref{#2})}
-\newcommand\vtx[2]{\textbf{#1} (\autoref{#2})}
+\newcommand\lbl[2]{\textit{#1} (%! suppress = EscapeHashOutsideCommand
+\autoref{#2})}
+\newcommand\vtx[2]{\textbf{#1} (%! suppress = EscapeHashOutsideCommand
+\autoref{#2})}
 
 \path (0, 0) node (A) {\vtx{loop}{subsec:imp-language}}
 ++(0,-2.0) node[text width=10cm] (B)
@@ -531,7 +534,7 @@ matrices to commands of the input program. The procedure resembled typing,
 except the \enquote{types} are complicated matrices.\index{matrix-as-type} An
 \emph{mwp-matrix} \(M\)\symbo{matrix} captures data flow facts about the
 analyzed program \(\mathcal{C}\)\symbo{prog2}. The matrices track, through flow
-coefficients,\index{flow coeﬀicient} how data flows in variables between
+coefficients,\index{flow coefficient} how data flows in variables between
 commands. What coefficients are assigned is determined by the \emph{inference
 rules} of the flow calculus. The relevant inference rules are included in
 Figures~\ref{fig:rules-expressions} and~\ref{fig:rules-loops}.\footnote{ To ease
@@ -541,8 +544,8 @@ on.} To trade precision for efficiency, the flow calculus\index{mwp-calculus}
 omits evaluating loop iteration bounds and reasoning about \ndx{termination} and
 control expressions, overestimating their effect. At conclusion, the flow
 calculus assigns \underline{one} \ndx{mwp-matrix} to the analyzed program,
-\(\vdash\mathcal{C} : M\). It contains all derivations of the input program in
-one (complex) data structure.
+\(\vdash\mathcal{C} : M\)\symbo{cmat}. It contains all derivations of the input
+program in one (complex) data structure.
 
 \begin{figure}[h]
 \begin{tabularx}{\textwidth}{CCC}
@@ -550,120 +553,154 @@ one (complex) data structure.
 \begin{prooftree}[small, center=false]
 \infer0[E2]{
 \vdash \prm{e} : \{_{\,i}^{w} \mid \prm{X}_i \in \var(\prm{e}) \}}
-\end{prooftree}
+\end{prooftree}\symbo{xvar}\symbo{vare}\symbo{v0a}\symbo{evec}
 &
 %! suppress = EscapeUnderscore
 \begin{prooftree}[small, center=false]
 \hypo{\vdash \prm{X}_i : V_1}
 \hypo{\vdash \prm{X}_j : V_2}
 \infer2[E3]{\vdash \prm{X}_i + \prm{X}_j : pV_1 \oplus V_2}
-\end{prooftree}%
+\end{prooftree}\symbo{xvar}\symbo{p}\symbo{vec}\symbo{evec}
 &
 %! suppress = EscapeUnderscore
 \begin{prooftree}[small, center=false]
 \hypo{\vdash \prm{X}_i : V_1}
 \hypo{\vdash \prm{X}_j : V_2}
 \infer2[E4]{\vdash \prm{X}_i + \prm{X}_j : V_1 \oplus pV_2}
-\end{prooftree}
+\end{prooftree}\symbo{xvar}\symbo{p}\symbo{vec}\symbo{evec}
 \end{tabularx}
 \caption[A selection of flow calculus rules for assigning vectors to
 expressions.]{
-    A selection of flow calculus rules for assigning vectors to expressions. A
-    {variable} is denoted as \(\prm{X}_i\)\symbo{xvar} where the \(i\) refers to
-    an index of a matrix column (\resp \(\prm{X}_j\) for the \(j\)th column). In
-    rules E3 and E4, a vector of coefficients is denoted by \(V_n\)\symbo{vec}.
-    In other words, the rules assign vectors of coefficients to variables. Three
-    rules can be used to analyze a single expression. The \ndx{nondeterminism}
-    of the flow calculus\index{mwp-calculus} comes from these inference rules.
-}
+A selection of flow calculus\index{mwp-calculus} rules for assigning vectors to
+expressions. A {variable} is denoted as \(\prm{X}_i\)\symbo{xvar} where the
+\(i\) refers to an index of a matrix column (\resp \(\prm{X}_j\) for the \(j\)th
+column). In rules E3 and E4, a vector of coefficients is denoted by
+\(V_n\)\symbo{vec}. In other words, the rules assign vectors of coefficients to
+variables. Three rules can be used to analyze a single expression. The
+\ndx{nondeterminism} of the flow calculus\index{mwp-calculus} comes from these
+\ndx{inference rule}s.}
 \label{fig:rules-expressions}
 \end{figure}
 
-Nondeterminism\index{nondeterminism} is necessary to improve the expressive power\index{expressiveness} of the flow calculus, but complicates the analysis procedure.
-There are the three rules (\autoref{fig:rules-expressions}) to analyze an expression of binary addition\footnote{
-    Similar rules exist for subtraction, and multiplication is always handled by E2.}, like \pr|X1 + X2|.
-Informally, the rule E2 says \enquote{we can always assign a \(w\) coefficient to all variables in the expression}.
-Although such constant treatment seems  potentially harmful, the inference rules for analyzing commands (\autoref{fig:rules-loops}) ensure only acceptable data flow patterns are accepted as derivable.
-The rule E3 says \enquote{the vector of the left operand is multiplied by a polynomial coefficient.}
-The \(p\)-coefficient tracks the fact that certain data flow patterns might not be polynomially bounded~\cite[p. 13]{jones2009}.
-Applying the rules to a vector propagates the effect to all variables that are transitively dependent on the left operand.
-Rule E4 is similar to E3, except the \(p\) coefficient is applied to the right operand.
-Thus, three different derivation can arise from one expression, and from every command that contains the expression.
-Going forward, we omit the details of these rules and instead refer to them by a mapping \(0 \mapsto \text{E4}, 1 \mapsto \text{E3}, 2 \mapsto \text{E2}\).
+Nondeterminism\index{nondeterminism} is necessary to improve the expressive
+power\index{expressiveness} of the flow calculus\index{mwp-calculus}, but
+complicates the analysis procedure. There are the three rules
+(\autoref{fig:rules-expressions}) to analyze an expression of binary
+addition\footnote{ Similar rules exist for subtraction, and multiplication is
+always handled by E2.}, like \pr|X1 + X2|. Informally, the rule E2 says
+\enquote{we can always assign a \(w\)\symbo{w} coefficient to all variables in
+the expression}. Although such constant treatment seems  potentially harmful,
+the \ndx{inference rule}s for analyzing commands (\autoref{fig:rules-loops})
+ensure only acceptable data flow patterns are accepted as
+derivable.\index{derivability} The rule E3 says \enquote{the vector of the left
+operand is multiplied by a polynomial coefficient.} The
+\(p\)\symbo{p}-coefficient tracks the fact that certain data flow patterns might
+not be polynomially bounded~\cite[p. 13]{jones2009}. Applying the rules to a
+vector propagates the effect to all variables that are transitively dependent on
+the left operand. Rule E4 is similar to E3, except the \(p\)\symbo{p}
+coefficient is applied to the right operand. Thus, three different derivation
+can arise from one expression, and from every command that contains the
+expression. Going forward, we omit the details of these rules and instead refer
+to them by a mapping \(0 \mapsto \text{E4}, 1 \mapsto \text{E3}, 2 \mapsto
+\text{E2}\)\symbo{map}.
 
 \subsubsection{Our starting point of interest: interpreting mwp-matrices}
 \label{subsec:mat-decode}
 
 An \ndx{mwp-matrix} represents the derivations of an analyzed program. Before
-diving into full mwp-matrices, this section describes its \emph{elements}.
+diving into full mwp-matrices\index{mwp-matrix}, this section describes its
+\emph{elements}.
 
 \paragraph*{Basic terms}
-Flow coefficients---described in \autoref{subsec:flow-calc-intro}---are the core building blocks of mwp-matrices.
-The flow coefficients are elements of the finite set \(\text{\textsc{mwp}}^\infty \triangleq \{0, m, w, p,\infty\}\).\symbo{trieq}
-A \emph{domain} \(\mathcal{D} \triangleq \{0, 1, 2 \}\)\symbo{domain} is a bidirectional map of the flow calculus \ndx{inference rule}s.
-In other words, the domain members can be translated to flow calculus inference rules (E2--E4) and vice versa.
-The \emph{degree} of choice, \(k : \mathbb{N}\)\symbo{k2}\symbo{nat}, is a counter of derivations.
-The degree represents the number of times a derivation choice must be made during program analysis.
-The degree is precisely equal to the count of binary arithmetic operations whose operator is either \(+\) or \(-\).
+Flow coefficients---described in \autoref{subsec:flow-calc-intro}---are the core
+building blocks of mwp-matrices. The \ndx{flow coefficient}s are elements of the
+finite set \(\text{\textsc{mwp}}^\infty \triangleq \{0, m, w,
+p,\infty\}\)\symbo{mwpi}\symbo{zero}\symbo{m}\symbo{w}\symbo{p}\symbo{infty}. A
+\emph{domain} \(\mathcal{D} \triangleq \{0, 1, 2 \}\)\symbo{domain}\symbo{trieq}
+is a bidirectional map of the flow calculus\index{mwp-calculus} \ndx{inference
+rule}s. In other words, the domain members can be translated to flow calculus
+\ndx{inference rule}s (E2--E4) and vice versa. The \emph{degree} of choice, \(k
+: \mathbb{N}\)\symbo{k2}\symbo{nat}, is a counter of derivations. The degree
+represents the number of times a \ndx{derivation choice} must be made during
+program analysis. The degree is precisely equal to the count of binary
+arithmetic operations (where the operator is either \(+\) or \(-\)).
 
 \begin{definition}[Derivation choice]
-    Letting \( \mathcal{D} \) be a domain and \( k \in \mathbb{N} \)\symbo{nat} be the degree of choice,
-    we define a derivation choice as \( \delta(i, j) \), where \( i \subseteq \mathcal{D} \) and \( j \leq k \).\end{definition}
-A derivation choice, denoted by \(\delta\), represents the \ndx{nondeterminism} of the flow calculus.
-%It is another core building block of mwp-matrices.
-We call \(i\) the \emph{value} and \(j\) the \emph{index} of the derivation choice.
-Informally, it captures that an inference rule \(i\) is applied at program point \(j\).
-%The value indicates the selected mwp-calculus inference rule and index the program point where the rule is applied.
+Letting \( \mathcal{D} \)\symbo{domain} be a domain and \( k \in \mathbb{N}
+\)\symbo{nat}\symbo{k2} be the degree of choice, we define a \ndx{derivation
+choice} as \( \delta(i, j) \)\symbo{delta}, where \( i \subseteq \mathcal{D} \)
+and \( j \leq k \).
+\end{definition}
+A \ndx{derivation choice}, denoted by \(\delta\)\symbo{delta}, represents the
+\ndx{nondeterminism} of the flow calculus\index{mwp-calculus}. We call
+\(i\)\symbo{mi} the \emph{value} and \(j\)\symbo{mj} the \emph{index} of the
+derivation choice. Informally, it captures that an inference rule \(i\) is
+applied at program point \(j\).
 
 \begin{definition}[Derivation choice sequence]
-    Letting \(k\) be the degree of choice,
-    we define a derivation choice sequence as \(\Delta = (\delta_1, \delta_2, \dots, \delta_{k'})\)
-    where \(0 \leq k' \leq k \). % TODO: unique + sorted
+Letting \(k\)\symbo{k2} be the degree of choice, we define a \ndx{derivation
+choice} sequence as \(\Delta = (\delta_1, \delta_2, \dots,
+\delta_{k'})\)\symbo{Delta} where \(0 \leq k' \leq k \).
 \end{definition}
-Since a program is a \emph{series} of commands, correspondingly we must have \emph{sequences} of derivation choices, denoted as \(\Delta\).
-Simple data flow patterns do not require making derivation choices;
-therefore \(\Delta\) can be empty.
-There are two restrictions on \(\Delta\).
-First, an index \(j\) is allowed to occur at most once in a sequence, \ie the indices in a sequence must be unique.
-Second, the sequence is sorted by the index in ascending order.
-These restrictions support efficient computation during matrix construction.
-Since we are only concerned with {interpreting} mwp-matrices, we assume every \(\Delta\) satisfies the uniqueness and order properties by construction.
-By \autoref{fig:rules-expressions}, it is evident that one variable can be assigned multiple coefficients.
-The fact that \(\Delta\) reduces to a particular coefficient is represented in a \emph{\ndx{monomial}}.
+
+Since a program is a \emph{series} of commands, correspondingly we must have
+\emph{sequences} of \ndx{derivation choice}s, denoted as
+\(\Delta\)\symbo{Delta}. Simple data flow patterns do not require making
+\ndx{derivation choice}s; therefore \(\Delta\)\symbo{Delta} can be empty. There
+are two restrictions on \(\Delta\)\symbo{Delta}. First, an index \(j\)\symbo{mj}
+is allowed to occur at most once in a sequence, \ie the indices in a sequence
+must be unique. Second, the sequence is sorted by the index in ascending order.
+These restrictions support efficient computation during matrix\index{mwp-matrix}
+construction. Since we are only concerned with {interpreting}
+mwp-matrices\index{mwp-matrix}, we assume every \(\Delta\)\symbo{Delta}
+satisfies the uniqueness and order properties by construction. By
+\autoref{fig:rules-expressions}, it is evident that one variable can be assigned
+multiple \ndx{flow coefficient}s. The fact that \(\Delta\)\symbo{Delta} reduces
+to a particular coefficient is represented in a \emph{\ndx{monomial}}.
 
 \begin{definition}[Monomial]\label{def:mono}
-Letting \(\alpha \in \text{\textsc{mwp}}^\infty\) be a coefficient and \(\Delta\) be a sequence of derivation choices,
-we define a \ndx{monomial} as \((\alpha, \Delta)\).
+Letting \(\alpha \in \text{\textsc{mwp}}^\infty\)\symbo{alpha}\symbo{mwpi} be a
+coefficient and \(\Delta\)\symbo{Delta} be a sequence of \ndx{derivation
+choice}s, we define a \ndx{monomial} as \((\alpha,
+\Delta)\)\symbo{alpha}\symbo{Delta}.
 \end{definition}
 
 \noindent
-A \ndx{monomial} in the flow calculus is disjoint from the classic notion of \ndx{monomial}s.
-For example, both \(m.(\delta(0,0),\delta(2,1))\) and \(0\) are valid \ndx{monomial}s by definition.
-The former says \enquote{if we apply rule 0 then rule 2 (at indices 0 and 1, resp.) then we obtain an \(m\) coefficient}.
-The latter says \enquote{no matter the choice, we always obtain a \(0\) coefficient}.
-Finally, the fact that {different \(\Delta\)} reduce to {different coefficients} is represented by a \emph{polynomial structure}.
+A \ndx{monomial} in the flow calculus is disjoint from the classic notion of
+\ndx{monomial}s. For example, both \(m.(\delta(0,0),\delta(2,1))\)\symbo{delta}
+and \(0\)\symbo{zero} are valid \ndx{monomial}s by definition. The former says
+\enquote{if we apply rule 0 then rule 2 (at indices 0 and 1, resp.) then we
+obtain an \(m\)\symbo{m} coefficient}. The latter says \enquote{no matter the
+choice, we always obtain a \(0\)\symbo{zero} coefficient}. Finally, the fact
+that different \(\Delta\)\symbo{Delta} reduce to different
+coefficients\index{flow coefficient} is represented by a \emph{\ndx{polynomial
+structure}}.
 
 \begin{definition}[Polynomial structure]
-    We define a polynomial structure as a sequence of monomials
-    \(\big(0,(\alpha_1,\Delta_1)\), \((\alpha_2,\Delta_2)\), \(\dots\), \((\alpha_m, \Delta_m)\big)\) where \(m \geq 0\).
+We define a \ndx{polynomial structure} as a sequence of \ndx{monomials}
+\(\big(0,(\alpha_1,\Delta_1)\), \((\alpha_2,\Delta_2)\), \(\dots\), \((\alpha_m,
+\Delta_m)\big)\) where \(m \geq 0\).\symbo{alpha}\symbo{Delta}
 \end{definition}
 
-\noindent The polynomial structure is prefixed by \(0\)-\ndx{monomial} to ensure it is always non-empty.
-\textbf{The elements of an mwp-matrix are polynomial structures.}
+\noindent The \ndx{polynomial structure} is prefixed by
+\(0\)\symbo{zero}-\ndx{monomial} to ensure it is always non-empty. \textbf{The
+elements of an mwp-matrix are \ndx{polynomial structure}s.}
 
 \subsubsection{Decoding an mwp-matrix by example}
 \label{subsec:read-mat}
 
-An mwp-matrix \(M\) associates variables with polynomial structures.\footnote{
-    For clarity and compactness, we omit needless \(0\)'s, \(\delta\)-symbols, and delimiters when displaying mwp-matrices.}
-This association is defined by position.
-The matrix size is determined by the number of program variables, such that for \(n\) variables, the matrix size is \(n \times n\).
-The matrix is labelled by the variables. % (sometimes implicitly).
-An mwp-matrix is interpreted {column-wise}.
-The data-flow facts about a variable at column \(j\) are collected in the polynomial structures at rows \(i=(1, \ldots, n)\) in \(M_{ij}\).
+An \ndx{mwp-matrix} \(M\)\symbo{matrix} associates variables with
+\ndx{polynomial structure}s.\footnote{ For clarity and compactness, we omit
+needless \(0\)\symbo{zero}'s, \(\delta\)\symbo{delta}-symbols, and delimiters
+when displaying mwp-matrices.} This association is defined by position. The
+matrix size is determined by the number of program variables, such that for
+\(n\) variables, the matrix size is \(n \times n\). The matrix is labelled by
+the variables. An mwp-matrix is interpreted {column-wise}. The data-flow facts
+about a variable at column \(j\)\symbo{mj} are collected in the polynomial
+structures at rows \(i=(1, \ldots, n)\) in \(M_{ij}\).
 
 \begin{example}[mwp-matrix of \explain]\label{ex:mat}
-Consider the mwp-matrix of \explain.
+Consider the \ndx{mwp-matrix} of \explain.
 
 \begin{center}
 \begin{minipage}{\linewidth}
@@ -684,72 +721,93 @@ for(i=0;i<X1;i++)
 \prm{X3} & 0 & 0 & m                     & \infty(1,1),\infty(2,1)         & 0 \\
 \prm{X4} & 0 & 0 & 0                     & m,\infty(1,1),\infty(2,1)       & 0 \\
 \prm{X5} & 0 & 0 & p(0,0),m(1,0),w(2,0)  & p(0,1),\infty(1,1),\infty(2,1)  & m \\
-\end{pNiceMatrix}\)}
+\end{pNiceMatrix}\)}\symbo{xvar}\symbo{zero}\symbo{m}\symbo{w}\symbo{p}\symbo{infty}
 \end{minipage}
 \end{center}
 
-We mark the program points where a derivation choice must be made as \circledc{1} and \circledc{2}.
-The program points correspond to indices 0 and 1, respectively.
-These points give the mwp-matrix a degree of 2.
-The addition expressions are analyzed by the inference rules of~\autoref{fig:rules-expressions}.
-The mwp-matrix contains derivations choices at columns \pr|X3| and \pr|X4| because they are the data-flow targets of the additions.
-Correspondingly, in~\autoref{fig:ll-dfg}, the variables are targets of dependence edges.
+We mark the program points where a \ndx{derivation choice} must be made as
+\circledc{1} and \circledc{2}. The program points correspond to indices 0 and 1,
+respectively. These points give the \ndx{mwp-matrix} a degree of 2. The addition
+expressions are analyzed by the \ndx{inference rule}s
+of~\autoref{fig:rules-expressions}. The mwp-matrix contains derivations choices
+at columns \pr|X3| and \pr|X4| because they are the data-flow targets of the
+additions. Correspondingly, in~\autoref{fig:ll-dfg}, the variables are targets
+of dependence edges.
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=6cm,keepaspectratio]{fig_lucid.pdf}
+\includegraphics[width=6cm,keepaspectratio]{fig_lucid}
 \caption[A data-flow graph of \exname]{A data-flow graph of \exname.}
 \label{fig:ll-dfg}
 \end{figure}
 
-\noindent{}Variables \pr|X1|, \pr|X2|, and \pr|X5| are assigned at most \(m\){ }coefficients.
-An \(m\)-flow at the mwp-matrix diagonal means the variable depends on its (own) initial value.
-Since the program has no commands that would introduce multiple derivations on these variables, their polynomial structures are simple coefficients.
-%Exactly one mwp-bound describes each of the three variables.
-Variable \pr|X3| shows varying dependencies on \pr|X1|, \pr|X2|, and \pr|X5| at corresponding rows.
-The coefficients indicate that the dependencies are at most polynomial (similarly observable in the \textsc{dfg}).
-The absence of ∞ means the value growth of \pr|X3| is acceptable in all derivations.
-Variable \pr|X4| is assigned ∞ in some derivations.
-Intuitively, this is because the value of \pr|X4| accumulates at each loop iteration and its value growth is potentially problematic.
-The ∞-flow signals that some derivations fail and flags \pr|X4| as the source of failure.
-However, this is the current extent of our capabilities to describe \pr|X4|~\cite{aubert2023b}.
+\noindent{}Variables \pr|X1|, \pr|X2|, and \pr|X5| are assigned at most
+\(m\)\symbo{m}{ }coefficients. An \(m\)-flow at the \ndx{mwp-matrix} diagonal
+means the variable depends on its (own) initial value. Since the program has no
+commands that would introduce multiple derivations on these variables, their
+\ndx{polynomial structure}s are simple coefficients. Variable \pr|X3| shows
+varying dependencies on \pr|X1|, \pr|X2|, and \pr|X5| at corresponding rows. The
+coefficients\index{flow coefficient} indicate that the dependencies are at most
+polynomial (similarly observable in the \textsc{dfg}). The absence of
+∞\symbo{infty} means the value growth of \pr|X3| is acceptable in all
+derivations. Variable \pr|X4| is assigned ∞\symbo{infty} in some derivations.
+Intuitively, this is because the value of \pr|X4| accumulates at each loop
+iteration and its value growth is potentially problematic. The
+∞-flow\symbo{infty} signals that some derivations fail\index{derivation failure}
+and flags \pr|X4| as the source of failure. However, this is the current extent
+of our capabilities to describe \pr|X4|~\cite{aubert2023b}.
 \end{example}
 
-\noindent This paper develops enhanced strategies to extract more precise information from mwp-matrices.
-$\poly_2$Although we show only compact cases, an mwp-matrix captures \(3^k\) derivation choices where \(k\) is the degree.
-Clever solutions are necessary to explore and interpret the mwp-matrix data efficiently, but have been missed by previous flow calculus refinements~\cite{aubert20222,aubert2023b}.
+\noindent This paper develops enhanced strategies to extract more precise
+information from mwp-matrices.\index{mwp-matrix} $\poly_2$\symbo{hp}Although we
+show only compact cases, an mwp-matrix captures \(3^k\) \ndx{derivation choice}s where
+\(k\)\symbo{k2} is the degree. Clever solutions are necessary to explore and
+interpret the \ndx{mwp-matrix} data efficiently, but have been missed by
+previous flow calculus\index{mwp-calculus}
+refinements~\cite{aubert20222,aubert2023b}.
 
 \subsubsection{Interpreting mwp-bounds}
 \label{subsec:interpreting-mwp-bounds}
 
-The mwp-matrix columns encode the variable value growth bounds.
-An mwp-bound is an expression of form $\max(\vec{x}, \poly_1(\vec{y})) + \poly_2(\vec{z})$.
-Variables characterized by $m$-flow are listed in $\vec{x}$; $w$-flows in $\vec{y}$, and $p$-flows in $\vec{z}$.
-Variables characterized by $0$-flow do not occur in the expression.
-No bound exists if some variable is characterized by ∞.
-The $\poly_1$ and  are \emph{\ndx{honest polynomial}s}, build up from constants and variables by applying $+$ and $\times$. % (\cf~\autoref{app:sec:hp} for details).
-The variables with \(w\)-flow occur in $\poly_1$ and variables with \(p\)-flow in $\poly_2$.
-Any of the three variable lists might be empty, and $\poly_1$ and $\poly_2$ may not be present.
-When characterizing value growth, an mwp-bound is approximative.
-It excludes precise constants and degrees of polynomials.
-The mwp-bound is a monotonic over-approximation, \ie it does not decrease if variable value decrease over subtraction.
-A program \emph{bound} is a conjunction of its variables' mwp-bounds.
-\autoref{ex-bounds} shows illustrative cases of mwp-bounds.
-The differences between the bound forms are discussed in Sections~\ref{subsec:categories} and~\ref{subsec:disclaimer}.
+The \ndx{mwp-matrix} columns encode the variable value growth bounds. An
+mwp-bound is an expression of form $\max(\vec{x}, \poly_1(\vec{y})) +
+\poly_2(\vec{z})$\symbo{hp}\symbo{vlist}. Variables characterized by
+$m$\symbo{m}-flow are listed in $\vec{x}$; $w$\symbo{w}-flows in $\vec{y}$, and
+$p$\symbo{p}-flows in $\vec{z}$. Variables characterized by $0$\symbo{zero}-flow
+do not occur in the expression. No bound exists if some variable is
+characterized by ∞\symbo{infty}. The $\poly_1$\symbo{hp} and  are
+\emph{\ndx{honest polynomial}s}, build up from constants and variables by
+applying $+$ and $\times$. The variables with \(w\)\symbo{w}-flow occur in
+$\poly_1$\symbo{hp} and variables with \(p\)\symbo{p}-flow in
+$\poly_2$\symbo{hp}. Any of the three variable lists might be empty, and
+$\poly_1$ and $\poly_2$\symbo{hp} may not be present. When characterizing value
+growth, an \ndx{mwp-bound} is approximative. It excludes precise constants and
+degrees of polynomials. An \ndx{mwp-bound} is a monotonic over-approximation,
+\ie it does not decrease if variable value decrease over subtraction. A program
+\emph{bound} is a conjunction of its variables' \ndx{mwp-bound}s.
+\autoref{ex-bounds} shows illustrative cases of \ndx{mwp-bound}s. The
+differences between the bound forms are discussed in
+Sections~\ref{subsec:categories} and~\ref{subsec:disclaimer}.
 
 \begin{note}
-    For variable \pr|X| and an mwp-bound \(W\), we write \(\prm{X'} \leq W\) to denote the mwp-bound of variable \pr|X|.
-    We use the overloaded notation \pr|X'| to refer to the variable's final value.
-    Variables in \(W\) always refer to initial values.
+For variable \pr|X|\symbo{xvar} and an \ndx{mwp-bound} \(W\)\symbo{bound},
+we write \(\prm{X'} \leq W\)\symbo{Xprime} to denote the \ndx{mwp-bound} of
+variable \pr|X|. We use the overloaded notation \pr|X'| to refer to the
+variable's final value. Variables in \(W\)\symbo{bound} always refer to
+initial values.
 \end{note}
 
 \begin{example}\label{ex-bounds}
-The mwp-bound (on left) is interpreted as, {the \emph{final value} of\ldots}
+The \ndx{mwp-bound} (on left) is interpreted as, {the \emph{final value}
+of\ldots}
 
 \noindent\hfill\begin{tabular}{@{}rl@{\hskip 0.1in}l@{}}
-\(\prm{X2'} \leq \prm{X2} \) & & {\ldots \prc|X2| is bounded linearly by its initial value.} \\
-\(\prm{X3'} \leq \max(\prm{X3},\prm{X2}+\prm{X5})\) & & {\ldots \prc|X3| is bounded by a weak polynomial in \prc|X3| or \(\prm{X2}+\prm{X5}\).} \\
-\(\prm{X4'} \leq \max(\prm{X4})+\prm{X1}\times\prm{X5}\) & & {\ldots \prc|X4| is bounded by a polynomial in \prc|X4| and \(\prm{X1}\times\prm{X5}\).}
+\(\prm{X2'} \leq \prm{X2} \) & & {\ldots \prc|X2| is bounded linearly by its
+initial value.} \\
+\(\prm{X3'} \leq \max(\prm{X3},\prm{X2}+\prm{X5})\) & & {\ldots \prc|X3| is
+bounded by a weak polynomial in \prc|X3| or \(\prm{X2}+\prm{X5}\).} \\
+\(\prm{X4'} \leq \max(\prm{X4})+\prm{X1}\times\prm{X5}\) & & {\ldots \prc|X4| is
+bounded by a polynomial in \prc|X4| and \(\prm{X1}\times\prm{X5}\).}
 \end{tabular}
 \end{example}
 
@@ -759,71 +817,92 @@ The mwp-bound (on left) is interpreted as, {the \emph{final value} of\ldots}
 \subsubsection{Addressed limitations}
 \label{subsec:enhancements}
 
-We introduce two solutions to address current limitations of the flow calculus. % of mwp-bounds.
+We introduce two solutions to address current limitations of the flow
+calculus.\index{mwp-calculus}
 
 \begin{enumerate}
-    \item An mwp-matrix \emph{evaluation strategy}, to efficiently determine if an individual variable admits an mwp-bound of specific form.
-    \item Improved \emph{derivation failure handling}, to identify variables that maintain acceptable value growth in presence of whole-program derivation failure.
+
+\item An \ndx{mwp-matrix} \emph{evaluation strategy}, to efficiently determine
+if an individual variable admits an \ndx{mwp-bound} of specific form.
+
+\item Improved \emph{derivation failure handling}, to identify variables that
+maintain acceptable value growth in presence of whole-program \ndx{derivation
+failure}.
+
 \end{enumerate}
 
-\noindent The \ndx{nondeterminism} of the flow calculus permits capturing more programs, but creates a potential \ndx{state explosion} problem.
-Effectively handling this aspect becomes critical in the second analysis phase, where an mwp-matrix is \emph{evaluated} to find mwp-bounds of variables.
-The first challenge is finding the derivation choices that do not produce failure.
-The second challenge is determining the coefficients assigned to each variable.
-The coefficients are not obvious from the derivation choices of an mwp-matrix;
-rather, they require an application.
-An \emph{application} reduces the polynomial structures to simple coefficients, which then leads to derivation failure or yields a program bound.
+\noindent The \ndx{nondeterminism} of the flow calculus\index{mwp-calculus}
+permits capturing more programs, but creates a potential \ndx{state explosion}
+problem. Effectively handling this aspect becomes critical in the second
+analysis phase, where an mwp-matrix is \emph{evaluated} to find \ndx{mwp-bound}s
+of variables. The first challenge is finding the \ndx{derivation choice}s that
+do not produce failure. The second challenge is determining the
+coefficients\index{flow coefficient} assigned to each variable. The coefficients
+are not obvious from the \ndx{derivation choice}s of an \ndx{mwp-matrix};
+rather, they require an application. An \emph{application} reduces the
+\ndx{polynomial structure}s to simple coefficients\index{flow coefficient},
+which then leads to \ndx{derivation failure} or yields a program bound.
 
-A brute force solution iterates all derivations and applies all choices to observe the result.
-However, such naive solution is impractical, due to latency and a potential yield of exponentially many program bounds.
-The ideal solution should find the optimal bound (if one exists) and without the redundancy of iterating every derivation.
+A brute force solution iterates all derivations and applies all choices to
+observe the result. However, such naive solution is impractical, due to latency
+and a potential yield of exponentially many program bounds. The ideal solution
+should find the optimal bound (if one exists) and without the redundancy of
+iterating every derivation.
 
-The evaluation strategy we present operates as follows.
-It takes the \emph{unwanted} derivation choices then negates them.
-The evaluation result the captures the \emph{permissible} choices.
-The term permissible is abstract -- the meaning depends on what is unwanted.
-For example, if the derivation choices of ∞ coefficients are unwanted,
-the permissible choices are those that avoid failure, \ie non-∞.
-The result of an evaluation is a \emph{disjunction of \ndx{choice vector}s} that compactly capture the permissible derivation choices.
+The evaluation strategy we present operates as follows. It takes the
+\emph{unwanted} \ndx{derivation choice}s then negates them. The evaluation
+result the captures the \emph{permissible} choices. The term permissible is
+abstract -- the meaning depends on what is unwanted. For example, if the
+\ndx{derivation choice}s of ∞ coefficients\index{flow coefficient} are unwanted,
+the permissible choices are those that avoid failure, \ie non-∞. The result of
+an evaluation is a \emph{disjunction of \ndx{choice vector}s} that compactly
+capture the permissible \ndx{derivation choice}s.
 
 \begin{definition}[Choice vector]
-    Letting \( \mathcal{D} \) be a domain and \( k \in \mathbb{N} \)\symbo{nat} be a choice degree,
-    we define a choice vector as \( \vec{C} = (c_1, c_2, \ldots, c_k) \),
-    where \( c_i \subseteq \mathcal{D} \) and \( c_i \neq \emptyset \) for all \( i \in \{1, 2, \ldots, k\} \).
+Letting \( \mathcal{D} \)\symbo{domain} be a domain and \( k \in \mathbb{N}
+\)\symbo{nat}\symbo{k2} be a choice degree, we define a choice vector as \(
+\vec{C} = (c_1, c_2, \ldots, c_k) \)\symbo{cv}, where \( c_i \subseteq
+\mathcal{D} \) and \( c_i \neq \emptyset \) for all \( i \in \{1, 2, \ldots, k\}
+\).
 \end{definition}
-We show \ndx{choice vector}s in Examples~\ref{ex:derivable},~\ref{ex:wbound}, and~\ref{ex:whl}.
+We show \ndx{choice vector}s in Examples~\ref{ex:derivable},~\ref{ex:wbound},
+and~\ref{ex:whl}.
 
 \subsubsection{Evaluation for identifying derivable programs}
 \label{subsec:eval}
 
-The precise mwp-matrix evaluation strategy is presented in~\autoref{alg:algo} and we describe it here informally.
-The evaluation is parametric on three inputs:
+The precise mwp-matrix evaluation strategy is presented in~\autoref{alg:algo}
+and we describe it here informally. The evaluation is parametric on three
+inputs:
 \begin{enumerate*}[label=(\roman*)]
-\item the degree of choice \(k\),
-\item domain \(\mathcal{D}\), and
-\item a set of unwanted derivation choice-sequences, \(\mathcal{S} = \{\Delta_1,\ldots,\Delta_n\}\) where \(n \geq 0\).
+\item the degree of choice \(k\)\symbo{k2},
+\item domain \(\mathcal{D}\)\symbo{domain}, and
+\item a set of unwanted \ndx{derivation choice}-sequences, \(\mathcal{S} =
+\{\Delta_1,\ldots,\Delta_n\}\)\symbo{dset} where \(n \geq 0\).
 \end{enumerate*}
-Observe that all parameters are obtained from an mwp-matrix, but the mwp-matrix or its coefficients are \underline{not} used.
-The evaluation returns a list of \ndx{choice vector}s.
-In the maximally permissive case, the result is a single \ndx{choice vector} permitting everything.
-If no result exists or no choice is necessary, the result is an empty list.
-These outcomes are handled as base cases (Lines~\ref{alg:step0}--\ref{alg:step0end}).
-All interesting evaluations fall between these extremes.
+Observe that all parameters are obtained from an \ndx{mwp-matrix}, but the
+mwp-matrix or its coefficients\index{flow coefficient} are \underline{not} used.
+The evaluation returns a list of \ndx{choice vector}s. In the maximally
+permissive case, the result is a single \ndx{choice vector} permitting
+everything. If no result exists or no choice is necessary, the result is an
+empty list. These outcomes are handled as base cases
+(Lines~\ref{alg:step0}--\ref{alg:step0end}). All interesting evaluations fall
+between these extremes.
 
 \begin{algorithm}
     \caption{\ndx{mwp-matrix} evaluation}
     \label{alg:algo}
     \textbf{Input}:
-    degree \(k\) (\(\mathbb{N}\))\symbo{nat},
-    domain \(\mathcal{D}\) (set),
-    derivation choice-sequences \(\mathcal{S}\) (set)\\
-    \textbf{Output}: \ndx{choice vector}s \(\mathcal{C}\) (list)
+    degree \(k\) (\(\mathbb{N}\))\symbo{k2}\symbo{nat},
+    domain \(\mathcal{D}\)\symbo{domain} (set),
+    derivation choice-sequences \(\mathcal{S}\)\symbo{dset} (set)\\
+    \textbf{Output}: \ndx{choice vector}s \(\mathcal{C}\)\symbo{cvl} (list)
     \begin{algorithmic}[1]
         \State \(\mathcal{C} \gets \varepsilon \)
         \LineComment{Handle base cases}
         \If {\(k = 0\) \textbf{or} \(|\mathcal{D}|\leq 1\) \textbf{or} \(\mathcal{S} = \emptyset\)}\label{alg:step0}
         \If {\(\mathcal{S} = \emptyset\)}
-            \State Create \(\vec{c} \coloneqq\) ChoiceVector(\(k, \mathcal{D}\))
+            \State Create \(\vec{c} \coloneqq\)\symbo{coloneqq} ChoiceVector(\(k, \mathcal{D}\))
             \Comment{\(k\)-length vector of elements in \(\mathcal{D}\)}
             \State \(\mathcal{C} \gets \vec{c} \dblcolon\mathcal{C} \)
         \EndIf
@@ -836,8 +915,8 @@ All interesting evaluations fall between these extremes.
         \doWhile{\text{\textit{size}} \(\neq |\mathcal{S}|\)}
         \LineComment{Step 2: Generate \ndx{choice vector}s}
         \State Compute \(P \coloneqq\) the product of sequences in \(\mathcal{S}\)\label{alg:step2}
-        \ForAll{paths \(p\) in P} \Comment{\(\mathcal{O}(\prod_{s \in \mathcal{S}} |s|)\)}
-        \State Create \(\vec{c} \coloneqq\) ChoiceVector(\(k, \mathcal{D}\))
+        \ForAll{paths \(p\) in P} \Comment{\(\mathcal{O}\left(\prod_{s \in \mathcal{S}} |s|\right)\)}
+        \State Create \(\vec{c} \coloneqq\)\symbo{cv} ChoiceVector(\(k, \mathcal{D}\))
         \ForAll{\((i, j)\) in \(p\)}  \Comment{\(\mathcal{O}(|\mathcal{S}|)\)}
         \State Remove \(i\) at \(\vec{c}_j\)
         \EndFor
@@ -849,82 +928,123 @@ All interesting evaluations fall between these extremes.
     \end{algorithmic}
 \end{algorithm}
 
-The evaluation operates in two steps.
-First it simplifies \(\mathcal{S}\) to the minimal length, non-empty sequences while preserving its effect.
-Then, it generates the \ndx{choice vector}s by negating the remaining unwanted choices.
-The procedure is practically efficient because simplification eliminates redundancy before the \ndx{choice vector} are generated.
-Internally, it benefits from the finiteness of the domain and from having advance complete knowledge of all derivation choices.
+The evaluation operates in two steps. First it simplifies
+\(\mathcal{S}\)\symbo{dset} to the minimal length, non-empty sequences while
+preserving its effect. Then, it generates the \ndx{choice vector}s by negating
+the remaining unwanted choices. The procedure is practically efficient because
+simplification eliminates redundancy before the \ndx{choice vector} are
+generated. Internally, it benefits from the finiteness of the domain and from
+having advance complete knowledge of all \ndx{derivation choice}s.
 
-The simplification step (Line~\ref{alg:step1}) is crucial.
-It must be sound and complete to ensure all distinct derivation patterns are preserved in \(\mathcal{S}\),
-but also reduces \(\mathcal{S}\) to a minimal set. % to make the subsequent step efficient.
-Different simplifications are applied on \(\mathcal{S}\) iteratively until convergence, including the following.
+The simplification step (Line~\ref{alg:step1}) is crucial. It must be
+sound\index{soundness} and complete\index{completeness} to ensure all distinct
+derivation patterns are preserved in \(\mathcal{S}\)\symbo{dset}, but also
+reduces \(\mathcal{S}\)\symbo{dset} to a minimal set. Different simplifications
+are applied on \(\mathcal{S}\)\symbo{dset} iteratively until convergence,
+including the following.
 
 \begin{description}
 
-    \item[Remove super-sequences.] When a sequence leads to an unwanted outcome, every longer sequence producing the same outcome is redundant.
-    For example, if \(\mathcal{S}\) contains \(((0,0),(0,1),(1,2))\) and \(((0,1))\) we remove the longer sequence.
+\item[Remove super-sequences.] When a sequence leads to an unwanted outcome,
+every longer sequence producing the same outcome is redundant. For example, if
+\(\mathcal{S}\)\symbo{dset} contains \(((0,0),(0,1),(1,2))\) and \(((0,1))\) we
+remove the longer sequence.
 
-    \item[Head-elimination.] If many non-singleton sequences differ only on their head element value, and the values cover the domain \(\mathcal{D}\), then the head is redundant.
-    The sequences can be replaced by one sequence without the head element.
-    For example, the sequences \(((0,0)(1,1))\), \(((1,0)(1,1))\), \(((2,0)(1,1))\) can be replaced by \(((1,1))\).
+\item[Head-elimination.] If many non-singleton sequences differ only on their
+head element value, and the values cover the domain \(\mathcal{D}\), then the
+head is redundant. The sequences can be replaced by one sequence without the
+head element. For example, the sequences \(((0,0)(1,1))\), \(((1,0)(1,1))\),
+\(((2,0)(1,1))\) can be replaced by \(((1,1))\).
 
-    \item[Tail-elimination.] By symmetry, the same as above, but on the tail element.
+\item[Tail-elimination.] By symmetry, the same as above, but on the tail
+element.
 
 \end{description}
 
-The generation step (Lines~\ref{alg:step2}--\ref{alg:step2end}) produces the \ndx{choice vector}s.
-They are constructed by computing the cross product of \(\mathcal{S}\).
-We take one derivation choice from each sequence, then eliminating those choices.
-This prevents choosing any unwanted sequence completely.
-If the \ndx{choice vector} elements are non-empty after elimination, we appended the \ndx{choice vector} to the result (Line~\ref{alg:add}).
-We have annotated the computational costs of the iterative steps in~\autoref{alg:algo}.
-The algorithm obviously terminates.
-Since the generation step involves a product, it is a source of potential inefficiency.
-However, we have not encountered natural programs where the simplification does not reduce \(\mathcal{S}\) sufficiently to make the generation step problematic.
-A full implementation of the algorithm is included in our artifact, and described in the \href{https://statycc.github.io/pymwp/choice}{documentation} of \ndx{pymwp}.\footnote{See: \url{https://statycc.github.io/pymwp/choice}}
+The generation step (Lines~\ref{alg:step2}--\ref{alg:step2end}) produces the
+\ndx{choice vector}s. They are constructed by computing the cross product of
+\(\mathcal{S}\)\symbo{dset}. We take one \ndx{derivation choice} from each
+sequence, then eliminating those choices. This prevents choosing any unwanted
+sequence completely. If the \ndx{choice vector} elements are non-empty after
+elimination, we appended the \ndx{choice vector} to the result
+(Line~\ref{alg:add}). We have annotated the computational costs of the iterative
+steps in~\autoref{alg:algo}. The algorithm obviously
+terminates.\index{termination} Since the generation step involves a product, it
+is a source of potential inefficiency. However, we have not encountered natural
+programs where the simplification does not reduce \(\mathcal{S}\)\symbo{dset}
+sufficiently to make the generation step problematic. A full implementation of
+the algorithm is included in our artifact, and described in the
+\href{https://statycc.github.io/pymwp/choice}{documentation} of
+\ndx{pymwp}.\footnote{See: \url{https://statycc.github.io/pymwp/choice}}
 
 \begin{example}[\exname is derivable]\label{ex:derivable}
-In \autoref{ex:mat}, the distinct \ndx{monomial}s that cause failure are \(\infty.\delta(1,1)\) and  \(\infty.\delta(2,1)\).
-The mwp-matrix degree is \(k=2\), the domain is \(\mathcal{D}=\{0,1,2\}\), and the unwanted derivation choice-sequences are \(\mathcal{S} = \{ ((1,1)), ((2,1)) \}\).
-The evaluation returns a choice vector \(\big(\{0,1,2\}, \{0\}\big)\) witnessing successful derivation choices.
-The choice vector communicates that we can select any derivation rule to analyze command \circledc{1}, but must apply \enquote{inference rule 0} (E4) at command \circledc{2}.
+In \autoref{ex:mat}, the distinct \ndx{monomial}s that cause failure are
+\(\infty.\delta(1,1)\)\symbo{delta}\symbo{infty} and  \(\infty.\delta(2,1)\).
+The mwp-matrix degree is \(k=2\)\symbo{k2}, the domain is
+\(\mathcal{D}=\{0,1,2\}\)\symbo{domain}, and the unwanted \ndx{derivation
+choice}-sequences are \(\mathcal{S} = \{ ((1,1)), ((2,1)) \}\)\symbo{dset}. The
+evaluation returns a choice vector \(\big(\{0,1,2\}, \{0\}\big)\) witnessing
+successful \ndx{derivation choice}s. The choice vector communicates that we can
+select any derivation rule to analyze command \circledc{1}, but must apply
+\enquote{inference rule 0} (E4) at command \circledc{2}.
 \end{example}
 
-The application of a \ndx{choice vector} requires making a selection at each vector index, then applying the selections to the polynomial structures of the mwp-matrix.
-A \ndx{monomial} evaluates to \(\delta(i, j) = \alpha\) if the \(j\)th choice is \(i\), and \(0\) otherwise.
-A polynomial structure evaluates to its maximal coefficient.
-Thus, the application produces the maximal coefficient among the \ndx{monomial}s (\cf~\autoref{ex:whl}).
+The application of a \ndx{choice vector} requires making a selection at each
+vector index, then applying the selections to the \ndx{polynomial structure}s of
+the \ndx{mwp-matrix}. A \ndx{monomial} evaluates to \(\delta(i, j) =
+\alpha\)\symbo{delta}\symbo{alpha} if the \(j\)\symbo{mj}th choice is
+\(i\)\symbo{mi}, and \(0\)\symbo{zero} otherwise. A polynomial structure
+evaluates to its maximal coefficient\index{flow coefficient}. Thus, the
+application produces the maximal coefficient among the \ndx{monomial}s
+(\cf~\autoref{ex:whl}).
 
 \subsubsection{Variable projection and querying mwp-bounds}
 \label{subsec:query}
 
-Until now, the flow calculus of mwp-bounds has been restricted to deriving mwp-bounds for all variables concurrently.
-For postcondition inference, we want to obtain information about \emph{individual} variables.
-Since~\autoref{alg:algo} does not require mwp-matrices or coefficients as input, it can be directly reused for variable-specific evaluations.
+Until now, the flow calculus\index{mwp-calculus} of mwp-bounds has been
+restricted to deriving \ndx{mwp-bounds} for all variables concurrently. For
+\ndx{postcondition} inference, we want to obtain information about
+\emph{individual} variables. Since~\autoref{alg:algo} does not require
+mwp-matrices\index{mwp-matrix} or coefficients\index{flow coefficient} as
+input, it can be directly reused for variable-specific evaluations.
 
-Analyzing variable \(\prm{X}_j\) requires taking derivation choices only from column \(j\), instead of the entire mwp-matrix.
-To determine if a variable admits a particular form of mwp-bound, we issue \enquote{queries} against the evaluation procedure,
-altering the derivation choices provided as parameter \(\mathcal{S}\).
-For example, to find derivations with at most \(m\) coefficients (and whether they exist), we take the derivation choices from \ndx{monomial}s whose coefficient are in \(\{w, p,\infty\}\).
-If the evaluation returns a \ndx{choice vector}, it specifies the derivations where the variable is assigned an mwp-bound of at most \(m\) coefficients.
-Bounds with at most \(w\) or \(p\) can be queried similarly, by adjusting \(\mathcal{S}\).
+Analyzing variable \(\prm{X}_j\)\symbo{xvar} requires taking \ndx{derivation
+choice}s only from column \(j\)\symbo{mj}, instead of the entire
+\ndx{mwp-matrix}. To determine if a variable admits a particular form of
+\ndx{mwp-bound}, we issue \enquote{queries} against the evaluation procedure,
+altering the \ndx{derivation choice}s provided as parameter
+\(\mathcal{S}\)\symbo{dset}. For example, to find derivations with at most
+\(m\)\symbo{m} coefficients (and whether they exist), we take the
+\ndx{derivation choice}s from \ndx{monomial}s whose coefficient are in \(\{w,
+p,\infty\}\).\symbo{w}\symbo{p}\symbo{infty} If the evaluation returns a
+\ndx{choice vector}, it specifies the derivations where the variable is assigned
+an mwp-bound of at most \(m\)\symbo{m} coefficients.\index{flow coefficient}
+Bounds with at most \(w\) or \(p\)\symbo{w}\symbo{p} can be queried similarly,
+by adjusting \(\mathcal{S}\)\symbo{dset}.
 
-\begin{example}[Variable \texttt{X3} is bounded by at most $w$ coefficients]\label{ex:wbound}
-In \autoref{ex:mat}, variable \pr|X3| does not have a derivation with at most \(m\) coefficients.
-This can be determined by evaluation of the distinct choices in column \pr|X3| with \(\{w, p, \infty\}\) coefficients,
-\ie \(\mathcal{S} = \{ ((0,0)),((1,0)),((2,0)) \}\).
-This evaluation does not return a \ndx{choice vector}.
-However, an mwp-bound of at most \(w\) exists, by the \ndx{choice vector} \(\big(\{2\}, \{0,1,2\}\big)\).
+\begin{example}
+[Variable \texttt{X3} is bounded by at most $w$ coefficients]
+\label{ex:wbound}
+In \autoref{ex:mat}, variable \pr|X3| does not have a derivation with at most
+\(m\)\symbo{m} coefficients. This can be determined by evaluation of the
+distinct choices in column \pr|X3| with \(\{w, p,
+\infty\}\)\symbo{p}\symbo{infty} coefficients\index{flow coefficient}, \ie
+\(\mathcal{S} = \{ ((0,0)),((1,0)),((2,0)) \}\)\symbo{dset}. This evaluation
+does not return a \ndx{choice vector}. However, an \ndx{mwp-bound} of at most
+\(w\)\symbo{w} exists, by the \ndx{choice vector} \(\big(\{2\},
+\{0,1,2\}\big)\).
 \end{example}
 
-\noindent Variable query is safe for derivable programs, because all variables are guaranteed to have an mwp-bound by the soundness theorem of the flow calculus~\cite[p. 11]{jones2009}.
-Additional caution is needed when a program is not derivable.
+\noindent Variable query is safe for derivable programs\index{derivability},
+because all variables are guaranteed to have an \ndx{mwp-bound} by the soundness
+theorem of the flow calculus~\cite[p. 11]{jones2009}.\index{soundness of
+mwp-calculus} Additional caution is needed when a program is not derivable.
 
 \subsubsection{Variable mwp-bounds in presence of failure}
 \label{subsec:bounds-at-failure}
 
-Derivation failure arises from the inference rules of commands \pr|while| and \pr|loop|, in~\autoref{fig:rules-loops}.
+Derivation failure\index{derivation failure} arises from the \ndx{inference
+rule}s of commands \pr|while| and \pr|loop|, in~\autoref{fig:rules-loops}.
 
 %! suppress = EscapeUnderscore
 \begin{figure}[h]
@@ -943,33 +1063,43 @@ M^* \oplus \{_\ell^{p}\rightarrow j \mid \exists i, M_{ij}^* = p\}}
 {\vdash \text{\pr|while b do  \{C\}|} : M^*}
 \end{prooftree}
 \end{center}
+\symbo{matrix}\symbo{cmat}\symbo{xvar}\symbo{closure}
+\symbo{p}\symbo{m}\symbo{mi}\symbo{mj}\symbo{mzeroj}
 \caption[Flow calculus inference rules for \pr|while| and \pr|loop|]{
-    The flow calculus\index{mwp-calculus} \ndx{inference rule}s for commands
-    \pr|while| and \pr|loop|.}
+The flow calculus\index{mwp-calculus} \ndx{inference rule}s for commands
+\pr|while| and \pr|loop|.}
 \label{fig:rules-loops}
 \end{figure}
 
-The interesting parts about these rules are the side conditions.
-For the \pr|loop| rule (L), the side-condition says a loop can be analyzed if the coefficients at the mwp-matrix diagonal are at most \(m\).
-The \pr|while| (W) rule is more restrictive.
-In addition to diagonal \(m\), no \(p\) coefficients are allowed to occur anywhere in the mwp-matrix.
-These side-conditions ensure variable values grow at most polynomially over repeated executions of the command body.
+The interesting parts about these rules are the side conditions. For the
+\pr|loop| rule (L), the side condition says a loop can be analyzed if the
+flow coefficients\index{flow coefficient} at the \ndx{mwp-matrix} diagonal are at most
+\(m\)\symbo{m}. The \pr|while| (W) rule is more restrictive. In addition to
+diagonal \(m\)\symbo{m}, no \(p\)\symbo{p} coefficients are allowed to occur
+anywhere in the \ndx{mwp-matrix}. These side conditions ensure variable values
+grow at most polynomially over repeated executions of the command body.
 
-A program that does not satisfy the side-conditions is not derivable.
-Then, variable value growth is inconclusive and no bound is assigned to its variables.
-The flow calculus offers no guarantees to programs that are not derivable.
-A single rogue variable can cause a whole-program derivation failure.
-This treatment of failure limits the utility of the analysis.
-Since our goal is to infer postconditions of loops, this restriction excludes many programs we want to analyze.
+A program that does not satisfy the side conditions is not
+derivable.\index{derivability} Then, variable value growth is inconclusive and
+no bound is assigned to its variables. The flow calculus\index{mwp-calculus}
+offers no guarantees to programs that are not derivable. A single rogue variable
+can cause a whole-program \ndx{derivation failure}. This treatment of failure
+limits the utility of the analysis. Since our goal is to infer
+\ndx{postcondition}s of loops, this restriction excludes many programs we want
+to analyze.
 
 \paragraph*{Improving the failure handling}
-Our intuition is that the mwp-matrices accumulate information that permits reasoning about {certain variables} in presence of failure.
-The main new idea is to \emph{isolate the failing variables} from those with acceptable behavior.
-If such isolation is possible, then the remaining variables can be analyzed.
-The idea is conservative because it does not change the rules of the flow calculus.
-Rather, the improvement is based on leveraging fully the information already collected in mwp-matrices.
-We make only the analytical adjustment illustrated in~\autoref{fig:part-prog}.
-Our treatment of failure is sound by the guarantees of the original flow calculus -- explained shortly after the motivating example.
+Our intuition is that the mwp-matrices\index{mwp-matrix} accumulate information
+that permits reasoning about {certain variables} in presence of
+failure.\index{derivation failure} The main new idea is to \emph{isolate the
+failing variables} from those with acceptable behavior. If such isolation is
+possible, then the remaining variables can be analyzed. The idea is conservative
+because it does not change the rules of the flow calculus.\index{mwp-calculus}
+Rather, the improvement is based on leveraging fully the information already
+collected in mwp-matrices.\index{mwp-matrix} We make only the analytical
+adjustment illustrated in~\autoref{fig:part-prog}. Our treatment of failure is
+sound by the guarantees of the original flow calculus\index{mwp-calculus} --
+explained shortly after the motivating example.
 
 %! suppress = NonBreakingSpace
 \begin{figure}
@@ -998,12 +1128,12 @@ while(*) {
 \prm{X3} & 0 & m,\infty(0,0),\infty(1,0)             & \infty(0,1),\infty (1,1),\infty (2,1) & 0 \\
 \prm{X4} & 0 & \infty(1,0)                           & \infty(0,1),\infty (1,1),\infty (2,1) & 0 \\
 \prm{X5} & 0 & \infty(0,0),m(1,0),\infty(1,0),w(2,0) & \infty(0,1),\infty (1,1),\infty (2,1) & m \\
-\end{pNiceMatrix}\)}
-\caption{mwp-matrix with failure}\label{fig:fail-matrix}
+\end{pNiceMatrix}\)}\symbo{zero}\symbo{m}\symbo{w}\symbo{p}\symbo{infty}\symbo{xvar}
+\caption{\ndx{mwp-matrix} with failure}\label{fig:fail-matrix}
 \end{subfigure} \\[1em]
 \begin{subfigure}{.45\textwidth}
 \centering
-\includegraphics[width=4.5cm,keepaspectratio]{fig_dfg.pdf}
+\includegraphics[width=4.5cm,keepaspectratio]{fig_dfg}
 \caption{\textsc{dfg} of the mwp-matrix}\label{fig:fail-dfg}
 \end{subfigure}\hfill%
 %! suppress = NoExtension
@@ -1043,45 +1173,52 @@ in~\ref{fig:group-part}. The sub-program that corresponds to variables in set
 \end{figure}
 
 \begin{example}[Evaluating an always failing derivation]\label{ex:whl}
-The program in~\autoref{lst:whole-p} is not derivable because variable \pr|X4| fails in every derivation.
-The area of failure, that we want to isolate, is shaded in the mwp-matrix of~\autoref{fig:fail-matrix}.
-Not all variables are problematic.
-There is no dependency from \pr|X4| to variables \pr|X2| and \pr|X5| (row \pr|X4|).
-Variable \pr|X3| is more complicated due to the ∞ coefficients in column \pr|X3|.
-Since we want derivations where \pr|X3| is derivable, we compute its \ndx{choice vector}: \(\big(\{2\}, \{0,1,2\}\big)\).
-At index 0, variable \pr|X3| permits one derivation choice: 2.
-Applying \((2,0)\) to the mwp-matrix, at column \pr|X3|, yields coefficients:
-\(\text{\pr|X2|} \mapsto w\),
-\(\text{\pr|X3|} \mapsto m\),
-\(\text{\pr|X4|} \mapsto 0\), and
-\(\text{\pr|X5|} \mapsto w\).
-The \(0\) reveals that in every derivable case variable \pr|X3| is independent of \pr|X4|.
-Therefore, variables \pr|X3|, \pr|X2| and \pr|X5| can be assigned mwp-bounds.
+The program in~\autoref{lst:whole-p} is not derivable because variable \pr|X4|
+fails in every derivation.\index{derivation failure} The area of failure, that
+we want to isolate, is shaded in the \ndx{mwp-matrix}
+of~\autoref{fig:fail-matrix}. Not all variables are problematic. There is no
+dependency from \pr|X4| to variables \pr|X2| and \pr|X5| (row \pr|X4|). Variable
+\pr|X3| is more complicated due to the ∞\symbo{infty} coefficients\index{flow
+coefficient} in column \pr|X3|. Since we want derivations where \pr|X3| is
+derivable\index{derivability}, we compute its \ndx{choice vector}: \(\big(\{2\},
+\{0,1,2\}\big)\). At index 0, variable \pr|X3| permits one \ndx{derivation
+choice}: 2. Applying \((2,0)\) to the \ndx{mwp-matrix}, at column \pr|X3|,
+yields coefficients: \(\text{\pr|X2|} \mapsto w\), \(\text{\pr|X3|} \mapsto m\),
+\(\text{\pr|X4|} \mapsto 0\), and \(\text{\pr|X5|} \mapsto w\)\symbo{map}. The
+\(0\)\symbo{zero} reveals that in every derivable case variable \pr|X3| is
+independent of \pr|X4|. Therefore, variables \pr|X3|, \pr|X2| and \pr|X5| can be
+assigned \ndx{mwp-bound}s.
 \end{example}
 
 \subparagraph*{Variable grouping} (\autoref{fig:group-part}).
-The whole-program derivability is first determined by~\autoref{subsec:eval}.
-In the negative case, at least one variable must be failing.
-Crucially, a failing variable fails in {every derivation}.
-Therefore, it suffices to evaluate variables individually for at most \(p\) coefficients, by~\autoref{alg:algo}.
-We group variables into two sets.
-Set \(\mathsf{A}\) with variables that satisfy polynomial value growth, and set \(\mathsf{B}\) with variables that fail.
-Which set each variable belongs to is determined by the existence of a \ndx{choice vector}.
+The whole-program derivability is first determined by~\autoref{subsec:eval}. In
+the negative case, at least one variable must be failing. Crucially, a failing
+variable fails in every derivation. Therefore, it suffices to evaluate variables
+individually for at most \(p\)\symbo{p} coefficients\index{flow coefficient},
+by~\autoref{alg:algo}. We group variables into two sets. Set \(\mathsf{A}\) with
+variables that satisfy polynomial value growth, and set \(\mathsf{B}\) with
+variables that fail. Which set each variable belongs to is determined by the
+existence of a \ndx{choice vector}.
 
 \subparagraph*{Establishing independence from failure} (\autoref{fig:group-part}).
-Recall, the \(0\) coefficients track {absence} of data flows between variables.
-Thus, we can determine if sets \(\mathsf{A}\) and \(\mathsf{B}\) are data-flow independent from the \(0\)s.
-We must ensure that there is no data flow \emph{from} the failure set \(\mathsf{B}\) to set \(\mathsf{A}\) in the cases where variables in \(\mathsf{A}\) are derivable.
-The condition can be determined by direct inspection of the mwp-matrix.
-The independence condition corresponds to a cut of the data flow graph.
+Recall, the \(0\)\symbo{zero} coefficients\index{flow coefficient} track
+{absence} of data flows between variables. Thus, we can determine if sets
+\(\mathsf{A}\) and \(\mathsf{B}\) are data-flow independent\index{data flow
+independence} from the \(0\)s. We must ensure that there is no data flow
+\emph{from} the failure set \(\mathsf{B}\) to set \(\mathsf{A}\) in the cases
+where variables in \(\mathsf{A}\) are derivable. The condition can be determined
+by direct inspection of the \ndx{mwp-matrix}. The independence condition
+corresponds to a cut of the \ndx{data flow graph}.
 
 \subparagraph*{Partitioning to sub-programs} (\autoref{lst:sub-progs}).
-When failure independence is affirmative, we {partition} the whole-program into two sub-programs.\footnote{
-    This is a conceptual step; no concrete program transformation is necessary.}
-These sub-programs correspond to the data flows in sets \(\mathsf{A}\) and \(\mathsf{B}\).
-No bound can be derived for the failing variables in set \(\mathsf{B}\).
-Variables in set \(\mathsf{A}\) are analyzed by the standard rules of the flow calculus, which ensures soundness.
-\emph{Derivability of this sub-program is the source of increase in the flow calculus expressivity.}
+When failure independence is affirmative, we {partition} the whole-program into
+two sub-programs.\footnote{This is a conceptual step; no concrete program
+transformation is necessary.} These sub-programs correspond to the data flows in
+sets \(\mathsf{A}\) and \(\mathsf{B}\). No bound can be derived for the failing
+variables in set \(\mathsf{B}\). Variables in set \(\mathsf{A}\) are analyzed by
+the standard rules of the flow calculus\index{mwp-calculus}, which ensures
+\ndx{soundness}. \emph{Derivability of this sub-program is the source of
+increase in the flow calculus expressivity.}\index{expressiveness}
 
 \subsection{mwp-bounds as Postconditions}
 \label{sec:pc-analysis}
@@ -1089,69 +1226,87 @@ Variables in set \(\mathsf{A}\) are analyzed by the standard rules of the flow c
 \subsubsection{Optimal mwp-bounds by form}
 \label{subsec:categories}
 
-The enhanced flow calculus now provides a technique for postcondition inference.
-We aim to compute the optimal postconditions for each variable, if they exist.
-There are two unresolved concerns.
-First, mwp-bounds cannot be totally ordered since some forms are incomparable.
-Second, mwp-bounds of different form can evaluate to the same numeric polynomial.
-For example, the three mwp-bounds
-\(W_1 \equiv \max(0,\prm{X1}+\prm{X2})+0\) and
-\(W_2 \equiv \max(\prm{X1},0)+\prm{X2}\) and
-\(W_3 \equiv \max(\prm{X2},0)+\prm{X1}\) are all numerically equal to \(\prm{X1}+\prm{X2}\).
-Therefore, reasoning about optimality requires an alternative approach.
+The enhanced flow calculus\index{mwp-calculus} now provides a technique for
+\ndx{postcondition} inference. We aim to compute the optimal postconditions for
+each variable, if they exist. There are two unresolved concerns. First,
+\ndx{mwp-bound}s cannot be totally ordered since some forms are incomparable.
+Second, mwp-bounds of different form can evaluate to the same numeric
+polynomial. For example, the three mwp-bounds \(W_1 \equiv
+\max(0,\prm{X1}+\prm{X2})+0\)\symbo{bound}\symbo{xvar} and \(W_2 \equiv
+\max(\prm{X1},0)+\prm{X2}\) and \(W_3 \equiv \max(\prm{X2},0)+\prm{X1}\) are all
+numerically equal to \(\prm{X1}+\prm{X2}\). Therefore, reasoning about
+optimality requires an alternative approach.
 
-To establish an ordering, we leverage two built-in features of the flow calculus.
-The individual coefficient are ordered \(0 < m < w < p < \infty\).
-Moreover, the mwp-bounds carry semantic meaning \emph{by form}.
-The growth of a variable value is at most {linear} (\resp iteration-independent, iteration-dependent)
-if its mwp-bound contains at most \(m\) (\resp \(w\), \(p\)) coefficients.
-This gives sufficient justification for our definition of optimality.
+To establish an ordering, we leverage two built-in features of the flow
+calculus. The individual coefficient are ordered \(0 < m < w < p <
+\infty\)\symbo{zero}\symbo{m}\symbo{w}\symbo{p}\symbo{infty}. Moreover, the
+mwp-bounds carry semantic meaning \emph{by form}. The growth of a variable value
+is at most {linear} (\resp iteration-independent, iteration-dependent) if its
+\ndx{mwp-bound} contains at most \(m\) (\resp \(w\), \(p\))
+coefficients.\index{flow coefficient} This gives sufficient justification for
+our definition of optimality.
 
 \begin{definition}[Optimality]
-    We define an order on mwp-bounds by form, by the \emph{maximal} coefficient it contains:
-    \(0 < m\text{-bound} < w\text{-bound} < p\text{-bound} < \infty \text{(none)}\).
-    A variable's mwp-bound is optimal if it is the least bound in this order.
+We define an order on mwp-bounds by form, by the \emph{maximal} coefficient it
+contains: \(0 < m\text{-bound} < w\text{-bound} < p\text{-bound} < \infty
+\text{(none)}\). A variable's mwp-bound is optimal\index{mwp-bound!optimal} if
+it is the least bound in this order.
 \end{definition}
 
-\noindent For example, among \( W_1, W_2\), and \(W_3\),
-the \(w\)-bound \(\max(0,\prm{X1}+\prm{X2})+0\) is optimal because it contains no \(p\) coefficients.
-It supplies the evidence that the variable's value growth is eventually loop iteration independent (discussed in~\autoref{subsec:disclaimer}).
-The other candidates \( W_2\) and \(W_3\) are too weak to reach the same conclusion.
-Finding a single derivation that admits the optimal form is sufficient.
+\noindent For example, among \(W_1, W_2\), and \(W_3\)\symbo{bound}, the
+\(w\)-bound\symbo{w} \(\max(0,\prm{X1}+\prm{X2})+0\) is optimal because it
+contains no \(p\)\symbo{p} coefficients.\index{flow coefficient} It supplies the
+evidence that the variable's value growth is eventually loop iteration
+independent (discussed in~\autoref{subsec:disclaimer}). The other candidates
+\(W_2\) and \(W_3\) are too weak to reach the same conclusion. Finding a single
+derivation that admits the optimal form is sufficient.
 
 \subsubsection{Variable postcondition search}
 \label{subsec:pc-search}
 
-When a program is derivable, or a variable is disjoint from failure,
-the general procedure for deriving a variable's optimal postcondition is as follows.
+When a program is derivable, or a variable is disjoint from failure, the general
+procedure for deriving a variable's optimal \ndx{postcondition} is as follows.
 
 \begin{enumerate}
-    \item Run the mwp-matrix evaluation (\autoref{alg:algo}) iteratively.
-    Construct the set \(\mathcal{S}\) from \ndx{monomial}s whose coefficient is greater than \(m\) (next \(w\), then \(p\)).
-    \item Stop at the first \ndx{choice vector}.
-    This solution is optimal.
+\item
+Run the \ndx{mwp-matrix} evaluation (\autoref{alg:algo}) iteratively. Construct
+the set \(\mathcal{S}\)\symbo{dset} from \ndx{monomial}s whose \ndx{flow
+coefficient} is greater than \(m\)\symbo{m} (next \(w\)\symbo{w}, then
+\(p\)\symbo{p}).
+\item Stop at the first \ndx{choice vector}.
+This solution is optimal.
 \end{enumerate}
 
 \noindent
-Since the search focuses on individual variables, we may want to ask whether multiple postconditions can occur concurrently.
-To determine the answer, we take the intersection of their \ndx{choice vector}s (\autoref{def:intersect}).
-A non-empty intersection specifies the derivations in which both postconditions hold.
-Related questions about postconditions can be formulated similarly, as operations on choice vectors.
+Since the search focuses on individual variables, we may want to ask whether
+multiple \ndx{postcondition}s can occur concurrently. To determine the answer,
+we take the intersection of their \ndx{choice vector}s
+(\autoref{def:intersect}). A non-empty intersection specifies the derivations in
+which both \ndx{postcondition}s hold. Related questions about
+\ndx{postcondition}s can be formulated similarly, as operations on \ndx{choice
+vector}s.
 
-\begin{definition}[Choice vector intersection]\label{def:intersect}
-Letting \(\vec{C_a} = (a_1, a_2,\dots,a_k) \) and \(\vec{C_b} = (b_1\), \(b_2\), \(\dots\), \(b_k)\) be \ndx{choice vector}s of length \(k\),
-we define the intersection of \(\vec{C_a} \text{ and } \vec{C_b} \) as
-\[ \vec{C_a} \cap \vec{C_b} = \begin{cases}
-(a_1 \cap b_1, a_2 \cap b_2, \dots, a_k \cap b_k), & \text{ if } \not\exists i \text{ such that } a_i \cap b_i = \emptyset, \\
-\emptyset, & \text{ otherwise.}\end{cases}
+\begin{definition}[Choice vector intersection]
+\label{def:intersect}\index{choice vector}
+Letting \(\vec{C_a} = (a_1, a_2,\dots,a_k) \)\symbo{cv} and \(\vec{C_b} =
+(b_1\), \(b_2\), \(\dots\), \(b_k)\) be \ndx{choice vector}s of length
+\(k\)\symbo{k2}, we define the intersection of \(\vec{C_a} \text{ and }
+\vec{C_b} \) as \[ \vec{C_a} \cap \vec{C_b} = \begin{cases} (a_1 \cap b_1, a_2
+\cap b_2, \dots, a_k \cap b_k), & \text{ if } \not\exists i \text{ such that }
+a_i \cap b_i = \emptyset, \\ \emptyset, & \text{ otherwise.}\end{cases}
 \]%\qedhere
 \end{definition}
 
-\begin{example}[Successful and optimal postcondition of \texttt{X3}]\label{ex:opt-derivation}
-By \autoref{ex:derivable}, \exname is derivable by \ndx{choice vector} \(\big(\{0, 1, 2\}, \{0\}\big)\).
-By \autoref{ex:wbound}, variable \pr|X3| is assigned its optimal postcondition in derivations \(\big(\{2\}, \{0,1,2\}\big)\).
-The whole-program is derivable \emph{and} variable \pr|X3| is assigned its optimal postcondition in derivations defined by choices
-\( \big(\{0, 1, 2\}, \{0\}\big) \cap \big(\{2\}, \{0,1,2\}\big) = \big( \{2\}, \{0\}\big) \).
+\begin{example}
+[Successful and optimal postcondition of \texttt{X3}]
+\label{ex:opt-derivation}
+By \autoref{ex:derivable}, \exname is derivable\index{derivability} by
+\ndx{choice vector} \(\big(\{0, 1, 2\}, \{0\}\big)\). By \autoref{ex:wbound},
+variable \pr|X3| is assigned its optimal postcondition in derivations
+\(\big(\{2\}, \{0,1,2\}\big)\). The whole-program is derivable \emph{and}
+variable \pr|X3| is assigned its optimal \ndx{postcondition} in derivations
+defined by choices \( \big(\{0, 1, 2\}, \{0\}\big) \cap \big(\{2\},
+\{0,1,2\}\big) = \big( \{2\}, \{0\}\big) \).
 \end{example}
 
 \subsubsection{Program analysis for postcondition inference}
@@ -1169,67 +1324,68 @@ Postcondition\index{postcondition} inference of loop
 \(\mathcal{C}\)\symbo{prog2} is defined as follows.
 
 \begin{enumerate}
-    \item Extract all (possibly nested)\index{nested loop} loops from the
-    program \(\mathcal{C}\)\symbo{prog2}.
-    \item (bottom-up) For each loop \(l\):\symbo{loop}
-    \begin{enumerate}[label=(\roman*)]
-    \item Run the mwp analysis to derive the \ndx{mwp-matrix}, \(l :
-    M\).\symbo{matrix}\symbo{loop}
-    \item Using \autoref{alg:algo}, evaluate \(M\)\symbo{matrix} to determine if
-    \(l\) is derivable.\index{derivability}
-    %! suppress = MissingImport
-    \begin{itemize}
-        \item[] \(\triangleright\) If yes: mark every variable as satisfactory.
-        \item[] \(\triangleright\) If no: mark the non-failing variables as
-        satisfactory (\autoref{subsec:bounds-at-failure}).
-    \end{itemize}
-    \item Evaluate satisfactory variables for optimal \ndx{postcondition}s
-    (\autoref{subsec:pc-search}).
-    \item Record the postconditions of satisfactory variables.
-    \end{enumerate}
-    \item Return the analysis result for \(\mathcal{C}\)\symbo{prog2}.
+\item Extract all (possibly nested)\index{nested loop} loops from the
+program \(\mathcal{C}\)\symbo{prog2}.
+\item (bottom-up) For each loop \(l\):\symbo{loop}
+\begin{enumerate}[label=(\roman*)]
+\item Run the mwp analysis to derive the \ndx{mwp-matrix}, \(l :
+M\).\symbo{matrix}\symbo{loop}
+\item Using \autoref{alg:algo}, evaluate \(M\)\symbo{matrix} to determine if
+\(l\) is derivable.\index{derivability}
+%! suppress = MissingImport
+\begin{itemize}
+    \item[] \(\triangleright\) If yes: mark every variable as satisfactory.
+    \item[] \(\triangleright\) If no: mark the non-failing variables as
+    satisfactory (\autoref{subsec:bounds-at-failure}).
+\end{itemize}
+\item Evaluate satisfactory variables for optimal \ndx{postcondition}s
+(\autoref{subsec:pc-search}).
+\item Record the postconditions of satisfactory variables.
+\end{enumerate}
+\item Return the analysis result for \(\mathcal{C}\)\symbo{prog2}.
 \end{enumerate}
 
-\subsubsection{Postcondition categories as descriptors of variable value behavior}
+\subsubsection{Postcondition categories as descriptors of variable value
+behavior}
 \label{subsec:disclaimer}
 
-A language of loops restricts the kind of computations we may encounter.
-The inferred \ndx{postconditions} can be described by the following categories.
+A language of loops restricts the kind of computations we may encounter. The
+inferred \ndx{postconditions} can be described by the following categories.
 
 \begin{description}
 
-    \item[Linear.]\index{mwp-bound!linear}
-    A variable's \ndx{mwp-bound} is linear if its value does not change or it is
-    a target of direct assignment (without arithmetic). Inside loops, other
-    operations are \enquote{too strong} to retain linear behavior. In \exname,
-    variables \pr|X1|, \pr|X2| and \pr|X5| are linear because their values never
-    change.
+\item[Linear.]\index{mwp-bound!linear}
+A variable's \ndx{mwp-bound} is linear if its value does not change or it is
+a target of direct assignment (without arithmetic). Inside loops, other
+operations are \enquote{too strong} to retain linear behavior. In \exname,
+variables \pr|X1|, \pr|X2| and \pr|X5| are linear because their values never
+change.
 
-    \item[Iteration-independent.]\index{mwp-bound!iteration-independent}
-    A variable is iteration-independent if its final value depends on a fixed
-    number of iterations (\eg the first or last one) or eventually reaches a
-    fixed point. Iteration independence\index{iteration independence} means
-    that, beyond the fixed point, the variable is unaffected by an increase in
-    loop iteration count.\index{iteration space} Thus, iteration-independence is
-    a quasi-invariance\index{quasi-invariant} property. In \exname, if the loop
-    iterates at least once, the final value of \pr|X3| is determined by \pr|X2|
-    and \pr|X5|.
+\item[Iteration-independent.]\index{mwp-bound!iteration-independent}
+A variable is iteration-independent if its final value depends on a fixed
+number of iterations (\eg the first or last one) or eventually reaches a
+fixed point. Iteration independence\index{iteration independence} means
+that, beyond the fixed point, the variable is unaffected by an increase in
+loop iteration count.\index{iteration space} Thus, iteration-independence is
+a quasi-invariance\index{quasi-invariant} property. In \exname, if the loop
+iterates at least once, the final value of \pr|X3| is determined by \pr|X2|
+and \pr|X5|.
 
-    \item[Iteration-dependent.]\index{mwp-bound!iteration-dependent}
-    Arithmetic computations involving multiple changing variables lead to
-    iteration-dependent value growth.\index{iteration dependence} It may occur
-    in \ndx{bounded loop}s, but not otherwise. This is because a continuously
-    increasing value may be boundable under finite iteration, but not if the
-    loop is unbounded\index{unbounded loop}. In \explain, changing the number of
-    times the loop iterates changes the final value of \pr|X4| respectively.
-    This makes \pr|X4| iteration-dependent.
+\item[Iteration-dependent.]\index{mwp-bound!iteration-dependent}
+Arithmetic computations involving multiple changing variables lead to
+iteration-dependent value growth.\index{iteration dependence} It may occur
+in \ndx{bounded loop}s, but not otherwise. This is because a continuously
+increasing value may be boundable under finite iteration, but not if the
+loop is unbounded\index{unbounded loop}. In \explain, changing the number of
+times the loop iterates changes the final value of \pr|X4| respectively.
+This makes \pr|X4| iteration-dependent.
 
-    \item[Inconclusive.]
-    If no expressible \ndx{postcondition} exists, the variable is inconclusive.
-    It characterizes cases where a variable's value growth is outside the
-    previous three categories. In~\autoref{ex:whl}, since the loop does not
-    terminate, the value of \pr|X4| grows in perpetuity. This makes the
-    variable's value growth inconclusive.
+\item[Inconclusive.]
+If no expressible \ndx{postcondition} exists, the variable is inconclusive.
+It characterizes cases where a variable's value growth is outside the
+previous three categories. In~\autoref{ex:whl}, since the loop does not
+terminate, the value of \pr|X4| grows in perpetuity. This makes the
+variable's value growth inconclusive.
 
 \end{description}
 
@@ -1285,14 +1441,14 @@ iteration-dependency.\index{mwp-bound!iteration-dependent} The current detection
 is based on loop form and it is still rudimentary. In the future, improving the
 analyzer's handling of richer loop forms would yield more bounded variables.
 
-To use the analysis results as concrete verification
-\ndx{assertion}s, two more steps are required. First, we
-must record the initial variable values because they are needed to express
-\ndx{postcondition}s. Next, we must complete the parts that are left implicit in
-\ndx{mwp-bounds}, like constants. \autoref{app:sec:verified} demonstrates how we
-perform both steps. In general, the \ndx{postcondition}s provide bounding
-expressions \wrt input variables, with some possible omissions. However, filling
-in the expression is easier than starting with no expression at all.
+To use the analysis results as concrete verification \ndx{assertion}s, two more
+steps are required. First, we must record the initial variable values because
+they are needed to express \ndx{postcondition}s. Next, we must complete the
+parts that are left implicit in \ndx{mwp-bounds}, like constants.
+\autoref{app:sec:verified} demonstrates how we perform both steps. In general,
+the \ndx{postcondition}s provide bounding expressions \wrt input variables, with
+some possible omissions. However, filling in the expression is easier than
+starting with no expression at all.
 
 \subsection{Comparing Related Techniques}
 \label{sec:related-works}
@@ -1331,7 +1487,7 @@ invariants\index{likely invariant} at the traced program points.
 \ndx{EvoSpex}~\cite{molina2021} is a dynamic postcondition analyzer. It is
 designed for \ndx{Java} methods for reasoning about \ndx{postcondition}s in
 classes (accessors, mutators, heap structures, \etc); and thus distant from
-\ndx{numerical loop} analysis. The \ndx{invariant} detector
+numerical loop\index{numerical loops} analysis. The \ndx{invariant} detector
 \ndx{Daikon}~\cite{ernst2007} handles many program constructs, including
 \ndx{numerical loops}. Since \ndx{Daikon} is compatible with our problem
 formulation, we discuss it in~\autoref{subsec:comparison}).
@@ -1340,7 +1496,7 @@ generator. \ndx{DIG} can perform \ndx{invariant inference} at arbitrary program
 points, which makes it usable as a \ndx{postcondition} detector. Although it is
 similar to \ndx{Daikon}, \ndx{DIG} mixes static and dynamic techniques to obtain
 more informative results. In general, \ndx{dynamic program analysis} differs
-notably from static analysis. Since the results are based on
+notably from \ndx{static program analysis}. Since the results are based on
 traces\index{program trace}, they are necessarily
 incomplete.\index{incompleteness} The quality of inferred results is directly
 related to the available analysis inputs. Importantly, a dynamic analyzer
@@ -1546,11 +1702,11 @@ Postconditions for
 \bottomrule
 \end{tabularx}\symbo{nat}
 \caption[Summary of analyzer capabilities, behaviors, and assumptions]{
-    Summary of analyzer capabilities, behaviors, and assumptions. For input
-    format, we write \emph{program} to mean syntactical analysis written in a
-    subset of the \ndx{C} language, though the subsets differ. A positive
-    response is phrased as favorable: \mbox{\sfull = yes}, \mbox{\spart =
-    partial}, \mbox{\snone = no}.
+Summary of analyzer capabilities, behaviors, and assumptions. For input
+format, we write \emph{program} to mean syntactical analysis written in a
+subset of the \ndx{C} language, though the subsets differ. A positive
+response is phrased as favorable: \mbox{\sfull = yes}, \mbox{\spart =
+partial}, \mbox{\snone = no}.
 }\label{tab:summary}
 \end{table}
 
@@ -1561,19 +1717,19 @@ We examine two questions about the implementation of our technique.
 
 \begin{enumerate}
 
-    \item \textbf{How effective is \ndx{\impl} at discovering
-    \ndx{postcondition}s in general?}
-    We execute \ndx{\impl} against four benchmark suites that include a rich set
-    of benchmarks from \ndx{complexity theory} to loop\index{loop invariant}
-    \ndx{invariant inference}. Three of the suites are design-independent of the
-    applied analysis technique.
+\item \textbf{How effective is \ndx{\impl} at discovering
+\ndx{postcondition}s in general?}
+We execute \ndx{\impl} against four benchmark suites that include a rich set
+of benchmarks from \ndx{complexity theory} to loop\index{loop invariant}
+\ndx{invariant inference}. Three of the suites are design-independent of the
+applied analysis technique.
 
-    \item \textbf{What is the concrete impact of the new theoretical
-    enhancements?}
-    We hypothesize that the introduced enhancements are critical for extending
-    the utility of the flow calculus.\index{mwp-calculus} To quantify this
-    improvement, we compare performance of \ndx{\impl} and \ndx{\impf} across
-    the four benchmark suites.
+\item \textbf{What is the concrete impact of the new theoretical
+enhancements?}
+We hypothesize that the introduced enhancements are critical for extending
+the utility of the flow calculus.\index{mwp-calculus} To quantify this
+improvement, we compare performance of \ndx{\impl} and \ndx{\impf} across
+the four benchmark suites.
 
 \end{enumerate}
 
@@ -1936,6 +2092,7 @@ int main(int X, int Y, int Z) {
 \end{tikzpicture}
 \end{minipage}
 \end{center}
+%! suppress = FigureNotReferenced
 \caption[Postcondition analysis scopes]{
 Postcondition analysis scopes.\index{postcondition} The analyzers focus on
 complementary program regions identified by the different colors. \ndx{KoAT}
