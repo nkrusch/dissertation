@@ -321,24 +321,25 @@ fast} for a polynomial bound.
 
 \paragraph*{Analysis result and \ndx{derivability}}
 If all final values can be bounded by polynomials, then the input program is
-\emph{derivable}. The flow calculus assigns an \emph{\ndx{mwp-bound}} to every
-variable of a derivable program. An \ndx{mwp-bound} is an expression, in terms
-of the inputs, that characterizes the value growth of a single variable. If a
-derivable program terminates, the soundness theorem of the flow
-calculus~\cite[p. 11]{jones2009}\index{soundness of mwp-calculus} guarantees
-that the variable value growth is polynomially-bounded. The result is sound but
-not complete, \ie not all satisfactory programs can be captured, but on success
-we can prove the result with a derivation. Since the analysis omits
-\ndx{termination}, this is a \ndx{partial correctness} guarantee.
+\emph{derivable}. The flow calculus\index{mwp-calculus} assigns an
+\emph{\ndx{mwp-bound}} to every variable of a derivable program. An
+\ndx{mwp-bound} is an expression, in terms of the inputs, that characterizes the
+value growth of a single variable. If a derivable program terminates, the
+soundness theorem of the flow calculus~\cite[p. 11]{jones2009}\index{soundness
+of mwp-calculus}\index{mwp-calculus} guarantees that the variable value growth
+is polynomially-bounded. The result is sound but not complete, \ie not all
+satisfactory programs can be captured, but on success we can prove the result
+with a derivation. Since the analysis omits \ndx{termination}, this is a
+\ndx{partial correctness} guarantee.
 
 The flow calculus\index{mwp-calculus} offers no guarantee to programs that are
 not derivable;\index{derivation failure} their variable value growth is
 \emph{unknown}. A program always fails if some variable value grows \enquote{too
 fast}, \eg exponentially. Failure may also arise from inability to express
-satisfactory behavior. This is a built-in limitation of the flow calculus; and
-more broadly, a common limitation among related systems~\cite[p.
-2]{baillot2015}. The flow calculus alleviates the issues with
-nondeterministic\index{nondeterminism} \ndx{inference rule}s. The
+satisfactory behavior. This is a built-in limitation of the flow
+calculus;\index{mwp-calculus} and more broadly, a common limitation among
+related systems~\cite[p. 2]{baillot2015}. The flow calculus alleviates the
+issues with nondeterministic\index{nondeterminism} \ndx{inference rule}s. The
 \ndx{nondeterminism} increases \ndx{expressiveness}, to capture a larger class
 of programs. But one program may admit multiple derivations, which in turn
 complicates the analysis procedure. A program is derivable\index{derivability}
@@ -467,22 +468,22 @@ The \autoref{fig:pc-workflow} illustrates the complete analysis workflow.
 The boxed region highlights the steps and enhancements introduced in this paper.
 The region outside the box refers to the existing techniques we build on.
 
-The analysis takes as input an imperative loop
-(\autoref{subsec:imp-language}).\index{imperative programs} We analyze the loop
-using the \ndx{inference rule}s of the flow calculus
-(\autoref{subsec:matrices})\index{mwp-calculus}. As output, the analysis
-produces an \emph{mwp-matrix} (\autoref{subsec:mat-decode})\index{mwp matrix}.
-Our enhancements involve {evaluating} these mwp-matrices. We define first an
-{evaluation procedure} (\autoref{subsec:eval}) that enables extracting optimal
-\ndx{mwp-bound}s from mwp-matrices, and in more cases than previously
-(\autoref{subsec:bounds-at-failure}). This provides the \ndx{postcondition}s
-that address the problem formulation of~\autoref{subsec:overview}.
+The analysis takes as input an imperative loop \index{imperative programs}
+(\autoref{subsec:imp-language}). We analyze the loop using the \ndx{inference
+rule}s of the flow calculus (\autoref{subsec:matrices})\index{mwp-calculus}. As
+output, the analysis produces an \emph{\ndx{mwp-matrix}}
+(\autoref{subsec:mat-decode}). Our enhancements involve {evaluating} these
+mwp-matrices. We define first an {evaluation procedure} (\autoref{subsec:eval})
+that enables extracting optimal \ndx{mwp-bound}s from mwp-matrices, and in more
+cases than previously (\autoref{subsec:bounds-at-failure}). This provides the
+\ndx{postcondition}s that address the problem formulation
+of~\autoref{subsec:overview}.
 
 \subsubsection{Imperative language of input programs}
 \label{subsec:imp-language}
 
 \begin{definition}[Imperative language]
-\label{def:lang}\index{imperative program}
+\label{def:lang}\index{imperative programs}
 Letting natural number variables range over \pr|X| and \pr|Y| and Boolean
 expressions over \pr{b}, we define \emph{expressions} \pr|e|, and
 \emph{commands} \pr|C| as follows
@@ -601,12 +602,12 @@ Flow coefficients---described in \autoref{subsec:flow-calc-intro}---are the core
 The flow coefficients are elements of the finite set \(\text{\textsc{mwp}}^\infty \triangleq \{0, m, w, p,\infty\}\).\symbo{trieq}
 A \emph{domain} \(\mathcal{D} \triangleq \{0, 1, 2 \}\)\symbo{domain} is a bidirectional map of the flow calculus \ndx{inference rule}s.
 In other words, the domain members can be translated to flow calculus inference rules (E2--E4) and vice versa.
-The \emph{degree} of choice, \(k : \mathbb{N}\)\symbo{k2}, is a counter of derivations.
+The \emph{degree} of choice, \(k : \mathbb{N}\)\symbo{k2}\symbo{nat}, is a counter of derivations.
 The degree represents the number of times a derivation choice must be made during program analysis.
 The degree is precisely equal to the count of binary arithmetic operations whose operator is either \(+\) or \(-\).
 
 \begin{definition}[Derivation choice]
-    Letting \( \mathcal{D} \) be a domain and \( k \in \mathbb{N} \) be the degree of choice,
+    Letting \( \mathcal{D} \) be a domain and \( k \in \mathbb{N} \)\symbo{nat} be the degree of choice,
     we define a derivation choice as \( \delta(i, j) \), where \( i \subseteq \mathcal{D} \) and \( j \leq k \).\end{definition}
 A derivation choice, denoted by \(\delta\), represents the \ndx{nondeterminism} of the flow calculus.
 %It is another core building block of mwp-matrices.
@@ -786,7 +787,7 @@ the permissible choices are those that avoid failure, \ie non-∞.
 The result of an evaluation is a \emph{disjunction of \ndx{choice vector}s} that compactly capture the permissible derivation choices.
 
 \begin{definition}[Choice vector]
-    Letting \( \mathcal{D} \) be a domain and \( k \in \mathbb{N} \) be a choice degree,
+    Letting \( \mathcal{D} \) be a domain and \( k \in \mathbb{N} \)\symbo{nat} be a choice degree,
     we define a choice vector as \( \vec{C} = (c_1, c_2, \ldots, c_k) \),
     where \( c_i \subseteq \mathcal{D} \) and \( c_i \neq \emptyset \) for all \( i \in \{1, 2, \ldots, k\} \).
 \end{definition}
@@ -813,7 +814,7 @@ All interesting evaluations fall between these extremes.
     \caption{\ndx{mwp-matrix} evaluation}
     \label{alg:algo}
     \textbf{Input}:
-    degree \(k\) (\(\mathbb{N}\)),
+    degree \(k\) (\(\mathbb{N}\))\symbo{nat},
     domain \(\mathcal{D}\) (set),
     derivation choice-sequences \(\mathcal{S}\) (set)\\
     \textbf{Output}: \ndx{choice vector}s \(\mathcal{C}\) (list)
@@ -977,7 +978,7 @@ Our treatment of failure is sound by the guarantees of the original flow calculu
 \begin{minipage}{\textwidth}
 \begin{implisting}*[label=fail-p]
 while(*) {
-{ X3=X2*X2;
+  X3=X2*X2;
   X3=X3+X5;
   X4=X4+X5; }
 \end{implisting}
@@ -992,11 +993,11 @@ while(*) {
 \CodeBefore
 \cellcolor{lgrey}{3-,-3}
 \Body
-& \prm{X2} & \prm{X3} & \prm{X4} & \prm{X5} \\
-\prm{X2} & m & \infty(0,0),\infty(1,0),w(2,0)                  & \infty(0,1),\infty (1,1),\infty (2,1) & 0 \\
-\prm{X3} & 0 & m,\infty(0,0),\infty(1,0)                       & \infty(0,1),\infty (1,1),\infty (2,1) & 0 \\
-\prm{X4} & 0 & \infty(1,0)                                     & \infty(0,1),\infty (1,1),\infty (2,1) & 0 \\
-\prm{X5} & 0 & \infty(0,0),m(1,0),\infty(1,0),w(2,0)           & \infty(0,1),\infty (1,1),\infty (2,1) & m \\
+         & \prm{X2} & \prm{X3} & \prm{X4} & \prm{X5} \\
+\prm{X2} & m & \infty(0,0),\infty(1,0),w(2,0)        & \infty(0,1),\infty (1,1),\infty (2,1) & 0 \\
+\prm{X3} & 0 & m,\infty(0,0),\infty(1,0)             & \infty(0,1),\infty (1,1),\infty (2,1) & 0 \\
+\prm{X4} & 0 & \infty(1,0)                           & \infty(0,1),\infty (1,1),\infty (2,1) & 0 \\
+\prm{X5} & 0 & \infty(0,0),m(1,0),\infty(1,0),w(2,0) & \infty(0,1),\infty (1,1),\infty (2,1) & m \\
 \end{pNiceMatrix}\)}
 \caption{mwp-matrix with failure}\label{fig:fail-matrix}
 \end{subfigure} \\[1em]
@@ -1543,7 +1544,7 @@ Results soundness             & \snone                & \sfull               & \
 Postconditions for
 \autoref{fig:loops}           & \spart \snone \spart  & \snone \snone \snone & \spart \snone \spart & \sfull \sfull \sfull \\
 \bottomrule
-\end{tabularx}
+\end{tabularx}\symbo{nat}
 \caption[Summary of analyzer capabilities, behaviors, and assumptions]{
     Summary of analyzer capabilities, behaviors, and assumptions. For input
     format, we write \emph{program} to mean syntactical analysis written in a

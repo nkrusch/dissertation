@@ -72,16 +72,16 @@ interest is how can we quantify and measure such aspects of programs?
 
 \paragraph*{Non-functional properties}
 Extending beyond functional behavior, we evaluate programs based on their
-quality attributes, \ie \emph{\ndx{non-functional properties}}. Non-functional
-properties include aspects like program security and resource consumption. For
-example, between two functionally equivalent programs, we may want to identify
-the program that computes the result faster or using less memory. A main theme
-of this dissertation is to treat \emph{programs as mathematical objects} to
-\emph{analyze their non-functional properties}. Among the goals are developing
-techniques that enable quantifying such properties. Furthermore, instead of
-trusting informal claims---like the earlier one about program equivalence---we
-seek rigorous guarantees that the stated properties truly hold in the inspected
-program(s).
+quality attributes, \ie \emph{non-functional properties}\index{non-functional
+property}. Non-functional properties include aspects like program security and
+resource consumption. For example, between two functionally equivalent programs,
+we may want to identify the program that computes the result faster or using
+less memory. A main theme of this dissertation is to treat \emph{programs as
+mathematical objects} to \emph{analyze their non-functional properties}. Among
+the goals are developing techniques that enable quantifying such properties.
+Furthermore, instead of trusting informal claims---like the earlier one about
+program equivalence---we seek rigorous guarantees that the stated properties
+truly hold in the inspected program(s).
 
 \paragraph*{Scientific challenges}
 The challenge of programming thus involves much more than \enquote{just} the act
@@ -294,13 +294,13 @@ formally the soundness of the flow calculus?\index{soundness of mwp-calculus}
 The manuscripts building on the flow calculus demonstrate its uses in static
 program analysis and in formal verification for specification inference. The
 manuscripts support all dissertation goals. The manuscripts concerned with the
-implementation of the flow calculus (RQ1) support Goals \#1--3. A formally
+implementation of the flow calculus (RQ1) support Goals 1--3. A formally
 verified soundness proof (RQ2), and an application to formal verification (RQ3)
-support Goal \#4.
+support Goal 4.
 
 One manuscript, \emph{\enquote{mwp-Analysis Improvement and Implementation:
-Realizing Implicit Computational Complexity}} is in the appendix
-(\autoref{app:additional-manuscripts}) due to Augusta University policy. The
+Realizing Implicit Computational Complexity}} is in the Appendix
+(\autoref{app:additional-manuscripts}) due to an Augusta University policy. The
 placement should not distract from the significance of the work, as several
 other manuscripts follow from it.
 
@@ -340,7 +340,7 @@ appear to be about properties, but more deeply they are about understanding
 better the underlying theory and its flexibility.
 
 Both goals are practically motivated. The expected deliverables support Goals
-\#1 and \#2. Moreover, they are strongly aligned to support Goal \#4.
+1 and 2. Moreover, they are strongly aligned to support Goal 4.
 
 \subsection{Manuscript Overview}
 \label{ssec:manuscripts}
@@ -417,31 +417,35 @@ evaluation round. Therefore, each manuscript consists of more than just the text
 pages of the dissertation. How to locate the artifacts is explained
 in Chapter~\autoref{app:sec:artifacts}.
 
-The dissertation itself also has an artifact. The dissertation artifact allows
-executing code fragments appearing in the dissertation and includes additional
-resources.
+The source code of the dissertation~\cite{diss} is publicly available at:
 
-The source code of the dissertation is publicly available at:
-
-\begin{center}
-\begin{minipage}{\textwidth}
+\noindent\begin{minipage}{\textwidth}
 %! suppress = EscapeUnderscore
 \begin{browserlisting}[nolol,escapeinside=!!]
 !\href{https://github.com/nkrusch/dissertation}
 {\texttt{https://github.com/nkrusch/dissertation}}!
 \end{browserlisting}
 \end{minipage}
-\end{center}
 
 and archived according to~\autoref{sssec:dyn-bib}.
+The dissertation also has an artifact. The artifact allows, for example, executing code
+fragments that appear in the dissertation. The artifact URL is
+
+\noindent\begin{minipage}{\textwidth}
+%! suppress = EscapeUnderscore
+\begin{browserlisting}[nolol,escapeinside=!!]
+!\href{https://doi.org/10.5281/zenodo.15288399}
+{\texttt{https://doi.org/10.5281/zenodo.15288399}}!
+\end{browserlisting}
+\end{minipage}
 
 \subsubsection{Notational Conventions}
 
 \paragraph*{Programming languages, syntax, and code blocks}
 Syntactic constructs (variables, expressions, commands, \etc) that are embedded
-in text are typeset in \pr|teletype|. Larger or more significant code blocks
-are displayed as dedicated code listings. The listings will display, in the
-bottom right corner, the associated programming language or context, according
+in text are typeset in \pr|teletype|. Larger or more significant code blocks are
+displayed as dedicated code listings. The listings will display, in the bottom
+right corner, the associated programming language or context, according
 to~\autoref{tab:pls}. In the table, \emph{version} is the language release
 version assumed in the listings, when applicable (pseudo-languages do not have a
 version). Plain text listings, that describe command outputs, are labelled
@@ -491,7 +495,7 @@ language}}~\cite{spivey1992}, we use notation that identifies the \emph{new}
 where the variable holds its {final} value. For example, \pr|X| refers to the
 initial value and \pr|X'| refers to the final value.
 
-\subsubsection{Term and Notational Indices}
+\subsubsection{Lookup Indices}
 
 The dissertation includes three indices for terms, acronyms, and symbols. The
 Term Index (\autoref{sec:app:index}) lists technical terms and their uses.
@@ -503,16 +507,17 @@ lists definitions of symbolic notations.
 \label{sssec:dyn-bib}
 
 Some bibliography entries refer to dynamic resources like software, web pages,
-lecture notes, \etc. Since references to such documents may be brittle, to improve
-the long-term availability and recoverability, they are pre-emptively preserved
-in online archives on \ndx{Software Heritage} or the \ndx{Internet Archive}.
+or lecture notes (without DOIs). References to such documents may become
+unreliable over time. To improve the long-term availability and recoverability,
+they are pre-emptively preserved in suitable online archives, on \ndx{Software
+Heritage} and the \ndx{Internet Archive}.
 
 \paragraph*{Software repositories}
 Version-controlled third party software repositories are archived at
 \href{https://softwareheritage.org}{\ndx{Software Heritage}}. For a repository
 hosted at \pr|<URL>|, the recovery address pattern is:
 
-\begin{minipage}{\textwidth}
+\noindent\begin{minipage}{\textwidth}
 %! suppress = EscapeUnderscore
 \begin{browserlisting}
 !\texttt{https://archive.softwareheritage.org/browse/origin/directory/}!
@@ -521,9 +526,9 @@ hosted at \pr|<URL>|, the recovery address pattern is:
 \end{minipage}
 
 \begin{example}[Recovering a software repository]
-The dissertation source code archival recovery address is\mbox{}
+The dissertation source code archival recovery address is:\mbox{}
 
-\begin{minipage}{\textwidth}
+\noindent\begin{minipage}{\textwidth}
 %! suppress = EscapeUnderscore
 \begin{browserlisting}
 !\texttt{\href{https://archive.softwareheritage.org/browse/origin/directory/?origin_url=https://github.com/nkrusch/dissertation}{https://archive.softwareheritage.org/browse/origin/directory/}}!
@@ -537,28 +542,35 @@ Web pages and PDF files are archived in the \ndx{Wayback Machine} of the
 \ndx{Internet Archive}. Use the following pattern to recover a document from the
 Internet Archive -- substitute \pr|<URL>| by the document's URL\@:
 
-\begin{minipage}{\textwidth}
+\noindent\begin{minipage}{\textwidth}
 %! suppress = EscapeUnderscore
 \begin{browserlisting}
 !\texttt{https://web.archive.org/web/<URL>}!
 \end{browserlisting}
 \end{minipage}
 
+A few cited documents could not be archived by the Internet Archive; for example
+because the hosting server was blocking automatic clients. There is a copy of
+these documents is in the dissertation companion artifact~\cite{aicc}.
 
+%\begin{center}% gap
+%\begin{minipage}{\textwidth}% and not breakable
 \begin{example}[Recovering archived documents]
 
-The following URL is fragile and it may disappear in the future.
+The following URL is fragile and it may disappear in the future.\mbox{}
 
-\begin{minipage}{\textwidth}
+%\href{https://types22.inria.fr/files/2022/06/TYPES_2022_paper_14.pdf}
+%{\pr|https://types22.inria.fr/files/2022/06/TYPES\_2022\_paper\_14.pdf|}.
+\noindent\begin{minipage}{\textwidth}
 %! suppress = EscapeUnderscore
 \begin{browserlisting}
 !\texttt{\url{https://types22.inria.fr/files/2022/06/TYPES_2022_paper_14.pdf}}!
 \end{browserlisting}
 \end{minipage}
 
-As a backup, the following Internet Archive address produces the same document.
+As a backup, the following Internet Archive address produces the same document.\mbox{}
 
-\begin{minipage}{\textwidth}
+\noindent\begin{minipage}{\textwidth}
 %! suppress = EscapeUnderscore
 \begin{browserlisting}
 !\texttt{\href{https://web.archive.org/web/https://types22.inria.fr/files/2022/06/}{https://web.archive.org/web/https://types22.inria.fr/files/2022/06/}}!
@@ -566,7 +578,5 @@ As a backup, the following Internet Archive address produces the same document.
 \end{browserlisting}
 \end{minipage}
 \end{example}
-
-A few cited documents could not be archived by the Internet Archive; for example
-because the hosting server was blocking automatic clients. A copy of these
-documents is in the dissertation companion artifact~\cite{aicc}.
+%\end{minipage}
+%\end{center}

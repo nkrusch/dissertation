@@ -692,8 +692,8 @@ proof obligations automatically -- see \pr|Add0Left| in~\autoref{fig:dafny-use}.
 \includegraphics[width=\textwidth,keepaspectratio]{fig_vs1}
 \end{center}
 \caption[Dafny running in Visual Studio Code]{
-The \ndx{Dafny} verifier checking \ndx{Dafny} code (running in \ndx{Visual
-Studio Code}). A big green check{ }{ }\circledb[dafnyok]{\faCheck}{ }means the
+The \ndx{Dafny} verifier checking \ndx{Dafny} code running in \ndx{Visual
+Studio Code}. A big green check{ }{ }\circledb[dafnyok]{\faCheck}{ }means the
 verifier succeeds at proving the corresponding program construct. A big red
 cross{ }{ }\circledb[dafnyno]{\scalebox{1.25}{\faTimes}}{ }identifies program
 constructs that fail to verify completely, even if some inner declarations
@@ -780,9 +780,9 @@ for this presentation.}
 \subparagraph*{The Rocq proof explained.}
 The \ndx{Rocq} theorem (L5--8) makes explicit that the equivalence holds (at
 least) when \pr|X| and \pr|Y| are arithmetic expressions that evaluate to a
-\(\mathbb{N}\); \pr|Z| is a variable, and \pr|b| is a bit with value \(0\) or
-\(1\). The precise programming language semantics are defined as part of the
-full \ndx{Rocq} proof.
+\(\mathbb{N}\);\symbo{nat} \pr|Z| is a variable, and \pr|b| is a bit with value
+\(0\) or \(1\). The precise programming language semantics are defined as part
+of the full \ndx{Rocq} proof.
 
 The property of \emph{equivalence} is defined as a proposition (L1--3).
 Informally, two programs (commands, \pr|c1| and \pr|c2|) are equivalent iff they

@@ -1,5 +1,4 @@
 \newglossaryentry{symb:PsiProd}{name={\(\bar{\Psi}\)},description={injection over cartesian product},sort=Psi,text={}}
-\newglossaryentry{symb:Psi}{name={\(\Psi\)},description={injection},sort=Psi,text={}}
 \newglossaryentry{symb:Xprime}{name={\texttt{X'}},description={variable referring to its final value},sort=x,text={}}
 \newglossaryentry{symb:ai}{name={\(A_i\)},description={set of derivation choices},sort=1,text={}}
 \newglossaryentry{symb:alpha}{name={\(\alpha\)},description={coefficient in \mwpsc},sort=alpha,text={}}
@@ -8,11 +7,11 @@
 \newglossaryentry{symb:bigomega}{name={\(\Omega\)},description={asymptotic lower bound},sort=Omega,text={}}
 \newglossaryentry{symb:bigo}{name={\(\mathcal{O}\)},description={asymptotic upper bound},sort=O,text={}}
 \newglossaryentry{symb:bigtheta}{name={\(\Theta\)},description={asymptotic tight bound},sort=Theta,text={}}
-\newglossaryentry{symb:bnfsep}{name={\(\BNF\)},description={BNF separator},sort=bnfbar,text={}}
+\newglossaryentry{symb:bnfsep}{name={\(\Vert\)},description={BNF separator (alternatively \(|\))},sort=bnfbar,text={}}
 \newglossaryentry{symb:bound}{name={\(W\)},description={mwp-bound \((W,V,U,\ldots)\)},sort=W,text={}}
 \newglossaryentry{symb:card}{name={\(\Card(\_)\)},description={cardinality of \(\_\)},sort=card,text={}}
 \newglossaryentry{symb:cartpi}{name={\(\prod\)},description={cartesian product of sets},sort=Pi,text={}}
-\newglossaryentry{symb:cclass}{name={\(\mathcal{C}\)},description={complexity class},sort=C,text={}}
+\newglossaryentry{symb:cclass}{name={\(\mathcal{C}\)},description={complexity class},sort=Class,text={}}
 \newglossaryentry{symb:chunk}{name={\(\tilde{F}\)},description={program chunk},sort=F,text={}}
 \newglossaryentry{symb:ci}{name={\(i\)},description={value of derivation choice in \(A_i\)},sort=i,text={}}
 \newglossaryentry{symb:cj}{name={\(j\)},description={index of a derivation choice},sort=j,text={}}
@@ -22,6 +21,8 @@
 \newglossaryentry{symb:coloneqq}{name={\(\coloneqq\)},description={definition or assignment},sort=coloneqq,text={}}
 \newglossaryentry{symb:corro}{name={\(O\)},description={row vector for correction},sort=o,text={}}
 \newglossaryentry{symb:corr}{name={\(\corrc{\_}\)},description={correction of \(\_\)},sort=correction,text={}}
+\newglossaryentry{symb:cvec}{name={\(\mathtt{C}[\vec{v}]_0\)},description={in program \texttt{C} variable \texttt{x}$_i$ was assigned value \(v_i\)},sort=Cv0,text={}}
+\newglossaryentry{symb:cvtm}{name={\(\mathtt{C}[\vec{v} \rightarrow \vec{v'}]_t\)}, description={in program \texttt{C} variable \texttt{x}$_i$ has value \(\vec{v'}\) after \(t\) updates},sort=Cv0,text={}}
 \newglossaryentry{symb:cv}{name={\(\vec{C}\)},description={choice vector},sort=C,text={}}
 \newglossaryentry{symb:delta}{name={\(\delta\)},description={derivation choice},sort=delta,text={}}
 \newglossaryentry{symb:dfg}{name={\DFG},description={data-flow graph},sort=dfg,text={}}
@@ -29,9 +30,12 @@
 \newglossaryentry{symb:equiv}{name={\(\equiv\)},description={equivalence},sort=equiv,text={}}
 \newglossaryentry{symb:et}{name={\(E^t\)},description={column vector for correction},sort=et,text={}}
 \newglossaryentry{symb:false}{name={\(\bot\)},description={false},sort=false,text={}}
+\newglossaryentry{symb:fein}{name={$\mathtt{f}^{\mathtt{in}}_{\vec{\mathtt{e}}}$},description={Variables e$_1$, $\hdots$,e$_n$ in \pr|f| signature},sort=fine,text={}}
+\newglossaryentry{symb:feout}{name={$\mathtt{f}^{\mathtt{out}}_{\vec{\mathtt{e}}}$},description={Variables e$_1$, $\hdots$,e$_n$ modified by \pr|f|},sort=foute,text={}}
+\newglossaryentry{symb:fe}{name={\(\mathtt{f}_{\vec{\mathtt{e}}}\)},description={list of freshly introduced variables \prc|e$_1$|, $\hdots$, \prc|e$_n$| unique to \(f\)},sort=fe,text={}}
 \newglossaryentry{symb:flowrel}{name={\(\sem{\text{\texttt{C}}}(x_i \rightsquigarrow x^\prime_i)\)},description={data flow relation of initial and final variable value},sort={Cxi},text={}}
-\newglossaryentry{symb:funprog}{name={\(\sem{p}\)},description={function computed by program \(p\)},sort=p,text={}}
-\newglossaryentry{symb:f}{name={\(f\)},description={function},sort=f,text={}}
+\newglossaryentry{symb:funprog}{name={\(\sem{\_}\)},description={function computed by program \(\_\)},sort=p,text={}}
+\newglossaryentry{symb:f}{name={\(f\)},description={function (also \pr|f| or \(g\))},sort=f,text={}}
 \newglossaryentry{symb:gamma}{name={\(\gamma\)},description={coefficient in \mwpsc},sort=gamma,text={}}
 \newglossaryentry{symb:graphw}{name={\(\textnormal{G}_{\textnormal{\prc|W|}}\)},description={condensation graph},sort={condensation graph},text={}}
 \newglossaryentry{symb:graph}{name={\(G\)},description={graph},sort=graph,text={}}
@@ -48,7 +52,8 @@
 \newglossaryentry{symb:looppw}{name={\(\tilde{\mathtt{W}}\)},description={parallel loop},sort=w,text={}}
 \newglossaryentry{symb:loopw}{name={\prc|W|},description={sequential loop},sort=w,text={}}
 \newglossaryentry{symb:loop}{name={\(l\)},description={loop},sort=l,text={}}
-\newglossaryentry{symb:map}{name={\(\mapsto\)},description={derivation choice maps to value},sort=map,text={}}
+\newglossaryentry{symb:map2}{name={\(\mapsto\)},description={variable maps to a security class},sort=map,text={}}
+\newglossaryentry{symb:map}{name={\(\mapsto\)},description={derivation choice maps to a value},sort=map,text={}}
 \newglossaryentry{symb:matrix}{name={\(M\)},description={matrix},sort=m,text={}}
 \newglossaryentry{symb:mdfg}{name={\(\dfg{\_}\)},description={data-flow graph of \(\_\)},sort=dfgc,text={}}
 \newglossaryentry{symb:mi}{name={\(i\)},description={matrix row},sort=i,text={}}
@@ -61,35 +66,47 @@
 \newglossaryentry{symb:m}{name={\(m\)},description={maximally linear flow coefficient},sort=m,text={}}
 \newglossaryentry{symb:nat}{name={\(\mathbb{N}\)},description={natural number},sort=n,text={}}
 \newglossaryentry{symb:normx}{name={\(\vec{x}\)},description={normal parameters},sort=xvec,text={}}
+\newglossaryentry{symb:nupce}{name={\(\nupce{ }\)},description={not up-to equivalent},sort=cupnot,text={}}
 \newglossaryentry{symb:nv}{name={\(\nv\)},description={absence of non-interference violation},sort={dot},text={}}
 \newglossaryentry{symb:occ}{name={\(\Occ(\_)\)},description={variables occurring in \(\_\)},sort={occ},text={}}
 \newglossaryentry{symb:omega}{name={\(\Omega\)},description={asymptotic lower bound},sort=Omega,text={}}
 \newglossaryentry{symb:one}{name={\(1\)},description={propagation},sort=1,text={}}
 \newglossaryentry{symb:oplus}{name={\(\oplus\)},description={component-wise addition},sort=plus,text={}}
 \newglossaryentry{symb:otimes}{name={\(\otimes\)},description={matrix product},sort=times,text={}}
-\newglossaryentry{symb:p2}{name={\texttt{C}},description={program},sort=C,text={}}
+\newglossaryentry{symb:p2}{name={\texttt{C}},description={program},sort=Cprogram,text={}}
 \newglossaryentry{symb:plusi}{name={\(+^{\infty}\)},description={addition over \(\mwpsc^\infty\)},sort=plusinfinity,text={}}
 \newglossaryentry{symb:post}{name={\(Q\)},description={postcondition},sort=Q,text={}}
 \newglossaryentry{symb:pre}{name={\(P\)},description={precondition},sort=P,text={}}
-\newglossaryentry{symb:prog2}{name={\(\mathcal{C}\)},description={program},sort=C,text={}}
-\newglossaryentry{symb:prog}{name={\(p\)},description={program},sort=p,text={}}
+\newglossaryentry{symb:prog2}{name={\(\mathcal{C}\)},description={program},sort=Cprog,text={}}
+\newglossaryentry{symb:prog}{name={\(p\)},description={program},sort=Cprogram,text={}}
+\newglossaryentry{symb:psub}{name={\texttt{C}'},description={a sub-program of program \pr|C|},sort=Cprogramsub,text={}}
 \newglossaryentry{symb:p}{name={\(p\)},description={polynomial flow coefficient},sort=p,text={}}
 \newglossaryentry{symb:restriction}{name={\(\mathcal{R}\)},description={restriction},sort=R,text={}}
 \newglossaryentry{symb:safey}{name={\(\vec{y}\)},description={safe parameters},sort=yvec,text={}}
 \newglossaryentry{symb:sccs}{name={\sccs},description={strongly connected components},sort=scc,text={}}
+\newglossaryentry{symb:secasgn}{name={\(\ell\)},description={security class assignment},sort=l,text={}}
+\newglossaryentry{symb:seccls}{name={\(c\)},description={security class (\(c, m, t,\ldots\))},sort=c,text={}}
+\newglossaryentry{symb:seclat}{name={\(\SC\)},description={security lattice of security classes},sort=SC,text={}}
+\newglossaryentry{symb:secvar}{name={\(\lvl{\texttt{\_}}\)},description={security class assignment to variable \pr|\_|},sort=l,text={}}
+\newglossaryentry{symb:sfmb}{name={\(\sfmb{\_}\)},description={security-flow matrix of \_ with side effects},sort=MCe,text={}}
+\newglossaryentry{symb:sfmxy}{name={\(\sfm{\_}(\texttt{x},\texttt{y})\)},description={security flow coefficient at row \texttt{x}, column \texttt{y}},sort=MCxy,text={}}
+\newglossaryentry{symb:sfm}{name={\(\sfm{\_}\)},description={security-flow matrix of \_},sort=MC,text={}}
 \newglossaryentry{symb:slot}{name={\([\cdot]\)},description={program slot},sort=slot,text={}}
 \newglossaryentry{symb:smallo}{name={\(o\)},description={asymptotic upper bound that is not tight},sort=o,text={}}
 \newglossaryentry{symb:smpi}{name={\(\pi\)},description={derivation},sort=pi,text={}}
 \newglossaryentry{symb:sring}{name={\(\mathbb{S}\)},description={strong semi-ring},sort=S,text={}}
 \newglossaryentry{symb:theta}{name={\(\Theta\)},description={asymptotic tight bound},sort=Theta,text={}}
 \newglossaryentry{symb:timesi}{name={\(\times^{\infty}\)},description={multiplication over \(\mwpsc^\infty\)},sort=timesinfinity,text={}}
+\newglossaryentry{symb:time}{name={\(t\)},description={time (counter)},sort=t,text={}}
 \newglossaryentry{symb:trieq}{name={\(\triangleq\)},description={defines},sort=defines,text={}}
 \newglossaryentry{symb:ttrue}{name={\(\top\)},description={true},sort=true,text={}}
+\newglossaryentry{symb:upce}{name={\(\upce{}\)},description={up-to equivalence},sort=cup,text={}}
 \newglossaryentry{symb:v0a}{name={\(\{_{i}^{\alpha}\}\)},description={vector with \(\alpha\) in \(i^\text{th}\) row and \(0\) otherwise},sort={vector zero},text={}}
 \newglossaryentry{symb:vadd}{name={\(\{_{i}^{\alpha} , _{j}^{\beta}\}\)},description={component-wise vector addition},sort={vector addition},text={}}
 \newglossaryentry{symb:vare}{name={\(\var(\_)\)},description={variables in \(\_\)},sort={vare},text={}}
 \newglossaryentry{symb:vdash}{name={\(\vdash\)},description={proves},sort=turnstile,text={}}
 \newglossaryentry{symb:vec2}{name={\(\mat{\alpha \\ \beta}\)},description={column vector of flow coefficients},sort={vector column},text={}}
+\newglossaryentry{symb:vecv}{name={\(\vec{v}\)},description={value list, \ie \(\vec{v} = v_1, \hdots, v_n\)},sort=vectorv,text={}}
 \newglossaryentry{symb:vec}{name={\(V\)},description={column vector},sort=V,text={}}
 \newglossaryentry{symb:vin}{name={\(\In(\_)\)},description={variables used by \(\_\)},sort={in},text={}}
 \newglossaryentry{symb:vi}{name={\vi},description={non-interference violation},sort=droplet,text={}}
@@ -99,6 +116,7 @@
 \newglossaryentry{symb:w}{name={\(w\)},description={weak polynomial flow coefficient},sort=w,text={}}
 \newglossaryentry{symb:xpre}{name={\(x\)},description={variable value},sort=x,text={}}
 \newglossaryentry{symb:xprime2}{name={\(x'\)},description={final value of a variable},sort=x,text={}}
+\newglossaryentry{symb:xvar2}{name={\(\text{\texttt{x}}\)},description={variable (\pr|w|, \pr|x|, \pr|y|, \pr|z|, \ldots)},sort=X,text={}}
 \newglossaryentry{symb:xvar}{name={\(\text{\texttt{X}}_n\)},description={variable},sort=X,text={}}
 \newglossaryentry{symb:zero2}{name={\(0\)},description={reinitialization},sort=0,text={}}
 \newglossaryentry{symb:zero}{name={\(0\)},description={flow coefficient for absence of dependency},sort=0,text={}}

@@ -85,16 +85,16 @@ delim_t "\} "
 
 %% Glossaries
 % custom glossary style, match index
-\renewcommand{\glsdescwidth}{12cm}
+\renewcommand{\glsdescwidth}{12.5cm}
 \newglossarystyle{longraggeddots}{
     \setglossarystyle{longragged}%
-    \renewcommand{\glsentryname}{% for 1st child entry
-        \parindent-5pt% left margin to child name
-        \par% newline
-        \hangindent0pt% left margin to paragraph margin
-        \everypar{\parindent55pt\hangindent45pt}}
+    %    \renewcommand{\glsentryname}{% for 1st child entry
+    %        \parindent-5pt% left margin to child name
+    %        \par% newline
+    %        \hangindent0pt% left margin to paragraph margin
+    %        \everypar{\parindent55pt\hangindent45pt}}
     \renewcommand*{\glossentry}[2]{%
-       \glstarget{##1}{\glossentryname{##1}} &
+       \hspace{-6pt}\glstarget{##1}{\glossentryname{##1}} &
        \glossentrydesc{##1}\mydotfill\footnotesize{##2}\tabularnewline
    }
 }
@@ -118,27 +118,26 @@ delim_t "\} "
 % tables, lists, graphs, charts.
 % Single-space: footnotes/endnotes, bibliographic entries, lists in appendices.
 % ---
-% I have read the above, but the alternation hurts, so I refuse to follow it.
-% ---
 % double space various environments:
 \mdfsetup{startinnercode={\doublespacing}}
 \AtBeginEnvironment{algorithmic}{\doublespacing}
-\DeclareCaptionJustification{capspacing}{\singlespacing}
-\captionsetup{justification=capspacing}
-\AtBeginEnvironment{tabular}{\ifbool{inappendix}{\doublespacing}{\doublespacing}}
-\AtBeginEnvironment{tabularx}{\ifbool{inappendix}{\doublespacing}{\doublespacing}}
-\AtBeginEnvironment{NiceTabular}{\ifbool{inappendix}{\doublespacing}{\doublespacing}}
-\AtBeginEnvironment{NiceTabularX}{\ifbool{inappendix}{\doublespacing}{\doublespacing}}
+\AtBeginEnvironment{tabular}{\doublespacing}
+\AtBeginEnvironment{tabularx}{\doublespacing}
+\AtBeginEnvironment{NiceTabular}{\doublespacing}
+\AtBeginEnvironment{NiceTabularX}{\doublespacing}
 \AtBeginEnvironment{figure}{\doublespacing}
 \AtBeginEnvironment{subfigure}{\doublespacing}
 \AtBeginEnvironment{align*}{\linespread{2}\selectfont}
+\AtBeginEnvironment{infobox}{\doublespacing}
 %… but NOT matrices
 \BeforeBeginEnvironment{pNiceMatrix}{\renewcommand{\arraystretch}{0.67}}
 \AfterEndEnvironment{pNiceMatrix}{\renewcommand{\arraystretch}{\doublespacing}}
-%… and NOT footnotes
+%… and NOT footnotes, captions
 \renewcommand{\footnotelayout}{\setstretch{1}}
 \setlength{\footnotemargin}{2mm}
 \setlength{\footnotesep}{\baselineskip}
+\DeclareCaptionJustification{capspacing}{\singlespacing}
+\captionsetup{justification=capspacing}
 
 % Framed environments setup
 \mdfsetup{

@@ -8,7 +8,7 @@ Although the precise meaning of these terms is situational, they are generally d
 is about concealment of protected assets, like secret information and resources.
 The goal of confidentiality is to ensure protected assets are viewed by authorized users only.
 By extension, it includes concealing knowledge about the existence of protected assets.
-Confidentiality is compromised if secrets are exposed, or \enquote{\ndx{leak}}, to unauthorized users.
+Confidentiality is compromised if secrets are exposed, or \enquote{\ndx{leak|seealso{violation}}}, to unauthorized users.
 
 \item[Integrity]\index{integrity}
 is about trustworthiness of information and resources.
@@ -60,7 +60,7 @@ Implementing secure information flow requires three steps~\cite{eggert2014}.
 
 \begin{enumerate} 
 
-\item Identifying \emph{security classes}\index{security class} (alternatively, domains or user groups).
+\item Identifying \emph{\ndx{security class}es} (alternatively, domains or user groups).
 In~\autoref{fig:us-docs}, the classes are top secret, unclassified, secret, and confidential.
 
 \item Defining a confidentiality \emph{policy}\index{information flow!policy}.
@@ -351,7 +351,7 @@ Finally, {{non-influence}\index{non-influence}} is the combination of non-interf
 
 In the context of programming languages, a program is {non-interfering\index{non-interference}} if 
 {secret (high) inputs} do not affect the calculation of {public (low) outputs}~\cite{sabelfeld2003}.
-The idea to use programming languages to model {non-interference\index{non-interference}} was introduced by~\textcite{volpanoI1996}.
+The idea to use programming languages to model {non-interference\index{non-interference}} was introduced by~\textcite{volpano1996}.
 The paper shows that {non-interference\index{non-interference}} can be soundly approximated using a {security type system\index{security type system}}.
 The influential result has since then been followed by numerous works in language-based security.
 Among a few examples, {non-interference\index{non-interference}} has been studied in terms of
@@ -370,7 +370,7 @@ the rest of this subsection shows examples using {a security type system\index{s
 The system is equivalent to Volpano et al. but more conventional in style.}.
 
 \paragraph*{Programs, non-interference, and typing rules.}
-For a programming language, we consider the grammar\index{grammar} shown in ~\autoref{fig:ni-syntax}.
+For a programming language, we consider the \ndx{grammar} shown in ~\autoref{fig:ni-syntax}.
 A program (command) in this language is denoted by \pr|C|.
 Computation starts in an input state with high and low variables \(s = (s_h, s_l)\).
 Either \pr|C| terminates in an output state with final values \(s' = (s_h', s_l')\), or diverges, which we denote by \(\bot\).
@@ -415,10 +415,10 @@ C \, ::={ }& \, \mathbf{skip} \mid
 
 \paragraph*{Derivations.}
 Consider the programs in Figures~\ref{lst:bool-ops}--\ref{lst:hi-cond}.
-Since the programs are written in Java\index{Java}, the constructs are richer than available in the type system grammar\index{grammar}.
+Since the programs are written in Java\index{Java}, the constructs are richer than available in the type system \ndx{grammar}.
 The programs are not fully analyzable.
 For example, the {security type system\index{security type system}} does not specify how to handle the array in~\autoref{lst:ni-arrays}.
-However, we can analyze sub-programs, like the \pr|while| loops in~\autoref{lst:hi-cond} through a mapping to the grammar.
+However, we can analyze sub-programs, like the \pr|while| loops in~\autoref{lst:hi-cond} through a mapping to the \ndx{grammar}.
 The following examples show basic non-interference\index{non-interference} derivations.
 
 \begin{example}[Secure high conditional incremental leak]\label{ex:high-cond-sec}
@@ -431,7 +431,7 @@ We will analyze the following program fragment.
 \end{center}
 
 We assume \pr|h| is an arbitrarily typed variable---neither low or high---and will analyze both cases.
-We map the program to the grammar by substituting \pr|h > 0| with \pr|e|₀ and \pr|h--| with \pr|v:=e|₁\footnote{
+We map the program to the \ndx{grammar} by substituting \pr|h > 0| with \pr|e|₀ and \pr|h--| with \pr|v:=e|₁\footnote{
 We lose detail of the compound assignment, but the loss is acceptable for this example.}
 to obtain \pr|while(e$_0$) { v:=e$_1$ }|.
 
@@ -471,7 +471,7 @@ It is labeled insecure in the benchmark suite.
 \end{center}
 
 The goal of this example is to reveal the \ndx{assumption}s that make it insecure.
-Using a similar procedure as in~\autoref{ex:high-cond-sec}, we express the program in the type system grammar as
+Using a similar procedure as in~\autoref{ex:high-cond-sec}, we express the program in the type system \ndx{grammar} as
 \begin{center}
 \pr|while(e$_0$) { v$_1$:=e$_1$; v$_2$:=e$_2$ }|
 \end{center}
