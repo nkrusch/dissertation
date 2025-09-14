@@ -44,5 +44,11 @@ jobs:
           tags: | 
             ghcr.io/${{ env.IMAGE_NAME }}:${{ env.TAG_LATEST }}
             ghcr.io/${{ env.IMAGE_NAME }}:${{ steps.meta.outputs.tag }}
+          outputs: type=docker,dest=${{ runner.temp }}/${{ env.TAG_LATEST }}-amd64.tar
           provenance: false
           push: true
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.TAG_LATEST }}-amd64.tar
+          path: ${{ runner.temp }}/${{ env.TAG_LATEST }}-amd64.tar

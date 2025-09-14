@@ -46,13 +46,17 @@ equivalent\index{functional equivalence}.
 \captionsetup{type=lstlisting}
 %! suppress = FileNotFound
 \begin{minipage}{.3\textwidth}
-\lstinputlisting[nolol,label={lst:p1},frame=none,numbers=none,aboveskip=0pt,belowskip=0pt]{equiv1.imp}
+\lstinputlisting[
+      nolol,label={lst:p1},frame=none,numbers=none,
+      aboveskip=0pt,belowskip=0pt]{equiv1.imp}
 \end{minipage}%
 \hspace{5em}%
 %! suppress = FileNotFound
 \begin{minipage}{.4\textwidth}
 \captionsetup{type=lstlisting}
-\lstinputlisting[nolol,label={lst:p2},frame=none,numbers=none,aboveskip=0pt,belowskip=0pt]{equiv2.imp}
+\lstinputlisting[
+      nolol,label={lst:p2},frame=none,
+      numbers=none,aboveskip=0pt,belowskip=0pt]{equiv2.imp}
 \end{minipage}
 \captionof{lstlisting}[Equivalent programs]{Equivalent programs.}
 \label{lst:intro}
@@ -417,7 +421,10 @@ evaluation round. Therefore, each manuscript consists of more than just the text
 pages of the dissertation. How to locate the artifacts is explained
 in Chapter~\autoref{app:sec:artifacts}.
 
-The source code of the dissertation~\cite{diss} is publicly available at:
+
+\paragraph*{Dissertation source code}
+The source code of the dissertation~\cite{diss} is publicly available at the
+following repository.
 
 \noindent\begin{minipage}{\textwidth}
 %! suppress = EscapeUnderscore
@@ -427,9 +434,11 @@ The source code of the dissertation~\cite{diss} is publicly available at:
 \end{browserlisting}
 \end{minipage}
 
-and archived according to~\autoref{sssec:dyn-bib}.
-The dissertation also has an artifact. The artifact allows, for example, executing code
-fragments that appear in the dissertation. The artifact URL is
+\paragraph*{Artifact}
+The dissertation has a companion artifact. The artifact is preloaded with all
+required software and it enables reproducing the executable examples that
+appear in the dissertation. For example,~\autoref{sec:toolguide} can be followed
+interactively with the artifact. The artifact URL is
 
 \noindent\begin{minipage}{\textwidth}
 %! suppress = EscapeUnderscore
@@ -513,7 +522,7 @@ they are pre-emptively preserved in suitable online archives, on \ndx{Software
 Heritage} and the \ndx{Internet Archive}.
 
 \paragraph*{Software repositories}
-Version-controlled third party software repositories are archived at
+Version-controlled third-party software repositories are archived at
 \href{https://softwareheritage.org}{\ndx{Software Heritage}}. For a repository
 hosted at \pr|<URL>|, the recovery address pattern is:
 
@@ -553,14 +562,10 @@ A few cited documents could not be archived by the Internet Archive; for example
 because the hosting server was blocking automatic clients. There is a copy of
 these documents is in the dissertation companion artifact~\cite{aicc}.
 
-%\begin{center}% gap
-%\begin{minipage}{\textwidth}% and not breakable
 \begin{example}[Recovering archived documents]
 
 The following URL is fragile and it may disappear in the future.\mbox{}
 
-%\href{https://types22.inria.fr/files/2022/06/TYPES_2022_paper_14.pdf}
-%{\pr|https://types22.inria.fr/files/2022/06/TYPES\_2022\_paper\_14.pdf|}.
 \noindent\begin{minipage}{\textwidth}
 %! suppress = EscapeUnderscore
 \begin{browserlisting}
@@ -568,7 +573,8 @@ The following URL is fragile and it may disappear in the future.\mbox{}
 \end{browserlisting}
 \end{minipage}
 
-As a backup, the following Internet Archive address produces the same document.\mbox{}
+As a backup, the following Internet Archive address produces the same
+document.\mbox{}
 
 \noindent\begin{minipage}{\textwidth}
 %! suppress = EscapeUnderscore
@@ -578,5 +584,3 @@ As a backup, the following Internet Archive address produces the same document.\
 \end{browserlisting}
 \end{minipage}
 \end{example}
-%\end{minipage}
-%\end{center}
