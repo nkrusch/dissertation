@@ -1,83 +1,141 @@
+%! suppress = UnresolvedReference
 \section{Observations About Specific Techniques}
 \label{sec:res-specific}
+
+This discussion is organized concentrically. It starts with specific techniques
+and then moves outward to more general findings.
 
 \subsection{Advancements of the Flow Calculus}
 \label{subsec:res-flow-calc}
 
-The original flow calculus of mwp-bounds provides a purely syntactic, sound and compositional theoretical technique for analyzing value growth of variables in imperative programs.
-Although promising, the technique poses various challenges for applications.
-In particular, issues arise from nondeterministic inference rules and handling of potential derivation failure.
-The developments presented in this dissertation resolve or ease those tensions in several directions.
-At conclusion, we obtain an enhanced flow calculus with richer capabilities and utility than the original system.
+The original flow calculus of mwp-bounds~\cite{jones2009}\index{mwp-calculus}
+provides a purely syntactic, sound\index{soundness} and
+compositional\index{compositionality} theoretical technique for analyzing value
+growth of variables in \ndx{imperative programs}. Although promising, the
+technique poses various application challenges. In particular, issues arise from
+the nondeterministic\index{nondeterminism} \ndx{inference rule}s and handling of
+potential \ndx{derivation failure}. The developments presented in this
+dissertation resolve or ease those tensions in several directions. At
+conclusion, we have arrived to an \emph{enhanced} variant---\ie the
+\(\mwpsc^\infty\)\symbo{mwpi} calculus---with richer capabilities and utility than the
+original system.
 
-The essential technical changes involve introducing an \(\infty\)-coefficient (\cf~\aref{sec:fscd}) that tracks derivation failure.
-It enables exploring all derivation paths {concurrently}, \ie without the need to back-track during program analysis procedure.
-Then,---instead of 0 to exponentially many simple matrices---every analyzed program is characterized by precisely one \emph{complex} mwp-matrix.
-Although the introduction of the \(\infty\)-coefficient (and the related technical adjustments) make program analysis automatable,
-they also introduce a new problem.
-The mwp-bounds, that represent variable value growth, are \enquote{lost} in such a complex matrix until
-we discover ways to \emph{interpret} the new complex data structures.
+\paragraph*{From principles to practical efficiency}
+Two critical changes---in~\autoref{sec:fscd-det}---were keeping track of
+derivation choices through \emph{\ndx{polynomial structures}}, and introducing
+the \ndx{flow coefficient} \(\infty\)\symbo{infty} that tracks \ndx{derivation
+failure}. These adjustments enables exploring all derivation paths
+{concurrently}, without needing to back-track during the analysis procedure. In
+the new formulation every input program is assigned precisely one \emph{complex}
+\ndx{mwp-matrix}, instead of up to exponentially many \emph{simple} mwp-matrices.
 
-How to completely solve this new problem is described in a second phase of technical developments (\cf~\autoref{sec:postcond}).
-The manuscript provides an \emph{evaluation procedure} that enables recovering the mwp-bounds from a complex mwp-matrix.
-However, since the matrix contains information about all derivations, it is now possible to also obtain the \emph{optimal} mwp-bounds of each program variable.
-A critical step is to \emph{project} mwp-matrices on individual variables.
-The projection also enables bounding certain variables in presence of whole-program derivation failure.
-This leads to increased \ndx{expressiveness} in abilities to bound more variables than in the original system (\cf~\autoref{sec:performance}).
+Although the technical adjustments make program analysis automatable, they also
+introduce a new problem. Critically, the \emph{mwp-bound}s---that represent
+variable value growth and are the output of the analysis---become
+\enquote{hidden} in the complex matrix. It is necessary to invent ways to
+\emph{interpret} the new complex data structure to mitigate the gap.
 
-One fascinating side-effect of the enhanced calculus is that it enables extracting \emph{new information} about the analyzed program.
-A complex mwp-matrix encapsulates this information, but requires a clever strategy to extract it.
-To this end, we view the evaluation procedure as a kind of \enquote{oracle} method, against which we can issue queries (\cf~\autoref{sec:pc-analysis}).
-For example, it is possible to pose questions such as the following.
+How to completely solve this new problem is described in a second
+\enquote{phase} of technical developments, in~\autoref{sec:postcond}. The
+manuscript provides an {evaluation procedure} that enables recovering
+\ndx{mwp-bound}s from a complex \ndx{mwp-matrix}. With this enhancement, the
+\(\mwpsc^\infty\)\symbo{mwpi} calculus computes \ndx{mwp-bounds} that are
+comparable to the original calculus, but in a \emph{practically efficient} way.
+
+\paragraph*{The surpassing capabilities}
+Because the complex \ndx{mwp-matrix} contains information about \emph{all}
+derivations\footnote{Essentially, the complex mwp-matrix encodes a derivation
+history.}, the \(\mwpsc^\infty\)\symbo{mwpi} calculus enables certain analysis
+features that are not possible in the original calculus.
+
+For example, it is possible to determine the optimal \ndx{mwp-bound}s of each
+program variable. In case of derivation failure, it is possible to precisely
+identify the variable(s) involved, and the program point that induces the
+failure. It may also be possible to bound the value growth of certain variables
+in presence of whole-program derivation failure. This increases
+\ndx{expressiveness}, because it enables bounding more variables than what was
+previously possible (refer to~\autoref{sec:performance} for comparison). A
+critical step to obtain these capabilities is projecting the complex
+mwp-matrices\index{mwp-matrix} on individual variables (described
+in~\autoref{subsec:query}).
+
+\paragraph*{Extracting new information from programs}
+A side effect of the derivation-history tracking is that it enables extracting
+\emph{new information} about the analyzed program. Although a complex mwp-matrix
+encapsulates the information, a clever strategy is required to extract it. A bit
+surprisingly, the evaluation procedure---developed in~\autoref{subsec:eval} to
+determine \ndx{mwp-bound}s---serves as a kind of \enquote{oracle} method. We can
+issue \enquote{queries} against it to answer a variety of questions about the
+analyzed program. For example, the following questions can be answered.
+
 \begin{enumerate}
-\item Does a variable always fail the derivation?
-\item What variables are sources of failure?
-\item By what sequence of derivation choices is a program (not) derivable?
-\item What is the optimal mwp-bound assigned to a variable?
-\item What is the maximal coefficient of dependency between a pair of variables?
-\item Is a pair of variables independent \wrt data flow?
-\item Does a derivation exist where many variables obtain optimal mwp-bounds?
+\item Does a (particular) variable always fail the derivation?
+\item What variables are the sources of \ndx{derivation failure}?
+\item By what sequence of derivation choices is a program derivable (or not derivable)?
+\item What is the optimal mwp-bound assigned to a (particular) variable?
+\item What is the maximal flow coefficient between a pair of variables?
+\item Is a pair of variables always independent \wrt data flow?
+\item Does a derivation exist where multiple variables obtain optimal mwp-bounds?
 \end{enumerate}
-All of these questions can be answered in the enhanced calculus.
-However, in the original flow calculus, answering \emph{any} of them is either outside the capabilities or would require exhaustive enumeration, which is infeasible.
 
-The developments also reveal deeper insights of the technique.
-For example, we now know that the \(0\)-coefficients are interesting, because they track data-flow independence between variables
-(refer to~\autoref{dependence-analysis} and~\autoref{subsec:ni} on the relevance of this property).
-Although the original formulation of the flow calculus notes that the \(w\)-coefficient is iteration-independent, the significance of that term remained mysterious.
-We now know that when a variable is characterized by at most \(w\)-coefficients, the variable is subject to a loop
-quasi-invariance property, and will (at some point) become unaffected by increase in loop iteration count (\cf~\autoref{sec:pc-analysis}).
-Finally, we also know that focusing the analysis to loops (instead of functions as in the original design) is beneficial for practical analysis.
-The modification enables extracting results in some cases where function-based analysis fails (\cf~\autoref{sec:performance}).
-This reinforces the view that it is justified to limit complexity analyses on loop constructs~\cite{benamram2020}.
+All of these questions can be answered in the \(\mwpsc^\infty\)\symbo{mwpi}
+calculus. In the original flow calculus, answering any of them is either not
+possible or would require exhaustive (infeasible) enumeration.
 
-To summarize, the enhanced \textsc{mwp}\(^\infty\)-calculus makes the flow calculus automatable for static program analysis,
-but is also richer in the information it provides.
-The enhanced technique is applicable in automatic analysis of complexity properties of imperative programs, as shown in~\autoref{sec:atva}.
-Another use case is providing assistance in formal specification conditions inference (\cf~\autoref{sec:postcond}).
-The latter is an unconventional application of complexity-based analyses, but one that \emph{should be} explored more --
-the pioneering results of~\autoref{sec:postcond} are encouraging.
-At current stage, the flow calculus can derive results efficiently, including for several natural algorithms (\cf~\autoref{sec:performance}).
-These results are significant to motivate the relevance of formally verifying the core calculus (\cf~\autoref{sec:mwp-calc-formal}).
+\paragraph*{Enhanced insights about the calculus}
+The developments reveal deeper insights of the flow calculus\index{mwp-calclus}.
+For example, we have now discovered that the \(0\)\symbo{zero}-coefficients are
+interesting, because they track \ndx{data flow independence} between
+variables.\footnote{Refer to~\autoref{dependence-analysis}
+and~\autoref{subsec:ni} on the relevance of this property.}
 
-% TODO: did it cover these points?
-% We can now confirm that it is possible to obtain automatic program analysis from the flow calculus of mwp-bounds, but \emph{only after substantial adjustments}.
-% An efficient program analysis requires inventing ways to manage costly sub-computations and solving additional problems that arise in the process.
-% At conclusion, the enhanced technique is not just automatable, but can analyze more programs than the original theory.
-% We can now also confirm the analysis results a complementary to alternative state-of-the-art techniques~\cite[p. 5]{aubert2023b}, enabling us to analyze different
-% questions about resource consumption.
-% The implemented flow calculus can also be used in specification inference.
-% There are potentially many other applications remaining to be discovered.
-% However, our experience of developing the flow calculus strongly reinforced the symbiotic view of theory and application.
-% In the process, we faced scientific and engineering challenges, but also identified compelling arguments to justify the investigation.
-% At conclusion, we have strengthened the theory and clarified its relevance.
+A second insight concerns the \(w\)\symbo{w}-coefficient. The original calculus
+describes it as iteration-independent\index{mwp-bound!iteration-independent},
+but the significance of that term remained mysterious until recently. We now
+know that, inside loops, the \(w\)\symbo{w}-coefficients corresponds to a
+quasi-invariance property.\index{quasi-invariant} During iteration, it will (at
+some point) become unaffected by increase in loop iteration count
+(\cf~\autoref{subsec:disclaimer}).
 
-\subsection{Extended Properties via Quasi Invariants}
+Finally, we also know that focusing the analysis to loops---instead of functions
+as in the original design---is beneficial to obtain practical analysis. In some
+cases, a loop-scoped analysis enables extracting results where function-based
+analysis fails (\cf~\autoref{sec:performance}). This reinforces the view that it
+is justifiable to focus complexity analyses on loop
+constructs~\cite{benamram2020}.
+
+\paragraph*{Responses to research questions}
+In response to the research questions posed in~\autoref{ssec:mwp-rqs}, we can
+now confirm a positive answer to (RQ1). It is possible to obtain automatic
+program analysis from the flow calculus\index{mwp-calculus} of mwp-bounds.
+However, the result is not immediate, and substantial adjustment was required to
+the underlying theory. The enhanced technique is applicable to automatic
+resource analysis of \ndx{imperative programs}, as demonstrated by \ndx{pymwp}
+in~\autoref{sec:atva}. We can also confirm the analysis results a complementary
+to alternative state-of-the-art techniques~\cite[p. 5]{aubert2023b}.
+
+Relating to (RQ3), a possible application of the flow calculus is to inference
+specification\index{specifications} conditions (\cf~\autoref{sec:postcond}) in
+\ndx{numerical loops}. Such use case is unconventional for complexity-based
+analyses, but it should be explored more because the findings of
+\autoref{sec:postcond} are encouraging. Currently, the
+\(\mwpsc^\infty\)\symbo{mwpi} calculus can derive results for many kinds of
+loops, including several natural algorithms (\cf~\autoref{sec:performance}).
+
+Answering (RQ2)---a formal proof of \ndx{soundness}---still remains an
+outstanding task (\cf~\autoref{sec:mwp-calc-formal}). However, the advancements
+in other areas are important to motivate the formalization effort. There is now
+strong evidence to justify the relevance and need for formal verification.
+
+\subsection{Extended Non-Functional Properties}
 \label{subsec:res-qi}
+\index{non-functional property}
 
-We have applied the quasi invariants framework in two use cases: to program optimization and tracking non-interference.
+In a second research direction, we have applied the QI-framework toward two
+applications: in loop distribution\index{loop transformation!distribution} and
+to track \ndx{non-interference}.
 
-\subsubsection{Use in Program Optimization}
+\subsubsection{Loop Distributing Program Optimization}
 \label{subsubsec:qi-opt}
 
 In \enquote{Distributing and Parallelizing Non-canonical Loops},
@@ -223,10 +281,10 @@ In other words, a technique becomes interesting only after we can show it can so
 The described research strategy has repeated a few times throughout the dissertation, multiplying these costs.
 In reflection, following the strategy requires persistence, and in general not ideal for dissertation research.
 
-\section{Open Problems and Future Opportunities}
+\section{Open Problems for Future Work}
 \label{sec:res-future}
 
-\subsubsection{About the Flow Calculus}
+\subsection{Questions About the Flow Calculus}
 \label{ssec:mwp-open}
 
 The following questions remain unanswered about the flow calculus of
@@ -271,8 +329,18 @@ As evidenced in these open programs, the flow calculus of mwp-bounds is
 interesting because it provides an extensible and rich logical framework for
 reasoning. Its full potential still remains to be explored.
 
-\subsubsection{Other Emerging Research Questions}
+\subsection{Other Emerging Research Questions}
 \label{ssec:other-open}
+
+\paragraph*{Generalizing the loop distribution}
+The solution of~\autoref{sec:vmcai} assumes a setting where loop distribution
+should be applied. Relaxing this assumption raises at least two new relevant
+questions. Determining that a loop distribution should be applied requires first
+determining the profitability of the operation. Only if the operation is
+beneficial (by some metric), should the loops be distributed. Moreover, compiler
+loop transformations do not occur in isolation. Another concerns thus involves
+relation to the auxiliary transformations. Exploring these questions is a
+natural continuation of the prior work.
 
 \paragraph*{Complexity-by-Construction}
 The \ndx{X-by-Construction} paradigm~\cite{terbeek2018} is concerned with
@@ -315,66 +383,61 @@ four goals. We can now assess the completion status of the goals.
 \begin{itemize}
 
 \item[\iconDONE{ }]\textbf{Goal 1.}
-    \emph{Extend applied capabilities in automatic program analysis and
-      verification.}
-    The works extending the flow calculus of mwp-bounds---in Sections
-    \autoref{sec:fscd},~\autoref{sec:atva}, and~\autoref{sec:postcond})---and
-    the loop distribution technique of~\autoref{sec:vmcai}, immediately support
-    the goal. Each manuscript takes lifts implicit computational complexity
-    beyond its theoretical origins, and demonstrates its uses in an applied
-    context. The complementary nature of these techniques is discussed
-    in~\autoref{sssec:atva-originalities} (see in
-    particular~\autoref{tab:atva-compare}), \autoref{sec:vmcai-limitations}
-    and~\autoref{sec:related-works}. Therefore, the goal was met satisfactorily.
+\emph{Extend applied capabilities in automatic program analysis and
+verification.} The works extending the flow calculus of mwp-bounds---in Sections
+\autoref{sec:fscd},~\autoref{sec:atva}, and~\autoref{sec:postcond})---and the
+loop distribution technique of~\autoref{sec:vmcai}, immediately support the
+goal. Each manuscript takes lifts implicit computational complexity beyond its
+theoretical origins, and demonstrates its uses in an applied context. The
+complementary nature of these techniques is discussed
+in~\autoref{sssec:atva-originalities} (see in
+particular~\autoref{tab:atva-compare}), \autoref{sec:vmcai-limitations}
+and~\autoref{sec:related-works}. Therefore, the goal was met satisfactorily.
 
 \item[\iconPROG]\textbf{Goal 2.}
-    \emph{Take ICC techniques closer to integration with real-world software
-      development workflows.}
-    The dissertation work is consistently supported by software artifacts
-    (\cf~\autoref{app:sec:artifacts}). While the artifacts demonstrate the
-    practical relevance of the investigations, and have driven advancements in
-    the underlying theories, the results so far are still a step in
-    \enquote{isolation}. Integrating techniques based on implicit computational
-    complexity into other software development tools (compilers, verifiers,
-    \etc) is important to promote relevance and continue advancement of ICC\@.
-    Such ambitions encourage thinking about ICC from new (more practical)
-    perspectives. However, concrete integration remains as an outstanding goal.
-    The work in using the flow calculus\index{mwp-calculus} to infer
-    specification\index{specifications} conditions~\cite{rusch2025} is one step
-    in that direction.
+\emph{Take ICC techniques closer to integration with real-world software
+development workflows.} The dissertation work is consistently supported by
+software artifacts (\cf~\autoref{app:sec:artifacts}). While the artifacts
+demonstrate the practical relevance of the investigations, and have driven
+advancements in the underlying theories, the results so far are still a step in
+\enquote{isolation}. Integrating techniques based on implicit computational
+complexity into other software development tools (compilers, verifiers, \etc) is
+important to promote relevance and continue advancement of ICC\@. Such ambitions
+encourage thinking about ICC from new (more practical) perspectives. However,
+concrete integration remains as an outstanding goal. The work in using the flow
+calculus\index{mwp-calculus} to infer specification\index{specifications}
+conditions~\cite{rusch2025} is one step in that direction.
 
 \item[\iconPROG]\textbf{Goal 3.}
-    \emph{Initiate conversations about the relevance of ICC applications.}
-    The third goal is \enquote{internal} to those who are already familiar with
-    ICC. The dissertation introduction (\ie \enquote{Addressed Problem}
-    in~\autoref{subsec:problem}), and the introduction to ICC (\enquote{A
-    Snapshot of Theoretical Results} in~\autoref{icc-theories}), both
-    highlighted the strong preference for pure theoretical development. Taking
-    inspiration from~\cite{moyen2017}, the motivation is to push theoretical
-    developments beyond this pure framing. There was some progress in initiating
-    conversations about applications---via~\cite{aubert20222} and a presentation
-    at the Seminar on Semantic and Formal Approaches to
-    Complexity~\cite{scot23})---but the overall effort toward the goal was
-    limited. Although this outcome is less than ideal, the motivations presented
-    in the published works, and this dissertation, will remain discoverable to
-    others in perpetuity.
+\emph{Initiate conversations about the relevance of ICC applications.} The third
+goal is \enquote{internal} to those who are already familiar with ICC. The
+dissertation introduction (\ie \enquote{Addressed Problem}
+in~\autoref{subsec:problem}), and the introduction to ICC (\enquote{A Snapshot
+of Theoretical Results} in~\autoref{icc-theories}), both highlighted the strong
+preference for pure theoretical development. Taking inspiration
+from~\cite{moyen2017}, the motivation is to push theoretical developments beyond
+this pure framing. There was some progress in initiating conversations about
+applications---via~\cite{aubert20222} and a presentation at the Seminar on
+Semantic and Formal Approaches to Complexity~\cite{scot23})---but the overall
+effort toward the goal was limited. Although this outcome is less than ideal,
+the motivations presented in the published works, and this dissertation, will
+remain discoverable to others in perpetuity.
 
 \item[\iconDONE]\textbf{Goal 4.}
-    \emph{Expose ideas from implicit computational complexity to broader research
-          communities.}
-    The dissemination of the dissertation work involved many written works and
-    giving presentations to diverse audiences. The \enquote{themes} of the
-    presentations venues included type theory (the TYPES'22
-    conference~\textcite{aubert202217}), interactive theorem proving
-    (CoqPL'23~\textcite{aubert20231}), language-based security
-    (PLAS'24~\textcite{plas2024}), and programming languages (at the doctoral
-    symposiums of SPLASH'22~\cite{splash22} and ECOOP'25~\cite{rusch20257}), to
-    name a few. The number of attendees at these events was in the magnitude of
-    hundreds. Based on observation, implicit computational complexity was
-    largely an unfamiliar topic to the audiences. Conversely, through the
-    different modes of dissemination, a substantial effort was made to increase
-    exposure and awareness of implicit computational complexity. Therefore, the
-    final goal was satisfactorily met.
+\emph{Expose ideas from implicit computational complexity to broader research
+communities.} The dissemination of the dissertation work involved many written
+works and giving presentations to diverse audiences. The \enquote{themes} of the
+presentations venues included type theory (the TYPES'22
+conference~\cite{aubert202217}), interactive theorem proving
+(CoqPL'23~\cite{aubert20231}), language-based security
+(PLAS'24~\cite{plas2024}), and programming languages (at the doctoral
+symposiums of SPLASH'22~\cite{splash22} and ECOOP'25~\cite{rusch20257}), to name
+a few. The number of attendees at these events was in the magnitude of hundreds.
+Based on observation, implicit computational complexity was largely an
+unfamiliar topic to the audiences. Conversely, through the different modes of
+dissemination, a substantial effort was made to increase exposure and awareness
+of implicit computational complexity. Therefore, the final goal was
+satisfactorily met.
 
 \end{itemize}
 
