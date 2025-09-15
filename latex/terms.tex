@@ -10,12 +10,13 @@
 \makeglossaries
 % Load glossary terms
 \loadglsentries[\acronymtype]{references/acronyms.tex}
+\loadglsentries[symbols]{references/sparent.tex}
 \loadglsentries[symbols]{references/symbols.tex}
 % Add all acronyms
 \glsaddall[types={\acronymtype}]
 
-\setglossarypreamble[symbols]{
-    Some symbols are overloaded and occur twice.}
+%\setglossarypreamble[symbols]{
+%    Some symbols are overloaded and occur twice.}
 
 % shorthand for symbols
 \newcommand\symbo[1]{\gls{symb:#1}}

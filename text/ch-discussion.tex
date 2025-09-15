@@ -1,7 +1,7 @@
-\section{Technique-Specific Observations}
+\section{Observations About Specific Techniques}
 \label{sec:res-specific}
 
-\subsection{On Advancements of the Flow Calculus}
+\subsection{Advancements of the Flow Calculus}
 \label{subsec:res-flow-calc}
 
 The original flow calculus of mwp-bounds provides a purely syntactic, sound and compositional theoretical technique for analyzing value growth of variables in imperative programs.
@@ -64,7 +64,7 @@ These results are significant to motivate the relevance of formally verifying th
 % We can now confirm that it is possible to obtain automatic program analysis from the flow calculus of mwp-bounds, but \emph{only after substantial adjustments}.
 % An efficient program analysis requires inventing ways to manage costly sub-computations and solving additional problems that arise in the process.
 % At conclusion, the enhanced technique is not just automatable, but can analyze more programs than the original theory.
-% We can now also confirm the analysis results a complementary to alternative state-of-the-art techniques~\cite[p. 5]{aubert2023b}, enabling us to analyze different 
+% We can now also confirm the analysis results a complementary to alternative state-of-the-art techniques~\cite[p. 5]{aubert2023b}, enabling us to analyze different
 % questions about resource consumption.
 % The implemented flow calculus can also be used in specification inference.
 % There are potentially many other applications remaining to be discovered.
@@ -145,7 +145,7 @@ we can reinforce the bi-directionality (\cf~\autoref{icc-sec}) between ICC and l
 % This mirrors our observations about the QI framework.
 % This suggests that the QI framework encapsulates even wider utility than uncovered during this dissertation work.
 
-\section{On Broader Research Findings}
+\section{Broader Research Findings}
 \label{sec:broader-findings}
 
 \subsection{Applications in Automatic Resource Analysis}
@@ -155,8 +155,8 @@ Our investigations revealed several broad observations about automatic resource 
 The first is about the analysis results we can obtain with implicit computational complexity, and how to judge the application potential of ICC systems.
 Centrally, ICC systems aim to confirm whether a program belongs to some complexity class.
 There are \emph{some} use cases for such binary classification.
-For example, the domain-specific language Karp~\cite{zhang2022}---for programming and testing Karp reductions---naturally requires ways to confirm a reduction is computable in polynomial time (without needing further precision).
-However, it is an isolated use case. 
+For example, the domain-specific language Karp~\cite{zhang2022}---for programming and testing \ndx{Karp reduction}s---naturally requires ways to confirm a reduction is computable in polynomial time (without needing further precision).
+However, it is an isolated use case.
 A coarse binary analysis has limited practical utility in general.
 
 The relevance of an analysis increases if we can show it can assist in software engineering tasks.
@@ -169,7 +169,7 @@ Although many ICC systems are typically defined on \enquote{little} languages, i
 Through compositional analysis of subprograms, ICC systems extend to analysis of general programming languages, as demonstrated with pymwp.
 In other words, having a restricted syntax is not an insurmountable hurdle to applications, in our experience.
 To make an analysis comparable to existing resource analyzers, it suffices to target the \ndx{C} Integer Programs \ndx{grammar}~\cite{cinteger} used in the Termination Competition~\cite{giesl2019}.
-From these attributes, we can derive a checklist to judge the application potential of various ICC systems. 
+From these attributes, we can derive a checklist to judge the application potential of various ICC systems.
 
 A second observation is about the resources analyzers themselves.
 Scientific software is different from \enquote{mainstream} software in several ways.
@@ -177,11 +177,11 @@ For example, scientific software aims to materialize theoretical ideas that corr
 After presentation, the software is archived~\cite{acm_badging}, while authors move on to the next prototype.
 This description is not meant as criticism;
 rather, it is to make explicit how software creation is incentivized in scientific context.
-One community that operates differently is formal methods—--see as evidence~\autoref{tab:fm-tools}). 
-Many formal verification tools are developed with continuity in mind, through annual competitions~\cite{casc,beyer2022}, \etc 
+One community that operates differently is formal methods—--see as evidence~\autoref{tab:fm-tools}).
+Many formal verification tools are developed with continuity in mind, through annual competitions~\cite{casc,beyer2022}, \etc
 Compared to resource analysis, those goals are not that distant, as resource analyzers also have similar competitions.
 Though, unfortunately, the \enquote{software situation} is still sub-optimal for resource analyzers.
-Since resource analyzers tend to be \enquote{standalone} tools, their development is not as strongly incentivized as \eg SMT solvers. 
+Since resource analyzers tend to be \enquote{standalone} tools, their development is not as strongly incentivized as \eg SMT solvers.
 Certain analyzers, although they regularly appear in literature, are inaccessible~\cite{sinn2017}, difficult to locate~\cite{carbonneaux2015},
 or deprecated~\cite{gulwani2009,srikanth2017}.
 The resource analyzers also differ greatly in their APIs.
@@ -226,67 +226,220 @@ In reflection, following the strategy requires persistence, and in general not i
 \section{Open Problems and Future Opportunities}
 \label{sec:res-future}
 
-The ICC approach of guaranteeing program properties demonstrates great applied potential;
-for example, toward formal verification of non-functional properties.
-One investigative direction that deserves more attention is applying ICC to guarantee properties by construction.
-This would provide guarantees before any program exists and eliminates the need for \emph{aposteriori} analysis.
-Although the dissertation did not extend that far, exploring this direction is an intriguing future goal.
-Whether it is attainable depends crucially on a viewpoint shift.
-We should regard ICC in the broader context it offers and continue the exploration of its applied potential.
+\subsubsection{About the Flow Calculus}
+\label{ssec:mwp-open}
 
-%limitations/what is left open here/what do we now know
-%The ``correct-by-construction'' angle still remains unexplored
-%Though: Should explore synthesis over languages that guarantee properties.
-%This theme of thinking about complexity outside classical theory is not unique to this dissertation.
-%Explorations with a similar theme appears in other recent works in, \eg quantum computing~\cite{avanzini2024}.
-%The future of ICC => Quantum etc.
-%https://stackoverflow.com/questions/3492188/what-are-the-practical-limitations-of-a-non-turing-complete-language-like-coq
-%https://stackoverflow.com/questions/315340/practical-non-turing-complete-languages
-%``a general-purpose language that isn't turing complete is pretty impractical.'' or so they say.
-%Initial comment on https://stackoverflow.com/q/315340
-%Thought: (afterward) comment on  https://stackoverflow.com/q/315340
-%Just having Turing-completeness is not super useful (we can show this)
-%As language designers we want to add restrinctions... maybe I can find this again to capture the precise comment.
+The following questions remain unanswered about the flow calculus of
+mwp-bounds\index{mwp-calculus}.
 
-\section{Assessment of Research Goals and Conclusions}
+\begin{itemize}
+\item \emph{Have the developments changed the complexity of the derivability
+        problem?}\footnote{The problem is \ccx{np}-complete by~\cite[p.
+        37]{jones2009}).}
+      The manuscripts in \autoref{sec:fscd},~\autoref{sec:atva},
+      and~\autoref{sec:postcond} alter the inference procedure, therefore the
+      answer is not obvious.
+
+\item \emph{How to obtain concrete bounds from \ndx{mwp-bound}s?}
+      The honest polynomials of \ndx{mwp-bound}s are composed of variables,
+      constants, and operators, but how to extract the exact combination is
+      unclear.
+
+\item \emph{Could the flow-calculus also capture lower bounds?}
+      A lower bounds analysis would complement the existing capabilities by
+      detecting variables that have certainly exponential value growth, which
+      is useful \eg for bug finding.
+
+\item \emph{Issues around translating real-world programming languages to the
+      imperative language of the flow calculus.}
+      Although the flow calculus inference rules are phrased as \pr|while| and
+      \pr|loop| commands, they should be interpreted as \emph{unbounded} and
+      \emph{bounded} loops. An ideal translation should compile the input
+      program to the language of the flow calculus, while accounting for \ndx{loop
+      boundedness}. A solution might be already available in the
+      compilers literature.
+
+\item \emph{How to account for various rich program constructs,
+      like arrays?}
+     Looping over arrays is a frequently occurring programming pattern.
+     Although this is a natural extension to the flow calculus,
+     there is no existing approach to this problem.
+
+\end{itemize}
+
+As evidenced in these open programs, the flow calculus of mwp-bounds is
+interesting because it provides an extensible and rich logical framework for
+reasoning. Its full potential still remains to be explored.
+
+\subsubsection{Other Emerging Research Questions}
+\label{ssec:other-open}
+
+\paragraph*{Complexity-by-Construction}
+The \ndx{X-by-Construction} paradigm~\cite{terbeek2018} is concerned with
+ensuring non-functional properties\index{non-functional property} by
+construction. The XbC aim is to automatically generate error-free software from
+\ndx{specifications}~\cite{terbeek2020}. ICC systems define the programming
+language-based mechanics to construct polytime programs, therefore it is
+conceivable that ICC systems could extend the XbC approach in cases where X
+stands for complexity. It would require pairing ICC techniques with \ndx{program
+synthesis}. Conceptually, this is the \enquote{bottom-up} dual of the
+\enquote{top-down} approach implemented in \ndx{pymwp}.
+
+\paragraph*{Formally verifying complexity}
+ICC systems are based on programming languages, making them naturally suited
+to formalization. However, the number of works that support this claim is
+still modest---refer to \eg~\cite{feree2018,heraud2011,atkey2024}. The
+investigation is necessary to have formal guarantees of complexity. There
+are two separate questions (i) the formalization of logical systems that
+provide guarantees, and (ii) formalizing analyzers that provide complexity
+guarantees. The existing works address the first question. The closes
+solution to the second is giving guarantees to the results computed by an
+analyzer~\cite{carbonneaux2017}.
+
+\paragraph*{Extending beyond traditional programming paradigms}
+ICC has been widely studied in the context of \enquote{traditional} programming
+paradigms, including imperative and functional programs.\footnote{ For example,
+the works building on Resource Aware ML~\cite{hoffmann2012} have been extended
+to many paradigms.} However, there are many more important programming
+paradigms, like \ndx{probabilistic programs} and \ndx{quantum computing}, that
+warrant investigation. These paradigms change the notion of programming
+languages and thus require different analytical approaches. Representative works
+exploring this direction include~\cite{avanzini2024,colledan2024,avanzini2020}.
+
+\section{Dissertation Goal Completion}
 \label{sec:res-summary}
 
-%We have successfully gathered evidence of the application potential of ICC.
-%The evidence supports the main hypothesis, but is still too limited to draw any generalizing conclusions.
-We crafted four goals to define the dissertation expectations.
-The first was about extending the applied capabilities of ICC, which was met successfully.
-The second was about introducing ICC in development workflows.
-Although we have developed a static analyzer, it is a step in \enquote{isolation.}
-Integrating ICC analyses into other development tools (compilers, verifiers, \etc) remains as an outstanding task.
-Such integration is important to promote relevance and continue development of ICC {applications}
-in particular, since the analyses often produce orthogonal results.
-Our work in using the flow calculus to infer specification conditions~\cite{rusch2025} is a first step in that direction.
-The last two goals were social, and about disseminating ideas across research communities.
-Within the ICC community, our efforts included seminar talks.
-Although this record is suboptimal, our written ideas remain discoverable to others asynchronously and in perpetuity, like~\cite{moyen2017}.
-In regard to other communities, we were successful at presenting the work at verification, programming languages, formal methods, and security venues.
-Thus, the fourth goal was satisfactorily met.
+As part of the dissertation aims, Section~\autoref{subsec:specific-aims} outlined
+four goals. We can now assess the completion status of the goals.
 
-\begin{figure}[h]
-\begin{mdframed} % TODO: mirror the hypothesis
-\paragraph*{Primary findings.}
+\begin{itemize}
+
+\item[\iconDONE{ }]\textbf{Goal 1.}
+    \emph{Extend applied capabilities in automatic program analysis and
+      verification.}
+    The works extending the flow calculus of mwp-bounds---in Sections
+    \autoref{sec:fscd},~\autoref{sec:atva}, and~\autoref{sec:postcond})---and
+    the loop distribution technique of~\autoref{sec:vmcai}, immediately support
+    the goal. Each manuscript takes lifts implicit computational complexity
+    beyond its theoretical origins, and demonstrates its uses in an applied
+    context. The complementary nature of these techniques is discussed
+    in~\autoref{sssec:atva-originalities} (see in
+    particular~\autoref{tab:atva-compare}), \autoref{sec:vmcai-limitations}
+    and~\autoref{sec:related-works}. Therefore, the goal was met satisfactorily.
+
+\item[\iconPROG]\textbf{Goal 2.}
+    \emph{Take ICC techniques closer to integration with real-world software
+      development workflows.}
+    The dissertation work is consistently supported by software artifacts
+    (\cf~\autoref{app:sec:artifacts}). While the artifacts demonstrate the
+    practical relevance of the investigations, and have driven advancements in
+    the underlying theories, the results so far are still a step in
+    \enquote{isolation}. Integrating techniques based on implicit computational
+    complexity into other software development tools (compilers, verifiers,
+    \etc) is important to promote relevance and continue advancement of ICC\@.
+    Such ambitions encourage thinking about ICC from new (more practical)
+    perspectives. However, concrete integration remains as an outstanding goal.
+    The work in using the flow calculus\index{mwp-calculus} to infer
+    specification\index{specifications} conditions~\cite{rusch2025} is one step
+    in that direction.
+
+\item[\iconPROG]\textbf{Goal 3.}
+    \emph{Initiate conversations about the relevance of ICC applications.}
+    The third goal is \enquote{internal} to those who are already familiar with
+    ICC. The dissertation introduction (\ie \enquote{Addressed Problem}
+    in~\autoref{subsec:problem}), and the introduction to ICC (\enquote{A
+    Snapshot of Theoretical Results} in~\autoref{icc-theories}), both
+    highlighted the strong preference for pure theoretical development. Taking
+    inspiration from~\cite{moyen2017}, the motivation is to push theoretical
+    developments beyond this pure framing. There was some progress in initiating
+    conversations about applications---via~\cite{aubert20222} and a presentation
+    at the Seminar on Semantic and Formal Approaches to
+    Complexity~\cite{scot23})---but the overall effort toward the goal was
+    limited. Although this outcome is less than ideal, the motivations presented
+    in the published works, and this dissertation, will remain discoverable to
+    others in perpetuity.
+
+\item[\iconDONE]\textbf{Goal 4.}
+    \emph{Expose ideas from implicit computational complexity to broader research
+          communities.}
+    The dissemination of the dissertation work involved many written works and
+    giving presentations to diverse audiences. The \enquote{themes} of the
+    presentations venues included type theory (the TYPES'22
+    conference~\textcite{aubert202217}), interactive theorem proving
+    (CoqPL'23~\textcite{aubert20231}), language-based security
+    (PLAS'24~\textcite{plas2024}), and programming languages (at the doctoral
+    symposiums of SPLASH'22~\cite{splash22} and ECOOP'25~\cite{rusch20257}), to
+    name a few. The number of attendees at these events was in the magnitude of
+    hundreds. Based on observation, implicit computational complexity was
+    largely an unfamiliar topic to the audiences. Conversely, through the
+    different modes of dissemination, a substantial effort was made to increase
+    exposure and awareness of implicit computational complexity. Therefore, the
+    final goal was satisfactorily met.
+
+\end{itemize}
+
+Although the goals were completed with a mixed degree of success, there was
+progress in every direction. The goals are intentionally open-ended and need not
+be fully achieved within the timespan of doctoral studies. It is always possible
+to push further, even in the cases that were completed satisfactorily.
+
+\section{Research Conclusions}
+\label{ssec:findings}
+
+We can now summarize the key takeaways of this dissertation.
+
+\begin{infobox}{Main findings}
 \begin{enumerate}[wide, labelwidth=!, labelindent=0pt]
-\item ICC offers complementary techniques of automatic resource analysis.
-\item ICC systems can be adjusted to tracking \emph{other} program properties, beyond complexity theory.
-\item Attaining rich intercommunal utility from ICC requires viewing it in broadly and continuing exploration of its applied potential.
+
+\item Implicit computational complexit (ICC) provides complementary
+techniques of \ndx{automatic resource analysis}.
+
+\item ICC systems are flexible and can be modified to track other
+non-functional properties, beyond complexity. \index{non-functional
+property}
+
+\item Although this dissertation has provided early evidence, continued
+exploration of ICC is necessary to unlock its full application potential.
+
 \end{enumerate}
-\end{mdframed}
-\caption[Primary research findings summarized]{Primary research findings.}
-\label{fig:findings}
-\end{figure}
+\end{infobox}
 
-\autoref{fig:findings} summarized the key takeaways presented in long form throughout this discussion.
-First, Implicit computational complexity offers complementary techniques of automatic resource analysis.
-However, applications of ICC may require substantial adjustment to the theory.
-It is important to account for practical challenges in the design of ICC systems.
-Second, ICC systems can be adjusted to tracking \emph{other} program properties, beyond complexity theory.
-Such adjusted ICC systems can provide analysis techniques in cases that are outside the capabilities of the established techniques.
-Finally, attaining broader applied utility from ICC requires a viewpoint shift \wrt its capabilities---\ie fundamentally seeing it as more than tool for complexity-theoretic reasoning---and the continued exploration of its applied potential.
+First, Implicit computational complexity offers complementary techniques of
+automatic resource analysis. However, applications of ICC may require
+substantial adjustment to the theory. It is important to account for practical
+challenges in the design of ICC systems. Second, ICC systems can be adjusted to
+tracking \emph{other} program properties, beyond complexity theory. Such
+adjusted ICC systems can provide analysis techniques in cases that are outside
+the capabilities of the established techniques. Finally, attaining broader
+applied utility from ICC requires a viewpoint shift \wrt its capabilities---\ie
+fundamentally seeing it as more than tool for complexity-theoretic
+reasoning---and the continued exploration of its applied potential.
 
-%\subsection{A}
-%\subsection{B}
+The ICC approach of guaranteeing program properties demonstrates great applied
+potential. For example, if offers a pathway toward formal verification of many
+non-functional properties\index{non-functional property}. One research
+direction, that deserves more attention, is applying ICC systems to ensure
+properties by construction. This would provide guarantees before any program
+exists and eliminates the need for \emph{aposteriori} analysis. Although the
+dissertation research did not extend that far, exploring this direction is an
+intriguing future goal. Whether it is attainable depends crucially on a
+viewpoint shift. We should regard \emph{implicit computational complexity} in
+the broader context it offers---including as a rich toolbox of techniques for
+\ndx{static program analysis}---and continue the exploration of its applied
+potential.
+
+% https://stackoverflow.com/questions/3492188/what-are-the-practical-limitations-of-a-non-turing-complete-language-like-coq
+% https://stackoverflow.com/questions/315340/practical-non-turing-complete-languages
+% ``a general-purpose language that isn't turing complete is pretty impractical.'' or so they say.
+% Initial comment on https://stackoverflow.com/q/315340
+% Thought: (afterward) comment on  https://stackoverflow.com/q/315340
+% Just having Turing-completeness is not super useful (we can show this)
+% As language designers we want to add restrinctions... maybe I can find this again to capture the precise comment.
+
+% The ICC approach of guaranteeing program properties demonstrates great applied potential;
+% for example, toward formal verification of non-functional properties.
+% One investigative direction that deserves more attention is applying ICC to guarantee properties by construction.
+% This would provide guarantees before any program exists and eliminates the need for \emph{aposteriori} analysis.
+% Although the dissertation did not extend that far, exploring this direction is an intriguing future goal.
+% Whether it is attainable depends crucially on a viewpoint shift.
+% We should regard ICC in the broader context it offers and continue the exploration of its applied potential.

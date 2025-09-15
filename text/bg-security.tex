@@ -132,7 +132,7 @@ In the context of integrity\index{integrity}, declassification is also called {e
 
 \end{description}
 
-\paragraph*{Secure and insecure information flows.}
+\paragraph*{Secure and insecure information flows}
 Figures~\ref{lst:bool-ops}--\ref{lst:hi-cond} show basic examples of insecure and secure information flows\index{information flow}.
 Variables \pr|high|, \pr|secret|, and \pr|h| are assumed to be secret and their values should not leak\index{leak} from executions.
 The programs are fragments from the {IFSPEC benchmark suite}~\cite{hamann2018}\index{IFSPEC} available at~\cite{ifspec}.
@@ -198,7 +198,7 @@ The goal of {language-based security\index{language-based security}} is to use p
 However, to offer a point of comparison, we introduce briefly trace-based information flow\index{information flow!trace-based}.
 The language-based and trace-based approaches have very little in common~\cite[p. 235]{eggert2014}.
 
-\paragraph*{Language-based information flow.}
+\paragraph*{Language-based information flow}
 Language based security formulates information flow constructs through programming languages.
 Program logics and security type systems\index{security type system} are among the common techniques~\cite{frumin2021}.
 A security type system aims to guarantee the {security policy\index{information flow!policy}} induced by its {lattice\index{lattice}}~\cite{marion2011}.
@@ -208,7 +208,7 @@ A satisfactorily secure program must pass a compile-time type check of the secur
 %and does not address intransitive policies~\cite{vonoheimb2004}.
 Sections~\ref{subsec:ni} and ~\ref{sec:anytime} discuss the {language-based\index{language-based security}} information flow in more detail.
 
-\paragraph*{Trace-based information flow.}\index{information flow!trace-based}
+\paragraph*{Trace-based information flow}\index{information flow!trace-based}
 The trace-based approach~\cite[p. 24]{eggert2014} models a system with a state machine.
 In response to actions, the machine transitions, deterministically or nondeterministically\index{nondeterminism}, from state to state.
 A \emph{trace}\index{trace} is a sequence of actions of such a machine~\cite{nelson2020}.
@@ -220,7 +220,7 @@ Further, executing those traces should produce publicly indistinguishable\index{
 Showing that a trace-based system satisfies this security requirements is done by {simulation\index{simulation}}~\cite{piessens2024} 
 where the simulation proves the trace equivalence \wrt a policy.
 
-\paragraph*{Formal security analysis.}\index{security analysis}
+\paragraph*{Formal security analysis}\index{security analysis}
 Establishing that a \enquote{system is secure} demands security analysis.
 Rigorous formal security analysis considers the following three aspects.
 
@@ -257,7 +257,7 @@ Although non-interference\index{non-interference}
 The primary application of non-interference\index{non-interference} 
 is in supporting multilevel security\index{multilevel security} systems~\cite{roscoe1999}.
 
-\paragraph*{Classic non-interference.}
+\paragraph*{Classic non-interference}
 The concept of \emph{non-interference}\index{non-interference} was introduced in 1982 by Joseph Goguen and José Meseguer.
 Their seminal paper~\cite{goguen1982} presented the concept (only) informally, as follows.
 \begin{quotation}
@@ -278,7 +278,7 @@ Non-interference\index{non-interference} has been studied in in a variety of mod
 process calculi, programming languages, probabilistic models, timed models, and {cryptographic protocols\index{cryptography}}~\cite{bossi2005}.
 \autoref{sec-types} will present how to formulate non-interference in terms of programming languages.
 
-\paragraph*{Practical challenges with non-interference.}
+\paragraph*{Practical challenges with non-interference}
 Non-interference is a strong notion because it includes the absence of both 
 explicit\index{information flow!explicit} and implicit\index{information flow!implicit} information flows~\cite{bossi2005}.
 As noted by many authors~\cite{cecchetti2017,bossi2005}, the requirement is too strong for practical applications.
@@ -300,7 +300,7 @@ When a program property is expressed over a set of trace properties it is called
 Since a non-interference\index{non-interference} proof requires sets of execution traces, 
 {non-interference\index{non-interference}} is a {hyperproperty\index{hyperproperty}}~\cite{mastroeni2019}.
 
-\paragraph*{Extensions.}
+\paragraph*{Extensions}
 The classic definition of {non-interference\index{non-interference}} has been extended in several directions.
 The following list contains several variants, though the list is necessarily incomplete.
 See~\cite{vandermeyden2010,nelson2020,eggert2014} for comprehensive expositions of {non-interference\index{non-interference}} comparisons of the different varieties.
@@ -349,79 +349,112 @@ Finally, {{non-influence}\index{non-influence}} is the combination of non-interf
 \subsubsection{Non-Interference With Security Types}
 \label{sec-types}
 
-In the context of programming languages, a program is {non-interfering\index{non-interference}} if 
-{secret (high) inputs} do not affect the calculation of {public (low) outputs}~\cite{sabelfeld2003}.
-The idea to use programming languages to model {non-interference\index{non-interference}} was introduced by~\textcite{volpano1996}.
-The paper shows that {non-interference\index{non-interference}} can be soundly approximated using a {security type system\index{security type system}}.
-The influential result has since then been followed by numerous works in language-based security.
-Among a few examples, {non-interference\index{non-interference}} has been studied in terms of
-static program analysis~\cite{barthe2007,huang2014},
-{secure compilation\index{secure compilation}}~\cite{patrignani2017,myers1999,cecchetti2017},
-formal methods~\cite{kammuller2008,nelson2020},
-program logics~\cite{frumin2021,karbyshev2018,garg2006,beringer2007},
-verification~\cite{eilers2023},
-and \ndx{software testing}~\cite{hritcu2013}.
-In general, evaluating {non-interference\index{non-interference}} over at different levels of abstractions
-(compilation, instruction set architecture, processor, hardware, digital circuits) is necessary,
-because even if a program is {non-interfering\index{non-interference}} \wrt its syntax,
-it is not protected against vulnerabilities occurring at lower abstraction levels~\cite{piessens2024}.
-To develop intuition of programming languages based {non-interference\index{non-interference}},
-the rest of this subsection shows examples using {a security type system\index{security type system}} adapted from~\cite{sabelfeld2003}\footnote{
-The system is equivalent to Volpano et al. but more conventional in style.}.
+In the context of programming languages, a program is
+{non-interfering\index{non-interference}} if {secret (high) inputs} do not
+affect the calculation of {public (low) outputs}~\cite{sabelfeld2003}. The idea
+to use programming languages to model {non-interference\index{non-interference}}
+was introduced by~\textcite{volpano1996}. The paper shows that
+\ndx{non-interference} can be soundly\index{soundness} approximated using a
+{\ndx{security type system}}. The influential result has since then been
+followed by numerous works in language-based security. Among a few examples,
+\ndx{non-interference} has been studied in terms of \ndx{static program
+analysis}~\cite{barthe2007,huang2014}, \ndx{secure
+compilation}~\cite{patrignani2017,myers1999,cecchetti2017}, \ndx{formal
+methods}~\cite{kammuller2008,nelson2020}, program
+logics~\cite{frumin2021,karbyshev2018,garg2006,beringer2007},
+verification~\cite{eilers2023}, and \ndx{software testing}~\cite{hritcu2013}. In
+general, evaluating \ndx{non-interference} over at different levels of
+abstractions (compilation, instruction set architecture, processor, hardware,
+digital circuits) is necessary, because even if a program is
+{non-interfering\index{non-interference}} \wrt its syntax, it is not protected
+against vulnerabilities occurring at lower abstraction
+levels~\cite{piessens2024}.
 
-\paragraph*{Programs, non-interference, and typing rules.}
-For a programming language, we consider the \ndx{grammar} shown in ~\autoref{fig:ni-syntax}.
-A program (command) in this language is denoted by \pr|C|.
-Computation starts in an input state with high and low variables \(s = (s_h, s_l)\).
-Either \pr|C| terminates in an output state with final values \(s' = (s_h', s_l')\), or diverges, which we denote by \(\bot\).
-Letting \(S\) be the set of input states, \(s \in S \),
-%The semantics \(\sem{\text{\pr|C|}}\) map an input state \(s \in S \) either to an output state \(\sem{\text{\pr|C|}}s \in S\) or to divergence.
-the semantics \(\sem{\text{\pr|C|}}\) of \pr|C| is defined by a function \(\sem{\text{\pr|C|}} : S \rightarrow S_\bot \) where \( S_\bot = S \cup \{ \bot \} \) and \( \bot \notin S\).
-The variation of high input is an equivalence relation\index{equivalence relation} \(=_L\).
-Two inputs are equivalent if they agree on low values, \ie \(s =_L s'\) iff \( s_l = s_l' \).
-The attacker's\index{attacker (adversary)} observational power is characterized by a relation on behaviors defined by the semantics, denoted \(\approx_L\).
-Two behaviors are related by \(\approx_L\) iff they are indistinguishable\index{indistinguishability} to the attacker\index{attacker (adversary)}.
-%The relation \(\approx_L\) reflects the low security class viewpoint of the system.
-Formally, program \pr|C| is secure \wrt non-interference iff
+To develop intuition of programming languages based \ndx{non-interference}, the
+rest of this subsection shows examples using {a \ndx{security type system}}
+adapted from~\textcite{sabelfeld2003}\footnote{As per~\cite[p. 9,
+\S{}B]{sabelfeld2003} The system is equivalent to~\textcite{volpano1996}, but
+more conventional in style.}.
+
+\paragraph*{Programs, non-interference, and typing rules}
+For a programming language, we consider the \ndx{grammar} shown in
+~\autoref{fig:ni-syntax}. A program (command) in this language is denoted by
+\pr|C|\symbo{p2}. Computation starts in an input state with high and low
+variables \(s = (s_h, s_l)\)\symbo{state0}\symbo{low}\symbo{high}. Either
+\pr|C|\symbo{p2} terminates in an output state with final values \(s' = (s_h',
+s_l')\)\symbo{state1}\symbo{low}\symbo{high}, or diverges, which we denote by
+\(\bot\)\symbo{diver}. Letting \(S\)\symbo{states} be the set of input states,
+\(s \in S \)\symbo{state0}, the semantics \(\sem{\text{\pr|C|}}\)\symbo{funprog}
+of \pr|C|\symbo{p2} is defined by a function \(\sem{\text{\pr|C|}} : S
+\rightarrow S_\bot \)\symbo{funprog}\symbo{states}\symbo{diver} where \( S_\bot
+= S \cup \{ \bot \} \) and \( \bot \notin S\).\symbo{states}\symbo{diver} The
+variation of high input is an \ndx{equivalence relation} \(=_L\)\symbo{eql}. Two
+inputs are equivalent if they agree on low values, \ie \(s =_L
+s'\)\symbo{state0}\symbo{eql}\symbo{state1} iff \( s_l = s_l'
+\)\symbo{low}\symbo{state0}. The attacker's\index{attacker (adversary)}
+observational power is characterized by a relation on behaviors defined by the
+semantics, denoted \(\approx_L\)\symbo{eqax}. Two behaviors are related by
+\(\approx_L\)\symbo{eqax} iff they are
+indistinguishable\index{indistinguishability} to the attacker\index{attacker
+(adversary)}, \ie from the low security class viewpoint of the system. Formally,
+program \pr|C|\symbo{p2} is secure \wrt non-interference iff
 \begin{align*}
-\forall s_1,s_2, \in S \cdot s_1 =_L s_2 \implies \sem{C}_{s_1} \approx_L \sem{C}_{s_2}
+\forall s_1,s_2,\in S \cdot s_1 =_L s_2\implies\sem{C}_{s_1}\approx_L\sem{C}_{s_2}
 \end{align*}
+\symbo{eqax}\symbo{states}\symbo{state0}\symbo{eql}\symbo{funprog}
 which reads:
 \begin{quotation}
-\noindent If two input states share the same low values, then the behaviors of the program executed on these states are indistinguishable by the attacker\index{attacker (adversary)}.
+\noindent If two input states share the same low values, then the behaviors of
+the program executed on these states are indistinguishable by the
+attacker\index{attacker (adversary)}.
 \end{quotation}
-The security typing rules are shown in~\autoref{fig:ni-types}.
-For the typing rules, an expression \(\vdash\prm{e} : \tau\) means \pr|e| has type \(\tau\).
-The judgement \(\Gamma\vdash\text{\pr|C|}\) means the program \pr|C| is typable in security context \({\Gamma}\).
-Expression types and security contexts can be either low (\({l}\)) or high (\({h}\)).
-The symbol \(\Gamma\) refers to the current context (low or high).
+The security typing rules are shown in~\autoref{fig:ni-types}. For the typing
+rules, an expression \(\vdash\prm{e} : \tau\)\symbo{vdash}\symbo{tau} means
+\pr|e| has type \(\tau\)\symbo{tau}. The judgement
+\(\Gamma\vdash\text{\pr|C|}\)\symbo{G}\symbo{vdash}\symbo{p2} means the program
+\pr|C|\symbo{p2} is typable in security context \({\Gamma}\)\symbo{G}.
+Expression types and security contexts can be either low (\({l}\)\symbo{low}) or
+high (\({h}\)\symbo{high}). The symbol \(\Gamma\)\symbo{G} refers to the current
+context (low or high).
 
 \begin{figure}[t]
 \centering\begin{align*}
 C \, ::={ }& \, \mathbf{skip} \mid
 \mathbf{v}\coloneqq{}\mathbf{e} \mid
 \nonterm C_{{\mathrm{1}}}  \ottsym{;}  \nonterm C_{{\mathrm{2}}} \mid
-\ottkw{if} \, \ottkw{e} \, \ottkw{then} \, \nonterm C_{{\mathrm{1}}} \, \ottkw{else} \, \nonterm C_{{\mathrm{2}}} \mid
+\ottkw{if} \, \ottkw{e} \, \ottkw{then} \, \nonterm C_{{\mathrm{1}}}
+\, \ottkw{else} \, \nonterm C_{{\mathrm{2}}} \mid
 \ottkw{while} \, \ottkw{e} \, \ottkw{do} \, \nonterm C
-\end{align*}
+\end{align*}\symbo{bnfsep2}\symbo{coloneqq2}
 \caption[Grammar of the non-interference security type system]
-{Grammar of the non-interference security type system.}\label{fig:ni-syntax}
+{Grammar of the non-interference security type system.}
+\label{fig:ni-syntax}
 \end{figure}
 \begin{figure}[t]
-\centering\drules[E]{$\vdash \prm{e} : \tau$}{expression typing}{High,Low}
-\centering\drules[C]{$\Gamma \vdash \text{\pr|C|}$}{command typing}{Skip,AssignOne,AssignTwo,Seq,While,If,Sub}
-\caption[Non-interference security type system]{A non-interference security type system.}\label{fig:ni-types}
+\centering\drules[E]{
+ $\vdash \prm{e} : \tau$
+ \symbo{tau}\symbo{vdash}\symbo{low}\symbo{high}
+}{expression typing}{High,Low}
+\centering\drules[C]{
+  $\Gamma \vdash \text{\pr|C|}$
+ \symbo{G}\symbo{vdash}\symbo{p2}\symbo{low}\symbo{high}
+}{command typing}{Skip,AssignOne,AssignTwo,Seq,While,If,Sub}
+\caption[Non-interference security type system]
+{A non-interference security type system.}\label{fig:ni-types}
 \end{figure}
 
-\paragraph*{Derivations.}
-Consider the programs in Figures~\ref{lst:bool-ops}--\ref{lst:hi-cond}.
-Since the programs are written in Java\index{Java}, the constructs are richer than available in the type system \ndx{grammar}.
-The programs are not fully analyzable.
-For example, the {security type system\index{security type system}} does not specify how to handle the array in~\autoref{lst:ni-arrays}.
-However, we can analyze sub-programs, like the \pr|while| loops in~\autoref{lst:hi-cond} through a mapping to the \ndx{grammar}.
-The following examples show basic non-interference\index{non-interference} derivations.
+\paragraph*{Derivations}
+Consider the programs in Figures~\ref{lst:bool-ops}--\ref{lst:hi-cond}. Since
+the programs are written in \ndx{Java}, the constructs are richer than available
+in the type system \ndx{grammar}. The programs are not fully analyzable. For
+example, the \ndx{security type system} does not specify how to handle the array
+in~\autoref{lst:ni-arrays}. However, we can analyze sub-programs, like the
+\pr|while| loops in~\autoref{lst:hi-cond} through a mapping to the
+\ndx{grammar}. The following examples show basic \ndx{non-interference}
+derivations.
 
-\begin{example}[Secure high conditional incremental leak]\label{ex:high-cond-sec}
+\begin{example}[Secure high conditional incremental \ndx{leak}]
+\label{ex:high-cond-sec}
 We will analyze the following program fragment.
 
 \begin{center}
@@ -430,12 +463,13 @@ We will analyze the following program fragment.
 \end{minipage}
 \end{center}
 
-We assume \pr|h| is an arbitrarily typed variable---neither low or high---and will analyze both cases.
-We map the program to the \ndx{grammar} by substituting \pr|h > 0| with \pr|e|₀ and \pr|h--| with \pr|v:=e|₁\footnote{
-We lose detail of the compound assignment, but the loss is acceptable for this example.}
-to obtain \pr|while(e$_0$) { v:=e$_1$ }|.
+We assume \pr|h| is an arbitrarily typed variable---neither low or high---and
+will analyze both cases. We map the program to the \ndx{grammar} by substituting
+\pr|h > 0| with \pr|e|₀ and \pr|h--| with \pr|v:=e|₁ to obtain \pr|while(e$_0$)|
+\pr|{ v:=e$_1$ }|.\footnote{We will lose detail of the compound assignment, but
+the loss is acceptable for this example.}
 
-\paragraph*{Case 1:  \pr|e|₀, \pr|v|, and \pr|e|₁ are of type high.}
+\paragraph*{Case 1:  \pr|e|₀, \pr|v|, and \pr|e|₁ are of type high}
 Since the program is derivable as follows, it is non-interfering.
 
 \begin{center}\begin{prooftree}
@@ -444,7 +478,7 @@ Since the program is derivable as follows, it is non-interfering.
 \infer2[\textsc{C-While}]{\mathbf{h} \vdash \prm{while(e$_0$) \{ v:=e$_1$ \}}}
 \end{prooftree}\end{center}
 
-\paragraph*{Case 2: \pr|e$_0$|, \pr|v|, and \pr|e$_1$| are of type low.}
+\paragraph*{Case 2: \pr|e$_0$|, \pr|v|, and \pr|e$_1$| are of type low}
 The program is also derivable in low context, and again, is non-interfering.
 
 \begin{center}\begin{prooftree}
@@ -482,7 +516,7 @@ We also know from \autoref{ex:high-cond-sec} that without multiple security clas
 the program is non-interfering\index{non-interference}.
 There are two interesting cases.
 
-\paragraph*{Case 1: \pr|e|₀, \pr|v|₁, \pr|e|₁ are high, and \pr|v|₂, \pr|e|₂ are low.}
+\paragraph*{Case 1: \pr|e|₀, \pr|v|₁, \pr|e|₁ are high, and \pr|v|₂, \pr|e|₂ are low}
 The derivation beings as follows.
 
 \begin{center}\begin{prooftree}
@@ -498,7 +532,7 @@ The derivation gets stuck at point marked{ }{ }{\circled[red]{\textbf{\texttt{X}
 Intuitively, it is because the program operates on a low variable inside a loop with a guard variable\index{guard variable} that is of type high.
 This construction is not safe because it leaks information.
 
-\paragraph*{Case: \pr|e|₀, \pr|v|₁, \pr|e|₁ are low and \pr|v|₂, \pr|e|₂ are of type high.}
+\paragraph*{Case: \pr|e|₀, \pr|v|₁, \pr|e|₁ are low and \pr|v|₂, \pr|e|₂ are of type high}
 
 \begin{center}\begin{prooftree}
 \hypo{\mathbf{h} \notin \text{vars}(\prm{e}₀)}
@@ -528,7 +562,7 @@ The combination can potentially provide two types of correctness guarantees, rel
 Supporting this hypothesis, there are already multiple series of work exploring connections between the two domains.
 This section gives a brief summary of those results.
 
-\paragraph*{Complexity via non-interference: SAFE programs.}
+\paragraph*{Complexity via non-interference: SAFE programs}
 The class of \ndx{SAFE programs} is foundational in demonstrating that non-interference \ndx{security type system}s can support implicit characterizations of \ndx{complexity classes}.
 The idea was introduced by Jean-Yves Marion in~\cite{marion2011}.
 \ndx{SAFE programs} continue to be actively investigated by Marion, Emmanuel Hainry, Romain Péchoux, and others.
@@ -557,7 +591,7 @@ With the same end-goal, aperiodic programs (AP)~\cite{hainry2024}\index{aperiodi
 another mechanism adopted from the security domain.
 In the latter, the main result is a proof that SAFE and terminating aperiodic programs is the class of Basic Feasible Functionals\index{Basic Feasible Functionals}, \ie \(\sem{\text{SAFE}\;\cap\;\text{AP}\;\cap\;\text{terminating} = \text{BFF}}\)~\cite{hainry2020,hainry2024}.
 
-\paragraph*{From complexity to \ndx{cryptography}.}
+\paragraph*{From complexity to \ndx{cryptography}}
 A separate series of works applies implicit computation complexity toward applications in \ndx{cryptography}.
 The application is natural, because the security of cryptographic\index{cryptography} schemes is formulated as a mathematical problem, where the goal is to show the scheme is not to be solvable by a feasible adversary.
 The term feasible refers to computable in polynomial time~\cite{feree2018}.

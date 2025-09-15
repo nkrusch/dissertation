@@ -130,18 +130,18 @@ composition, primitive recursion\index{primitive recursion}, and minimization.
 %Dropping minimization makes this formalism strictly less expressive: the functions one represents (the so-called primitive recursive functions) are, at least, all total.
 Primitive recursive functions\index{recursive function} are
 %however
-well beyond any reasonable complexity class\index{complexity classes}
+well beyond any reasonable \ndx{complexity class}
 %They are after all the class of functions which can be computed in time and space bounded by primitive recursive functions, the latter being strictly larger than Kalmar's elementary functions. %Essentially, this is
 due to the possibility of having nested recursive definitions.
-As an example, one can define addition from the initial functions
+As an example, we can define addition from the initial functions
 
 \begin{center}
 \(\text{add}(0, x) = x\);
 
-\(\text{add}(n + 1, x) = \text{add}(n, x) + 1\);
+\(\text{add}(n + 1, x) = \text{add}(n, x) + 1\).
 \end{center}
 
-and then define exponentiation \(n \mapsto 2^n\) from addition as follows:
+Then for \(n\), we can define exponentiation \(n \mapsto 2^n\)\symbo{maps} from addition as follows:
 
 \begin{center}
 \(\text{exp}(0) = 1\);
@@ -172,11 +172,11 @@ That it is a restriction is a consequence of the distinction between normal and 
 This makes exp not expressible anymore, giving rise to new function algebra called \emph{safe recursion}\index{safe recursion}, discovered by Bellantoni and Cook~\cite{bellantoni1992} (BC in the following).
 
 \begin{theorem}
-The class BC equals the class FP of polynomial time computable functions.
+The class BC equals the class FP\ccx{fp} of polynomial time computable functions.
 \end{theorem}\ccxi{p}
 
 The Bellantoni and Cook result extends an earlier result by Cobham~\cite{cobham1965}.
-The Cobham-Edmond's thesis asserts that being feasible is the same as being computable in polynomial time~\cite{cobham1965,edmonds1965}.
+The \ndx{Cobham-Edmond's Thesis} asserts that being feasible is the same as being computable in polynomial time~\cite{cobham1965,edmonds1965}.
 Although the Cobham characterization is independent of any particular execution model, it is not fully syntactic.
 The limitations are that a \ndx{size bound} has to be proved on the semantics of recursion, and the proof uses a particular model of Turing machine.
 This prevents constructing an \emph{automatic procedure} to check whether a program satisfies Cobham's criteria~\cite{heraud2011}.
@@ -227,10 +227,10 @@ for the rest of this dissertation.
     \caption[]{(Cont.)}
     \endfoot
     \endlastfoot
-    1992\(^*\) & \syntax & Comput  & Safe recursion\index{safe recursion} -- \autoref{safe-rec} & \ccx{p} \\*
+    1992\(^{\displaystyle *}\) & \syntax & Comput  & Safe recursion\index{safe recursion} -- \autoref{safe-rec} & \ccx{p} \\*
     && Complex. & \textcite{bellantoni1992} \\*
     \midrule
-    1993\(^*\) & \recs & POPL & Stratified recurrence\index{stratified recurrence} & \ccx{p} \\
+    1993\(^{\displaystyle *}\) & \recs & POPL & Stratified recurrence\index{stratified recurrence} & \ccx{p} \\
     &&& \textcite{leivant1993} \\*
     \midrule
     1995 & \lalg & CSL & Tiering \aka ramification\index{tiering}\index{ramification} & \ccx{pspace} \\*
@@ -291,9 +291,13 @@ for the rest of this dissertation.
     &&& \textcite{hainry2024} \\*
     \bottomrule
     \multicolumn{5}{@{}l}{\(^a\) The system can handle sub-computations not in \ccx{p}.} \\
-    \caption[Theoretical implicit computational complexity systems and results]{
-        A list of theoretical implicit computational complexity systems and results.
-        The historical first publications are marked with \(^*\)-symbol.
-        The graphical symbols on left describe the restriction techniques for enforcing complexity bounds (limited to one symbol).}
-    \label{tab:icc-results}
+    \caption[
+        Theoretical implicit computational complexity systems and results
+    ]{
+        A list of theoretical implicit computational complexity systems and
+        results. The historically first publications are marked with a
+        \(^{\displaystyle *}\)-symbol. The graphical symbols describe the
+        restriction techniques for enforcing complexity bounds (limited to one
+        symbol).
+    }\label{tab:icc-results}
 \end{tabularx}

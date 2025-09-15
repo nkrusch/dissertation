@@ -74,47 +74,63 @@ The flow calculus\index{mwp-calculus} result is sound but incomplete.
 If a derivable\index{derivability} program terminates\index{termination},
 the soundness theorem~\cite[p. 11]{jones2009} guarantees that the variable value growth is polynomially bounded.
 
-\begin{theorem}[{Soundness of mwp-calculus}]\label{mwp-soundness}
-\index{soundness of mwp-calculus}\symbo{cmat}\symbo{cmatsem}
+\begin{theorem}[{Soundness of mwp-calculus}]
+\label{mwp-soundness}\index{soundness of mwp-calculus}
+\index{soundness of mwp-calculus}\symbo{cmat}\symbo{cmatsem}\symbo{vdash}\symbo{vsem}
 \(\vdash \prm{C} : M \text{ implies } \vDash \prm{C} : M \).
 \end{theorem}
 
-The soundness theorem connects the syntactic data flow relation\index{data flow relation} to the \emph{semantic property} \(\vDash \prm{C} : M\)\symbo{cmat}.
-Informally, derivability\index{derivability} guarantees program \pr|C| has polynomially bounded variable value growth at runtime.
-From a complexity-theoretic\index{complexity theory} perspective, this in turn ensures program \pr|C| runs in polynomial time\ccxi{p}~\cite{kristiansen2017}.
-The main result of the work introducing the flow calculus\index{mwp-calculus}~\cite{jones2009} is precisely a proof of the soundness theorem.
-Since the analysis omits termination\index{termination},
-the flow analysis provides a \emph{partial correctness}\index{partial correctness} guarantee.
+The soundness theorem connects the syntactic data flow relation\index{data flow
+relation} to the \emph{semantic property} \(\vDash \prm{C} : M\)\symbo{cmatsem}.
+Informally, \ndx{derivability} guarantees that the variable values of program
+\pr|C|\symbo{p2} will grow at most polynomially at runtime. This in turn ensures
+program \pr|C|\symbo{p2} runs in polynomial time\ccxi{p}~\cite{kristiansen2017}.
+The main result of the work introducing the flow
+calculus\index{mwp-calculus}~\cite{jones2009} is precisely a proof of the
+soundness theorem.\index{soundness of mwp-calculus} Since the analysis omits
+\ndx{termination}, the flow analysis\index{mwp-calculus} provides a
+\emph{\ndx{partial correctness}} guarantee.
 
-The flow calculus\index{mwp-calculus} offers no guarantee to programs that are not derivable\index{derivability}.
-Then, variable value growth is interpreted as unknown.
-A program always fails if a variable value grows \enquote{too fast}, for example exponentially.
-A single variable can be the source of whole-program derivation failure.
-Alternatively, failure may occur from inability to express satisfiable behavior.
-The latter is a built-in limitation of the flow calculus\index{mwp-calculus}.
-To increase \ndx{expressiveness} and capture a larger class of derivable\index{derivability} programs,
-the mwp-calculus\index{mwp-calculus} includes nondeterminism\index{nondeterminism} in its inference rules\index{inference rule}.
-Consequently, a single program may admit multiple derivations with distinct matrices, which in turn complicates determining the result of the analysis.
-However, a program is derivable\index{derivability} if there exists a derivation without an \(\infty\)-coefficient.
+The flow calculus\index{mwp-calculus} offers no guarantee to programs that are
+not derivable\index{derivability}. Then, variable value growth is interpreted as
+unknown. A program always fails if a variable value grows \enquote{too fast},
+for example exponentially. A single variable can be the source of whole-program
+\ndx{derivation failure}. Alternatively, failure may occur from inability to
+express satisfiable behavior. The latter is a built-in limitation of the flow
+calculus\index{mwp-calculus}. To increase \ndx{expressiveness} and capture a
+larger class of derivable\index{derivability} programs, the \ndx{mwp-calculus}
+includes \ndx{nondeterminism} in its \ndx{inference rule}s. Consequently, a
+single program may admit multiple derivations with distinct
+matrices\index{mwp-matrix}, which in turn complicates determining the result of
+the analysis. However, a program is derivable\index{derivability} if there
+exists a derivation without an \(\infty\)\symbo{infty}-coefficient.
 
 \paragraph*{The mwp-bounds characterize value growth}\label{interpreting-bounds}
-The column vectors of an mwp-matrix\index{mwp-matrix} encode variable value growth bounds.
-An mwp-bound\index{mwp-bound} (denoted \(W,V,U,\ldots\)) characterizes the value growth of a single variable \wrt program inputs.
-An mwp-bound\index{mwp-bound} is an expression of form $\max(\vec{x}, \poly_1(\vec{y})) + \poly_2(\vec{z})$.
-Variables characterized by $m$-flow are listed in $\vec{x}$; $w$-flows in $\vec{y}$, and $p$-flows in $\vec{z}$.
-The notation \(W(\vec{x};\vec{y};\vec{z})\) displays all the variables in an mwp-bound\index{mwp-bound} $W$ where $\vec{x}$, $\vec{y}$ and $\vec{z}$
-are respectively the $m$-, $w$- and $p$-variables of \(W\).
-Variables characterized by $0$-flow do not occur in the expression and no bound exists if some variable is characterized by $\infty$.
-The $\poly_1$ and $\poly_2$ are \textit{honest polynomials}\index{honest polynomial},
-build up from constants and variables by applying $+$ and $\times$.
-Any of the three variable lists might be empty, and $\poly_1$ and $\poly_2$ may not be present.
-When characterizing value growth, an mwp-bound\index{mwp-bound} is approximative;
-it excludes precise constants and degrees of polynomials.
-We write an mwp-bound\index{mwp-bound} of variable \pr|X| as \(x' \leq W\) where \(x'\) is the final value of \pr|X| and W is an mwp-bound.
-A \emph{program bound} is a conjunction (\(\land\)) of its variables' mwp-bounds\index{mwp-bound}.
+The column vectors of an mwp-matrix\index{mwp-matrix} encode variable value
+growth bounds. An \ndx{mwp-bound} (denoted \(W,V,U,\ldots\))\symbo{bound}
+characterizes the value growth of a single variable \wrt program inputs. An
+\ndx{mwp-bound} is an expression of form $\max(\vec{x}, \poly_1(\vec{y})) +
+\poly_2(\vec{z})$\symbo{vlist}. Variables characterized by $m$\symbo{m}-flow are
+listed in $\vec{x}$\symbo{vlist}; $w$\symbo{w}-flows in $\vec{y}$\symbo{vlist},
+and $p$\symbo{p}-flows in $\vec{z}$\symbo{vlist}. The notation
+\(W(\vec{x};\vec{y};\vec{z})\)\symbo{bound}\symbo{vlist} displays all the
+variables in an \ndx{mwp-bound} $W$\symbo{bound} where $\vec{x}$, $\vec{y}$ and
+$\vec{z}$\symbo{vlist} are respectively the $m$-, $w$- and $p$-variables of
+\(W\)\symbo{bound}. Variables characterized by $0$\symbo{zero}-flow do not occur
+in the expression and no bound exists if some variable is characterized by
+$\infty$\symbo{infty}. The $\poly_1$\symbo{hp} and $\poly_2$\symbo{hp} are
+\textit{\ndx{honest polynomials}}, build up from constants and variables by
+applying $+$ and $\times$. Any of the three variable lists might be empty, and
+$\poly_1$\symbo{hp} and $\poly_2$\symbo{hp} may not be present. When
+characterizing value growth, an \ndx{mwp-bound} is approximative; it excludes
+precise constants and degrees of polynomials. We write an \ndx{mwp-bound} of
+variable \pr|X| as \(x' \leq W\) where \(x'\)\symbo{xprime2} is the final value
+of \pr|X| and \(W\)\symbo{bound} is an \ndx{mwp-bound}. A \emph{program bound}
+is a conjunction (\(\land\)) of its variables' \ndx{mwp-bound}s.
 
 \begin{example}[Interpreting mwp-bounds]
-For an arbitrary variable, the mwp-bound\index{mwp-bound} indicates the final value of the variable is bounded by\ldots
+For an arbitrary variable, the \ndx{mwp-bound} indicates the final value of the
+variable is bounded by\ldots
 
 \begin{center}\begin{tabular}{rl}
 \(0\) & \ldots a constant. \\

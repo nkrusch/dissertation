@@ -63,11 +63,9 @@
 \let\item\@idxitem
 \setlength{\columnsep}{30pt}
 \setlength{\parindent}{0em}
-%\begin{multicols*}{2}\raggedcolumns}
-%\begin{onecolumn}
-\let\item\@idxitem}
-%{\end{multicols*}}
-%{\end{onecolumn}\clearpage}
+\begin{multicols*}{2}\raggedcolumns}
+{\end{multicols*}}
+%\let\item\@idxitem}
 {\clearpage}
 \renewcommand{\@idxitem}{\par\hangindent 15\p@}
 \renewcommand{\subitem}{\par\hangindent 30\p@\hspace*{15pt}}
@@ -76,11 +74,11 @@
 \begin{filecontents}{\jobname.mst}
 headings_flag 1
 heading_prefix "\{\\normalsize\\textbf\{"
-heading_suffix "\}\}\\nopagebreak\n"
-delim_0 "\\mydotfill\{\\footnotesize"
-delim_1 "\\mydotfill\{\\footnotesize"
-delim_2 "\\mydotfill\{\\footnotesize"
-delim_t "\} "
+heading_suffix "\}\}\\hfill\\nopagebreak\n"
+delim_0 "\\mydotfill\{\\raggedleft\\footnotesize"
+delim_1 "\\mydotfill\{\\raggedleft\\footnotesize"
+delim_2 "\\mydotfill\{\\raggedleft\\footnotesize"
+delim_t "\\raggedright\} "
 \end{filecontents}
 
 %% Glossaries
@@ -88,15 +86,19 @@ delim_t "\} "
 \renewcommand{\glsdescwidth}{12.5cm}
 \newglossarystyle{longraggeddots}{
     \setglossarystyle{longragged}%
-    %    \renewcommand{\glsentryname}{% for 1st child entry
-    %        \parindent-5pt% left margin to child name
-    %        \par% newline
-    %        \hangindent0pt% left margin to paragraph margin
-    %        \everypar{\parindent55pt\hangindent45pt}}
+    \renewenvironment{theglossary}%
+    {\begin{longtable}{@{}l>{\hangindent15pt\hangafter=1\raggedleft}p{\glsdescwidth}}}%
+    {\end{longtable}}%
     \renewcommand*{\glossentry}[2]{%
-       \hspace{-6pt}\glstarget{##1}{\glossentryname{##1}} &
+       \glstarget{##1}{\glossentryname{##1}} &
        \glossentrydesc{##1}\mydotfill\footnotesize{##2}\tabularnewline
    }
+   \renewcommand{\subglossentry}[3]{%
+    &
+        \glssubentryitem{##2}%
+        {\footnotesize\emph{also}}\hspace{5pt}\glstarget{##2}{\strut}\glossentrydesc{##2}%
+        \glspostdescription\mydotfill\footnotesize{##3}\tabularnewline
+    }
 }
 \setglossarystyle{longraggeddots}
 
@@ -114,17 +116,17 @@ delim_t "\} "
 
 %% Controls for additional double spacing
 % Double-space: abstract, dedication, acknowledgements, table of contents, and
-% body of the manuscript; except for quotations as paragraphs, captions, items in
-% tables, lists, graphs, charts.
+% body of the manuscript; except for quotations as paragraphs, captions,
+% items in tables, lists, graphs, charts.
 % Single-space: footnotes/endnotes, bibliographic entries, lists in appendices.
 % ---
 % double space various environments:
 \mdfsetup{startinnercode={\doublespacing}}
 \AtBeginEnvironment{algorithmic}{\doublespacing}
-\AtBeginEnvironment{tabular}{\doublespacing}
-\AtBeginEnvironment{tabularx}{\doublespacing}
-\AtBeginEnvironment{NiceTabular}{\doublespacing}
-\AtBeginEnvironment{NiceTabularX}{\doublespacing}
+\AtBeginEnvironment{tabular}{\ifbool{inappendix}{\doublespacing}{\doublespacing}}
+\AtBeginEnvironment{tabularx}{\ifbool{inappendix}{\doublespacing}{\doublespacing}}
+\AtBeginEnvironment{NiceTabular}{\ifbool{inappendix}{\doublespacing}{\doublespacing}}
+\AtBeginEnvironment{NiceTabularX}{\ifbool{inappendix}{\doublespacing}{\doublespacing}}
 \AtBeginEnvironment{figure}{\doublespacing}
 \AtBeginEnvironment{subfigure}{\doublespacing}
 \AtBeginEnvironment{align*}{\linespread{2}\selectfont}
@@ -157,7 +159,7 @@ delim_t "\} "
 \font\sixly=lasyb10
 \makeatother
 
-% dot after paragraphs
+% Put a dot after paragraph titles.
 \makeatletter
 %! suppress = MightBreakTexify
 \renewcommand\paragraph{%

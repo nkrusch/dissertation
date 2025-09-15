@@ -48,7 +48,7 @@ postconditions supports discovery of inductive\index{invariant!inductive}
 \ndx{invariant}s~\cite{furia2010}\index{invariant!inductive}. Moreover, as
 generalized \ndx{assertion}s, \ndx{postcondition}s assist
 in various software development activities~\cite{nguyen2022}, like
-testing~\cite{alagarsamy2024,zhang2015} and code
+testing\index{software testing}~\cite{alagarsamy2024,zhang2015} and code
 maintenance~\cite{rosenblum1995}. However, dedicated studies of postcondition
 inference are a novelty in research literature~\cite{popeea2006,molina2021}.
 
@@ -504,7 +504,7 @@ expressions over \pr{b}, we define \emph{expressions} \pr|e|, and
     \text{\pr|while b C|} \BNF
     \text{\pr|loop X C|} \BNF
     \text{\pr|C;C|}
-\end{align*}\symbo{coloneqq}\symbo{bnfsep}
+\end{align*}\symbo{coloneqq}\symbo{bnfsep2}
 The command \pr|loop X C| means \enquote{do \pr|{C}| \pr|X| times} and the
 variable \pr|X| is not allowed to occur in command \pr|C|. Command \pr|C;C| is
 for sequencing. We write \enquote{program} for a series of commands composed
@@ -568,6 +568,7 @@ program in one (complex) data structure.
 \hypo{\vdash \prm{X}_j : V_2}
 \infer2[E4]{\vdash \prm{X}_i + \prm{X}_j : V_1 \oplus pV_2}
 \end{prooftree}\symbo{xvar}\symbo{p}\symbo{vec}\symbo{evec}
+\symbo{xi}\symbo{oplus}
 \end{tabularx}
 \caption[A selection of flow calculus rules for assigning vectors to
 expressions.]{
@@ -1063,8 +1064,9 @@ M^* \oplus \{_\ell^{p}\rightarrow j \mid \exists i, M_{ij}^* = p\}}
 {\vdash \text{\pr|while b do  \{C\}|} : M^*}
 \end{prooftree}
 \end{center}
-\symbo{matrix}\symbo{cmat}\symbo{xvar}\symbo{closure}
-\symbo{p}\symbo{m}\symbo{mi}\symbo{mj}\symbo{mzeroj}
+\symbo{matrix}\symbo{cmat}\symbo{xvar}\symbo{closure}\symbo{xi}
+\symbo{xj}\symbo{p}\symbo{m}\symbo{mi}\symbo{mj}\symbo{mzeroj}
+\symbo{mstar}\symbo{oplus}
 \caption[Flow calculus inference rules for \pr|while| and \pr|loop|]{
 The flow calculus\index{mwp-calculus} \ndx{inference rule}s for commands
 \pr|while| and \pr|loop|.}

@@ -60,7 +60,7 @@ There are two broad categories of static analyzers~\cite{jourdan2015}.
 
 \begin{itemize}
 
-\item A \emph{bug finder} must discover potential errors that are hard to find by testing.
+\item A \emph{bug finder} must discover potential errors that are hard to find by testing\index{software testing}.
 The analysis must be precise because excessive false alarms make the tool unusable.
 The \emph{precision}\index{precision} of an analysis is the degree to which it avoids erroneous results~\cite{livshits2015}.
 However, a bug finder offers no guarantee that all bugs will be found.
@@ -88,9 +88,9 @@ interpreting its results is problematic because errors are not conservative.
 }\label{fig:approx}
 \end{figure}
 
-\paragraph*{Soundness and completeness}
+\paragraph*{Soundness and \ndx{completeness}}\index{soundness}
 A terminating static analyzer can either be sound or complete, but not both.
-Soundness and completeness are terms from logic and not exclusive to static program analysis.
+Soundness and completeness are terms from logic and not exclusive to \ndx{static program analysis}.
 In logic, they carry the following meaning.
 \begin{itemize}
 \item A \emph{sound}\index{soundness} system guarantees that everything that is provable is true.
@@ -237,10 +237,10 @@ A comprehensive comparison of resource bounds computed by various tools is avail
 
 \item[\href{https://aprove.informatik.rwth-aachen.de}{\ndx{AProVE}}]
       \emph{\underline{A}utomated \underline{Pro}gram \underline{V}erification
-      \underline{E}nvironment}~\cite{giesl2016}
-      produces termination proofs and complexity bounds for \ndx{term rewrite
-      system}s, Java \ndx{bytecode}, and programs written in \ndx{C},
-      \ndx{Prolog}, or \ndx{Haskell}.
+      \underline{E}nvironment}~\cite{giesl2016} produces termination proofs and
+      complexity bounds for \ndx{term rewrite system}s (TRS), \ndx{Java
+      bytecode}\index{bytecode}, and programs written in \ndx{C}, \ndx{Prolog},
+      or \ndx{Haskell}.
       AProVE is a regular contestant in international tool competitions,
       including the
       \href{https://termination-portal.org/wiki/Termination_Competition}%
@@ -263,10 +263,10 @@ A comprehensive comparison of resource bounds computed by various tools is avail
 
 \item[\href{http://cl-informatik.uibk.ac.at/software/tct/}{TcT}]
        \emph{\underline{T}yrolean \underline{C}omplexity \underline{T}ool}~\cite{avanzini2016}\index{TcT}
-       is a modular analyzer with front-ends to support term rewrite- and integer transition systems;
-       high-order functional programs, and Java bytecode.
+       is a modular analyzer with front-ends to support TRSs and integer transition systems (ITS);
+       high-order functional programs, and \ndx{Java bytecode}.
        The complexity problem and metric of interest are parametric.
-       TcT has also competed in the Termination Competition.
+       TcT has also competed in the \ndx{Termination Competition}.
 
 \item[\href{https://koat.verify.rwth-aachen.de/cfr_mprf}{KoAT}]
        \emph{\underline{Ko}mplexitäts-\underline{A}nalyse-\underline{T}ool}~\cite{brockschmidt2016}\index{KoAT}

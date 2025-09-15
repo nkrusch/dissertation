@@ -1,6 +1,6 @@
 %! suppress = LineBreak
 %! suppress = TooLargeSection
-\section{Seeking Strong Software Quality Guarantees}
+\subsection{Seeking Strong Software Quality Guarantees}
 \label{sec:aicc-intro}
 
 The gold standard in \ndx{formal verification} is showing that an implementation
@@ -59,7 +59,7 @@ and complexity classes (\textsc{p}, \textsc{pspace}, \textsc{l}, \textsc{pp},
 \ldots)~\cite{moyen2017,pchoux2020}.
 
 %! suppress = TooLargeSection
-\section{Addressed Problem and Goals}
+\subsection{Addressed Problem and Goals}
 \label{sec:aicc-goals}
 
 Besides uses in \ndx{formal verification}, there are many
@@ -117,7 +117,7 @@ analyses. The use cases of such analysis include formal verification of many
 non-functional properties\index{non-functional property}.
 
 %! suppress = TooLargeSection
-\section{Research Questions and Approaches}
+\subsection{Research Questions and Approaches}
 \label{sec:aicc-approaches}
 
 The following \emph{main hypothesis} guides the dissertation investigation.
@@ -138,7 +138,7 @@ can \begin{enumerate*}[label=(\roman*)]
 \item discover unexpected applications.
 \end{enumerate*}
 
-\subsection{Automatic Resource Analysis}
+\subsubsection{Automatic Resource Analysis}
 \label{subsec:aicc-automatic-resource-analysis}
 
 This series of work focuses on an ICC system called the \emph{flow calculus of
@@ -169,7 +169,7 @@ new insights of the flow calculus and its possible applications. Since ICC is
 not the only technique for analyzing growth in data size, having an automatic
 analyzer would enable comparing it to the alternative approaches.
 
-\subsection{Analyzing Extended Properties}
+\subsubsection{Analyzing Extended Properties}
 \label{subsec:extended-props}
 
 The second series of work applies implicit computational complexity to track
@@ -214,7 +214,7 @@ the application. Therefore, besides tracking properties, this investigation is
 also about studying the mechanics of ICC systems, and uncovering how exactly
 they provide behavioral guarantees.
 
-Finally, this direction of research contains a bonus\hyp{}challenge. Simply
+Finally, this direction of research contains a bonus challenge. Simply
 showing that an ICC-based technique can solve a problem in another application
 domain is not enough. It is necessary to show that the solution is
 \emph{independently} relevant in the target domain, regardless of the origins of
@@ -222,7 +222,7 @@ the solution. Based on experience, this criterion is strongly enforced by the
 scientific peer review process.
 
 %! suppress = TooLargeSection
-\section{Methodology and Research Deliverables}
+\subsection{Methodology and Research Deliverables}
 \label{sec:aicc-methods}
 
 Following the approaches of~\autoref{sec:aicc-approaches}, we conducted a series
@@ -258,7 +258,7 @@ program optimization for loop parallelization~\cite{aubert20232}. This is
 useful, because the optimization can be applied to loops whose iteration count
 is unknown. Parallelizing such loops is outside the capabilities of prior
 techniques. In an ongoing investigation, for RQ5, we apply the QI framework to
-tracking programs {non\hyp{}interference}~\cite{goguen1982}, a kind of
+tracking programs {non-interference}~\cite{goguen1982}, a kind of
 confidentiality property. Non-interference\index{non-interference} ensures a
 program does not reveal secrets; and if it does, we can identify where the
 violation occurs. Our working intuition is that, since the analysis can be
@@ -269,7 +269,7 @@ is different from many existing techniques that analyze programs only at one
 stage of representation.
 
 %! suppress = TooLargeSection
-\section{Research Findings and Conclusions}
+\subsection{Research Findings and Conclusions}
 \label{sec:aicc-discussion}
 
 \paragraph*{On automatic resource analysis} We can now confirm that it is
