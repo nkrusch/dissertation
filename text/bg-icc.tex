@@ -130,7 +130,7 @@ composition, primitive recursion\index{primitive recursion}, and minimization.
 %Dropping minimization makes this formalism strictly less expressive: the functions one represents (the so-called primitive recursive functions) are, at least, all total.
 Primitive recursive functions\index{recursive function} are
 %however
-well beyond any reasonable \ndx{complexity class}
+well beyond any reasonable complexity class\index{complexity classes}
 %They are after all the class of functions which can be computed in time and space bounded by primitive recursive functions, the latter being strictly larger than Kalmar's elementary functions. %Essentially, this is
 due to the possibility of having nested recursive definitions.
 As an example, we can define addition from the initial functions
@@ -172,15 +172,17 @@ That it is a restriction is a consequence of the distinction between normal and 
 This makes exp not expressible anymore, giving rise to new function algebra called \emph{safe recursion}\index{safe recursion}, discovered by Bellantoni and Cook~\cite{bellantoni1992} (BC in the following).
 
 \begin{theorem}
-The class BC equals the class FP\ccx{fp} of polynomial time computable functions.
-\end{theorem}\ccxi{p}
+The class BC equals the class FP of polynomial time computable functions.
+\end{theorem}\ccxi{p}\ccxi{fp}\index{complexity classes}
 
 The Bellantoni and Cook result extends an earlier result by Cobham~\cite{cobham1965}.
 The \ndx{Cobham-Edmond's Thesis} asserts that being feasible is the same as being computable in polynomial time~\cite{cobham1965,edmonds1965}.
 Although the Cobham characterization is independent of any particular execution model, it is not fully syntactic.
-The limitations are that a \ndx{size bound} has to be proved on the semantics of recursion, and the proof uses a particular model of Turing machine.
+The limitations are that a \ndx{size bound} has to be proved on the semantics of recursion, and the proof uses a particular model of \ndx{Turing Machine}.
 This prevents constructing an \emph{automatic procedure} to check whether a program satisfies Cobham's criteria~\cite{heraud2011}.
 In contrast, the Bellantoni and Cook characterization is a fully syntactic and membership in BC can be checked automatically.
+Note that Safe recursion aims to guarantee that there exists a polynomial bounding the execution time; however, it does not provide
+the actual value of the polynomial (\ie the \ndx{complexity bound} are implicit)~\textcite{heraud2011}.
 The Bellantoni and Cook result was proved formally~\cite{bc_formal} by~\textcite{heraud2011}.
 
 \subsubsection{A Snapshot of Theoretical Results}
@@ -257,7 +259,7 @@ for the rest of this dissertation.
     2010 & \logics & Theor. & Quantum implicit computational complexity & \ccx{eqp}, \ccx{bqp}, \ccx{zqp} \\*
     && Comput. Sci. & \textcite{dallago2010} \\*
     \midrule
-    2011 & \types & LICS & SAFE programs\index{SAFE programs} -- \autoref{icc-sec} & \ccx{p} \\*
+    2011 & \types & LICS & \ndx{SAFE programs} -- \autoref{icc-sec} & \ccx{p} \\*
     &&& \textcite{marion2011} \\*
     \midrule
     2013 & \types & ICALP & Ramified programs\index{ramification}\index{ramified programs} -- \autoref{icc-sec}  & \ccx{p}, \ccx{l} \\*
@@ -269,10 +271,10 @@ for the rest of this dissertation.
     2015 & \types & LPAR & \ndx{d\(\ell\)T} programs\(^a\) -- \autoref{icc-sec} & \ccx{p} \\*
     &&& \textcite{baillot2015} \\*
     \midrule
-    2016 & \logics & Inf. Comput. & Complexity with pointer machines & \ccx{l} \\*
+    2016 & \logics & Inf. Comput. & Complexity with \ndx{pointer machines} & \ccx{l} \\*
     &&& \textcite{aubert2016}  \\*
     \midrule
-    2016 & \recs & Inf. Comput. & Complexity of uniform Boolean circuits & \ccx{nc} \\*
+    2016 & \recs & Inf. Comput. & Complexity of uniform \ndx{Boolean circuits} & \ccx{nc} \\*
     &&& \textcite{bonfante2016} \\*
     \midrule
     2018 & \types & Inf. Comput. & Object Oriented programs\index{SAFE programs!object-oriented} -- \autoref{icc-sec} & \ccx{p} \\*
@@ -284,7 +286,7 @@ for the rest of this dissertation.
     2023 & \types & POPL & Stratified (STR) programs\index{stratified programs} -- \autoref{icc-sec} & \ccx{p} \\*
     &&& \textcite{hainry2023} \\*
     \midrule
-    2024 & \types & POPL & Quantitative type theory with dependent types\index{quantitative type theory}\index{dependent types} & \ccx{p}, \ccx{np}, \ccx{bpp} \\*
+    2024 & \types & POPL & Quantitative type theory with \ndx{dependent types}\index{quantitative type theory} & \ccx{p}, \ccx{np}, \ccx{bpp} \\*
     &&& \textcite{atkey2024} \\*
     \midrule
     2024 & \types & LICS & Aperiodic programs\index{aperiodic programs} -- \autoref{icc-sec} & \ccx{p} \\*
@@ -297,7 +299,7 @@ for the rest of this dissertation.
         A list of theoretical implicit computational complexity systems and
         results. The historically first publications are marked with a
         \(^{\displaystyle *}\)-symbol. The graphical symbols describe the
-        restriction techniques for enforcing complexity bounds (limited to one
+        restriction techniques used to enforce \ndx{complexity bound}s (limited to one
         symbol).
     }\label{tab:icc-results}
 \end{tabularx}

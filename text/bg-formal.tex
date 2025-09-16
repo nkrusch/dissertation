@@ -181,14 +181,15 @@ specification\index{specifications}.
 There are various different ways to categorize families of \ndx{properties}.
 \emph{Functional} properties\index{properties!functional} are technical
 characteristics that contribute to computation of the correct output.
-\emph{Non-functional} properties\index{properties!non-functional} are concerned
+\emph{Non-functional} properties\index{non-functional property} are concerned
 with quality attributes like security, dependability, reliability, and resource
-requirements~\cite{terbeek2018}. Two other common terms are \enquote{safety
-and liveness}. They come from a paper by~\textcite{lamport1977} where they are
-formulated as follows. A \emph{\ndx{safety property}} is a guarantee that
-\enquote{something (bad) will not happen}. A \emph{\ndx{liveness property}}
-ensures \enquote{(good) things must happen}, eventually. The proof techniques
-across these safety and liveness properties are different. The works in this
+requirements~\cite{terbeek2018}. Two other common terms are \emph{\ndx{safety}}
+and \emph{\ndx{liveness}}. They come from a paper by~\textcite{lamport1977}
+where they are formulated as follows. A \emph{safety
+property}\index{properties!safety} is a guarantee that \enquote{something (bad)
+will not happen}. A \emph{liveness property}\index{properties!liveness} ensures
+\enquote{(good) things must happen}, eventually. The proof techniques across
+these safety and liveness properties are different. The works in this
 dissertation are primarily concerned with non-functional safety properties.
 
 \paragraph*{Partial and \ndx{total correctness}}
@@ -437,7 +438,7 @@ verification-aware programming language \ndx{Dafny} (\autoref{subsubsec:dafny}).
 These tools are relevant for some of the dissertation manuscripts and assumed to
 be familiar to the reader.
 
-\subsubsection{The Rocq Theorem Prover}
+\subsubsection{The \ndx{Rocq} Theorem Prover}
 \label{subsec:rocq}
 
 The \ndx{Rocq} theorem prover is an \ndx{interactive proof assistant} for
@@ -448,8 +449,9 @@ assurance of mathematics, semantics, and verification. In 2013, The ACM has
 recognized \ndx{Rocq} with the
 \href{https://awards.acm.org/software-system}{\ndx{Software System Award}} --
 the highest distinction awarded to research software~\cite{rocq-community}. The
-success of \ndx{Rocq} has also created abundant interest in \ndx{dependent type
-theory}~\cite{coquand1988}, \ie the core logic of \ndx{Rocq}.
+success of \ndx{Rocq} has also created abundant interest in dependent type
+theory~\cite{coquand1988}\index{dependent types}, \ie the core logic of
+\ndx{Rocq}.
 
 \paragraph*{Technical overview}
 As a guiding example, consider simple proof in~\autoref{lst:rocq-basic}. The
@@ -613,7 +615,7 @@ contains representative examples in the first two categories.
    \bottomrule
 \end{NiceTabularX}
 \caption[The Rocq prover formalization results]
-{A small sample of results formalized with the Rocq prover.}
+{A small sample of results formalized with the \ndx{Rocq} prover.}
 \label{tab:rocq-results}
 \end{table}
 
@@ -627,7 +629,7 @@ experience. The books are implemented in \ndx{Rocq} and updated regularly. The
 the library and the \ndx{SSReflect} proof language. Karate Coq
 of~\textcite{affeldt2023} is an additional resource about \ndx{Mathematical
 Components}. There are multiple books about engineering \ndx{Rocq} proofs with
-dependent types\index{dependent type theory} and \ndx{type
+\ndx{dependent types} and \ndx{type
 system}s~\cite{chlipala2022,chlipala2013,sergey2014,smolka2021}. For a curated
 list of awesome Coq libraries, plugins, tools, and resources see the
 \emph{Awesome Coq} list~\cite{awesome-coq}. Finally, the \ndx{Rocq} prover has
@@ -676,9 +678,9 @@ can be compiled to various target languages, like \ndx{C\#}, \ndx{Java}, and
 is to check a program's specification constructs.\footnote{These are
 \ndx{Eiffel}-like contracts from~\cite{meyer1988}.} As visualized by the chart
 in~\autoref{fig:dafny-auto} (inspired by~\cite{leino2010b}), the built-in
-verifier in Dafny adds a high degree of automation. The verifier resolves many
+verifier in \ndx{Dafny} adds a high degree of automation. The verifier resolves many
 low-level proof steps. For example, if we wanted to prove the lemma
-of~\autoref{lst:rocq-basic} in Dafny, the verifier succeeds at discharging the
+of~\autoref{lst:rocq-basic} in \ndx{Dafny}, the verifier succeeds at discharging the
 proof obligations automatically -- see \pr|Add0Left| in~\autoref{fig:dafny-use}.
 
 \begin{figure}[ht]
@@ -720,11 +722,11 @@ development.
 \paragraph*{Proof style}
 In \ndx{Dafny}, proofs are developed in \enquote{top-down} style. This allows
 the developer to focus on the proof architecture before the detailed proof
-steps. To this end, Dafny provides \pr|assume| statements, \ie \ndx{assertion}s
-without a proof; and \ndx{ghost method}s, \ie lemmas that are not yet proven.
-Obviously, the proof is not complete until these temporary constructs have been
-replaced with concrete proofs. However, they are useful for facilitating the
-proof development.
+steps. To this end, \ndx{Dafny} provides \pr|assume| statements, \ie
+\ndx{assertion}s without a proof; and \ndx{ghost method}s, \ie lemmas that are
+not yet proven. Obviously, the proof is not complete until these temporary
+constructs have been replaced with concrete proofs. However, they are useful for
+facilitating the proof development.
 
 \paragraph*{Boogie}
 \ndx{Boogie}~\cite{leino2008} is an \ndx{intermediate verification language},
@@ -825,10 +827,10 @@ version.}
 \end{center}
 
 \subparagraph*{The Dafny verification explained.}
-The Dafny version in~\autoref{lst:eq-dafny} contains the full details of the
-proof. To make life \textit{a bit more} interesting, it defines a \ndx{subtype}
-of \pr|bit|. Alternatively, the restriction on the values of \pr|b| could be
-stated as a precondition.
+The \ndx{Dafny} version in~\autoref{lst:eq-dafny} contains the full details of
+the proof. To make life \textit{a bit more} interesting, it defines a
+\ndx{subtype} of \pr|bit|. Alternatively, the restriction on the values of
+\pr|b| could be stated as a precondition.
 
 Next, the listing shows a \pr|function| and a \pr|method|. A \emph{method} in
 \ndx{Dafny} is a piece of imperative executable code, which can have all sorts
@@ -903,14 +905,16 @@ version includes an implementation and a proof to show correctness.
 \begin{center}
 \captionsetup{type=lstlisting}
 \rocqinputlisting[][firstline=2,lastline=26]{leftpad.v}
-\captionof{lstlisting}[Leftpad in Rocq (1)]{Leftpad in Rocq (part 1 of 2).}
+\captionof{lstlisting}[Leftpad in Rocq (1)]
+{Leftpad in \ndx{Rocq} (part 1 of 2).}
 \label{lst:rocq-leftpad}
 \end{center}
 
 \begin{center}
 \captionsetup{type=lstlisting}
 \rocqinputlisting[][firstline=28,firstnumber=28]{leftpad.v}
-\captionof{lstlisting}[Leftpad in Rocq (2)]{Leftpad in Rocq (part 2 of 2).}
+\captionof{lstlisting}[Leftpad in Rocq (2)]
+{Leftpad in \ndx{Rocq} (part 2 of 2).}
 \label{lst:rocq-leftpad2}
 \end{center}
 
@@ -941,7 +945,7 @@ Components} library.}
 \captionsetup{type=lstlisting}
 \dafnyinputlisting[][]{leftpad.dfy}
 \captionof{lstlisting}[Formally verified Leftpad in Dafny]
-{Formally verified leftpad in \ndx{Dafny}.}
+{Formally verified Leftpad in \ndx{Dafny}.}
 \label{lst:leftdfy}
 \end{minipage}
 \end{center}
@@ -979,7 +983,7 @@ functional correctness. The final proof obligation is to show loop
 \pr|LeftPad| method is totally correct.\index{total correctness}
 
 \subparagraph*{Observable differences.}
-Although the leftpad behavior is consistently the same, the examples show
+Although the Leftpad behavior is consistently the same, the examples show
 different styles of implementation and varying proof strategies. The \ndx{Rocq}
 prover is very flexible in supporting various kinds of proofs and provides
 fine-grained control over the specification\index{specifications}. The
@@ -1058,7 +1062,7 @@ X_r - a\).
 
 \paragraph*{Formal proof}
 The interesting bit is showing that the solution meets the specification.
-The solution is provable in the Rocq prover.
+The solution is provable in the \ndx{Rocq} Theorem Prover.
 We define first the messaging functions as shown in~\autoref{lst:moscow-fun}.
 
 \begin{center}
@@ -1166,9 +1170,9 @@ There exists a (small) collection of result formalizing classic \ndx{complexity
 theory} (\cf~\autoref{subsec:coqpl-related}). For example, \ndx{Universal Turing
 Machine}s~\cite{forster2020}, the
 \(\mathcal{O}\)-notation\symbo{bigo}~\cite{gueneau2018}, and the \ndx{Cook-Levin
-theorem}~\cite{gaher2021}\index{\textsc{np}-completeness}\footnote{The
-Cook-Levin theorem states that Boolean SAT is
-\textsc{np}-Complete~\cite{cook1971, levin1973}.} have been formalized
+Theorem}~\cite{gaher2021}\index{\textsc{np}-completeness}\footnote{The
+\ndx{Cook-Levin Theorem} states that Boolean SAT is
+\ccx{np}-Complete~\cite{cook1971, levin1973}.} have been formalized
 previously.
 
 Among programming language-based approaches, the type system of~\cite{crary2000}
@@ -1188,7 +1192,7 @@ program satisfies the specified resource bound. The type system definitions is
 
 Among works of implicit computational complexity, the hallmark result of
 Bellantoni and Cook (\ndx{safe recursion}~\cf{safe-rec}) was formalized
-in~\textcite{heraud2011}. The Rocq library
+in~\textcite{heraud2011}. The \ndx{Rocq} library
 \href{https://github.com/davidnowak/cecoa}{Cecoa}{\ndx{Cecoa}} enables proving
 that a user-defined function is polytime computable~\cite{feree2018}. It is
 based on \ndx{quasi-interpretation}s of~\textcite{marion2000} and extends the

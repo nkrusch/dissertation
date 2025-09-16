@@ -246,20 +246,20 @@ The interesting variables, that reference a memory location of interest, are emp
 \captionsetup{type=lstlisting}
 \cstarinputlisting[][emph={X},emphstyle={\color{pthread}\textbf},numbers=none,escapeinside={||}]{dep-anti.imp}
 \captionof{lstlisting}[Antidependence]{Antidependence.}
-\label{dep-anti}\index{antidependence}
+\label{dep-anti}\index{antidependence}\index{dependence!anti}
 \end{minipage}
 
 \begin{minipage}[t]{.4\textwidth}
 \captionsetup{type=lstlisting}
 \cstarinputlisting[][emph={X},emphstyle={\color{pthread}\textbf},numbers=none,escapeinside={||}]{dep-out.imp}
 \captionof{lstlisting}[Output dependence]{Output dependence.}
-\label{dep-out}\index{output dependence}
+\label{dep-out}\index{output dependence}\index{dependence!output}
 \end{minipage}\hspace{3em}
 \begin{minipage}[t]{.4\textwidth}
 \captionsetup{type=lstlisting}
 \cstarinputlisting[][emph={X},emphstyle={\color{pthread}\textbf},numbers=none,escapeinside={||}]{dep-control.imp}
 \captionof{lstlisting}[Control dependence]{Control dependence.}
-\label{dep-control}\index{control dependence}
+\label{dep-control}\index{control dependence}\index{dependence!control}
 \end{minipage}
 \end{center}
 
@@ -268,7 +268,7 @@ The interesting variables, that reference a memory location of interest, are emp
 occurs when a write (\pr|S1|) executes before a read (\pr|S2|) at the same memory location (\pr|X|).
 True dependence ensures the read observes the value of the write.
 
-\item An \emph{antidependence}\index{antidependence}\index{dependence!anti}
+\item An \emph{\ndx{antidependence}}\index{dependence!anti}
 reverses the order,
 with a read (\pr|S1|) executing before a write (\pr|S2|) at the same memory location (\pr|X|).
 
@@ -693,11 +693,12 @@ Through a loop fission\index{loop transformation!fission} transformation,
 then independent blocks are then transformed into multiple parallelizable loops, as illustrated in~\autoref{fig:icc-fission}.
 
 \begin{figure}[h]
-{\centering\includegraphics[width=\textwidth,keepaspectratio]{fig_parallel}}
+{\vspace{1em}\centering\includegraphics[width=\textwidth,keepaspectratio]{fig_parallel}}
 \caption[Loop fission transformation]
 {Loop fission of a sequential loop into parallelizable loops.
-The loop header (the leading \langclr{header} block) is replicated across the generated loops.
-Each generated loop takes a part of the original loop's body.}\label{fig:icc-fission}
+The loop header (the leading \langclr{header} block) is replicated across the generated parallellizable loops.
+In the sequential loop body, the different colors indicate (disjoint) dependence between command blocks.
+Each generated parallellizable loop takes a part of the original loop's body.}\label{fig:icc-fission}
 \end{figure}
 
 The technique is interesting because it is applicable even when the loop iteration space is unknown;
@@ -709,4 +710,3 @@ The technique is useful as a preprocessor, before adding parallelization directi
 and in conjunction with other loop transformations.
 The technique is inspired by~\cite{moyen20172}, but was adjusted significantly to support the different application.
 
-\clearpage

@@ -50,7 +50,7 @@
 % set min-length for dot-fill
 \newcommand\mydotfill{%
 \leavevmode
-\mbox{}\cleaders\hbox to.44em{\hss.\hss}\hskip 1.42em plus 1fill
+\mbox{}\cleaders\hbox to.44em{\hss.\hss}\hskip 0.88em plus 1fill
 \kern0pt }
 
 % Term Index
@@ -63,9 +63,9 @@
 \let\item\@idxitem
 \setlength{\columnsep}{30pt}
 \setlength{\parindent}{0em}
-\begin{multicols*}{2}\raggedcolumns} %\raggedleft}
+\begin{multicols*}{2}\raggedcolumns}%\raggedleft}
 {\end{multicols*}}
-%\let\item\@idxitem}\raggedright
+%\let\item\@idxitem}
 {\clearpage}
 \renewcommand{\@idxitem}{\par\hangindent 15\p@}
 \renewcommand{\subitem}{\par\hangindent 30\p@\hspace*{15pt}}
@@ -75,10 +75,10 @@
 headings_flag 1
 heading_prefix "\{\\normalsize\\textbf\{"
 heading_suffix "\}\}\\hfill\\nopagebreak\n"
-delim_0 "\\mydotfill\{\\footnotesize"
-delim_1 "\\mydotfill\{\\footnotesize"
-delim_2 "\\mydotfill\{\\footnotesize"
-delim_t "\} "
+delim_0 "\\mydotfill\{\\raggedleft\{\\footnotesize"
+delim_1 "\\mydotfill\{\\raggedleft\{\\footnotesize"
+delim_2 "\\mydotfill\{\\raggedleft\{\\footnotesize"
+delim_t "\}\}"
 \end{filecontents}
 
 %% Glossaries

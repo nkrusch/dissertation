@@ -1,7 +1,7 @@
 %! suppress = LabelConvention
 Asymptotic analysis\index{asymptotic analysis}, that classifies programs based
 on resource requirements, is the natural dual to the study of \ndx{complexity
-class}es. Since implicit computational complexity focuses on language-based
+classes}. Since implicit computational complexity focuses on language-based
 characterizations, it produces analysis techniques for free. It is a
 foundational hypothesis of this dissertation that theoretical ICC systems---with
 sufficient expressive power\index{expressiveness} and an efficient evaluation
@@ -192,10 +192,10 @@ might be expensive.
 \emph{Automatic amortized resource analysis}
 (AARA)~\cite{hoffmann2022}\index{automatic amortized resource analysis} builds
 on the same idea: bounding programs by \ndx{amortization}. In AARA, the analysis
-can account for amortization effects across sequences of operations. Internally,
-the analysis relies on \ndx{inference rule}s and \ndx{derivation tree}s provide
-proofs of the \ndx{resource bounds}. Thus, AARA provides an automatic static
-technique for deriving arithmetic \ndx{resource bounds}.
+can account for \ndx{amortization} effects across sequences of operations.
+Internally, the analysis relies on \ndx{inference rule}s and \ndx{derivation
+tree}s provide proofs of the \ndx{resource bounds}. Thus, AARA provides an
+automatic static technique for deriving arithmetic \ndx{resource bounds}.
 
 AARA originated from works in implicit computation complexity, and in particular
 from the contributions of Martin Hofmann~\cite{hoffmann2022}. The initial design
@@ -307,7 +307,7 @@ online~\cite{flores_experiments}.
        bound}s. As inputs, KoAT accepts Integer Programs (IPs)\index{integer
        program} and C integers programs that follow
        \href{https://termination-portal.org/wiki/C_Integer_Programs}{the
-       \ndx{grammar} specification} of the Termination Competition --
+       \ndx{grammar} specification} of the \ndx{Termination Competition} --
        \autoref{sec:performance}.
 
 \item[\href{https://github.com/statycc/LQICM_On_C_Toy_Parser}{LQICM}]
@@ -385,15 +385,16 @@ online~\cite{flores_experiments}.
 \label{icc-feat}
 
 \paragraph*{Soundness and completeness}
-In characterizing a \ndx{complexity class}, a \emph{\ndx{soundness}} statement
-says that all programs of a given language, or those satisfying a restriction
-\(\mathcal{R}\)\symbo{restriction}, admit a certain complexity property, \ie
-compute functions in the target class. A \emph{\ndx{completeness}} statement
-says that all functions of the corresponding functional complexity class can be
-programmed in this language~\cite{baillot2012}. Alternatively, if
+In characterizing a complexity class\index{complexity classes}, a
+\emph{\ndx{soundness}} statement says that all programs of a given language, or
+those satisfying a restriction \(\mathcal{R}\)\symbo{restriction}, admit a
+certain complexity property, \ie compute functions in the target class. A
+\emph{\ndx{completeness}} statement says that all functions of the corresponding
+functional complexity class can be programmed in this
+language~\cite{baillot2012}. Alternatively, if
 \(\mathcal{R}\)\symbo{restriction} is \emph{(extensionally)
 complete}\index{extensional completeness}, then for any problem in the
-\ndx{complexity class}, there exists a program in
+complexity class\index{complexity classes}, there exists a program in
 \(\mathcal{R}\)\symbo{restriction} that decides it. For instance, for polynomial
 time\ccxi{p} complexity, the \ndx{soundness} statement refers to a polynomial
 time evaluation of programs, whereas \ndx{completeness} refers to the class FP
@@ -407,11 +408,11 @@ of the target class~\cite[p. 125]{moyen2017}. A sound and incomplete analysis
 admits false negatives, but guarantees the absence of false positives.
 Complexity analysis\index{complexity analysis} can then give an erroneous result
 in the following way: a developer writes a program that belongs to the intended
-\ndx{complexity class}, but the program fails the analysis because it is not
-expressible\index{complexity analysis} in the ICC system. Fixing the issue
-requires rewriting the program to satisfy the class membership restriction
-\(\mathcal{R}\)\symbo{restriction}. Due to \ndx{undecidability}, it is
-impossible to completely avoid false negatives. Stated differently, implicit
+complexity class\index{complexity classes}, but the program fails the analysis
+because it is not expressible\index{complexity analysis} in the ICC system.
+Fixing the issue requires rewriting the program to satisfy the class membership
+restriction \(\mathcal{R}\)\symbo{restriction}. Due to \ndx{undecidability}, it
+is impossible to completely avoid false negatives. Stated differently, implicit
 complexity can decide non-trivial semantics properties of programs, but it will
 always exclude some programs that possess the property of interest.
 
@@ -421,14 +422,15 @@ classes is usually not enough. A programming language offering safety guarantees
 is plausible only if it captures enough interesting and natural
 algorithms~\cite{baillot2012}. On the other hand, sacrificing
 \ndx{Turing-completeness} allows developing an analysis that is
-\enquote{completely correct} about membership in a particular \ndx{complexity
-class}. It requires defining a non-Turing-complete programming language and
-proving that it is sound\index{soundness} and complete\index{completeness} \wrt
-a particular \ndx{complexity class}. This sidesteps \ndx{Rice's Theorem}, but
-cannot be \emph{intentionally} complete, since it will always exclude programs
-that yet belong to the targeted \ndx{complexity class}. Correctly analysing a
-real world programming language is very difficult because of the large number of
-constructions allowed in it.
+\enquote{completely correct} about membership in a particular complexity
+class\index{complexity classes}. It requires defining a non-Turing-complete
+programming language and proving that it is sound\index{soundness} and
+complete\index{completeness} \wrt a particular complexity
+class.\index{complexity classes} This sidesteps \ndx{Rice's Theorem}, but cannot
+be \emph{intentionally} complete, since it will always exclude programs that yet
+belong to the targeted complexity class.\index{complexity classes} Correctly
+analysing a real world programming language is very difficult because of the
+large number of constructions allowed in it.
 
 \begin{quotation}
 \noindent We must understand all the diﬃculty because for a

@@ -222,26 +222,36 @@ the QI framework, we are confident that the outstanding steps are achievable.
 
 \subsubsection{Advancements of the QI Framework}
 \label{subsubsec:qi-res}
-The QI framework provides a case example showing that ICC systems can be
-flexible enough to track other program properties. While adjusting the system,
-we made a surprising discovery in that changing the property of interest
-simplified the mathematical analysis. For example, to track a complexity
-property, we must compute fixed points and preserve the program command order.
-In the adjusted analyses, it was possible to relax these conditions. More
-generally, that the QI framework can be used to track various properties is
-reminiscent of the Dependency Core Calculus (DCC)~\cite{abadi1999b}. In DCC,
-different program properties are modeled as \emph{instances} of a central notion
-of \emph{dependency}. This mirrors our observations about the QI framework. This
-suggests that the QI framework encapsulates even wider utility than uncovered
-during this dissertation work.
+
+Our investigations of the QI framework provide a case example showing that ICC
+systems can be flexible enough to track various non-functional program
+properties\index{non-functional property}. Although the research problems are
+phrased in terms of `properties', the actual insight comes from better
+understanding the underlying theory. For example, to track a complexity
+property, we must compute fixed points and preserve the program command order in
+transformations. In the loop distribution work and the \ndx{non-interference}
+analysis, it was possible to gradually relax these requirements.
+
+Although the QI framework appears similar to the flow calculus, there are
+notable differences. Critically, the QI framework enables tracking information
+in control statements. The programming language also includes arrays. There
+capabilities are critical to support the adjusted analyses studied in this
+dissertation.
+
+Generalizing further, our investigations have revealed that the  QI framework is
+suitable for tracking program properties that can be modeled as \emph{instances
+of \ndx{data dependence}} (or independence). This is reminiscent of the
+Dependency Core Calculus~\cite{abadi1999b}. Based on this observation, the QI
+framework likely encapsulates even richer utility than uncovered thus far.
 
 \section{Broader Research Findings}
 \label{sec:broader-findings}
 
 \subsection{Applications in Automatic Resource Analysis}
 \label{subsec:res-resource-analysis}
+\index{automatic resource analysis}
 
-Our investigations revealed several broad observations about automatic resource analysis.
+Our investigations revealed several broad observations about \ndx{automatic resource analysis}.
 The first is about the analysis results we can obtain with implicit computational complexity, and how to judge the application potential of ICC systems.
 Centrally, ICC systems aim to confirm whether a program belongs to some complexity class.
 There are \emph{some} use cases for such binary classification.
@@ -258,7 +268,7 @@ This last requirement is often beyond capabilities of ICC systems~\cite{baillot2
 Although many ICC systems are typically defined on \enquote{little} languages, it is possible to work around this limitation by focusing on sub-classes of programs, \eg integer programs and numerical loops.
 Through compositional analysis of subprograms, ICC systems extend to analysis of general programming languages, as demonstrated with pymwp.
 In other words, having a restricted syntax is not an insurmountable hurdle to applications, in our experience.
-To make an analysis comparable to existing resource analyzers, it suffices to target the \ndx{C} Integer Programs \ndx{grammar}~\cite{cinteger} used in the Termination Competition~\cite{giesl2019}.
+To make an analysis comparable to existing resource analyzers, it suffices to target the \ndx{C} Integer Programs \ndx{grammar}~\cite{cinteger} used in the \ndx{Termination Competition}~\cite{giesl2019}.
 From these attributes, we can derive a checklist to judge the application potential of various ICC systems.
 
 A second observation is about the resources analyzers themselves.
@@ -404,9 +414,10 @@ to many paradigms.} However, there are many more important programming
 paradigms, like \ndx{probabilistic programs} and \ndx{quantum computing}, that
 warrant investigation. These paradigms change the notion of programming
 languages and thus require different analytical approaches. Representative works
-exploring this direction include~\cite{avanzini2024,colledan2024,avanzini2020}.
+exploring this direction
+include~\cite{dallago2010,avanzini2024,colledan2024,avanzini2020}.
 
-\section{Dissertation Goal Completion}
+\section{Completion of Dissertation Goals}
 \label{sec:res-summary}
 
 As part of the dissertation aims, Section~\autoref{subsec:specific-aims} outlined
@@ -499,42 +510,25 @@ exploration of ICC is necessary to unlock its full application potential.
 \end{enumerate}
 \end{infobox}
 
-First, Implicit computational complexity offers complementary techniques of
-automatic resource analysis. However, applications of ICC may require
-substantial adjustment to the theory. It is important to account for practical
-challenges in the design of ICC systems. Second, ICC systems can be adjusted to
-tracking \emph{other} program properties, beyond complexity theory. Such
-adjusted ICC systems can provide analysis techniques in cases that are outside
-the capabilities of the established techniques. Finally, attaining broader
-applied utility from ICC requires a viewpoint shift \wrt its capabilities---\ie
-fundamentally seeing it as more than tool for complexity-theoretic
-reasoning---and the continued exploration of its applied potential.
+The first finding recognizes the fact that Implicit computational complexity
+offers complementary techniques to perform \ndx{automatic resource analysis}
+(\cf~\autoref{sec:fscd} and~\autoref{sec:atva}). However, such applications may
+require substantial adjustment to the base theory. While designing ICC systems,
+it is therefore important to consider practical challenges ahead of time.
 
-The ICC approach of guaranteeing program properties demonstrates great applied
-potential. For example, if offers a pathway toward formal verification of many
-non-functional properties\index{non-functional property}. One research
-direction, that deserves more attention, is applying ICC systems to ensure
-properties by construction. This would provide guarantees before any program
-exists and eliminates the need for \emph{aposteriori} analysis. Although the
-dissertation research did not extend that far, exploring this direction is an
-intriguing future goal. Whether it is attainable depends crucially on a
-viewpoint shift. We should regard \emph{implicit computational complexity} in
-the broader context it offers---including as a rich toolbox of techniques for
-\ndx{static program analysis}---and continue the exploration of its applied
-potential.
+The second finding emphasizes \emph{extensibility}. Starting with an ICC system,
+it is possible to adjust it to track alternate properties. The value of such
+exploration is two-fold. Due to the unusual starting point, the obtained
+analysis may be complementary to existing techniques (as in
+\autoref{sec:vmcai}). Moreover, the adjustment provides new insights of the
+technique itself.
 
-% https://stackoverflow.com/questions/3492188/what-are-the-practical-limitations-of-a-non-turing-complete-language-like-coq
-% https://stackoverflow.com/questions/315340/practical-non-turing-complete-languages
-% ``a general-purpose language that isn't turing complete is pretty impractical.'' or so they say.
-% Initial comment on https://stackoverflow.com/q/315340
-% Thought: (afterward) comment on  https://stackoverflow.com/q/315340
-% Just having Turing-completeness is not super useful (we can show this)
-% As language designers we want to add restrinctions... maybe I can find this again to capture the precise comment.
+The third finding is reflective. The dissertation investigation has explored
+many applications of ICC\@. However, investigation has been far from exhaustive
+and many more applications remain to be discovered. In particular, the
+guarantees ICC can offer by construction should be investigated further. Yet,
+such exploration necessitates a viewpoint shift and seeing ICC as more than
+\enquote{just} a complementary approach to complexity theory. When viewed
+broadly, ICC systems become rich reasoning frameworks that allow analyzing and
+verifying wide varieties of program properties.
 
-% The ICC approach of guaranteeing program properties demonstrates great applied potential;
-% for example, toward formal verification of non-functional properties.
-% One investigative direction that deserves more attention is applying ICC to guarantee properties by construction.
-% This would provide guarantees before any program exists and eliminates the need for \emph{aposteriori} analysis.
-% Although the dissertation did not extend that far, exploring this direction is an intriguing future goal.
-% Whether it is attainable depends crucially on a viewpoint shift.
-% We should regard ICC in the broader context it offers and continue the exploration of its applied potential.

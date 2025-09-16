@@ -626,39 +626,61 @@ This application is naturally, because in showing that a cryptographic\index{cry
 
 \begin{description}
 
-\item[formalized safe recursion.]
-The formalization of \ndx{safe recursion} (\cf~\autoref{safe-rec}) was primarily motivated by its envisioned usefulness in \ndx{cryptography}~\cite{heraud2011}. At the time, the method was integrated into \href{https://github.com/EasyCrypt/certicrypt}{CertiCrypt} framework (predecessor of \ndx{EasyCrypt}), to provide complexity guarantees.
-However, proofs of complexity bounds are
+\item[Formalized safe recursion.]
+The formalization of \ndx{safe recursion} was motivated by its envisioned
+usefulness in cryptographic proofs\index{cryptography}~\cite{heraud2011}. When
+the result appeared in 2011, the technique was integrated into the
+\href{https://github.com/EasyCrypt/certicrypt} {\ndx{Certicrypt}} proof
+assistant, for cryptographic proofs~\cite{barthe2009}. However, Certicrypt has
+since then been deprecated; it is superseded by
+\ndx{EasyCrypt}~\cite{barthe2014}. The support for complexity proofs in
+EasyCrypt is limited~\cite{barbosa2023}. The integration of safe recursion has
+thus not survived the \enquote{test of time}.
 
 \item[Type system d\(\ell\)T.]
-The type system \ndx{d\(\ell\)T}~\cite{baillot2015,baillot2019} is simultaneously complexity-aware and has capabilities to support cryptographic proofs\index{cryptography}.
-Among its applications, d\(\ell\)T allows proving that the constructed adversary for the \ndx{Goldreich-Levin theorem} is polynomial time\ccxi{p}.
-Such applications are interesting because they involve computations that are inherently non-polynomial in \ndx{time complexity}.
-Thus, handling such sub-computations requires pushing ICC techniques beyond their usual capabilities.
-A limitation of the type system is that it has not been implemented.
+The \ndx{type system} \ndx{d\(\ell\)T}~\cite{baillot2015,baillot2019} is
+simultaneously complexity-aware and has capabilities to support cryptographic
+proofs\index{cryptography}. Among its applications, d\(\ell\)T allows proving
+that the constructed adversary for the \ndx{Goldreich-Levin Theorem} is
+polynomial time\ccxi{p}. Such applications are interesting because they involve
+computations that are inherently non-polynomial in \ndx{time complexity}.
+Because ICC systems are traditionally designed to characterize at most polytime
+computations, handling sub-computations that exceed this class requires
+unconventional flexibility from an ICC system. A limitation of d\(\ell\)T is
+that it has not been implemented.
 
 \end{description}
-Both \ndx{d\(\ell\)T} and the formalization of \ndx{safe recursion} have inspired other mechanized proofs~\cite{barbosa2021,feree2018}.
+
+Both \ndx{d\(\ell\)T} and the formalization of \ndx{safe recursion} have
+inspired other mechanized proofs~\cite{barbosa2021,feree2018}.
 
 \subsubsection{From Quasi-Invariant Chunks to Non-Interference}
 \label{subsubsec:quasi-ni}
 
-Reinforcing the existing connections,~\autoref{sec:anytime} presents a program logic for \ndx{non-interference}.
-The logic is inspired by implicit computational complexity.
-The motivating idea was to explore the power and utility of ICC techniques in \ndx{language-based security} analysis.
+Reinforcing the existing connections,~\autoref{sec:anytime} presents a program
+logic for \ndx{non-interference}. The logic is inspired by implicit
+computational complexity. The motivating idea was to explore the power and
+usefulness of ICC techniques in \ndx{language-based security}.
 
-The logic analyzes \ndx{information flow}s in \ndx{imperative programs}.
-It abstracts information flow patterns between variables into matrices.
-Once the matrix is paired with a security policy, it is possible to evaluate whether the program satisfies an \emph{anytime non-interference} property, which is introduced in the paper.
+The logic analyzes \ndx{information flow}s in \ndx{imperative programs}. It
+abstracts information flow patterns between variables into matrices. Once the
+matrix is paired with a security policy\index{information flow!policy}, it is
+possible to evaluate whether the program satisfies an \emph{anytime
+non-interference}\index{non-interference!anytime} property, which is introduced
+in the paper.
 
-The technique is a refinement of prior works (refer to~\autoref{sec:vmcai} and~\cite{moyen20172}).\footnote{
-For ease and consistency, we dub the technique (informally) as the \emph{QI framework}.}
-A previous version of the logic was used to obtain a compile-time program optimization.
-Although the logic no longer guarantees complexity bounds, it demonstrates the utility of interchanging techniques between the ICC and security.
+The technique is a refinement of prior works (refer to~\autoref{sec:vmcai}
+and~\cite{moyen20172}). A previous version of the logic was used to obtain a
+compile-time program optimization (in~\autoref{sec:vmcai}). Although the logic
+no longer guarantees complexity bounds, it demonstrates the benefit of
+connecting techniques between the ICC and security.
 
-Adjusting the logic to track \ndx{non-interference} revealed various mathematical insights.
-For example, the treatment of loops is more straightforward for \ndx{non-interference} than in \ndx{complexity analysis},
-because the former requires no fixed point computations.
-As a \ndx{data flow analysis}, that tracks different program properties based on \emph{dependence},
-the technique is reminiscent of the \ndx{Dependency Core Calculus} (DCC)~\cite{abadi1999b}.
-The multiplicity of the program logic suggests it may possess representational capabilities similar to DCC\@.
+Adjusting the logic to track \ndx{non-interference} revealed various
+mathematical insights. For example, the treatment of loops is more
+straightforward for \ndx{non-interference} than \ndx{complexity analysis},
+because the latter requires fixed point computations. As a \ndx{data flow
+analysis}, that tracks different program properties based on
+\emph{dependence}\index{data dependence}, the QI framework is reminiscent of the
+\ndx{Dependency Core Calculus} (DCC)~\cite{abadi1999b}. The multiplicity of the
+program logic suggests it may possess representational capabilities similar to
+DCC\@.

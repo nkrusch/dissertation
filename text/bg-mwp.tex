@@ -218,10 +218,10 @@ Functionally, pymwp is a command-line tool that enables running mwp-analysis thr
 The analyzer takes as input a program written in (a subset) of the C programming language.
 The analyzer front-end is pycparser~\cite{pycparser}.
 pycparser converts the program source code into an \ndx{abstract syntax tree} (AST).
-Before the inference, the AST is checked for consistency with the imperative language.
+Before the inference, the AST\index{abstract syntax tree} is checked for consistency with the imperative language.
 In strict mode, if the syntax is not fully expressible, the analysis terminates\footnote{
 Importantly, the strict mode is sound because it only accepts programs that are fully-expressible in the imperative language of the flow calculus.}.
-pymwp then runs the flow calculus of mwp-bounds on the (compatible) AST\@.
+pymwp then runs the flow calculus of mwp-bounds on the (compatible) AST\index{abstract syntax tree}\@.
 By default, the result of the analysis displays at the screen and is saved to a file.
 Besides the CLI interface, pymwp can be incorporated into larger software development as an imported library.
 
@@ -538,7 +538,7 @@ A generalized program analysis proceeds by~\autoref{alg:prog}, with the analysis
     \href{https://github.com/statycc/pymwp/blob/40c9ceb644c734f15f82e63edc515716c4f35841/pymwp/analysis.py\#L118}
     {\pr|Analysis.cmds|} and
     \href{https://github.com/statycc/pymwp/blob/40c9ceb644c734f15f82e63edc515716c4f35841/pymwp/analysis.py\#L185}{\pr|Analysis.compute\_relation|}.}.
-Conceptually, the program analysis is straightforward: compose the mwp-matrices of commands in the order they appear in the AST\@.
+Conceptually, the program analysis is straightforward: compose the mwp-matrices of commands in the order they appear in the AST\index{abstract syntax tree}\@.
 However, in practice care is needed to account for the exponential number of derivation paths
 and handling potential derivation failure.
 Failure handling varies between the different versions of the flow analysis (\cf~\autoref{tab:evo});
