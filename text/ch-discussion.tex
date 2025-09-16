@@ -104,7 +104,7 @@ analysis fails (\cf~\autoref{sec:performance}). This reinforces the view that it
 is justifiable to focus complexity analyses on loop
 constructs~\cite{benamram2020}.
 
-\paragraph*{Responses to research questions}
+\paragraph*{Resolution of related research questions}
 In response to the research questions posed in~\autoref{ssec:mwp-rqs}, we can
 now confirm a positive answer to (RQ1). It is possible to obtain automatic
 program analysis from the flow calculus\index{mwp-calculus} of mwp-bounds.
@@ -138,70 +138,102 @@ to track \ndx{non-interference}.
 \subsubsection{Loop Distributing Program Optimization}
 \label{subsubsec:qi-opt}
 
-In \enquote{Distributing and Parallelizing Non-canonical Loops},
-we used the QI framework to design a program optimization to improve programs' runtime execution profile.
-The optimization seeks to increase parallelization \emph{potential} in initially sequential imperative loops.
-The analysis evaluates \emph{dependence} between commands to discover \emph{independent} sub-computations.
-If such independence exists, we replace the original loop with multiple new loops.
-The new loops can be distributed between available processors for parallel execution.
-The analysis is intended for use as a compiler optimization technique.
+In \enquote{Distributing and Parallelizing Non-canonical Loops}
+(\autoref{sec:vmcai}), we used the QI framework to design a program optimization
+that improves runtime execution profile of programs. The optimization seeks to
+increase \ndx{parallelization potential} in initially sequential imperative
+loops. The analysis evaluates \emph{dependence}\index{dependence analysis}
+between commands. It aims to discover data flow \emph{independent}
+sub-computations.\index{data flow independence} If such independence exists, we
+replace the original loop with multiple new loops. The new loops can be
+distributed\index{loop transformation!distribution} between the available
+processors for parallel execution. The analysis is practically useful as a
+compiler optimization technique.
 
-The exception attribute of the analysis is that it enables reasoning about
-loops whose iteration count is unknown.
-Such loops are beyond the capabilities of traditional parallelizing transformations.
-However, many ICC systems---including the flow calculus of mwp-bounds---over-approximate loop iterations by assuming them to be infinite\footnote{If a loop terminates earlier, the behavior is still within the over-approximation.}.
-This way, the provided guarantees apply across all conceivable iteration behaviors.
-The cost of the flexibility is reduced precision;
-however, sometimes the trade is beneficial.
-For the parallelizing optimization, the property of interest is \emph{independence} of data flow in and between commands.
-Therefore, the focus is binary, \ie whether a data flow exists.
-Beyond existence, recurrences of data flow are irrelevant.
-This enables relaxing the need to know loop iteration count.
+\paragraph*{The benefits of ICC}
+One uncommon aspect of the analysis is that it enables reasoning about loops whose
+\ndx{iteration space} is unknown. Such loops are beyond the capabilities of
+traditional parallelizing transformations. However, many ICC systems---like the
+QI framework and flow calculus of mwp-bounds---over-approximate \ndx{iteration
+space}. By assuming iteration is \emph{unbounded}, a loop that does
+terminate\index{termination} is still within the over-approximation.
+This way, the guarantees apply to all loop iteration spaces.
 
-Although the goal of the analysis is to improve running time,
-the optimization is no longer defined in terms of complexity classes\footnote{
-This is different from the prior use of the QI framework~\cite{moyen20172}
-that aimed to alter the program's overall complexity by modifying nested loops.}
-Thus, in this work, we shift the analysis technique outside complexity theory.
-The original complexity result is lost, but we gain a practical program optimization in return.
+The cost of flexibility is reduced \ndx{precision}. However, sometimes the trade
+is beneficial. For the parallelizing optimization, the property of interest is
+data flow independence in and between commands. The focus is binary -- either a
+data flow exists or does not exist. Beyond existence, \emph{recurrences} of data
+flows are irrelevant. This enables relaxing the need to know precise loop
+iteration space.\footnote{Though, determining whether loop optimization is
+\emph{beneficial} requires knowledge of the loop iterations.}
 
-\subsubsection{Use in Non-Interference}
+\paragraph*{Moving beyond complexity}
+Although the goal of the analysis is to improve running time, the optimization
+is no longer defined in terms of complexity classes\footnote{This is different
+from the prior use of the QI framework~\cite{moyen20172} that aimed to alter the
+program's overall complexity by modifying \ndx{nested loop}s.} The application
+thus moves the technique beyond complexity theory. The original complexity
+result is lost, but in return, we gain a practical program optimization
+technique.
+
+\paragraph*{Resolution of related research questions}
+The loop distribution technique addresses (RQ4) from~\autoref{ssec:mwp-rqs}.
+Aligned with the main hypothesis, it demonstrates a new application of ICC
+systems. The work is complete, but follow-up directions are discussed
+in~\autoref{sec:res-future}.
+
+\subsubsection{Detecting Non-Interference}
 \label{subsubsec:qi-ni}
 
-In subsequent work (\autoref{sec:anytime}) we have explored  using the QI framework to track non-interference.
-Non-interference is a security property for establishing that secret information does not \enquote{leak} to lower security classes (\cf~\autoref{pl-sec}).
-Although this property \emph{seems} different from parallelizing loops, the two applications have a clear commonality.
-Both are about data flow independence.
-Therefore, the QI framework is suitable for both analyses.
+In subsequent work (\autoref{sec:anytime}), we explored an application of the QI
+framework to track \ndx{non-interference}. Non-interference is a security
+property to establish that secret information does not \enquote{\ndx{leak}} to
+lower \ndx{security class}es (\cf~\autoref{pl-sec}). Although this property
+\emph{seems} different from parallelizing loops, the two applications share a
+common origin. Both analyses consider \ndx{data flow independence}. This makes
+the QI framework suitable for both analyses.
 
-We started developing a non-interference logic, taking as a starting point the loop parallelization formulation.
-A surprising discovery that soon followed, was that we could relax many of the mathematical constraints that were needed previously.
-For example, the order of command composition is important if we want to transform loops and preserve the loop's functional behavior.
-For the non-interference analysis, which is read-only, the relevant question is whether an information flow leak occurs.
-Once such leak is detected, it is not possible to erase it.
-Therefore, the analysis becomes \enquote{composition-insensitive}.
-Overall, it was enlightening how changing the evaluated property altered the analysis mechanics.
+\paragraph*{Derived insights}
+Our starting point was the earlier loop parallelization formulation. One
+surprising discovery was that we were able to relax that mathematical
+constraints that were needed previously (refer to~\autoref{ni-composition}). For
+example, the order of command composition was no longer important. For a loop
+transformation, the order is important to preserve functional behavior. However,
+the read-only non-interference analysis is composition-insensitive, because it
+aims is to detect an information flow policy\index{information flow!policy}
+\ndx{violation} \emph{anywhere} in the program. Once such leak is detected, it
+is not possible to erase it.
 
-The non-interference analysis also provides us an opportunity to evaluate a yet another aspect about ICC systems.
-Our long-held assumption is that, because the QI framework targets a core imperative \pr|while| language;
-it can be applied to any language representation that shares that same core\footnote{The same argument applies to the flow calculus of mwp-bounds.}.
-Through non-interference analysis, we can actually challenge this assumption.
-We plan to map our non-interference logic to two different language representations, at different stages of compilation.
-The intuition is to study whether (or how) the non-interference property is preserved during compilation.
-Assuming the idea is achievable, it gives us a different perspective to reason about non-interference.
-The typical approach is using a type system, with a singular type check.
-We are optimistic that the idea could work, and if so,
-we can reinforce the bi-directionality (\cf~\autoref{icc-sec}) between ICC and language-based security.
+The \ndx{non-interference} analysis allows us to evaluate generalizability of
+ICC systems. Our long-held assumption is that, because the QI framework targets
+a core imperative language, it can be applied to any language representation
+that shares that same core. The non-interference analysis allows us to challenge
+this assumption. Our plan is map our non-interference logic to two different
+language representations, at different stages of compilation, to study
+preservation of the \ndx{non-interference} property.
 
-% TODO: general comments, based on those two projects
-% The QI framework provides a case example showing that ICC systems can be flexible enough to track other program properties.
-% While adjusting the system, we made a surprising discovery in that changing the property of interest simplified the mathematical analysis.
-% For example, to track a complexity property, we must compute fixed points and preserve the program command order.
-% In the adjusted analyses, it was possible to relax these conditions.
-% More generally, that the QI framework can be used to track various properties is reminiscent of the Dependency Core Calculus (DCC)~\cite{abadi1999b}.
-% In DCC, different program properties are modeled as \emph{instances} of a central notion of \emph{dependency}.
-% This mirrors our observations about the QI framework.
-% This suggests that the QI framework encapsulates even wider utility than uncovered during this dissertation work.
+\paragraph*{Resolution of related research questions}
+Our investigation into (RQ5) from~\autoref{ssec:mwp-rqs} is still ongoing.
+Completing the work requires addressing certain theoretical questions (\eg
+refining the definition on anytime
+non-interference\index{non-interference!anytime} (\autoref{subsec:ni-soundness})
+and precisely identifying its ideal application. Based on the prior success with
+the QI framework, we are confident that the outstanding steps are achievable.
+
+\subsubsection{Advancements of the QI Framework}
+\label{subsubsec:qi-res}
+The QI framework provides a case example showing that ICC systems can be
+flexible enough to track other program properties. While adjusting the system,
+we made a surprising discovery in that changing the property of interest
+simplified the mathematical analysis. For example, to track a complexity
+property, we must compute fixed points and preserve the program command order.
+In the adjusted analyses, it was possible to relax these conditions. More
+generally, that the QI framework can be used to track various properties is
+reminiscent of the Dependency Core Calculus (DCC)~\cite{abadi1999b}. In DCC,
+different program properties are modeled as \emph{instances} of a central notion
+of \emph{dependency}. This mirrors our observations about the QI framework. This
+suggests that the QI framework encapsulates even wider utility than uncovered
+during this dissertation work.
 
 \section{Broader Research Findings}
 \label{sec:broader-findings}
@@ -213,7 +245,7 @@ Our investigations revealed several broad observations about automatic resource 
 The first is about the analysis results we can obtain with implicit computational complexity, and how to judge the application potential of ICC systems.
 Centrally, ICC systems aim to confirm whether a program belongs to some complexity class.
 There are \emph{some} use cases for such binary classification.
-For example, the domain-specific language Karp~\cite{zhang2022}---for programming and testing \ndx{Karp reduction}s---naturally requires ways to confirm a reduction is computable in polynomial time (without needing further precision).
+For example, the domain-specific language Karp~\cite{zhang2022}---for programming and testing \ndx{Karp reduction}s---naturally requires ways to confirm a reduction is computable in polynomial time (without needing further \ndx{precision}).
 However, it is an isolated use case.
 A coarse binary analysis has limited practical utility in general.
 

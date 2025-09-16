@@ -1,49 +1,69 @@
-Computer security is a broad, interdisciplinary field with technical and non-technical challenges.
-An important subset of the technical aspects can be modeled and studied mathematically~\cite{piessens2024}.
-At its core, computer security is concerned with three properties: \ndx{confidentiality}, \ndx{integrity}, and \ndx{availability}~\cite{du2019}.
-Although the precise meaning of these terms is situational, they are generally described as follows~\cite[p. 4--6]{bishop2003}.
+Computer security is a broad, interdisciplinary field with technical and
+non-technical challenges. An important subset of the technical aspects can be
+modeled and studied mathematically~\cite{piessens2024}. At its core, computer
+security is concerned with three properties: \ndx{confidentiality},
+\ndx{integrity}, and \ndx{availability}~\cite{du2019}. Although the precise
+meaning of these terms is situational, they are generally described as
+follows~\cite[p. 4--6]{bishop2003}.
 
 \begin{description}
-\item[Confidentiality]\index{confidentiality}
+\item[Confidentiality]
 is about concealment of protected assets, like secret information and resources.
-The goal of confidentiality is to ensure protected assets are viewed by authorized users only.
-By extension, it includes concealing knowledge about the existence of protected assets.
-Confidentiality is compromised if secrets are exposed, or \enquote{\ndx{leak|seealso{violation}}}, to unauthorized users.
+The goal of \ndx{confidentiality} is to ensure protected assets are viewed by
+authorized users only. By extension, it includes concealing knowledge about the
+existence of protected assets. Confidentiality is compromised if secrets are
+exposed, or \enquote{\ndx{leak|seealso{violation}}}, to unauthorized users.
 
-\item[Integrity]\index{integrity}
-is about trustworthiness of information and resources.
-It aims to ensure protected assets are modified by authorized users only and that those modifications preserve authenticity of the resource.
-For example, an update to a date field should yield a legitimate date.
-Integrity is difficult to guarantee because it concerns assets over mutations, transmissions, and time.
-Authentication\index{authentication} is a critical (though an insufficient) mechanism for enforcing integrity.
-Integrity is often considered the dual of \ndx{confidentiality}~\cite{biba1977}.
+\item[Integrity]
+is about trustworthiness of information and resources. It aims to ensure
+protected assets are modified by authorized users only and that those
+modifications preserve authenticity of the resource. For example, an update to a
+date field should yield a legitimate date. Integrity is difficult to guarantee
+because it concerns assets over mutations, transmissions, and time.
+Authentication\index{authentication} is a critical (though an insufficient)
+mechanism to enforce \ndx{integrity}. Integrity is often considered the dual of
+\ndx{confidentiality}~\cite{biba1977}.
 
 \item[Availability]\index{availability}
 refers to the ability to access and use authorized system and its assets.
-Availability is compromised if a computational system is unusable or incapable of supporting its intended use;
-to include unavailability due to excessive service latency.
+Availability is compromised if a computational system is unusable or incapable
+of supporting its intended use -- to include unavailability due to excessive
+service latency.
 
 \end{description}
-The challenge of computer security is to find the right balance between the three;
-preventing unauthorized views and modifications, while preserving access and supporting authorized use.
-Among the strategies are designing techniques to prevent improper use, detect issues, and recover from compromised scenarios.
-Although all three properties are important, the rest of this presentation focuses on \ndx{confidentiality}.
+The challenge of computer security is to find the right balance between the
+three properties -- preventing unauthorized views and modifications, while
+preserving access and supporting authorized use. Among the strategies are
+designing techniques to prevent improper use, detect issues, and recover from
+compromised scenarios. Although all three properties are important, the rest of
+this presentation focuses on \ndx{confidentiality}.
 
-Confidentiality\index{confidentiality} can be enforced with numerous mechanisms, \eg \ndx{firewall}s, \ndx{access control}, and \ndx{encryption}.
-A \ndx{firewall} is a network-layer protection and an operating system implements and maintains \ndx{access control}.
-Encryption\index{encryption} protects secret information until \ndx{decryption}, but its excessive use is problematic for \ndx{availability}.
-In general, those mechanisms are insufficient to provide end-to-end guarantees through all layers of computation.
-One problem is that confidentiality\index{confidentiality} is not guaranteed after secret information is released as input to a program~\cite{zdancewic2004}.
-Information flow\index{information flow} security is concerned with achieving fine-grained confidentiality\index{confidentiality} (and \ndx{integrity}) guarantees by tracking propagation of information including during program executions~\cite{hedin2012,eggert2014}.
+Confidentiality\index{confidentiality} can be enforced with numerous mechanisms,
+\eg \ndx{firewall}s, \ndx{access control}, and \ndx{encryption}. A
+\ndx{firewall} is a network-layer protection, and an operating system implements
+and maintains \ndx{access control}. Encryption\index{encryption} protects secret
+information until \ndx{decryption}, but its excessive use is problematic for
+\ndx{availability}. In general, those mechanisms are insufficient to provide
+end-to-end guarantees through all layers of computation. One problem is that
+\ndx{confidentiality} is not guaranteed after secret information is released as
+input to a program~\cite{zdancewic2004}. Information flow\index{information
+flow} security is concerned with achieving fine-grained \ndx{confidentiality}
+(and \ndx{integrity}) guarantees by tracking information propagation during
+program executions~\cite{hedin2012,eggert2014}.
 
-\subsubsection{Information Flow Security}\label{if-security}
+\subsubsection{Information Flow Security}
+\label{if-security}
 
-Protected assets may require different levels of \ndx{confidentiality}.
-Computer systems protecting such assets naturally need controlled \ndx{information flow}.
-The capability to process assets at different security levels is called {\emph{\ndx{multilevel security}} (MLS)}~\cite{bossi2005}.
-Illustrated in~\autoref{fig:us-docs}, the United States federal government document classification scheme~\cite{wiki_us_docs} is an example of a multilevel security system.
-The permissions cascade: having access to a specific level grants access to all the levels below it.
-For example, accessing documents marked \enquote{secret} requires secret or top secret level permission.
+Protected assets may require different levels of \ndx{confidentiality}. Computer
+systems that protect assets at different security levels need controlled
+\ndx{information flow}. The capability to process assets at different security
+levels is called {\emph{\ndx{multilevel security}} (MLS)}~\cite{bossi2005}.
+Illustrated in~\autoref{fig:us-docs}, the United States federal government
+document classification scheme~\cite{wiki_us_docs} is one example of a
+\ndx{multilevel security} system~\cite{feiertag1977}. The permissions cascade:
+having access to a specific level grants access to all the levels below it. For
+example, accessing \enquote{secret} documents requires permission at secret or
+top secret level.
 
 \begin{figure}[t]
 \centering
@@ -53,10 +73,12 @@ For example, accessing documents marked \enquote{secret} requires secret or top 
 \label{fig:us-docs}
 \end{figure}
 
-
-The main idea for achieving secure multilevel information flow is to impose constraints on how privileged information is permitted to flow within the system.
-Secure information flow\index{information flow} is a confidentiality\index{confidentiality} guarantee, as it aims to ensure secrets do not leak\index{leak} to unauthorized parties~\cite{piessens2024}.
-Implementing secure information flow requires three steps~\cite{eggert2014}.
+The main idea for achieving secure multilevel\index{multilevel security}
+\ndx{information flow} is to impose constraints on how privileged information is
+permitted to flow within the system. Secure \ndx{information flow} is a
+\ndx{confidentiality} guarantee, because it aims to ensure secrets do not
+\ndx{leak} to unauthorized parties~\cite{piessens2024}. Implementing secure
+\ndx{information flow} requires three steps~\cite{eggert2014}.
 
 \begin{enumerate} 
 
@@ -73,10 +95,13 @@ In~\autoref{fig:us-docs}, no control is specified.
 
 \end{enumerate}
 
-For strong confidentiality\index{confidentiality} guarantees, the information flow approach should also consider and protect against side channels.
-\emph{Side channels}\index{side channel} are all system characteristics that enable a malicious actor to deduce secrets,
-indirectly and without assistance from other users~\cite[p. 280]{bishop2003}.
-In terms of program executions, a few examples of side channels are termination, divergence, deadlocking, and execution latency.
+For strong \ndx{confidentiality} guarantees, the \ndx{information flow} approach
+should also consider and protect against \ndx{side channel}s. \emph{Side
+channels} are all system characteristics that enable a malicious actor to deduce
+secrets, indirectly and without assistance from other users~\cite[p.
+280]{bishop2003}. In terms of program executions, a few examples of side
+channels are \ndx{termination}~\cite{stefan2012}, divergence, \ndx{deadlocking},
+and execution latency~\cite{lawson2009}.
  
 \subsubsection{The Elements of Information Flow}
 \label{if-elements}
@@ -84,11 +109,12 @@ In terms of program executions, a few examples of side channels are termination,
 \begin{description}
 
 \item[Information flow]\index{information flow}
-is an observable action between two agents\footnote{
-The term \emph{agent} is to emphasize abstraction; an agent could be a human user, computer system, web request, program variable, \etc
-} \({A}\) and \({B}\)~\cite{eggert2014}.
+is an observable action between two agents\footnote{ We use the term
+\emph{agent} to emphasize an abstraction. An agent could be a human user,
+computer system, web request, program variable, \etc} \({A}\) and
+\({B}\)~\cite{eggert2014}.
 If an action performed by \({A}\) is observable to \({B}\),
-then there exists an information flow from \({A}\) to \({B}\).
+then there exists an \ndx{information flow} from \({A}\) to \({B}\).
 The information flow is \emph{explicit}\index{information flow!explicit} 
 if it is directly observable from a single action.
 The insecure program in~\autoref{lst:bool-ops} shows an example of direct information flow between \pr|high| and \pr|ret|.

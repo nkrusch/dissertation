@@ -540,12 +540,13 @@ rules} of the flow calculus. The relevant inference rules are included in
 Figures~\ref{fig:rules-expressions} and~\ref{fig:rules-loops}.\footnote{ To ease
 the presentation, we show rules of the original flow calculus~\cite{jones2009}.
 These rules are consistent with the enhanced variant~\cite{aubert20222} we build
-on.} To trade precision for efficiency, the flow calculus\index{mwp-calculus}
-omits evaluating loop iteration bounds and reasoning about \ndx{termination} and
-control expressions, overestimating their effect. At conclusion, the flow
-calculus assigns \underline{one} \ndx{mwp-matrix} to the analyzed program,
-\(\vdash\mathcal{C} : M\)\symbo{cmat}. It contains all derivations of the input
-program in one (complex) data structure.
+on.} To trade \ndx{precision} for efficiency, the flow
+calculus\index{mwp-calculus} omits evaluating loop iteration bounds and
+reasoning about \ndx{termination} and control expressions, overestimating their
+effect. At conclusion, the flow calculus assigns \underline{one}
+\ndx{mwp-matrix} to the analyzed program, \(\vdash\mathcal{C} : M\)\symbo{cmat}.
+It contains all derivations of the input program in one (complex) data
+structure.
 
 \begin{figure}[h]
 \begin{tabularx}{\textwidth}{CCC}
@@ -1352,7 +1353,7 @@ behavior}
 \label{subsec:disclaimer}
 
 A language of loops restricts the kind of computations we may encounter. The
-inferred \ndx{postconditions} can be described by the following categories.
+inferred \ndx{postcondition}s can be described by the following categories.
 
 \begin{description}
 
@@ -1876,11 +1877,11 @@ applicable toward uses in \ndx{formal verification}.
 Although we have extended the flow calculus\index{mwp-calculus} capabilities,
 multiple directions for future work remain, and many emerge from this work. The
 two main directions concern enriching the analysis \ndx{expressiveness} and
-precision. \Eg, leveraging \ndx{assumption}s (if available), tracking variable
-immutability, and accounting for control expression would generate more precise
-specification conditions. Currently, polynomial \(p\)-flows are not allowed
-inside \ndx{unbounded loop}s. Discovering ways to relax this restriction would
-improve \ndx{expressiveness} and yield more postconditions. Due to the
+\ndx{precision}. \Eg, leveraging \ndx{assumption}s (if available), tracking
+variable immutability, and accounting for control expression would generate more
+precise specification conditions. Currently, polynomial \(p\)-flows are not
+allowed inside \ndx{unbounded loop}s. Discovering ways to relax this restriction
+would improve \ndx{expressiveness} and yield more postconditions. Due to the
 complexity-theoretic\index{complexity theory} origins, the flow
 calculus\index{mwp-calculus}  targets polynomial \emph{upper} bounds\index{upper
 bound}. For verification, it would be useful to extend the technique to also

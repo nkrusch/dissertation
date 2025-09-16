@@ -679,6 +679,7 @@ Identifying $\sfm{\prc|skip|}$\symbo{sfm} with its embeddings, it is the empty
 matrix of any size.
 
 \paragraph{Composition as a Commutative Operation}
+\label{ni-composition}
 
 The \ndx{security-flow matrix} for a composition of commands is an abstraction
 that allows manipulating a sequence of commands as one command with its own
@@ -1537,12 +1538,12 @@ the examples from~\autoref{subsec:ni-examples}.
 
 The outlined engineering choices have multiple advantages. \texttt{\ndx{Java}}
 is frequently used to implement taint\index{taint analysis} analyzers, an
-instance of \ndx{non-interference} fixed to two \ndx{security classes}. \tool is
+instance of \ndx{non-interference} fixed to two \ndx{security class}es. \tool is
 thus prepared for a similar use case. Since \prc|Java| compiles into
 \ndx{bytecode}\index{Java bytecode}, a kind of intermediate stack language, it
 enables program analysis at multiple language representations. Although compiler
 optimizations could reduce the rate of false alarms, \eg by eliminating
-dead-code, it would artificially inflate the analysis precision and thus we
+dead-code, it would artificially inflate the analysis \ndx{precision} and thus we
 prefer our strategy. Currently, \tool produces security-flow
 matrices\index{security-flow amtrix} for input programs. The security flow
 matrices serve as basis for the extended applications, including the directions
@@ -1559,7 +1560,7 @@ at different representations enables analyzing preservation of security
 properties and detecting compilation issues.
 
 \item[Security class inference.]\index{security class inference}
-When \ndx{security classes} of variables are known partially, it is possible to
+When \ndx{security class}es of variables are known partially, it is possible to
 infer them for all variables. The inference requires a \ndx{security-flow
 matrix}, an information flow policy\index{information flow!policy}, and the
 known class assignments. The inference is then framed as a satisfiability
@@ -1572,7 +1573,7 @@ flow!policy}.
 \item[Taint analysis.]\index{taint analysis}
 Taint analysis detects information flow issues between a high source and a low
 sink. Aside a program, the sources and sinks are necessary, and analyzers
-commonly assume them as inputs. The analyzers then compete on precision along
+commonly assume them as inputs. The analyzers then compete on \ndx{precision} along
 various axes: path-coverage, syntax-coverage, context-sensitivity, false alarm
 rate, \etc. Taint analysis can be formulated with security-flow
 matrices\index{security-flow matrix} by analyzing source to sink connectivity.
@@ -1648,10 +1649,10 @@ The \ndx{Dependency Core Calculus} (DCC)~\cite{abadi1999b} is conceptually
 related to \lname. The DCC is an extension of
 lambda-calculus\index{\(\lambda\)-calculus}, framed around the notion of
 \ndx{data dependence}, of which \ndx{non-interference} is an instance. Though
-similarly rooted in \ndx{dependency analysis} \lname originates from works of
-implicit computational complexity (ICC). It is a refinement
-of~\cite{moyen20172,aubert20232}, but \lname required significant adjustment,
-particularly around matrix composition and functions.
+similarly rooted in dependency analysis\index{dependence analysis} \lname
+originates from works of implicit computational complexity (ICC). It is a
+refinement of~\cite{moyen20172,aubert20232}, but \lname required significant
+adjustment, particularly around matrix composition and functions.
 
 Implicit computational complexity studies machine-free characterizations of
 \ndx{complexity class}es by introducing \emph{restrictions} in programming

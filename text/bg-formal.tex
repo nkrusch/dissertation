@@ -170,11 +170,12 @@ of such properties are: \ndx{memory safety}\footnote{\Ie absence of errors
 related to memory accesses: null-pointer dereferencing, access to unallocated
 memory, dangling pointers, out-of-bounds accesses, double-free,
 \etc~\cite{muller2024}}, absence of overflows, \ndx{termination}, \ndx{data race
-freedom}~\cite{georges2025}, \ndx{deadlock freedom}~\cite{roscoe1987}, secure
-\ndx{information flow} (cf~\autoref{if-security}), staying within available
-\ndx{resource bounds}, and \ndx{worst-case execution time} (WCET). For example,
-showing that a program is free of overflows requires expressing overflow-freedom
-as a formal specification, then proving that the implementation satisfies the
+freedom}~\cite{georges2025}, deadlock
+freedom\index{deadlocking}~\cite{roscoe1987}, secure \ndx{information flow}
+(cf~\autoref{if-security}), staying within available \ndx{resource bounds}, and
+\ndx{worst-case execution time} (WCET). For example, showing that a program is
+free of overflows requires expressing overflow-freedom as a formal
+specification, then proving that the implementation satisfies the
 specification\index{specifications}.
 
 There are various different ways to categorize families of \ndx{properties}.
@@ -541,7 +542,7 @@ contains representative examples in the first two categories.
    & \textcite{honsell2001}
    \\
    \href{https://github.com/rocq-community/goedel}%
-   {\ndx{Gödel-Rosser incompleteness theorem}}
+   {\ndx{Gödel-Rosser Incompleteness Theorem}}
    & \textcite{oconnor2005}
    \\
    Modal model of impredicative semantics
@@ -766,7 +767,7 @@ prove formally the claim about equivalence.
 
 \begin{center}
 \captionsetup{type=lstlisting}
-\rocqinputlisting[breakable][firstline=176]{equiv.v}
+\rocqinputlisting[][firstline=176]{equiv.v}
 \captionof{lstlisting}[A Rocq proof of program equivalence]{
 A \ndx{Rocq} proof of program equivalence (theorem only).
 The full proof with the programming language syntax, semantics, and notations is
@@ -901,9 +902,16 @@ version includes an implementation and a proof to show correctness.
 
 \begin{center}
 \captionsetup{type=lstlisting}
-\rocqinputlisting[breakable][firstline=2]{leftpad.v}
-\captionof{lstlisting}[Leftpad in Rocq]{Leftpad in Rocq.}
+\rocqinputlisting[][firstline=2,lastline=26]{leftpad.v}
+\captionof{lstlisting}[Leftpad in Rocq (1)]{Leftpad in Rocq (part 1 of 2).}
 \label{lst:rocq-leftpad}
+\end{center}
+
+\begin{center}
+\captionsetup{type=lstlisting}
+\rocqinputlisting[][firstline=28,firstnumber=28]{leftpad.v}
+\captionof{lstlisting}[Leftpad in Rocq (2)]{Leftpad in Rocq (part 2 of 2).}
+\label{lst:rocq-leftpad2}
 \end{center}
 
 \subparagraph*{Leftpad in Rocq.}
@@ -916,6 +924,27 @@ to cut the concatenated string to a prefix and suffix, at index \(m\). The
 specification\index{specifications} is then proved \wrt the prefix and suffix,
 and the concatenated length. Proving the theorem requires introducing the
 supporting definitions and the lemmas of L6--25.
+
+\begin{center}
+\captionsetup{type=lstlisting}
+\begin{minipage}{\linewidth}
+\mathcompinputlisting[][firstline=2]{leftpad_ssrefl.v}
+\captionof{lstlisting}[Leftpad in SSReflect proof language]{
+Leftpad in the \ndx{SSReflect} proof language of the \ndx{Mathematical
+Components} library.}
+\label{lst:mathcomp-leftpad}
+\end{minipage}
+\end{center}
+
+\begin{center}
+\begin{minipage}{\linewidth}
+\captionsetup{type=lstlisting}
+\dafnyinputlisting[][]{leftpad.dfy}
+\captionof{lstlisting}[Formally verified Leftpad in Dafny]
+{Formally verified leftpad in \ndx{Dafny}.}
+\label{lst:leftdfy}
+\end{minipage}
+\end{center}
 
 \subparagraph*{Leftpad in SSReflect.}
 The \ndx{Mathematical Components} library does not contain definitions of string
@@ -935,27 +964,6 @@ simple since it requires only rewrites, and those rewrites are defined in the
 library. The tactics naming convention is a special design feature of the
 \ndx{Mathematical Components} library. The naming eases locating existing
 theorems, to avoid searching the proofs database.
-
-\begin{center}
-\captionsetup{type=lstlisting}
-\begin{minipage}{\linewidth}
-\mathcompinputlisting[][firstline=2]{leftpad_ssrefl.v}
-\captionof{lstlisting}[Leftpad in SSReflect proof language]{
-   Leftpad in the \ndx{SSReflect} proof language of the \ndx{Mathematical
-   Components} library.}
-\label{lst:mathcomp-leftpad}
-\end{minipage}
-\end{center}
-
-\begin{center}
-\begin{minipage}{\linewidth}
-\captionsetup{type=lstlisting}
-\dafnyinputlisting[][]{leftpad.dfy}
-\captionof{lstlisting}[Leftpad formally verified in Dafny]
-{Formally verified leftpad in \ndx{Dafny}.}
-\label{lst:leftdfy}
-\end{minipage}
-\end{center}
 
 \subparagraph*{Leftpad in Dafny.}
 In \ndx{Dafny}, the \ndx{specifications} are \enquote{embedded} next to the
