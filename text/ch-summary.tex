@@ -140,6 +140,7 @@ can \begin{enumerate*}[label=(\roman*)]
 
 \subsubsection{Automatic Resource Analysis}
 \label{subsec:aicc-automatic-resource-analysis}
+\index{automatic resource analysis}
 
 This series of work focuses on an ICC system called the \emph{flow calculus of
 mwp-bounds}~\cite{jones2009}\index{mwp-calculus}. The flow calculus is a
@@ -148,7 +149,7 @@ data size during computation. For \ndx{imperative programs}, it aims to
 determine if it is possible to bound the growth of variable values by
 polynomials in inputs. The choice to focus on this particular ICC system is
 based on intuition. As a syntactical and compositional data-flow analysis, it
-{seems like} a good candidate for automatic resource analysis.
+{seems like} a good candidate for \ndx{automatic resource analysis}.
 
 Several research questions arise from the flow calculus.
 
@@ -233,7 +234,7 @@ presentations~\cite{aubert20231,aubert202217,splash22}, and ongoing work.
 written works are illustrated in~\autoref{fig:papers}.}{}
 We can summarize the main contributions as follows.
 
-For RQ1, we enhanced the theory to develop an automatic resource analysis
+For RQ1, we enhanced the theory to develop an \ndx{automatic resource analysis}
 in~\cite{aubert20222,aubert2023b,rusch2025}. Due to inherent
 \ndx{nondeterminism}, developing an efficient and useful
 practical analysis was surprisingly difficult, but eventually achievable. The
@@ -272,7 +273,7 @@ stage of representation.
 \subsection{Research Findings and Conclusions}
 \label{sec:aicc-discussion}
 
-\paragraph*{On automatic resource analysis} We can now confirm that it is
+\paragraph*{On \ndx{automatic resource analysis}} We can now confirm that it is
 possible to obtain automatic program analysis from the flow calculus of
 mwp-bounds, but only after substantial adjustments. An efficient program
 analysis required inventing ways to manage costly sub-computations and solving
