@@ -11,7 +11,7 @@ I hope that making this resource public will be useful to future candidates.
 The LaTeX template is also open source.
 This repository uses automated workflows (e.g. to compile and build an artifact container) that may be of interest to the technically advanced candidates.
 
-For defense timeline and process, see [this page](https://neea.pl/posts/defense).
+For defense timeline and process, see [this page](https://neea.pl/posts/defense#timeline--progress).
 
 ## Formatting Guidelines
 
