@@ -27,12 +27,14 @@ jobs:
         id: meta
         run:  x="${{ github.ref_name }}"; echo "tag=${x/main/latest}" >> $GITHUB_OUTPUT
       - name: 🗄️ Make source deposit
-        run: make sources.zip
-      - name: Update zenodo
+        run: make sources.zip && ls -l sources.zip
+      - name: Update zenodo 1
         run: |
           curl -H "Authorization: Bearer ${{ secrets.ZENODO_TOKEN }}" \
           --upload-file sources.zip \
           https://zenodo.org/api/files/${{ secrets.ZENODO_BUCKET }}/sources.zip"
+      - name: Update zenodo 2
+        run: |
           curl -H "Authorization: Bearer ${{ secrets.ZENODO_TOKEN }}" \
           --upload-file readme.txt \
           https://zenodo.org/api/files/${{ secrets.ZENODO_BUCKET }}/readme.txt"
