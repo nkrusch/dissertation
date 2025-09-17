@@ -183,14 +183,14 @@ There are various different ways to categorize families of \ndx{properties}.
 characteristics that contribute to computation of the correct output.
 \emph{Non-functional} properties\index{non-functional property} are concerned
 with quality attributes like security, dependability, reliability, and resource
-requirements~\cite{terbeek2018}. Two other common terms are \emph{\ndx{safety}}
-and \emph{\ndx{liveness}}. They come from a paper by~\textcite{lamport1977}
-where they are formulated as follows. A \emph{safety
-property}\index{properties!safety} is a guarantee that \enquote{something (bad)
-will not happen}. A \emph{liveness property}\index{properties!liveness} ensures
-\enquote{(good) things must happen}, eventually. The proof techniques across
-these safety and liveness properties are different. The works in this
-dissertation are primarily concerned with non-functional safety properties.
+requirements~\cite{terbeek2018}. Two other common terms are \emph{safety} and
+\emph{liveness}. They come from a paper by~\textcite{lamport1977} where they are
+formulated as follows. A \emph{safety property}\index{properties!safety} is a
+guarantee that \enquote{something (bad) will not happen}. A \emph{liveness
+property}\index{properties!liveness} ensures \enquote{(good) things must
+happen}, eventually. The proof techniques across these safety and liveness
+properties are different. The works in this dissertation are primarily concerned
+with non-functional safety properties.
 
 \paragraph*{Partial and \ndx{total correctness}}
 Broadly, a program is correct if the implementation is consistent with the
@@ -1182,11 +1182,11 @@ Although this provides an automatic method for certifying resource usage, the
 theory is not formalized mechanically. The cost-aware logical framework
 \ndx{Calf}~\cite{niu2022}---and its extension
 \ndx{Decalf}~\cite{grodin2024}---is similarly a type system-based approach for
-functional programs. Calf embeds, thought types, the amortized
+functional programs. \ndx{Calf}  embeds, thought types, the amortized
 costs\index{amortization} of computation. It also uses clocks, where the clocks
-record the recursion depth, to ensure termination of programs in total type
-theory. Then, if a program can be typed, the Calf system ensures that the
-program satisfies the specified resource bound. The type system definitions is
+record the recursion depth, to ensure \ndx{termination} of programs. Then, if a
+program can be typed, the \ndx{Calf} system ensures that the program satisfies
+the specified resource bound. The type system is
 \href{https://github.com/HarrisonGrodin/agda-calf}{formalized in
 \ndx{Agda}}~\cite{grodin2023}.
 

@@ -687,7 +687,7 @@ matrix.
 
 %! suppress = EscapeUnderscore
 \begin{definition}[Composition]
-We let \ensuremath{\sfm{\prc|C$_1$;$\cdots$;C$_n$|}}\symbo{sfm}
+We let \ensuremath{\sfm{\prc|C$_1$;$\cdots$;C$_n$|}}\symbo{sfm}\symbo{p2}
 be \ensuremath{\sfm{\prc|C$_1$|} + \cdots + \sfm{\prc|C$_n$|}}.
 \end{definition}
 
@@ -714,7 +714,7 @@ z = 0
 \begin{figure}
 \begin{center}
 %! suppress = EscapeAmpersand
-\begin{tabular}{ccccc}\symbo{nv}\symbo{vi}
+\begin{tabular}{ccccc}\symbo{nv}\symbo{vi}\symbo{p2}\symbo{xvar2}
 \prc|C$_1$| && \prc|C$_2$| && \prc|C$_1$;C$_2$|
 \\
 $\begin{pNiceMatrix}[first-row,first-col,left-margin=-2pt,right-margin=-2pt]
@@ -853,8 +853,8 @@ We let \ensuremath{\sfm{\prc|if e then C$_1\;$ else C$_2$|}} be
 \end{lrbox}
 
 \noindent
-Adding \ensuremath{\corr{\prc|w > x|}_{\prc|C$_1$;C$_2$|}}\symbo{corr} to
-\ensuremath{\sfm{\prc|C$_1$|} + \sfm{\prc|C$_2$|}}\symbo{sfm} from
+Adding \ensuremath{\corr{\prc|w > x|}_{\prc|C$_1$;C$_2$|}}\symbo{corr}\symbo{p2}
+to \ensuremath{\sfm{\prc|C$_1$|} + \sfm{\prc|C$_2$|}}\symbo{sfm}\symbo{p2} from
 \autoref{fig:composition}, we obtain:
 \[\mathbb{M} \left(~ \usebox\ifconectwo
 \right) \ = \
@@ -865,17 +865,19 @@ Adding \ensuremath{\corr{\prc|w > x|}_{\prc|C$_1$;C$_2$|}}\symbo{corr} to
 \prc|x| & \vi     & \nv     & \nv     & \vi \\
 \prc|y| & \nv     & \vi     & \nv     & \vi \\
 \prc|z| & \nv     & \nv     & \nv     & \nv
-\end{pNiceMatrix}\symbo{vi}\symbo{nv}\text{.}\]
+\end{pNiceMatrix}\symbo{vi}\symbo{nv}\symbo{xvar2}\text{.}\]
 
 Observe that there is a \ndx{violation} if \(\lvl{\prc|w|} <
-\lvl{\prc|x|}\)\symbo{secvar} or \(\lvl{\prc|w|} \orth \lvl{\prc|x|}\) from the
-statement $\prc|w = w + x|$, and that there is a \ndx{violation} if
-\(\lvl{\prc|x|} < \lvl{\prc|w|}\)\symbo{secvar} or \(\lvl{\prc|x|} \orth
-\lvl{\prc|w|}\). The latter comes from the fact that the value of \(\prc|w|\)
-will decide if \(\prc|x = y * 2|\) will execute through the expression. To be
-free of violations, such a program must be given a class assignment satisfying
-\(\lvl{\prc|w|} = \lvl{\prc|x|}\)\symbo{secvar} and the other constraints
-recorded in the matrix.
+\lvl{\prc|x|}\)\symbo{secvar}\symbo{xvar2} or \(\lvl{\prc|w|} \orth
+\lvl{\prc|x|}\)\symbo{secvar}\symbo{xvar2} from the statement $\prc|w = w + x|$,
+and that there is a \ndx{violation} if \(\lvl{\prc|x|} <
+\lvl{\prc|w|}\)\symbo{secvar}\symbo{xvar2} or \(\lvl{\prc|x|} \orth
+\lvl{\prc|w|}\). The latter comes from the fact that the value of
+\(\prc|w|\)\symbo{xvar2} will decide if \(\prc|x = y * 2|\) will execute through
+the expression. To be free of \ndx{violation}s, such a program must be given a
+class\index{security class} assignment satisfying \(\lvl{\prc|w|} =
+\lvl{\prc|x|}\)\symbo{secvar}\symbo{xvar2} and the other constraints recorded in
+the matrix.
 
 \begin{definition}[Loop]
 We let \(\sfm{\prc|while e do C|}\) be \(\sfm{\prc|C|} +

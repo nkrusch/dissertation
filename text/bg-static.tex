@@ -1,3 +1,4 @@
+%! suppress = UnresolvedReference
 %! suppress = LabelConvention
 Asymptotic analysis\index{asymptotic analysis}, that classifies programs based
 on resource requirements, is the natural dual to the study of \ndx{complexity
@@ -78,8 +79,9 @@ that the program is free of the errors tracked by the analyzer.
 Obtaining the intended behavior depends on design choices, particularly on how
 the analysis approaches \ndx{soundness} and \ndx{completeness}.
 
-\begin{figure}[t]
+\begin{figure}[h]
 \centering
+%! suppress = FileNotFound
 \includegraphics[width=\textwidth,keepaspectratio]{fig_approx}
 \caption[Program analysis as an approximation]{
 Program analysis as an approximation -- an illustration inspired
@@ -94,7 +96,7 @@ analyzer never misses programs that satisfy \(\phi\). Although an
 \textsc{unsafe} analysis can be justifiable in some cases, interpreting its
 results is problematic because errors are not conservative.
 }\label{fig:approx}
-\end{figure}\symbo{phi}
+\end{figure}
 
 \paragraph*{Soundness and \ndx{completeness}}\index{soundness}
 A terminating static analyzer can either be sound or complete, but not both.
@@ -119,10 +121,11 @@ Figures~\ref{fig:approx} and~\ref{fig:bug-verify} for examples.
 
 \begin{figure}[t]
 \centering
+%! suppress = FileNotFound
 \includegraphics[width=.85\textwidth,keepaspectratio]{fig_bug-verifier}
 \caption[Sound and incomplete bug detector vs. verifier]{
 Behavior of sound and incomplete static analyzers: bug detector vs.
-verifier~\cite{moller2024}. An \enquote{error} refers to some property tracked
+verifier~\cite{moller2024}. An \enquote{error} is some property tracked
 by the analyzer.}
 \label{fig:bug-verify}
 \end{figure}
@@ -276,7 +279,7 @@ online~\cite{flores_experiments}.
       \href{https://termination-portal.org/wiki/Termination_Competition}%
       {\ndx{Termination Competition}}~\cite{giesl2019}
       and \href{https://sv-comp.sosy-lab.org}%
-      {\ndx{Competition on Software Verification (SV-Comp)}}~\cite{beyer2022}.
+      {\ndx{Competition on Software Verification} (SV-Comp)}~\cite{beyer2022}.
 
 \item[\href{https://github.com/aeflores/CoFloCo}{\ndx{CoFloCo}}]
       \emph{\underline{Co}ntrol \underline{Flo}w refinement of \underline{Co}st

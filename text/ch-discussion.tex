@@ -251,14 +251,15 @@ framework likely encapsulates even richer utility than uncovered thus far.
 \label{subsec:res-resource-analysis}
 \index{automatic resource analysis}
 
-Our investigations revealed several broad observations about \ndx{automatic resource analysis}.
+Our investigations revealed broad observations about \ndx{automatic resource analysis}.
+
+\paragraph*{Analysis utilities}
 The first is about the analysis results we can obtain with implicit computational complexity, and how to judge the application potential of ICC systems.
 Centrally, ICC systems aim to confirm whether a program belongs to some complexity class.
 There are \emph{some} use cases for such binary classification.
 For example, the domain-specific language Karp~\cite{zhang2022}---for programming and testing \ndx{Karp reduction}s---naturally requires ways to confirm a reduction is computable in polynomial time (without needing further \ndx{precision}).
 However, it is an isolated use case.
 A coarse binary analysis has limited practical utility in general.
-
 The relevance of an analysis increases if we can show it can assist in software engineering tasks.
 Such analysis should produce quantitative information that helps engineers to understand the program behavior.
 The analysis should express resource bounds and pinpoint issues like resource-intensive procedures.
@@ -271,6 +272,7 @@ In other words, having a restricted syntax is not an insurmountable hurdle to ap
 To make an analysis comparable to existing resource analyzers, it suffices to target the \ndx{C} Integer Programs \ndx{grammar}~\cite{cinteger} used in the \ndx{Termination Competition}~\cite{giesl2019}.
 From these attributes, we can derive a checklist to judge the application potential of various ICC systems.
 
+\paragraph*{Observations about analyzers}
 A second observation is about the resources analyzers themselves.
 Scientific software is different from \enquote{mainstream} software in several ways.
 For example, scientific software aims to materialize theoretical ideas that correspond to a publication.
@@ -307,8 +309,8 @@ Besides complexity, ICC systems can be adjusted to track other semantic properti
 
 The dissertation manuscripts follow a pattern of pairing ICC with a secondary application domain.
 Although such intersectional strategy comes with rich potential, there are also substantial \enquote{costs}.
-
 One cost relates to a learning overhead.
+
 The overhead behind the dissertation manuscripts is reflected in \autoref{sec:pre}.
 Making a meaningful contribution requires first sufficient familiarity with secondary domain to identify research gaps.
 It also requires learning the terminology and implicit expectations of the secondary domain.

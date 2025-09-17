@@ -1563,17 +1563,18 @@ while(y<1000)
 {\mbox{Finite iteration}}
 \label{lst:case-3}
 \end{minipage}
-\end{minipage}
 \captionof{figure}[Loop cases for analyzer comparison]{
 Loop cases for analyzer comparison. The loop in~\ref{lst:case-1} is known to
-terminate and its \ndx{guard variable} \pr|X1| does not occur in the body.
-In~\ref{lst:case-2}, the loop iteration and \ndx{termination} are unknown since
-they are controlled by a nondeterministic function\index{nondeterminism}. The
-loop in~\ref{lst:case-3} has a fixed \ndx{iteration space}, but the
-\ndx{postcondition} of \pr|x| is difficult to infer. Assuming \(\prm{y}=0\), the
-precise formula is \(\prm{x'} = \prm{x} + (\prm{y'} \times \prm{y'} - \prm{y'})
-\div 2\) where \pr|y'| is iteration count.
+terminate\index{termination} and its \ndx{guard variable} \pr|X1| does not occur
+in the body. In~\ref{lst:case-2}, the loop \ndx{iteration space} and
+\ndx{termination} are unknown since they are controlled by a nondeterministic
+function\index{nondeterminism}. The loop in~\ref{lst:case-3} has a fixed
+\ndx{iteration space}, but the \ndx{postcondition} of \pr|x|\symbo{xvar} is
+difficult to infer. Assuming \(\prm{y}=0\), the precise formula is \(\prm{x'} =
+\prm{x} + (\prm{y'} \times \prm{y'} - \prm{y'})\symbo{xvar}\symbo{Xprime} \div
+2\) where \pr|y'| is iteration count.
 }\label{fig:loops}
+\end{minipage}
 \end{center}
 
 \paragraph*{Inference with \impl}

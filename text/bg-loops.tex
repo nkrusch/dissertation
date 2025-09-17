@@ -322,16 +322,15 @@ Comparing the two loop dependencies, a loop-carried dependence determines the it
 A loop-independent dependence determines the statement execution order within a nest of loops.
 
 \paragraph*{Dependence analysis}
-Detecting dependencies is the focus of dependence analysis\index{dependence analysis}.
-\emph{Dependence analysis} (or a \emph{dependence test})
-is a technique for identifying or characterizing program dependencies and dependence-preserving reorderings;
-which then may permit transformation or parallel execution.
-Among the well-established approaches are
-the Banerjee test~\cite{banerjee1997}\index{Banerjee test},
-GCD test~\cite{zima199}\index{GCD test},
-Omega test~\cite{pugh1991}\index{Omega test},
-and commutativity analysis~\cite{rinard1996}\index{commutativity analysis}.
-We defer further discussion to~\autoref{sec:vmcai}, that presents a dependence analysis inspired by implicit computational complexity.
+Dependence analysis\index{dependence analysis} (or a \emph{dependence test}) is
+a technique for identifying or characterizing program dependencies and
+dependence-preserving reorderings; which may then permit transformation or
+parallel execution. Among the well-established techniques of \ndx{dependence
+analysis} are \ndx{Banerjee test}~\cite{banerjee1997}, \ndx{GCD
+test}~\cite{zima199}, \ndx{Omega test}~\cite{pugh1991}, and \ndx{commutativity
+analysis}~\cite{rinard1996}\index{commutativity analysis}. Section
+\autoref{sec:vmcai} will present a complementary \ndx{dependence analysis}
+inspired by implicit computational complexity.
 
 \subsubsection{Incorporating Parallelism}
 
@@ -381,19 +380,20 @@ a runtime-based model for \pr|C++|\index{C++} programs~\cite{onetbb}.
 \label{openmp}
 
 {OpenMP}\index{OpenMP}\index{parallel programming model!OpenMP}, for Open Multi-Processing,
-is a parallel programming model for developing portable, shared memory\index{shared memory} parallel applications in
-\pr|\ndx{C}|,
-\pr|\ndx{C++}| and
-\pr|\ndx{Fortran}|~\cite{openmp_api}.
-OpenMP is not a programming language;
-rather, it provides directives\index{OpenMP directives} for sequential programs that translate the programs to parallel execution instructions at compile-time.
+is a parallel \ndx{programming model} for developing portable, \ndx{shared memory} parallel applications in
+\pr|C|,\index{C}
+\pr|C++|\index{C++} and
+\pr|Fortran|\index{Fortran}~\cite{openmp_api}.
+OpenMP is not a programming language.
+Rrather, it provides directives\index{OpenMP directives} for sequential programs that translate the programs to parallel execution instructions at compile-time.
 The OpenMP\index{OpenMP} infrastructure includes compiler directives, library routines, environment variables, and tool support for creating, debugging, and analyzing parallel applications.
 
-Program execution in OpenMP follows the \emph{fork-\ndx{join} programming model}~\cite[p. 24]{chapman2007}\index{fork-join programming model} of~\autoref{fig:fork-join}.
+Program execution in OpenMP follows the \emph{fork-\ndx{join} \ndx{programming model}}~\cite[p. 24]{chapman2007}
+\index{fork-join programming model}\index{parallel programming model!fork-join} of~\autoref{fig:fork-join}.
 Program execution starts with an {primary thread}\index{primary thread}
 %\footnote{Color \tikz\draw[pthread,fill=pthread] (0,0) circle (.5ex); is the primary thread in drawings.}
 that runs in sequential mode.
-After encountering a specially-marked parallelizable program region, the primary thread spawns a team of threads in a \emph{fork}\index{fork}-operation.
+After encountering a specially-marked parallelizable program region, the primary thread spawns a team of threads in a \emph{\ndx{fork}}-operation.
 The team collaborates to complete the tasks of the parallel program region.
 The execution concludes with a \emph{\ndx{join}}-operation, where the forked threads terminate.
 The primary thread\index{primary thread} continues execution past the parallel program region\index{parallel region}, running again in sequential mode.

@@ -6,7 +6,7 @@ The information about variable value growth is captured and expressed as \emph{m
 
 More precisely, for program \pr|C|\symbo{p2} the analysis aims to discover \emph{polynomially bounded data flow relations}\index{data flow relation},
 between the \emph{initial values} \(x_1,\ldots,x_n\)\symbo{xpre} of natural-number variables \(\prm{X}_1,\ldots,\prm{X}_n\)\symbo{xvar} and the \emph{final values} \(x'_i\)\symbo{xprime2} of \(\prm{X}_i\) (for \(i=1,\ldots,n\)),
-that hold whenever \(\sem{\prm{C}}(x_i \rightsquigarrow x^\prime_i)\)\symbo{flowrel}.
+that hold whenever \(\sem{\prm{C}}(x_i \rightsquigarrow x^\prime_i)\)\symbo{flowrel}\symbo{p2}.
 If it is possible to determine that all variable values grow at most polynomially in inputs, the analysis assigns to program \pr|C|\symbo{p2} a \emph{bound}, \ie a conjunction of mwp-bounds\index{mwp-bound};
 that characterizes the value growth of all its variables.
 The conclusion is derived statically and syntactically by applying inference rules\index{inference rule} to the commands of the program.
@@ -19,7 +19,7 @@ The variable values of the program
 \end{center}
 are bounded by \(x_1' \leq 2x_2 + 2x_3\)\symbo{xpre}\symbo{xprime2} and \(x_2' \leq x_2\)\symbo{xpre}\symbo{xprime2} and \(x_3' \leq x_3\)\symbo{xpre}\symbo{xprime2}.
 Each variable can be bounded by at most a polynomial and the flow calculus\index{mwp-calculus} accepts the program.
-The polynomially bounded data flow relation\index{data flow relation} \(\sem{\prm{C}}(x_1,x_2,x_3 \rightsquigarrow x^\prime_1,x^\prime_2,x^\prime_3)\)\symbo{flowrel}
+The polynomially bounded data flow relation\index{data flow relation} \(\sem{\prm{C}}(x_1,x_2,x_3 \rightsquigarrow x^\prime_1,x^\prime_2,x^\prime_3)\)\symbo{flowrel}\symbo{p2}
 holds for all variables in all program states.
 \end{example}
 

@@ -52,6 +52,10 @@
 \leavevmode
 \mbox{}\cleaders\hbox to.44em{\hss.\hss}\hskip 0.88em plus 1fill
 \kern0pt }
+\newcommand\ldotfill{%
+\leavevmode
+\mbox{}\leaders\hbox to.44em{\hss.\hss}\hskip 0.64em plus 1fill
+\kern0pt }
 
 % Term Index
 \makeatletter
@@ -63,7 +67,7 @@
 \let\item\@idxitem
 \setlength{\columnsep}{30pt}
 \setlength{\parindent}{0em}
-\begin{multicols*}{2}\raggedcolumns}%\raggedleft}
+\begin{multicols*}{2}\raggedcolumns\raggedleft}
 {\end{multicols*}}
 %\let\item\@idxitem}
 {\clearpage}
@@ -75,10 +79,10 @@
 headings_flag 1
 heading_prefix "\{\\normalsize\\textbf\{"
 heading_suffix "\}\}\\hfill\\nopagebreak\n"
-delim_0 "\\mydotfill\{\\raggedleft\{\\footnotesize"
-delim_1 "\\mydotfill\{\\raggedleft\{\\footnotesize"
-delim_2 "\\mydotfill\{\\raggedleft\{\\footnotesize"
-delim_t "\}\}"
+delim_0 "\\ldotfill\{\\footnotesize"
+delim_1 "\\ldotfill\{\\footnotesize"
+delim_2 "\\ldotfill\{\\footnotesize"
+delim_t "\}"
 \end{filecontents}
 
 %% Glossaries
@@ -95,10 +99,10 @@ delim_t "\}\}"
    }
    \renewcommand{\subglossentry}[3]{%
     &
-        \glssubentryitem{##2}%
-        {\footnotesize\emph{also}}\hspace{5pt}\glstarget{##2}{\strut}\glossentrydesc{##2}%
-        \glspostdescription\mydotfill\footnotesize{##3}\tabularnewline
-    }
+    \glssubentryitem{##2}%
+    {\footnotesize\emph{also}}\hspace{5pt}\glstarget{##2}{\strut}\glossentrydesc{##2}%
+    \glspostdescription\mydotfill\footnotesize{##3}\tabularnewline
+  }
 }
 \setglossarystyle{longraggeddots}
 
