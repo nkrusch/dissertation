@@ -14,6 +14,9 @@ on:
   workflow_dispatch:
     branches: [ main ]
 
+env:
+  BASE: "https://zenodo.org/api/deposit/depositions"
+
 jobs:
   compile:
     name: Compile
@@ -26,6 +29,16 @@ jobs:
       - name: 🔖 Set tag
         id: meta
         run:  x="${{ github.ref_name }}"; echo "tag=${x/main/latest}" >> $GITHUB_OUTPUT
+      - name: Draft Upload to Zenodo
+        id: artifact
+        uses: megasanjay/upload-to-zenodo@v2.0.1
+        with:
+          zenodo_token: ${{ secrets.ZENODO_TOKEN }}
+          zenodo_deposition_id: ${{ vars.ZENODO_ID }}
+          zenodo_publish: false
+          update_metadata_files: false
+      - name: Upload also readme
+        run: curl -F "file=@readme.txt" ${{ env.BASE }}/${{ vars.ZENODO_ID }}/files?access_token=${{ secrets.ZENODO_TOKEN }}
       - name: 🏗️ Compile
         uses: xu-cheng/latex-action@v3
         with:
@@ -44,11 +57,13 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           tag: ${{ steps.meta.outputs.tag }}
           draft: ${{ github.ref_name == 'main' }}
-          artifactContentType: application/pdf
-          artifacts: main.pdf
+          artifacts: |
+            main.pdf
+            readme.txt
           allowUpdates: true
           removeArtifacts: true
           replacesArtifacts: true
+
 
   deploy:
     name: Share 

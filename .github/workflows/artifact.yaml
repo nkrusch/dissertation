@@ -6,11 +6,8 @@ concurrency:
 
 on:
   push:
-    branches: [ main ]
-    paths-ignore:
-      - '**.md'
-      - '**.txt'
-      - '**.json'
+    tags:
+      - '*'
   workflow_dispatch:
     branches: [ main ]
 
