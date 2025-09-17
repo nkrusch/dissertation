@@ -17,9 +17,8 @@
 
 
 This is a companion artifact for a dissertation by the same name.
-The artifact allows re-compiling the dissertation from sources,
-running all executable examples that appear in the dissertation, and
-inspecting the references that could not be archived elsewhere.
+The artifact allows re-compiling the dissertation from sources and
+running all executable examples that appear in the dissertation.
 
 ------------------------------------------------------------------------
 🐳  Getting Started — Create a Docker Environment
@@ -43,9 +42,9 @@ run on arm architectures, it will just run slower. The setup has been
 tested on macOS (amd64, arm64) and Linux Ubuntu 22.04 (amd64).
 
 ALTERNATIVE SETUP
-Build the container from scratch. Building takes about 10-15 min, and
-does not assume a specific architecture (tested on amd and arm).
-Run at the unzipped sources root:
+Build the container from scratch. Building takes about 10-15 min.
+The build does not assume a specific architecture  and has been tested
+on both amd and arm. Run at the unzipped sources root:
 
     docker build . -t dimage
     docker run --name dimage -it --rm dimage
@@ -196,14 +195,9 @@ Expected output (the times are approximate):
     C sends 5 ==> B got A=2 and C=(7, 3, 6)
 
 ------------------------------------------------------------------------
-📜️  Additional References and Archival
+📜️  Archival
 ------------------------------------------------------------------------
 
 This artifact is archived at: https://doi.org/10.5281/zenodo.15288398
-
-The artifact deposit includes a set of files (a ZIP-file, primarily of
-presentations slides) that are referenced in the dissertation. These
-files were not available at any URL at the time of dissertation writing.
-Therefore, for transparency, the files are included in the artifact.
 
 END.
