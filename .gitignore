@@ -285,3 +285,4 @@ main.pdf
 pictures/*.pdf
 venv
 main.mst
+*.zip

@@ -1,6 +1,6 @@
 SHELL := /bin/bash
 
-ARC_FLTR  := $(patsubst %,! -name '%',dissertation .git .github .gitignore *.zip main.pdf)
+ARC_FLTR  := $(patsubst %,! -name '%',dissertation .idea .git .github .gitignore *.zip main.pdf)
 ARC_ITEMS := $(patsubst ./%,%,$(shell find . -mindepth 1 -maxdepth 1 $(ARC_FLTR)))
 ARC_NAME  := dissertation
 
