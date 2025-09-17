@@ -39,7 +39,7 @@ How to completely solve this new problem is described in a second
 \enquote{phase} of technical developments, in~\autoref{sec:postcond}. The
 manuscript provides an {evaluation procedure} that enables recovering
 \ndx{mwp-bound}s from a complex \ndx{mwp-matrix}. With this enhancement, the
-\(\mwpsc^\infty\)\symbo{mwpi} calculus computes \ndx{mwp-bounds} that are
+\(\mwpsc^\infty\)\symbo{mwpi} calculus computes \ndx{mwp-bound}s that are
 comparable to the original calculus, but in a \emph{practically efficient} way.
 
 \paragraph*{The surpassing capabilities}
@@ -49,7 +49,7 @@ history.}, the \(\mwpsc^\infty\)\symbo{mwpi} calculus enables certain analysis
 features that are not possible in the original calculus.
 
 For example, it is possible to determine the optimal \ndx{mwp-bound}s of each
-program variable. In case of derivation failure, it is possible to precisely
+program variable. In case of \ndx{derivation failure}, it is possible to precisely
 identify the variable(s) involved, and the program point that induces the
 failure. It may also be possible to bound the value growth of certain variables
 in presence of whole-program derivation failure. This increases
@@ -251,7 +251,8 @@ framework likely encapsulates even richer utility than uncovered thus far.
 \label{subsec:res-resource-analysis}
 \index{automatic resource analysis}
 
-Our investigations revealed broad observations about \ndx{automatic resource analysis}.
+Our investigations revealed several observations about \ndx{automatic resource
+analysis}.
 
 \paragraph*{Analysis utilities}
 The first is about the analysis results we can obtain with implicit computational complexity, and how to judge the application potential of ICC systems.
@@ -411,12 +412,12 @@ analyzer~\cite{carbonneaux2017}.
 \paragraph*{Extending beyond traditional programming paradigms}
 ICC has been widely studied in the context of \enquote{traditional} programming
 paradigms, including imperative and functional programs.\footnote{ For example,
-the works building on Resource Aware ML~\cite{hoffmann2012} have been extended
-to many paradigms.} However, there are many more important programming
-paradigms, like \ndx{probabilistic programs} and \ndx{quantum computing}, that
-warrant investigation. These paradigms change the notion of programming
-languages and thus require different analytical approaches. Representative works
-exploring this direction
+the works building on Resource Aware ML\index{RaML}~\cite{hoffmann2012} have
+been extended to many paradigms.} However, there are many more important
+programming paradigms, like \ndx{probabilistic programs} and \ndx{quantum
+computing}, that warrant investigation. These paradigms change the notion of
+programming languages and thus require different analytical approaches.
+Representative works exploring this direction
 include~\cite{dallago2010,avanzini2024,colledan2024,avanzini2020}.
 
 \section{Completion of Dissertation Goals}

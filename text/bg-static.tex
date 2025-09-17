@@ -1,14 +1,14 @@
 %! suppress = UnresolvedReference
 %! suppress = LabelConvention
 Asymptotic analysis\index{asymptotic analysis}, that classifies programs based
-on resource requirements, is the natural dual to the study of \ndx{complexity
-classes}. Since implicit computational complexity focuses on language-based
-characterizations, it produces analysis techniques for free. It is a
-foundational hypothesis of this dissertation that theoretical ICC systems---with
-sufficient expressive power\index{expressiveness} and an efficient evaluation
-strategy---enable concrete program analysis. An analysis that evaluates a
-program's resource usage is called resource analysis. Resource
-analysis\index{resource analysis} is a subfield of \ndx{static program
+on resource requirements\index{resource usage}, is the natural dual to the study
+of \ndx{complexity classes}. Since implicit computational complexity focuses on
+language-based characterizations, it produces analysis techniques for free. It
+is a foundational hypothesis of this dissertation that theoretical ICC
+systems---with sufficient expressive power\index{expressiveness} and an
+efficient evaluation strategy---enable concrete program analysis. An analysis
+that evaluates a program's \ndx{resource usage} is called resource analysis.
+Resource analysis\index{resource analysis} is a subfield of \ndx{static program
 analysis}.
 
 \subsubsection{Foundations of Static Program Analysis}
@@ -152,27 +152,28 @@ excessively compromising \ndx{precision} or scalability~\cite{livshits2015}.
 \subsubsection{Techniques of Resource Analysis}
 \label{resource-analysis}
 
-Resource analysis\index{resource analysis}\footnote{ Also called \emph{cost
-analysis} when using an explicit \emph{cost measure}~\cite{albert2008}. }---or
-(static/automatic) {complexity analysis}~\cite{rosendahl1989,leivant2013}---aims
-to obtain static information about the runtime {execution cost} of an analyzed
-program. Such analysis naturally decomposes into two parts: one concerning the
-program's execution time and \ndx{termination}; and the other change in the
-program's data size~\cite{jones2009}. Numerous techniques can be used to reason
-about such properties.
+Resource analysis\index{resource analysis}\footnote{Also called \emph{cost
+analysis} when using an explicit \emph{cost measure}\index{complexity
+measure}~\cite{albert2008}. }---or (static/automatic) {complexity
+analysis}~\cite{rosendahl1989,leivant2013}---aims to obtain static information
+about the runtime execution cost of an analyzed program. Such analysis naturally
+decomposes into two parts: one concerning the program's execution
+time\index{time complexity} and \ndx{termination}; and the other change in the
+program's data size~\cite{jones2009}\index{space complexity}. Numerous
+techniques can be used to reason about such properties.
 
 \begin{itemize}
-\item Termination\index{termination} analyses tend to focus on values that are
-    copied or decreased. Establishing termination is a critical aspect of
-    correctness of recursive calls and commands. Termination analyses aim to
-    discover conditions---like difference constraints~\cite{sinn2017},
-    program-dependent well-founded orders on loops~\cite{lee2001}, or
-    establishing that recursive reduction sequence are finite\footnote{ Showing
-    that every reduction sequence is finite is called the \emph{strong
-    normalization} property~\cite[p. 36]{bertot2004}}--- that guarantee
-    \ndx{termination}. A specific technique for \ndx{termination} analysis, that
-    originates from implicit computational complexity, is the \ndx{size-change
-    termination principle} of~\textcite{lee2001}.
+\item Termination analyses tend to focus on values that are copied or decreased.
+    Establishing \ndx{termination} is a critical aspect of correctness of
+    recursive calls and commands. Termination analyses aim to discover
+    conditions---like difference constraints~\cite{sinn2017}, program-dependent
+    well-founded orders on loops~\cite{lee2001}, or establishing that recursive
+    reduction sequence are finite\footnote{Showing that every reduction
+    sequence is finite is called the \emph{\ndx{strong normalization}}
+    property~\cite[p. 36]{bertot2004}}--- that guarantee \ndx{termination}. A
+    specific technique for \ndx{termination} analysis, that originates from
+    implicit computational complexity, is the \ndx{size-change termination
+    principle} of~\textcite{lee2001}.
 \item Data-size analyses focus on memory consumption, estimating how large
     various variable values may become~\cite{lommen2023}. Determining data-size
     bounds requires studying patterns of data-size changes during computation.
@@ -271,10 +272,10 @@ online~\cite{flores_experiments}.
 \item[\href{https://aprove.informatik.rwth-aachen.de}{\ndx{AProVE}}]
       \emph{\underline{A}utomated \underline{Pro}gram \underline{V}erification
       \underline{E}nvironment}~\cite{giesl2016} produces termination proofs and
-      complexity bounds for \ndx{term rewrite system}s (TRS), \ndx{Java
+      \ndx{complexity bound}s for \ndx{term rewrite system}s (TRS), \ndx{Java
       bytecode}\index{bytecode}, and programs written in \ndx{C}, \ndx{Prolog},
       or \ndx{Haskell}.
-      AProVE is a regular contestant in international tool competitions,
+      \ndx{AProVE} is a regular contestant in international tool competitions,
       including the
       \href{https://termination-portal.org/wiki/Termination_Competition}%
       {\ndx{Termination Competition}}~\cite{giesl2019}
@@ -282,17 +283,17 @@ online~\cite{flores_experiments}.
       {\ndx{Competition on Software Verification} (SV-Comp)}~\cite{beyer2022}.
 
 \item[\href{https://github.com/aeflores/CoFloCo}{\ndx{CoFloCo}}]
-      \emph{\underline{Co}ntrol \underline{Flo}w refinement of \underline{Co}st
-      Relations}~\cite{floresmontoya2014}
-      is an open-source analyzer and CES solver that infers symbolic upper and
-      lower complexity bounds for CESs~\cite{flores-montoya2016}.
-      CoFloCo is not bound to any particular programming language, but expects a
-      input program translated to a CES~\cite{flores2016}.
+    \emph{\underline{Co}ntrol \underline{Flo}w refinement of \underline{Co}st
+    Relations}~\cite{floresmontoya2014} is an open-source analyzer and CES
+    solver that infers symbolic upper\index{upper bound} and lowe\index{lower
+    bound} \ndx{complexity bound}s for CESs~\cite{flores-montoya2016}. CoFloCo
+    is not bound to any particular programming language, but expects a input
+    program translated to a CES~\cite{flores2016}.
 
 \item[\href{https://github.com/academic-archive/pldi15}{C4B}]
       ~\cite{carbonneaux2015}\index{C4B}
       is an AARA-based analyzer of certified compositional resource bounds. It
-      infers linear resource bounds on C-like programs by \ndx{amortization} --
+      infers linear resource bounds on \ndx{C}-like programs by \ndx{amortization} --
       \autoref{tab:atva-compare}.
 
 \item[\href{http://cl-informatik.uibk.ac.at/software/tct/}{TcT}]
@@ -308,7 +309,7 @@ online~\cite{flores_experiments}.
        ~\cite{brockschmidt2016}\index{KoAT}
        is a complexity analyzer for computing time-, cost- and \ndx{size
        bound}s. As inputs, KoAT accepts Integer Programs (IPs)\index{integer
-       program} and C integers programs that follow
+       program} and \ndx{C} integers programs that follow
        \href{https://termination-portal.org/wiki/C_Integer_Programs}{the
        \ndx{grammar} specification} of the \ndx{Termination Competition} --
        \autoref{sec:performance}.
@@ -316,23 +317,23 @@ online~\cite{flores_experiments}.
 \item[\href{https://github.com/statycc/LQICM_On_C_Toy_Parser}{LQICM}]
       \emph{\underline{L}oop \underline{Q}uasi-\underline{I}nvariant
       \underline{C}hunk \underline{M}otion}~\cite{moyen20172}\index{LQICM} is a
-      compile-time program optimization pass for C programs. It aims to peel
-      (\cf~\autoref{loop-transforms}) inner loops to reduce program's time
+      compile-time program optimization pass for \ndx{C} programs. It aims to
+      peel (\cf~\autoref{loop-transforms}) inner loops to reduce program's time
       complexity.
 
 \item[\href{https://www.raml.co/about}{RaML}]
        \emph{\underline{R}esource \underline{a}ware \underline{ML}}
        ~\cite{hoffmann2017}\index{RaML}
-       is an analyzer of worst-case upper bounds and best-case lower bounds of
-       cost, for functional programs written in OCaml\index{OCaml}. The cost
-       resource can be any quantity that is of interest. The RaML analysis is
-       based on AARA and can produce precise amortized\index{amortization}
+       is an analyzer of worst-case upper bounds and best-case \ndx{lower
+       bound}s of cost, for functional programs written in \ndx{OCaml}. The cost
+       resource can be any quantity that is of interest. The \ndx{RaML} analysis
+       is based on AARA and can produce precise amortized\index{amortization}
        bounds.
 
 \item[\href{https://github.com/academic-archive/cav17-pastis}{\ndx{Pastis}}]
       ~\cite{carbonneaux2017,carbonneaux2018}
       is another AARA-based analyzer. It infers various resource bounds and size
-      change information of programs expressed in LLVM bitcode (interprocedural
+      change information of programs expressed in \ndx{LLVM bitcode} (interprocedural
       CFGs). Additionally, it generates proof certificates that guarantee the
       validity of the inferred bounds.
 
@@ -430,10 +431,11 @@ class\index{complexity classes}. It requires defining a non-Turing-complete
 programming language and proving that it is sound\index{soundness} and
 complete\index{completeness} \wrt a particular complexity
 class.\index{complexity classes} This sidesteps \ndx{Rice's Theorem}, but cannot
-be \emph{intentionally} complete, since it will always exclude programs that yet
-belong to the targeted complexity class.\index{complexity classes} Correctly
-analysing a real world programming language is very difficult because of the
-large number of constructions allowed in it.
+be \emph{intentionally} complete\index{completeness}, since it will always
+exclude programs that yet belong to the targeted complexity
+class.\index{complexity classes} Correctly analysing a real world programming
+language is very difficult because of the large number of constructions allowed
+in it.
 
 \begin{quotation}
 \noindent We must understand all the diﬃculty because for a

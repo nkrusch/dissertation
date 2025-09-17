@@ -698,8 +698,8 @@ when displaying mwp-matrices.} This association is defined by position. The
 matrix size is determined by the number of program variables, such that for
 \(n\) variables, the matrix size is \(n \times n\). The matrix is labelled by
 the variables. An mwp-matrix is interpreted {column-wise}. The data-flow facts
-about a variable at column \(j\)\symbo{mj} are collected in the polynomial
-structures at rows \(i=(1, \ldots, n)\) in \(M_{ij}\).
+about a variable at column \(j\)\symbo{mj} are collected in the \ndx{polynomial
+structure}s at rows \(i=(1, \ldots, n)\) in \(M_{ij}\).
 
 \begin{example}[mwp-matrix of \explain]\label{ex:mat}
 Consider the \ndx{mwp-matrix} of \explain.
@@ -744,7 +744,7 @@ of dependence edges.
 \end{figure}
 
 \noindent{}Variables \pr|X1|, \pr|X2|, and \pr|X5| are assigned at most
-\(m\)\symbo{m}{ }coefficients. An \(m\)-flow at the \ndx{mwp-matrix} diagonal
+\(m\)\symbo{m}{ }coefficients\index{flow coefficient}. An \(m\)-flow at the \ndx{mwp-matrix} diagonal
 means the variable depends on its (own) initial value. Since the program has no
 commands that would introduce multiple derivations on these variables, their
 \ndx{polynomial structure}s are simple coefficients. Variable \pr|X3| shows
@@ -777,18 +777,18 @@ mwp-bound is an expression of form $\max(\vec{x}, \poly_1(\vec{y})) +
 $m$\symbo{m}-flow are listed in $\vec{x}$; $w$\symbo{w}-flows in $\vec{y}$, and
 $p$\symbo{p}-flows in $\vec{z}$. Variables characterized by $0$\symbo{zero}-flow
 do not occur in the expression. No bound exists if some variable is
-characterized by ∞\symbo{infty}. The $\poly_1$\symbo{hp} and  are
-\emph{\ndx{honest polynomial}s}, build up from constants and variables by
-applying $+$ and $\times$. The variables with \(w\)\symbo{w}-flow occur in
-$\poly_1$\symbo{hp} and variables with \(p\)\symbo{p}-flow in
-$\poly_2$\symbo{hp}. Any of the three variable lists might be empty, and
-$\poly_1$ and $\poly_2$\symbo{hp} may not be present. When characterizing value
-growth, an \ndx{mwp-bound} is approximative. It excludes precise constants and
-degrees of polynomials. An \ndx{mwp-bound} is a monotonic over-approximation,
-\ie it does not decrease if variable value decrease over subtraction. A program
-\emph{bound} is a conjunction of its variables' \ndx{mwp-bound}s.
-\autoref{ex-bounds} shows illustrative cases of \ndx{mwp-bound}s. The
-differences between the bound forms are discussed in
+characterized by ∞\symbo{infty}\index{derivation failure}. The
+$\poly_1$\symbo{hp} and  are \emph{\ndx{honest polynomial}s}, build up from
+constants and variables by applying $+$ and $\times$. The variables with
+\(w\)\symbo{w}-flow occur in $\poly_1$\symbo{hp} and variables with
+\(p\)\symbo{p}-flow in $\poly_2$\symbo{hp}. Any of the three variable lists
+might be empty, and $\poly_1$ and $\poly_2$\symbo{hp} may not be present. When
+characterizing value growth, an \ndx{mwp-bound} is approximative. It excludes
+precise constants and degrees of polynomials. An \ndx{mwp-bound} is a monotonic
+over-approximation, \ie it does not decrease if variable value decrease over
+subtraction. A program \emph{bound} is a conjunction of its variables'
+\ndx{mwp-bound}s. \autoref{ex-bounds} shows illustrative cases of
+\ndx{mwp-bound}s. The differences between the bound forms are discussed in
 Sections~\ref{subsec:categories} and~\ref{subsec:disclaimer}.
 
 \begin{note}
@@ -1004,7 +1004,7 @@ application produces the maximal coefficient among the \ndx{monomial}s
 \label{subsec:query}
 
 Until now, the flow calculus\index{mwp-calculus} of mwp-bounds has been
-restricted to deriving \ndx{mwp-bounds} for all variables concurrently. For
+restricted to deriving \ndx{mwp-bound}s for all variables concurrently. For
 \ndx{postcondition} inference, we want to obtain information about
 \emph{individual} variables. Since~\autoref{alg:algo} does not require
 mwp-matrices\index{mwp-matrix} or coefficients\index{flow coefficient} as
@@ -1393,8 +1393,8 @@ variable's value growth inconclusive.
 \end{description}
 
 \paragraph*{A note on numerical minimality}
-One variable may be assigned multiple incomparable \ndx{mwp-bounds}. The
-definition of optimality\index{mwp-bounds!optimal} does not guarantee the
+One variable may be assigned multiple incomparable \ndx{mwp-bound}s. The
+definition of optimality\index{mwp-bound!optimal} does not guarantee the
 selected \ndx{postcondition} is the numerical minimum by evaluation. For
 example, variable \pr|X3| in \exname is assigned three mwp-bounds \(W_1 \equiv
 \max(\prm{X3},\prm{X2})+\prm{X1} \times \prm{X5} \) and \(W_2 \equiv
@@ -1447,7 +1447,7 @@ analyzer's handling of richer loop forms would yield more bounded variables.
 To use the analysis results as concrete verification \ndx{assertion}s, two more
 steps are required. First, we must record the initial variable values because
 they are needed to express \ndx{postcondition}s. Next, we must complete the
-parts that are left implicit in \ndx{mwp-bounds}, like constants.
+parts that are left implicit in \ndx{mwp-bound}s, like constants.
 \autoref{app:sec:verified} demonstrates how we perform both steps. In general,
 the \ndx{postcondition}s provide bounding expressions \wrt input variables, with
 some possible omissions. However, filling in the expression is easier than
@@ -1605,7 +1605,7 @@ bounds:\index{asymptotic bounds} time, cost, \ndx{size bound}s, \etc The bound
 most relevant to our problem is the \emph{\ndx{size bound}}, which indicate how
 large the absolute value of an integer variable may become~\cite{lommen2023}.
 Applying \ndx{KoAT} on \ndx{C} programs requires compiling the C code (through
-\ndx{LLVM bytecode}) into an \ndx{integer program}. The transformed program is
+\ndx{LLVM bitcode}) into an \ndx{integer program}. The transformed program is
 then analyzed by \ndx{KoAT}~\cite{giesl2022}. The translation step renames the
 program variables. Variables that do not contribute to the complexity result are
 discarded during pre-processing. This treatment has the following effects: (i)

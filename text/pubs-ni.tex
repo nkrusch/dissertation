@@ -134,14 +134,14 @@ of what is, and what is not, permissible~\cite{bishop2003} for a program
 follows:
 
 \begin{definition}[Information Flow Policy~\protect{\cite{volpano1996}}, Class
-Assignment]\label{def:ifp} An \emph{information flow policy}\index{information
+Assignment]\label{def:ifp} An information flow policy\index{information
 flow!policy} is a \ndx{lattice} \(\SC = (\SCset, <)\)\symbo{seclat} where
-\(\SCset\) is a partially \(<\)-ordered finite set of \emph{\ndx{security
-class}es}.
+\(\SCset\)\symbo{secset} is a partially \(<\)-ordered finite set of
+\ndx{security class}es.
 
 We write \(\ell\)\symbo{secasgn} for the class assignment that assigns
-statically and definitely to each variable \prc|x| occurring in a program
-\prc|C|\symbo{p2} its \ndx{security class} \(\lvl{\prc|x|} \in
+statically and definitely to each variable \prc|x|symbo{xvar2} occurring in a
+program \prc|C|\symbo{p2} its \ndx{security class} \(\lvl{\prc|x|} \in
 \SC\)\symbo{seclat}\symbo{secvar}. \end{definition}
 
 By abuse of notation, we assume that a class assignment always comes with an
@@ -1590,10 +1590,10 @@ can terminate, the \ndx{termination} events are infrequent and uncharacteristic
 of standard behavior. Security analyses that can handle absence of termination
 are necessary to support such programs.
 
-Anytime non-interference\index{non-interference!anytime} is
+Anytime \ndx{non-interference}\index{non-interference!anytime} is
 \ndx{termination}-insensitive\index{non-interference!termination-insensitive}
 and compatible with the study of non-terminating programs. However,
-termination-insensitivity is too weak to guard against untrusted code, \eg
+\ndx{termination}-insensitivity is too weak to guard against untrusted code, \eg
 execution of the \prc|eval| command. To offer an alleviation strategy, we
 present an approach to distribute security-sensitive computation. This way,
 computations that require elevated security checks are handled separately from
@@ -1666,7 +1666,7 @@ system}\index{security type system} provided a foundation for a series of
 complexity-theoretic results~\cite{marion2011,hainry2023}. In the opposite
 direction, an ICC system was applied to cryptographic\index{cryptography}
 proofs~\cite{baillot2019}. Although \lname has transformed from its origins to
-not enforce complexity bounds, it reinforces the bidirectional connection
+not enforce \ndx{complexity bound}s, it reinforces the bidirectional connection
 between ICC and \ndx{language-based security}.
 
 \subsection{Conclusion: Strengths, Limitations and Future Directions}

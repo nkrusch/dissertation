@@ -600,7 +600,7 @@ The flow can be constrained by imposing a precedence relation that regulates the
 Marion extended the principle to characterize the class of polynomial time computable functions\ccxi{p}.
 A critical step in obtaining this result was combining tiering with a type system\index{security type system} for secure \ndx{information flow}.
 Each variable is assigned a type -- a {tier} of either 0 or 1 -- representing elements of a complexity \ndx{lattice}.
-The paper then shows that terminating and well-typed programs are computable in polynomial time.
+The paper then shows that terminating and well-typed programs are computable in polynomial time\ccxi{p}.
 \ndx{SAFE programs} is precisely the class of programs captured by this characterization.
 
 Judging by the number of works that followed, the technique was inspirational.
@@ -620,7 +620,7 @@ In the latter, the main result is a proof that SAFE and terminating aperiodic pr
 \paragraph*{From complexity to \ndx{cryptography}}
 A separate series of works applies implicit computation complexity toward applications in \ndx{cryptography}.
 The application is natural, because the security of cryptographic\index{cryptography} schemes is formulated as a mathematical problem, where the goal is to show the scheme is not to be solvable by a feasible adversary.
-The term feasible refers to computable in polynomial time~\cite{feree2018}.
+The term feasible refers to computable in polynomial time~\cite{feree2018}\ccxi{p}.
 
 This application is naturally, because in showing that a cryptographic\index{cryptography} scheme is secure, adversarial capabilities must restrict available computational power~\cite{heraud2011}.
 
@@ -634,8 +634,8 @@ the result appeared in 2011, the technique was integrated into the
 assistant, for cryptographic proofs~\cite{barthe2009}. However, Certicrypt has
 since then been deprecated; it is superseded by
 \ndx{EasyCrypt}~\cite{barthe2014}. The support for complexity proofs in
-EasyCrypt is limited~\cite{barbosa2023}. The integration of safe recursion has
-thus not survived the \enquote{test of time}.
+EasyCrypt is limited~\cite{barbosa2023}. Thus, the integration of safe
+recursion did not survive the \enquote{test of time}.
 
 \item[Type system d\(\ell\)T.]
 The \ndx{type system} \ndx{d\(\ell\)T}~\cite{baillot2015,baillot2019} is
@@ -672,7 +672,7 @@ in the paper.
 The technique is a refinement of prior works (refer to~\autoref{sec:vmcai}
 and~\cite{moyen20172}). A previous version of the logic was used to obtain a
 compile-time program optimization (in~\autoref{sec:vmcai}). Although the logic
-no longer guarantees complexity bounds, it demonstrates the benefit of
+no longer guarantees \ndx{complexity bound}s, it demonstrates the benefit of
 connecting techniques between the ICC and security.
 
 Adjusting the logic to track \ndx{non-interference} revealed various

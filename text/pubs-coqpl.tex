@@ -16,10 +16,10 @@ and enables integration of complexity analyses\index{complexity analysis} into
 larger formal developments.
 
 Unfortunately, computational complexity is notoriously difficult to represent
-formally for several reasons. In general, deriving a complexity bound for an
-arbitrary program is an undecidable\index{undecidability} problem. In the area
-of \ndx{complexity theory}, \textcquote[p.~114]{forster2020}{formalisations of
-even basic complexity-theoretic results are not available}, hindering
+formally for several reasons. In general, deriving a \ndx{complexity bound} for
+an arbitrary program is an undecidable\index{undecidability} problem. In the
+area of \ndx{complexity theory}, \textcquote[p.~114]{forster2020}{formalisations
+of even basic complexity-theoretic results are not available}, hindering
 certification attempts.
 
 For practical complexity analyses\index{complexity analysis}, many existing
@@ -70,7 +70,7 @@ values manipulated by an imperative program\index{imperative programs}. While it
 does not ensure (or require) program \ndx{termination}, it provides a
 certificate guaranteeing that the program uses throughout its execution at most
 a polynomial amount of space, and as a consequence that if it terminates, it
-will do so in polynomial time in the size of its inputs.
+will do so in polynomial time\index{time complexity} in the size of its inputs.
 
 The analysis computes, for each program variable, a vector tracking how it
 depends\index{data dependence} on other variables. The vector values are
@@ -165,9 +165,9 @@ al.}~\cite{carbonneaux2017} presented an automatic static analyzer for
 \ndx{imperative programs}, and although the analyzer itself is not verified, it
 generates bounds with machine-checkable certificates, to guarantee that the
 computed bound holds. For functional paradigm, McCarthy et
-al.~\cite{mccarthy2018} developed a \ndx{Coq} library, with a monad that counts
-abstract steps, which enabled running time analysis of programs written using
-the monad. An ICC-based characterization was introduced by Férée et
+al.~\cite{mccarthy2018} developed a \ndx{Coq} library, with a \ndx{monad} that
+counts abstract steps, which enabled running time analysis of programs written
+using the monad. An ICC-based characterization was introduced by Férée et
 al.~\cite{feree2018}, in the form of a \ndx{Coq} library, that allows for
 readily proving that a function is computable in polynomial time.\ccxi{p}
 

@@ -234,7 +234,7 @@ Formal verification approaches.\index{formal verification}}
 \end{figure}
 
 \autoref{tab:fm-tools} shows a collection of formal methods tools.
-Interactive theorem provers\index{interactive proof assistant} and
+Interactive theorem provers\index{proof assistant} and
 verification-aware programming languages are of special interest to this
 dissertation.
 
@@ -263,7 +263,7 @@ dissertation.
 ,{ }\href{https://github.com/Z3Prover/z3}{\ndx{Z3}}%
 \\\midrule
 \multicolumn{2}{@{}l}{\textbf{Interactive theorem proving}}
-\index{interactive proof assistant}\\
+\index{proof assistant}\\
 &
 \href{https://github.com/agda/agda}{\ndx{Agda}}%
 ,{ }\href{https://github.com/EasyCrypt/easycrypt}{\ndx{EasyCrypt}}%
@@ -399,20 +399,20 @@ proving. Prominent ATPs complete bi-annually on solving the
 \href{https://tptp.org/CASC/}{\ndx{CADE ATP System Competition}} (CASC) -- the
 world championship for automated theorem proving~\cite{casc}.
 
-\item An \emph{interactive theorem prover}\index{interactive proof assistant}
-(ITP), \aka \emph{interactive proof assistant}, is a programming environment
-that helps users write \ndx{mechanized proof}s. Proof assistants vary in
-underlying logics and proof style. To provide some metric of comparability,
-there is a ranking for tracking the formalization extent of 100 well-known
-mathematical theorems across proof assistants. As of April 2025, the top 3 proof
-assistants with highest coverage of the problems are \ndx{Isabelle} (92\%),
-\ndx{HOL Light} (89\%), and \ndx{Rocq} (79\%)~\cite{hundredtheorems}.
+\item An \emph{interactive theorem prover}
+(ITP), \aka \emph{interactive \ndx{proof assistant}}, is a programming
+environment that helps users write \ndx{mechanized proof}s. Proof assistants
+vary in underlying logics and proof style. To provide some metric of
+comparability, there is a ranking for tracking the formalization extent of 100
+well-known mathematical theorems across \ndx{proof assistant}s. As of April 2025, the
+top 3 \ndx{proof assistant}s with highest coverage of the problems are \ndx{Isabelle}
+(92\%), \ndx{HOL Light} (89\%), and \ndx{Rocq} (79\%)~\cite{hundredtheorems}.
 \end{itemize}
 
 Automatic theorem provers\index{automated theorem proving} search for proofs of
 isolated problems and frequently serve as building block of other verification
-tools. Interactive theorem provers\index{interactive proof assistant} enable
-large and complex modular proof developments.
+tools. Interactive theorem provers\index{proof assistant} enable large and
+complex modular proof developments.
 
 \item[Verification-aware programming languages.]
 Verification-aware programming languages provide a conceptually different
@@ -441,7 +441,7 @@ be familiar to the reader.
 \subsubsection{The \ndx{Rocq} Theorem Prover}
 \label{subsec:rocq}
 
-The \ndx{Rocq} theorem prover is an \ndx{interactive proof assistant} for
+The \ndx{Rocq} theorem prover is an interactive \ndx{proof assistant} for
 machine-checked formal reasoning. It provides a rich and flexible environment
 for various proof developments. \ndx{Rocq} is a widely-adopted tool in the
 programming languages research community. Among its applications are formal
@@ -621,8 +621,9 @@ contains representative examples in the first two categories.
 
 \paragraph*{Additional resources}
 There are multiple literature sources for learning more about \ndx{Rocq}.
-Coq'Art~\cite{bertot2004} is the first book dedicated to the proof assistant and
-its theory. The \href{https://softwarefoundations.cis.upenn.edu}{Software
+Coq'Art~\cite{bertot2004} is the first book dedicated to the \ndx{proof
+assistant} and its theory. The
+\href{https://softwarefoundations.cis.upenn.edu}{Software
 Foundations}~\cite{cpierce20221} book series is a hands-on, active learning
 experience. The books are implemented in \ndx{Rocq} and updated regularly. The
 \ndx{Mathematical Components} book~\cite{mahboubi2022} provides a guide to using
@@ -812,7 +813,7 @@ proof. Moreover, it is possible to inspect the different states of the
 automation, to make the intermediate states inspectable.} Thus, a
 \ndx{mechanized proof} lifts the observer's need to understand the details of
 the proof script. The observer must instead \enquote{just} understand the
-stated theorem and trust the proof assistant in checking its correctness.
+stated theorem and trust the \ndx{proof assistant} in checking its correctness.
 
 \begin{center}
 \begin{minipage}{\textwidth}

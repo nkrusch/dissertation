@@ -9,26 +9,26 @@ resources may not be solvable in practice.
 Computational \ndx{complexity theory} enhances the study of \ndx{computable
 function}s by classifying them into \emph{\ndx{complexity classes}}\footnote{For
 a comprehensive exploration of complexity classes,
-see~\textcite{complexityzoo}.} based on resources requirements\index{resource
+see~\textcite{complexityzoo}.} based on resource requirements\index{resource
 usage}. Algorithms computing those functions are categorized by the amount of
 required \emph{resources}\index{resource usage} when executed on a specified
 \emph{machine model}, such as a \ndx{Turing Machine} (TM). Which particular
 model of computation\index{machine model} is used does not matter, as long as
-one adheres to Slot and van Emde Boas Invariance Thesis\index{Invariance
-Thesis}~\cite{slot1984}\footnote{The \ndx{Invariance Thesis} asserts that a
-time (resp., space) cost model is reasonable for a computational model
-C\index{machine model} if there are mutual simulations between TMs and C such
-that the overhead is polynomial in time\ccxi{p} (resp., linear in
-space)~\cite{vanoni2022}.}, and is concerned with \ndx{complexity classes}, \ie
-order of magnitudes in the resources needed. The resource cost\index{resource
-usage} is estimated relative to the input size. This way algorithms are allowed
-to consume more resources when the input size grows while maintaining membership
-in the same complexity class\index{complexity classes}. The common resources of
-interest are time\index{time complexity} and space (memory)\index{space
-complexity}. Complexity measures\index{complexity measure} are defined
-explicitly relative to the \ndx{machine model}. For example, \ndx{time
-complexity} refers to the maximum number of computation steps a
-machine\index{machine model} uses on any input~\cite[p. 276]{sipser2012}.
+one adheres to Slot and van Emde Boas \ndx{Invariance Thesis}\footnote{The
+\ndx{Invariance Thesis} asserts that a time (\resp space) cost model is
+reasonable for a computational model \(\mathcal{C}\)\symbo{cmodel}\index{machine
+model} if there are mutual simulations between TMs and \(\mathcal{C}\) such that
+the overhead is polynomial in time\ccxi{p} (resp., linear in
+space)~\cite{vanoni2022}.}~\cite{slot1984}, and is concerned with
+\ndx{complexity classes}, \ie order of magnitudes in the resources needed. The
+resource cost\index{resource usage} is estimated relative to the input size.
+This way algorithms are allowed to consume more resources when the input size
+grows while maintaining membership in the same complexity class\index{complexity
+classes}. The common resources of interest are time\index{time complexity} and
+space (memory)\index{space complexity}. Complexity measures\index{complexity
+measure} are defined explicitly relative to the \ndx{machine model}. For
+example, \ndx{time complexity} refers to the maximum number of computation steps
+a machine\index{machine model} uses on any input~\cite[p. 276]{sipser2012}.
 Besides (deterministic) time and space, various other resources can be viewed as
 complexity measures\index{complexity measure}; for example, parallel
 time\index{parallel time} and circuit complexity\index{circuit
@@ -46,19 +46,18 @@ that is not asymptotically tight~\cite[p. 50]{cormen2009}. Other relevant
 notations are \(\Omega\)\symbo{bigomega} for an asymptotic lower
 bound\index{lower bound}, and \(\Theta\)\symbo{bigtheta} for an asymptotic tight
 bound\index{tight bound}~\cite[Sect. 3.1]{cormen2009}. Among the benefits,
-complexity analysis\index{asymptotic analysis} develops insight of
-costs\index{resource usage} of computational patterns and identifies
-relationships between complexity classes\index{complexity classes}. For
-algorithms, it produces measures of efficiency, and allows comparing relative
-performance of alternative algorithms~\cite{cormen2009}.
+\ndx{asymptotic analysis} develops insight of costs\index{resource usage} of
+computational patterns and identifies relationships between \ndx{complexity
+classes}. For algorithms, it produces measures of efficiency, and allows
+comparing relative performance of alternative algorithms~\cite{cormen2009}.
 
-This overview of the classical complexity theory\index{complexity theory} should
-be familiar from textbooks. However, a refresher on the basics gives a baseline
-for comparison for the discussion that is about to follow. The remainder of this
-dissertation builds on \emph{implicit} computational complexity. Implicit
-complexity complements the classical complexity theory\index{complexity theory}
-by offering alternative perspectives and systems for reasoning about cost of
-computation\index{resource usage}.
+This overview of the classical \ndx{complexity theory} should be familiar from
+textbooks. However, a refresher on the basics gives a comparison baseline for
+the discussion that is about to follow. The remainder of this dissertation
+builds on \emph{implicit} computational complexity. Implicit complexity
+complements the classical \ndx{complexity theory} by offering alternative
+perspectives and systems for reasoning about cost of computation\index{resource
+usage}.
 
 \subsubsection{Computational Complexity, \emph{Implicitly}}
 
@@ -86,16 +85,17 @@ model of single-tape \ndx{Turing Machine}s~\cite[p. 33]{goldreich2008}.}.
 Multiple distinct implicit characterizations are known for many complexity
 classes\index{complexity classes} -- \cf~\autoref{tab:icc-results}.
 
-Implicit computational complexity sees complexity bounds as consequences of
-restrictions on program structures. In this view, it studies the computational
-resources embedded in programming languages by \emph{construction}. Another
-common feature is that the characterizations may omit references to explicit
-resource bounds~\cite{moyen2017} -- refer to \eg~%! suppress = MathFunctionText
-\textcite{bellantoni1992} or~\textcite{kristiansen2005} for examples. Thus, the
-focus is on studying the quality, rather than quantity, of the resources needed.
-Since an implicit characterization, or an \emph{ICC system}, captures a specific
-complexity class\index{complexity classes}, complexity analysis becomes a task
-of determining class membership, rather than classifying computations among many
+Implicit computational complexity sees \ndx{complexity bound}s as consequences
+of restrictions on program structures. In this view, it studies the
+computational resources embedded in programming languages by
+\emph{construction}. Another common feature is that the characterizations may
+omit references to explicit resource bounds~\cite{moyen2017} -- refer to \eg~%!
+suppress = MathFunctionText \textcite{bellantoni1992}
+or~\textcite{kristiansen2005} for examples. Thus, the focus is on studying the
+quality, rather than quantity, of the resources needed. Since an implicit
+characterization, or an \emph{ICC system}, captures a specific complexity
+class\index{complexity classes}, complexity analysis becomes a task of
+determining class membership, rather than classifying computations among many
 classes as in classical asymptotic analysis\index{asymptotic analysis}.
 
 There are several good motivations for researching implicit characterizations of
@@ -114,12 +114,13 @@ computational power present in programming languages by construction.
 \item A programming language-based approach yields more {natural definitions and
 proofs} of central results than the classical approach.
 
-\item The characterizations demonstrate that complexity classes are intrinsic
-mathematical entities that do not depend on a particular machine
-model\index{machine model}.
+\item The characterizations demonstrate that \ndx{complexity classes} are
+intrinsic mathematical entities that do not depend on a particular \ndx{machine
+model}.
 
 \item Implicit complexity introduces orthogonal program analysis techniques with
-potential to convert complexity-theoretic insights to practical analyses.
+potential to convert complexity-theoretic\index{complexity theory} insights to
+practical analyses.
 
 \end{itemize}
 
@@ -127,11 +128,9 @@ potential to convert complexity-theoretic insights to practical analyses.
 
 Describing the goals of implicit complexity omits the details of \emph{how} such
 implicit characterizations should be designed. Over time, numerous distinct
-systems have been developed based on, or inspired by, \eg calculi, term
-rewriting\index{term rewriting}, data flow analysis\index{data flow analysis},
-primitive recursion\index{primitive recursion}, linear logic\index{linear
-logic}, modal logic\index{modal logic}, type systems\index{type system}, digital
-circuits\index{digital circuit}, and
+systems have been developed based on, or inspired by, \eg calculi, \ndx{term
+rewriting}, \ndx{data flow analysis}, \ndx{primitive recursion}, \ndx{linear
+logic}, \ndx{modal logic}, \ndx{type system}s, \ndx{digital circuit}s, and
 more~\cite{kristiansen2017,marion2011,moyen2017,baillot2012}. With such rich
 versatility, it becomes challenging to identify ICC systems upon encounter and
 to find an overarching definition that matches them all\footnote{ On the the
@@ -166,16 +165,16 @@ languages}~\cite{hoffmann2022}. It requires introducing a language-based
 \emph{syntactic} restriction that guarantees a \emph{semantic} property;
 typically, that a satisfactory program is a member of the characterized
 complexity class~\cite{moyen2017}\index{complexity classes}. Then, if the
-restriction is maintained, the complexity bound will also be maintained.
+restriction is maintained, the \ndx{complexity bound} will also be maintained.
 
 The programming language-based approach has minimally two significant effects
-compared to classical complexity theory\index{complexity theory}. The first is a
+compared to classical \ndx{complexity theory}. The first is a
 \emph{temporal} shift that arises from making complexity an \emph{apriori}
 consideration in the language design. In other words, implicit complexity
 systems permit reasoning about runtime properties \emph{before a program
 exists}. The second is a \emph{relational} shift between a program developer and
 the task of performing complexity analysis\index{asymptotic analysis}. By
-embedding into a language a restriction by which a complexity bound will be
+embedding into a language a restriction by which a \ndx{complexity bound} will be
 guaranteed, the effort of satisfying that restriction is raised upstream to the
 developer~\cite{moyen2017}. In return, to obtain runtime guarantees, the
 developer does not need to know about the intricacies of complexity analysis or
@@ -392,7 +391,7 @@ for the rest of this dissertation.
         &&& \textcite{aubert2016}  \\*
     \midrule
     2016 & \recs & Inf. Comput.
-        & Complexity of uniform \ndx{Boolean circuits}
+        & Complexity of uniform \ndx{Boolean circuit}s
         & \ccx{nc} \\*
         &&& \textcite{bonfante2016} \\*
     \midrule
@@ -427,7 +426,7 @@ for the rest of this dissertation.
     ]{
       A list of theoretical implicit computational complexity systems and
       results. The historically first publications are marked with the symbol
-      \(^{\displaystyle *}\). The graphical symbols describe the main
-      restriction techniques used to enforce \ndx{complexity bound}s.
+      \(^{\displaystyle *}\). The graphical icons describe the primary
+      restriction technique used to enforce \ndx{complexity bound}s.
     }\label{tab:icc-results}
 \end{tabularx}
