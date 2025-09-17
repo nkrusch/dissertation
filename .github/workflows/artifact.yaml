@@ -10,6 +10,7 @@ on:
     paths-ignore:
       - '**.md'
       - '**.txt'
+      - '**.json'
   workflow_dispatch:
     branches: [ main ]
 

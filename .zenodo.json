@@ -2,13 +2,12 @@
   "title": "Artifact for \"Applied Implicit Computational Complexity\"",
   "description": "A companion artifact for the doctoral dissertation \"Applied Implicit Computational Complexity\" (Rusch, 2025).\n\nThe artifact contains the source code of the dissertation and the artifact; and instructions for running and navigating the artifact. Start from the readme and follow Getting Started instructions.\n\nThe dissertation and its source code are licensed under Creative Commons Attribution 4.0 International.\nThe contained manuscripts and associated software have separate licenses.",
   "publication_type": "thesis",
-  "upload_type": "software",
-  "access_right": "open",
+  "upload_type": "thesis",
   "license": "cc-by-4.0",
   "language": "eng",
   "creators": [
     {
-      "affiliation": "The Graduate School, Augusta University",
+      "affiliation": "Augusta University",
       "name": "Rusch, Neea",
       "orcid": "0000-0002-7354-5330"
     }
@@ -23,7 +22,7 @@
   "thesis_university": "Augusta University",
   "dates": [
     {"start": "2025-04-26", "type": "Created"},
-    {"start": "2025-05-05", "type": "Submitted", "description": "Submitted for review."},
+    {"start": "2025-05-05", "type": "Submitted", "description": "Submitted for review"},
     {"start": "2025-08-15", "type": "Accepted"},
     {"start": "2025-09-17", "type": "Available"}
   ],
