@@ -14,9 +14,6 @@ on:
   workflow_dispatch:
     branches: [ main ]
 
-env:
-  BASE: "https://zenodo.org/api/deposit/depositions"
-
 jobs:
   compile:
     name: Compile
@@ -29,8 +26,16 @@ jobs:
       - name: 🔖 Set tag
         id: meta
         run:  x="${{ github.ref_name }}"; echo "tag=${x/main/latest}" >> $GITHUB_OUTPUT
-      - name: Upload readme
-        run: curl -F "file=@readme.txt" ${{ env.BASE }}/${{ vars.ZENODO_ID }}/files?access_token=${{ secrets.ZENODO_TOKEN }}
+      - name: 🗄️ Make source deposit
+        run: make sources.zip
+      - name: Update zenodo
+        run: |
+          curl -H "Authorization: Bearer ${{ secrets.ZENODO_TOKEN }}" \
+          --upload-file sources.zip \
+          https://zenodo.org/api/files/${{ secrets.ZENODO_BUCKET }}/sources.zip"
+          curl -H "Authorization: Bearer ${{ secrets.ZENODO_TOKEN }}" \
+          --upload-file readme.txt \
+          https://zenodo.org/api/files/${{ secrets.ZENODO_BUCKET }}/readme.txt"
       - name: 🏗️ Compile
         uses: xu-cheng/latex-action@v3
         with:
