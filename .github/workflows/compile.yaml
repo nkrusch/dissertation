@@ -28,7 +28,7 @@ jobs:
         run:  x="${{ github.ref_name }}"; echo "tag=${x/main/latest}" >> $GITHUB_OUTPUT
       - name: 🗄️ Make source deposit
         run: make sources.zip && ls -l sources.zip && md5sum sources.zip
-      - name: Update Zenodo files
+      - name: 🌬️ Update Zenodo files
         run: |
           curl -H 'Authorization: Bearer ${{ secrets.ZENODO_TOKEN }}' --upload-file sources.zip https://zenodo.org/api/files/${{ secrets.ZENODO_BUCKET }}/sources.zip
           curl -H 'Authorization: Bearer ${{ secrets.ZENODO_TOKEN }}' --upload-file readme.txt  https://zenodo.org/api/files/${{ secrets.ZENODO_BUCKET }}/readme.txt
@@ -56,7 +56,6 @@ jobs:
           allowUpdates: true
           removeArtifacts: true
           replacesArtifacts: true
-
 
   deploy:
     name: Share 

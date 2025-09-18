@@ -6,8 +6,11 @@ concurrency:
 
 on:
   push:
-    tags:
-      - '*'
+    branches: [ main ]
+    paths-ignore:
+      - '.github/*'
+      - '.gitignore'
+      - 'Dockerfile'
   workflow_dispatch:
     branches: [ main ]
 
@@ -43,9 +46,9 @@ jobs:
             ghcr.io/${{ env.IMAGE_NAME }}:${{ steps.meta.outputs.tag }}
           outputs: type=docker,dest=${{ runner.temp }}/${{ env.TAG_LATEST }}-amd64.tar
           provenance: false
-          push: true
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: ${{ env.TAG_LATEST }}-amd64.tar
-          path: ${{ runner.temp }}/${{ env.TAG_LATEST }}-amd64.tar
+          push: ${{ github.ref_name != 'main' }} # if tagged
+      - name: 🌬️ Push it to Zenodo
+        run: |
+          curl -H 'Authorization: Bearer ${{ secrets.ZENODO_TOKEN }}' \
+          --upload-file ${{ runner.temp }}/${{ env.TAG_LATEST }}-amd64.tar \
+          https://zenodo.org/api/files/${{ secrets.ZENODO_BUCKET }}/${{ env.TAG_LATEST }}-amd64.tar
