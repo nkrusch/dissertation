@@ -432,27 +432,31 @@ in Chapter~\autoref{app:sec:artifacts}.
 The source code of the dissertation~\cite{diss} is publicly available at the
 following repository.
 
-\noindent\begin{minipage}{\textwidth}
+\begin{center}
+\begin{minipage}{\textwidth}
 %! suppress = EscapeUnderscore
 \begin{browserlisting}[nolol,escapeinside=!!]
 !\href{https://github.com/nkrusch/dissertation}
 {\texttt{https://github.com/nkrusch/dissertation}}!
 \end{browserlisting}
 \end{minipage}
+\end{center}
 
-\paragraph*{Artifact}
-The dissertation has a companion artifact. It is preloaded with all required
-software and it enables reproducing the executable examples that appear in the
-dissertation. For example,~\autoref{sec:toolguide} can be followed interactively
-with the artifact. The artifact URL is:
+\paragraph*{Dissertation artifact}
+The dissertation has a companion artifact. The artifact is preloaded with all
+required software and enables reproducing all executable examples that appear in
+the dissertation. For example,~\autoref{sec:toolguide} can be followed
+interactively with the artifact. The URL of the artifact is:
 
-\noindent\begin{minipage}{\textwidth}
+\begin{center}
+\begin{minipage}{\textwidth}
 %! suppress = EscapeUnderscore
 \begin{browserlisting}[nolol,escapeinside=!!]
 !\href{https://doi.org/10.5281/zenodo.17148077}
 {\texttt{https://doi.org/10.5281/zenodo.17148077}}!
 \end{browserlisting}
 \end{minipage}
+\end{center}
 
 \subsubsection{Notational Conventions}
 
@@ -534,20 +538,19 @@ hosted at \pr|<URL>|, the recovery address pattern is:
 
 \noindent\begin{minipage}{\textwidth}
 %! suppress = EscapeUnderscore
-\begin{browserlisting}
-!\texttt{https://archive.softwareheritage.org/browse/origin/directory/}!
-!\hspace{2em}\texttt{?origin\_url=<URL>}!
+\begin{browserlisting}[belowskip=1em][]
+!\texttt{https://archive.softwareheritage.org/browse/origin/directory/ ?origin\_url=<URL>}!
 \end{browserlisting}
 \end{minipage}
+
 
 \begin{example}[Recovering a software repository]
 The dissertation source code archival recovery address is:\mbox{}
 
 \noindent\begin{minipage}{\textwidth}
 %! suppress = EscapeUnderscore
-\begin{browserlisting}
-!\texttt{\href{https://archive.softwareheritage.org/browse/origin/directory/?origin_url=https://github.com/nkrusch/dissertation}{https://archive.softwareheritage.org/browse/origin/directory/}}!
-!\hspace{2em}\texttt{\href{https://archive.softwareheritage.org/browse/origin/directory/?origin_url=https://github.com/nkrusch/dissertation}{?origin\_url=https://github.com/nkrusch/dissertation}}!
+\begin{browserlisting}[belowskip=1em][]
+!\texttt{\url{https://archive.softwareheritage.org/browse/origin/directory/?origin_url=https://github.com/nkrusch/dissertation}}!
 \end{browserlisting}
 \end{minipage}
 \end{example}
@@ -558,7 +561,6 @@ Web pages and PDF files are archived in the \ndx{Wayback Machine} of the
 Internet Archive -- substitute \pr|<URL>| by the document's URL\@:
 
 \noindent\begin{minipage}{\textwidth}
-%! suppress = EscapeUnderscore
 \begin{browserlisting}
 !\texttt{https://web.archive.org/web/<URL>}!
 \end{browserlisting}
@@ -584,9 +586,8 @@ document.\mbox{}
 
 \noindent\begin{minipage}{\textwidth}
 %! suppress = EscapeUnderscore
-\begin{browserlisting}
-!\texttt{\href{https://web.archive.org/web/https://types22.inria.fr/files/2022/06/}{https://web.archive.org/web/https://types22.inria.fr/files/2022/06/}}!
-!\hspace{2em}\texttt{\href{https://web.archive.org/web/https://types22.inria.fr/files/2022/06/TYPES_2022_paper_14.pdf}{TYPES\_2022\_paper\_14.pdf}}!
+\begin{browserlisting}[belowskip=1em][]
+!\texttt{\url{https://web.archive.org/web/https://types22.inria.fr/files/2022/06/TYPES_2022_paper_14.pdf}}!
 \end{browserlisting}
 \end{minipage}
 \end{example}

@@ -56,6 +56,9 @@ jobs:
           allowUpdates: true
           removeArtifacts: true
           replacesArtifacts: true
+      - name: 🌬️ Upload compiled version to Zenodo
+        run: |
+          curl -H 'Authorization: Bearer ${{ secrets.ZENODO_TOKEN }}' --upload-file main.pdf https://zenodo.org/api/files/${{ secrets.ZENODO_BUCKET }}/dissertation.pdf
 
   deploy:
     name: Share 

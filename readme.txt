@@ -20,6 +20,8 @@ This is a companion artifact for a dissertation by the same name.
 The artifact allows re-compiling the dissertation from sources and
 running all executable examples that appear in the dissertation.
 
+This artifact is archived at https://doi.org/10.5281/zenodo.17148077
+
 ------------------------------------------------------------------------
 🐳  Getting Started — Create a Docker Environment
 ------------------------------------------------------------------------
@@ -30,21 +32,32 @@ PREREQUISITES
 * Internet - only container pull/build requires the host to be online.
 * Memory - container size is approx. 8 GB
 
+All necessary software is pre-installed in the container. The pre-built
+container assumes an x86/amd64 architecture. It can be run on arm but it
+will run slower. The Docker setup has been tested on macOS (amd64,
+arm64) and Linux Ubuntu 22.04 (amd64).
+
 STANDARD SETUP
-Pull and launch a container. All necessary software is pre-installed
-in the container. On some machines you may need sudo.
+
+[recommended] Pull the container from GitHub Container Registry.
+On some machines you may need sudo.
 
     docker pull --platform=linux/amd64 ghcr.io/nkrusch/dissertation:artifact
-    docker run --name dimage -it --rm ghcr.io/nkrusch/dissertation:artifact
 
-The pre-built container assumes an amd64/x86 architecture. It can be
-run on arm architectures, it will just run slower. The setup has been 
-tested on macOS (amd64, arm64) and Linux Ubuntu 22.04 (amd64).
+If the above is not possible, load the container from the tarball
+archived on Zenodo. You may need to unzip the tarball first.
+
+    docker load -i artifact-amd64.tar
+
+After pull or load, launch the container.
+
+    docker run --platform=linux/amd64 --name dimage -it --rm ghcr.io/nkrusch/dissertation:artifact
 
 ALTERNATIVE SETUP
+
 Build the container from scratch. Building takes about 10-15 min.
-The build does not assume a specific architecture  and has been tested
-on both amd and arm. Run at the unzipped sources root:
+The build does not assume a specific architecture and has been tested
+on x86/amd and arm. Run at the unzipped sources root:
 
     docker build . -t dimage
     docker run --name dimage -it --rm dimage
@@ -52,6 +65,9 @@ on both amd and arm. Run at the unzipped sources root:
 ------------------------------------------------------------------------
 📁  Source Code Organization
 ------------------------------------------------------------------------
+
+The source code (and container) is organized as follows.
+
     .
     ├─ 📁 code             : Code listings
     ├─ 📁 fonts            : Custom fonts
@@ -69,7 +85,7 @@ on both amd and arm. Run at the unzipped sources root:
     └─ readme.txt          : This readme
 
 ------------------------------------------------------------------------
-🏗️  Compile the Dissertation (optional)
+🏗  Compile the Dissertation (optional)
 ------------------------------------------------------------------------
 
 A pre-compiled dissertation is available at following addresses:
@@ -195,9 +211,4 @@ Expected output (the times are approximate):
     C sends 5 ==> B got A=2 and C=(7, 3, 6)
 
 ------------------------------------------------------------------------
-📜️  Archival
-------------------------------------------------------------------------
-
-This artifact is archived at: https://doi.org/10.5281/zenodo.17148077
-
 END.

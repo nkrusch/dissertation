@@ -2,8 +2,8 @@
 \section{Observations About Specific Techniques}
 \label{sec:res-specific}
 
-This discussion is organized concentrically. It starts with specific techniques
-and then moves outward to more general findings.
+The specific techniques are the flow calculus of mwp-bounds and the QI
+Framework.
 
 \subsection{Advancements of the Flow Calculus}
 \label{subsec:res-flow-calc}
@@ -127,13 +127,13 @@ outstanding task (\cf~\autoref{sec:mwp-calc-formal}). However, the advancements
 in other areas are important to motivate the formalization effort. There is now
 strong evidence to justify the relevance and need for formal verification.
 
-\subsection{Extended Non-Functional Properties}
+\subsection{Extending the QI Framework}
 \label{subsec:res-qi}
-\index{non-functional property}
 
-In a second research direction, we have applied the QI-framework toward two
-applications: in loop distribution\index{loop transformation!distribution} and
-to track \ndx{non-interference}.
+In a second research direction, we applied the QI-framework to two new program
+analysis applications: distributing loops for parallelization\index{loop
+transformation!distribution} and tracking the security property of
+\ndx{non-interference}.
 
 \subsubsection{Loop Distributing Program Optimization}
 \label{subsubsec:qi-opt}
@@ -220,7 +220,7 @@ non-interference\index{non-interference!anytime} (\autoref{subsec:ni-soundness})
 and precisely identifying its ideal application. Based on the prior success with
 the QI framework, we are confident that the outstanding steps are achievable.
 
-\subsubsection{Advancements of the QI Framework}
+\subsubsection{New Insights About the QI Framework}
 \label{subsubsec:qi-res}
 
 Our investigations of the QI framework provide a case example showing that ICC
@@ -247,50 +247,85 @@ framework likely encapsulates even richer utility than uncovered thus far.
 \section{Broader Research Findings}
 \label{sec:broader-findings}
 
+Moving beyond specific techniques, our investigation revealed observations about
+connecting ICC and \ndx{automatic resource analysis}; and the challenges that
+emerge in general from applying implicit computational complexity.
+
 \subsection{Applications in Automatic Resource Analysis}
 \label{subsec:res-resource-analysis}
 \index{automatic resource analysis}
 
-Our investigations revealed several observations about \ndx{automatic resource
-analysis}.
+\paragraph*{Dissecting analysis utilities}
+In the most rudimentary form, ICC-based program analyses evaluate a binary
+membership problem. The task is to decide whether an input program belongs to a
+targeted complexity class\index{complexity class}. Like in \ndx{safe recursion}
+(\autoref{safe-rec}), no explicit bound needs to be provided~\cite[p.
+13]{moyen2017}.
 
-\paragraph*{Analysis utilities}
-The first is about the analysis results we can obtain with implicit computational complexity, and how to judge the application potential of ICC systems.
-Centrally, ICC systems aim to confirm whether a program belongs to some complexity class.
-There are \emph{some} use cases for such binary classification.
-For example, the domain-specific language Karp~\cite{zhang2022}---for programming and testing \ndx{Karp reduction}s---naturally requires ways to confirm a reduction is computable in polynomial time (without needing further \ndx{precision}).
-However, it is an isolated use case.
-A coarse binary analysis has limited practical utility in general.
-The relevance of an analysis increases if we can show it can assist in software engineering tasks.
-Such analysis should produce quantitative information that helps engineers to understand the program behavior.
-The analysis should express resource bounds and pinpoint issues like resource-intensive procedures.
-Certain ICC systems, like the flow calculus of mwp-bounds, have these capabilities naturally.
-If some computations exceed polynomial bounds, the analysis should still yield (some) informative results.
-This last requirement is often beyond capabilities of ICC systems~\cite{baillot2012}, including the original formulation of the flow calculus.
-Although many ICC systems are typically defined on \enquote{little} languages, it is possible to work around this limitation by focusing on sub-classes of programs, \eg integer programs and numerical loops.
-Through compositional analysis of subprograms, ICC systems extend to analysis of general programming languages, as demonstrated with pymwp.
-In other words, having a restricted syntax is not an insurmountable hurdle to applications, in our experience.
-To make an analysis comparable to existing resource analyzers, it suffices to target the \ndx{C} Integer Programs \ndx{grammar}~\cite{cinteger} used in the \ndx{Termination Competition}~\cite{giesl2019}.
-From these attributes, we can derive a checklist to judge the application potential of various ICC systems.
+Although such binary result is coarse in the amount of information it provides,
+it does have applications. For example, Karp~\cite{zhang2022} is a
+\ndx{domain-specific language} (DSL) for programming and testing \ndx{Karp
+reduction}s. A Karp reduction must be polynomial time, but no explicit bounds
+are required. For applications in \ndx{cryptography}, the situation is reversed.
+A critical step is showing that secret communications have desired properties
+despite of the best efforts of an untrusted party~\cite{rivest1990}. A guarantee
+of secret communication then requires showing that no feasible (polynomial-time)
+algorithm exists for breaking the security mechanism. Yet, these are isolated
+use cases; a coarse binary analysis has limited utility in general.
 
-\paragraph*{Observations about analyzers}
-A second observation is about the resources analyzers themselves.
-Scientific software is different from \enquote{mainstream} software in several ways.
-For example, scientific software aims to materialize theoretical ideas that correspond to a publication.
-After presentation, the software is archived~\cite{acm_badging}, while authors move on to the next prototype.
-This description is not meant as criticism;
-rather, it is to make explicit how software creation is incentivized in scientific context.
-One community that operates differently is formal methods—--see as evidence~\autoref{tab:fm-tools}).
-Many formal verification tools are developed with continuity in mind, through annual competitions~\cite{casc,beyer2022}, \etc
-Compared to resource analysis, those goals are not that distant, as resource analyzers also have similar competitions.
-Though, unfortunately, the \enquote{software situation} is still sub-optimal for resource analyzers.
-Since resource analyzers tend to be \enquote{standalone} tools, their development is not as strongly incentivized as \eg SMT solvers.
-Certain analyzers, although they regularly appear in literature, are inaccessible~\cite{sinn2017}, difficult to locate~\cite{carbonneaux2015},
-or deprecated~\cite{gulwani2009,srikanth2017}.
-The resource analyzers also differ greatly in their APIs.
-This is problematic because it is difficult to faithfully compare new techniques to existing ones.
-One big idea, that would foster improvement, is finding ways to \emph{integrate} resource analyzers to engineering workflows.
-Specifically, as hinted at in~\autoref{sec:postcond}, resource analyzers can assist in deductive verification.
+The practical relevance of an analysis increases if we can show it can support
+software engineering or verification tasks. Such analyses produce quantitative
+information that helps engineers understand the program behavior, and detect and
+repair issues early. Ideally, an analysis should express \ndx{resource bounds}
+and flag resource-intensive procedures. Certain ICC systems---like the flow
+calculus of mwp-bounds---can target such the practically-oriented applications
+up to an extent. However, if some computation exceeds polynomial bounds, the
+analysis should still yield an informative result. This last requirement is
+often beyond capabilities of ICC systems~\cite{baillot2012}.
+
+On the analysis input side, the utility improves with expressive
+power\index{expressiveness}. Essentially, we would want the analyzer to handle
+the rich constructs that occur in real-world programs. ICC systems are typically
+defined on core languages (\enquote{toy} languages). However, it is possible to
+work around this limitation by focusing on interesting sub-classes of programs,
+\eg integer programs or \ndx{numerical loops}. Through
+compositional\index{compositionality} analysis of program \emph{fragments}, ICC
+systems extend to analysis of general programming languages. This approach is
+demonstrated in pymwp (\autoref{sec:atva}). Having a restricted syntax is thus
+not an insurmountable hurdle to applications, in our experience. To make an
+analysis comparable with many existing resource analyzers\index{resource
+analysis}~\cite{flores17}, it suffices to target the \ndx{C} Integer Programs
+\ndx{grammar}~\cite{cinteger} used in the \ndx{Termination
+Competition}~\cite{giesl2019}.
+
+\paragraph*{Motivating analyzer developments}
+A second observation is about the resources analyzers themselves. Scientific
+software is different from \enquote{mainstream} software in several ways. For
+example, scientific software aims to materialize theoretical ideas that
+correspond to a publication. After presentation, the software is
+archived~\cite{acm_badging}, while authors move on to the next prototype. This
+description is not meant as criticism; rather, it is to make explicit how
+scientific software creation is incentivized.
+
+One community that operates differently is formal methods—--see as
+evidence~\autoref{tab:fm-tools}). Many formal verification tools are developed
+with continuity in mind, through annual competitions~\cite{casc,beyer2022},
+\etc. Compared to tools in \ndx{resource analysis}, those goals are not that
+distant, as resource analyzers also have similar competitions. Though,
+unfortunately, the \enquote{software situation} is still sub-optimal for
+resource analyzers.
+
+Since resource analyzers tend to be \enquote{standalone} tools, their
+development is not as strongly incentivized as \eg SMT solvers. Certain
+analyzers, although they regularly appear in literature, are
+inaccessible~\cite{sinn2017}, difficult to locate~\cite{carbonneaux2015}, or
+deprecated~\cite{gulwani2009,srikanth2017}. The resource analyzers also differ
+greatly in their input/output formats. This is problematic because it is
+difficult to faithfully compare new techniques to existing ones. One big idea,
+that would foster improvement, is finding ways to \emph{integrate} resource
+analyzers to engineering workflows. Specifically (as hinted at
+in~\autoref{sec:postcond}), resource analyzers could assist in deductive
+verification.
 
 \subsection{Thinking Outside the (Complexity) Box}
 \label{subsec:res-other-props}
@@ -497,7 +532,7 @@ to push further, even in the cases that were completed satisfactorily.
 
 We can now summarize the key takeaways of this dissertation.
 
-\begin{infobox}{Main findings}
+\begin{infobox}{Primary findings}
 \begin{enumerate}[wide, labelwidth=!, labelindent=0pt]
 
 \item Implicit computational complexit (ICC) provides complementary
@@ -508,7 +543,7 @@ non-functional properties, beyond complexity. \index{non-functional
 property}
 
 \item Although this dissertation has provided early evidence, continued
-exploration of ICC is necessary to unlock its full application potential.
+exploration is needed to unlock further application potential.
 
 \end{enumerate}
 \end{infobox}
