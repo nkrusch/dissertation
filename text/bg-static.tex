@@ -102,12 +102,16 @@ results is problematic because errors are not conservative.
 A terminating static analyzer can either be sound or complete, but not both.
 Soundness and completeness are terms from logic and not exclusive to \ndx{static
 program analysis}. In logic, they carry the following meaning.
+\begin{center}
+\begin{minipage}{\textwidth}
 \begin{itemize}
 \item A \emph{sound}\index{soundness}
 system guarantees that everything that is provable is true.
 \item A \emph{complete}\index{completeness}
 system guarantees that everything that is true has a proof.
 \end{itemize}
+\end{minipage}
+\end{center}
 In the context of program analysis, if a provably sound system reports that some
 property holds, then it must be true for the analyzed program. A
 sound\index{soundness} analyzer never misses a violation---\ie when a property
