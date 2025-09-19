@@ -55,7 +55,8 @@ RUN apt-get update -y \
     && ./dotnet-install.sh --version latest --runtime aspnetcore \
     && ./dotnet-install.sh --channel 8.0 \
     && export PATH="/root/.dotnet/:$PATH" \
-    && dotnet tool install --global dafny --version $VER_DAFNY
+    && dotnet tool install --global dafny --version $VER_DAFNY \
+    && rm -rf dotnet-install.sh
 
 # Rocq & ssreflect
 RUN yes | opam init -j "${NJOBS}" --disable-sandboxing --comp $VER_OCAML  \
