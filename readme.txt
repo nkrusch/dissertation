@@ -88,9 +88,11 @@ The source code (and container) is organized as follows.
 🏗  Compile the Dissertation (optional)
 ------------------------------------------------------------------------
 
-A pre-compiled dissertation is available at following addresses:
+You should have received a compiled version of the dissertation with
+this artifact. If not, a pre-compiled dissertation is available at
+following addresses:
 
- * https://nkrusch.github.io/posts/dissertation
+ * https://neea.pl/dissertation
 
 Alternatively, compile the dissertation by running:
 

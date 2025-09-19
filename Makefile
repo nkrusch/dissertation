@@ -1,8 +1,8 @@
 SHELL := /bin/bash
 
-ARC_FLTR  := $(patsubst %,! -name '%',dissertation .idea .git .github .gitignore *.zip main.pdf)
-ARC_ITEMS := $(patsubst ./%,%,$(shell find . -mindepth 1 -maxdepth 1 $(ARC_FLTR)))
 ARC_NAME  := dissertation
+ARC_FLTR  := $(patsubst %,! -name '%',$(ARC_NAME) .idea .git .github .gitignore *.zip main.pdf)
+ARC_ITEMS := $(patsubst ./%,%,$(shell find . -mindepth 1 -maxdepth 1 $(ARC_FLTR)))
 
 all: compile
 archive: sources.zip
