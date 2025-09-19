@@ -447,9 +447,9 @@ label/.style={midway,fill=white}]
 ++(0,-3.7) node (C) {\vtx{evaluation}{sec:enhancements}}
 ++(0,-3.0) node (D) {\vtx{postconditions}{sec:pc-analysis}};
 
-\draw[cdafny!40!white,line width=5pt,solid]
-    ($(C.north west)+(-1.5,0.4)$)  rectangle
-    ($(D.south east)+(1.5,-0.4)$);
+%\draw[cdafny!40!white,line width=5pt,solid]
+%    ($(C.north west)+(-1.5,0.4)$)  rectangle
+%    ($(D.south east)+(1.5,-0.4)$);
 \draw[black,thick,densely dashed,line cap=round]
     ($(C.north west)+(-1.5,0.4)$)  rectangle
     ($(D.south east)+(1.5,-0.4)$);
@@ -679,7 +679,7 @@ coefficients\index{flow coefficient} is represented by a \emph{\ndx{polynomial
 structure}}.
 
 \begin{definition}[Polynomial structure]
-We define a \ndx{polynomial structure} as a sequence of \ndx{monomials}
+We define a \ndx{polynomial structure} as a sequence of \ndx{monomial}s
 \(\big(0,(\alpha_1,\Delta_1)\), \((\alpha_2,\Delta_2)\), \(\dots\), \((\alpha_m,
 \Delta_m)\big)\) where \(m \geq 0\).\symbo{alpha}\symbo{Delta}
 \end{definition}

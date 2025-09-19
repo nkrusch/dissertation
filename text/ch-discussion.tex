@@ -22,7 +22,7 @@ original system.
 
 \paragraph*{From principles to practical efficiency}
 Two critical changes---in~\autoref{sec:fscd-det}---were keeping track of
-derivation choices through \emph{\ndx{polynomial structures}}, and introducing
+derivation choices through \emph{\ndx{polynomial structure}s}, and introducing
 the \ndx{flow coefficient} \(\infty\)\symbo{infty} that tracks \ndx{derivation
 failure}. These adjustments enables exploring all derivation paths
 {concurrently}, without needing to back-track during the analysis procedure. In
@@ -83,7 +83,7 @@ calculus. In the original flow calculus, answering any of them is either not
 possible or would require exhaustive (infeasible) enumeration.
 
 \paragraph*{Enhanced insights about the calculus}
-The developments reveal deeper insights of the flow calculus\index{mwp-calclus}.
+The developments reveal deeper insights of the flow calculus\index{mwp-calculus}.
 For example, we have now discovered that the \(0\)\symbo{zero}-coefficients are
 interesting, because they track \ndx{data flow independence} between
 variables.\footnote{Refer to~\autoref{dependence-analysis}
@@ -146,7 +146,7 @@ loops. The analysis evaluates \emph{dependence}\index{dependence analysis}
 between commands. It aims to discover data flow \emph{independent}
 sub-computations.\index{data flow independence} If such independence exists, we
 replace the original loop with multiple new loops. The new loops can be
-distributed\index{loop transformation!distribution} between the available
+distributed\index{loop transformations!distribution} between the available
 processors for parallel execution. The analysis is practically useful as a
 compiler optimization technique.
 
@@ -248,18 +248,17 @@ framework likely encapsulates even richer utility than uncovered thus far.
 \label{sec:broader-findings}
 
 Moving beyond specific techniques, our investigation revealed observations about
-connecting ICC and \ndx{automatic resource analysis}; and the challenges that
-emerge in general from applying implicit computational complexity.
+\ndx{automatic resource analysis} and ICC, and the challenges that emerge from
+applying implicit computational complexity.
 
-\subsection{Applications in Automatic Resource Analysis}
+\subsection{Utilities in Automatic Resource Analysis}
 \label{subsec:res-resource-analysis}
 \index{automatic resource analysis}
 
-\paragraph*{Dissecting analysis utilities}
 In the most rudimentary form, ICC-based program analyses evaluate a binary
 membership problem. The task is to decide whether an input program belongs to a
-targeted complexity class\index{complexity class}. Like in \ndx{safe recursion}
-(\autoref{safe-rec}), no explicit bound needs to be provided~\cite[p.
+targeted complexity class\index{complexity classes}. Like in \ndx{safe
+recursion} (\autoref{safe-rec}), no explicit bound needs to be provided~\cite[p.
 13]{moyen2017}.
 
 Although such binary result is coarse in the amount of information it provides,
@@ -298,79 +297,83 @@ analysis}~\cite{flores17}, it suffices to target the \ndx{C} Integer Programs
 \ndx{grammar}~\cite{cinteger} used in the \ndx{Termination
 Competition}~\cite{giesl2019}.
 
-\paragraph*{Motivating analyzer developments}
-A second observation is about the resources analyzers themselves. Scientific
-software is different from \enquote{mainstream} software in several ways. For
-example, scientific software aims to materialize theoretical ideas that
-correspond to a publication. After presentation, the software is
-archived~\cite{acm_badging}, while authors move on to the next prototype. This
-description is not meant as criticism; rather, it is to make explicit how
-scientific software creation is incentivized.
+\subsection{Motivating Analyzer Developments}
+\label{ssec:analyzer-dev}
 
-One community that operates differently is formal methods—--see as
-evidence~\autoref{tab:fm-tools}). Many formal verification tools are developed
-with continuity in mind, through annual competitions~\cite{casc,beyer2022},
-\etc. Compared to tools in \ndx{resource analysis}, those goals are not that
-distant, as resource analyzers also have similar competitions. Though,
-unfortunately, the \enquote{software situation} is still sub-optimal for
-resource analyzers.
+A second line of observations concerns the automatic resources analyzers. There
+are various challenges with locating, reusing, and running experiments with the
+analyzers.
 
-Since resource analyzers tend to be \enquote{standalone} tools, their
-development is not as strongly incentivized as \eg SMT solvers. Certain
-analyzers, although they regularly appear in literature, are
+First, resource analyzers differ greatly in input/output formats
+(\cf~\autoref{resource-analysis-tools}). For example, the ones that are based on
+{cost equation system}s are different from the analyzers of \ndx{C} programs.
+This is problematic because it is difficult to faithfully compare new techniques
+with the existing ones (on the same workloads), or replace an analyzer with an
+alternative. Although some concerted efforts---like the \ndx{Termination
+Competition}---push to establish a shared I/O format, there is no widely adopted
+standard.
+
+Since resource analyzers are primarily developed as \enquote{standalone} tools,
+their continued maintenance and development is not strongly incentivized.
+Certain analyzers, although they regularly appear in scientific literature, are
 inaccessible~\cite{sinn2017}, difficult to locate~\cite{carbonneaux2015}, or
-deprecated~\cite{gulwani2009,srikanth2017}. The resource analyzers also differ
-greatly in their input/output formats. This is problematic because it is
-difficult to faithfully compare new techniques to existing ones. One big idea,
-that would foster improvement, is finding ways to \emph{integrate} resource
-analyzers to engineering workflows. Specifically (as hinted at
-in~\autoref{sec:postcond}), resource analyzers could assist in deductive
-verification.
+deprecated~\cite{gulwani2009,srikanth2017}.
 
-\subsection{Thinking Outside the (Complexity) Box}
-\label{subsec:res-other-props}
+These issues extend beyond resource analysis. Scientific software is general
+differs from \enquote{mainstream} software~\cite{hannay2009,joppa2013}. For
+example, scientific software aims to materialize ideas that correspond to
+publishable research results. After presentation, the software is
+archived~\cite{acm_badging}, and authors move on to the next prototype. This
+pattern does not encourage solving the issues identified earlier.
 
-ICC can perform at any level, and may even be able to prove that some properties
-are maintained. Do we want to also give examples of properties that are *not*
-preserved by the chain; typically, constant-time properties may be broken by
-some optimizations. Through compositional analysis of subprograms, ICC systems
-extend to analysis of general programs. Besides complexity, ICC systems can be
-adjusted to track other semantic properties.
+One community, that operates differently, is formal methods (see as
+evidence~\autoref{tab:fm-tools}). Many formal verification tools are developed
+with continuity in mind~\cite{casc,beyer2022}. Moreover, the SMT-LIB
+Standard~\cite{smtlib} is a model for promoting the adoption of common languages
+interface. It would be beneficial for resource analyzers to follow similar
+practices.
 
-\subsection[The Implicit Costs of Applied ICC]
+%\subsection{Thinking Outside the (Complexity) Box}
+%\label{subsec:res-other-props}
+%
+%ICC can perform at any level, and may even be able to prove that some properties
+%are maintained. Do we want to also give examples of properties that are *not*
+%preserved by the chain; typically, constant-time properties may be broken by
+%some optimizations. Through compositional analysis of subprograms, ICC systems
+%extend to analysis of general programs. Besides complexity, ICC systems can be
+%adjusted to track other semantic properties.
+
+\subsection[The Implicit Costs of Applied ICC]%
 {The \emph{Implicit Costs} of Applied ICC}
 \label{subsec:res-meta}
 
-%Research questions 4 and 5 are posed here with an air of obviousness.
-%However, arriving to those questions was not obvious.
-%A substantial challenge in the research plan involves identifying suitable
-%research domains---like parallel programming or language-based security---
-%where ICC techniques could offer meaningful benefit.
-
 The dissertation manuscripts follow a pattern of pairing ICC with a secondary
-application domain. Although such intersectional strategy comes with rich
-potential, there are also substantial \enquote{costs}. One cost relates to a
-learning overhead.
+research domain. While such intersectional strategy comes with rich application
+potential, a substantial challenge involved identifying suitable research
+domains where ICC techniques could offer meaningful benefit. There are thus
+added \enquote{costs} with this research strategy, as suggested
+in~\autoref{subsec:problem}.
 
-The overhead behind the dissertation manuscripts is reflected in
-\autoref{sec:pre}. Making a meaningful contribution requires first sufficient
-familiarity with secondary domain to identify research gaps. It also requires
-learning the terminology and implicit expectations of the secondary domain. For
-example, in presenting developments of the flow calculus, we learned through
-trial-and-error that experiments were an absolute prerequisite to support our
-findings.
+One cost that became particularly pronounced was the learning overhead. This is
+reflected in~\autoref{sec:pre}. Making a meaningful contribution requires first
+having sufficient familiarity with the secondary domain to identify research
+gaps. It also requires learning the terminology and implicit assumptions of the
+secondary domain. For example, in presenting developments of the flow
+calculus\index{mwp-calculus}, we learned through trial-and-error that
+experiments were necessary to support our findings.
 
 The second cost is about understanding different measures of significance. While
-we hold the theoretical origins in high esteem, it becomes minutiae when
+we might hold the theoretical origins in high esteem, it becomes minutiae when
 targeting applications in other domains. Using an ICC technique to solve a
 problem in ways that is comparable to existing techniques is not enough for a
 scientific contribution. The significance of the application must be standalone
 and independent of the theoretical origin. In other words, a technique becomes
-interesting only after we can show it can solve an interesting problem.
+interesting only after we can show that it can solve an interesting problem.
 
-The described research strategy has repeated a few times throughout the
-dissertation, multiplying these costs. In reflection, following the strategy
-requires persistence, and in general not ideal for dissertation research.
+This described research strategy has repeated a few times throughout the
+dissertation, thus multiplying these costs. Following the strategy requires
+persistence, and due to the learning overhead, is quite challenging for
+dissertation research.
 
 \section{Open Problems for Future Work}
 \label{sec:res-future}
@@ -425,13 +428,19 @@ reasoning. Its full potential still remains to be explored.
 
 \paragraph*{Generalizing the loop distribution}
 The solution of~\autoref{sec:vmcai} assumes a setting where loop distribution
-should be applied. Relaxing this assumption raises at least two new relevant
-questions. Determining that a loop distribution should be applied requires first
-determining the profitability of the operation. Only if the operation is
-beneficial (by some metric), should the loops be distributed. Moreover, compiler
-loop transformations do not occur in isolation. Another concerns thus involves
-relation to the auxiliary transformations. Exploring these questions is a
-natural continuation of the prior work.
+should be applied. Relaxing this assumption raises at least two new important
+questions relating to the loop transformation\index{loop transformations}
+strategy. First, loop distribution and parallelization introduce computational
+overhead. The overhead comes from replicating loop headers across distributed
+loops and instrumenting parallel runtimes. It is therefore necessary to first
+determine the profitability of the operation. Only if the operation is
+beneficial by some metric, should we \enquote{accept} the overhead of loop
+distribution. Second, compiler loop transformations do not occur in isolation.
+We must consider combinations of loop transformations---like fusion\index{loop
+transformation!fusion}, tiling\index{loop transformations!tiling}, and
+interchange\index{loop transformations!interchange}, \etc---and their combined
+effect on the input program. Investigating these questions is a natural
+extension of the prior work.
 
 \paragraph*{Complexity-by-Construction}
 The \ndx{X-by-Construction} paradigm~\cite{terbeek2018} is concerned with
@@ -534,15 +543,16 @@ satisfactorily met.
 \end{itemize}
 
 Although the goals were completed with a mixed degree of success, there was
-progress in every direction. The goals are intentionally open-ended and need not
-be fully achieved within the timespan of doctoral studies. It is always possible
-to push further, even in the cases that were completed satisfactorily.
+progress in every direction. The goals are intentionally open-ended. They need
+not be fully achieved within the timespan of doctoral studies. It is always
+possible to push further, even in the cases that were completed satisfactorily.
 
 \section{Research Conclusions}
 \label{ssec:findings}
 
-We can now summarize the key takeaways of this dissertation.
+We can now summarize the key takeaways of this dissertation -- in~\autoref{fig:main-findings}.
 
+\begin{figure}[htb]
 \begin{infobox}{Primary findings}
 \begin{enumerate}[wide, labelwidth=!, labelindent=0pt]
 
@@ -558,6 +568,10 @@ exploration is needed to unlock further application potential.
 
 \end{enumerate}
 \end{infobox}
+\caption[Primary research findings]{Primary research findings.}
+\label{fig:main-findings}
+\end{figure}
+
 
 The first finding recognizes the fact that Implicit computational complexity
 offers complementary techniques to perform \ndx{automatic resource analysis}

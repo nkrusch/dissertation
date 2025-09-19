@@ -157,7 +157,7 @@ Based on this analysis, the \ndx{loop invariant} is \(0 \leq \prm{i} \leq
 \ndx{postcondition}~\cite{furia2010}.
 \end{example}
 
-Finally, a brief note about \ndx{invariants} and \ndx{resource analysis}. It is
+Finally, a brief note about \ndx{invariant}s and \ndx{resource analysis}. It is
 possible to infer \ndx{resource bounds}, of numerical loops, based on \ndx{loop
 invariant}s~\cite{nguyen2017}. However, the solution relies on dynamic
 techniques, that are beyond the capabilities of pure \ndx{static program
@@ -544,14 +544,14 @@ contains representative examples in the first two categories.
    & \textcite{honsell2001}
    \\
    \href{https://github.com/rocq-community/goedel}%
-   {\ndx{Gödel-Rosser Incompleteness Theorem}}
+   {Gödel-Rosser Incompleteness Theorem}\index{Gödel-Rosser Incompleteness Theorem\dotfill}
    & \textcite{oconnor2005}
    \\
    Modal model of impredicative semantics
    & \textcite{appel2007}
    \\
    \href{https://github.com/rocq-community/fourcolor}%
-   {\ndx{Four Color theorem}}%
+   {\ndx{Four Color Theorem}}%
    \smtabularnote{based on~\cite{robertson1997} and~\cite{appel1989}}
    & \textcite{gonthier2008}
    \\
@@ -577,11 +577,11 @@ contains representative examples in the first two categories.
    & \textcite{heraud2011}
    \\
    \href{https://github.com/ProjectiveGeometry/ProjectiveGeometry}
-   {\ndx{Desargues's theorem} in projective geometry}
+   {\ndx{Desargues's Theorem} in projective geometry}
    & \textcite{magaud2012}
    \\
    \href{https://github.com/math-comp/odd-order}%
-   {Feit-Thompson's \ndx{Odd Order theorem}}
+   {Feit-Thompson's \ndx{Odd Order Theorem}}
    & \textcite{gonthier2013}
    \\
    \href{https://gitlab.inria.fr/coquelicot/coquelicot/}%
@@ -1204,8 +1204,8 @@ since user effort is needed to establish the complexity result.
 To the best of our knowledge, no formalized automatic resource analyzer exists.
 The closest to the goal are the analyzers \ndx{C4B} and \ndx{Pastis}
 (\cf~\autoref{resource-analysis-tools}), that produce \emph{proof certificates}
-for the bounds they compute. The analysis technique--that is based on
-\ndx{automatic amortized resource analysis}
+for the bounds they compute. The analysis technique--that is based on automatic
+amortized resource analysis\index{automatic amortized resource analysis\dotfill}
 (cf~\autoref{resource-analysis})---is founded on inference rules. After program
 analysis, the derivation trees are translated to machine-checkable proofs. The
 proof certificates are produced via a support library that complements the core

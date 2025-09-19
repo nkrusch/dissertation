@@ -165,51 +165,51 @@ The programs are fragments from the {IFSPEC benchmark suite}~\cite{hamann2018}\i
 The more advanced benchmarks involve, \eg aliasing, reflection, context sensitivity, and exception handling.
 
 \begin{center}
-\captionsetup{type=lstlisting}
-\begin{minipage}{.45\textwidth}
-\begin{center}\javainputlisting{bool-insecure.java}{Insecure.}\end{center}
-\end{minipage}\hfill%
-\begin{minipage}{.45\textwidth}
-\begin{center}\javainputlisting{bool-secure.java}{Secure.}\end{center}
-\end{minipage}
-\captionof{lstlisting}[Secure and insecure Boolean operations]{
-Boolean Operations. The programs are parametric on a Boolean variable \pr|high|.
-In the insecure version, the value of \pr|high| is deducible from the value of \pr|ret|.
-}\label{lst:bool-ops}
+ \captionsetup{type=lstlisting}
+ \begin{minipage}{.45\textwidth}
+  \begin{center}\javainputlisting{bool-insecure.java}{Insecure.}\end{center}
+ \end{minipage}\hfill%
+ \begin{minipage}{.45\textwidth}
+  \begin{center}\javainputlisting{bool-secure.java}{Secure.}\end{center}
+ \end{minipage}
+ \captionof{lstlisting}[Secure and insecure Boolean operations]{
+  Boolean Operations. The programs are parametric on a Boolean variable \pr|high|.
+  In the insecure version, the value of \pr|high| is deducible from the value of \pr|ret|.
+ }\label{lst:bool-ops}
 \end{center}
 
 \begin{center}
-\captionsetup{type=lstlisting}
-\begin{minipage}{.45\textwidth}
-\begin{center}\javainputlisting{array-insecure.java}{Insecure.}\end{center}
-\end{minipage}\hfill%
-\begin{minipage}{.45\textwidth}
-\begin{center}\javainputlisting{array-secure.java}{Secure.}\end{center}
-\end{minipage}
-\captionof{lstlisting}[Implicit information flow leak in an array]{
-Arrays Implicit Leak. The insecure program's output reveals if the value of \pr|secret| is or is not 42.
-This leak\index{leak} is small, since it corresponds to 1 bit of information.
-However, the secure version reveals nothing about the value of \pr|secret|.}
-\label{lst:ni-arrays}
+ \captionsetup{type=lstlisting}
+ \begin{minipage}{.45\textwidth}
+  \begin{center}\javainputlisting{array-insecure.java}{Insecure.}\end{center}
+ \end{minipage}\hfill%
+ \begin{minipage}{.45\textwidth}
+  \begin{center}\javainputlisting{array-secure.java}{Secure.}\end{center}
+ \end{minipage}
+ \captionof{lstlisting}[Implicit information flow leak in an array]{
+  Arrays Implicit Leak. The insecure program's output reveals if the value of \pr|secret| is or is not 42.
+  This leak\index{leak} is small, since it corresponds to 1 bit of information.
+  However, the secure version reveals nothing about the value of \pr|secret|.}
+ \label{lst:ni-arrays}
 \end{center}
 
 \begin{center}
-\captionsetup{type=lstlisting}
-\begin{minipage}{.45\textwidth}
-\begin{center}\javainputlisting{loop-insecure.java}{Insecure.}\end{center}
-\end{minipage}\hfill
-\begin{minipage}{.45\textwidth}
-\begin{center}\javainputlisting{loop-secure.java}{Secure.}\end{center}
-\end{minipage}
-\captionof{lstlisting}[High conditional incremental leak]{
-High Conditional Incremental Leak.
-Through the returned value \pr|l|, the insecure version reveals implicitly\index{information flow!implicit} the value of the secret variable \pr|h|.
-Compared to~\autoref{lst:ni-arrays}, the program reveals every value of \pr|h|, so the leak\index{leak} here is more significant.
-In the secure version, the value of \pr|h| cannot be deduced by the same reasoning.
-However, the secure version is also potentially vulnerable through a side channel\index{side channel},
-if the loop execution time is observable to an attacker\index{attacker (adversary)}.}
-\label{lst:hi-cond}
-\end{center}
+ \captionsetup{type=lstlisting}
+ \begin{minipage}{.45\textwidth}
+  \begin{center}\javainputlisting{loop-insecure.java}{Insecure.}\end{center}
+ \end{minipage}\hfill
+ \begin{minipage}{.45\textwidth}
+  \begin{center}\javainputlisting{loop-secure.java}{Secure.}\end{center}
+ \end{minipage}
+ \captionof{lstlisting}[High conditional incremental leak]{
+  High conditional incremental leak. The insecure version reveals
+  implicitly\index{information flow!implicit} the value of the secret variable
+  \pr|h|\symbo{high} through variable \pr|l|\symbo{low}. The \ndx{leak} reveals
+  every value of \pr|h| precisely. In the secure version, value of \pr|h| cannot
+  be deduced. But even the secure version may be vulnerable over a \ndx{side
+  channel}, if the loop execution time is observable to an attacker.
+  \index{attacker (adversary)}
+}\label{lst:hi-cond}\end{center}
 
 \subsubsection{Techniques for Information Flow Modeling and Analysis}
 \label{if-techniques}
@@ -246,20 +246,19 @@ Further, executing those traces should produce publicly indistinguishable\index{
 Showing that a trace-based system satisfies this security requirements is done by {simulation\index{simulation}}~\cite{piessens2024} 
 where the simulation proves the trace equivalence \wrt a policy.
 
-\paragraph*{Formal security analysis}\index{security analysis}
+\paragraph*{Formal \ndx{security analysis}}
 Establishing that a \enquote{system is secure} demands security analysis.
 Rigorous formal security analysis considers the following three aspects.
 
 \begin{enumerate}
 
-\item \emph{System model}\index{system model}: a precise mathematical definition of the system to be secured.
+\item System model\index{system model}: a precise mathematical definition of the system to be secured.
 
-\item \emph{Security objective}\index{security objective} (or properties\index{security property}): 
+\item Security objective\index{security objective} (or properties\index{security property}):
 a specification of system behaviors that are considered secure.
 
-\item \emph{Attack model\index{attack model}} (or threat model\index{threat model}): 
+\item Attack model\index{attack model} (or \ndx{threat model}):
 a definition of the class of attacks against which the system should be secure.
-
 \end{enumerate}
 The parenthesized terms are included because the literature~\cite{bognar2022, bau2011} varies in exact terminology.
 However, the goal of formal security analysis\index{security analysis} is uniform.
@@ -276,8 +275,6 @@ is a foundational family of security policies\index{information flow!policy} and
  that constrains information flow\index{information flow} during computations.
 The important idea is that a low(er) security class is not permitted to observe a high(er) security class.
 In other words, information flow from high to low security class is not allowed.
-%Establishing that a system is non-interfering requires showing that behavior of high security class has no impact on low security class.
-%(alternatively, that the low level view is independent of the high level).
 Although non-interference\index{non-interference}
  is often described in binary terms, referring to just two security classes\index{security class}, it is applicable to arbitrary security hierarchies\footnote{The policy in \autoref{fig:us-docs} is a 4-class non-interference policy.}.
 The primary application of non-interference\index{non-interference} 
@@ -628,14 +625,13 @@ This application is naturally, because in showing that a cryptographic\index{cry
 
 \item[Formalized safe recursion.]
 The formalization of \ndx{safe recursion} was motivated by its envisioned
-usefulness in cryptographic proofs\index{cryptography}~\cite{heraud2011}. When
-the result appeared in 2011, the technique was integrated into the
+usefulness in cryptographic proofs\index{cryptography}~\cite{heraud2011}. At the
+time of its appearance, the technique was integrated into the
 \href{https://github.com/EasyCrypt/certicrypt} {\ndx{Certicrypt}} proof
 assistant, for cryptographic proofs~\cite{barthe2009}. However, Certicrypt has
-since then been deprecated; it is superseded by
-\ndx{EasyCrypt}~\cite{barthe2014}. The support for complexity proofs in
-EasyCrypt is limited~\cite{barbosa2023}. Thus, the integration of safe
-recursion did not survive the \enquote{test of time}.
+since then been superseded by \ndx{EasyCrypt}~\cite{barthe2014}. The support for
+complexity proofs in EasyCrypt is limited~\cite{barbosa2023}. Thus, the
+integration of safe recursion did not survive the \enquote{test of time}.
 
 \item[Type system d\(\ell\)T.]
 The \ndx{type system} \ndx{d\(\ell\)T}~\cite{baillot2015,baillot2019} is

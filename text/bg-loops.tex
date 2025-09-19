@@ -9,7 +9,7 @@ The transformation must preserve semantic equivalence with the original program 
 but otherwise, the program structure can be altered to reduce running time, size, power consumption, \etc~\cite[p. 10]{alfred2007}.
 In parallel programming\index{parallel programming}, the repetitiveness of loop \emph{iterations} creates potential for executing the iterations in parallel to reduce the program's runtime latency.
 
-This section focuses on automatic compile-time loop \emph{transformations}\index{loop transformation} and relating those transformations to \emph{parallel executions}.
+This section focuses on automatic compile-time loop \emph{transformations}\index{loop transformations} and relating those transformations to \emph{parallel executions}.
 The starting point is a sequential imperative program.
 The program result is the one obtained by executing the program's commands in the order they appear;
 with appropriate exceptions for control flow constructs like branching and loops.
@@ -53,13 +53,13 @@ The termination condition\index{termination condition} is evaluated, at each ite
 The loop repeats execution of the body until the condition\index{termination condition} evaluates to false.
 The body may recursively contain another loop.
 Then, the inner loop is called a \emph{nested loop}\index{nested loop}.
-In~\autoref{lst:loop-ex}, the header\index{header} of the nested loop is at L\ref{line:header-2} and body\index{loop body} at L\ref{line:body}.
+In~\autoref{lst:loop-ex}, the header of the nested loop is at L\ref{line:header-2} and body\index{loop body} at L\ref{line:body}.
 Since there is no intervening code between the two loops, the loop of~\autoref{lst:loop-ex} defines a \emph{perfectly nested loop}\index{perfectly nested loop}~\cite[p. 84]{openmp_api}.
 
 \paragraph*{Canonical loop}
 The canonical loop form simplifies several program analyses and makes transformations more effective~\cite{llvm_loops}.
 A \emph{canonical loop}~\cite[p. 196--202]{openmp_api}\index{canonical loop}\footnote{
-The definition is specific to the programming model of~\autoref{openmp} and~\autoref{sec:vmcai}.} has form,
+The definition is specific to the programming model of~\autoref{openmp}\index{parallel programming models!OpenMP} and~\autoref{sec:vmcai}.} has form,
 \begin{center}
 \begin{minipage}{\textwidth}
 \captionsetup{type=lstlisting}
@@ -93,7 +93,7 @@ A \emph{control-flow graph}\index{control flow graph} (CFG)~\cite{allen1970} is 
 In a CFG, the nodes are {basic blocks} and the edges are control flow paths.
 A \emph{basic block}\index{basic block} is a linear sequence of program instructions with one entry and one exit point.
 Control-flow graphs\index{control flow graph}
-are a common approach for compile-time program analyses and transformations\index{loop transformation}~\cite[p. 48]{moyen2017}
+are a common approach for compile-time program analyses and transformations\index{loop transformations}~\cite[p. 48]{moyen2017}
 and are adopted, \eg in the LLVM compiler\index{LLVM compiler}~\cite{llvm_loops}.
 Although making this note is important, the level of detail is unnecessary for this topic overview.
 
@@ -106,103 +106,129 @@ We consider next a few common loop transformations to demonstrate the idea.
 Assuming a sequential source program, these transformations are straightforward for a compiler to apply automatically~\cite{bertolacci2018}.
 
 \paragraph*{Distributing and combining loops}
-Loop \emph{fusion}\index{loop transformation!fusion}, in~\autoref{lst:fusion}, merges multiple loops by replacing them with a single loop.
+Loop \emph{fusion}\index{loop transformations!fusion}, in~\autoref{lst:fusion}, merges multiple loops by replacing them with a single loop.
 In each iteration, the generated loop executes an iteration of each original loop.
-Loop \emph{fission}\index{loop transformation!fission}, in~\autoref{lst:fission}, operates in the reverse direction.
+Loop \emph{fission}\index{loop transformations!fission}, in~\autoref{lst:fission}, operates in the reverse direction.
 It breaks the original loop into multiple loops, with each generated iteration taking only a part of the original loop's body~\cite{zhao2018}.
 In both transformations, the loop header and iteration space remain unchanged.
 
 \begin{center}
-\begin{minipage}{\textwidth}
-\captionsetup{type=lstlisting}
-\begin{minipage}{.45\textwidth}
-\captionsetup{type=lstlisting}
-\cstarinputlisting{fusion.c}
-\captionof{lstlisting}[Loop fusion transformation]{Loop fusion.}
-\label{lst:fusion}
-\end{minipage}\hfill%
-\begin{minipage}{.45\textwidth}
-\cstarinputlisting{fission.c}
-\captionof{lstlisting}[Loop fission transformation]{Loop fission.}
-\label{lst:fission}
-\end{minipage}
-\end{minipage}
+    \begin{minipage}{\textwidth}
+        \captionsetup{type=lstlisting}
+        \begin{minipage}{.45\textwidth}
+            \captionsetup{type=lstlisting}
+            \cstarinputlisting{fusion.c}
+            \captionof{lstlisting}[Loop fusion transformation]{Loop fusion.}
+            \label{lst:fusion}
+        \end{minipage}\hfill%
+        \begin{minipage}{.45\textwidth}
+            \cstarinputlisting{fission.c}
+            \captionof{lstlisting}[Loop fission transformation]{Loop fission.}
+            \label{lst:fission}
+        \end{minipage}
+    \end{minipage}
 \end{center}
 
-\paragraph*{Iteration range-based transformations}
-The \emph{split} transformation\index{loop transformation!split},
-in~\autoref{lst:split}, breaks the original loop into multiple generated loops.
-Each generated loop has the same body as the original, but iterates over a different contiguous subset of the original range.
-Loop \emph{tiling}\index{loop transformation!tile} breaks a loop into contiguous chunks of fixed \emph{tile size}.
-In~\autoref{lst:tiling}, the tile size is 8.
-Tiling improves cache behavior by reducing data reuse distance~\cite{bertolacci2018}.
-Loop \emph{reversal}\index{loop transformation!reversal} executes loop iterations in the reverse order.
-For example, if \(0, 1,\ldots, n-2, n-1\) are the logical iteration numbers of a loop, after transformation, the iterations occur in order \(n-1, n-2,\ldots, 1, 0\)~\cite{openmp_api}.
+\paragraph*{Other loop transformations}
+Although the main focus of the dissertation work is loop fission (in~\autoref{sec:vmcai}), there are several other loop transformations.
+The transformations are summarized visually in~\autoref{fig:loop-transforms}.
+When considering the overall compilation strategy, the combination of applied transformations is important.
 
+\afterpage{%
+\clearpage
 \begin{center}
 \begin{minipage}{\textwidth}
-\captionsetup{type=lstlisting}
-\begin{minipage}{.45\textwidth}
-\cstarinputlisting{split.c}
-\captionof{lstlisting}[Loop splitting transformation]{Loop splitting.}
-\label{lst:split}
-\end{minipage}\hfill%
-\begin{minipage}{.45\textwidth}
-\cstarinputlisting{tiling.c}
-\captionof{lstlisting}[Loop tiling transformation]{Loop tiling.}
-\label{lst:tiling}
-\end{minipage}
-\end{minipage}
+\captionsetup{type=figure}
+\begin{center}
+    \begin{minipage}{\textwidth}
+        \captionsetup{type=lstlisting}
+        \begin{minipage}{.45\textwidth}
+            \cstarinputlisting{split.c}
+            \captionof{lstlisting}[Loop splitting transformation]{Loop splitting.}
+            \label{lst:split}
+        \end{minipage}\hfill%
+        \begin{minipage}{.45\textwidth}
+            \cstarinputlisting{tiling.c}
+            \captionof{lstlisting}[Loop tiling transformation]{Loop tiling.}
+            \label{lst:tiling}
+        \end{minipage}
+    \end{minipage}
+\end{center}
+\begin{center}
+    \begin{minipage}{\textwidth}
+        \captionsetup{type=lstlisting}
+        \begin{minipage}[t]{.45\textwidth}
+            \cstarinputlisting{peel.c}
+            \captionof{lstlisting}[Loop peeling transformation]{Loop peeling.}
+            \label{lst:peel}
+        \end{minipage}\hfill%
+        \begin{minipage}[t]{.45\textwidth}
+            \cstarinputlisting{unroll.c}
+            \captionof{lstlisting}[Loop unrolling transformation]{Loop unrolling.}
+            \label{lst:unroll}
+        \end{minipage}
+    \end{minipage}
+\end{center}
+\begin{center}
+    \begin{minipage}{\textwidth}
+        \captionsetup{type=lstlisting}
+        \begin{minipage}[t]{.45\textwidth}
+            \cstarinputlisting{pre-interchange.c}
+            \captionof{lstlisting}[Before interchange]{Pre-interchange.}
+            \label{lst:pre-interchange}
+        \end{minipage}\hfill%
+        \begin{minipage}[t]{.45\textwidth}
+            \cstarinputlisting{post-interchange.c}
+            \captionof{lstlisting}[After interchange]{Post-interchange.}
+            \label{lst:post-interchange}
+        \end{minipage}
+    \end{minipage}
 \end{center}
 
-Finally, loop \emph{peeling}\index{loop transformation!peel}, in~\autoref{lst:peel}, is a special case of loop splitting.
+\captionof{figure}[Visualizing loop transformations]
+{Visualizing loop transformations.}
+\label{fig:loop-transforms}
+\end{minipage}
+\end{center}\clearpage}
+
+\begin{description}
+
+\item[\itemindent=0pt Iteration range-based transformations.]\mbox{}
+\begin{itemize}[leftmargin=*]
+\item The \emph{split} transformation\index{loop transformations!split},
+in~\autoref{lst:split}, breaks the original loop into multiple generated loops.
+Each generated loop has the same body as the original, but iterates over a
+different contiguous subset of the original range.
+
+\item Loop \emph{tiling}\index{loop transformations!tile} breaks a loop into contiguous
+chunks of fixed \emph{tile size}. In~\autoref{lst:tiling}, the tile size is 8.
+Tiling improves cache behavior by reducing data reuse
+distance~\cite{bertolacci2018}.
+
+\item Loop \emph{reversal}\index{loop transformations!reversal} executes loop
+iterations in the reverse order. For example, if \(0, 1,\ldots, n-2, n-1\) are
+the logical iteration numbers of a loop, after transformation, the iterations
+occur in order \(n-1, n-2,\ldots, 1, 0\)~\cite{openmp_api}.
+
+\item Finally, loop \emph{peeling}\index{loop transformations!peel}, in~\autoref{lst:peel}, is a special case of loop splitting\index{loop transformations!split}.
 It removes the first few or last iterations from the body and performs them outside the loop.
 The loop iteration space is adjusted accordingly.
+\end{itemize}
 
-\begin{center}
-\begin{minipage}{\textwidth}
-\captionsetup{type=lstlisting}
-\begin{minipage}[t]{.45\textwidth}
-\cstarinputlisting{peel.c}
-\captionof{lstlisting}[Loop peeling transformation]{Loop peeling.}
-\label{lst:peel}
-\end{minipage}\hfill%
-\begin{minipage}[t]{.45\textwidth}
-\cstarinputlisting{unroll.c}
-\captionof{lstlisting}[Loop unrolling transformation]{Loop unrolling.}
-\label{lst:unroll}
-\end{minipage}
-\end{minipage}
-\end{center}
-
-\paragraph*{Modifications of the loop body}
-Loop \emph{unrolling}\index{loop transformation!unroll} expands and duplicates the body commands into similar independent commands.
+\item[Modifications of the loop body.]
+Loop \emph{unrolling}\index{loop transformations!unroll} expands and duplicates the body commands into similar independent commands.
 The update condition is adjusted by an \emph{unroll factor}.
 In~\autoref{lst:unroll} the loop body is unrolled twice, therefore the unroll factor is 2\footnote{
 The simplified example assumes the transformation does not exceed the array bounds.}.
 Unrolling aims to reduce or eliminate evaluations of the loop condition.
 
-\paragraph*{Transforming nested iterations}
-
-Loop \emph{interchange}\index{loop transformation!interchange} is a transformation on a nested loop.
+\item[Transforming nested iterations.]
+Loop \emph{interchange}\index{loop transformations!interchange} is a transformation on a nested loop.
 It changes the loop nesting order by exchanging two iteration variables referenced by a nested loop,
 as shown in Listings~\ref{lst:pre-interchange} and~\ref{lst:post-interchange}.
 
-\begin{center}
-\begin{minipage}{\textwidth}
-\captionsetup{type=lstlisting}
-\begin{minipage}[t]{.45\textwidth}
-\cstarinputlisting{pre-interchange.c}
-\captionof{lstlisting}[Loop before interchange]{Pre-interchange.}
-\label{lst:pre-interchange}
-\end{minipage}\hfill%
-\begin{minipage}[t]{.45\textwidth}
-\cstarinputlisting{post-interchange.c}
-\captionof{lstlisting}[Loop after interchange]{Post-interchange.}
-\label{lst:post-interchange}
-\end{minipage}
-\end{minipage}
-\end{center}
+\end{description}
+
 
 \subsubsection{Dependence in Transformations}
 \label{dependence-analysis}
@@ -365,31 +391,31 @@ One focus area in parallelization concerns \emph{loop-level parallelism} that ai
 For example, by the Loop Parallelization Theorem, it is permissible to convert a sequential loop to a parallel one if the loop carries no dependence~\cite[p. 82]{kennedy2001}.
 The remainder of this section focuses precisely on the terms and techniques of parallelizing loops.
 
-\paragraph*{Parallel programming models}
+\paragraph*{Parallel programming models}\index{parallel programming models}
 Multiple sophisticated programming models exist to simplify the task of writing parallel programs.
 These models raise the abstraction level between the application code and the operating system-level parallelization mechanism of threading.
-The OpenMP\index{OpenMP}\index{parallel programming model!OpenMP}
+The OpenMP\index{OpenMP}\index{parallel programming models!OpenMP}
 application programming interface is presented in~\autoref{openmp}.
 Other approaches include the
-\emph{Parallel Patterns Library} (PPL)\index{PPL}\index{parallel programming model!PPL}~\cite{ppl2021,campbell2011},
+\emph{Parallel Patterns Library} (PPL)\index{PPL}\index{parallel programming models!PPL}~\cite{ppl2021,campbell2011},
 that parallelizes tasks through built-in algorithms and containerization;
-and the \emph{oneAPI Threading Building Blocks} (oneTBB)\index{oneTBB}\index{parallel programming model!oneTBB},
+and the \emph{oneAPI Threading Building Blocks} (oneTBB)\index{oneTBB}\index{parallel programming models!oneTBB},
 a runtime-based model for \pr|C++|\index{C++} programs~\cite{onetbb}.
 
 \subsubsection{The OpenMP Programming Model}
 \label{openmp}
 
-{OpenMP}\index{OpenMP}\index{parallel programming model!OpenMP}, for Open Multi-Processing,
-is a parallel \ndx{programming model} for developing portable, \ndx{shared memory} parallel applications in
+{OpenMP}\index{OpenMP}\index{parallel programming models!OpenMP}, for \emph{Open Multi-Processing},
+is a parallel programming model for developing portable, \ndx{shared memory} parallel applications\index{concurrent programs} in
 \pr|C|,\index{C}
 \pr|C++|\index{C++} and
 \pr|Fortran|\index{Fortran}~\cite{openmp_api}.
 OpenMP is not a programming language.
-Rrather, it provides directives\index{OpenMP directives} for sequential programs that translate the programs to parallel execution instructions at compile-time.
+Rather, it provides \emph{directives}\index{OpenMP directives} for sequential programs that translate the programs to parallel execution instructions at compile-time.
 The OpenMP\index{OpenMP} infrastructure includes compiler directives, library routines, environment variables, and tool support for creating, debugging, and analyzing parallel applications.
 
 Program execution in OpenMP follows the \emph{fork-\ndx{join} \ndx{programming model}}~\cite[p. 24]{chapman2007}
-\index{fork-join programming model}\index{parallel programming model!fork-join} of~\autoref{fig:fork-join}.
+\index{fork-join programming model}\index{parallel programming models!fork-join} of~\autoref{fig:fork-join}.
 Program execution starts with an {primary thread}\index{primary thread}
 %\footnote{Color \tikz\draw[pthread,fill=pthread] (0,0) circle (.5ex); is the primary thread in drawings.}
 that runs in sequential mode.
@@ -437,7 +463,7 @@ distributes the iterations of the associated loops among the threads\index{threa
 \paragraph*{Essential parallel directives}
 {Parallelization directives}~\index{parallelization directive} are at the core of OpenMP\index{OpenMP}.
 This section introduces a few important ones, including the directives that appear elsewhere in this dissertation.
-Because OpenMP is a powerful and rich programming model, it is possible to present only a light introduction.
+Because OpenMP is a powerful and rich programming model\index{parallel programming models}, it is possible to present only a light introduction.
 A complete definition is available in the OpenMP API technical specification~\cite{openmp_api}.
 
 \begin{itemize}
@@ -617,22 +643,22 @@ the threads\index{thread} and the iteration variable \pr|i| is privatized.
 \subsubsection{Built-In Loop Transformations in OpenMP}
 \label{openmp-transforms}
 
-OpenMP includes built-in directives that perform loop transformations\index{loop transformation}~\cite{openmp_api}.
+OpenMP includes built-in directives that perform loop transformations\index{loop transformations}~\cite{openmp_api}.
 A loop-transformation replaces the associated loop with a structured block\index{structured block}
 that is another loop or a loop sequence.
 Unless otherwise specified, all generated loops have canonical form\index{canonical loop}.
 Loop-iteration variables of generated loops are always \omp{private} in the innermost enclosing construct.
 The loop transformations available in OpenMP are:
-fusion\index{loop transformation!fusion},
-interchange\index{loop transformation!interchange},
-reverse\index{loop transformation!reversal},
-split\index{loop transformation!split},
-stripe\index{loop transformation!stripe} (interleaving of loop iterations),
-tile\index{loop transformation!tile}, and
-unroll\index{loop transformation!unroll}.
+fusion\index{loop transformations!fusion},
+interchange\index{loop transformations!interchange},
+reverse\index{loop transformations!reversal},
+split\index{loop transformations!split},
+stripe\index{loop transformations!stripe} (interleaving of loop iterations),
+tile\index{loop transformations!tile}, and
+unroll\index{loop transformations!unroll}.
 As an example, we consider the unrolling transformation.
 
-\paragraph*{Loop unrolling}\index{loop transformation!unroll}
+\paragraph*{Loop unrolling}\index{loop transformations!unroll}
 The \omp{unroll} clause~\cite[p. 381--382]{openmp_api}
 transforms the associated loop based on the specification provided in the parallelization directive\index{parallelization directive}.
 The \omp{unroll} clause is followed by either \omp{full} or \omp{partial} clause.
@@ -658,7 +684,7 @@ Full unroll requires that the iteration count of the associated loop is a consta
 
 The \omp{partial} clause takes an integer-valued \emph{unroll factor}\index{unroll factor}.
 The effect of \omp{partial} clause is to tile the loop, using the unroll factor as the tile size.
-Then, the generated tile\index{loop transformation!tile} loop is fully unrolled.
+Then, the generated tile\index{loop transformations!tile} loop is fully unrolled.
 If no unroll factor\index{unroll factor} is specified, the unroll behavior depends on the implementation.
 Partial transformation is illustrated in \autoref{lst:pt-unroll} and~\autoref{lst:post-pt-unroll}.
 
@@ -678,7 +704,7 @@ Partial transformation is illustrated in \autoref{lst:pt-unroll} and~\autoref{ls
 \end{minipage}
 \end{center}
 
-Applying loop transformations\index{loop transformation} requires suitable loop form.
+Applying loop transformations\index{loop transformations} requires suitable loop form.
 For example, the worksharing loop expects loops to be in canonical form\index{canonical loop}.
 Afterward, a transformation that increases the program's parallelization potential\index{parallelization potential} enables making use of multicore hardware during execution.
 Thus, an important challenge of parallelizing compilers and program optimizations is to find generalized strategies to increase parallelization potential.
@@ -689,7 +715,7 @@ Thus, an important challenge of parallelizing compilers and program optimization
 Since implicit computational complexity has developed many systems for reasoning about loops, it seems natural that in extended use, it has potential to support loop-based program transformations.
 Founded on this concept,~\autoref{sec:vmcai} presents an ICC-based technique to increase parallelization potential in imperative programs.
 The technique uses a static data dependence analysis that detects independent blocks of commands inside loops.
-Through a loop fission\index{loop transformation!fission} transformation,
+Through a loop fission\index{loop transformations!fission} transformation,
 then independent blocks are then transformed into multiple parallelizable loops, as illustrated in~\autoref{fig:icc-fission}.
 
 \begin{figure}[h]
@@ -697,16 +723,20 @@ then independent blocks are then transformed into multiple parallelizable loops,
 \caption[Loop fission transformation]
 {Loop fission of a sequential loop into parallelizable loops.
 The loop header (the leading \langclr{header} block) is replicated across the generated parallellizable loops.
-In the sequential loop body, the different colors indicate (disjoint) dependence between command blocks.
+In the sequential \ndx{loop body}, the colors denote (disjoint) dependence between command blocks.
 Each generated parallellizable loop takes a part of the original loop's body.}\label{fig:icc-fission}
 \end{figure}
 
-The technique is interesting because it is applicable even when the loop iteration space is unknown;
-enabling parallelization of \eg \pr|while| loops.
-Such non-canonical loops are traditionally outside the built-in transformation and parallelization capabilities of \ndx{parallel programming model}s like OpenMP\@.
-Although the \emph{iterations} of \pr|while| loops must be executed under the \omp{single} construct,
-the \emph{multiple loops} generated by the transformation can be parallelized with OpenMP directives.
-The technique is useful as a preprocessor, before adding parallelization directives;
-and in conjunction with other loop transformations.
-The technique is inspired by~\cite{moyen20172}, but was adjusted significantly to support the different application.
+The technique is interesting because it is applicable even when the loop
+iteration space is unknown; enabling parallelization of \eg \pr|while| loops.
+Such \ndx{non-canonical loop}s are traditionally outside the built-in
+transformation and parallelization capabilities of \ndx{parallel programming
+models} like OpenMP\index{parallel programming models!OpenMP}. Although the
+\emph{iterations} of \pr|while| loops must be executed under the \omp{single}
+construct, the \emph{multiple loops} generated by the transformation can be
+parallelized with \ndx{OpenMP directives}. The technique is useful as a
+preprocessor, before adding parallelization directives; and in conjunction with
+other \ndx{loop transformations}. The technique is inspired
+by~\cite{moyen20172}, but was adjusted significantly to support the different
+application.
 
