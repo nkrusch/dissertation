@@ -45,7 +45,7 @@ On some machines you may need sudo.
     docker pull --platform=linux/amd64 ghcr.io/nkrusch/dissertation:artifact
 
 If the above is not possible, load the container from the tarball
-archived on Zenodo. You may need to unzip the tarball first.
+archived on Zenodo.
 
     docker load -i artifact-amd64.tar
 
