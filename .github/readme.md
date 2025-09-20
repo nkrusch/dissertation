@@ -80,7 +80,7 @@ Time: 10-15 min &bull; Prerequisites: [Docker](https://docs.docker.com/engine/in
     
         docker cp dimage:/usr/dissertation/main.pdf .
 
-## Dissertations Database
+## Dissertations Databases
 
 Dissertations completed at Augusta University are archived on [ProQuest](https://www.proquest.com).
 
@@ -94,4 +94,8 @@ Accessing the full database requires authentication.
 
         DG(Ph.D) AND SCH(1907) AND DEP(Computer and Cyber Sciences)
 
+[Scholarly Commons](https://scholarlycommons.augusta.edu/home) is Augusta University's institutional repository.
+
+* [Computer and Cyber Sciences Theses and Dissertations](https://scholarlycommons.augusta.edu/collections/cdf0b4b7-90b3-4a35-97dd-022b804699b5/search)
+* [Theses and Dissertations 2020-2029](https://scholarlycommons.augusta.edu/collections/d04fb25e-8940-44b0-857f-3d96d1ce84b8/search)
 
