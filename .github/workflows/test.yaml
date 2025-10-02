@@ -26,7 +26,7 @@ jobs:
           options: --platform=linux/amd64 --rm --user root
           shell: bash
           run: |
-              bash -c "source /root/.bashrc"
+              export PATH="$PATH:/root/.opam/5.1.0/bin"
               pymwp --version ; dafny --version ; coqc --version 
               pymwp --info examples/original_paper/example3_1_b.c 
               (cd code && coqc equiv.v && dafny verify equiv.dfy)
