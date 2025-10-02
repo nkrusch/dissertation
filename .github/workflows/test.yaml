@@ -23,7 +23,7 @@ jobs:
         with:
           registry: gcr.io
           image: ghcr.io/nkrusch/dissertation:artifact
-          options: platform=linux/amd64
+          options: --platform=linux/amd64 -it --rm
           shell: bash
           run: |
               pymwp --info examples/original_paper/example3_1_b.c
