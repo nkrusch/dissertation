@@ -11,6 +11,8 @@ on:
       - '.github/*'
       - '.gitignore'
       - 'Dockerfile'
+      - '**.txt'
+      - '**.md'
   workflow_dispatch:
     branches: [ main ]
 

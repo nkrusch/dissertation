@@ -89,9 +89,10 @@ The source code (and container) is organized as follows.
 ------------------------------------------------------------------------
 
 You should have received a compiled version of the dissertation with
-this artifact. If not, a pre-compiled dissertation is available at
+this artifact. If not, the compiled dissertation is available at the
 following addresses:
 
+ * https://doi.org/10.5281/zenodo.17148077
  * https://neea.pl/dissertation
 
 Alternatively, compile the dissertation by running:
