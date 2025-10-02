@@ -23,10 +23,10 @@ jobs:
         with:
           registry: gcr.io
           image: ghcr.io/nkrusch/dissertation:artifact
-          options: --platform=linux/amd64 --rm -i --user root
+          options: --platform=linux/amd64 --rm --user root
           shell: bash
           run: |
-              whoami 
+              bash -c "source /root/.bashrc"
               pymwp --version ; dafny --version ; coqc --version 
               pymwp --info examples/original_paper/example3_1_b.c 
               (cd code && coqc equiv.v && dafny verify equiv.dfy)
