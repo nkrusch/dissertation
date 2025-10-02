@@ -19,7 +19,7 @@ env:
   TAG_LATEST: artifact
 
 jobs:
-  package:
+  artifact:
     runs-on: ubuntu-latest
     permissions: write-all
     steps:

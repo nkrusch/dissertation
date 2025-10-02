@@ -1,5 +1,9 @@
 name: Test
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 on:
   schedule:
     - cron:  '0 0 1 * *'
@@ -7,11 +11,6 @@ on:
     branches: [ main ]
   push:
     branches: [ main ]
-    paths-ignore:
-      - '.github/**'
-      - '.gitignore'
-      - '**.md'
-      - '**.txt'
 
 jobs:
   exec_test:
@@ -19,27 +18,13 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
-      - name: 🐳 Install Docker Engine on Ubuntu
-        run: |
-          for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do sudo apt-get remove $pkg; done
-          sudo apt-get update
-          sudo apt-get install ca-certificates curl
-          sudo install -m 0755 -d /etc/apt/keyrings
-          sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
-          sudo chmod a+r /etc/apt/keyrings/docker.asc
-          echo \
-            "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
-            $(. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}") stable" | \
-            sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-          sudo apt-get update
-          sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-      - name: ⬇️ Pull artifact
-        run: sudo docker pull --platform=linux/amd64 ghcr.io/nkrusch/dissertation:artifact
-      - name: 💨 Run artifact
-        run: sudo docker run --platform=linux/amd64 --name dimage --rm ghcr.io/nkrusch/dissertation:artifact
-      - name: ✔️ Sanity check
-        run: pymwp --version ; dafny --version ; coqc --version
-      - name: 🟠 Command tests
-        run: |
-          pymwp --info examples/original_paper/example3_1_b.c
-          cd code && coqc equiv.v && dafny verify equiv.dfy
+      - name: 🐳 Use Docker Engine on Ubuntu
+        uses: addnab/docker-run-action@v3
+        with:
+          registry: gcr.io
+          image: nkrusch/dissertation:artifact
+          options: platform=linux/amd64
+          shell: bash
+          run: |
+              pymwp --info examples/original_paper/example3_1_b.c
+              cd code && coqc equiv.v && dafny verify equiv.dfy
