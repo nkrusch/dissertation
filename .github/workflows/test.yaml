@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
-      - name: 🐳 Use Docker Engine on Ubuntu
+      - name: 🟠 Command test in Docker
         uses: addnab/docker-run-action@v3
         with:
           registry: gcr.io
@@ -26,5 +26,6 @@ jobs:
           options: --platform=linux/amd64 --rm
           shell: bash
           run: |
+              pymwp --version ; dafny --version ; coqc --version
               pymwp --info examples/original_paper/example3_1_b.c
-              cd code && coqc equiv.v && dafny verify equiv.dfy
+              (cd code && coqc equiv.v && dafny verify equiv.dfy)
