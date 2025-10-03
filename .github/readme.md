@@ -5,7 +5,7 @@
 [![Test](https://github.com/nkrusch/dissertation/actions/workflows/test.yaml/badge.svg)](https://github.com/nkrusch/dissertation/actions/workflows/test.yaml)
 [![DOI](https://zenodo.org/badge/596231407.svg)](https://doi.org/10.5281/zenodo.17148077)
 
-This is the source code of my doctoral dissertation, _["Applied Implicit Computational Complexity"](https://neea.pl/dissertation) (Rusch, 2025)_.
+This is the source code of my doctoral dissertation _["Applied Implicit Computational Complexity"](https://neea.pl/dissertation) (Rusch, 2025)_.
 
 I am not aware of any other _open source doctoral dissertation_ from Augusta University.
 I hope that making this resource public will be useful to future candidates.
