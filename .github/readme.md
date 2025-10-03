@@ -1,7 +1,8 @@
 # Dissertation
 
 [![Compile](https://github.com/nkrusch/thesis/actions/workflows/compile.yaml/badge.svg)](https://github.com/nkrusch/thesis/actions/workflows/compile.yaml)
-[![Package](https://github.com/nkrusch/dissertation/actions/workflows/artifact.yaml/badge.svg)](https://github.com/nkrusch/dissertation/actions/workflows/artifact.yaml)
+[![Artifact](https://github.com/nkrusch/dissertation/actions/workflows/artifact.yaml/badge.svg)](https://github.com/nkrusch/dissertation/actions/workflows/artifact.yaml)
+[![Test](https://github.com/nkrusch/dissertation/actions/workflows/test.yaml/badge.svg)](https://github.com/nkrusch/dissertation/actions/workflows/test.yaml)
 [![DOI](https://zenodo.org/badge/596231407.svg)](https://doi.org/10.5281/zenodo.17148077)
 
 This is the source code of my doctoral dissertation, _["Applied Implicit Computational Complexity"](https://neea.pl/dissertation) (Rusch, 2025)_.
