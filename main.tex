@@ -110,6 +110,8 @@ twoside=false, bindingoffset=0pt, nohead%
 % page.
 \newtoggle{ms}
 \toggletrue{ms}
+\newtoggle{hal}
+\toggletrue{hal}
 %%%%%%%%%%%%%%%%%%
 %%% To be filled %
 %%%%%%%%%%%%%%%%%%
@@ -160,12 +162,12 @@ twoside=false, bindingoffset=0pt, nohead%
 \DTMsavedate{mydate}{\yourdate}
 \makeatletter
 \renewcommand{\yourdate}{%
-    \DTMenglishmonthname{\@dtm@month}\\
-    \@dtm@year
+    \DTMenglishmonthname{\@dtm@month}\iftoggle{hal}{ }{\\}\@dtm@year
 }
 \makeatother
 
-% This add some information between 
+
+% This add some information between
 % your name and the date.
 \makeatletter
 \pretocmd{\yourdate}{%
@@ -176,19 +178,21 @@ twoside=false, bindingoffset=0pt, nohead%
     \iftoggle{ms}{Master of Science}{Doctor of Philosophy} % This toggle will display either 
     % "Master of Science" or "Doctor of Philosophy"
     % based on the choice made in info.tex.
-    \vspace{1em}\par
+\iftoggle{hal}{\\}{\vspace{1em}\par}
 }{}{}
+\iftoggle{hal}{\appto{\yourdate}{\vspace{1em}\par\committee\vspace{2em}\par}}{}
 \makeatother
 
 % This add copyright information, 
 % abusing the "publisher" field.
 \makeatletter
 \publishers{%
+    \usekomafont{date}{
     \textcopyright~\@dtm@year{} by \yourname%
     \ifdefined\yourlicence{\\[.1em] \yourlicence}
     \else
     \relax
-    \fi
+    \fi}
     \pagenumbering{gobble} % No page number on next page.
 }
 \makeatother
@@ -258,10 +262,9 @@ twoside=false, bindingoffset=0pt, nohead%
 % Subtitle and title should use the same font size.
 \setkomafont{subtitle}{\scshape\Large}
 % Author name should be 16 pts
-\addtokomafont{author}{\Large}
+\addtokomafont{author}{\iftoggle{hal}{\large}{\Large}}
 % Date should be in smaller font.
-\setkomafont{date}{\large}
-
+\setkomafont{date}{\iftoggle{hal}{\normalsize}{\large}}
 
 %%%%%%%%%%%
 % Spacing %
@@ -771,12 +774,6 @@ twoside=false, bindingoffset=0pt, nohead%
 \begin{document}
 \frontmatter
 \maketitle
-
 \mainmatter
-\frontmatter
-
 \input{content}
-
-%\backmatter
-%\printbibliography
 \end{document}
