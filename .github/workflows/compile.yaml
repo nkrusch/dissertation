@@ -46,18 +46,16 @@ jobs:
         with:
           name: dissertation
           path: main.pdf
-      - name: 🎁 Draft release
+      - name: 🎁 Release
+        if: ${{ github.ref_name != 'main' }}
         uses: ncipollo/release-action@v1.14.0
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           tag: ${{ steps.meta.outputs.tag }}
-          draft: ${{ github.ref_name == 'main' }}
+          draft: false
           artifacts: |
             main.pdf
             readme.txt
-          allowUpdates: true
-          removeArtifacts: true
-          replacesArtifacts: true
       - name: 🌬️ Upload compiled version to Zenodo
         run: |
           curl -H 'Authorization: Bearer ${{ secrets.ZENODO_TOKEN }}' --upload-file main.pdf https://zenodo.org/api/files/${{ secrets.ZENODO_BUCKET }}/dissertation.pdf

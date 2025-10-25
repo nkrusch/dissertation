@@ -45,7 +45,7 @@ jobs:
             ghcr.io/${{ env.IMAGE_NAME }}:${{ steps.meta.outputs.tag }}
           outputs: type=docker,dest=${{ runner.temp }}/${{ env.TAG_LATEST }}-amd64.tar
           provenance: false
-          push: ${{ github.ref_name != 'main' }} # if tagged
+          push: true
       - name: 🌬️ Push it to Zenodo
         run: |
           curl -H 'Authorization: Bearer ${{ secrets.ZENODO_TOKEN }}' \
