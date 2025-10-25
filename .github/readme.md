@@ -84,19 +84,18 @@ Time: 10-15 min &bull; Prerequisites: [Docker](https://docs.docker.com/engine/in
 ## Dissertations Databases
 
 Dissertations completed at Augusta University are archived on [ProQuest](https://www.proquest.com).
+Accessing the full ProQuest database requires authentication.
+[Scholarly Commons](https://scholarlycommons.augusta.edu/home) is Augusta University's institutional repository.
+All dissertations submitted to ProQuest will also appear in Scholarly Commons.
 
-Accessing the full database requires authentication.
-
-* Query to find all AU doctoral dissertations:
+* [ProQuest] Query to find all AU doctoral dissertations:
 
         DG(Ph.D) AND SCH(1907)
 
-* Query to find all AU doctoral dissertations in computer science:
+* [ProQuest] Query to find all AU doctoral dissertations in computer science:
 
         DG(Ph.D) AND SCH(1907) AND DEP(Computer and Cyber Sciences)
 
-[Scholarly Commons](https://scholarlycommons.augusta.edu/home) is Augusta University's institutional repository.
-
-* [Computer and Cyber Sciences Theses and Dissertations](https://scholarlycommons.augusta.edu/collections/cdf0b4b7-90b3-4a35-97dd-022b804699b5/search)
-* [Theses and Dissertations 2020-2029](https://scholarlycommons.augusta.edu/collections/d04fb25e-8940-44b0-857f-3d96d1ce84b8/search)
+* [Scholarly Commons] [Computer and Cyber Sciences Theses and Dissertations](https://scholarlycommons.augusta.edu/collections/cdf0b4b7-90b3-4a35-97dd-022b804699b5/search)
+* [Scholarly Commons] [Theses and Dissertations 2020-2029](https://scholarlycommons.augusta.edu/collections/d04fb25e-8940-44b0-857f-3d96d1ce84b8/search)
 
