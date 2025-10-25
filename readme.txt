@@ -94,10 +94,13 @@ following addresses:
 
  * https://doi.org/10.5281/zenodo.17148077
  * https://neea.pl/dissertation
- * https://www.proquest.com/docview/3261478703
  * https://hdl.handle.net/10675.2/625971
 
-Alternatively, compile the dissertation by running:
+The dissertation is also available on ProQuest (but behind login) at address:
+
+ * https://www.proquest.com/docview/3261478703
+
+Alternatively, compile the dissertation from sources by running:
 
     make full
 
