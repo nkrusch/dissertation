@@ -93,10 +93,10 @@ this artifact. If not, the compiled dissertation is available at the
 following addresses:
 
  * https://doi.org/10.5281/zenodo.17148077
- * https://neea.pl/dissertation
  * https://hdl.handle.net/10675.2/625971
+ * https://neea.pl/dissertation
 
-The dissertation is also available on ProQuest (but behind login) at address:
+The dissertation is also available on ProQuest (but behind login):
 
  * https://www.proquest.com/docview/3261478703
 
