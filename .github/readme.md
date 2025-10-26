@@ -9,7 +9,7 @@ This is the source code of my doctoral dissertation _["Applied Implicit Computat
 
 I am not aware of any other _open source doctoral dissertation_ from Augusta University.
 I hope that making this resource public will be useful to future candidates.
-The LaTeX template is also open source.
+The dissertation template is also open source.
 This repository uses automated workflows (e.g. to compile and build an artifact container) that may be of interest to the technically advanced candidates.
 
 For defense timeline and process, see [this page](https://neea.pl/posts/defense#timeline--progress).
@@ -18,9 +18,9 @@ For defense timeline and process, see [this page](https://neea.pl/posts/defense#
 
 The content and formatting requirements of doctoral dissertations.
 
-* [Dissertation template](https://github.com/aubertc/au_ccs_dissertation_template/) — LaTeX/markdown template for AU TGS dissertations
-* [Augusta University Electronic Theses and Dissertations (ETD)](https://guides.augusta.edu/etd) — guide by AU Libraries
-* [Thesis/Dissertation Preparation Booklet v.2024](https://augustauniversity.app.box.com/s/vj0ygpy8tvyqmsbae8y0qp9767ta7jb9) — AU formatting requirements
+* [Dissertation template](https://github.com/aubertc/au_ccs_dissertation_template/) — LaTeX/markdown template for Augusta University graduate dissertations
+* [Augusta University Electronic Theses and Dissertations (ETD)](https://guides.augusta.edu/etd) — guide by Augusta University Libraries
+* [Thesis/Dissertation Preparation Booklet v.2024](https://augustauniversity.app.box.com/s/vj0ygpy8tvyqmsbae8y0qp9767ta7jb9) — Augusta University formatting requirements
 * [Preparing Your Manuscript for Submission](https://about.proquest.com/globalassets/proquest/files/pdf-files/preparing-your-manuscript.pdf) — guide by ProQuest
 
 ## Repository Organization
@@ -90,8 +90,8 @@ Accessing the full ProQuest database requires authentication.
 All dissertations submitted to ProQuest will also appear in Scholarly Commons.
 Scholarly Commons does not require authentication.
 
-* [Computer and Cyber Sciences Theses and Dissertations on Scholarly Commons](https://scholarlycommons.augusta.edu/collections/cdf0b4b7-90b3-4a35-97dd-022b804699b5/search)
 * [Theses and Dissertations 2020-2029 on Scholarly Commons](https://scholarlycommons.augusta.edu/collections/d04fb25e-8940-44b0-857f-3d96d1ce84b8/search)
+* [Computer and Cyber Sciences Theses and Dissertations on Scholarly Commons](https://scholarlycommons.augusta.edu/collections/cdf0b4b7-90b3-4a35-97dd-022b804699b5/search)
 * Query to find all Augusta University doctoral dissertations on ProQuest:
 
       DG(Ph.D) AND SCH(1907)
