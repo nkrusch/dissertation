@@ -90,12 +90,12 @@ Accessing the full ProQuest database requires authentication.
 All dissertations submitted to ProQuest will also appear in Scholarly Commons.
 Scholarly Commons does not require authentication.
 
-* [Scholarly Commons] [Computer and Cyber Sciences Theses and Dissertations](https://scholarlycommons.augusta.edu/collections/cdf0b4b7-90b3-4a35-97dd-022b804699b5/search)
-* [Scholarly Commons] [Theses and Dissertations 2020-2029](https://scholarlycommons.augusta.edu/collections/d04fb25e-8940-44b0-857f-3d96d1ce84b8/search)
-* [ProQuest] Query to find all AU doctoral dissertations:
+* [Computer and Cyber Sciences Theses and Dissertations on Scholarly Commons](https://scholarlycommons.augusta.edu/collections/cdf0b4b7-90b3-4a35-97dd-022b804699b5/search)
+* [Theses and Dissertations 2020-2029 on Scholarly Commons](https://scholarlycommons.augusta.edu/collections/d04fb25e-8940-44b0-857f-3d96d1ce84b8/search)
+* Query to find all Augusta University doctoral dissertations on ProQuest:
 
       DG(Ph.D) AND SCH(1907)
 
-* [ProQuest] Query to find all AU doctoral dissertations in computer science:
+* Query to find all Augusta University doctoral dissertations in computer science on ProQuest:
 
       DG(Ph.D) AND SCH(1907) AND DEP(Computer and Cyber Sciences)
