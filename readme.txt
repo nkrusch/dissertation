@@ -42,7 +42,8 @@ STANDARD SETUP
 [recommended] Pull the container from GitHub Container Registry.
 On some machines you may need sudo.
 
-    docker pull --platform=linux/amd64 ghcr.io/nkrusch/dissertation:artifact
+    docker pull --platform=linux/amd64 \
+    ghcr.io/nkrusch/dissertation:artifact
 
 If the above is not possible, load the container from the tarball
 archived on Zenodo.
@@ -51,7 +52,8 @@ archived on Zenodo.
 
 After pull or load, launch the container.
 
-    docker run --platform=linux/amd64 --name dimage -it --rm ghcr.io/nkrusch/dissertation:artifact
+    docker run --platform=linux/amd64 --name dimage -it --rm \
+    ghcr.io/nkrusch/dissertation:artifact
 
 ALTERNATIVE SETUP
 
