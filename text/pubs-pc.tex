@@ -325,7 +325,7 @@ If all final values can be bounded by polynomials, then the input program is
 \emph{\ndx{mwp-bound}} to every variable of a derivable program. An
 \ndx{mwp-bound} is an expression, in terms of the inputs, that characterizes the
 value growth of a single variable. If a derivable program terminates, the
-soundness theorem of the flow calculus~\cite[p. 11]{jones2009}\index{soundness
+soundness theorem of the flow calculus~\cite[p. 12]{jones2009}\index{soundness
 of mwp-calculus}\index{mwp-calculus} guarantees that the variable value growth
 is polynomially-bounded. The result is sound but not complete, \ie not all
 satisfactory programs can be captured, but on success we can prove the result
@@ -597,7 +597,7 @@ ensure only acceptable data flow patterns are accepted as
 derivable.\index{derivability} The rule E3 says \enquote{the vector of the left
 operand is multiplied by a polynomial coefficient.} The
 \(p\)\symbo{p}-coefficient tracks the fact that certain data flow patterns might
-not be polynomially bounded~\cite[p. 13]{jones2009}. Applying the rules to a
+not be polynomially bounded~\cite[p. 14]{jones2009}. Applying the rules to a
 vector propagates the effect to all variables that are transitively dependent on
 the left operand. Rule E4 is similar to E3, except the \(p\)\symbo{p}
 coefficient is applied to the right operand. Thus, three different derivation
@@ -1039,7 +1039,7 @@ does not return a \ndx{choice vector}. However, an \ndx{mwp-bound} of at most
 
 \noindent Variable query is safe for derivable programs\index{derivability},
 because all variables are guaranteed to have an \ndx{mwp-bound} by the soundness
-theorem of the flow calculus~\cite[p. 11]{jones2009}.\index{soundness of
+theorem of the flow calculus~\cite[p. 12]{jones2009}.\index{soundness of
 mwp-calculus} Additional caution is needed when a program is not derivable.
 
 \subsubsection{Variable mwp-bounds in presence of failure}
