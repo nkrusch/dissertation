@@ -85,6 +85,7 @@ Time: 10-15 min &bull; Prerequisites: [Docker](https://docs.docker.com/engine/in
 
 Dissertations completed at Augusta University are archived on [ProQuest](https://www.proquest.com).
 Accessing the full ProQuest database requires authentication.
+The database search results depend on the institution though which the user is authenticated.
 
 [Scholarly Commons](https://scholarlycommons.augusta.edu/home) is Augusta University's institutional repository.
 All dissertations submitted to ProQuest will also appear in Scholarly Commons.
