@@ -83,20 +83,51 @@ Time: 10-15 min &bull; Prerequisites: [Docker](https://docs.docker.com/engine/in
 
 ## Dissertations Databases
 
-Dissertations completed at Augusta University are archived on [ProQuest](https://www.proquest.com).
-Accessing the full ProQuest database requires authentication.
-The database search results depend on the institution though which the user is authenticated.
+Augusta University uses ProQuest as the official publisher of doctoral dissertations.
+However, ProQuest is a subscription-based service and it minimially requires authentication before a user is allowed to access full length documents.
+As an author, and in spirit of open science, it is advisable to disseminate dissertations more broadly.
 
-[Scholarly Commons](https://scholarlycommons.augusta.edu/home) is Augusta University's institutional repository.
-All dissertations submitted to ProQuest will also appear in Scholarly Commons.
-Scholarly Commons does not require authentication.
+The following list contains various dissertation databases/options for distributing dissertations. 
+This dissertation can be found in all of them.
 
-* [Theses and Dissertations 2020-2029 on Scholarly Commons](https://scholarlycommons.augusta.edu/collections/d04fb25e-8940-44b0-857f-3d96d1ce84b8/search)
-* [Computer and Cyber Sciences Theses and Dissertations on Scholarly Commons](https://scholarlycommons.augusta.edu/collections/cdf0b4b7-90b3-4a35-97dd-022b804699b5/search)
-* Query to find all Augusta University doctoral dissertations on ProQuest:
 
-      DG(Ph.D) AND SCH(1907)
+* [Scholarly Commons](https://scholarlycommons.augusta.edu/home) is Augusta University's institutional repository.
+  All AU dissertations appear in Scholarly Commons.
+  Scholarly Commons does not require authentication.
 
-* Query to find all Augusta University doctoral dissertations in computer science on ProQuest:
+  * [Theses and Dissertations 2020-2029 on Scholarly Commons &nearr;](https://scholarlycommons.augusta.edu/collections/d04fb25e-8940-44b0-857f-3d96d1ce84b8/search)
+  * [Computer and Cyber Sciences Theses and Dissertations on Scholarly Commons &nearr;](https://scholarlycommons.augusta.edu/collections/cdf0b4b7-90b3-4a35-97dd-022b804699b5/search)
 
-      DG(Ph.D) AND SCH(1907) AND DEP(Computer and Cyber Sciences)
+* [HAL Theses](https://theses.hal.science) is an open archive of PhD thesis and habilitation theses. 
+  * [Augusta University theses on HAL &nearr;](https://theses.hal.science/search/index?q=augusta+university)
+
+* [Zenodo](https://zenodo.org) is an archival repository for all kinds of scholarly and research outputs, including theses.
+  There is an Augusta University community for research deposits affiliated with AU.
+  
+  * [Dissertations affiliated with Augusta University on Zenodo &nearr;](https://zenodo.org/communities/au/records?q=&f=resource_type%3Apublication%2Binner%3Apublication-dissertation&l=list&p=1&s=10&sort=newest)
+
+* [ProQuest](https://www.proquest.com) is a third party dissertation archival database used by Augusta University.
+  Accessing the full ProQuest database requires authentication.
+  The database search results depend on the intituition through witch the user authenticates.
+
+  * Query to find all Augusta University doctoral dissertations in computer science on ProQuest:
+
+          DG(Ph.D) AND SCH(1907) AND DEP(Computer and Cyber Sciences)
+
+## Citation
+
+Please acknowledge references to this dissertation, or its artifact, with the following citation.
+
+```bibtex
+@phdthesis{rusch2025,
+  title   = {Applied Implicit Computational Complexity},
+  author  = {Neea Rusch},
+  year    = 2025,
+  month   = 9,
+  school  = {Augusta University},
+  address = {Augusta, Georgia, United States},
+  doi     = {10.5281/zenodo.17148449},
+  type    = {PhD thesis}
+}
+ ```
+
