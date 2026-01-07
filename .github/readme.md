@@ -99,7 +99,7 @@ This dissertation can be found in all of them.
   * [Computer and Cyber Sciences Theses and Dissertations on Scholarly Commons &nearr;](https://scholarlycommons.augusta.edu/collections/cdf0b4b7-90b3-4a35-97dd-022b804699b5/search)
 
 * [HAL Theses](https://theses.hal.science) is an open archive of PhD thesis and habilitation theses. 
-  * [Augusta University theses on HAL &nearr;](https://theses.hal.science/search/index?q=augusta+university)
+  * [Augusta University theses on HAL &nearr;](https://theses.hal.science/search/index/?q=augusta+university&language_s=en)
 
 * [Zenodo](https://zenodo.org) is an archival repository for all kinds of scholarly and research outputs, including theses.
   There is an Augusta University community for research deposits affiliated with AU.
