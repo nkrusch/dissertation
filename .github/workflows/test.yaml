@@ -1,4 +1,4 @@
-name: Test
+name: Artifact run
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
