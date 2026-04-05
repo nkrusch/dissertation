@@ -9,9 +9,9 @@ This is the source code of my doctoral dissertation _["Applied Implicit Computat
 I am not aware of any other _open source doctoral dissertations_ from Augusta University.
 I hope that making this resource public will be useful to future candidates.
 The dissertation template is also open source.
-This repository uses automated workflows (e.g. to compile and build an artifact container) that may be of interest to the technically advanced candidates.
+This repository uses automated workflows, for example to compile and build an artifact container, that may be of interest to the technically skilled candidates.
 
-The dissertation and defense timeline and process is documented [here](https://neea.pl/posts/defense#timeline--progress).
+The timeline and process of my dissertation and defense is documented [here](https://neea.pl/posts/defense#timeline--progress).
 
 ## Formatting Guidelines
 
@@ -123,7 +123,7 @@ The database access further depends on the authenticating institution and what c
 > [!WARNING]
 > ProQuest functionality and access is strongly restricted to users without a suitable institutional subscription. 
 
-If you have sufficient permissions, this query finds all Augusta University doctoral dissertations in computer science on ProQuest:
+If you have sufficient permissions, the following query finds all Augusta University doctoral dissertations in computer science that have been published on ProQuest:
 
     DG(Ph.D) AND SCH(1907) AND DEP(Computer and Cyber Sciences)
 
