@@ -19,7 +19,6 @@ jobs:
       image: ghcr.io/nkrusch/dissertation:artifact
       options: --platform=linux/amd64 --rm --user root
     steps:
-      - uses: actions/checkout@v6
       - run: |
           pymwp --version ; dafny --version ; coqc --version 
           pymwp --info examples/original_paper/example3_1_b.c 
