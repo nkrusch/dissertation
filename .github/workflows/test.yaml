@@ -6,7 +6,7 @@ concurrency:
 
 on:
   schedule:
-    - cron:  '0 0 1 * *'
+    - cron: '0 0 1 * *'
   push:
     branches: [ main ]
   workflow_dispatch:
@@ -17,9 +17,10 @@ jobs:
     runs-on: ubuntu-22.04
     container:
       image: ghcr.io/nkrusch/dissertation:artifact
-      options: --platform=linux/amd64 -w /usr/dissertation
+      options: --platform=linux/amd64
     steps:
       - run: |
+          cd /usr/dissertation
           pymwp --version ; dafny --version ; coqc --version 
           pymwp --info examples/original_paper/example3_1_b.c 
           (cd code && coqc equiv.v && dafny verify equiv.dfy)
