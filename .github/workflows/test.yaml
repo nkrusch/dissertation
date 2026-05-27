@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-22.04
     container:
       image: ghcr.io/nkrusch/dissertation:artifact
-      options: --platform=linux/amd64 --rm --user root
+      options: --platform=linux/amd64 -w /usr/dissertation
     steps:
       - run: |
           pymwp --version ; dafny --version ; coqc --version 
