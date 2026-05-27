@@ -7,25 +7,20 @@ concurrency:
 on:
   schedule:
     - cron:  '0 0 1 * *'
-  workflow_dispatch:
-    branches: [ main ]
   push:
     branches: [ main ]
+  workflow_dispatch:
 
 jobs:
   exec_test:
     name: Runtime test
     runs-on: ubuntu-22.04
+    container:
+      image: ghcr.io/nkrusch/dissertation:artifact
+      options: --platform=linux/amd64 --rm --user root
     steps:
-      - uses: actions/checkout@v4
-      - name: 🟠 Command test in Docker
-        uses: addnab/docker-run-action@v3
-        with:
-          registry: gcr.io
-          image: ghcr.io/nkrusch/dissertation:artifact
-          options: --platform=linux/amd64 --rm --user root
-          shell: bash
-          run: | 
-              pymwp --version ; dafny --version ; coqc --version 
-              pymwp --info examples/original_paper/example3_1_b.c 
-              (cd code && coqc equiv.v && dafny verify equiv.dfy)
+      - uses: actions/checkout@v6
+      - run: |
+          pymwp --version ; dafny --version ; coqc --version 
+          pymwp --info examples/original_paper/example3_1_b.c 
+          (cd code && coqc equiv.v && dafny verify equiv.dfy)

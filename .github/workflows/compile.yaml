@@ -14,7 +14,6 @@ on:
       - '.gitignore'
       - 'Dockerfile'
   workflow_dispatch:
-    branches: [ main ]
 
 jobs:
   compile:
@@ -24,7 +23,7 @@ jobs:
     permissions: write-all
     steps:
       - name: ✴️️ Checkout repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
       - name: 🔖 Set tag
         id: meta
         run:  x="${{ github.ref_name }}"; echo "tag=${x/main/latest}" >> $GITHUB_OUTPUT
@@ -42,13 +41,13 @@ jobs:
           latexmk_use_xelatex: true
           post_compile: make -j 4 terms && make -j 4 compile
       - name: 📦 Upload artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: dissertation
           path: main.pdf
       - name: 🎁 Release
         if: ${{ github.ref_name != 'main' }}
-        uses: ncipollo/release-action@v1.14.0
+        uses: ncipollo/release-action@v1.21.0
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           tag: ${{ steps.meta.outputs.tag }}
@@ -66,7 +65,7 @@ jobs:
     needs: compile
     steps:
       - name: ✴️️ Checkout target
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           token:  ${{ secrets.GH_PAT }}
           repository: ${{ vars.OUTPUT_REPO }}
@@ -76,7 +75,7 @@ jobs:
           git config --global user.name "GitHub Actions"
           git config --global user.email "<>"
       - name: ⬇️ Download artifact
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: dissertation
           path: ${{ vars.OUTPUT_PATH }}
