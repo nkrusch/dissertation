@@ -4,10 +4,10 @@
 
 This is the source code of my doctoral dissertation _["Applied Implicit Computational Complexity"](https://neea.pl/dissertation) (Rusch, 2025)_.
 
-I am not aware of any other _open source doctoral dissertations_ from Augusta University.
+I am not aware of any other open source doctoral dissertations from Augusta University.
 I hope that making this resource public will be useful to future candidates.
 The dissertation template is also open source.
-This repository uses automated workflows, for example to compile and build an artifact container, that may be of interest to the technically skilled candidates.
+This repository uses automated workflows (for example to compile the dissertation and build an artifact container) that may be of interest to the technically skilled candidates.
 
 The timeline and process of my dissertation and defense is documented [here](https://neea.pl/posts/defense#timeline--progress).
 
@@ -78,7 +78,7 @@ On host, in a separate terminal, copy the compiled document to the host:
 
     docker cp dimage:/usr/dissertation/main.pdf .
 
-## Dissertations Databases
+## Dissemination
 
 This dissertation can be found in all the following dissertation databases.
 
@@ -119,9 +119,10 @@ It minimally requires authentication before a user is allowed to access full len
 The database access further depends on the authenticating institution and what collections the institution subscribes to.
 
 > [!WARNING]
-> ProQuest functionality and access is strongly restricted to users without a suitable institutional subscription. 
+> ProQuest functionality and access is strongly restricted to users without a suitable institutional subscription.
 
-If you have sufficient permissions, the following query finds all Augusta University doctoral dissertations in computer science that have been published on ProQuest:
+If you have sufficient permissions, this dissertation is document [#3261478703](https://www.proquest.com/docview/3261478703) on Proquest.
+The following query returns Augusta University doctoral dissertations in computer science on ProQuest:
 
     DG(Ph.D) AND SCH(1907) AND DEP(Computer and Cyber Sciences)
 
