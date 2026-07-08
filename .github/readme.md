@@ -1,8 +1,6 @@
 # Dissertation
 
-[![DOI](https://zenodo.org/badge/596231407.svg)](https://doi.org/10.5281/zenodo.17148077)
-[![Test](https://github.com/nkrusch/dissertation/actions/workflows/test.yaml/badge.svg)](https://github.com/nkrusch/dissertation/actions/workflows/test.yaml)
-[![Latest check](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2Fnkrusch%2Fdissertation%2Factions%2Fworkflows%2F194627837%2Fruns%3Fstatus%3Dcompleted%26per_page%3D1&query=%24.workflow_runs%5B0%5D.run_started_at&style=square&label=Latest%20check&color=546E7A)](https://github.com/nkrusch/dissertation/actions/workflows/test.yaml)
+[![DOI](https://img.shields.io/badge/-10.5281/zenodo.17148077-181833?logo=DOI&style=for-the-badge)](https://doi.org/10.5281/zenodo.17148077)
 
 This is the source code of my doctoral dissertation _["Applied Implicit Computational Complexity"](https://neea.pl/dissertation) (Rusch, 2025)_.
 
