@@ -7,13 +7,13 @@ This is the source code of my doctoral dissertation _["Applied Implicit Computat
 I am not aware of any other open source doctoral dissertations from Augusta University.
 I hope that making this resource public will be useful to future candidates.
 The dissertation template is also open source.
-This repository uses automated workflows (for example to compile the dissertation and build an artifact container) that may be of interest to the technically skilled candidates.
+This repository uses automated workflows (for example to compile the dissertation and build an artifact) that may be of interest to technically skilled candidates.
 
 The timeline and process of my dissertation and defense is documented [here](https://neea.pl/posts/defense#timeline--progress).
 
 ## Formatting Guidelines
 
-The content and formatting requirements[^1] of doctoral dissertations.
+The content and formatting recommendations ("requirements") of doctoral dissertations.
 
 * [Dissertation template](https://github.com/aubertc/au_ccs_dissertation_template/) — LaTeX/markdown template for Augusta University graduate dissertations
 * [Augusta University Electronic Theses and Dissertations (ETD)](https://guides.augusta.edu/etd) — guide by Augusta University Libraries
@@ -129,7 +129,7 @@ The following query returns Augusta University doctoral dissertations in compute
 
 ## Citation
 
-Please acknowledge references to this dissertation, or its artifact, with the following citation.
+Please acknowledge references to this dissertation or its artifact with the following citation.
 
 ```bibtex
 @phdthesis{rusch2025,
@@ -151,4 +151,3 @@ Please acknowledge references to this dissertation, or its artifact, with the fo
 [Scholarly Commons]: https://scholarlycommons.augusta.edu/home
 [Zenodo]: https://zenodo.org
 
-[^1]: More precisely, these are _recommendations_.
