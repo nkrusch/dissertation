@@ -40,7 +40,7 @@ The content and formatting recommendations ("requirements") of doctoral disserta
 The compilation follows roughly this dependency schema.
 
                ┌──── args.tex ◂──────── latex/*      
-    main.tex ◂─┼──── content.tex ◂──┬── text ◂────────┬── pdf/*  ◂─── pictures/*      
+    main.tex ◂─┼──── content.tex ◂──┬── text/* ◂──────┬── pdf/*  ◂─── pictures/*      
                └──── fonts/*        └── references/*  └── code/*
 
 ## Dissertation Compilation
