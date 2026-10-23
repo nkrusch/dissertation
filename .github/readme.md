@@ -15,7 +15,7 @@ The timeline and process of my dissertation and defense is documented [here](htt
 
 The content and formatting recommendations ("requirements") of doctoral dissertations.
 
-* [Dissertation template](https://github.com/aubertc/au_ccs_dissertation_template/) — LaTeX/markdown template for Augusta University graduate dissertations
+* [Dissertation template](https://github.com/the-au-forml-lab/au_graduate_dissertation_template) — LaTeX/markdown template for Augusta University graduate dissertations
 * [Augusta University Electronic Theses and Dissertations (ETD)](https://guides.augusta.edu/etd) — guide by Augusta University Libraries
 * [Thesis/Dissertation Preparation Booklet v.2024](https://augustauniversity.app.box.com/s/vj0ygpy8tvyqmsbae8y0qp9767ta7jb9) — Augusta University formatting requirements
 * [Preparing Your Manuscript for Submission](https://about.proquest.com/globalassets/proquest/files/pdf-files/preparing-your-manuscript.pdf) — guide by ProQuest
