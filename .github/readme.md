@@ -13,7 +13,9 @@ The timeline and process of my dissertation and defense is documented [here](htt
 
 ## Formatting Guidelines
 
-The content and formatting recommendations ("requirements") of doctoral dissertations.
+These are the content and formatting recommendations ("requirements") of doctoral dissertations.[^1]
+
+My dissertation follows the format of _alternative ETD_, as per the university guidelines circa 2024. The alternative format includes publications directly, as published/unpublished work. The standard EDT has instead methods/results chapters. Otherwise the two formats are the same. 
 
 * [Dissertation template](https://github.com/the-au-forml-lab/au_graduate_dissertation_template) — LaTeX/markdown template for Augusta University graduate dissertations
 * [Augusta University Electronic Theses and Dissertations (ETD)](https://guides.augusta.edu/etd) — guide by Augusta University Libraries
@@ -122,9 +124,10 @@ The database access further depends on the authenticating institution and what c
 > ProQuest functionality and access is strongly restricted to users without a suitable institutional subscription.
 
 If you have sufficient permissions, this dissertation is document [#3261478703](https://www.proquest.com/docview/3261478703) on Proquest.
-The following query returns Augusta University doctoral dissertations in computer science on ProQuest:
+The following query returns Augusta University doctoral dissertations in computer science on ProQuest:[^1]
 
     DG(Ph.D) AND SCH(1907) AND DEP(Computer and Cyber Sciences)
+
 
 
 ## Citation
@@ -150,4 +153,6 @@ Please acknowledge references to this dissertation or its artifact with the foll
 [ProQuest]: https://www.proquest.com
 [Scholarly Commons]: https://scholarlycommons.augusta.edu/home
 [Zenodo]: https://zenodo.org
+
+[^1]: The completed dissertations on ProQuest show that the formatting "requirements" are just suggestions.
 
