@@ -1,14 +1,8 @@
-name: Artifact run
-
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
+name: Test run
 
 on:
   schedule:
     - cron: '0 0 1 * *'
-  push:
-    branches: [ main ]
   workflow_dispatch:
 
 jobs:
