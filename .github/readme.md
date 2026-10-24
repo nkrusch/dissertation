@@ -6,21 +6,21 @@ This is the source code of my doctoral dissertation _["Applied Implicit Computat
 
 I am not aware of any other open source doctoral dissertations from Augusta University.
 I hope that making this resource public will be useful to future candidates.
-The dissertation template is also open source.
-This repository uses automated workflows (for example to compile the dissertation and build an artifact) that may be of interest to technically skilled candidates.
+This repository uses automated workflows (for example, to compile the dissertation and build an artifact) that may be of interest to technically skilled candidates.
 
 The timeline and process of my dissertation and defense is documented [here](https://neea.pl/posts/defense#timeline--progress).
 
 ## Formatting Guidelines
 
-These are the content and formatting recommendations ("requirements") of doctoral dissertations.[^1]
+These are the content and formatting recommendations ("requirements")[^1] of doctoral dissertations at Augusta University.
 
-My dissertation follows the format of _alternative ETD_, as per the university guidelines circa 2024. The alternative format includes publications directly, as published/unpublished work. The standard EDT has instead methods/results chapters. Otherwise the two formats are the same. 
+My dissertation uses the _alternative format_ as per the university [guidelines circa 2024](https://augustauniversity.app.box.com/s/vj0ygpy8tvyqmsbae8y0qp9767ta7jb9). 
+The alternative format includes publications verbatim, as published manuscripts and unpublished research. 
+The standard format constains instead methods and results chapters. Otherwise the two formats agree on content structuring. 
 
 * [Dissertation template](https://github.com/the-au-forml-lab/au_graduate_dissertation_template) — LaTeX/markdown template for Augusta University graduate dissertations
 * [Augusta University Electronic Theses and Dissertations (ETD)](https://guides.augusta.edu/etd) — guide by Augusta University Libraries
-* [Thesis/Dissertation Preparation Booklet v.2024](https://augustauniversity.app.box.com/s/vj0ygpy8tvyqmsbae8y0qp9767ta7jb9) — Augusta University formatting requirements
-* [Preparing Your Manuscript for Submission](https://about.proquest.com/globalassets/proquest/files/pdf-files/preparing-your-manuscript.pdf) — guide by ProQuest
+* [Preparing Your Manuscript for Submission](https://about.proquest.com/globalassets/proquest/files/pdf-files/preparing-your-manuscript.pdf) — publishing guidelines by ProQuest
 
 ## Repository Organization
 
@@ -45,11 +45,11 @@ The compilation follows roughly this dependency schema.
     main.tex ◂─┼──── content.tex ◂──┬── text/* ◂──────┬── pdf/*  ◂─── pictures/*      
                └──── fonts/*        └── references/*  └── code/*
 
-## Dissertation Compilation
+## Compilation Instructions
 
 ### 🖥️ Native Host
 
-Time: 5-10 min &bull; Prerequisites: [LaTeX]
+Time: 5-10 min &bull; Prerequisites: [LaTeX], GNU Make
 
 At repository root, compile the dissertation by running:
 
@@ -61,7 +61,7 @@ The output is a file `main.pdf`.
 
 Time: 10-15 min &bull; Prerequisites: [Docker]
 
-**Setup container**
+**Prepare container**
 
 Pull and launch the latest container (on some machines you may need sudo):
 
@@ -84,7 +84,7 @@ On host, in a separate terminal, copy the compiled document to the host:
 
 This dissertation can be found in all the following dissertation databases.
 
-### Open Databases <sup>🗸</sup>
+### Open Databases <sup>🗸 <sup>recommended</sup></sup>
 
 <a href="https://theses.hal.science">
 <picture class="theme-aware-logo">
@@ -92,13 +92,13 @@ This dissertation can be found in all the following dissertation databases.
   <img alt="HAL" src="hal.svg" align="right" width="164">
 </picture></a>
 
-[HAL Theses] is an open archive of PhD thesis and habilitation theses.
-* [Augusta University theses on HAL](https://theses.hal.science/search/index/?q=augusta+university&language_s=en)
+**HAL Theses** is an open archive of PhD thesis and habilitation theses.
+* [Dissertations affiliated with Augusta University on HAL](https://theses.hal.science/search/index/?q=augusta+university&language_s=en)
 
 <a href="https://zenodo.org"><img src="zenodo.svg" width="144" alt="Zenodo" align="right" /></a>
 
-[Zenodo] is an archival repository for all kinds of scholarly and research outputs, including theses.
-There is also a community for research deposits affiliated with Augusta University.
+**Zenodo** is an archival repository for all kinds of scholarly and research outputs, including theses.
+There is also a dedicated community for research deposits from Augusta University.
 * [Dissertations affiliated with Augusta University on Zenodo](https://zenodo.org/communities/au/records?q=&f=resource_type%3Apublication%2Binner%3Apublication-dissertation&l=list&p=1&s=10&sort=newest)
 
 <a href="https://scholarlycommons.augusta.edu/home">
@@ -107,11 +107,12 @@ There is also a community for research deposits affiliated with Augusta Universi
   <img alt="Augusta University" src="au.png" align="right" width="144">
 </picture></a>
 
-[Scholarly Commons] is Augusta University's institutional repository.
-All AU dissertations appear in Scholarly Commons.
-Scholarly Commons does not require authentication, though some items are restricted.
+**Scholarly Commons** is the institutional scholarly repository of Augusta University.
+All AU dissertations should appear in Scholarly Commons eventually.
+Scholarly Commons does not require authentication, though some items are restricted from access.
+
+* [Computer and Cyber Sciences Theses and Dissertations collection on Scholarly Commons](https://scholarlycommons.augusta.edu/collections/cdf0b4b7-90b3-4a35-97dd-022b804699b5/search)
 * [Theses and Dissertations 2020-2029 on Scholarly Commons](https://scholarlycommons.augusta.edu/collections/d04fb25e-8940-44b0-857f-3d96d1ce84b8/search)
-* [Computer and Cyber Sciences Theses and Dissertations on Scholarly Commons](https://scholarlycommons.augusta.edu/collections/cdf0b4b7-90b3-4a35-97dd-022b804699b5/search)
 
 ### Subscription Database <sup>ಠ_ಠ</sup>
 
@@ -123,7 +124,8 @@ The database access further depends on the authenticating institution and what c
 > [!WARNING]
 > ProQuest functionality and access is strongly restricted to users without a suitable institutional subscription.
 
-If you have sufficient permissions, this dissertation is document [#3261478703](https://www.proquest.com/docview/3261478703) on Proquest.
+If you have sufficient permissions, this dissertation is the document [#3261478703](https://www.proquest.com/docview/3261478703) on ProQuest.
+
 The following query returns Augusta University doctoral dissertations in computer science on ProQuest:[^1]
 
     DG(Ph.D) AND SCH(1907) AND DEP(Computer and Cyber Sciences)
